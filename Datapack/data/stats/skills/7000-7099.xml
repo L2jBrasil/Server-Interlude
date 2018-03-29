@@ -1,0 +1,969 @@
+<?xml version='1.0' encoding='utf-8'?>
+<list>
+<skill id="7000" levels="1" name="NPC Default">
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="0"/>
+  <for>
+  </for>
+</skill>
+<skill id="7001" levels="1" name="Dispel Buff">
+  <!-- TODO -->
+  <set name="save" val="3"/>
+  <set name="power" val="1.0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="skillType" val="POISON"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="buffDuration" val="60000"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <set name="aggroPoints" val="100"/>
+  <for>
+  </for>
+</skill>
+<skill id="7002" levels="1" name="Dispel Debuff">
+  <!-- TODO -->
+  <set name="save" val="3"/>
+  <set name="power" val="1.0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="skillType" val="POISON"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="buffDuration" val="60000"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <set name="aggroPoints" val="100"/>
+  <for>
+  </for>
+</skill>
+<skill id="7003" levels="1" name="Dispel All">
+  <!-- TODO -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="PASSIVE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <set name="aggroPoints" val="100"/>
+  <for>
+  </for>
+</skill>
+<skill id="7004" levels="2" name="Dispel Petrification">
+  <!-- TODO -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="PASSIVE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="isMagic" val="true"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <set name="aggroPoints" val="566"/>
+  <for>
+  </for>
+</skill>
+<skill id="7005" levels="4" name="Greater Chant of Vampire">
+  <!-- TODO -->
+  <set name="mpConsume" val="272"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="PASSIVE"/>
+  <set name="hitTime" val="2500"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="isMagic" val="true"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <set name="aggroPoints" val="655"/>
+  <for>
+  </for>
+</skill>
+<skill id="7006" levels="13" name="The Love of Pa'agrio">
+  <!-- TODO -->
+  <set name="mpConsume" val="272"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="PASSIVE"/>
+  <set name="hitTime" val="2500"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="isMagic" val="true"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <set name="aggroPoints" val="655"/>
+  <for>
+  </for>
+</skill>
+<skill id="7007" levels="4" name="Greater Seal of Flame">
+  <!-- TODO -->
+  <set name="mpConsume" val="153"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="PASSIVE"/>
+  <set name="hitTime" val="4000"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="isMagic" val="true"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <for>
+  </for>
+</skill>
+<skill id="7028" levels="1" name="For Stationary NPCs">
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="7029" levels="4" name="Super Haste">
+  <table name="#Tab-runSpd"> 1.5 2 3 4 </table>
+  <table name="#Tab-mReuse"> 1 2 4 30 </table>
+  <table name="#Tab-mAtkSpd"> 1.5 1.8 3 4 </table>
+  <table name="#Tab-pAtkSpd"> 1.2 1.5 2 3 </table>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="CONT"/>
+  <set name="operateType" val="OP_TOGGLE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <effect name="Buff" time="144000" count="1" val="0">
+      <mul order="0x30" stat="runSpd" val="#Tab-runSpd"/>
+      <div order="0x30" stat="mReuse" val="#Tab-mReuse"/>
+      <mul order="0x30" stat="mAtkSpd" val="#Tab-mAtkSpd"/>
+      <mul order="0x30" stat="pAtkSpd" val="#Tab-pAtkSpd"/>
+    </effect>
+  </for>
+</skill>
+<skill id="7030" levels="1" name="Summon King Bugbear">
+  <table name="#itemConsumeCount"> 8 </table>
+  <set name="itemConsumeId" val="1458"/>
+  <set name="mpConsume" val="3"/>
+  <set name="itemConsumeSteps" val="0"/>
+  <set name="summonTotalLifeTime" val="1200000"/>
+  <set name="summonTimeLostIdle" val="500"/>
+  <set name="summonTimeLostActive" val="1000"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="itemConsumeCount" val="#itemConsumeCount"/>
+  <set name="reuseDelay" val="18600000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="SUMMON"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <!-- Summon-specific -->
+  <set name="npcId" val="150"/>
+  <set name="expPenalty" val="0.3"/>
+  <set name="isCubic" val="false"/>
+  <for>
+  </for>
+</skill>
+<skill id="7031" levels="1" name="Summon Skeleton Royal Guard">
+  <table name="#itemConsumeCount"> 8 </table>
+  <set name="itemConsumeId" val="1458"/>
+  <set name="mpConsume" val="3"/>
+  <set name="itemConsumeSteps" val="0"/>
+  <set name="summonTotalLifeTime" val="1200000"/>
+  <set name="summonTimeLostIdle" val="500"/>
+  <set name="summonTimeLostActive" val="1000"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="itemConsumeCount" val="#itemConsumeCount"/>
+  <set name="reuseDelay" val="18600000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="SUMMON"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <!-- Summon-specific -->
+  <set name="npcId" val="622"/>
+  <set name="expPenalty" val="0.3"/>
+  <set name="isCubic" val="false"/>
+  <for>
+  </for>
+</skill>
+<skill id="7032" levels="1" name="Summon Hunter Gargoyle">
+  <table name="#itemConsumeCount"> 8 </table>
+  <set name="itemConsumeId" val="1458"/>
+  <set name="mpConsume" val="3"/>
+  <set name="itemConsumeSteps" val="0"/>
+  <set name="summonTotalLifeTime" val="1200000"/>
+  <set name="summonTimeLostIdle" val="500"/>
+  <set name="summonTimeLostActive" val="1000"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="itemConsumeCount" val="#itemConsumeCount"/>
+  <set name="reuseDelay" val="18600000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="SUMMON"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <!-- Summon-specific -->
+  <set name="npcId" val="241"/>
+  <set name="expPenalty" val="0.3"/>
+  <set name="isCubic" val="false"/>
+  <for>
+  </for>
+</skill>
+<skill id="7033" levels="1" name="Test Flame Strike">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      none
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="7034" levels="1" name="Test Aqua Splash">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      none
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="7035" levels="1" name="Display - Swoop Cannon">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      This aerial attack inflicts damage on a target inside the Outer Castle.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="7036" levels="1" name="Display - Valakas">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Valakas Use Skill
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="7037" levels="1" name="Display - Tyrannosaurus Capture">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Tyrannosaurus Use Skill
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="7038" levels="1" name="Channeling DD Test: Short">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      none
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="7039" levels="1" name="Channeling DD Test: Middle">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      none
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="7040" levels="1" name="Channeling DD Test: Long">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      none
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="7041" levels="1" name="Master's Blessing - Focus">
+<!--
+  Needs to be verified. Edit by Shaka 19/09/2007
+
+  Description(s):
+      A GM is always by your side. Increases critical attack rate temporarily. Effect 3.
+-->
+  <table name="#Tab-rCrit"> 1.3 </table>
+  <set name="mpConsume" val="2"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="400"/>
+  <set name="aggroPoints" val="495"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#Tab-rCrit" stackType="rCrit">
+      <mul order="0x30" stat="rCrit" val="#Tab-rCrit"/>
+    </effect>
+  </for>
+</skill>
+<skill id="7042" levels="1" name="Master's Blessing - Death Whisper">
+<!--
+  Needs to be verified. Edit by Shaka 19/09/2007
+
+  Description(s):
+      A GM is always by your side. Increases critical attack rate temporarily. Effect 3.
+-->
+  <table name="#Tab-cAtk"> 1.5 </table>
+  <set name="mpConsume" val="2"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="400"/>
+  <set name="aggroPoints" val="532"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#Tab-cAtk" stackType="cAtk">
+      <mul order="0x30" stat="cAtk" val="#Tab-cAtk"/>
+    </effect>
+  </for>
+</skill>
+<skill id="7043" levels="1" name="Master's Blessing - Haste">
+<!--
+  Needs to be verified. Edit by Shaka 19/09/2007
+
+  Description(s):
+      A GM is always by your side. Increases Atk. Spd. temporarily. Effect 2.
+-->
+  <table name="#Tab-pAtkSpd"> 1.33 </table>
+  <set name="mpConsume" val="2"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="400"/>
+  <set name="aggroPoints" val="495"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#Tab-pAtkSpd" stackType="pAtkSpeedUp">
+      <mul order="0x30" stat="pAtkSpd" val="#Tab-pAtkSpd"/>
+    </effect>
+  </for>
+</skill>
+<skill id="7044" levels="1" name="Master's Blessing - Guidance">
+<!--
+  Needs to be verified. Edit by Shaka 19/09/2007
+
+  Description(s):
+      A GM is always by your side. Increases Accuracy temporarily. Effect 3.
+-->
+  <table name="#Tab-accCombat"> 4 </table>
+  <set name="mpConsume" val="2"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="400"/>
+  <set name="aggroPoints" val="532"/>
+  <for>
+    <effect name="Buff" time="1200" count="1" val="0" stackOrder="#Tab-accCombat" stackType="accuracyUp">
+      <add order="0x40" stat="accCombat" val="#Tab-accCombat"/>
+    </effect>
+  </for>
+</skill>
+<skill id="7045" levels="1" name="Master's Blessing - Blessed Body">
+<!--
+  Needs to be verified. Edit by Shaka 19/09/2007
+
+  Description(s):
+      A GM is always by your side. Increases maximum HP temporarily. Effect 6.
+-->
+  <table name="#Tab-maxHp"> 1.35 </table>
+  <set name="mpConsume" val="2"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="400"/>
+  <set name="aggroPoints" val="646"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#Tab-maxHp" stackType="MaxHPUp">
+      <mul order="0x30" stat="maxHp" val="#Tab-maxHp"/>
+    </effect>
+  </for>
+</skill>
+<skill id="7046" levels="1" name="Master's Blessing - Blessed Soul">
+<!--
+  Needs to be verified. Edit by Shaka 19/09/2007
+
+  Description(s):
+      A GM is always by your side. Increases maximum MP temporarily. Effect 6.
+-->
+  <table name="#Tab-maxMp"> 1.35 </table>
+  <set name="mpConsume" val="2"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="400"/>
+  <set name="aggroPoints" val="635"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#Tab-maxMp" stackType="MPregen">
+      <mul order="0x30" stat="maxMp" val="#Tab-maxMp"/>
+    </effect>
+  </for>
+</skill>
+<skill id="7047" levels="1" name="Master's Blessing - Agility">
+<!--
+  Needs to be verified. Edit by Shaka 19/09/2007
+
+  Description(s):
+      A GM is always by your side. Increases Evasion temporarily. Effect 3.
+-->
+  <table name="#Tab-rEvas"> 4 </table>
+  <set name="mpConsume" val="2"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="400"/>
+  <set name="aggroPoints" val="495"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#Tab-rEvas" stackType="rEvas">
+      <add order="0x40" stat="rEvas" val="#Tab-rEvas"/>
+    </effect>
+  </for>
+</skill>
+<skill id="7048" levels="1" name="Master's Blessing - Acumen">
+<!--
+  Needs to be verified. Edit by Shaka 19/09/2007
+
+  Description(s):
+      A GM is always by your side. Increases Casting Spd. temporarily. Effect 3.
+-->
+  <table name="#Tab-mAtkSpd"> 1.3 </table>
+  <set name="mpConsume" val="2"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="400"/>
+  <set name="aggroPoints" val="457"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#Tab-mAtkSpd" stackType="mAtkSpeedUp">
+      <mul order="0x30" stat="mAtkSpd" val="#Tab-mAtkSpd"/>
+    </effect>
+  </for>
+</skill>
+<skill id="7049" levels="1" name="Master's Blessing - Decrease Weight">
+<!--
+  Needs to be verified. Edit by Shaka 19/09/2007
+
+  Description(s):
+      A GM is always by your side. Reduces current weight. Effect 3.
+-->
+  <table name="#Weight"> 9000 </table>
+  <set name="mpConsume" val="2"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="400"/>
+  <set name="aggroPoints" val="495"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#Weight" stackType="Weight">
+      <add order="0x40" stat="maxLoad" val="#Weight"/>
+    </effect>
+  </for>
+</skill>
+<skill id="7050" levels="1" name="Master's Blessing - Might">
+<!--
+  Needs to be verified. Edit by Shaka 19/09/2007
+
+  Description(s):
+      A GM is always by your side. Increases P. Atk. temporarily. Effect 3.
+-->
+  <table name="#rate"> 1.15 </table>
+  <set name="mpConsume" val="2"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="400"/>
+  <set name="aggroPoints" val="379"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#rate" stackType="pAtk">
+      <mul order="0x30" stat="pAtk" val="#rate"/>
+    </effect>
+  </for>
+</skill>
+<skill id="7051" levels="1" name="Master's Blessing - Shield">
+<!--
+  Needs to be verified. Edit by Shaka 19/09/2007
+
+  Description(s):
+      A GM is always by your side. Increases P. Def. temporarily. Effect 3.
+-->
+  <table name="#rate"> 1.15 </table>
+  <set name="mpConsume" val="2"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="400"/>
+  <set name="aggroPoints" val="418"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#rate" stackType="pDef">
+      <mul order="0x30" stat="pDef" val="#rate"/>
+    </effect>
+  </for>
+</skill>
+<skill id="7052" levels="1" name="Master's Blessing - Magic Barrier">
+<!--
+  Needs to be verified. Edit by Shaka 19/09/2007
+
+  Description(s):
+      A GM is always by your side. Increases M. Def. temporarily. Effect 3.
+-->
+  <table name="#Tab-mDef"> 1.3 </table>
+  <set name="mpConsume" val="2"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="400"/>
+  <set name="aggroPoints" val="495"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#Tab-mDef" stackType="MagicDefUp">
+      <mul order="0x30" stat="mDef" val="#Tab-mDef"/>
+    </effect>
+  </for>
+</skill>
+<skill id="7053" levels="1" name="Master's Blessing - Vampiric Rage">
+<!--
+  Needs to be verified. Edit by Shaka 19/09/2007
+
+  Description(s):
+      A GM is always by your side. Temporarily increases the amount of HP absorbed from damage done to a target. Excludes damage from skills or ranged attacks. Effect 4.
+-->
+  <table name="#Tab-absorbDam"> 9 </table>
+  <set name="mpConsume" val="2"/>
+  <set name="power" val="0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="400"/>
+  <set name="aggroPoints" val="646"/>
+  <for>
+    <effect name="Buff" time="1200" count="1" val="0" stackOrder="#Tab-absorbDam" stackType="vampRage">
+      <add order="0x40" stat="absorbDam" val="#Tab-absorbDam"/>
+    </effect>
+  </for>
+</skill>
+<skill id="7054" levels="1" name="Master's Blessing - Empower">
+<!--
+  Needs to be verified. Edit by Shaka 19/09/2007
+
+  Description(s):
+      A GM is always by your side. Increases M. Atk. temporarily. Effect 3.
+-->
+  <table name="#Tab-mAtk"> 1.75 </table>
+  <set name="mpConsume" val="2"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="400"/>
+  <set name="aggroPoints" val="495"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#Tab-mAtk" stackType="mAtk">
+      <mul order="0x30" stat="mAtk" val="#Tab-mAtk"/>
+    </effect>
+  </for>
+</skill>
+<skill id="7055" levels="1" name="Master's Blessing - Wind Walk">
+<!--
+  Needs to be verified. Edit by Shaka 19/09/2007
+
+  Description(s):
+      A GM is always by your side. Increases Speed temporarily. Effect 2.
+-->
+  <table name="#Tab-runSpd"> 33 </table>
+  <set name="mpConsume" val="2"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="400"/>
+  <set name="aggroPoints" val="285"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#Tab-runSpd" stackType="SpeedUp">
+      <add order="0x40" stat="runSpd" val="#Tab-runSpd"/>
+    </effect>
+  </for>
+</skill>
+<skill id="7056" levels="1" name="Master's Blessing - Berserker Spirit">
+<!--
+  Needs to be verified. Edit by Shaka 19/09/2007
+
+  Description(s):
+      A GM is always by your side. Temporarily reduces P. Def., M. Def. and Evasion, and increases P. Atk., M. Atk., Atk. Spd., Casting Spd. and Speed. Effect 2.
+-->
+  <table name="#Tab-mAtk"> 1.16 </table>
+  <table name="#Tab-pAtk"> 1.08 </table>
+  <table name="#Tab-mDef"> 0.84 </table>
+  <table name="#Tab-pDef"> 0.92 </table>
+  <table name="#Tab-mAtkSpd"> 1.08 </table>
+  <table name="#Tab-pAtkSpd"> 1.08 </table>
+  <table name="#Tab-runSpd"> 8 </table>
+  <table name="#Tab-rEvas"> 4 </table>
+  <set name="mpConsume" val="2"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="400"/>
+  <set name="aggroPoints" val="495"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="1" stackType="berserk">
+      <mul order="0x30" stat="mAtk" val="#Tab-mAtk"/>
+      <mul order="0x30" stat="pAtk" val="#Tab-pAtk"/>
+      <mul order="0x30" stat="mDef" val="#Tab-mDef"/>
+      <mul order="0x30" stat="pDef" val="#Tab-pDef"/>
+      <mul order="0x30" stat="mAtkSpd" val="#Tab-mAtkSpd"/>
+      <mul order="0x30" stat="pAtkSpd" val="#Tab-pAtkSpd"/>
+      <add order="0x40" stat="runSpd" val="#Tab-runSpd"/>
+      <sub order="0x40" stat="rEvas" val="#Tab-rEvas"/>
+    </effect>
+  </for>
+</skill>
+<skill id="7057" levels="1" name="Master's Blessing - Greater Might">
+<!--
+  Needs to be verified. Edit by Shaka 19/09/2007
+
+  Description(s):
+      A GM is always by your side. Temporarily increases the target's P. Atk. Effect 3.
+-->
+  <table name="#pAtk"> 1.10 </table>
+  <set name="mpConsume" val="2"/>
+  <set name="power" val="0.0"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="400"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="0" stackType="Great">
+      <mul order="0x30" stat="pAtk" val="#pAtk"/>
+    </effect>
+  </for>
+</skill>
+<skill id="7058" levels="1" name="Master's Blessing - Greater Shield">
+<!--
+  Needs to be verified. Edit by Shaka 19/09/2007
+
+  Description(s):
+      A GM is always by your side.  Temporarily increases the target's P. Def. Effect 3.
+-->
+  <table name="#rate"> 1.15 </table>
+  <set name="mpConsume" val="2"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="400"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="0" stackType="Great">
+      <mul order="0x30" stat="pDef" val="#rate"/>
+    </effect>
+  </for>
+</skill>
+<skill id="7059" levels="1" name="Master's Blessing - Wild Magic">
+<!--
+  Needs to be verified. Edit by Shaka 19/09/2007
+
+  Description(s):
+      A GM is always by your side.  Temporarily increases the critical attack rate for magic attacks. Effect 2.
+-->
+  <table name="#mCrit"> 4 </table>
+  <set name="mpConsume" val="2"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="400"/>
+  <set name="aggroPoints" val="635"/>
+  <for>
+    <effect name="Buff" time="1200" count="1" val="0">
+      <mul order="0x30" stat="mCritRate" val="#mCrit"/>
+    </effect>
+  </for>
+</skill>
+<skill id="7060" levels="1" name="Master's Blessing - Clarity">
+<!--
+  Needs to be verified. Edit by Shaka 19/09/2007
+
+  Description(s):
+      A GM is always by your side. Temporarily decreases the target's MP consumption for skills. Effect 3.
+-->
+  <table name="#MpConsumeRate"> 0.9 </table>
+  <table name="#mpConsume"> 2 </table>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="400"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#mpConsume" stackType="MPrate">
+      <mul order="0x30" stat="MpConsumeRate" val="#MpConsumeRate"/>
+    </effect>
+  </for>
+</skill>
+<skill id="7061" levels="1" name="Master's Blessing - Prophecy of Water">
+<!--
+  Needs to be verified. Edit by Shaka 19/09/2007
+
+  Description(s):
+      A GM is always by your side. The spirit of an ancient wizard temporarily possesses the target.
+-->
+  <set name="mpConsume" val="2"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="120000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="400"/>
+  <set name="aggroPoints" val="669"/>
+  <for>
+    <effect count="1" name="Buff" time="300" val="0" stackOrder="1" stackType="CoV">
+      <mul order="0x30" stat="mAtk" val="1.20"/>
+      <mul order="0x30" stat="mDef" val="1.20"/>
+      <mul order="0x30" stat="mAtkSpd" val="1.20"/>
+      <mul order="0x30" stat="mCritRate" val="2.00"/>
+      <mul order="0x30" stat="regMp" val="1.2"/>
+      <mul order="0x30" stat="runSpd" val="0.80"/>
+      <mul order="0x30" stat="debuffVuln" val="0.9"/>
+    </effect>
+  </for>
+</skill>
+<skill id="7062" levels="1" name="Master's Blessing - Prophecy of Fire">
+<!--
+  Needs to be verified. Edit by Shaka 19/09/2007
+
+  Description(s):
+      A GM is always by your side. The spirit of an ancient warrior temporarily possesses the target.
+-->
+  <set name="mpConsume" val="2"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="120000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="400"/>
+  <set name="aggroPoints" val="669"/>
+  <for>
+    <effect count="1" name="Buff" time="300" val="0" stackOrder="1" stackType="CoV">
+      <mul order="0x30" stat="pAtk" val="1.10"/>
+      <mul order="0x30" stat="pDef" val="1.20"/>
+      <add order="0x40" stat="accCombat" val="4"/>
+      <mul order="0x30" stat="pAtkSpd" val="1.20"/>
+      <mul order="0x30" stat="runSpd" val="0.90"/>
+      <mul order="0x30" stat="maxHp" val="1.20"/>
+      <mul order="0x30" stat="regHp" val="1.20"/>
+      <mul order="0x30" stat="debuffVuln" val="0.9"/>
+    </effect>
+  </for>
+</skill>
+<skill id="7063" levels="1" name="Master's Blessing - Prophecy of Wind">
+<!--
+  Needs to be verified. Edit by Shaka 19/09/2007
+
+  Description(s):
+      A GM is always by your side. The spirit of an ancient assassin temporarily possesses the target.
+-->
+  <set name="mpConsume" val="2"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="120000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="400"/>
+  <set name="aggroPoints" val="669"/>
+  <for>
+    <effect count="1" name="Buff" time="300" val="0" stackOrder="1" stackType="CoV">
+      <add order="0x40" stat="absorbDam" val="5"/>
+      <add order="0x40" stat="accCombat" val="4"/>
+      <add order="0x40" stat="rEvas" val="4"/>
+      <mul order="0x30" stat="pAtkSpd" val="1.20"/>
+      <mul order="0x30" stat="cAtk" val="1.2">
+       <and>
+         <player behind="True"/>
+       </and>
+     </mul>
+     <mul order="0x30" stat="rCrit" val="1.2">
+       <and>
+         <player behind="True"/>
+       </and>
+     </mul>
+     <mul order="0x30" stat="debuffVuln" val="0.9"/>
+  </effect>
+</for>
+</skill>
+<skill id="7064" levels="1" name="Master's Blessing - Chant of Victory">
+<!--
+  Needs to be verified. Edit by Shaka 19/09/2007
+
+  Description(s):
+      A GM is always by your side. The spirit of an ancient hero temporarily possesses the target.
+-->
+  <set name="mpConsume" val="2"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="1200000"/>
+  <set name="hitTime" val="2500"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="400"/>
+  <set name="aggroPoints" val="669"/>
+  <for>
+    <effect count="1" name="Buff" time="300" val="0" stackOrder="1" stackType="CoV">
+      <mul order="0x30" stat="pAtk" val="1.1"/>
+      <mul order="0x30" stat="pDef" val="1.2"/>
+      <mul order="0x30" stat="rCrit" val="1.2"/>
+      <add order="0x40" stat="accCombat" val="4"/>
+      <mul order="0x30" stat="pAtkSpd" val="1.2"/>
+      <mul order="0x30" stat="mAtkSpd" val="1.2"/>
+      <mul order="0x30" stat="cAtk" val="1.2"/>
+      <mul order="0x30" stat="mAtk" val="1.20"/>
+      <mul order="0x30" stat="mDef" val="1.20"/>
+      <mul order="0x30" stat="runSpd" val="0.8"/>
+      <mul order="0x30" stat="maxHp" val="1.20"/>
+      <mul order="0x30" stat="debuffVuln" val="0.8"/>
+    </effect>
+  </for>
+</skill>
+</list>

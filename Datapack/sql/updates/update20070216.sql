@@ -1,0 +1,21 @@
+ALTER TABLE pets DROP objId;
+ALTER TABLE pets DROP maxHp;
+ALTER TABLE pets DROP maxMp;
+ALTER TABLE pets DROP acc;
+ALTER TABLE pets DROP crit;
+ALTER TABLE pets DROP evasion;
+ALTER TABLE pets DROP mAtk;
+ALTER TABLE pets DROP mDef;
+ALTER TABLE pets DROP mSpd;
+ALTER TABLE pets DROP pAtk;
+ALTER TABLE pets DROP pDef;
+ALTER TABLE pets DROP pSpd;
+ALTER TABLE pets DROP str;
+ALTER TABLE pets DROP con;
+ALTER TABLE pets DROP dex;
+ALTER TABLE pets DROP _int;
+ALTER TABLE pets DROP men;
+ALTER TABLE pets DROP wit;
+ALTER TABLE pets DROP maxload;
+ALTER TABLE pets DROP max_fed;
+

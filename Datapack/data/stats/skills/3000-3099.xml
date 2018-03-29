@@ -1,0 +1,1616 @@
+<?xml version='1.0' encoding='utf-8'?>
+<list>
+<skill id="3001" levels="1" name="int_1">
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="PASSIVE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3002" levels="1" name="int_2">
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="PASSIVE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3003" levels="1" name="str_2">
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="PASSIVE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3004" levels="1" name="maxmp_5">
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="PASSIVE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3005" levels="1" name="Bleed">
+  <set name="save" val="4"/>
+  <set name="power" val="5.0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="skillType" val="BLEED"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+    <effect count="7" name="DamOverTime" time="3" val="66"/>
+  </for>
+</skill>
+<skill id="3006" levels="1" name="Equip Set Items">
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3007" levels="6" name="Special Ability: Guidance">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Increases Accuracy.
+  6: Increases Accuracy.
+  created 2005-05-29 23:34:30
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3008" levels="6" name="Special Ability: Guidance">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Increases Accuracy.
+  6: Increases Accuracy.
+  created 2005-05-29 23:34:30
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3009" levels="6" name="Special Ability: Evasion">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Increases Evasion.
+  6: Increases Evasion.
+  created 2005-05-29 23:34:30
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3010" levels="7" name="Special Ability: Focus">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Increases critical attack rate.
+  6: Increases critical attack rate.
+  created 2005-05-29 23:34:30
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3011" levels="6" name="Special Ability: Focus">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Increases critical attack rate.
+  6: Increases critical attack rate.
+  created 2005-05-29 23:34:30
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3012" levels="6" name="Special Ability: Anger">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Decreases MaxHP and increases P. Atk.
+  6: Decreases MaxHP and increases P. Atk.
+  created 2005-05-29 23:34:30
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3013" levels="5" name="Special Ability: Health">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Increases MaxHP.
+  2: Increases maximum HP. Inflicts additional damage during PvP.
+  created 2005-05-29 23:34:30
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3014" levels="3" name="Special Ability: Mana Up">
+  <table name="#pvpBonus"> 1.0 1.05 1.15 </table>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul val="1.3" order="0x30" stat="maxMp"/><!-- Mana Up -->
+    <mul val="#pvpBonus" order="0x30" stat="pvpPhysDmg"/><!-- Enhances damage to target during PvP -->
+    <mul val="#pvpBonus" order="0x30" stat="pvpMagicalDmg"/>
+  </for>
+</skill>
+<skill id="3016" levels="6" name="Special Ability: Critical Stun">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Temporarily stuns target into paralysis.
+  6: Temporarily stuns target into paralysis.
+  created 2005-05-29 23:34:30
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3018" levels="6" name="Special Ability: Back Blow">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Increases critical attack rate when attacking a target from behind.
+  6: Increases critical attack rate when attacking a target from behind.
+  created 2005-05-29 23:34:30
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3019" levels="6" name="Special Ability: Back Blow">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Increases critical attack rate when attacking a target from behind.
+  6: Increases critical attack rate when attacking a target from behind.
+  created 2005-05-29 23:34:30
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3020" levels="6" name="Special Ability: Critical Bleed">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: A wound appears and HP falls. Effect 5.
+  6: A wound appears and HP falls. Effect 7.
+  created 2005-05-29 23:34:30
+-->
+  <table name="#power"> 5.0 5.0 6.0 5.0 6.0 7.0 </table>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3021" levels="6" name="Special Ability: Critical Bleed">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: A wound appears and HP falls. Effect 5.
+  6: A wound appears and HP falls. Effect 7.
+  created 2005-05-29 23:34:30
+-->
+  <table name="#power"> 5.0 5.0 6.0 6.0 6.0 7.0 </table>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3022" levels="7" name="Special Ability: Critical Drain">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  created 2005-05-29 23:34:30
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="hitTime" val="3000"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="600"/>
+  <for>
+  </for>
+</skill>
+<skill id="3023" levels="6" name="Special Ability: Critical Damage">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Causes additional damage when launching a critical attack.
+  6: Causes additional damage when launching a critical attack.
+  created 2005-05-29 23:34:30
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3024" levels="6" name="Special Ability: Critical Poison">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Causes poisoning. Effect 5.
+  6: Causes poisoning. Effect 7.
+  created 2005-05-29 23:34:30
+-->
+  <table name="#power"> 5.0 5.0 6.0 6.0 6.0 7.0 </table>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="600"/>
+  <for>
+  </for>
+</skill>
+<skill id="3025" levels="6" name="Special Ability: Critical Anger">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  created 2005-05-29 23:34:30
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3026" levels="6" name="Special Ability: Critical Anger">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Causes additional damage during a critical attack while reducing one's own HP.
+  6: Causes additional damage during a critical attack while reducing one's own HP.
+  created 2005-05-29 23:34:30
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3027" levels="6" name="Special Ability: Rsk. Focus">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: When HP gets decreased, critical attack rate increases.
+  6: When HP gets decreased, critical attack rate increases.
+  created 2005-05-29 23:34:30
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3028" levels="6" name="Special Ability: Rsk. Evasion">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Evasion increases when HP falls.
+  6: Evasion increases when HP falls.
+  created 2005-05-29 23:34:30
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3029" levels="6" name="Special Ability: Rsk. Evasion">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Evasion increases when HP falls.
+  6: Evasion increases when HP falls.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3030" levels="6" name="Special Ability: Rsk. Evasion">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Evasion increases when HP falls.
+  6: Evasion increases when HP falls.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3031" levels="6" name="Special Ability: Rsk. Evasion">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Evasion increases when HP falls.
+  6: Evasion increases when HP falls.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3032" levels="6" name="Special Ability: Rsk. Haste">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: ATK Spd increases when HP falls.
+  6: ATK Spd increases when HP falls.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3033" levels="6" name="Special Ability: Rsk. Haste">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: ATK Spd increases when HP falls.
+  6: ATK Spd increases when HP falls.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3034" levels="6" name="Special Ability: Rsk. Haste">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: ATK Spd increases when HP falls.
+  6: ATK Spd increases when HP falls.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3035" levels="6" name="Special Ability: Mighty Mortal">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Increases the success rate of Mortal Blow and Deadly Blow.
+  6: Increases the success rate of Mortal Blow and Deadly Blow.
+  created 2005-05-29 23:34:31
+-->
+  <table name="#rate"> 50 48 46 44 42 40 </table>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <for>
+    <add order="0x60" stat="blowRate" val="#rate">
+      <using kind="Dagger"/>
+    </add>
+  </for>
+</skill>
+<skill id="3036" levels="6" name="Special Ability: Haste">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Increases ATK Spd.
+  6: Increases ATK Spd.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3037" levels="6" name="Special Ability: Haste">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Increases ATK Spd.
+  6: Increases ATK Spd.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3038" levels="6" name="Special Ability: Haste">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Increases ATK Spd.
+  6: Increases ATK Spd.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3039" levels="7" name="Special Ability: Critical Drain">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="600"/>
+  <for>
+  </for>
+</skill>
+<skill id="3040" levels="6" name="Special Ability: Critical Poison">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Causes poisoning. Effect 5.
+  6: Causes poisoning. Effect 7.
+  created 2005-05-29 23:34:31
+-->
+  <table name="#power"> 5.0 5.0 6.0 6.0 6.0 7.0 </table>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="600"/>
+  <for>
+  </for>
+</skill>
+<skill id="3041" levels="6" name="Special Ability: Critical Poison">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Causes poisoning. Effect 5.
+  6: Causes poisoning. Effect 7.
+  created 2005-05-29 23:34:31
+-->
+  <table name="#power"> 5.0 5.0 6.0 6.0 6.0 7.0 </table>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="600"/>
+  <for>
+  </for>
+</skill>
+<skill id="3042" levels="20" name="Critical Damage Duel 4">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Inflicts additional damage during a critical attack.
+  20: Enhances critical attack. Increases damage inflicted during PvP.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3043" levels="6" name="Special Ability: Critical Damage">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Causes additional damage when launching a critical attack.
+  6: Causes additional damage when launching a critical attack.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3044" levels="20" name="Focus Duel 4">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Increases critical attack rate.
+  20: Enhances critical attack. Increases damage inflicted during PvP.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3045" levels="20" name="Haste Duel 4">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Increases ATK Spd.
+  20: Increases Atk. Spd. Increases damage inflicted during PvP.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3046" levels="20" name="Guidance Duel 4">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Increases Accuracy.
+  20: Increases Accuracy. Increases damage inflicted during PvP.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3047" levels="3" name="Special Ability: Acumen">
+  <table name="#pvpBonus"> 1.0 1.05 1.10 </table>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="mAtkSpd" val="1.15"/> <!-- Casting Spd. +15% -->
+    <mul val="#pvpBonus" order="0x30" stat="pvpPhysDmg"/><!-- Enhances damage to target during PvP -->
+    <mul val="#pvpBonus" order="0x30" stat="pvpMagicalDmg"/>
+  </for>
+</skill>
+<skill id="3048" levels="3" name="Special Ability: Conversion">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Increases the maximum MP by a certain success rate and decreases the maximum HP by a certain success rate.
+  2: Reduces maximum HP and increases maximum MP. Increases damage inflicted during PvP.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3049" levels="2" name="Special Ability: Increase Critical">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="1000"/>
+  <for>
+  </for>
+</skill>
+<skill id="3050" levels="2" name="Special Ability: Focus">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Enhances critical attack. Increases damage inflicted during PvP.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3051" levels="2" name="Special Ability: Focus">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Enhances critical attack. Increases damage inflicted during PvP.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3052" levels="2" name="Special Ability: Critical Bleed">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: A wound appears and HP falls. Effect 7.
+  2: A wound appears and HP falls. Effect 7.
+  created 2005-05-29 23:34:31
+-->
+  <table name="#power"> 7.0 7.0 </table>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3053" levels="2" name="Special Ability: Critical Bleed">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: A wound appears and HP falls. Effect 7.
+  2: A wound appears and HP falls. Effect 7.
+  created 2005-05-29 23:34:31
+-->
+  <table name="#power"> 7.0 7.0 </table>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3054" levels="2" name="Special Ability: Critical Bleed">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: A wound appears and HP falls. Effect 7.
+  2: A wound appears and HP falls. Effect 7.
+  created 2005-05-29 23:34:31
+-->
+  <table name="#power"> 7.0 7.0 </table>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3055" levels="2" name="Special Ability: Critical Bleed">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: A wound appears and HP falls. Effect 7.
+  2: A wound appears and HP falls. Effect 7.
+  created 2005-05-29 23:34:31
+-->
+  <table name="#power"> 7.0 7.0 </table>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3056" levels="3" name="Special Ability: Rsk. Haste">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: ATK Spd. increases when HP falls.
+  2: Atk. Spd. increases when HP falls. Increases damage inflicted during PvP.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3057" levels="3" name="Special Ability: Anger">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Decreases maximum HP and increases P. Atk. Increases damage inflicted during PvP.
+  2: Decreases maximum HP and increases P. Atk. Increases damage inflicted during PvP.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3058" levels="2" name="Special Ability: Anger">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Decreases maximum HP and increases P. Atk. Increases damage inflicted during PvP.
+  2: Decreases maximum HP and increases P. Atk. Increases damage inflicted during PvP.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3059" levels="2" name="Special Ability: Critical Drain">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="600"/>
+  <for>
+  </for>
+</skill>
+<skill id="3060" levels="2" name="Special Ability: Critical Drain">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="600"/>
+  <for>
+  </for>
+</skill>
+<skill id="3061" levels="3" name="Special Ability: Critical Poison">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Causes poisoning. Effect 7.
+  2: Causes poisoning. Effect 7.
+  3: Causes poisoning. Effect 7.  <- to be confirmed
+  created 2005-05-29 23:34:31
+-->
+  <table name="#power"> 7.0 7.0 7.0 </table>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="600"/>
+  <for>
+  </for>
+</skill>
+<skill id="3062" levels="2" name="Special Ability: Critical Poison">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Causes poisoning. Effect 7.
+  2: Causes poisoning. Effect 7.
+  created 2005-05-29 23:34:31
+-->
+  <table name="#power"> 7.0 7.0 </table>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="600"/>
+  <for>
+  </for>
+</skill>
+<skill id="3063" levels="2" name="Special Ability: Back Blow">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Increases critical attack rate when attacking a target from behind. Increases damage inflicted during PvP.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3064" levels="1" name="Special Ability: Guidance">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Increases Accuracy. Increases damage inflicted during PvP.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3065" levels="1" name="Special Ability: Guidance">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Increases Accuracy. Increases damage inflicted during PvP.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3066" levels="3" name="Special Ability: Critical Damage">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Increases damage during a critical attack. Increases damage inflicted during PvP.
+  2: Increases damage during a critical attack. Increases damage inflicted during PvP.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3067" levels="2" name="Special Ability: Critical Damage">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Increases damage during a critical attack. Increases damage inflicted during PvP.
+  2: Increases damage during a critical attack. Increases damage inflicted during PvP.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3068" levels="3" name="Special Ability: Haste">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Increases ATK Spd.
+  2: Increases Atk. Spd. Increases damage inflicted during PvP.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3069" levels="1" name="Special Ability: Risky Evasion">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Evasion increases when HP falls.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3070" levels="3" name="Special Ability: Critical Stun">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Stuns the enemy during a critical attack.
+  2: Stuns the enemy during a critical attack.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="WEAPON_SA"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <cond>
+    <game chance="16"/>
+  </cond>
+  <for>
+    <effect count="1" name="Stun" time="9" val="0"/>
+  </for>
+</skill>
+<skill id="3071" levels="2" name="Special Ability: Rsk. Focus">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Critical attack rate increases when HP falls.
+  2: Critical attack rate increases when HP falls. Increases damage inflicted during PvP.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3072" levels="2" name="Special Ability: Empower">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Increases M. Atk. Increases damage inflicted during PvP.
+  2: Increases M. Atk. Increases damage inflicted during PvP.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3073" levels="2" name="Special Ability: Magic Power">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Increases MP consumption rate and M. Atk. Increases damage inflicted during PvP.
+  2: Increases MP consumption rate and M. Atk. Increases damage inflicted during PvP.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3074" levels="2" name="Special Ability: Magic Silence">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Disables the ability to use one's magic skills.
+  2: Disables the ability to use one's magic skills.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="1000"/>
+  <for>
+  </for>
+</skill>
+<skill id="3075" levels="2" name="Special Ability: Magic Paralyze">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Paralyzes target.
+  2: Paralyzes target.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="1000"/>
+  <for>
+  </for>
+</skill>
+<skill id="3076" levels="6" name="Special Ability: Empower">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Increases M. Atk. capability.
+  6: Increases M. Atk. capability.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3077" levels="6" name="Special Ability: Magic Power">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Increases MP consumption rate and M. Atk. capability.
+  6: Increases MP consumption rate and M. Atk. capability.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3078" levels="6" name="Special Ability: Magic Silence">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Disables the ability to use one's magic skills.
+  6: Disables the ability to use one's magic skills.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="1000"/>
+  <for>
+  </for>
+</skill>
+<skill id="3079" levels="6" name="Special Ability: Magic Paralyze">
+<!--
+  Automatically generated from C3 client files.
+  Need to be checked/fixed.
+  Target is set to TARGET_NONE, skillType  to NOTDONE for server compatability.
+  Descriptions:
+  1: Paralyzes target.
+  6: Paralyzes target.
+  created 2005-05-29 23:34:31
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="1000"/>
+  <for>
+  </for>
+</skill>
+<skill id="3080" levels="10" name="Item Skill: Aggression">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Chance: Provokes a target to attack during an ordinary physical attack. Power 438.
+      Lvl 2 - Provokes a target to attack during an ordinary physical attack. Power 467.
+      Lvl 3 - Chance: Provokes a target to attack during an ordinary physical attack. Power 495.
+      Lvl 4 - Chance: Provokes a target to attack during an ordinary physical attack. Power 523.
+      Lvl 5 - Chance: Provokes a target to attack during an ordinary physical attack. Power 549.
+      Lvl 6 - Chance: Provokes a target to attack during an ordinary physical attack. Power 574.
+      Lvl 7 - Chance: Provokes a target to attack during an ordinary physical attack. Power 597.
+      Lvl 8 - Chance: Provokes a target to attack during an ordinary physical attack. Power 617.
+      Lvl 9 - Chance: Provokes a target to attack during an ordinary physical attack. Power 635.
+      Lvl 10 - Chance: Provokes a target to attack during an ordinary physical attack. Power 659.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3081" levels="10" name="Item Skill: Charm">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Chance: Decreases a target's urge to attack during a general physical attack. Power 219.
+      Lvl 2 - Chance: Decreases a target's urge to attack during a general physical attack. Power 234.
+      Lvl 3 - Chance: Decreases a target's urge to attack during a general physical attack. Power 248.
+      Lvl 4 - Chance: Decreases a target's urge to attack during a general physical attack. Power 262.
+      Lvl 5 - Chance: Decreases a target's urge to attack during a general physical attack. Power 275.
+      Lvl 6 - Chance: Decreases a target's urge to attack during a general physical attack. Power 287.
+      Lvl 7 - Chance: Decreases a target's urge to attack during a general physical attack. Power 299.
+      Lvl 8 - Chance: Decreases a target's urge to attack during a general physical attack. Power 309.
+      Lvl 9 - Chance: Decreases a target's urge to attack during a general physical attack. Power 318.
+      Lvl 10 - Chance: Decreases a target's urge to attack during a general physical attack. Power 330.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3082" levels="10" name="Item Skill: Mana Burn">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Chance: Burns up a target's MP during an ordinary physical attack. Power 49.
+      Lvl 2 - Chance: Burns up a target's MP during an ordinary physical attack. Power 53.
+      Lvl 3 - Chance: Burns up a target's MP during an ordinary physical attack. Power 57.
+      Lvl 4 - Chance: Burns up a target's MP during an ordinary physical attack. Power 61.
+      Lvl 5 - Chance: Burns up a target's MP during an ordinary physical attack. Power 66.
+      Lvl 6 - Chance: Burns up a target's MP during an ordinary physical attack. Power 70.
+      Lvl 7 - Chance: Burns up a target's MP during an ordinary physical attack. Power 74.
+      Lvl 8 - Chance: Burns up a target's MP during an ordinary physical attack. Power 78.
+      Lvl 9 - Chance: Burns up a target's MP during an ordinary physical attack. Power 82.
+      Lvl 10 - Chance: Burns up a target's MP during an ordinary physical attack. Power 88.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3083" levels="10" name="Item Skill: Slow">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily decreases a target's speed during an ordinary physical attack. Effect 3.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3084" levels="10" name="Item Skill: Winter">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily decreases a target's Atk. Spd. during an ordinary physical attack. Effect 3.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3085" levels="10" name="Item Skill: Stun">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily throws the target into a state of shock during an ordinary physical attack.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3086" levels="10" name="Item Skill: Hold">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily throws the target into a state of hold during an ordinary physical attack. The target cannot be affected by any additional hold attacks while the effect lasts.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3087" levels="10" name="Item Skill: Sleep">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily throws the target into a state of sleep during a general physical attack. The target cannot be affected by any additional sleep attacks while the effect lasts.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3088" levels="10" name="Item Skill: Paralyze">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily throws the target into a state of paralysis during an ordinary physical attack.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3089" levels="10" name="Item Skill: Medusa">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily throws the target into a petrified state during a general physical attack.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3090" levels="10" name="Item Skill: Fear">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily throws the target into a state of fear and causes him to flee during a general physical attack.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3091" levels="10" name="Item Skill: Poison">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Chance: Momentarily throws the target into a poisoned state during a general physical attack. Effect 5.
+      Lvl 2 - Chance: Momentarily throws the target into a poisoned state during a general physical attack. Effect 5.
+      Lvl 3 - Chance: Momentarily throws the target into a poisoned state during a general physical attack. Effect 6.
+      Lvl 4 - Chance: Momentarily throws the target into a poisoned state during a general physical attack. Effect 6.
+      Lvl 5 - Chance: Momentarily throws the target into a poisoned state during a general physical attack. Effect 6.
+      Lvl 6 - Chance: Momentarily throws the target into a poisoned state during a general physical attack. Effect 7.
+      Lvl 7 - Chance: Momentarily throws the target into a poisoned state during a general physical attack. Effect 7.
+      Lvl 8 - Chance: Momentarily throws the target into a poisoned state during a general physical attack. Effect 7.
+      Lvl 9 - Chance: Momentarily throws the target into a poisoned state during a general physical attack. Effect 8.
+      Lvl 10 - Chance: Momentarily throws the target into a poisoned state during a general physical attack. Effect 8.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3092" levels="10" name="Item Skill: Bleed">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Chance: Momentarily throws the target into a bleeding state during a general physical attack. Effect 5.
+      Lvl 2 - Chance: Momentarily throws the target into a bleeding state during a general physical attack. Effect 5.
+      Lvl 3 - Chance: Momentarily throws the target into a bleeding state during a general physical attack. Effect 6.
+      Lvl 4 - Chance: Momentarily throws the target into a bleeding state during a general physical attack. Effect 6.
+      Lvl 5 - Chance: Momentarily throws the target into a bleeding state during a general physical attack. Effect 6.
+      Lvl 6 - Chance: Momentarily throws the target into a bleeding state during a general physical attack. Effect 7.
+      Lvl 7 - Chance: Momentarily throws the target into a bleeding state during a general physical attack. Effect 7.
+      Lvl 8 - Chance: Momentarily throws the target into a bleeding state during a general physical attack. Effect 7.
+      Lvl 9 - Chance: Momentarily throws the target into a bleeding state during a general physical attack. Effect 8.
+      Lvl 10 - Chance: Momentarily throws the target into a bleeding state during a general physical attack. Effect 8.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3093" levels="10" name="Item Skill: Silence">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily blocks the target's magic skill during a general physical attack.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3094" levels="10" name="Item Skill: Doom">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily blocks all of the target's physical and magic skills during a general physical attack.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3095" levels="10" name="Item Skill: Mana Burn">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Chance: Burns up a target's MP during magic use. Power 49.
+      Lvl 2 - Chance: Burns up a target's MP during magic use. Power 53.
+      Lvl 3 - Chance: Burns up a target's MP during magic use. Power 57.
+      Lvl 4 - Chance: Burns up a target's MP during magic use. Power 61.
+      Lvl 5 - Chance: Burns up a target's MP during magic use. Power 66.
+      Lvl 6 - Chance: Burns up a target's MP during magic use. Power 70.
+      Lvl 7 - Chance: Burns up a target's MP during magic use. Power 74.
+      Lvl 8 - Chance: Burns up a target's MP during magic use. Power 78.
+      Lvl 9 - Chance: Burns up a target's MP during magic use. Power 82.
+      Lvl 10 - Chance: Burns up a target's MP during magic use. Power 88.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3096" levels="10" name="Item Skill: Slow">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily decreases the target's speed during magic use. Effect 3.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3097" levels="10" name="Item Skill: Winter">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily decreases the target's Atk. Spd. during magic use. Effect 3.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3098" levels="10" name="Item Skill: Stun">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily throws the target into a state of shock during magic use.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3099" levels="10" name="Item Skill: Hold">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily throws the target into a state of hold during magic use. The target cannot be affected by any additional hold attacks while the effect lasts.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+</list>

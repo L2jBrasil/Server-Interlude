@@ -1,0 +1,1684 @@
+<?xml version='1.0' encoding='utf-8'?>
+<list>
+<skill id="4400" levels="3" name="Acumen">
+  <!-- by DrLecter -->
+  <table name="#Tab-mAtkSpd"> 1.15 1.23 1.3 </table>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="100"/>
+  <set name="hitTime" val="0"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <for>
+    <effect count="1" name="Buff" time="3600" val="0" stackOrder="#Tab-mAtkSpd" stackType="mAtkSpeedUp">
+      <mul order="0x30" stat="mAtkSpd" val="#Tab-mAtkSpd"/>
+    </effect>
+  </for>
+</skill>
+<skill id="4401" levels="3" name="Empower">
+<!-- by DrLecter -->
+  <table name="#Tab-mAtk"> 1.55 1.65 1.75 </table>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="100"/>
+  <set name="hitTime" val="0"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <for>
+    <effect count="1" name="Buff" time="3600" val="0" stackOrder="#Tab-mAtk" stackType="mAtk">
+      <mul order="0x30" stat="mAtk" val="#Tab-mAtk"/>
+    </effect>
+  </for>
+</skill>
+<skill id="4402" levels="2" name="Haste">
+  <!-- by DrLecter -->
+  <table name="#Tab-pAtkSpd"> 1.15 1.33 </table>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="100"/>
+  <set name="hitTime" val="0"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <for>
+    <effect count="1" name="Buff" time="3600" val="0" stackOrder="#Tab-pAtkSpd" stackType="pAtkSpeedUp">
+      <mul order="0x30" stat="pAtkSpd" val="#Tab-pAtkSpd"/>
+    </effect>
+  </for>
+</skill>
+<skill id="4403" levels="3" name="Guidance">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Temporarily increases Accuracy. Effect 1.
+      Lvl 2 - Temporarily increases Accuracy. Effect 2.
+      Lvl 3 - Temporarily increases Accuracy. Effect 3.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4404" levels="3" name="Focus">
+  <!-- by DrLecter -->
+  <table name="#Tab-rCrit"> 1.2 1.25 1.3 </table>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="100"/>
+  <set name="hitTime" val="0"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <for>
+    <effect count="1" name="Buff" time="3600" val="0" stackOrder="#Tab-rCrit" stackType="rCrit">
+      <mul order="0x30" stat="rCrit" val="#Tab-rCrit"/>
+    </effect>
+  </for>
+</skill>
+<skill id="4405" levels="3" name="Death Whisper">
+  <!-- by DrLecter -->
+  <table name="#Tab-cAtk"> 1.3 1.4 1.5 </table>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="100"/>
+  <set name="hitTime" val="0"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <for>
+    <effect count="1" name="Buff" time="3600" val="0" stackOrder="#Tab-cAtk" stackType="cAtk">
+      <mul order="0x30" stat="cAtk" val="#Tab-cAtk"/>
+    </effect>
+  </for>
+</skill>
+<skill id="4406" levels="3" name="Agility">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Temporarily increases evasion. Effect 1.
+      Lvl 2 - Temporarily increases evasion. Effect 2.
+      Lvl 3 - Temporarily increases evasion. Effect 3.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4407" levels="2" name="Monster Type">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 Name - Ordinary Monster
+      Lvl 2 Name - Strong Type Monster
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4408" levels="20" name="HP Modifiers">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 Name - HP Increase (1x)
+      Lvl 2 Name - HP Medium-High
+      Lvl 3 Name - HP Medium-High
+      Lvl 4 Name - HP High
+      Lvl 5 Name - HP High
+      Lvl 6 Name - HP Very High
+      Lvl 7 Name - HP Very High
+      Lvl 8 Name - HP Increase (1/4x)
+      Lvl 9 Name - HP Increase (1/2x)
+      Lvl 10 Name - HP Increase (2x)
+      Lvl 11 Name - HP Increase (3x)
+      Lvl 12 Name - HP Increase (4x)
+      Lvl 13 Name - HP Increase (5x)
+      Lvl 14 Name - HP Increase (6x)
+      Lvl 15 Name - HP Increase (7x)
+      Lvl 16 Name - HP Increase (8x)
+      Lvl 17 Name - HP Increase (9x)
+      Lvl 18 Name - HP Increase (10x)
+      Lvl 19 Name - HP Increase (11x)
+      Lvl 20 Name - HP Increase (12x)      
+-->
+  <table name="#maxhp"> 1 1.2 1.3 2 2 4 4 0.25 0.50 2 3 4 5 6 7 8 9 10 11 12 </table>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="maxHp" val="#maxhp"/>
+  </for>
+</skill>
+<skill id="4409" levels="20" name="MP Modifiers">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 Name - MP Increase (1x)
+      Lvl 2 Name - MP Medium-High
+      Lvl 3 Name - MP Medium-High
+      Lvl 4 Name - MP High
+      Lvl 5 Name - MP High
+      Lvl 6 Name - MP Very High
+      Lvl 7 Name - MP Very High
+      Lvl 8 Name - MP Increase (1/4x)
+      Lvl 9 Name - MP Increase (1/2x)
+      Lvl 10 Name - MP Increase (2x)
+      Lvl 11 Name - MP Increase (3x)
+      Lvl 12 Name - MP Increase (4x)
+      Lvl 13 Name - MP Increase (5x)
+      Lvl 14 Name - MP Increase (6x)
+      Lvl 15 Name - MP Increase (7x)
+      Lvl 16 Name - MP Increase (8x)
+      Lvl 17 Name - MP Increase (9x)
+      Lvl 18 Name - MP Increase (10x)
+      Lvl 19 Name - MP Increase (11x)
+      Lvl 20 Name - MP Increase (12x)
+-->
+  <table name="#maxmp"> 1 1.2 1.3 2 2 4 4 0.25 0.50 2 3 4 5 6 7 8 9 10 11 12 </table>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="maxMp" val="#maxmp"/>
+  </for>
+</skill>
+<skill id="4410" levels="22" name="P. Atk. Modifiers">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 Name - Extremely Weak P. Atk.
+      Lvl 2 Name - Extremely Weak P. Atk.
+      Lvl 3 Name - Extremely Weak P. Atk.
+      Lvl 4 Name - Extremely Weak P. Atk.
+      Lvl 5 Name - Very Weak P. Atk.
+      Lvl 6 Name - Very Weak P. Atk.
+      Lvl 7 Name - Weak P. Atk.
+      Lvl 8 Name - Weak P. Atk.
+      Lvl 9 Name - Slightly Weak P. Atk.
+      Lvl 10 Name - Slightly Weak P. Atk.
+      Lvl 11 Name - Average P. Atk.
+      Lvl 12 Name - Slightly Strong P. Atk.
+      Lvl 13 Name - Slightly Strong P. Atk.
+      Lvl 14 Name - Strong P. Atk.
+      Lvl 15 Name - Strong P. Atk.
+      Lvl 16 Name - Very Strong P. Atk.
+      Lvl 17 Name - Very Strong P. Atk.
+      Lvl 18 Name - Extremely Strong P. Atk.
+      Lvl 19 Name - Extremely Strong P. Atk.
+      Lvl 20 Name - Extremely Strong P. Atk.
+      Lvl 21 Name - Extremely Strong P. Atk.
+      Lvl 22 Name - Ultra Strong P. Atk.
+-->
+  <table name="#patk"> 0.1 0.15 0.20 0.25 0.30 0.35 0.40 0.45 0.5 0.7 1.0 1.1 1.2 1.3 1.5 1.6 1.7 1.8 1.9 2.0 2.1 2.2 </table>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="pAtk" val="#patk"/>
+  </for>
+</skill>
+<skill id="4411" levels="22" name="M. Atk. Modifiers">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 Name - Extremely Weak M. Atk.
+      Lvl 2 Name - Extremely Weak M. Atk.
+      Lvl 3 Name - Extremely Weak M. Atk.
+      Lvl 4 Name - Extremely Weak M. Atk.
+      Lvl 5 Name - Very Weak M. Atk.
+      Lvl 6 Name - Very Weak M. Atk.
+      Lvl 7 Name - Weak M. Atk.
+      Lvl 8 Name - Weak M. Atk.
+      Lvl 9 Name - Slightly Weak M. Atk.
+      Lvl 10 Name - Slightly Weak M. Atk.
+      Lvl 11 Name - Average M. Atk.
+      Lvl 12 Name - Slightly Strong M. Atk.
+      Lvl 13 Name - Slightly Strong M. Atk.
+      Lvl 14 Name - Strong M. Atk.
+      Lvl 15 Name - Strong M. Atk.
+      Lvl 16 Name - Very Strong M. Atk.
+      Lvl 17 Name - Very Strong M. Atk.
+      Lvl 18 Name - Extremely Strong M. Atk.
+      Lvl 19 Name - Extremely Strong M. Atk.
+      Lvl 20 Name - Extremely Strong M. Atk.
+      Lvl 21 Name - Extremely Strong M. Atk.
+      Lvl 22 Name - Ultra Strong M. Atk.
+-->
+  <table name="#matk"> 0.1 0.15 0.20 0.25 0.30 0.35 0.40 0.45 0.5 0.7 1.0 1.1 1.2 1.3 1.5 1.6 1.7 1.8 1.9 2.0 2.1 2.2 </table>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="mAtk" val="#matk"/>
+  </for>
+</skill>
+<skill id="4412" levels="22" name="P. Def. Modifiers">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 Name - Extremely Weak P. Def.
+      Lvl 2 Name - Extremely Weak P. Def.
+      Lvl 3 Name - Extremely Weak P. Def.
+      Lvl 4 Name - Extremely Weak P. Def.
+      Lvl 5 Name - Very Weak P. Def.
+      Lvl 6 Name - Very Weak P. Def.
+      Lvl 7 Name - Weak P. Def.
+      Lvl 8 Name - Weak P. Def.
+      Lvl 9 Name - Slightly Weak P. Def.
+      Lvl 10 Name - Slightly Weak P. Def.
+      Lvl 11 Name - Average P. Def.
+      Lvl 12 Name - Slightly Strong P. Def.
+      Lvl 13 Name - Slightly Strong P. Def.
+      Lvl 14 Name - Strong P. Def.
+      Lvl 15 Name - Strong P. Def.
+      Lvl 16 Name - Very Strong P. Def.
+      Lvl 17 Name - Very Strong P. Def.
+      Lvl 18 Name - Extremely Strong P. Def.
+      Lvl 19 Name - Extremely Strong P. Def.
+      Lvl 20 Name - Extremely Strong P. Def.
+      Lvl 21 Name - Extremely Strong P. Def.
+      Lvl 22 Name - Ultra Strong P. Def.
+-->
+  <table name="#pdef"> 0.1 0.15 0.20 0.25 0.30 0.35 0.40 0.45 0.5 0.7 1.0 1.1 1.2 1.3 1.5 1.6 1.7 1.8 1.9 2.0 2.1 2.2 </table>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="pDef" val="#pdef"/>
+  </for>
+</skill>
+<skill id="4413" levels="22" name="M. Def. Modifiers">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 Name - Extremely Weak M. Def.
+      Lvl 2 Name - Extremely Weak M. Def.
+      Lvl 3 Name - Extremely Weak M. Def.
+      Lvl 4 Name - Extremely Weak M. Def.
+      Lvl 5 Name - Very Weak M. Def.
+      Lvl 6 Name - Very Weak M. Def.
+      Lvl 7 Name - Weak M. Def.
+      Lvl 8 Name - Weak M. Def.
+      Lvl 9 Name - Slightly Weak M. Def.
+      Lvl 10 Name - Slightly Weak M. Def.
+      Lvl 11 Name - Average M. Def.
+      Lvl 12 Name - Slightly Strong M. Def.
+      Lvl 13 Name - Slightly Strong M. Def.
+      Lvl 14 Name - Strong M. Def.
+      Lvl 15 Name - Strong M. Def.
+      Lvl 16 Name - Very Strong M. Def.
+      Lvl 17 Name - Very Strong M. Def.
+      Lvl 18 Name - Extremely Strong M. Def.
+      Lvl 19 Name - Extremely Strong M. Def.
+      Lvl 20 Name - Extremely Strong M. Def.
+      Lvl 21 Name - Extremely Strong M. Def.
+      Lvl 22 Name - Ultra Strong M. Def.
+-->
+  <table name="#mdef"> 0.1 0.15 0.20 0.25 0.30 0.35 0.40 0.45 0.5 0.7 1.0 1.1 1.2 1.3 1.5 1.6 1.7 1.8 1.9 2.0 2.1 2.2 </table>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="mDef" val="#mdef"/>
+  </for>
+</skill>
+<skill id="4414" levels="3" name="Armor Type">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 Name - Heavy Armor Type    Strong    P. Def. and weak Evasion.
+      Lvl 2 Name - Standard Type
+      Lvl 3 Name - Light Armor Type    Weak      P. Def. and strong Evasion.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4415" levels="20" name="Weapon Type">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 Name - Bare Hands
+      Lvl 2 Name - Bare Hands
+      Lvl 3 Name - One-handed Sword
+      Lvl 4 Name - One-handed Sword
+      Lvl 5 Name - Blunt Weapons
+      Lvl 6 Name - Blunt Weapons
+      Lvl 7 Name - Daggers
+      Lvl 8 Name - Daggers
+      Lvl 9 Name - Bows
+      Lvl 10 Name - Bows
+      Lvl 11 Name - Spears
+      Lvl 12 Name - Spears
+      Lvl 13 Name - Two-handed Sword
+      Lvl 14 Name - Two-handed Sword
+      Lvl 15 Name - Two-handed Blunt Weapons
+      Lvl 16 Name - Two-handed Blunt Weapons
+      Lvl 17 Name - Hand-to-hand weapons
+      Lvl 18 Name - Hand-to-hand weapons
+      Lvl 19 Name - Dual-Sword Weapons
+      Lvl 20 Name - Dual-Sword Weapons
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4416" levels="24" name="Races">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 Name - Undead
+      Lvl 2 Name - Magic Creatures
+      Lvl 3 Name - Beasts
+      Lvl 4 Name - Animals
+      Lvl 5 Name - Plants
+      Lvl 6 Name - Humanoids
+      Lvl 7 Name - Spirits
+      Lvl 8 Name - Angels
+      Lvl 9 Name - Demons
+      Lvl 10 Name - Dragons
+      Lvl 11 Name - Giants
+      Lvl 12 Name - Bugs
+      Lvl 13 Name - Fairies
+      Lvl 14 Name - Humans
+      Lvl 15 Name - Elves
+      Lvl 16 Name - Dark Elves
+      Lvl 17 Name - Orcs
+      Lvl 18 Name - Dwarves
+      Lvl 19 Name - Others
+      Lvl 20 Name - Non-living Beings
+      Lvl 21 Name - Siege Weapons
+      Lvl 22 Name - Defending Army
+      Lvl 23 Name - Mercenaries
+      Lvl 24 Name - Unknown Creature
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4417" levels="38" name="Race Types">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 Name - Animals
+      Lvl 2 Name - Beasts
+      Lvl 3 Name - Beasts
+      Lvl 4 Name - Beasts
+      Lvl 5 Name - Beasts
+      Lvl 6 Name - Bugs
+      Lvl 7 Name - Bugs
+      Lvl 8 Name - Bugs
+      Lvl 9 Name - Magic Creatures
+      Lvl 10 Name - Magic Creatures
+      Lvl 11 Name - Magic Creatures
+      Lvl 12 Name - Demons
+      Lvl 13 Name - Demons
+      Lvl 14 Name - Demons
+      Lvl 15 Name - Angels
+      Lvl 16 Name - Angels
+      Lvl 17 Name - Angels
+      Lvl 18 Name - Dragons
+      Lvl 19 Name - Spirits
+      Lvl 20 Name - Spirits
+      Lvl 21 Name - Spirits
+      Lvl 22 Name - Spirits
+      Lvl 23 Name - Spirits
+      Lvl 24 Name - Fairies
+      Lvl 25 Name - Giants
+      Lvl 26 Name - Humanoids
+      Lvl 27 Name - Humanoids
+      Lvl 28 Name - Humanoids
+      Lvl 29 Name - Humanoids
+      Lvl 30 Name - Humanoids
+      Lvl 31 Name - Humanoids
+      Lvl 32 Name - Humanoids
+      Lvl 33 Name - Plants
+      Lvl 34 Name - Undead
+      Lvl 35 Name - Undead
+      Lvl 36 Name - Undead
+      Lvl 37 Name - Undead
+      Lvl 38 Name - Undead
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4418" levels="5" name="Fire Attacks">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Launches an attack fortified with fire energy. Resistant to fire attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4419" levels="5" name="Water Attacks">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Launches an attack fortified with water energy. Resistant to water attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4420" levels="5" name="Wind Attacks">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Launches an attack fortified with wind energy. Resistant to wind attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4421" levels="5" name="Earth Attacks">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Launches an attack fortified with earth energy. Resistant to earth attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4422" levels="5" name="Dark Attacks">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Launches an attack fortified with dark energy. Vulnerable to dark attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4423" levels="5" name="Sacred Attacks">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Launches an attack fortified with sacred energy. Resistant to sacred attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4424" levels="5" name="Resist Hand-to-hand Weapons">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Resistant to hand-to-hand combat weapons.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4425" levels="5" name="Resist Blunt Weapons">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Resistant to Blunt Weapons.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4426" levels="5" name="Resist Dual-Sword Weapons">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Resistant to Dual-Sword Weapons.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4427" levels="5" name="Resist Swords">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Resistant to Sword Weapons.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4428" levels="5" name="Resist Two-handed Weapons">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Resistant to Two-Handed Weapons.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4429" levels="5" name="Greater Resist Fire Attacks">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Very resistant to fire attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4430" levels="5" name="Greater Resist Water Attacks">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Very resistant to water attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4431" levels="5" name="Greater Resist Wind Attacks">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Very resistant to wind attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4432" levels="5" name="Greater Resist Earth Attacks">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Very resistant to earth attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4433" levels="5" name="Greater Resist Sacred Attacks">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Very resistant to sacred attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4434" levels="5" name="Greater Resist Dark Attacks">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Very resistant to dark attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4435" levels="5" name="Greater Resist Shock">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Very resistant to shock attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4436" levels="5" name="Greater Resist Poison">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Very resistant to poison attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4437" levels="5" name="Greater Resist Bleeding">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Very resistant to bleed attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4438" levels="5" name="Greater Resist Sleep">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Very resistant to sleep attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4439" levels="5" name="Greater Resist Hold">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Very resistant to hold attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4440" levels="5" name="Greater Resist Paralysis">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Very resistant to paralysis attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4441" levels="5" name="Greater Resist Mental Derangement">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Very resistant to mental attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4442" levels="5" name="Greater Resist Hand-to-hand Weapons">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Very resistant to Hand-to-Hand Weapon attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4443" levels="5" name="Greater Resist Blunt Weapons">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Very resistant to Blunt Weapon attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4444" levels="5" name="Greater Resist Bow Weapons">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Very resistant to Bow Weapon attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4445" levels="5" name="Greater Resist Spear Weapons">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Very resistant to Spear Weapon attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4446" levels="5" name="Greater Resist Dual-Sword Weapons">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Very resistant to Two-Sword Weapon attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4447" levels="5" name="Greater Resist Swords">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Very resistant to Sword attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4448" levels="5" name="Greater Resist Daggers">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Very resistant to Dagger attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4449" levels="5" name="Greater Resist Two-handed Weapons">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Very resistant to Two-Handed Weapon attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4450" levels="5" name="Shock Attack Weak Point">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Vulnerable to shock attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4451" levels="5" name="Poison Attack Weak Point">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Vulnerable to poison attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4452" levels="5" name="Bleed Attack Weak Point">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Vulnerable to bleed attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4453" levels="5" name="Sleep Attack Weak Point">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Vulnerable to sleep attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4454" levels="5" name="Hold Attack Weak Point">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Vulnerable to hold attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4455" levels="5" name="Paralysis Attack Weak Point">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Vulnerable to paralysis attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4456" levels="5" name="Mental Attack Weak Point">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Vulnerable to mental attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4457" levels="5" name="Hand-to-hand Weapon Weak Point">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Vulnerable to hand-to-hand combat weapons.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4458" levels="5" name="Spear Weapon Weak Point">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Vulnerable to Pole Arm Weapons.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4459" levels="5" name="Dual-Sword Weapon Weak Point">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Vulnerable to Dual-Sword Weapons.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4460" levels="5" name="Sword Weak Point">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Vulnerable to Sword Weapons.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4461" levels="5" name="Dagger Weak Point">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Vulnerable to Dagger Weapons.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4462" levels="5" name="Two-handed Weapon Weak Point">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Vulnerable to Two-Handed Weapons.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4463" levels="3" name="Surrender To Water">
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="600"/>
+  <for>
+  </for>
+</skill>
+<skill id="4464" levels="3" name="Surrender To Wind">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Instantly decreases resistance to water attacks and increases resistance to fire attacks. Effect 2.
+      Lvl 2 - Instantly decreases resistance to water attacks and increases resistance to fire attacks. Effect 3.
+      Lvl 3 - Instantly decreases resistance to water attacks and increases resistance to fire attacks. Effect 4.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4465" levels="3" name="Surrender To Earth">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Instantly decreases resistance to earth attacks and increases resistance to wind attacks. Effect 2.
+      Lvl 2 - Instantly decreases resistance to earth attacks and increases resistance to wind attacks. Effect 3.
+      Lvl 3 - Instantly decreases resistance to earth attacks and increases resistance to wind attacks. Effect 4.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4466" levels="3" name="Surrender To Darkness">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Instantly decreases resistance to dark attacks and increases resistance to sacred attacks. Effect 2.
+      Lvl 2 - Instantly decreases resistance to dark attacks and increases resistance to sacred attacks. Effect 2. (typo)?
+      Lvl 3 - Instantly decreases resistance to dark attacks and increases resistance to sacred attacks. Effect 4.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4467" levels="3" name="Surrender To Light">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Instantly decreases resistance to sacred attacks and increases resistance to dark attacks. Effect 2.
+      Lvl 2 - Instantly decreases resistance to sacred attacks and increases resistance to dark attacks. Effect 3.
+      Lvl 3 - Instantly decreases resistance to sacred attacks and increases resistance to dark attacks. Effect 4.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4468" levels="2" name="Area Buff - Wind Walk">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      none
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4469" levels="1" name="Potion Drinking">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      none
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4470" levels="1" name="NPC Spoils">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      none
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4471" levels="12" name="NPC Anger">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Increases NPC's P. Atk. and P. Def. Effect 1.
+      Lvl 2 - Increases NPC's P. Atk. and P. Def. Effect 2.
+      Lvl 3 - Increases NPC's P. Atk. and P. Def. Effect 3.
+      Lvl 4 - Increases NPC's P. Atk. and P. Def. Effect 4.
+      Lvl 5 - Increases NPC's P. Atk. and P. Def. Effect 5.
+      Lvl 6 - Increases NPC's P. Atk. and P. Def. Effect 6.
+      Lvl 7 - Increases NPC's P. Atk. and P. Def. Effect 7.
+      Lvl 8 - Increases NPC's P. Atk. and P. Def. Effect 8.
+      Lvl 9 - Increases NPC's P. Atk. and P. Def. Effect 9.
+      Lvl 10 - Increases NPC's P. Atk. and P. Def. Effect 10.
+      Lvl 11 - Increases NPC's P. Atk. and P. Def. Effect 11.
+      Lvl 12 - Increases NPC's P. Atk. and P. Def. Effect 12.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4472" levels="12" name="NPC Strike Golem">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      For powerful Golems that are 1.5x stronger
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4473" levels="12" name="Shock">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Shocks and instantly immobilizes.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4474" levels="5" name="Area Heal - Per">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      none
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4475" levels="1" name="Perfect Resist Bleeding">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Bleed attacks don't work on target.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4476" levels="5" name="Silent Move">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Blocks monsters' first strike.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4477" levels="12" name="NPC Frost Wall">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      none
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4478" levels="1" name="Ice Fairy Aqua Splash">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      none
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4479" levels="1" name="Ice Fairy Resist Cold">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Increases resistance to cold attacks. Effect 4.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4480" levels="1" name="Ice Fairy Curse Gloom">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      none
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4481" levels="1" name="Ice Fairy Hex">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      none
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4482" levels="1" name="Ice Fairy Silence">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      none
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4483" levels="12" name="Hold">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Temporarily holds and immobilizes target.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4484" levels="1" name="Eating Follower Heal">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      none
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4485" levels="1" name="Eating Follower">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      none
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4486" levels="12" name="Decrease P. Def">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Temporarily reduces P. Def. Effect 1.
+      Lvl 2 - Temporarily reduces P. Def. Effect 2.
+      Lvl 3 - Temporarily reduces P. Def. Effect 2.
+      Lvl 4 - Temporarily reduces P. Def. Effect 3.
+      Lvl 5 - Temporarily reduces P. Def. Effect 3.
+      Lvl 6 - Temporarily reduces P. Def. Effect 3.
+      Lvl 7 - Temporarily reduces P. Def. Effect 3.
+      Lvl 8 - Temporarily reduces P. Def. Effect 3.
+      Lvl 9 - Temporarily reduces P. Def. Effect 3.
+      Lvl 10 - Temporarily reduces P. Def. Effect 3.
+      Lvl 11 - Temporarily reduces P. Def. Effect 3.
+      Lvl 12 - Temporarily reduces P. Def. Effect 3.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4487" levels="12" name="Decrease M. Def.">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Instantly reduces M. Def. Effect 1.
+      Lvl 2 - Instantly reduces M. Def. Effect 2.
+      Lvl 3 - Instantly reduces M. Def. Effect 2.
+      Lvl 4 - Instantly reduces M. Def. Effect 3.
+      Lvl 5 - Instantly reduces M. Def. Effect 3.
+      Lvl 6 - Instantly reduces M. Def. Effect 3.
+      Lvl 7 - Instantly reduces M. Def. Effect 3.
+      Lvl 8 - Instantly reduces M. Def. Effect 3.
+      Lvl 9 - Instantly reduces M. Def. Effect 3.
+      Lvl 10 - Instantly reduces M. Def. Effect 3.
+      Lvl 11 - Instantly reduces M. Def. Effect 3.
+      Lvl 12 - Instantly reduces M. Def. Effect 3.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4488" levels="12" name="Hold">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Temporarily holds and immobilizes target.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4489" levels="12" name="NPC Death MP Bomb">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      none
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4490" levels="12" name="NPC Holy Wall">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      none
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4491" levels="12" name="Holy Weapon">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Makes sacred attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4492" levels="12" name="Enlarging Head Curse">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Temporarily enlarges the head.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4493" levels="12" name="NPC Debuff Shield Slow">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      none
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4494" levels="1" name="Raid Boss">
+<!--
+  1: If the level of the person who made the greatest contribution is 
+  higher than the level of the raid monster by 3 or more levels, 
+  then the probability of dropping an item or adena will decrease. 
+  If the level difference is nine or more levels, then, the monster 
+  will not drop any item or adena.-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4495" levels="12" name="BOSS Power Shot">
+  <table name="#mpConsume"> 36 50 69 93 118 143 166 175 182 186 189 192 </table>
+  <table name="#power"> 352.0 949.0 2607.0 6828.0 17184.0 33213.0 51007.0 59177.0 67888.0 77001.0 86359.0 95790.0 </table>
+  <table name="#magicLvl"> 14 24 34 44 54 64 74 79 84 89 94 99 </table>
+  <set name="magicLvl" val="#magicLvl"/>
+  <set name="lvlDepend" val="1"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="8000"/> <!-- SHOULD BE 0 -->
+  <set name="hitTime" val="4500"/>
+  <set name="skillType" val="PDAM"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="900"/>
+  <set name="effectRange" val="1400"/>
+  <for>
+  </for>
+</skill>
+<skill id="4496" levels="12" name="Shock">
+  <table name="#mpConsume"> 36 50 69 93 118 143 166 175 182 186 189 192 </table>
+  <table name="#power"> 176.0 475.0 1304.0 3414.0 8592.0 16607.0 25504.0 29589.0 33944.0 38501.0 43180.0 47895.0 </table>
+  <table name="#magicLvl"> 14 24 34 44 54 64 74 79 84 89 94 99 </table>
+  <set name="magicLvl" val="#magicLvl"/>
+  <set name="lvlDepend" val="1"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="save" val="4"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="overHit" val="true"/>
+  <set name="reuseDelay" val="8000"/> <!-- SHOULD BE 0 -->
+  <set name="hitTime" val="4500"/>
+  <set name="skillType" val="PDAM"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="900"/>
+  <set name="effectRange" val="1400"/>
+  <set name="effectType" val="STUN"/>
+  <set name="effectPower" val="80"/>
+  <for>
+    <effect count="1" name="Stun" time="9" val="0" stackOrder="1" stackType="Stun"/>
+  </for>
+</skill>
+<skill id="4497" levels="1" name="Treasure Chest - Level 21">
+  <!-- TODO -->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4498" levels="1" name="Treasure Chest - Level 22">
+  <!-- TODO -->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="4499" levels="1" name="Treasure Chest - Level 25">
+  <!-- TODO -->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+</list>

@@ -1,0 +1,1 @@
+ALTER TABLE characters ADD power_grade DECIMAL( 11, 0 );

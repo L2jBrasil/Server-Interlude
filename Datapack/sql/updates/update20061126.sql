@@ -1,0 +1,2 @@
+ALTER TABLE character_skills_save ADD COLUMN reuse_delay INT(8) NOT NULL DEFAULT 0 AFTER effect_cur_time;
+ALTER TABLE character_skills_save ADD COLUMN restore_type INT(1) NOT NULL DEFAULT 0 AFTER reuse_delay;

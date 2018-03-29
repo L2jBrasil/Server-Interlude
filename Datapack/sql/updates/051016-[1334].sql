@@ -1,0 +1,2 @@
+ALTER TABLE `items` ADD COLUMN `custom_type1` INT DEFAULT 0;
+ALTER TABLE `items` ADD COLUMN `custom_type2` INT DEFAULT 0;

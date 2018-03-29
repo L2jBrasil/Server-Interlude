@@ -1,0 +1,143 @@
+Quest scripts define the complete or near-complete flow of events that take place from the 
+start to the end of a quest.  This includes, but is not limitted to, starting and accepting 
+the quest, following complex dialogs, attacking or killing mobs, finding quest items, spawning
+quest mobs, completing a quest, and getting rewards.
+
+In order for quest scripts to function properly, at least 3 classes must be imported from Java:
+from net.sf.l2j.gameserver.model.quest import State
+from net.sf.l2j.gameserver.model.quest import QuestState
+from net.sf.l2j.gameserver.model.quest.jython import QuestJython as JQuest
+
+In addition, the jython library "sys" is generally imported for convinience.  More classes can
+be imported as needed, in order to access other components of the core and enhance the abilities
+of the script.
+
+Jython quest scripts essentially inherit from the Java class net.sf.l2j.gameserver.model.quest.Quest
+Developers who are comfortable with Java may read the source code for this class, as provided by the
+l2jserver project (www.l2jserver.com) for full details and available functions.  Alternatively, one
+may read forward in this documentation.
+
+
+AVAILABLE FUNCTIONS:
+There exist a set of functions that are predefined for quests and are triggered from various actions.
+These functions, their triggers, and the parameters passed into the script are defined below:
+
+1) onEvent(self, event, st)
+	This function is called whenever a player clicks on a link in a quest dialog.  
+	The	parameter "st" contains a reference to the QuestState of the player who used the link.
+	The parameter "event" contains a string identifier for the event.  Generally, this string
+		is passed directly via the link.  For example:
+		<a action="bypass -h Quest 626_ADarkTwilight 31517-1.htm">hello</a>
+		The above link sets the event variable to "31517-1.htm" for the quest 626_ADarkTwilight
+	The parameter "self" is a reference to the quest itself.  You may use self.XXXX where XXXX is
+		any function defined in the parent class of your quest.
+2) onAttack(self, npc, player)
+	This function is called whenever a player attacks an NPC that is registered for the quest
+	The parameter "npc" contains a reference to the exact instance of the NPC that got attacked
+	The parameter "player" contains a reference to the exact instance of the player who attacked.
+	The parameter "self" works the same as in onEvent.
+3) onKill(self, npc, player)
+	This function is called whenever a player kills an NPC that is registered for the quest
+	All parameters are the same as in onAttack
+4) onTalk(self,npc, player)
+	This function is called whenever a player clicks to the "Quest" link of an NPC that is registered 
+	for the quest.
+	All parameters are the same as in onAttack
+5) onFirstTalk(self,npc, player)
+	This function is called whenever a player talks to an NPC that is registered for the quest.  That is, 
+	it is triggered from the very first click on the NPC, not via another dialog.
+	NOTE: Each NPC can be registered to at most one quest for triggering this function.  In other words, 
+		the same one NPC cannot respond to an "onFirstTalk" request from two different quests.
+		Attempting to register an NPC in two different quests for this function will result in one of the
+		two registration being ignored.
+	NOTE: Since a Quest link isn't clicked in order to reach this, a quest state can be invalid within this
+		function.  The coder of the script may need to create a new quest state (if necessary), by using:
+		st = self.newQuestState(player)	
+	All parameters are the same as in onAttack.
+6) onDeath (self, npc, character, st) 
+	This function is called whenever an exact INSTANCE of a character who was previously registered for this 
+	event dies.  The registration for onDeath events is NOT done via the quest itself, but it is instead handled
+	by the QuestState of a particular player.
+	The parameter "npc" contains a reference to the exact instance of the NPC that KILLED the character.
+	The parameter "character" contains a reference to the exact instance of the character that got killed.
+	The parameter "st" contains a reference to the QuestState of whomever was interested (waiting) for this kill
+	The parameter "self" works the same as in onEvent.
+7) REGISTRATION FUNCTIONS:
+	The functions described below have a single purpose: To register an NPC for event triggers.  Simply put,
+	an NPC must be registered in a quest for a particular event in order for the NPC to respond to the occurence
+	of thatevent.  
+	Registration Functions are NOT called automatically.  Instead, they should be added at the bottom of your 
+	quest script.
+	Descriptions of all registration functions follow:
+	a) addStartNpc(npcId)
+		Registers an NPC for onTalk events.  These NPCs are considered start NPCs.  Therefore, the player
+		does NOT need to have started the quest in order to access the onTalk section of the quest.
+		Instead, when a player talks to NPCs registered by addStartNpc, then the players automatically get
+		a CREATED state for this quest.
+		The parameter "npcId" contains the id of the template for this NPC.
+	b) addTalkId(npcId)
+		Registers an NPC for onTalk events.  These NPCs are not considered start NPCs (unless they are also
+		registered with addStartNpc).  NPCs registered using addTalkId will only respond to the player's
+		click of a "Quest" link if and only if the player has alredy started the quest.
+		The parameter "npcId" contains the id of the template for this NPC.
+	c) addAttackId(npcId)
+		Registers an NPC for onAttack events.  The players do NOT need to be registered for the quest in order
+		to trigger a response to an attack against this NPC.  
+		The parameter "npcId" contains the id of the template for this NPC.
+	d) addKillId(npcId)
+		Registers an NPC for onKill events.  The players do NOT need to be registered for the quest in order
+		to trigger a response to this NPC getting killed.
+		The parameter "npcId" contains the id of the template for this NPC.
+
+Quest:
+After writing your script, in order to initialize your quest and register it with the game server, near the 
+bottom of your script, you must use:
+	QUEST       = Quest(id,"12345_QuestName","Description")
+For example:
+	QUEST       = Quest(626,"626_ADarkTwilight","A Dark Twilight")
+It is often useful to define the quest name in a variable at the top of the script (typically called "qn").  
+In that case, you may register your quest using:
+	QUEST       = Quest(626,qn,"A Dark Twilight")
+
+QuestState:
+A QuestState is not part of the quest definition itself, but it contains the information that tracks the 
+progress of a particular player for this quest.  Given a player instance, the quest-state of that player for 
+this quest can be found using:
+	st = player.getQuestState("12345_questname")
+If the player does NOT have a quest-state for this quest (i.e. the player is not currently doing this quest), then
+st will be null.
+In addition, the queststate of a random party member who has a particular variable and value stored for this quest,
+can be discovered using:
+	partyMember = self.getRandomPartyMember(player,"variable","value")
+	st = partyMember.getQuestState("12345_questname")
+Similarly, the queststate of a random party member who has reached a particular STATE for this quest,
+can be discovered using:
+	partyMember = self.getRandomPartyMemberState(player,STATE)
+	st = partyMember.getQuestState("12345_questname")
+For example, instead of "variable" and "value" in the first sample, one may use "cond" and "1".  Instead of STATE in 
+the second sample, one may use STARTED
+While a QuestState can be discovered from a player, it can also access the player instance back when needed, using
+	st.getPlayer()
+All other public methods of implementation of QuestState are accessible from jython.  Similarly, objects
+reachable from st can be further used in order to reach deeper.  For example, one may do something like:
+	st.getPlayer().getClan().getLeader().getPlayerInstance().getPet()
+	(this example may not be fully accurate or may get deprecated in the future...it is only meant as a 
+	little demonstation of how one may reach deeper into a chain of objects that are accessible.  In this
+	case, from the QuestState, we get the player whose QuestState this is, then get that player's clan,
+	the clan's leader, the leader's actual player instance, and from there, we find the leader's summonned pet!)
+	
+
+STATE:
+States are used to track segments of the quest.  Each state has its own list of quest items that may be found.  
+Upon completion or aborting of a quest, or upon changing from one state to another, STATES take care of cleaning up
+the excess quest items from a player's inventory.  To define a state, one must use:
+	STATEVARIABLE     = State('StateName', QUEST)
+for example:
+	STARTED     = State('Started', QUEST)
+The CREATED state is mandatory!  All quests must have it.  It is defined as:
+	CREATED     = State('Start', QUEST)	
+The COMPLETED state is mandatory for non-repeatable quests.  It is defined as:
+	COMPLETED     = State('Completed', QUEST)
+Other states can be created arbitarily.  Commonly used states are "Starting","Started","Progress" or 
+states like "PartXXXX" (Part1, Part2, etc)
+

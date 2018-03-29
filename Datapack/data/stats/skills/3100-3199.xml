@@ -1,0 +1,2359 @@
+<?xml version='1.0' encoding='utf-8'?>
+<list>
+<skill id="3100" levels="10" name="Item Skill: Sleep">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily throws the target into a state of sleep during magic use. The target cannot be affected by any additional sleep attacks while the effect lasts.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3101" levels="10" name="Item Skill: Paralyze">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily throws the target into a state of paralysis during magic use.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3102" levels="10" name="Item Skill: Medusa">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily throws the target into a petrified state during magic use.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3103" levels="10" name="Item Skill: Fear">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily throws the target into a state of fear and causes him to flee during magic use.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3104" levels="10" name="Item Skill: Poison">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Chance: Momentarily throws the target into a poisoned state during magic use. Effect 5.
+      Lvl 2 - Chance: Momentarily throws the target into a poisoned state during magic use. Effect 5.
+      Lvl 3 - Chance: Momentarily throws the target into a poisoned state during magic use. Effect 6.
+      Lvl 4 - Chance: Momentarily throws the target into a poisoned state during magic use. Effect 6.
+      Lvl 5 - Chance: Momentarily throws the target into a poisoned state during magic use. Effect 6.
+      Lvl 6 - Chance: Momentarily throws the target into a poisoned state during magic use. Effect 7.
+      Lvl 7 - Chance: Momentarily throws the target into a poisoned state during magic use. Effect 7.
+      Lvl 8 - Chance: Momentarily throws the target into a poisoned state during magic use. Effect 7.
+      Lvl 9 - Chance: Momentarily throws the target into a poisoned state during magic use. Effect 8.
+      Lvl 10 - Chance: Momentarily throws the target into a poisoned state during magic use. Effect 8.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3105" levels="10" name="Item Skill: Bleed">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Chance: Momentarily throws the target into a bleeding state during magic use. Effect 5.
+      Lvl 2 - Chance: Momentarily throws the target into a bleeding state during magic use. Effect 5.
+      Lvl 3 - Chance: Momentarily throws the target into a bleeding state during magic use. Effect 6.
+      Lvl 4 - Chance: Momentarily throws the target into a bleeding state during magic use. Effect 6.
+      Lvl 5 - Chance: Momentarily throws the target into a bleeding state during magic use. Effect 6.
+      Lvl 6 - Chance: Momentarily throws the target into a bleeding state during magic use. Effect 7.
+      Lvl 7 - Chance: Momentarily throws the target into a bleeding state during magic use. Effect 7.
+      Lvl 8 - Chance: Momentarily throws the target into a bleeding state during magic use. Effect 7.
+      Lvl 9 - Chance: Momentarily throws the target into a bleeding state during magic use. Effect 8.
+      Lvl 10 - Chance: Momentarily throws the target into a bleeding state during magic use. Effect 8.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3106" levels="10" name="Item Skill: Silence">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily blocks the target's magic skill during magic use.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3107" levels="10" name="Item Skill: Doom">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily blocks all of the target's physical and magic skills during magic use.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3108" levels="10" name="Item Skill: Aggression Up">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Chance: Increases a target's urge to attack during a critical attack. Power 438.
+      Lvl 2 - Chance: Increases a target's urge to attack during a critical attack. Power 467.
+      Lvl 3 - Chance: Increases a target's urge to attack during a critical attack. Power 495.
+      Lvl 4 - Chance: Increases a target's urge to attack during a critical attack. Power 523.
+      Lvl 5 - Chance: Increases a target's urge to attack during a critical attack. Power 549.
+      Lvl 6 - Chance: Increases a target's urge to attack during a critical attack. Power 574.
+      Lvl 7 - Chance: Increases a target's urge to attack during a critical attack. Power 597.
+      Lvl 8 - Chance: Increases a target's urge to attack during a critical attack. Power 617.
+      Lvl 9 - Chance: Increases a target's urge to attack during a critical attack. Power 635.
+      Lvl 10 - Chance: Increases a target's urge to attack during a critical attack. Power 659.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3109" levels="10" name="Item Skill: Aggression Down">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Chance: Decreases a target's urge to attack during a critical attack. Power 219.
+      Lvl 2 - Chance: Decreases a target's urge to attack during a critical attack. Power 234.
+      Lvl 3 - Chance: Decreases a target's urge to attack during a critical attack. Power 248.
+      Lvl 4 - Chance: Decreases a target's urge to attack during a critical attack. Power 262.
+      Lvl 5 - Chance: Decreases a target's urge to attack during a critical attack. Power 275.
+      Lvl 6 - Chance: Decreases a target's urge to attack during a critical attack. Power 287.
+      Lvl 7 - Chance: Decreases a target's urge to attack during a critical attack. Power 299.
+      Lvl 8 - Chance: Decreases a target's urge to attack during a critical attack. Power 309.
+      Lvl 9 - Chance: Decreases a target's urge to attack during a critical attack. Power 318.
+      Lvl 10 - Chance: Decreases a target's urge to attack during a critical attack. Power 330.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3110" levels="10" name="Item Skill: Mana Burn">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Chance: Burns up a target's MP during a critical attack. Power 49.
+      Lvl 2 - Chance: Burns up a target's MP during a critical attack. Power 53.
+      Lvl 3 - Chance: Burns up a target's MP during a critical attack. Power 57.
+      Lvl 4 - Chance: Burns up a target's MP during a critical attack. Power 61.
+      Lvl 5 - Chance: Burns up a target's MP during a critical attack. Power 66.
+      Lvl 6 - Chance: Burns up a target's MP during a critical attack. Power 70.
+      Lvl 7 - Chance: Burns up a target's MP during a critical attack. Power 74.
+      Lvl 8 - Chance: Burns up a target's MP during a critical attack. Power 78.
+      Lvl 9 - Chance: Burns up a target's MP during a critical attack. Power 82.
+      Lvl 10 - Chance: Burns up a target's MP during a critical attack. Power 88.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3111" levels="10" name="Item Skill: Slow">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily decreases the target's speed during a critical attack. Effect 3.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3112" levels="10" name="Item Skill: Winter">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily decreases the target's Atk. Spd. during a critical attack. Effect 3.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3113" levels="10" name="Item Skill: Stun">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily throws the target into a state of shock during a critical attack.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3114" levels="10" name="Item Skill: Hold">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily throws the target into a state of hold during a critical attack. The target cannot be affected by any additional hold attacks while the effect lasts.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3115" levels="10" name="Item Skill: Sleep">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily throws the target into a state of sleep during a critical attack. The target cannot be affected by any additional sleep attacks while the effect lasts.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3116" levels="10" name="Item Skill: Paralyze">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily throws the target into a state of paralysis during a critical attack.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3117" levels="10" name="Item Skill: Medusa">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily throws the target into a petrified state during a critical attack.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3118" levels="10" name="Item Skill: Fear">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily throws the target into a state of fear and causes him to flee during a critical attack.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3119" levels="10" name="Item Skill: Poison">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Chance: Momentarily throws the target into a poisoned state during a critical attack. Effect 5.
+      Lvl 2 - Chance: Momentarily throws the target into a poisoned state during a critical attack. Effect 5.
+      Lvl 3 - Chance: Momentarily throws the target into a poisoned state during a critical attack. Effect 6.
+      Lvl 4 - Chance: Momentarily throws the target into a poisoned state during a critical attack. Effect 6.
+      Lvl 5 - Chance: Momentarily throws the target into a poisoned state during a critical attack. Effect 6.
+      Lvl 6 - Chance: Momentarily throws the target into a poisoned state during a critical attack. Effect 7.
+      Lvl 7 - Chance: Momentarily throws the target into a poisoned state during a critical attack. Effect 7.
+      Lvl 8 - Chance: Momentarily throws the target into a poisoned state during a critical attack. Effect 7.
+      Lvl 9 - Chance: Momentarily throws the target into a poisoned state during a critical attack. Effect 8.
+      Lvl 10 - Chance: Momentarily throws the target into a poisoned state during a critical attack. Effect 8.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3120" levels="10" name="Item Skill: Bleed">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Chance: Momentarily throws the target into a bleeding state during a critical attack. Effect 5.
+      Lvl 2 - Chance: Momentarily throws the target into a bleeding state during a critical attack. Effect 5.
+      Lvl 3 - Chance: Momentarily throws the target into a bleeding state during a critical attack. Effect 6.
+      Lvl 4 - Chance: Momentarily throws the target into a bleeding state during a critical attack. Effect 6.
+      Lvl 5 - Chance: Momentarily throws the target into a bleeding state during a critical attack. Effect 6.
+      Lvl 6 - Chance: Momentarily throws the target into a bleeding state during a critical attack. Effect 7.
+      Lvl 7 - Chance: Momentarily throws the target into a bleeding state during a critical attack. Effect 7.
+      Lvl 8 - Chance: Momentarily throws the target into a bleeding state during a critical attack. Effect 7.
+      Lvl 9 - Chance: Momentarily throws the target into a bleeding state during a critical attack. Effect 8.
+      Lvl 10 - Chance: Momentarily throws the target into a bleeding state during a critical attack. Effect 8.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3121" levels="10" name="Item Skill: Silence">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily blocks the target's magic skill during a critical attack.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3122" levels="10" name="Item Skill: Doom">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Chance: Momentarily blocks all of the target's physical and magic skills during a critical attack.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3123" levels="10" name="Item Skill: Heal">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Immediately recovers your HP. Power 308.
+      Lvl 2 - Active: Immediately recovers your HP. Power 337.
+      Lvl 3 - Active: Immediately recovers your HP. Power 365.
+      Lvl 4 - Active: Immediately recovers your HP. Power 393.
+      Lvl 5 - Active: Immediately recovers your HP. Power 421.
+      Lvl 6 - Active: Immediately recovers your HP. Power 448.
+      Lvl 7 - Active: Immediately recovers your HP. Power 474.
+      Lvl 8 - Active: Immediately recovers your HP. Power 498.
+      Lvl 9 - Active: Immediately recovers your HP. Power 520.
+      Lvl 10 - Active: Immediately recovers your HP. Power 552.
+-->
+  <table name="#mpConsume_Init"> 2 3 3 4 4 5 5 6 6 7 </table>
+  <table name="#mpConsume"> 8 10 11 13 15 17 19 21 24 26 </table>
+  <table name="#power"> 308 337 365 393 421 448 474 498 520 552 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="reuseDelay" val="10000"/>
+  <set name="hitTime" val="5000"/>
+  <set name="skillType" val="HEAL"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="600"/>
+  <set name="effectRange" val="1100"/>
+  <for>
+  </for>
+</skill>
+<skill id="3124" levels="10" name="Item Skill: Blessed Body">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Increases the maximum HP by 30 temporarily.
+      Lvl 2 - Active: Increases the maximum HP by 60 temporarily.
+      Lvl 3 - Active: Increases the maximum HP by 90 temporarily.
+      Lvl 4 - Active: Increases the maximum HP by 120 temporarily.
+      Lvl 5 - Active: Increases the maximum HP by 150 temporarily.
+      Lvl 6 - Active: Increases the maximum HP by 180 temporarily.
+      Lvl 7 - Active: Increases the maximum HP by 210 temporarily.
+      Lvl 8 - Active: Increases the maximum HP by 240 temporarily.
+      Lvl 9 - Active: Increases the maximum HP by 270 temporarily.
+      Lvl 10 - Active: Increases the maximum HP by 300 temporarily.
+-->
+  <table name="#mpConsume_Init"> 8 9 10 11 12 14 15 16 19 10 </table>
+  <table name="#mpConsume"> 31 35 38 41 48 53 57 63 70 75 </table>
+  <table name="#Tab-maxHp"> 30 60 90 120 150 180 210 240 270 300 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#Tab-maxHp" stackType="MaxHPUp">
+      <add order="0x30" stat="maxHp" val="#Tab-maxHp"/>
+    </effect>
+  </for>
+</skill>
+<skill id="3125" levels="10" name="Item Skill: Battle Roar">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Increases the maximum HP temporarily and restores HP by the increased amount.
+-->
+  <table name="#mpConsume"> 13 18 22 27 30 33 40 50 60 70 </table>
+  <table name="#Tab-maxHp"> 1.1 1.15 1.2 1.25 1.3 1.35 1.40 1.45 1.50 1.55</table>
+  <table name="#reg-HP"> 9.1 13 16.6 20 23 25.7 26 28 30 32 </table>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#reg-HP"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="reuseDelay" val="600000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="HEAL_PERCENT"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <effect count="1" name="Buff" time="600" val="0" stackOrder="#Tab-maxHp" stackType="MaxHPUp">
+      <mul order="0x30" stat="maxHp" val="#Tab-maxHp"/>
+    </effect>
+  </for>
+</skill>
+<skill id="3126" levels="10" name="Item Skill: Prayer">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Increases the effectiveness of HP recovery magic temporarily.
+-->
+  <table name="#mpConsume_Init"> 49 52 55 60 70 80 90 100 110 120 </table>
+  <table name="#mpConsume"> 195 207 217 227 237 248 257 268 278 288 </table>
+  <table name="#tab-gainHp"> 1.08 1.10 1.12 1.13 1.14 1.15 1.16 1.17 1.18 1.19 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="reuseDelay" val="20000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <effect name="Buff" time="1200" count="1" val="0">
+      <mul order="0x30" stat="gainHp" val="#tab-gainHp"/>
+    </effect>
+  </for>
+</skill>
+<skill id="3127" levels="10" name="Item Skill: Recharge">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Regenerates MP. Power 41.
+      Lvl 2 - Active: Regenerates MP. Power 44.
+      Lvl 3 - Active: Regenerates MP. Power 47.
+      Lvl 4 - Active: Regenerates MP. Power 50.
+      Lvl 5 - Active: Regenerates MP. Power 53.
+      Lvl 6 - Active: Regenerates MP. Power 57.
+      Lvl 7 - Active: Regenerates MP. Power 59.
+      Lvl 8 - Active: Regenerates MP. Power 62.
+      Lvl 9 - Active: Regenerates MP. Power 65.
+      Lvl 10 - Active: Regenerates MP. Power 69.
+-->
+  <table name="#mpConsume_Init"> 10 11 12 12 14 14 15 16 17 18  </table>
+  <table name="#mpConsume"> 39 42 45 48 53 56 59 62 65 69 </table>
+  <table name="#power"> 41 44 47 50 53 57 59 62 65 69 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="reuseDelay" val="12000"/>
+  <set name="hitTime" val="6000"/>
+  <set name="skillType" val="MANARECHARGE"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <for>
+  </for>
+</skill>
+<skill id="3128" levels="10" name="Item Skill: Blessed Soul">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Increases the maximum MP by 20 temporarily.
+      Lvl 2 - Active: Increases the maximum MP by 40 temporarily.
+      Lvl 3 - Active: Increases the maximum MP by 60 temporarily.
+      Lvl 4 - Active: Increases the maximum MP by 80 temporarily.
+      Lvl 5 - Active: Increases the maximum MP by 100 temporarily.
+      Lvl 6 - Active: Increases the maximum MP by 120 temporarily.
+      Lvl 7 - Active: Increases the maximum MP by 140 temporarily.
+      Lvl 8 - Active: Increases the maximum MP by 160 temporarily.
+      Lvl 9 - Active: Increases the maximum MP by 180 temporarily.
+      Lvl 10 - Active: Increases the maximum MP by 200 temporarily.
+-->
+  <table name="#mpConsume_Init"> 8 9 10 11 12 13 14 15 16 17 </table>
+  <table name="#mpConsume"> 31 35 38 41 46 52 58 65 70 75 </table>
+  <table name="#Tab-maxMp"> 1.1 1.15 1.2 1.25 1.3 1.35 1.40 1.45 1.50 1.55 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#Tab-maxMp" stackType="MPregen">
+      <mul order="0x30" stat="maxMp" val="#Tab-maxMp"/>
+    </effect>
+  </for>
+</skill>
+<skill id="3129" levels="10" name="Item Skill: Mana Gain">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Increases the recharge recover rate of MP.
+-->
+  <table name="#mpConsume_Init"> 8 9 10 11 12 13 14 15 16 17 </table>
+  <table name="#mpConsume"> 31 35 38 41 46 52 58 65 70 75 </table>
+  <table name="#Tab-maxMp"> 1.1 1.11 1.12 1.13 1.14 1.15 1.16 1.17 1.18 1.19 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#Tab-maxMp" stackType="MPregen">
+      <mul order="0x30" stat="gainMp" val="#Tab-maxMp"/>
+    </effect>
+  </for>
+</skill>
+<skill id="3130" levels="10" name="Item Skill: Ritual">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Regenerates CP. Power 264.
+      Lvl 2 - Active: Regenerates CP. Power 289.
+      Lvl 3 - Active: Regenerates CP. Power 313.
+      Lvl 4 - Active: Regenerates CP. Power 337.
+      Lvl 5 - Active: Regenerates CP. Power 361.
+      Lvl 6 - Active: Regenerates CP. Power 384.
+      Lvl 7 - Active: Regenerates CP. Power 406.
+      Lvl 8 - Active: Regenerates CP. Power 427.
+      Lvl 9 - Active: Regenerates CP. Power 446.
+      Lvl 10 - Active: Regenerates CP. Power 473.
+-->
+  <table name="#mpConsume_Init"> 21 22 23 23 24 24 25 25 26 26 </table>
+  <table name="#mpConsume"> 83 86 89 91 93 96 99 102 105 108 </table>
+  <table name="#rateCp"> 264 289 313 337 361 384 406 428 446 473 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#rateCp"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="hitTime" val="5000"/>
+  <set name="reuseDelay" val="20000"/>
+  <set name="skillType" val="COMBATPOINTHEAL"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="600"/>
+  <set name="effectRange" val="1100"/>
+  <for>
+  </for>
+</skill>
+<skill id="3131" levels="10" name="Item Skill: Cheer">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Increases the maximum CP by 30 temporarily.
+      Lvl 2 - Active: Increases the maximum CP by 60 temporarily.
+      Lvl 3 - Active: Increases the maximum CP by 90 temporarily.
+      Lvl 4 - Active: Increases the maximum CP by 120 temporarily.
+      Lvl 5 - Active: Increases the maximum CP by 150 temporarily.
+      Lvl 6 - Active: Increases the maximum CP by 180 temporarily.
+      Lvl 7 - Active: Increases the maximum CP by 210 temporarily.
+      Lvl 8 - Active: Increases the maximum CP by 240 temporarily.
+      Lvl 9 - Active: Increases the maximum CP by 270 temporarily.
+      Lvl 10 - Active: Increases the maximum CP by 300 temporarily.
+-->
+  <table name="#mpConsume_Init"> 8 9 10 11 12 13 14 15 16 17 </table>
+  <table name="#mpConsume"> 31 35 38 41 46 52 58 65 70 75 </table>
+  <table name="#Tab-maxMp"> 30 60 90 120 150 180 210 240 270 300 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#Tab-maxMp" stackType="MPregen">
+      <add order="0x30" stat="maxCp" val="#Tab-maxMp"/>
+    </effect>
+  </for>
+</skill>
+<skill id="3132" levels="10" name="Item Skill: Might">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Increases P. Atk. temporarily.
+-->
+  <table name="#mpConsume_Init"> 2 4 7 10 13 15 18 20 24 28 </table>
+  <table name="#mpConsume"> 8 16 28 36 48 59 67 75 88 99 </table>
+  <table name="#rate"> 1.08 1.12 1.15 1.17 1.20 1.23 1.25 1.27 1.30 1.32 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#rate" stackType="pAtk">
+      <mul order="0x30" stat="pAtk" val="#rate"/>
+    </effect>
+  </for>
+</skill>
+<skill id="3133" levels="10" name="Item Skill: Empower">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Increases M. Atk. temporarily.
+-->
+  <table name="#mpConsume_Init"> 2 4 7 10 13 15 18 20 24 28 </table>
+  <table name="#mpConsume"> 8 16 28 36 48 59 67 75 88 99 </table>
+  <table name="#rate"> 1.08 1.12 1.15 1.17 1.20 1.23 1.25 1.27 1.30 1.32 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#rate" stackType="mAtk">
+      <mul order="0x30" stat="mAtk" val="#rate"/>
+    </effect>
+  </for>
+</skill>
+<skill id="3134" levels="10" name="Item Skill: Duel Might">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Increases PVP P. Atk. temporarily.
+-->
+  <table name="#mpConsume_Init"> 2 4 7 10 13 15 18 20 24 28 </table>
+  <table name="#mpConsume"> 8 16 28 36 48 59 67 75 88 99 </table>
+  <table name="#rate"> 1.08 1.12 1.15 1.17 1.20 1.23 1.25 1.27 1.30 1.32 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="1500"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#rate" stackType="pvpPhysDmg">
+      <mul order="0x30" stat="pvpPhysDmg" val="#rate"/>
+    </effect>
+  </for>
+</skill>
+<skill id="3135" levels="10" name="Item Skill: Shield">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Increases P. Def. temporarily.
+-->
+  <table name="#mpConsume_Init"> 2 4 7 10 13 15 18 20 24 28 </table>
+  <table name="#mpConsume"> 8 16 28 36 48 59 67 75 88 99 </table>
+  <table name="#rate"> 1.08 1.12 1.15 1.17 1.20 1.23 1.25 1.27 1.30 1.32 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#rate" stackType="pDef">
+      <mul order="0x30" stat="pDef" val="#rate"/>
+    </effect>
+  </for>
+</skill>
+<skill id="3136" levels="10" name="Item Skill: Magic Barrier">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Increases M. Def. temporarily.
+-->
+  <table name="#mpConsume_Init"> 2 4 7 10 13 15 18 20 24 28 </table>
+  <table name="#mpConsume"> 8 16 28 36 48 59 67 75 88 99 </table>
+  <table name="#rate"> 1.08 1.12 1.15 1.17 1.20 1.23 1.25 1.27 1.30 1.32 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#rate" stackType="mDef">
+      <mul order="0x30" stat="mDef" val="#rate"/>
+    </effect>
+  </for>
+</skill>
+<skill id="3137" levels="10" name="Item Skill: Duel Weakness">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Decreases the opponent's PVP P. Atk. temporarily.
+-->
+  <table name="#mpConsume_Init"> 2 4 7 10 13 15 18 20 24 28 </table>
+  <table name="#mpConsume"> 8 16 28 36 48 59 67 75 88 99 </table>
+  <table name="#rate"> 0.99 0.98 0.97 0.96 0.95 0.94 0.93 0.92 0.91 0.9 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="DEBUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#rate" stackType="pvpPhysDmg">
+      <mul order="0x30" stat="pvpPhysDmg" val="#rate"/>
+    </effect>
+  </for>
+</skill>
+<skill id="3138" levels="10" name="Item Skill: Heal Empower">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Increases the power of HP recovery magic temporarily.
+-->
+  <table name="#mpConsume_Init"> 2 4 7 10 13 15 18 20 24 28 </table>
+  <table name="#mpConsume"> 8 16 28 36 48 59 67 75 88 99 </table>
+  <table name="#rate"> 1.08 1.12 1.15 1.17 1.20 1.23 1.25 1.27 1.30 1.32 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#rate" stackType="gainHp">
+      <mul order="0x30" stat="gainHp" val="#rate"/>
+    </effect>
+  </for>
+</skill>
+<skill id="3139" levels="10" name="Item Skill: Agility">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Increases Dodge temporarily.
+-->
+  <table name="#mpConsume_Init"> 2 4 7 10 13 15 18 20 24 28 </table>
+  <table name="#mpConsume"> 8 16 28 36 48 59 67 75 88 99 </table>
+  <table name="#rate"> 1.08 1.12 1.15 1.17 1.20 1.23 1.25 1.27 1.30 1.32 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#rate" stackType="rEvas">
+      <mul order="0x30" stat="rEvas" val="#rate"/>
+    </effect>
+  </for>
+</skill>
+<skill id="3140" levels="10" name="Item Skill: Guidance">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Increases Accuracy temporarily.
+-->
+  <table name="#mpConsume_Init"> 2 4 7 10 13 15 18 20 24 28 </table>
+  <table name="#mpConsume"> 8 16 28 36 48 59 67 75 88 99 </table>
+  <table name="#rate"> 1.08 1.12 1.15 1.17 1.20 1.23 1.25 1.27 1.30 1.32 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#rate" stackType="accCombat">
+      <mul order="0x30" stat="accCombat" val="#rate"/>
+    </effect>
+  </for>
+</skill>
+<skill id="3141" levels="10" name="Item Skill: Focus">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Increases the chance of a critical attack temporarily.
+-->
+  <table name="#mpConsume_Init"> 2 4 7 10 13 15 18 20 24 28 </table>
+  <table name="#mpConsume"> 8 16 28 36 48 59 67 75 88 99 </table>
+  <table name="#rate"> 1.08 1.12 1.15 1.17 1.20 1.23 1.25 1.27 1.30 1.32 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#rate" stackType="rCrit">
+      <mul order="0x30" stat="rCrit" val="#rate"/>
+    </effect>
+  </for>
+</skill>
+<skill id="3142" levels="10" name="Item Skill: Wild Magic">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Increases the critical attack rate of magic attacks temporarily.
+-->
+  <table name="#mpConsume_Init"> 2 4 7 10 13 15 18 20 24 28 </table>
+  <table name="#mpConsume"> 8 16 28 36 48 59 67 75 88 99 </table>
+  <table name="#rate"> 1.08 1.12 1.15 1.17 1.20 1.23 1.25 1.27 1.30 1.32 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0" stackOrder="#rate" stackType="mCritRate">
+      <mul order="0x30" stat="mCritRate" val="#rate"/>
+    </effect>
+  </for>
+</skill>
+<skill id="3143" levels="10" name="Item Skill: Kiss of Eva">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Increases Lung Capacity temporarily.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3144" levels="10" name="Item Skill: Acrobatics">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Increases the height from which you can jump without sustaining damage temporarily.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3145" levels="10" name="Item Skill: Iron Body">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Raises resistance to damage from falling.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3146" levels="1" name="Item Skill: Recall">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Teleports the caster to a village. Cannot be used in a specially designated place such as the GM Consultation Service.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3147" levels="1" name="Item Skill: Recall">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Teleports the caster to a village. Cannot be used in a specially designated place such as the GM Consultation Service.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3148" levels="10" name="Item Skill: Vampiric Rage">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Increases the ability to restore some HP from the damage inflicted on an enemy temporarily. Excludes damage by skill or long-range attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3149" levels="10" name="Item Skill: Aggression">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Increases the target's urge to attack. Power 438.
+      Lvl 2 - Active: Increases the target's urge to attack. Power 467.
+      Lvl 3 - Active: Increases the target's urge to attack. Power 495.
+      Lvl 4 - Active: Increases the target's urge to attack. Power 523.
+      Lvl 5 - Active: Increases the target's urge to attack. Power 549.
+      Lvl 6 - Active: Increases the target's urge to attack. Power 574.
+      Lvl 7 - Active: Increases the target's urge to attack. Power 597.
+      Lvl 8 - Active: Increases the target's urge to attack. Power 617.
+      Lvl 9 - Active: Increases the target's urge to attack. Power 635.
+      Lvl 10 - Active: Increases the target's urge to attack. Power 659.
+-->
+  <table name="#mpConsume"> 20 21 22 23 24 25 26 27 28 29 </table>
+  <table name="#power"> 438 467 495 523 549 574 597 617 635 659 </table>
+  <table name="#castRange"> 400 400 400 400 400 400 400 400 400 400 </table>
+  <table name="#effectRange"> 900  900  900  900  900  900  900  900  900  900 </table>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="3000"/>
+  <set name="hitTime" val="1000"/>
+  <set name="skillType" val="AGGDAMAGE"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="#castRange"/>
+  <set name="effectRange" val="#effectRange"/>
+  <for>
+    <effect count="1" name="TargetMe" time="1" val="0"/>
+  </for>
+</skill>
+<skill id="3150" levels="10" name="Item Skill: Charm">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Decreases a target's urge to attack. Power 219.
+      Lvl 2 - Active: Decreases a target's urge to attack. Power 234.
+      Lvl 3 - Active: Decreases a target's urge to attack. Power 248.
+      Lvl 4 - Active: Decreases a target's urge to attack. Power 262.
+      Lvl 5 - Active: Decreases a target's urge to attack. Power 275.
+      Lvl 6 - Active: Decreases a target's urge to attack. Power 287.
+      Lvl 7 - Active: Decreases a target's urge to attack. Power 299.
+      Lvl 8 - Active: Decreases a target's urge to attack. Power 309.
+      Lvl 9 - Active: Decreases a target's urge to attack. Power 318.
+      Lvl 10 - Active: Decreases a target's urge to attack. Power 330.
+-->
+  <table name="#mpConsume_Init"> 2 2 2 2 3 3 3 3 3 3 </table>
+  <table name="#mpConsume"> 8 8 8 8 9 9 10 10 10 11 </table>
+  <table name="#aggr"> 219 234 248 262 275 287 299 309 318 330 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="60000"/>
+  <set name="hitTime" val="1500"/>
+  <set name="skillType" val="AGGREDUCE"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="600"/>
+  <set name="effectRange" val="1100"/>
+  <for>
+    <effect name="Buff" time="60" count="1" val="0">
+      <sub order="0x40" stat="aggression" val="#aggr"/>
+    </effect>
+  </for>
+</skill>
+<skill id="3151" levels="10" name="Item Skill: Peace">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Puts the opponent's mind at peace and erases the desire to attack.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3152" levels="10" name="Item Skill: Trick">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Cancels the target's status.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3153" levels="10" name="Item Skill: Vampiric Touch">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Absorbs HP. Power 49.
+      Lvl 2 - Active: Absorbs HP. Power 53.
+      Lvl 3 - Active: Absorbs HP. Power 57.
+      Lvl 4 - Active: Absorbs HP. Power 61.
+      Lvl 5 - Active: Absorbs HP. Power 66.
+      Lvl 6 - Active: Absorbs HP. Power 70.
+      Lvl 7 - Active: Absorbs HP. Power 74.
+      Lvl 8 - Active: Absorbs HP. Power 78.
+      Lvl 9 - Active: Absorbs HP. Power 82.
+      Lvl 10 - Active: Absorbs HP. Power 88.
+-->
+  <table name="#mpConsume_Init"> 5 6 7 7 8 8 9 9 10 10 </table>
+  <table name="#mpConsume"> 20 22 25 28 30 32 34 36 38 40 </table>
+  <table name="#power"> 48 53 57 61 66 70 74 78 82 88 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="element" val="6"/>
+  <set name="reuseDelay" val="12000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="DRAIN"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="600"/>
+  <set name="effectRange" val="1100"/>
+  <set name="absorbPart" val="0.4" /><!-- absorbs 40% of damage -->
+  <for>
+  </for>
+</skill>
+<skill id="3154" levels="10" name="Item Skill: Mana Burn">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Burns up the enemy's MP. Power 68.
+      Lvl 2 - Active: Burns up the enemy's MP. Power 73.
+      Lvl 3 - Active: Burns up the enemy's MP. Power 79.
+      Lvl 4 - Active: Burns up the enemy's MP. Power 84.
+      Lvl 5 - Active: Burns up the enemy's MP. Power 90.
+      Lvl 6 - Active: Burns up the enemy's MP. Power 96.
+      Lvl 7 - Active: Burns up the enemy's MP. Power 101.
+      Lvl 8 - Active: Burns up the enemy's MP. Power 107.
+      Lvl 9 - Active: Burns up the enemy's MP. Power 112.
+      Lvl 10 - Active: Burns up the enemy's MP. Power 120.
+-->
+  <table name="#mpConsume"> 77 80 83 87 89 93 95 98 100 103 </table>
+  <table name="#power"> 68 73 79 84 90 96 101 107 112 120 </table>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="reuseDelay" val="13000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="skillType" val="MANADAM"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="900"/>
+  <set name="effectRange" val="1400"/>
+  <set name="isMagic" val="true"/>
+</skill>
+<skill id="3155" levels="10" name="Item Skill: Unlock">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Opens level 1 doors with 100% probability, level 2 doors with 30% probability, and chests below level 36 with 90% probability. Requires 4 Keys of a Thief.
+      Lvl 2 - Active: Opens level 1 doors with 100% probability, level 2 doors with 75% probability, and chests below level 40 with 90% probability. Requires 5 Keys of a Thief.
+      Lvl 3 - Active: Opens doors below level 2 with 100% probability, level 3 doors with 5% probability, and chests below level 44 with 90% probability. Requires 6 Keys of a Thief.
+      Lvl 4 - Active: Opens doors below level 2 with 100% probability, level 3 doors with 30% probability, and chests below level 48 with 90% probability. Requires 7 Keys of a Thief.
+      Lvl 5 - Active: Opens doors below level 2 with 100% probability, level 3 doors with 75% probability, and chests below level 52 with 90% probability. Requires 8 Keys of a Thief.
+      Lvl 6 - Active: Opens level 3 doors with 100% probability and chests below level 56 with 90% probability. Requires 10 Keys of a Thief.
+      Lvl 7 - Active: Opens level 3 doors with 100% probability and chests below level 60 with 90% probability. Requires 11 Keys of a Thief.
+      Lvl 8 - Active: Opens level 3 doors with 100% probability and chests below level 64 with 90% probability. Requires 13 Keys of a Thief.
+      Lvl 9 - Active: Opens level 3 doors with 100% probability and chests below level 68 with 90% probability. Requires 15 Keys of a Thief.
+      Lvl 10 - Active: Opens level 3 doors with 100% probability and chests below level 72 with 90% probability. Requires 17 Keys of a Thief.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3156" levels="1" name="Item Skill: Firecracker">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Active: Ignites a firecracker.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3157" levels="1" name="Item Skill: Large Firecracker">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Active: Ignites a large firecracker.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3158" levels="1" name="Item Skill: Celestial Shield">
+  <!--
+  Description(s):
+      Active: Momentarily becomes invincible.
+  -->
+  <set name="mpConsume" val="82"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="hitTime" val="1000"/>
+  <set name="reuseDelay" val="2600000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/> 
+  <for>
+    <effect count="1" name="Invincible" time="10" val="0"/>
+  </for>
+</skill>
+<skill id="3159" levels="3" name="Item Skill: Stealth">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-3 - Active: Temporarily blocks a monster's pre-emptive attack. Fighting ability significantly decreases while in effect.
+-->
+<table name="#mpConsume"> 27 31 34 </table>
+  <table name="#pAtk"> 1.2 1.3 1.4 </table>
+  <table name="#accCombat"> 1.1 1.15 1.2 </table>
+  <table name="#rCrit"> 1.1 1.2 1.3 </table>
+  <table name="#pDef"> 1.1 1.2 1.3 </table>
+  <table name="#mDef"> 1.15 1.25 1.35 </table>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="hitTime" val="2000"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="reuseDelay" val="60000"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <effect count="1" name="SilentMove" time="120" val="0">
+      <div order="0x30" stat="pAtk" val="#pAtk"/>
+      <div order="0x30" stat="accCombat" val="#accCombat"/>
+      <div order="0x30" stat="rCrit" val="#rCrit"/>
+      <div order="0x30" stat="pDef" val="#pDef"/>
+      <div order="0x30" stat="mDef" val="#mDef"/>
+    </effect>
+  </for>
+</skill>
+<skill id="3160" levels="9" name="Item Skill: Resurrection">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Resurrects a corpse.
+      Lvl 2 - Active: Resurrects a corpse. Restores about 20% of additional Exp.
+      Lvl 3 - Active: Resurrects a corpse. Restores about 30% of additional Exp.
+      Lvl 4 - Active: Resurrects a corpse. Restores about 40% of additional Exp.
+      Lvl 5 - Active: Resurrects a corpse. Restores about 50% of additional Exp.
+      Lvl 6 - Active: Resurrects a corpse. Restores about 55% of additional Exp.
+      Lvl 7 - Active: Resurrects a corpse. Restores about 60% of additional Exp.
+      Lvl 8 - Active: Resurrects a corpse. Restores about 65% of additional Exp.
+      Lvl 9 - Active: Resurrects a corpse. Restores about 70% of additional Exp.
+-->
+  <table name="#mpConsume_Init"> 12 18 25 31 36 39 42 46 48 </table>
+  <table name="#mpConsume"> 47 70 97 121 144 156 165 182 191 </table>
+  <table name="#power"> 0.0 20.0 30.0 40.0 50.0 55.0 60.0 65.0 70.0 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_CORPSE_PLAYER"/>
+  <set name="reuseDelay" val="120000"/>
+  <set name="hitTime" val="6000"/>
+  <set name="skillType" val="RESURRECT"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="400"/>
+  <set name="effectRange" val="900"/>
+  <for>
+  </for>
+</skill>
+<skill id="3161" levels="3" name="Item Skill: Skill Clarity">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-3 - Active: Temporarily decreases the MP consumption rate for physical skills.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3162" levels="3" name="Item Skill: Spell Clarity">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-3 - Active: Temporarily decreases the MP consumption rate for magical skills.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3163" levels="3" name="Item Skill: Music Clarity">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-3 - Active: Temporarily decreases the MP consumption rate for song/dance skills.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3164" levels="3" name="Item Skill: Clarity">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-3 - Active: Temporarily decreases the MP consumption rates for all skills.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3165" levels="10" name="Item Skill: Prominence">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Detonates a fireball by compressing the air around the caster. Power 61.
+      Lvl 2 - Active: Detonates a fireball by compressing the air around the caster. Power 66.
+      Lvl 3 - Active: Detonates a fireball by compressing the air around the caster. Power 72.
+      Lvl 4 - Active: Detonates a fireball by compressing the air around the caster. Power 77.
+      Lvl 5 - Active: Detonates a fireball by compressing the air around the caster. Power 82.
+      Lvl 6 - Active: Detonates a fireball by compressing the air around the caster. Power 87.
+      Lvl 7 - Active: Detonates a fireball by compressing the air around the caster. Power 92.
+      Lvl 8 - Active: Detonates a fireball by compressing the air around the caster. Power 97.
+      Lvl 9 - Active: Detonates a fireball by compressing the air around the caster. Power 102.
+      Lvl 10 - Active: Detonates a fireball by compressing the air around the caster. Power 110.
+-->
+  <table name="#mpConsume_Init"> 7 7 8 8 9 9 9 10 10 11 </table>
+  <table name="#mpConsume"> 27 28 30 31 33 35 36 38 39 41 </table>
+  <table name="#power"> 61 66 72 77 82 87 92 97 102 110 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="element" val="2"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="MDAM"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="900"/>
+  <set name="effectRange" val="1400"/>
+  <for>
+  </for>
+</skill>
+<skill id="3167" levels="10" name="Item Skill: Hydro Blast">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Unleashes a spray of highly pressurized water. Power 61.
+      Lvl 2 - Active: Unleashes a spray of highly pressurized water. Power 66.
+      Lvl 3 - Active: Unleashes a spray of highly pressurized water. Power 72.
+      Lvl 4 - Active: Unleashes a spray of highly pressurized water. Power 77.
+      Lvl 5 - Active: Unleashes a spray of highly pressurized water. Power 82.
+      Lvl 6 - Active: Unleashes a spray of highly pressurized water. Power 87.
+      Lvl 7 - Active: Unleashes a spray of highly pressurized water. Power 92.
+      Lvl 8 - Active: Unleashes a spray of highly pressurized water. Power 97.
+      Lvl 9 - Active: Unleashes a spray of highly pressurized water. Power 102.
+      Lvl 10 - Active: Unleashes a spray of highly pressurized water. Power 110.
+-->
+  <table name="#mpConsume_Init"> 7 7 8 8 9 9 9 10 10 11 </table>
+  <table name="#mpConsume"> 27 28 30 31 33 35 36 38 39 41 </table>
+  <table name="#power"> 61 66 72 77 82 78 92 78 102 110 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="element" val="3"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="MDAM"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="900"/>
+  <set name="effectRange" val="1400"/>
+  <for>
+  </for>
+</skill>
+<skill id="3168" levels="10" name="Item Skill: Hurricane">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Creates a whirlwind of destruction. Power 61.
+      Lvl 2 - Active: Creates a whirlwind of destruction. Power 66.
+      Lvl 3 - Active: Creates a whirlwind of destruction. Power 72.
+      Lvl 4 - Active: Creates a whirlwind of destruction. Power 77.
+      Lvl 5 - Active: Creates a whirlwind of destruction. Power 82.
+      Lvl 6 - Active: Creates a whirlwind of destruction. Power 87.
+      Lvl 7 - Active: Creates a whirlwind of destruction. Power 92.
+      Lvl 8 - Active: Creates a whirlwind of destruction. Power 97.
+      Lvl 9 - Active: Creates a whirlwind of destruction. Power 102.
+      Lvl 10 - Active: Creates a whirlwind of destruction. Power 110.
+-->
+  <table name="#mpConsume_Init"> 7 7 8 8 9 9 9 10 10 11 </table>
+  <table name="#mpConsume"> 27 28 30 31 33 35 36 38 39 41 </table>
+  <table name="#power"> 61 66 72 77 82 87 92 97 102 110 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="element" val="1"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="MDAM"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="900"/>
+  <set name="effectRange" val="1400"/>
+  <for>
+  </for>
+</skill>
+<skill id="3169" levels="10" name="Item Skill: Stone">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Attacks the target with a stone boulder. Power 61.
+      Lvl 2 - Active: Attacks the target with a stone boulder. Power 66.
+      Lvl 3 - Active: Attacks the target with a stone boulder. Power 72.
+      Lvl 4 - Active: Attacks the target with a stone boulder. Power 77.
+      Lvl 5 - Active: Attacks the target with a stone boulder. Power 82.
+      Lvl 6 - Active: Attacks the target with a stone boulder. Power 87.
+      Lvl 7 - Active: Attacks the target with a stone boulder. Power 92.
+      Lvl 8 - Active: Attacks the target with a stone boulder. Power 97.
+      Lvl 9 - Active: Attacks the target with a stone boulder. Power 102.
+      Lvl 10 - Active: Attacks the target with a stone boulder. Power 110.
+-->
+  <table name="#mpConsume_Init"> 7 7 8 8 9 9 9 10 10 11 </table>
+  <table name="#mpConsume"> 27 28 30 31 33 35 36 38 39 41 </table>
+  <table name="#power"> 61 66 72 77 82 87 92 97 102 110 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="element" val="1"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="MDAM"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="900"/>
+  <set name="effectRange" val="1400"/>
+  <for>
+  </for>
+</skill>
+<skill id="3170" levels="10" name="Item Skill: Solar Flare">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Unleashes a sacred attack. Power 61.
+      Lvl 2 - Active: Unleashes a sacred attack. Power 66.
+      Lvl 3 - Active: Unleashes a sacred attack. Power 72.
+      Lvl 4 - Active: Unleashes a sacred attack. Power 77.
+      Lvl 5 - Active: Unleashes a sacred attack. Power 82.
+      Lvl 6 - Active: Unleashes a sacred attack. Power 87.
+      Lvl 7 - Active: Unleashes a sacred attack. Power 92.
+      Lvl 8 - Active: Unleashes a sacred attack. Power 97.
+      Lvl 9 - Active: Unleashes a sacred attack. Power 102.
+      Lvl 10 - Active: Unleashes a sacred attack. Power 110.
+-->
+  <table name="#mpConsume_Init"> 7 7 8 8 9 9 9 10 10 11 </table>
+  <table name="#mpConsume"> 27 28 30 31 33 35 36 38 39 41 </table>
+  <table name="#power"> 61 66 72 77 82 87 92 97 102 110 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="element" val="1"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="MDAM"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="900"/>
+  <set name="effectRange" val="1400"/>
+  <for>
+  </for>
+</skill>
+<skill id="3171" levels="10" name="Item Skill: Shadow Flare">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Unleashes a dark attack. Power 61.
+      Lvl 2 - Active: Unleashes a dark attack. Power 66.
+      Lvl 3 - Active: Unleashes a dark attack. Power 72.
+      Lvl 4 - Active: Unleashes a dark attack. Power 77.
+      Lvl 5 - Active: Unleashes a dark attack. Power 82.
+      Lvl 6 - Active: Unleashes a dark attack. Power 87.
+      Lvl 7 - Active: Unleashes a dark attack. Power 92.
+      Lvl 8 - Active: Unleashes a dark attack. Power 97.
+      Lvl 9 - Active: Unleashes a dark attack. Power 102.
+      Lvl 10 - Active: Unleashes a dark attack. Power 110.
+-->
+  <table name="#mpConsume_Init"> 7 7 8 8 9 9 9 10 10 11 </table>
+  <table name="#mpConsume"> 27 28 30 31 33 35 36 38 39 41 </table>
+  <table name="#power"> 61 66 72 77 82 87 92 97 102 110 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="element" val="1"/>
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="MDAM"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="900"/>
+  <set name="effectRange" val="1400"/>
+  <for>
+  </for>
+</skill>
+<skill id="3172" levels="10" name="Item Skill: Aura Flare">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Unleashes an elementally challenged attack. Power 61.
+      Lvl 2 - Active: Unleashes an elementally challenged attack. Power 66.
+      Lvl 3 - Active: Unleashes an elementally challenged attack. Power 72.
+      Lvl 4 - Active: Unleashes an elementally challenged attack. Power 77.
+      Lvl 5 - Active: Unleashes an elementally challenged attack. Power 82.
+      Lvl 6 - Active: Unleashes an elementally challenged attack. Power 87.
+      Lvl 7 - Active: Unleashes an elementally challenged attack. Power 92.
+      Lvl 8 - Active: Unleashes an elementally challenged attack. Power 97.
+      Lvl 9 - Active: Unleashes an elementally challenged attack. Power 102.
+      Lvl 10 - Active: Unleashes an elementally challenged attack. Power 110.
+-->
+  <table name="#mpConsume_Init"> 7 7 8 8 9 9 9 10 10 11 </table>
+  <table name="#mpConsume"> 27 28 30 31 33 35 36 38 39 41 </table>
+  <table name="#power"> 61 66 72 77 82 87 92 97 102 110 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="element" val="1"/>
+  <set name="reuseDelay" val="2500"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="MDAM"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="200"/>
+  <set name="effectRange" val="1400"/>
+  <for>
+  </for>
+</skill>
+<skill id="3173" levels="10" name="Item Skill: Prominence">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Unleashes a flaming attack against the enemies near a target. Power 31.
+      Lvl 2 - Active: Unleashes a flaming attack against the enemies near a target. Power 33.
+      Lvl 3 - Active: Unleashes a flaming attack against the enemies near a target. Power 36.
+      Lvl 4 - Active: Unleashes a flaming attack against the enemies near a target. Power 39.
+      Lvl 5 - Active: Unleashes a flaming attack against the enemies near a target. Power 41.
+      Lvl 6 - Active: Unleashes a flaming attack against the enemies near a target. Power 44.
+      Lvl 7 - Active: Unleashes a flaming attack against the enemies near a target. Power 46.
+      Lvl 8 - Active: Unleashes a flaming attack against the enemies near a target. Power 49.
+      Lvl 9 - Active: Unleashes a flaming attack against the enemies near a target. Power 51.
+      Lvl 10 - Active: Unleashes a flaming attack against the enemies near a target. Power 55.
+-->
+  <table name="#mpConsume_Init"> 16 17 18 18 19 19 20 20 21 22 </table>
+  <table name="#mpConsume"> 64 66 69 71 74 76 78 80 82 83 </table>
+  <table name="#power"> 31 33 36 39 41 44 46 49 51 55 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_AREA"/>
+  <set name="skillRadius" val="200"/>
+  <set name="hitTime" val="5000"/>
+  <set name="skillType" val="MDAM"/>
+  <set name="reuseDelay" val="25000"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="900"/>
+  <set name="effectRange" val="1000"/>
+  <for>
+  </for>
+</skill>
+<skill id="3174" levels="10" name="Item Skill: Hydro Blast">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Unleashes a powerful liquidy attack against the enemies near a target. Power 31.
+      Lvl 2 - Active: Unleashes a powerful liquidy attack against the enemies near a target. Power 33.
+      Lvl 3 - Active: Unleashes a powerful liquidy attack against the enemies near a target. Power 36.
+      Lvl 4 - Active: Unleashes a powerful liquidy attack against the enemies near a target. Power 39.
+      Lvl 5 - Active: Unleashes a powerful liquidy attack against the enemies near a target. Power 41.
+      Lvl 6 - Active: Unleashes a powerful liquidy attack against the enemies near a target. Power 44.
+      Lvl 7 - Active: Unleashes a powerful liquidy attack against the enemies near a target. Power 46.
+      Lvl 8 - Active: Unleashes a powerful liquidy attack against the enemies near a target. Power 49.
+      Lvl 9 - Active: Unleashes a powerful liquidy attack against the enemies near a target. Power 51.
+      Lvl 10 - Active: Unleashes a powerful liquidy attack against the enemies near a target. Power 55.
+-->
+  <table name="#mpConsume_Init"> 16 17 18 18 19 19 20 20 21 22 </table>
+  <table name="#mpConsume"> 64 66 69 71 74 76 78 80 82 83 </table>
+  <table name="#power"> 31 33 36 39 41 44 46 49 51 55 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_AREA"/>
+  <set name="skillRadius" val="200"/>
+  <set name="hitTime" val="5000"/>
+  <set name="skillType" val="MDAM"/>
+  <set name="reuseDelay" val="25000"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="900"/>
+  <set name="effectRange" val="1000"/>
+  <for>
+  </for>
+</skill>
+<skill id="3175" levels="10" name="Item Skill: Hurricane">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Unleashes a powerful gusting attack against the enemies near a target. Power 31.
+      Lvl 2 - Active: Unleashes a powerful gusting attack against the enemies near a target. Power 33.
+      Lvl 3 - Active: Unleashes a powerful gusting attack against the enemies near a target. Power 36.
+      Lvl 4 - Active: Unleashes a powerful gusting attack against the enemies near a target. Power 39.
+      Lvl 5 - Active: Unleashes a powerful gusting attack against the enemies near a target. Power 41.
+      Lvl 6 - Active: Unleashes a powerful gusting attack against the enemies near a target. Power 44.
+      Lvl 7 - Active: Unleashes a powerful gusting attack against the enemies near a target. Power 46.
+      Lvl 8 - Active: Unleashes a powerful gusting attack against the enemies near a target. Power 49.
+      Lvl 9 - Active: Unleashes a powerful gusting attack against the enemies near a target. Power 51.
+      Lvl 10 - Active: Unleashes a powerful gusting attack against the enemies near a target. Power 55.
+-->
+  <table name="#mpConsume_Init"> 16 17 18 18 19 19 20 20 21 22 </table>
+  <table name="#mpConsume"> 64 66 69 71 74 76 78 80 82 83 </table>
+  <table name="#power"> 31 33 36 39 41 44 46 49 51 55 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_AREA"/>
+  <set name="skillRadius" val="200"/>
+  <set name="hitTime" val="5000"/>
+  <set name="skillType" val="MDAM"/>
+  <set name="reuseDelay" val="25000"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="900"/>
+  <set name="effectRange" val="1000"/>
+  <for>
+  </for>
+</skill>
+<skill id="3176" levels="10" name="Item Skill: Stone">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Attacks the enemies near a target with a stone boulder. Power 31.
+      Lvl 2 - Active: Attacks the enemies near a target with a stone boulder. Power 33.
+      Lvl 3 - Active: Attacks the enemies near a target with a stone boulder. Power 36.
+      Lvl 4 - Active: Attacks the enemies near a target with a stone boulder. Power 39.
+      Lvl 5 - Active: Attacks the enemies near a target with a stone boulder. Power 41.
+      Lvl 6 - Active: Attacks the enemies near a target with a stone boulder. Power 44.
+      Lvl 7 - Active: Attacks the enemies near a target with a stone boulder. Power 46.
+      Lvl 8 - Active: Attacks the enemies near a target with a stone boulder. Power 49.
+      Lvl 9 - Active: Attacks the enemies near a target with a stone boulder. Power 51.
+      Lvl 10 - Active: Attacks the enemies near a target with a stone boulder. Power 55.
+-->
+  <table name="#mpConsume_Init"> 16 17 18 18 19 19 20 20 21 22 </table>
+  <table name="#mpConsume"> 64 66 69 71 74 76 78 80 82 83 </table>
+  <table name="#power"> 31 33 36 39 41 44 46 49 51 55 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_AREA"/>
+  <set name="skillRadius" val="200"/>
+  <set name="hitTime" val="5000"/>
+  <set name="skillType" val="MDAM"/>
+  <set name="reuseDelay" val="25000"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="500"/>
+  <set name="effectRange" val="1000"/>
+  <for>
+  </for>
+</skill>
+<skill id="3177" levels="10" name="Item Skill: Solar Flare">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Unleashes a sacred attack against the enemies near a target. Power 31.
+      Lvl 2 - Active: Unleashes a sacred attack against the enemies near a target. Power 33.
+      Lvl 3 - Active: Unleashes a sacred attack against the enemies near a target. Power 36.
+      Lvl 4 - Active: Unleashes a sacred attack against the enemies near a target. Power 39.
+      Lvl 5 - Active: Unleashes a sacred attack against the enemies near a target. Power 41.
+      Lvl 6 - Active: Unleashes a sacred attack against the enemies near a target. Power 44.
+      Lvl 7 - Active: Unleashes a sacred attack against the enemies near a target. Power 46.
+      Lvl 8 - Active: Unleashes a sacred attack against the enemies near a target. Power 49.
+      Lvl 9 - Active: Unleashes a sacred attack against the enemies near a target. Power 51.
+      Lvl 10 - Active: Unleashes a sacred attack against the enemies near a target. Power 55.
+-->
+  <table name="#mpConsume_Init"> 16 17 18 18 19 19 20 20 21 22 </table>
+  <table name="#mpConsume"> 64 66 69 71 74 76 78 80 82 83 </table>
+  <table name="#power"> 31 33 36 39 41 44 46 49 51 55 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_AREA"/>
+  <set name="skillRadius" val="200"/>
+  <set name="hitTime" val="5000"/>
+  <set name="skillType" val="MDAM"/>
+  <set name="reuseDelay" val="25000"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="500"/>
+  <set name="effectRange" val="1000"/>
+  <for>
+  </for>
+</skill>
+<skill id="3178" levels="10" name="Item Skill: Shadow Flare">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Unleashes a dark attack against the enemies near a target. Power 31.
+      Lvl 2 - Active: Unleashes a dark attack against the enemies near a target. Power 33.
+      Lvl 3 - Active: Unleashes a dark attack against the enemies near a target. Power 36.
+      Lvl 4 - Active: Unleashes a dark attack against the enemies near a target. Power 39.
+      Lvl 5 - Active: Unleashes a dark attack against the enemies near a target. Power 41.
+      Lvl 6 - Active: Unleashes a dark attack against the enemies near a target. Power 44.
+      Lvl 7 - Active: Unleashes a dark attack against the enemies near a target. Power 46.
+      Lvl 8 - Active: Unleashes a dark attack against the enemies near a target. Power 49.
+      Lvl 9 - Active: Unleashes a dark attack against the enemies near a target. Power 51.
+      Lvl 10 - Active: Unleashes a dark attack against the enemies near a target. Power 55.
+-->
+  <table name="#mpConsume_Init"> 16 17 18 18 19 19 20 20 21 22 </table>
+  <table name="#mpConsume"> 64 66 69 71 74 76 78 80 82 83 </table>
+  <table name="#power"> 31 33 36 39 41 44 46 49 51 55 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_AREA"/>
+  <set name="skillRadius" val="200"/>
+  <set name="hitTime" val="5000"/>
+  <set name="skillType" val="MDAM"/>
+  <set name="reuseDelay" val="25000"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="500"/>
+  <set name="effectRange" val="1000"/>
+  <for>
+  </for>
+</skill>
+<skill id="3179" levels="10" name="Item Skill: Aura Flare">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Unleashes an elementally challenged attack against the enemies near a target. Power 31.
+      Lvl 2 - Active: Unleashes an elementally challenged attack against the enemies near a target. Power 33.
+      Lvl 3 - Active: Unleashes an elementally challenged attack against the enemies near a target. Power 36.
+      Lvl 4 - Active: Unleashes an elementally challenged attack against the enemies near a target. Power 39.
+      Lvl 5 - Active: Unleashes an elementally challenged attack against the enemies near a target. Power 41.
+      Lvl 6 - Active: Unleashes an elementally challenged attack against the enemies near a target. Power 44.
+      Lvl 7 - Active: Unleashes an elementally challenged attack against the enemies near a target. Power 46.
+      Lvl 8 - Active: Unleashes an elementally challenged attack against the enemies near a target. Power 49.
+      Lvl 9 - Active: Unleashes an elementally challenged attack against the enemies near a target. Power 51.
+      Lvl 10 - Active: Unleashes an elementally challenged attack against the enemies near a target. Power 55.
+-->
+  <table name="#mpConsume_Init"> 16 17 18 18 19 19 20 20 21 22 </table>
+  <table name="#mpConsume"> 64 66 69 71 74 76 78 80 82 83 </table>
+  <table name="#power"> 31 33 36 39 41 44 46 49 51 55 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_AREA"/>
+  <set name="skillRadius" val="200"/>
+  <set name="hitTime" val="5000"/>
+  <set name="skillType" val="MDAM"/>
+  <set name="reuseDelay" val="2500"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="900"/>
+  <set name="effectRange" val="1000"/>
+  <for>
+  </for>
+</skill>
+<skill id="3180" levels="10" name="Item Skill: Prominence">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Unleashes a flaming attack against nearby enemies. Power 31.
+      Lvl 2 - Active: Unleashes a flaming attack against nearby enemies. Power 33.
+      Lvl 3 - Active: Unleashes a flaming attack against nearby enemies. Power 36.
+      Lvl 4 - Active: Unleashes a flaming attack against nearby enemies. Power 39.
+      Lvl 5 - Active: Unleashes a flaming attack against nearby enemies. Power 41.
+      Lvl 6 - Active: Unleashes a flaming attack against nearby enemies. Power 44.
+      Lvl 7 - Active: Unleashes a flaming attack against nearby enemies. Power 46.
+      Lvl 8 - Active: Unleashes a flaming attack against nearby enemies. Power 49.
+      Lvl 9 - Active: Unleashes a flaming attack against nearby enemies. Power 51.
+      Lvl 10 - Active: Unleashes a flaming attack against nearby enemies. Power 55.
+-->
+  <table name="#mpConsume_Init"> 16 17 18 18 19 19 20 20 21 22 </table>
+  <table name="#mpConsume"> 64 66 69 71 74 76 78 80 82 83 </table>
+  <table name="#power"> 31 33 36 39 41 44 46 49 51 55 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_AURA"/>
+  <set name="skillRadius" val="350"/>
+  <set name="hitTime" val="5000"/>
+  <set name="skillType" val="MDAM"/>
+  <set name="reuseDelay" val="30000"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="1000"/>
+  <for>
+  </for>
+</skill>
+<skill id="3181" levels="10" name="Item Skill: Hydro Blast">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Unleashes a powerful liquidy attack against nearby enemies. Power 31.
+      Lvl 2 - Active: Unleashes a powerful liquidy attack against nearby enemies. Power 33.
+      Lvl 3 - Active: Unleashes a powerful liquidy attack against nearby enemies. Power 36.
+      Lvl 4 - Active: Unleashes a powerful liquidy attack against nearby enemies. Power 39.
+      Lvl 5 - Active: Unleashes a powerful liquidy attack against nearby enemies. Power 41.
+      Lvl 6 - Active: Unleashes a powerful liquidy attack against nearby enemies. Power 44.
+      Lvl 7 - Active: Unleashes a powerful liquidy attack against nearby enemies. Power 46.
+      Lvl 8 - Active: Unleashes a powerful liquidy attack against nearby enemies. Power 49.
+      Lvl 9 - Active: Unleashes a powerful liquidy attack against nearby enemies. Power 51.
+      Lvl 10 - Active: Unleashes a powerful liquidy attack against nearby enemies. Power 55.
+-->
+  <table name="#mpConsume_Init"> 16 17 18 18 19 19 20 20 21 22 </table>
+  <table name="#mpConsume"> 64 66 69 71 74 76 78 80 82 83 </table>
+  <table name="#power"> 31 33 36 39 41 44 46 49 51 55 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_AURA"/>
+  <set name="skillRadius" val="350"/>
+  <set name="hitTime" val="5000"/>
+  <set name="skillType" val="MDAM"/>
+  <set name="reuseDelay" val="30000"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="1000"/>
+  <for>
+  </for>
+</skill>
+<skill id="3182" levels="10" name="Item Skill: Hurricane">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Unleashes a powerful gusting attack against nearby enemies. Power 31.
+      Lvl 2 - Active: Unleashes a powerful gusting attack against nearby enemies. Power 33.
+      Lvl 3 - Active: Unleashes a powerful gusting attack against nearby enemies. Power 36.
+      Lvl 4 - Active: Unleashes a powerful gusting attack against nearby enemies. Power 39.
+      Lvl 5 - Active: Unleashes a powerful gusting attack against nearby enemies. Power 41.
+      Lvl 6 - Active: Unleashes a powerful gusting attack against nearby enemies. Power 44.
+      Lvl 7 - Active: Unleashes a powerful gusting attack against nearby enemies. Power 46.
+      Lvl 8 - Active: Unleashes a powerful gusting attack against nearby enemies. Power 49.
+      Lvl 9 - Active: Unleashes a powerful gusting attack against nearby enemies. Power 51.
+      Lvl 10 - Active: Unleashes a powerful gusting attack against nearby enemies. Power 55.
+-->
+  <table name="#mpConsume_Init"> 16 17 18 18 19 19 20 20 21 22 </table>
+  <table name="#mpConsume"> 64 66 69 71 74 76 78 80 82 83 </table>
+  <table name="#power"> 31 33 36 39 41 44 46 49 51 55 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_AURA"/>
+  <set name="skillRadius" val="350"/>
+  <set name="hitTime" val="5000"/>
+  <set name="skillType" val="MDAM"/>
+  <set name="reuseDelay" val="30000"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="1000"/>
+  <for>
+  </for>
+</skill>
+<skill id="3183" levels="10" name="Item Skill: Stone">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Unleashes an earthen attack against nearby enemies. Power 31.
+      Lvl 2 - Active: Unleashes an earthen attack against nearby enemies. Power 33.
+      Lvl 3 - Active: Unleashes an earthen attack against nearby enemies. Power 36.
+      Lvl 4 - Active: Unleashes an earthen attack against nearby enemies. Power 39.
+      Lvl 5 - Active: Unleashes an earthen attack against nearby enemies. Power 41.
+      Lvl 6 - Active: Unleashes an earthen attack against nearby enemies. Power 44.
+      Lvl 7 - Active: Unleashes an earthen attack against nearby enemies. Power 46.
+      Lvl 8 - Active: Unleashes an earthen attack against nearby enemies. Power 49.
+      Lvl 9 - Active: Unleashes an earthen attack against nearby enemies. Power 51.
+      Lvl 10 - Active: Unleashes an earthen attack against nearby enemies. Power 55.
+-->
+  <table name="#mpConsume_Init"> 16 17 18 18 19 19 20 20 21 22 </table>
+  <table name="#mpConsume"> 64 66 69 71 74 76 78 80 82 83 </table>
+  <table name="#power"> 31 33 36 39 41 44 46 49 51 55 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_AURA"/>
+  <set name="skillRadius" val="350"/>
+  <set name="hitTime" val="5000"/>
+  <set name="skillType" val="MDAM"/>
+  <set name="reuseDelay" val="30000"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="1000"/>
+  <for>
+  </for>
+</skill>
+<skill id="3184" levels="10" name="Item Skill: Solar Flare">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Unleashes a sacred attack against nearby enemies. Power 31.
+      Lvl 2 - Active: Unleashes a sacred attack against nearby enemies. Power 33.
+      Lvl 3 - Active: Unleashes a sacred attack against nearby enemies. Power 36.
+      Lvl 4 - Active: Unleashes a sacred attack against nearby enemies. Power 39.
+      Lvl 5 - Active: Unleashes a sacred attack against nearby enemies. Power 41.
+      Lvl 6 - Active: Unleashes a sacred attack against nearby enemies. Power 44.
+      Lvl 7 - Active: Unleashes a sacred attack against nearby enemies. Power 46.
+      Lvl 8 - Active: Unleashes a sacred attack against nearby enemies. Power 49.
+      Lvl 9 - Active: Unleashes a sacred attack against nearby enemies. Power 51.
+      Lvl 10 - Active: Unleashes a sacred attack against nearby enemies. Power 55.
+-->
+  <table name="#mpConsume_Init"> 16 17 18 18 19 19 20 20 21 22 </table>
+  <table name="#mpConsume"> 64 66 69 71 74 76 78 80 82 83 </table>
+  <table name="#power"> 31 33 36 39 41 44 46 49 51 55 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_AURA"/>
+  <set name="skillRadius" val="350"/>
+  <set name="hitTime" val="5000"/>
+  <set name="skillType" val="MDAM"/>
+  <set name="reuseDelay" val="30000"/>
+  <set name="element" val="6"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="1000"/>
+  <for>
+  </for>
+</skill>
+<skill id="3185" levels="10" name="Item Skill: Shadow Flare">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Unleashes a dark attack against nearby enemies. Power 31.
+      Lvl 2 - Active: Unleashes a dark attack against nearby enemies. Power 33.
+      Lvl 3 - Active: Unleashes a dark attack against nearby enemies. Power 36.
+      Lvl 4 - Active: Unleashes a dark attack against nearby enemies. Power 39.
+      Lvl 5 - Active: Unleashes a dark attack against nearby enemies. Power 41.
+      Lvl 6 - Active: Unleashes a dark attack against nearby enemies. Power 44.
+      Lvl 7 - Active: Unleashes a dark attack against nearby enemies. Power 46.
+      Lvl 8 - Active: Unleashes a dark attack against nearby enemies. Power 49.
+      Lvl 9 - Active: Unleashes a dark attack against nearby enemies. Power 51.
+      Lvl 10 - Active: Unleashes a dark attack against nearby enemies. Power 55.
+-->
+  <table name="#mpConsume_Init"> 16 17 18 18 19 19 20 20 21 22 </table>
+  <table name="#mpConsume"> 64 66 69 71 74 76 78 80 82 83 </table>
+  <table name="#power"> 31 33 36 39 41 44 46 49 51 55 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_AURA"/>
+  <set name="skillRadius" val="350"/>
+  <set name="hitTime" val="5000"/>
+  <set name="skillType" val="MDAM"/>
+  <set name="reuseDelay" val="30000"/>
+  <set name="element" val="6"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="1000"/>
+  <for>
+  </for>
+</skill>
+<skill id="3186" levels="10" name="Item Skill: Aura Flare">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Unleashes an elementally challenged attack against nearby enemies. Power 31.
+      Lvl 2 - Active: Unleashes an elementally challenged attack against nearby enemies. Power 33.
+      Lvl 3 - Active: Unleashes an elementally challenged attack against nearby enemies. Power 36.
+      Lvl 4 - Active: Unleashes an elementally challenged attack against nearby enemies. Power 39.
+      Lvl 5 - Active: Unleashes an elementally challenged attack against nearby enemies. Power 41.
+      Lvl 6 - Active: Unleashes an elementally challenged attack against nearby enemies. Power 44.
+      Lvl 7 - Active: Unleashes an elementally challenged attack against nearby enemies. Power 46.
+      Lvl 8 - Active: Unleashes an elementally challenged attack against nearby enemies. Power 49.
+      Lvl 9 - Active: Unleashes an elementally challenged attack against nearby enemies. Power 51.
+      Lvl 10 - Active: Unleashes an elementally challenged attack against nearby enemies. Power 55.
+-->
+  <table name="#mpConsume_Init"> 16 17 18 18 19 19 20 20 21 22 </table>
+  <table name="#mpConsume"> 64 66 69 71 74 76 78 80 82 83 </table>
+  <table name="#power"> 31 33 36 39 41 44 46 49 51 55 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="#power"/>
+  <set name="target" val="TARGET_AURA"/>
+  <set name="skillRadius" val="350"/>
+  <set name="hitTime" val="5000"/>
+  <set name="skillType" val="MDAM"/>
+  <set name="reuseDelay" val="2500"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="1000"/>
+  <for>
+  </for>
+</skill>
+<skill id="3187" levels="10" name="Item Skill: Slow">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Temporarily decreases a target's speed.
+-->
+  <table name="#mpConsume_Init"> 6 7 8 9 10 11 11 11 12 12 </table>
+  <table name="#mpConsume"> 24 28 31 35 38 41 43 44 46 48 </table>
+  <table name="#magicLvl"> 35 40 44 48 52 56 58 60 62 64 </table>
+  <table name="#Tab-runSpd"> 0.7 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="save" val="5"/>
+  <set name="power" val="80"/>
+  <set name="lvlDepend" val="2"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="7000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="DEBUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="600"/>
+  <set name="effectRange" val="1100"/>
+  <for>
+    <effect count="1" name="Buff" time="30" val="0" stackOrder="#Tab-runSpd" stackType="RunSpeedDown">
+      <mul order="0x30" stat="runSpd" val="#Tab-runSpd"/>
+    </effect>
+  </for>
+</skill>
+<skill id="3188" levels="10" name="Item Skill: Winter">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Temporarily decreases a target's Atk. Spd.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3189" levels="10" name="Item Skill: Stun">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Temporarily throws the target into a state of shock.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3190" levels="10" name="Item Skill: Hold">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Temporarily throws the target into a state of hold. The target cannot be affected by any additional hold attacks while the effect lasts.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3191" levels="10" name="Item Skill: Sleep">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Temporarily throws the target into a state of sleep. The target cannot be affected by any additional sleep attacks while the effect lasts.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3192" levels="10" name="Item Skill: Paralyze">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Temporarily throws the target into a state of paralysis.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3193" levels="10" name="Item Skill: Medusa">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Temporarily throws the target into a petrified state.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3194" levels="10" name="Item Skill: Fear">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Momentarily throws the target into a state of fear and causes him to flee.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3195" levels="10" name="Item Skill: Poison">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Temporarily throws the target into a poisoned state. Effect 5.
+      Lvl 2 - Active: Temporarily throws the target into a poisoned state. Effect 5.
+      Lvl 3 - Active: Temporarily poisons a target. Effect 6.
+      Lvl 4 - Active: Temporarily poisons a target. Effect 6.
+      Lvl 5 - Active: Temporarily poisons a target. Effect 6.
+      Lvl 6 - Active: Temporarily poisons a target. Effect 7.
+      Lvl 7 - Active: Temporarily poisons a target. Effect 7.
+      Lvl 8 - Active: Temporarily poisons a target. Effect 7.
+      Lvl 9 - Active: Temporarily poisons a target. Effect 8.
+      Lvl 10 - Active: Temporarily poisons a target. Effect 8.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3196" levels="10" name="Item Skill: Bleed">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Active: Temporarily causes a target to bleed heavily. Effect 5.
+      Lvl 2 - Active: Temporarily causes a target to bleed heavily. Effect 5.
+      Lvl 3 - Active: Temporarily causes a target to bleed heavily. Effect 6.
+      Lvl 4 - Active: Temporarily causes a target to bleed heavily. Effect 6.
+      Lvl 5 - Active: Temporarily causes a target to bleed heavily. Effect 6.
+      Lvl 6 - Active: Temporarily causes a target to bleed heavily. Effect 7.
+      Lvl 7 - Active: Temporarily causes a target to bleed heavily. Effect 7.
+      Lvl 8 - Active: Temporarily causes a target to bleed heavily. Effect 7.
+      Lvl 9 - Active: Temporarily causes a target to bleed heavily. Effect 8.
+      Lvl 10 - Active: Temporarily causes a target to bleed heavily. Effect 8.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3197" levels="10" name="Item Skill: Silence">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Temporarily blocks the target's magic skills.
+-->
+  <table name="#mpConsume_Init"> 7 8 9 10 11 11 11 12 12 13 </table>
+  <table name="#mpConsume"> 28 31 35 38 41 43 44 46 48 49 </table>
+  <table name="#magicLvl"> 40 44 48 52 56 58 60 62 64 66 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="save" val="2"/>
+  <set name="magicLvl" val="#magicLvl"/>
+  <set name="power" val="80"/>
+  <set name="lvlDepend" val="2"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="60000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="MUTE"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="600"/>
+  <set name="effectRange" val="1100"/>
+  <for>
+    <effect count="1" name="Mute" time="30" val="0" stackOrder="1" stackType="silence"/>
+  </for>
+</skill>
+<skill id="3198" levels="10" name="Item Skill: Doom">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-10 - Active: Temporarily blocks all of the target's physical/magic skills.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3199" levels="3" name="Item Skill: Skill Refresh">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1-3 - Active: Temporarily decreases the re-use time for physical skills.
+-->
+  <table name="#mpConsume"> 27 31 34 </table>
+  <table name="#mReuseRate"> 0.9 0.8 0.7 </table>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="reuseDelay" val="300000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0">
+      <mul order="0x30" stat="mReuse" val="#mReuseRate"/>
+    </effect>
+  </for>
+</skill>
+</list>

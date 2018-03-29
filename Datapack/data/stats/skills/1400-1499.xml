@@ -1,0 +1,638 @@
+<?xml version='1.0' encoding='utf-8'?>
+<list>
+<skill id="1400" levels="10" name="Turn Undead">
+<!-- Done by KID -->
+  <table name="#mpConsume"> 52 54 55 58 60 62 64 65 67 69 </table>
+  <table name="#power"> 230.0 250.0 270.0 290.0 310.0 330.0 350.0 370.0 390.0 411.0 </table>
+  <table name="#itemConsumeCount"> 3 3 4 4 4 4 5 5 5 5 </table>
+  <set name="power" val="#power"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="itemConsumeId" val="3031"/>
+  <set name="itemConsumeCount" val="#itemConsumeCount"/>
+  <set name="save" val="6"/>  
+  <set name="reuseDelay" val="9000"/>
+  <set name="hitTime" val="4000"/>
+  <set name="target" val="TARGET_AREA_UNDEAD"/>
+  <set name="skillRadius" val="200"/>
+  <set name="skillType" val="FEAR"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="900"/>
+  <set name="effectRange" val="1400"/>
+  <set name="isMagic" val="true"/>
+  <for>
+    <effect count="5" name="Fear" time="6" val="0"/>
+  </for>
+</skill>
+<skill id="1401" levels="11" name="Major Heal" enchantLevels1="30" enchantLevels2="30" >
+  <table name="#ench1Power"> 947 949 951 954 956 958 960 963 965 967 969 972 974 976 979 981 983 985 988 990 992 994 997 999 1001 1003 1006 1008 1010 1013 </table>
+  <table name="#ench2MpConsume">   78 77 76 75 73 72 72 71 70 68 67 66 65 65 63 62 61 60 58 57 57 56 55 53 52 51 50 50 48 47  </table>
+  <table name="#mpConsume"> 60 64 65 67 69 72 74 77 78 80 80 </table>
+  <table name="#power"> 690 722 753 783 812 840 867 892 915 936 946 </table>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="itemConsumeId" val="3031"/>
+  <set name="itemConsumeCount" val="1"/>   
+  <set name="power" val="#power"/>
+  <!-- reuse is meant to be "almost instant" -->
+  <set name="reuseDelay" val="6000"/>
+  <set name="hitTime" val="5000"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="skillType" val="HEAL"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="600"/>
+  <set name="effectRange" val="1100"/>
+  <set name="isMagic" val="true"/>
+  <enchant1 name="power" val="#ench1Power"/>
+  <enchant2 name="mpConsume" val="#ench2MpConsume"/>
+</skill>
+<skill id="1402" levels="5" name="Major Group Heal" enchantLevels1="30" enchantLevels2="30" >
+  <table name="#ench1Power"> 1173 1176 1179 1182 1186 1189 1192 1195 1199 1202 1205 1208 1212 1215 1218 1221 1224 1228 1231 123 1237 1241 1244 1247 1250 1254 1257 1260 1263 1267 </table>
+  <table name="#ench2MpConsume"> 233 231 227 225 221 218 215 212 208 206 202 198 196 192 190 186 183 180 177 173 171 167 165 161 157 155 151 148 145 142 </table>
+  <table name="#mpConsume"> 189 199 214 228 239 </table>
+  <table name="#power"> 902 979 1050 1115 1170 </table>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="itemConsumeId" val="3031"/>
+  <set name="itemConsumeCount" val="4"/>     
+  <set name="power" val="#power"/>
+  <!-- reuse time needs verifying... left this high to be safe -->
+  <set name="reuseDelay" val="19000"/>
+  <set name="hitTime" val="7000"/>
+  <set name="skillRadius" val="1000"/>
+  <set name="target" val="TARGET_PARTY"/>
+  <set name="skillType" val="HEAL"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <set name="isMagic" val="true"/>
+  <enchant1 name="power" val="#ench1Power"/>
+  <enchant2 name="mpConsume" val="#ench2MpConsume"/>
+</skill>
+<skill id="1403" levels="1" name="Summon Friend">
+  <set name="target" val="TARGET_PARTY_MEMBER"/>
+  <set name="skillType" val="SUMMON_FRIEND"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="mpConsume" val="180"/>
+  <set name="hitTime" val="15000"/>
+  <set name="reuseDelay" val="20000"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="1404" levels="1" name="Word of Invitation">
+  <set name="target" val="TARGET_PARTY"/>
+  <set name="skillRadius" val="-1"/>
+  <set name="skillType" val="SUMMON_FRIEND"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="itemConsumeId" val="3031"/>
+  <set name="itemConsumeCount" val="3"/>
+  <set name="mpConsume" val="320"/>
+  <set name="hitTime" val="15000"/>
+  <set name="reuseDelay" val="60000"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="1405" levels="4" name="Divine Inspiration">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Increases the number of buffs you can receive.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="1406" levels="1" name="Summon Feline King">
+<!--
+  Needs to be verified.
+
+  Description(s):
+      Summons Feline King. Requires 2 Crystals: A-Grade. Consumes 1 additional crystal at 14 regular intervals.  Takes away 10% of earned Exp.
+-->
+  <table name="#mpConsume_Init"> 30 </table> <!-- Guessing -->
+  <table name="#mpConsume"> 114 </table> <!-- Guessing -->
+  <table name="#itemConsumeCount"> 2 </table>
+  <table name="#itemConsumeCountOT"> 1 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="itemConsumeId" val="1461"/>
+  <set name="itemConsumeCount" val="#itemConsumeCount"/>
+  <set name="itemConsumeIdOT" val="1461"/>
+  <set name="itemConsumeCountOT" val="#itemConsumeCountOT"/>
+  <set name="itemConsumeSteps" val="14"/>
+  <set name="summonTotalLifeTime" val="1200000"/>
+  <set name="summonTimeLostIdle" val="500"/>
+  <set name="summonTimeLostActive" val="1000"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="reuseDelay" val="20000"/> <!-- Guessing -->
+  <set name="hitTime" val="15000"/>
+  <set name="skillType" val="SUMMON"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <!-- Summon-specific -->
+  <table name="#npcIds"> 14836 </table>
+  <set name="npcId" val="#npcIds"/>
+  <set name="expPenalty" val="0.1"/>
+  <set name="isCubic" val="false"/>
+  <for>
+  </for>
+</skill>
+<skill id="1407" levels="1" name="Summon Magnus the Unicorn">
+<!--
+  Needs to be verified.
+
+  Description(s):
+      Summons Magnus the Unicorn. Requires 2 Crystals: A-Grade. Consumes 1 additional crystal at 14 regular intervals. Takes away 10% of earned Exp.
+-->
+  <table name="#mpConsume_Init"> 30 </table> <!-- Guessing -->
+  <table name="#mpConsume"> 114 </table> <!-- Guessing -->
+  <table name="#itemConsumeCount"> 2 </table>
+  <table name="#itemConsumeCountOT"> 1 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="itemConsumeId" val="1461"/>
+  <set name="itemConsumeCount" val="#itemConsumeCount"/>
+  <set name="itemConsumeIdOT" val="1461"/>
+  <set name="itemConsumeCountOT" val="#itemConsumeCountOT"/>
+  <set name="itemConsumeSteps" val="14"/>
+  <set name="summonTotalLifeTime" val="1200000"/>
+  <set name="summonTimeLostIdle" val="500"/>
+  <set name="summonTimeLostActive" val="1000"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="reuseDelay" val="20000"/> <!-- Guessing -->
+  <set name="hitTime" val="15000"/>
+  <set name="skillType" val="SUMMON"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <!-- Summon-specific -->
+  <table name="#npcIds"> 14837 </table>
+  <set name="npcId" val="#npcIds"/>
+  <set name="expPenalty" val="0.1"/>
+  <set name="isCubic" val="false"/>
+  <for>
+  </for>
+</skill>
+<skill id="1408" levels="1" name="Summon Spectral Lord">
+<!--
+  Needs to be verified.
+
+  Description(s):
+      Summons Spectral Lord. Requires 2 Crystals: A-Grade. Consumes 1 additional crystal at 14 regular intervals. Takes away 10% of earned Exp.
+-->
+  <table name="#mpConsume_Init"> 30 </table> <!-- Guessing -->
+  <table name="#mpConsume"> 114 </table> <!-- Guessing -->
+  <table name="#itemConsumeCount"> 2 </table>
+  <table name="#itemConsumeCountOT"> 1 </table>
+  <set name="mpInitialConsume" val="#mpConsume_Init"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="itemConsumeId" val="1461"/>
+  <set name="itemConsumeCount" val="#itemConsumeCount"/>
+  <set name="itemConsumeIdOT" val="1461"/>
+  <set name="itemConsumeCountOT" val="#itemConsumeCountOT"/>
+  <set name="itemConsumeSteps" val="14"/>
+  <set name="summonTotalLifeTime" val="1200000"/>
+  <set name="summonTimeLostIdle" val="500"/>
+  <set name="summonTimeLostActive" val="1000"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="reuseDelay" val="20000"/> <!-- Guessing -->
+  <set name="hitTime" val="15000"/>
+  <set name="skillType" val="SUMMON"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <!-- Summon-specific -->
+  <table name="#npcIds"> 14838 </table>
+  <set name="npcId" val="#npcIds"/>
+  <set name="expPenalty" val="0.1"/>
+  <set name="isCubic" val="false"/>
+  <for>
+  </for>
+</skill>
+<skill id="1409" levels="1" name="Cleanse">
+<!--
+  Description(s):
+      Cancels your target's debuffs. Consumes 1 Einhasad Holy Water.
+-->
+  <set name="itemConsumeId" val="8874"/>
+  <set name="itemConsumeCount" val="1"/>
+  <set name="mpInitialConsume" val="21"/> <!-- Guessing -->
+  <set name="mpConsume" val="58"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="reuseDelay" val="15000"/> <!-- Guessing -->
+  <set name="hitTime" val="4000"/>
+  <set name="skillType" val="NEGATE"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="600"/>
+  <set name="effectRange" val="1100"/>
+  <set name="negateStats" val="BLEED CONFUSION DEBUFF FEAR MUTE PARALYZE ROOT SLEEP STUN POISON WEAKNESS"/>
+  <set name="negatePower" val="9.0"/> <!-- Guessing -->
+  <for>
+  </for>
+</skill>
+<skill id="1410" levels="1" name="Salvation">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Revives target from death and restores them to full health, retaining all buff/debuff effects except for Noblesse Blessing and Lucky Charm.  Consumes 2 Einhasad Holy Water.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="1411" levels="1" name="Mystic Immunity">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Makes a target temporarily immune to buffs/debuffs.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="1412" levels="1" name="Spell Turning">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Cancels a nearby target's magic casting.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="1413" levels="1" name="Magnus' Chant">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Allows the Ancient Soul of Magnus to temporarily possess a party member. Consumes 40 Spirit Ores.
+-->
+  <set name="itemConsumeId" val="3031"/>
+  <set name="itemConsumeCount" val="40"/>
+  <set name="mpInitialConsume" val="59"/> <!-- Guessing -->
+  <set name="mpConsume" val="287"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_PARTY"/>
+  <set name="skillRadius" val="1000"/>
+  <set name="reuseDelay" val="1200000"/> <!-- Guessing -->
+  <set name="hitTime" val="2500"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <effect count="1" name="Buff" time="300" val="0" stackOrder="1" stackType="CoV"> <!-- Does it stacks with CoV ? -->
+      <mul order="0x30" stat="regMp" val="1.5"/>
+      <mul order="0x30" stat="mAtkSpd" val="1.20"/>
+      <mul order="0x30" stat="mDef" val="1.20"/>
+      <mul order="0x30" stat="mAtk" val="1.30"/>
+      <mul order="0x30" stat="maxMp" val="1.20"/>
+      <mul order="0x30" stat="MpConsumeRate" val="0.80"/>
+      <mul order="0x30" stat="mCritRate" val="1.2"/> <!-- Guessing -->
+    </effect>
+  </for>
+</skill>
+<skill id="1414" levels="1" name="Victories of Pa'agrio">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Allows the Ancient Hero's Soul to temporarily possesses an alliance member. Consumes 40 Spirit Ores.
+-->
+  <set name="itemConsumeId" val="3031"/>
+  <set name="itemConsumeCount" val="40"/>
+  <set name="mpInitialConsume" val="57"/>
+  <set name="mpConsume" val="284"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_ALLY"/>
+  <set name="skillRadius" val="1000"/>
+  <set name="reuseDelay" val="1200000"/>
+  <set name="hitTime" val="2500"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <effect count="1" name="Buff" time="300" val="0" stackOrder="1" stackType="CoV">
+    <!-- This skills seems to be exacly same as CoV but it applies on ally -->
+      <mul order="0x30" stat="pAtk" val="1.1"/>
+      <mul order="0x30" stat="pDef" val="1.2"/>
+      <mul order="0x30" stat="rCrit" val="1.2"/>
+      <add order="0x40" stat="accCombat" val="4"/>
+      <mul order="0x30" stat="pAtkSpd" val="1.2"/>
+      <mul order="0x30" stat="mAtkSpd" val="1.2"/>
+      <mul order="0x30" stat="cAtk" val="1.2"/>
+      <mul order="0x30" stat="mAtk" val="1.20"/>
+      <mul order="0x30" stat="mDef" val="1.20"/>
+      <mul order="0x30" stat="runSpd" val="0.8"/>
+      <mul order="0x30" stat="maxHp" val="1.20"/>
+      <mul order="0x30" stat="debuffVuln" val="0.8"/>
+    </effect>
+  </for>
+</skill>
+<skill id="1415" levels="1" name="Pa'agrio's Emblem">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Temporarily increases an alliance member's resistance to buff cancelling and de-buff attacks. Effect 3.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="1416" levels="1" name="Pa'agrio's Fist">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Increases an alliance member's maximum CP and fully restores it. Consumes 20 Spirit Ores.
+-->
+  <set name="mpInitialConsume" val="57"/> <!-- Guessing -->
+  <set name="mpConsume" val="284"/>
+  <set name="itemConsumeId" val="3031"/>
+  <set name="itemConsumeCount" val="20"/> 
+  <set name="power" val="800.0"/>
+  <set name="target" val="TARGET_ALLY"/>
+  <set name="skillRadius" val="1000"/>
+  <set name="reuseDelay" val="200000"/> <!-- Guessing -->
+  <set name="hitTime" val="2500"/>
+  <set name="skillType" val="BUFF"/> <!-- Needs core support for CP Heal & Buff at once -->
+  <set name="isMagic" val="true"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <effect count="1" name="Buff" time="1200" val="0">
+      <add order="0x40" stat="maxCp" val="800"/>
+    </effect>
+  </for>
+</skill>
+<skill id="1417" levels="5" name="Aura Flash">
+  <table name="#itemConsumeCount"> 2 2 3 3 4 </table>
+  <table name="#magicLvl"> 58 62 66 70 74 </table>
+  <table name="#mpConsume"> 54 58 62 65 69 </table>
+  <table name="#power"> 49 53 58 61 65 </table>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <set name="hitTime" val="1000"/>
+  <set name="isMagic" val="true"/>
+  <set name="itemConsumeId" val="3031"/>
+  <set name="itemConsumeCount" val="#itemConsumeCount"/>
+  <set name="magicLvl" val="#magicLvl"/>
+  <set name="mpConsume" val="#mpConsume"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="power" val="#power"/>
+  <set name="reuseDelay" val="10000"/>
+  <set name="skillRadius" val="200"/>
+  <set name="skillType" val="MDAM"/>
+  <set name="target" val="TARGET_AURA"/>
+  <for>
+    <effect count="1" name="RemoveTarget" time="1" val="0"/>
+  </for>
+</skill>
+<skill id="1418" levels="1" name="Celestial Shield">
+  <!--
+  Description(s):
+      Protects your target using holy powers, making it temporarily invincible.
+  -->
+  <set name="mpConsume" val="60"/>
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_ONE"/>
+  <set name="hitTime" val="4000"/>
+  <set name="reuseDelay" val="2600000"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="buffDuration" val="30000"/>
+  <set name="castRange" val="400"/> 
+  <for>
+    <effect count="1" name="Invincible" time="10" val="0"/>
+  </for>
+</skill>
+<skill id="1419" levels="1" name="Volcano">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Consecutive strikes inflict a great amount of fire damage. You cannot move while casting the magic, and additional MP is consumed every time the effect is produced. Level 3 or higher Spell Force required. Consumes 1 Magic Symbol.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="1420" levels="1" name="Cyclone">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Consecutive strikes inflict a great amount of wind damage. You cannot move while casting the magic, and additional MP is consumed every time the effect is produced. Level 3 or higher Spell Force required. Consumes 1 Magic Symbol.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="1421" levels="1" name="Raging Waves">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Consecutive strikes inflict a great amount of water damage. You cannot move while casting the magic, and additional MP is consumed every time the effect is produced. Level 3 or higher Spell Force required. Consumes 1 Magic Symbol.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="1422" levels="1" name="Day of Doom">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Generates a signet that produces a strong curse that decreases all abilities. Applies to all targets within the affected area. The effect disappears if you leave the area. Level 3 or higher Spell Force required. Consumes 1 Magic Symbol.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="1423" levels="1" name="Gehenna">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Consecutive strikes inflict a great amount of dark damage. You cannot move while casting the magic, and additional MP is consumed every time the effect is produced. Level 3 or higher Spell Force required. Consumes 1 Magic Symbol.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="1424" levels="1" name="Anti-Summoning Field">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Generates a signet that sends a servitor to another dimension at regular intervals. Applies to all servitors in the affected area. Level 2 or higher Spell Force required. Consumes 1 Magic Symbol.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="1425" levels="1" name="Purification Field">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Cancels all debuff of nearby allies. Level 2 or higher Spell Force required. Consumes 1 Magic Symbol.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="1426" levels="1" name="Miracle">
+<!--
+  Description(s):
+      Heartily regenerates the HP of all alliance members in the applicable area. Level 2 or higher Spell Force required. Consumes 1 Magic Symbol.
+-->
+  <set name="itemConsumeId" val="8876"/>
+  <set name="itemConsumeCount" val="1"/>
+  <set name="mpConsume" val="72"/>
+  <set name="magicLvl" val="80"/>
+  <set name="power" val="100"/>
+  <set name="target" val="TARGET_ALLY"/>
+  <set name="skillRadius" val="900"/>
+  <set name="skillType" val="HEAL_PERCENT"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="hitTime" val="4000"/>
+  <set name="reuseDelay" val="3600000"/> <!-- reuse 60 minutes -->
+  <set name="isMagic" val="false"/> <!-- skill won't be affected by Casting speed -->
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <cond msg="Proper force required.">
+    <player spell_force="2"/>
+  </cond>
+  <for> 
+  </for>
+</skill>
+<skill id="1427" levels="1" name="Flames of Invincibility">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Blesses nearby allies with fire and makes them invincible. Level 2 or higher Spell Force required. Consumes 1 Magic Symbol.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="1428" levels="1" name="Mass Recharge">
+<!--
+  Description(s):
+      Greatly regenerates MP of party members. Can be used when Spell Force is level 3 or higher. Consumes 1 Magic Symbol.
+-->
+  <set name="itemConsumeId" val="8876"/>
+  <set name="itemConsumeCount" val="1"/>
+  <set name="mpConsume" val="73"/>
+  <set name="magicLvl" val="80"/>
+  <set name="target" val="TARGET_PARTY"/>
+  <set name="power" val="1500"/>
+  <set name="skillRadius" val="900"/>
+  <set name="skillType" val="MANARECHARGE"/>
+  <set name="hitTime" val="4000"/>
+  <set name="reuseDelay" val="3600000"/> <!-- reuse 60 minutes -->
+  <set name="isMagic" val="false"/> <!-- skill won't be affected by Casting speed -->
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <cond msg="Proper force required.">
+    <player spell_force="3"/>
+  </cond>
+  <for>
+  </for>
+</skill>
+<skill id="1429" levels="1" name="Gate Chant">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Summons a party member. Consumes 4 Summon Crystals.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="1430" levels="5" name="Invocation">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Meditate to increase MP regeneration.  Your body is immobilized and your P. Def. decreased while meditating. The effect is cancelled if you are attacked.
+      Lvl 2 - Meditate to increase MP regeneration.  Your body is immobilized and your P. Def. decreased while meditating. The effect is cancelled if you are attacked.
+      Lvl 3 - Meditate to increase MP regeneration.  Your body is immobilized and your P. Def. decreased while meditating. The effect is cancelled if you are attacked.
+      Lvl 4 - Meditate to increase MP regeneration.  Your body is immobilized and your P. Def. decreased while meditating. The effect is cancelled if you are attacked.
+      Lvl 5 - Meditate to increase MP regeneration.  Your body is immobilized and your P. Def. decreased while meditating. The effect is cancelled if you are attacked.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+</list>

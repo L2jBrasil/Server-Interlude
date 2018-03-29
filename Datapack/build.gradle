@@ -1,0 +1,22 @@
+apply plugin: 'base'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+task zip(type: Zip) {
+    from('data') {
+        into('Game/data')
+    }
+
+    into('database') {
+        from('sql')
+        from('tools')
+    }
+
+    destinationDir project.buildDir
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.6'
+}
+

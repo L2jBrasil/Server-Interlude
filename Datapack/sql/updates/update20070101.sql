@@ -1,0 +1,1 @@
+ALTER TABLE characters ADD COLUMN varka_ketra_ally int(1) NOT NULL DEFAULT 0 AFTER sponsor;

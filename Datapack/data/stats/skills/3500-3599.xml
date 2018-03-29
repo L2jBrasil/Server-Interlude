@@ -1,0 +1,1720 @@
+<?xml version='1.0' encoding='utf-8'?>
+<list>
+<skill id="3500" levels="1" name="Wooden Set">
+<!--
+  Description(s):
+      Increases P. Def. and MaxHP.
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="pDef" val="1.02"/> <!-- P. Def. +2% -->
+    <add order="0x40" stat="maxHp" val="41"/> <!-- HP +41 -->
+  </for>
+</skill>
+<skill id="3501" levels="1" name="Devotion Set">
+<!--
+  Description(s):
+      Increases Casting Spd.
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="mAtkSpd" val="1.15"/> <!-- Casting Spd. +15% -->
+  </for>
+</skill>
+<skill id="3502" levels="1" name="Mithril Heavy Armor Set">
+<!--
+  Description(s):
+      Increases resistance to poison attack.
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x40" stat="poisonVuln" val="0.8"/> <!-- Poison Resistance +20% -->
+  </for>
+</skill>
+<skill id="3503" levels="1" name="Reinforced Leather Set">
+<!--
+  Description(s):
+      Increases Maximum MP.
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <add order="0x40" stat="maxMp" val="80"/> <!-- MP +80 -->
+  </for> 
+</skill>
+<skill id="3504" levels="1" name="Knowledge Set">
+<!--
+  Description(s):
+      Decreases MP regeneration and increases M. Atk.
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="mAtk" val="1.10"/> <!-- M. Atk. +10% -->
+    <mul order="0x30" stat="regMp" val="0.95"/> <!-- MP Regeneration -5% -->
+  </for>
+</skill>
+<skill id="3505" levels="1" name="Manticore Set">
+<!--
+  Description(s):
+      Increases Maximum MP.
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <add order="0x40" stat="maxMp" val="92"/> <!-- MP +92 -->
+  </for>
+</skill>
+<skill id="3506" levels="1" name="Brigandine Set">
+<!--
+  Description(s):
+      Increases P. Def. and MaxHP.
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="pDef" val="1.05"/> <!-- P. Def. +5% -->
+    <add order="0x40" stat="maxHp" val="153"/> <!-- HP +153 -->
+  </for>
+</skill>
+<skill id="3507" levels="1" name="Elven Mithril Set">
+<!--
+  Description(s):
+      Increases Speed. INT-1, WIT+1
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <add order="0x40" stat="runSpd" val="7"/> <!-- Speed +7 -->
+    <add order="0x40" stat="WIT" val="1"/> <!-- WIT +1 -->
+    <sub order="0x40" stat="INT" val="1"/> <!-- INT -1 -->
+  </for>
+</skill>
+<skill id="3508" levels="1" name="Mithril Light Armor Set">
+<!--
+  Description(s):
+      Increases Evasion.
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <add order="0x40" stat="rEvas" val="4"/> <!-- Evasion +4 -->
+  </for>
+</skill>
+<skill id="3509" levels="1" name="Chain Mail Set">
+<!--
+  Description(s):
+      Increases resistance to Dagger attacks.
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <!-- which way is most accurate? --> <!-- P. Def. against daggers +5.24% -->
+    <mul order="0x30" stat="daggerWpnVuln" val="0.9476"/>
+    <!-- <mul val='1.0524' order='0x30' stat='pDef'>
+      <and>
+        <target using="Dagger"/>
+      </and>
+    </mul> -->
+  </for>
+</skill>
+<skill id="3510" levels="1" name="Karmian Set">
+<!--
+  Description(s):
+      Increases P. Def. and Casting Spd.
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="pDef" val="1.0524"/> <!-- P. Def. +5.24% -->
+    <mul order="0x30" stat="mAtkSpd" val="1.15"/> <!-- Casting Spd. +15% -->
+  </for>
+</skill>
+<skill id="3511" levels="1" name="Plated Leather Set">
+<!--
+  Description(s):
+      STR+4, CON-1
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <add order="0x40" stat="STR" val="4"/> <!-- STR +4 -->
+    <sub order="0x40" stat="CON" val="1"/> <!-- CON -1 -->
+  </for>
+</skill>
+<skill id="3512" levels="1" name="Composite Heavy Armor Set">
+<!--
+  Description(s):
+      Increases your weight capacity.
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <add order="0x40" stat="maxLoad" val="5795"/> <!-- Point at which a weight penalty is applied +5795 -->
+  </for>
+</skill>
+<skill id="3513" levels="1" name="Demon's Set">
+<!--
+  Description(s):
+      Reduces maximum HP. INT+4, WIT-1
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <sub order="0x40" stat="maxHp" val="270"/> <!-- HP -270 -->
+    <add order="0x40" stat="INT" val="4"/> <!-- INT +4 -->
+    <sub order="0x40" stat="WIT" val="1"/> <!-- WIT -1 -->
+  </for>
+</skill>
+<skill id="3514" levels="1" name="Theca Leather Light Armor Set">
+<!--
+  Description(s):
+      Increases P. Def.
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="pDef" val="1.0524"/> <!-- P. Def. +5.24% -->
+  </for>
+</skill>
+<skill id="3515" levels="1" name="Drake Leather Set">
+<!--
+  Description(s):
+      Increases M. Def.
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="mDef" val="1.0524"/> <!-- M. Def. +5.24% -->
+  </for>
+</skill>
+<skill id="3516" levels="1" name="Full Plate Set">
+<!--
+  Description(s):
+      Increases maximum HP.
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <add order="0x40" stat="maxHp" val="270"/> <!-- HP +270 -->
+  </for>
+</skill>
+<skill id="3517" levels="1" name="Divine Set">
+<!--
+  Description(s):
+      Increases P. Def. and MaxMP. INT-1, WIT+1
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="pDef" val="1.0524"/> <!-- P. Def. +5.24% -->
+    <add order="0x40" stat="maxMp" val="171"/> <!-- MP +171 -->
+    <sub order="0x40" stat="INT" val="1"/> <!-- INT -1 -->
+    <add order="0x40" stat="WIT" val="1"/> <!-- WIT +1 -->
+  </for>
+</skill>
+<skill id="3518" levels="1" name="Zubei's Heavy Armor Set">
+<!--
+  Description(s):
+      Increases P. Def. and MaxHP.
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="pDef" val="1.0524"/> <!-- P. Def. +5.24% -->
+    <add order="0x40" stat="maxHp" val="294"/> <!-- HP +294 -->
+  </for>
+</skill>
+<skill id="3519" levels="1" name="Avadon Breastplate Heavy Armor Set">
+<!--
+  Description(s):
+      Increases maximum HP.
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <add order="0x40" stat="maxHp" val="294"/> <!-- HP +294 -->
+  </for>
+</skill>
+<skill id="3520" levels="1" name="Zubei's Leather Shirt Light Armor Set">
+<!--
+  Description(s):
+      Increases Evasion.
+-->
+<!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <add order="0x40" stat="rEvas" val="4"/> <!-- Evasion +4 -->
+  </for>
+</skill>
+<skill id="3521" levels="1" name="Avadon Light Armor Set">
+<!--
+  Description(s):
+      Increases M. Def. and maximum weight limit.
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="mDef" val="1.0525"/> <!-- M. Def. +5.25% -->
+    <add order="0x40" stat="maxLoad" val="5795"/> <!-- Point at which a weight penalty is applied +5795 -->
+  </for>
+</skill>
+<skill id="3522" levels="1" name="Tunic of Zubei Robe Set">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Decreases MP regeneration and increases M. Atk.
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="mAtk" val="1.10"/> <!-- M. Atk. +10% -->
+    <mul order="0x30" stat="regMp" val="0.95"/> <!-- MP Regeneration -5% -->
+  </for>
+</skill>
+<skill id="3523" levels="1" name="Avadon Robe Set">
+<!--
+  Description(s):
+      Increases P. Def. and Casting Spd.
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="pDef" val="1.0547"/> <!-- P. Def. +5.247% -->
+    <mul order="0x30" stat="mAtkSpd" val="1.15"/> <!-- Casting Spd. +15% -->
+  </for>
+</skill>
+<skill id="3524" levels="1" name="Blue Wolf Heavy Armor Set">
+<!--
+  Description(s):
+      Increases Speed and HP recovery rate. STR+3, CON-1, DEX-2
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <add order="0x40" stat="runSpd" val="7"/> <!-- Speed +7 -->
+    <mul order="0x30" stat="regHp" val="1.0524"/> <!-- HP Regeneration +5.24% -->
+    <add order="0x40" stat="STR" val="3"/> <!-- STR +3 -->
+    <sub order="0x40" stat="CON" val="1"/> <!-- CON -1 -->
+    <sub order="0x40" stat="DEX" val="2"/> <!-- DEX -2 -->
+  </for>
+</skill>
+<skill id="3525" levels="1" name="Doom Heavy Armor Set">
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <add order="0x40" stat="maxHp" val="320"/> <!-- HP +320 -->
+    <add order="0x40" stat="breath" val="200"/> <!-- Breath Gauge increased +200 -->
+    <sub order="0x40" stat="STR" val="3"/> <!-- STR -3 -->
+    <add order="0x40" stat="CON" val="3"/> <!-- CON +3 -->
+  </for>
+</skill>
+<skill id="3526" levels="1" name="Blue Wolf Light Armor Set">
+<!--
+  Description(s):
+      Increases P. Def. and Casting Spd. INT-2, MEN+3, WIT-1
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="pDef" val="1.0524"/> <!-- P. Def. +5.24% -->
+    <mul order="0x30" stat="mAtkSpd" val="1.15"/> <!-- Casting Spd. +15% -->
+    <sub order="0x40" stat="INT" val="2"/> <!-- INT -2 -->
+    <add order="0x40" stat="MEN" val="3"/> <!-- MEN +3 -->
+    <sub order="0x40" stat="WIT" val="1"/> <!-- WIT -1 -->
+  </for>
+</skill>
+<skill id="3527" levels="1" name="Doom Light Armor Set">
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <add order="0x40" stat="breath" val="200"/> <!-- Breath Gauge increased +200 -->
+    <mul order="0x30" stat="pAtk" val="1.027"/> <!-- P. Atk. +2.7% -->
+    <mul order="0x30" stat="regMp" val="1.025"/> <!-- MP Regeneration +2.5% -->
+    <sub order="0x40" stat="STR" val="1"/> <!-- STR -1 -->
+    <sub order="0x40" stat="CON" val="2"/> <!-- CON -2 -->
+    <add order="0x40" stat="DEX" val="3"/> <!-- DEX +3 -->
+    <mul order="0x30" stat="poisonVuln" val="0.8"/> <!-- Poision Resistance +20% -->
+  </for>
+</skill>
+<skill id="3528" levels="1" name="Blue Wolf Robe Set">
+<!--
+  Description(s):
+      Increases MaxMP and MP recovery rate. INT-2, MEN-1, WIT+3
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <add order="0x40" stat="maxMp" val="206"/> <!-- MP +206 -->
+    <mul order="0x30" stat="regMp" val="1.0524"/> <!-- MP Regeneration +5.24% -->
+    <sub order="0x40" stat="INT" val="2"/> <!-- INT -2 -->
+    <sub order="0x40" stat="MEN" val="1"/> <!-- MEN -1 -->
+    <add order="0x40" stat="WIT" val="3"/> <!-- WIT +3 -->
+  </for>
+</skill>
+<skill id="3529" levels="1" name="Doom Robe Set">
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <add order="0x40" stat="runSpd" val="7"/> <!-- Speed + 7 -->
+    <add order="0x40" stat="breath" val="200"/> <!-- Breath Gauge increased +200 -->
+    <mul order="0x30" stat="regMp" val="1.0524"/> <!-- MP Regeneration +5.24% -->
+    <add order="0x40" stat="INT" val="2"/> <!-- INT +2 -->
+    <add order="0x40" stat="MEN" val="1"/> <!-- MEN +1 -->
+    <sub order="0x40" stat="WIT" val="3"/> <!-- WIT -3 -->
+  </for>
+</skill>
+<skill id="3530" levels="1" name="Dark Crystal Breastplate Heavy Armor Set">
+<!--
+  Description(s):
+      Increases resistance to paralysis attacks and improves effectiveness of HP recovery magic. STR-2, CON+2
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="gainHp" val="1.04"/> <!-- Heal +4% -->
+    <mul order="0x30" stat="paralyzeVuln" val="0.5"/> <!-- Paralysis Resistance +50% -->
+    <sub order="0x40" stat="STR" val="2"/> <!-- STR -2 -->
+    <add order="0x40" stat="CON" val="2"/> <!-- CON +2 -->
+  </for>
+</skill>
+<skill id="3531" levels="1" name="Tallum Heavy Armor Set">
+<!--
+  Description(s):
+      Increases resistance to poison/bleeding attacks. Atk. Spd. and maximum weight limit are also increased. STR+2, CON-2
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="pAtkSpd" val="1.08"/> <!-- Atk. Spd. +8% -->
+    <add order="0x40" stat="maxLoad" val="5759"/> <!-- Weight increased plus the point at which a weight penalty is applied +5759 -->
+    <mul order="0x30" stat="poisonVuln" val="0.2"/> <!-- Poison Resistance +80% -->
+    <mul order="0x30" stat="bleedVuln" val="0.2"/> <!-- Bleed Resistance +80% -->
+    <add order="0x40" stat="STR" val="2"/> <!-- STR +2 -->
+    <sub order="0x40" stat="CON" val="2"/> <!-- CON -2 -->
+  </for>
+</skill>
+<skill id="3532" levels="1" name="Dark Crystal Light Armor Set">
+<!--
+  Description(s):
+      Increases resistance to paralysis attacks. Atk. Spd. and P. Atk. are also increased. STR+1, CON-1
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="pAtkSpd" val="1.04"/> <!-- Atk. Spd. +4% -->
+    <mul order="0x30" stat="pAtk" val="1.04"/> <!-- P. Atk. +4% -->
+    <mul order="0x30" stat="paralyzeVuln" val="0.5"/> <!-- Paralysis Resistance +50% -->
+    <add order="0x40" stat="STR" val="1"/> <!-- STR +1 -->
+    <sub order="0x40" stat="CON" val="1"/> <!-- CON -1 -->
+  </for>
+</skill>
+<skill id="3533" levels="1" name="Tallum Light Armor Set">
+<!--
+  Description(s):
+      Increases resistance to poison/bleeding attacks. MP recovery rate and MaxMP are also increased. MEN+2, WIT-2
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="regMp" val="1.08"/> <!-- MP Regeneration +8% -->
+    <add order="0x40" stat="maxMp" val="222"/> <!-- MP +222 -->
+    <mul order="0x30" stat="poisonVuln" val="0.2"/> <!-- Poison Resistance +80% -->
+    <mul order="0x30" stat="bleedVuln" val="0.2"/> <!-- Bleed Resistance +80% -->
+    <add order="0x40" stat="MEN" val="2"/> <!-- MEN +2 -->
+    <sub order="0x40" stat="WIT" val="2"/> <!-- WIT -2 -->
+  </for>
+</skill>
+<skill id="3534" levels="1" name="Tallum Robe Set">
+<!--
+  Description(s):
+      Increases resistance to poison/bleeding attacks. Casting Spd. and M. Def. are also increased. INT-2, WIT+2
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="mAtkSpd" val="1.15"/> <!-- Casting Spd. +15% -->
+    <mul order="0x30" stat="mDef" val="1.08"/> <!-- M. Def. +8% -->
+    <mul order="0x30" stat="poisonVuln" val="0.2"/> <!-- Poison Resistance +80% -->
+    <mul order="0x30" stat="bleedVuln" val="0.2"/> <!-- Bleed Resistance +80% -->
+    <sub order="0x40" stat="INT" val="2"/> <!-- INT -2 -->
+    <add order="0x40" stat="WIT" val="2"/> <!-- WIT +2 -->
+  </for>
+</skill>
+<skill id="3535" levels="1" name="Dark Crystal Robe Set">
+<!--
+  Description(s):
+      Decreases magic cancel rate and increases resistance to paralysis attacks. P. Def., Casting Spd. and Speed are also increased. WIT+2, MEN-2
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="pDef" val="1.08"/> <!-- P. Def. +8% -->
+    <mul order="0x30" stat="mAtkSpd" val="1.15"/> <!-- Casting Spd. +15% -->
+    <add order="0x40" stat="runSpd" val="7"/> <!-- Speed +7 -->
+    <sub order="0x40" stat="cancel" val="18"/> <!-- Small decrease in chance of spell interruption - TO CHECK -->
+    <mul order="0x30" stat="paralyzeVuln" val="0.5"/> <!-- Paralysis Resistance +50% -->
+    <add order="0x40" stat="WIT" val="2"/> <!-- WIT +2 -->
+    <sub order="0x40" stat="MEN" val="2"/> <!-- MEN -2 -->
+  </for>
+</skill>
+<skill id="3536" levels="1" name="Nightmare Heavy Armor Set">
+<!--
+  Description(s):
+      Increases P. Atk. and resistance to Sleep/Hold attack.. CON+2, DEX-2
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="pAtk" val="1.04"/> <!-- P. Atk. +4% -->
+    <mul order="0x40" stat="sleepVuln" val="0.3"/> <!-- Sleep Resistance +70% -->
+    <mul order="0x40" stat="rootVuln" val="0.3"/> <!-- Hold Resistance +70% -->
+    <add order="0x40" stat="CON" val="2"/> <!-- CON +2 -->
+    <sub order="0x40" stat="DEX" val="2"/> <!-- DEX -2 -->
+  </for>
+</skill>
+<skill id="3537" levels="1" name="Majestic Heavy Armor Set">
+<!--
+  Description(s):
+      Increases resistance to shock attacks. P. Atk. and Accuracy are also increased. STR+2. CON-2
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="pAtk" val="1.04"/> <!-- P. Atk. +4% -->
+    <add order="0x40" stat="accCombat" val="3"/> <!-- Accuracy +3 -->
+    <mul order="0x30" stat="stunVuln" val="0.5"/> <!-- Stun Resistance +50% -->
+    <add order="0x40" stat="STR" val="2"/> <!-- STR +2 -->
+    <sub order="0x40" stat="CON" val="2"/> <!-- CON -2 -->
+  </for>
+</skill>
+<skill id="3538" levels="1" name="Nightmarish Leather Light Armor Set">
+<!--
+  Description(s):
+      Increases resistance to Sleep/Hold attack and M. Def. Restores HP by using part of the damage inflicted upon the enemy, excluding damage caused by skill or remote attack. DEX+1, CON-1
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="mDef" val="1.04"/> <!-- M. Def. +4% -->
+    <mul order="0x30" stat="sleepVuln" val="0.3"/> <!-- Sleep Resistance +70% -->
+    <mul order="0x30" stat="rootVuln" val="0.3"/> <!-- Hold Resistance +70% -->
+    <add order="0x40" stat="absorbDam" val="3"/> <!-- Restores 3% of melee damage inflicted on the enemy to oneself -->
+    <add order="0x40" stat="DEX" val="1"/> <!-- DEX +1 -->
+    <sub order="0x40" stat="CON" val="1"/> <!-- CON -1 -->
+  </for>
+</skill>
+<skill id="3539" levels="1" name="Majestic Light Armor Set">
+<!--
+  Description(s):
+      Increases resistance to shock attacks. P. Atk., MaxMP and maximum weight limit are also increased. DEX+1, CON-1
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="pAtk" val="1.08"> <!-- Archery P. Atk. +8% -->
+      <and>
+        <using kind='Bow'/>
+      </and>
+    </mul>
+    <add order="0x40" stat="maxMp" val="240"/> <!-- MP +240 -->
+    <add order="0x40" stat="maxLoad" val="5759"/> <!-- Weight increased plus the point at which a weight penalty is applied +5759 -->
+    <mul order="0x30" stat="stunVuln" val="0.5"/> <!-- Stun Resistance +50% -->
+    <add order="0x40" stat="DEX" val="1"/> <!-- DEX +1 -->
+    <sub order="0x40" stat="CON" val="1"/> <!-- CON -1 -->
+  </for>
+</skill>
+<skill id="3540" levels="1" name="Nightmare Robe Set">
+<!--
+  Description(s):
+      Increases MP regeneration, M. Atk. and resistance to sleep/hold attacks. INT+2, WIT-2
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="regMp" val="1.04"/> <!-- MP Regeneration +4% -->
+    <mul order="0x30" stat="mAtk" val="1.08"/> <!-- M. Atk. +8% -->
+    <mul order="0x30" stat="sleepVuln" val="0.3"/> <!-- Sleep Resistance +70% -->
+    <mul order="0x30" stat="rootVuln" val="0.3"/> <!-- Hold Resistance +70% -->
+    <add order="0x40" stat="INT" val="2"/> <!-- INT +2 -->
+    <sub order="0x40" stat="WIT" val="2"/> <!-- WIT -2 -->
+  </for>
+</skill>
+<skill id="3541" levels="1" name="Majestic Robe Set">
+<!--
+  Description(s):
+      Increases resistance to shock attacks. MaxMP, Casting Spd. and MP recovery rate are also increased. MEN+1, INT-1
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <add order="0x40" stat="maxMp" val="240"/> <!-- MP +240 -->
+    <mul order="0x30" stat="mAtkSpd" val="1.15"/> <!-- Casting Spd. +15% -->
+    <mul order="0x30" stat="regMp" val="1.08"/> <!-- MP Regeneration +8% -->
+    <mul order="0x30" stat="stunVuln" val="0.5"/> <!-- Stun Resistance +50% -->
+    <add order="0x40" stat="MEN" val="1"/> <!-- MEN +1 -->
+    <sub order="0x40" stat="INT" val="1"/> <!-- INT -1 -->
+  </for>
+</skill>
+<skill id="3542" levels="6" name="Special Ability: Critical Damage">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Inflicts additional damage during critical attacks.
+      Lvl 2 - Inflicts additional damage during critical attacks.
+      Lvl 3 - Inflicts additional damage during critical attacks.
+      Lvl 4 - Inflicts additional damage during critical attacks.
+      Lvl 5 - Inflicts additional damage during critical attacks.
+      Lvl 6 - Inflicts additional damage during critical attacks.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3543" levels="1" name="Equipped with Shield">
+<!--
+  Description(s):
+      Increases maximum HP.
+-->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <add val='126' order='0x40' stat='maxHp'/>
+  </for>
+</skill>
+<skill id="3544" levels="1" name="Equipped with Shield">
+<!--
+  Description(s):
+      Increases maximum HP.
+-->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <add val='20' order='0x40' stat='maxHp'/>
+  </for>
+</skill>
+<skill id="3545" levels="1" name="Equipped with Shield">
+<!--
+  Description(s):
+      Increases maximum HP.
+-->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <add val='198' order='0x40' stat='maxHp'/>
+  </for>
+</skill>
+<skill id="3546" levels="1" name="Equipped with Shield">
+<!--
+  Description(s):
+      Increases M. Def.
+-->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul val='1.0526' order='0x30' stat='mDef'/>
+  </for>
+</skill>
+<skill id="3547" levels="1" name="Equipped with Shield">
+<!--
+  Description(s):
+      Increases shield defense rate.
+-->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul stat='rShld' order='0x30' val='1.0525'/>
+  </for>
+</skill>
+<skill id="3548" levels="1" name="Equipped with Shield">
+<!--
+  Description(s):
+      Increases shield defense rate.
+-->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul stat='rShld' order='0x30' val='1.24'/>
+  </for>
+</skill>
+<skill id="3549" levels="1" name="Equipped with Shield">
+<!--
+  Description(s):
+      Increases shield defense rate.
+-->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul stat='rShld' order='0x30' val='1.24'/>
+  </for>
+</skill>
+<skill id="3550" levels="1" name="Equipped with Shield">
+<!--
+  Description(s):
+      Increases shield defense rate.
+-->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul stat='rShld' order='0x30' val='1.18'/>
+  </for>
+</skill>
+<skill id="3551" levels="1" name="Equipped with Shield">
+<!--
+  Description(s):
+      Returns damage inflicted by enemy back upon him. Not applied to damage inflicted by a skill or remote attack.
+-->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <add val='5' order='0x40' stat='reflectDam'/>
+  </for>
+</skill>
+<skill id="3552" levels="2" name="Special Ability: PvP Damage">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Lvl 1 - Increases damage inflicted during PvP.
+      Lv1 2 - Launches an attack that strikes multiple opponents, and inflicts additional damage during PvP.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3553" levels="1" name="Imperial Crusader Heavy Armor Set">
+<!--
+  Description(s):
+      Increases MaxHP, P. Def and resistance to sleep/hold attacks. STR+2, DEX-2
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="pDef" val="1.08"/> <!-- P Def. +8% -->
+    <add order="0x40" stat="maxHp" val="445"/> <!-- Maximum HP +445 -->
+    <mul order="0x40" stat="sleepVuln" val="0.3"/> <!-- Sleep Probability -70% -->
+    <mul order="0x40" stat="rootVuln" val="0.3"/> <!-- Hold Probability -70% -->
+    <sub order="0x40" stat="DEX" val="2"/> <!-- DEX -2 -->
+    <add order="0x40" stat="STR" val="2"/> <!-- STR +2 -->
+  </for>
+</skill>
+<skill id="3554" levels="1" name="Equipped with Shield">
+<!--
+  Description(s):
+      Additional resistance to Poison/Bleed.
+-->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul val='0.2' order='0x30' stat='poisonVuln'/>
+    <mul val='0.2' order='0x30' stat='bleedVuln'/>
+  </for>
+</skill>
+<skill id="3555" levels="1" name="Draconic Light Armor Set">
+<!--
+  Description(s):
+      Increases MaxHP, Atk. Spd, P. Atk, and maximum weight limit. DEX+1, STR+1, CON-2
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="pAtkSpd" val="1.04"/> <!-- Attack Speed +4% -->
+    <mul order="0x30" stat="pAtk" val="1.04"/> <!-- P. Atk +4% -->
+    <add order="0x40" stat="maxMp" val="289"/> <!-- Maximum MP +289 -->
+    <add order="0x40" stat="maxLoad" val="5759"/> <!-- Weight Limit +5759 -->
+    <add order="0x40" stat="DEX" val="1"/> <!-- DEX +1 -->
+    <add order="0x40" stat="STR" val="1"/> <!-- STR +1 -->
+    <sub order="0x40" stat="CON" val="2"/> <!-- CON -2 -->
+  </for>
+</skill>
+<skill id="3556" levels="1" name="Major Arcana Robe Set">
+<!--
+  Description(s):
+      Decreases chance of magic casting being canceled. Increases resistance to shock attacks, M. Atk., Speed and maximum weight limit. WIT+1, INT+1, MEN-2
+-->
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="mAtk" val="1.17"/> <!-- M. Atk +17% -->
+    <add order="0x40" stat="runSpd" val="7"/> <!-- Movement Speed +7 -->
+    <sub order="0x40" stat="cancel" val="50"/> <!-- Casting Cancel Probability -50% -->
+    <add order="0x40" stat="maxLoad" val="5759"/> <!-- Weight Limit +5759 -->
+    <add order="0x40" stat="WIT" val="1"/> <!-- WIT +1 -->
+    <add order="0x40" stat="INT" val="1"/> <!-- INT +1 -->
+    <sub order="0x40" stat="MEN" val="2"/> <!-- MEN -2 -->
+    <mul order="0x30" stat="stunVuln" val="0.5"/> <!-- Stun resistance +50% -->
+  </for>
+</skill>
+<skill id="3557" levels="1" name="Necklace of Valakas">
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <add val='445' order='0x40' stat='maxHp'/>
+    <mul val='1.04' order='0x30' stat='pAtk'/>
+    <mul val='1.08' order='0x30' stat='mAtk'/>
+    <mul val='2.0' order='0x30' stat='mCritRate'/>
+    <mul val='0.85' order='0x30' stat='fireVuln'/>
+    <mul val='0.2' order='0x30' stat='sleepVuln'/>
+    <mul val='0.90' order='0x30' stat='mReuse'/>
+    <!-- Need core support for <mul val='0.90' order='0x30' stat='pReuse'/> -->
+    <add val='5' order='0x40' stat="reflectDam"/>
+  </for>
+</skill>
+<skill id="3558" levels="1" name="Earring of Antharas">
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul val='0.2' order='0x30' stat='bleedVuln'/>
+    <mul val='1.10' order='0x30' stat='gainHp'/>
+    <add val='4' order='0x40' stat='absorbDam'/>
+    <mul val='0.4' order='0x30' stat='stunVuln'/>
+    <mul val='0.4' order='0x30' stat='derangementVuln'/>
+    <mul val='0.95' order='0x30' stat='MpConsumeRate'/>
+    <mul val='0.85' order='0x30' stat='earthVuln'/>
+  </for>
+</skill>
+<skill id="3559" levels="1" name="Earring of Zaken">
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul val='0.4' order='0x30' stat='bleedVuln'/>
+    <mul val='1.10' order='0x30' stat='gainHp'/>
+    <add val='4' order='0x40' stat='absorbDam'/>
+    <mul val='0.6' order='0x30' stat='stunVuln'/>
+    <mul val='0.6' order='0x40' stat='derangementVuln'/>
+  </for>
+</skill>
+<skill id="3560" levels="1" name="Earring of Orfen">
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul val='0.6' order='0x40' stat='bleedVuln'/>
+    <mul val='1.06' order='0x30' stat='gainHp'/>
+  </for>
+</skill>
+<skill id="3561" levels="1" name="Ring of Baium">
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul val='0.2' order='0x30' stat='poisonVuln'/>
+    <add val='2' order='0x40' stat='accCombat'/>
+    <mul val='1.15' order='0x30' stat='cAtk'/>
+    <mul val='0.4' order='0x30' stat='rootVuln'/>
+    <mul val='1.04' order='0x30' stat='pAtkSpd'/>
+    <mul val='1.04' order='0x30' stat='mAtkSpd'/>
+  </for>
+</skill>
+<skill id="3562" levels="1" name="Ring of Ant Queen">
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul val='0.4' order='0x30' stat='poisonVuln'/>
+    <add val='2' order='0x10' stat='accCombat'/>
+    <mul val='1.15' order='0x30' stat='cAtk'/>
+    <mul val='0.6' order='0x30' stat='rootVuln'/>
+  </for>
+</skill>
+<skill id="3563" levels="1" name="Ring of Core">
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="BUFF"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul val='0.6' order='0x30' stat='poisonVuln'/>
+    <add val='1' order='0x40' stat='accCombat'/>
+  </for>
+</skill>
+<skill id="3564" levels="1" name="Special Ability: Haste">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Increases Atk.Speed and enhances damage to target during PvP.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3565" levels="1" name="Special Ability: Focus">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Increases critical attack success rate and damage inflicted during PvP.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3566" levels="1" name="Special Ability: Focus">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Increases critical attack success rate and damage inflicted during PvP.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3567" levels="2" name="Special Ability: Focus">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Increases critical attack success rate and damage inflicted during PvP.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3568" levels="1" name="Special Ability: HP Drain">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Partially restores HP using damage inflicted upon the enemy. Excludes damage from skill or range attack.  Enhances damage to target during PvP.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3569" levels="1" name="Special Ability: HP Regeneration">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Increases HP regeneration rate and enhances damage to target during PvP.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3570" levels="1" name="Special Ability: Robust Health">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Increases MaxHP, MaxMP, MaxCP and enhances damage to target during PvP.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3571" levels="1" name="Special Ability: Crt. Stun">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Temporarily stuns and paralyzes target.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3572" levels="1" name="Special Ability: Crt. Damage">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Increases critical attack success rate and damage inflicted during PvP.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3573" levels="1" name="Special Ability: Guidance">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Increases Accuracy and enhances damage to target during PvP.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3574" levels="1" name="Special Ability: Crt. Slow">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Temporarily decreases Speed. Effect 3.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3575" levels="1" name="Special Ability: Empower Option">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Increases M. Atk. Enhances damage to target during PvP.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3576" levels="1" name="Special Ability: MP Regeneration">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Increases MP regeneration rate and enhances damage to target during PvP.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3577" levels="1" name="Special Ability: Magic Hold">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Magically immobilizes target.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3578" levels="1" name="Special Ability: Infinity Blade">
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="WEAPON_SA"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="maxHp" val="1.25"/> <!-- HP +25% -->
+    <mul order="0x30" stat="maxMp" val="1.30"/> <!-- MP +30% -->
+    <mul order="0x30" stat="maxCp" val="1.50"/> <!-- CP +50% -->
+    <mul order="0x30" stat="sDef" val="1.33"/> <!-- Shield P.Def. +33% -->
+    <mul order="0x30" stat="pvpPhysDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <mul order="0x30" stat="pvpMagicalDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <mul order="0x30" stat="pvpPhysSkillsDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <add order="0x40" stat="reflectDam" val="9"/> <!-- Reflect Damage 9% -->
+  </for>
+</skill>
+<skill id="3579" levels="1" name="Decrease P. Def.">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Temporarily decreases P. Def. Effect 3
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="WEAPON_SA"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <effect count="1" name="Buff" time="120" val="0">
+      <mul order="0x30" stat="pDef" val="0.77"/>
+    </effect>
+  </for>
+</skill>
+<skill id="3580" levels="1" name="Special Ability: Infinity Axe">
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="WEAPON_SA"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="maxHp" val="1.25"/> <!-- HP +25% -->
+    <mul order="0x30" stat="maxMp" val="1.30"/> <!-- MP +30% -->
+    <mul order="0x30" stat="rShld" val="1.39"/> <!-- Shield Block Rate +39% -->
+    <mul order="0x30" stat="pvpPhysDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <mul order="0x30" stat="pvpMagicalDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <mul order="0x30" stat="pvpPhysSkillsDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <add order="0x40" stat="reflectDam" val="9"/> <!-- Reflect Damage 9% -->
+  </for>
+</skill>
+<skill id="3581" levels="1" name="Discord">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      none
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="WEAPON_SA"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <effect count="5" name="ConfuseMob" time="6" val="0"/>
+  </for>
+</skill>
+<skill id="3582" levels="1" name="Special Ability: Infinity Cleaver">
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="WEAPON_SA"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <add order="0x40" stat="cAtk" val="504"/> <!-- P.Atk. +504 on a critical hit -->
+    <mul order="0x30" stat="maxHp" val="1.25"/> <!-- HP +25% -->
+    <mul order="0x30" stat="maxCp" val="1.50"/> <!-- CP +50% -->
+    <add order="0x40" stat="rCrit" val="78.7"/> <!-- Critical +78.7 -->
+    <mul order="0x30" stat="pvpPhysDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <mul order="0x30" stat="pvpMagicalDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <mul order="0x30" stat="pvpPhysSkillsDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <add order="0x40" stat="reflectSkillPhysic" val="10"/> <!-- Reflect Skills 10% of the time -->
+    <add order="0x40" stat="reflectSkillMagic" val="10"/> <!-- Reflect Skills 10% of the time -->
+  </for>
+</skill>
+<skill id="3583" levels="1" name="Special Ability: Infinity Crusher">
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="WEAPON_SA"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="maxHp" val="1.25"/> <!-- HP +25% -->
+    <mul order="0x30" stat="maxCp" val="1.50"/> <!-- CP +50% -->
+    <mul order="0x30" stat="pAtkSpd" val="1.07"/> <!-- Atk. Spd. +7% -->
+    <mul order="0x30" stat="pvpPhysDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <mul order="0x30" stat="pvpMagicalDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <mul order="0x30" stat="pvpPhysSkillsDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <add order="0x40" stat="reflectSkillPhysic" val="10"/> <!-- Reflect Skills 10% of the time -->
+    <add order="0x40" stat="reflectSkillMagic" val="10"/> <!-- Reflect Skills 10% of the time -->
+  </for>
+</skill>
+<skill id="3584" levels="1" name="Shock">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Instantly throws enemy into a state of shock, immobilizing them.
+-->
+  <set name="castRange" val="-1"/>
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="WEAPON_SA"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <effect count="1" name="Stun" time="9" val="0" stackOrder="2" stackType="Stun">
+    </effect>
+  </for>
+</skill>
+<skill id="3585" levels="1" name="Special Ability: Infinity Wing">
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="WEAPON_SA"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="maxHp" val="1.25"/> <!-- HP +25% -->
+    <mul order="0x30" stat="maxMp" val="1.30"/> <!-- MP +30% -->
+    <mul order="0x30" stat="maxCp" val="1.50"/> <!-- CP +50% -->
+    <add order="0x40" stat="rCrit" val="78.7"/> <!-- Critical +78.7 -->
+    <mul order="0x30" stat="pvpPhysDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <mul order="0x30" stat="pvpMagicalDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <mul order="0x30" stat="pvpPhysSkillsDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <add order="0x40" stat="reflectSkillPhysic" val="10"/> <!-- Reflect Skills 10% of the time -->
+    <add order="0x40" stat="reflectSkillMagic" val="10"/> <!-- Reflect Skills 10% of the time -->
+  </for>
+</skill>
+<skill id="3586" levels="1" name="Physical Skill Restraint">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Temporarily blocks opponent's ability to use physical skills.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="WEAPON_SA"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <effect count="1" name="PsychicalMute" time="60" val="0" stackOrder="1" stackType="silence"/>
+  </for>
+</skill>
+<skill id="3587" levels="1" name="Special Ability: Infinity Fang">
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="WEAPON_SA"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="maxHp" val="1.25"/> <!-- HP +25% -->
+    <mul order="0x30" stat="maxMp" val="1.30"/> <!-- MP +30% -->
+    <mul order="0x30" stat="maxCp" val="1.50"/> <!-- CP +50% -->
+    <add order="0x40" stat="rEvas" val="3.15"/> <!-- Evasion +3.15 -->
+    <mul order="0x30" stat="pvpPhysDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <mul order="0x30" stat="pvpMagicalDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <mul order="0x30" stat="pvpPhysSkillsDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <add order="0x40" stat="reflectSkillPhysic" val="10"/> <!-- Reflect Skills 10% of the time -->
+    <add order="0x40" stat="reflectSkillMagic" val="10"/> <!-- Reflect Skills 10% of the time -->
+  </for>
+</skill>
+<skill id="3588" levels="1" name="Shock">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Instantly throws enemy into a state of shock, immobilizing them.
+-->
+  <set name="castRange" val="-1"/>
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="WEAPON_SA"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <effect count="1" name="Stun" time="9" val="0" stackOrder="2" stackType="Stun">
+    </effect>
+  </for>
+</skill>
+<skill id="3589" levels="1" name="Special Ability: Infinity Stinger">
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="WEAPON_SA"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="maxMp" val="1.30"/> <!-- MP +30% -->
+    <mul order="0x30" stat="maxCp" val="1.50"/> <!-- CP +50% -->
+    <mul order="0x30" stat="pAtkSpd" val="1.03"/> <!-- Atk. Spd. +3% -->
+    <add order="0x40" stat="regMp" val="0.51"/> <!-- MP regen per tick +0.51 -->
+    <add order="0x40" stat="rCrit" val="220"> <!-- Critical +220 from behind target -->
+      <and>
+        <player behind="True"/>
+      </and>
+    </add>
+    <mul order="0x30" stat="pvpPhysDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <mul order="0x30" stat="pvpMagicalDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <mul order="0x30" stat="pvpPhysSkillsDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <mul order="0x30" stat="absorbDam" val="1.02"/> <!-- Vampiric Rage effect 2% -->
+  </for>
+</skill>
+<skill id="3590" levels="1" name="Silence">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Temporarily blocks the use of magic skills.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="WEAPON_SA"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <effect count="1" name="Mute" time="120" val="0" stackOrder="1" stackType="silence"/>
+  </for>
+</skill>
+<skill id="3591" levels="1" name="Special Ability: Infinity Spear">
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="WEAPON_SA"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="maxHp" val="1.25"/> <!-- HP +25% -->
+    <mul order="0x30" stat="maxCp" val="1.50"/> <!-- CP +50% -->
+    <mul order="0x30" stat="pAtkSpd" val="1.07"/> <!-- Atk. Spd. +7% -->
+    <add order="0x40" stat="accCombat" val="4.89"/> <!-- Accuracy +4.89 -->
+    <mul order="0x30" stat="pvpPhysDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <mul order="0x30" stat="pvpMagicalDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <mul order="0x30" stat="pvpPhysSkillsDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <add order="0x40" stat="reflectSkillPhysic" val="10"/> <!-- Reflect Skills 10% of the time -->
+    <add order="0x40" stat="reflectSkillMagic" val="10"/> <!-- Reflect Skills 10% of the time -->
+    <!-- Missing 10% chance to cancel each buff from target on a critical hit (for comparison, Cancel is 25% but Cancel also relies on M.Atk. vs. M.Def. while this weapon does not) -->
+  </for>
+</skill>
+<skill id="3592" levels="1" name="Dispell">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      none
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+<skill id="3593" levels="1" name="Special Ability: Infinity Bow">
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="WEAPON_SA"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="maxMp" val="1.30"/> <!-- MP +30% -->
+    <mul order="0x30" stat="maxCp" val="1.50"/> <!-- CP +50% -->
+    <mul order="0x30" stat="pvpPhysDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <mul order="0x30" stat="pvpMagicalDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <mul order="0x30" stat="pvpPhysSkillsDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+  </for>
+</skill>
+<skill id="3594" levels="1" name="Slow">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Temporarily reduces target's Speed. Effect 3.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="WEAPON_SA"/>
+  <set name="operateType" val="OP_ACTIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <effect count="1" name="Buff" time="30" val="0">
+      <mul order="0x30" stat="runSpd" val="0.5"/>
+    </effect>
+  </for>
+</skill>
+<skill id="3595" levels="1" name="Special Ability: Infinity Scepter">
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="WEAPON_SA"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="maxMp" val="1.30"/> <!-- MP +30% -->
+    <mul order="0x30" stat="maxCp" val="1.50"/> <!-- CP +50% -->
+    <add order="0x40" stat="mAtk" val="29.67"/> <!-- M.Atk. +29.67 -->
+    <mul order="0x30" stat="mCritRate" val="1.54"/> <!-- Magic Critical Rate +54% -->
+    <mul order="0x30" stat="pvpPhysDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <mul order="0x30" stat="pvpMagicalDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <mul order="0x30" stat="pvpPhysSkillsDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <mul order="0x30" stat="MpConsumeRate" val="0.96"/> <!-- Magic MP Cost -4% -->
+    <sub order="0x40" stat="cancel" val="106"/> <!-- Chance of Magic Cancelation -106 -->
+    <!-- Missing 3% chance to full heal target's HP when "good" magic is cast -->
+  </for>
+</skill>
+<skill id="3596" levels="1" name="Full Recover">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      none
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="aggroPoints" val="100"/>
+  <for>
+  </for>
+</skill>
+<skill id="3597" levels="1" name="Special Ability: Infinity Rod">
+  <!-- Done by DJ MELERIX -->
+  <set name="power" val="0.0"/>
+  <set name="target" val="TARGET_SELF"/>
+  <set name="skillType" val="WEAPON_SA"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="effectRange" val="-1"/>
+  <for>
+    <mul order="0x30" stat="maxMp" val="1.30"/> <!-- MP +30% -->
+    <mul order="0x30" stat="maxCp" val="1.50"/> <!-- CP +50% -->
+    <mul order="0x30" stat="mAtkSpd" val="1.15"/> <!-- Casting Spd. +15% -->
+    <add order="0x40" stat="regMp" val="0.51"/> <!-- MP regen per tick +0.51 -->
+    <mul order="0x30" stat="pvpPhysDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <mul order="0x30" stat="pvpMagicalDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <mul order="0x30" stat="pvpPhysSkillsDmg" val="1.05"/> <!-- PVP Damage Bonus +5% -->
+    <!-- Missing 3% chance to full heal target's HP when "good" magic is cast -->
+  </for>
+</skill>
+<skill id="3598" levels="1" name="Full Recover">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      none
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <set name="aggroPoints" val="100"/>
+  <for>
+  </for>
+</skill>
+<skill id="3599" levels="1" name="Polearm Multi-attack">
+<!--
+  Needs to be finished.
+  Target is set to TARGET_NONE, skillType to NOTDONE for server compatability.
+  Description(s):
+      Enables the character to attack multiple opponents.
+-->
+  <set name="target" val="TARGET_NONE"/>
+  <set name="skillType" val="NOTDONE"/>
+  <set name="operateType" val="OP_PASSIVE"/>
+  <set name="castRange" val="-1"/>
+  <for>
+  </for>
+</skill>
+</list>

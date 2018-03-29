@@ -1,0 +1,1 @@
+ALTER TABLE character_skills_save ADD buff_index int(2) NOT NULL default 0;
