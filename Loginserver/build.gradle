@@ -10,15 +10,16 @@ configurations.all {
 }
 
 dependencies {
-
     compile project(':Commons')
     compile project(':Mmocore')
 
-    compile fileTree(dir: 'lib', include: '*.jar')
+    compile 'javolution:javolution:5.5.1'
 
-    // runtime c3p0-0.9.2-pre1.jar
-    // runtime mchange-commons-0.2.jar
-    // runtime mysql-connector-java-5.1.18-bin.jar
+    runtime 'com.mchange:c3p0:0.9.5.2'
+    runtime 'com.mchange:mchange-commons-java:0.2.15'
+    runtime 'mysql:mysql-connector-java:8.0.9-rc'
+
+
 }
 
 
@@ -41,7 +42,7 @@ jar {
 
 task zip(type: Zip, group: "Archive", description: "Zip Loginserver") {
     into('lib') {
-        from([jar, configurations.compile])
+        from([jar, configurations.runtime])
     }
 
     from('bin')
