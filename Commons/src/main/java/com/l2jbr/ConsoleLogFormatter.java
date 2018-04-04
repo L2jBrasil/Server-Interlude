@@ -18,12 +18,12 @@
  */
 package com.l2jbr;
 
+import javolution.text.TextBuilder;
+
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
-
-import javolution.text.TextBuilder;
 
 /**
  * This class ...

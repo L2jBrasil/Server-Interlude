@@ -7,3 +7,7 @@ plugins {
 dependencies {
     compile fileTree(dir: 'lib', include: '*.jar')
 }
+
+jar {
+    baseName 'l2j-commons'
+}

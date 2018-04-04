@@ -18,12 +18,12 @@
  */
 package com.l2jbr;
 
+import javolution.text.TextBuilder;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
-
-import javolution.text.TextBuilder;
 
 public class FileLogFormatter extends Formatter
 {

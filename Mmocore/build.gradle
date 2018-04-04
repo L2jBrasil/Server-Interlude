@@ -3,3 +3,7 @@ plugins {
     id "idea"
     id "eclipse"
 }
+
+jar {
+    baseName 'l2j-mmocore'
+}

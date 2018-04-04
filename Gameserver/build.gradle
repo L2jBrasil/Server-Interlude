@@ -22,6 +22,8 @@ def generalManifest = manifest {
 }
 
 jar {
+    baseName 'l2j-gameserver'
+
     exclude('config/**')
     exclude('*.cfg')
     manifest {
@@ -39,16 +41,14 @@ task zip(type: Zip, group: "Archive", description: "Zip Gameserver") {
         from('data')
     }
 
-    into('bin') {
-        from('bin')
-    }
-
     into('database/sql') {
         from('sql')
     }
 
+    from('bin')
     from(sourceSets.main.resources)
 
+    destinationDir project.buildDir
 }
 
 build.finalizedBy(zip)

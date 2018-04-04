@@ -4,11 +4,31 @@ plugins {
     id "eclipse"
 }
 
-
-
 dependencies {
-
     compile project(':Commons')
     compile project(":Loginserver")
     compile project(":Gameserver")
 }
+
+configurations.all {
+    transitive = false
+}
+
+jar {
+    baseName 'l2j-tools'
+}
+
+task zip(type: Zip, group: "Archive", description: "Zip Gameserver") {
+    into('lib') {
+        from([jar, configurations.compile])
+    }
+
+    into('bin') {
+        from('bin')
+    }
+
+
+    destinationDir project.buildDir
+}
+
+build.finalizedBy(zip)

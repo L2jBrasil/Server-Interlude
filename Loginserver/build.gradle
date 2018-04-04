@@ -13,7 +13,12 @@ dependencies {
 
     compile project(':Commons')
     compile project(':Mmocore')
+
     compile fileTree(dir: 'lib', include: '*.jar')
+
+    // runtime c3p0-0.9.2-pre1.jar
+    // runtime mchange-commons-0.2.jar
+    // runtime mysql-connector-java-5.1.18-bin.jar
 }
 
 
@@ -23,6 +28,11 @@ def generalManifest = manifest {
 }
 
 jar {
+    baseName 'l2j-loginserver'
+
+    exclude('config/**')
+    exclude('*.cfg')
+
     manifest {
         from(generalManifest)
         attributes('Main-Class': 'com.l2jbr.loginserver.L2LoginServer')
@@ -34,9 +44,10 @@ task zip(type: Zip, group: "Archive", description: "Zip Loginserver") {
         from([jar, configurations.compile])
     }
 
-    into('bin') {
-        from('bin')
-    }
+    from('bin')
+    from(sourceSets.main.resources)
+
+    destinationDir project.buildDir
 }
 
 build.finalizedBy(zip)
