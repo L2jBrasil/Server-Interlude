@@ -5,7 +5,6 @@ plugins {
 }
 
 dependencies {
-    compile 'javolution:javolution:5.5.1'
     compile 'com.mchange:c3p0:0.9.5.2'
 }
 
