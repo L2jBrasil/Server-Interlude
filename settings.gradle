@@ -1,0 +1,6 @@
+include 'Commons'
+include 'Datapack'
+include 'Gameserver'
+include 'Loginserver'
+include 'Mmocore'
+include 'Tools'

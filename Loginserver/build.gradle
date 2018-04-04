@@ -1,17 +1,42 @@
-apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'eclipse'
+plugins {
+    id "java"
+    id "idea"
+    id "eclipse"
+}
 
-sourceCompatibility = JavaVersion.VERSION_1_8
 
-repositories {
-    mavenCentral()
+configurations.all {
+    transitive = false
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
 
     compile project(':Commons')
     compile project(':Mmocore')
     compile fileTree(dir: 'lib', include: '*.jar')
 }
+
+
+def generalManifest = manifest {
+    attributes('Built-By': System.getProperty('user.name'),
+            'Built-Date': new Date().format("yyyy-MM-dd HH:mm:ss"))
+}
+
+jar {
+    manifest {
+        from(generalManifest)
+        attributes('Main-Class': 'com.l2jbr.loginserver.L2LoginServer')
+    }
+}
+
+task zip(type: Zip, group: "Archive", description: "Zip Loginserver") {
+    into('lib') {
+        from([jar, configurations.compile])
+    }
+
+    into('bin') {
+        from('bin')
+    }
+}
+
+build.finalizedBy(zip)

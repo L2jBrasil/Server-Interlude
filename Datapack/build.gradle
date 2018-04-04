@@ -1,6 +1,8 @@
-apply plugin: 'base'
-apply plugin: 'idea'
-apply plugin: 'eclipse'
+plugins {
+    id "base"
+    id "idea"
+    id "eclipse"
+}
 
 task zip(type: Zip) {
     from('data') {
@@ -14,9 +16,3 @@ task zip(type: Zip) {
 
     destinationDir project.buildDir
 }
-
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.6'
-}
-

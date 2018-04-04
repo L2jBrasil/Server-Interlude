@@ -1,18 +1,55 @@
-apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'eclipse'
+plugins {
+    id "java"
+    id "idea"
+    id "eclipse"
+}
 
-sourceCompatibility = JavaVersion.VERSION_1_8
 
-repositories {
-    mavenCentral()
+configurations.all {
+    transitive = false
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-
     compile project(':Commons')
     compile project(':Mmocore')
 
     compile fileTree(dir: 'lib', include: '*.jar')
 }
+
+def generalManifest = manifest {
+    attributes('Built-By': System.getProperty('user.name'),
+            'Built-Date': new Date().format("yyyy-MM-dd HH:mm:ss"))
+}
+
+jar {
+    exclude('config/**')
+    exclude('*.cfg')
+    manifest {
+        from(generalManifest)
+        attributes('Main-Class': 'com.l2jbr.gameserver.GameServer')
+    }
+}
+
+task zip(type: Zip, group: "Archive", description: "Zip Gameserver") {
+    into('lib') {
+        from([jar, configurations.compile])
+    }
+
+    into('data') {
+        from('data')
+    }
+
+    into('bin') {
+        from('bin')
+    }
+
+    into('database/sql') {
+        from('sql')
+    }
+
+    from(sourceSets.main.resources)
+
+}
+
+build.finalizedBy(zip)
+
