@@ -13,7 +13,6 @@ dependencies {
     compile project(':Commons')
     compile project(':Mmocore')
 
-    compile 'javolution:javolution:5.5.1'
     compile 'commons-logging:commons-logging:1.2'
     compile 'bsf:bsf:2.4.0'
     compile 'org.python:jython:2.7.0'
