@@ -3,9 +3,9 @@
 # Written by Fulminus
 # # # # # # # # # # #
 import sys
-from net.sf.l2j.gameserver.ai import CtrlIntention
-from net.sf.l2j.gameserver.model.quest.jython import QuestJython as JQuest
-from net.sf.l2j.util import Rnd;
+from com.l2jbr.gameserver.ai import CtrlIntention
+from com.l2jbr.gameserver.model.quest.jython import QuestJython as JQuest
+from com.l2jbr.util import Rnd;
 
 SKILL_DELUXE_KEY = 2229
 

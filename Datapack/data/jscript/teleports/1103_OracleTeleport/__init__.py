@@ -1,10 +1,10 @@
 # Originally created by Ham Wong on 2007.03.07 #
 import sys
 
-from net.sf.l2j.gameserver.model.actor.instance import L2PcInstance
-from net.sf.l2j.gameserver.model.quest          import State
-from net.sf.l2j.gameserver.model.quest          import QuestState
-from net.sf.l2j.gameserver.model.quest.jython   import QuestJython as JQuest
+from com.l2jbr.gameserver.model.actor.instance import L2PcInstance
+from com.l2jbr.gameserver.model.quest          import State
+from com.l2jbr.gameserver.model.quest          import QuestState
+from com.l2jbr.gameserver.model.quest.jython   import QuestJython as JQuest
 qn = "1103_OracleTeleport"
 TOWN_DAWN = [31078,31079,31080,31081,31083,31084,31082,31692,31694,31997,31168]
 TOWN_DUSK = [31085,31086,31087,31088,31090,31091,31089,31693,31695,31998,31169]

@@ -1,15 +1,15 @@
 #Made by Emperorc
 import sys
-from net.sf.l2j.gameserver.model.quest import State
-from net.sf.l2j.gameserver.model.quest import QuestState
-from net.sf.l2j.gameserver.model.actor.instance import L2NpcInstance
-from net.sf.l2j.gameserver.model.quest.jython import QuestJython as JQuest
-from net.sf.l2j.gameserver.datatables import SpawnTable
-from net.sf.l2j.gameserver.serverpackets import CreatureSay
+from com.l2jbr.gameserver.model.quest import State
+from com.l2jbr.gameserver.model.quest import QuestState
+from com.l2jbr.gameserver.model.actor.instance import L2NpcInstance
+from com.l2jbr.gameserver.model.quest.jython import QuestJython as JQuest
+from com.l2jbr.gameserver.datatables import SpawnTable
+from com.l2jbr.gameserver.serverpackets import CreatureSay
 from java.util import Iterator
-from net.sf.l2j.gameserver.datatables import NpcTable
-from net.sf.l2j.gameserver.model import L2Spawn
-from net.sf.l2j.gameserver.model.actor.instance import L2MonsterInstance
+from com.l2jbr.gameserver.datatables import NpcTable
+from com.l2jbr.gameserver.model import L2Spawn
+from com.l2jbr.gameserver.model.actor.instance import L2MonsterInstance
 
 qn = "610_MagicalPowerOfWaterPart2"
 

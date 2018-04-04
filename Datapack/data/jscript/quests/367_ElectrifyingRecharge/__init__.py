@@ -1,9 +1,9 @@
 # Electrifying Recharge! - v0.1 by DrLecter
 import sys
-from net.sf.l2j.gameserver.datatables import SkillTable
-from net.sf.l2j.gameserver.model.quest import State
-from net.sf.l2j.gameserver.model.quest import QuestState
-from net.sf.l2j.gameserver.model.quest.jython import QuestJython as JQuest
+from com.l2jbr.gameserver.datatables import SkillTable
+from com.l2jbr.gameserver.model.quest import State
+from com.l2jbr.gameserver.model.quest import QuestState
+from com.l2jbr.gameserver.model.quest.jython import QuestJython as JQuest
 
 qn = "367_ElectrifyingRecharge"
 

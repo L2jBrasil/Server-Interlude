@@ -1,9 +1,9 @@
 # Created by Ham Wong on 2007.02.28
 import sys
 
-from net.sf.l2j.gameserver.model.quest        import State
-from net.sf.l2j.gameserver.model.quest        import QuestState
-from net.sf.l2j.gameserver.model.quest.jython import QuestJython as JQuest
+from com.l2jbr.gameserver.model.quest        import State
+from com.l2jbr.gameserver.model.quest        import QuestState
+from com.l2jbr.gameserver.model.quest.jython import QuestJython as JQuest
 
 qn = "2400_toivortex_exit"
 NPC=[29055]

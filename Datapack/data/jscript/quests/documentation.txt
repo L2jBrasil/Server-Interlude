@@ -4,15 +4,15 @@ the quest, following complex dialogs, attacking or killing mobs, finding quest i
 quest mobs, completing a quest, and getting rewards.
 
 In order for quest scripts to function properly, at least 3 classes must be imported from Java:
-from net.sf.l2j.gameserver.model.quest import State
-from net.sf.l2j.gameserver.model.quest import QuestState
-from net.sf.l2j.gameserver.model.quest.jython import QuestJython as JQuest
+from com.l2jbr.gameserver.model.quest import State
+from com.l2jbr.gameserver.model.quest import QuestState
+from com.l2jbr.gameserver.model.quest.jython import QuestJython as JQuest
 
 In addition, the jython library "sys" is generally imported for convinience.  More classes can
 be imported as needed, in order to access other components of the core and enhance the abilities
 of the script.
 
-Jython quest scripts essentially inherit from the Java class net.sf.l2j.gameserver.model.quest.Quest
+Jython quest scripts essentially inherit from the Java class com.l2jbr.gameserver.model.quest.Quest
 Developers who are comfortable with Java may read the source code for this class, as provided by the
 l2jserver project (www.l2jserver.com) for full details and available functions.  Alternatively, one
 may read forward in this documentation.

@@ -1,7 +1,7 @@
 # Made by Emperorc
 import sys
-from net.sf.l2j.gameserver.model.quest import State
-from net.sf.l2j.gameserver.model.quest import QuestState
+from com.l2jbr.gameserver.model.quest import State
+from com.l2jbr.gameserver.model.quest import QuestState
 from data.jscript.quests.SagasSuperclass import Quest as JQuest
 
 qn = "97_SagaOfTheShillienTemplar"

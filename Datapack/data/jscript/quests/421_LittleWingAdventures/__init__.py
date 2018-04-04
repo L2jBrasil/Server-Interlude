@@ -55,9 +55,9 @@ FAIRY_TREES = [ [27185,1,113356,93848,-2072,ftm_11,ftm_12],
 GUARDIAN = 27189
 
 import sys
-from net.sf.l2j.gameserver.model.quest import State
-from net.sf.l2j.gameserver.model.quest import QuestState
-from net.sf.l2j.gameserver.model.quest.jython import QuestJython as JQuest
+from com.l2jbr.gameserver.model.quest import State
+from com.l2jbr.gameserver.model.quest import QuestState
+from com.l2jbr.gameserver.model.quest.jython import QuestJython as JQuest
 
 def get_control_item(st) :
   item = st.getPlayer().getPet().getControlItemId()

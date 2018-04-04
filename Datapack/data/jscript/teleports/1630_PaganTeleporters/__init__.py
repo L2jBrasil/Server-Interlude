@@ -3,10 +3,10 @@
 # v1.1 Done by BiTi
 
 import sys
-from net.sf.l2j.gameserver.model.actor.instance import L2PcInstance
-from net.sf.l2j.gameserver.model.quest import State
-from net.sf.l2j.gameserver.model.quest import QuestState
-from net.sf.l2j.gameserver.model.quest.jython import QuestJython as JQuest
+from com.l2jbr.gameserver.model.actor.instance import L2PcInstance
+from com.l2jbr.gameserver.model.quest import State
+from com.l2jbr.gameserver.model.quest import QuestState
+from com.l2jbr.gameserver.model.quest.jython import QuestJython as JQuest
 qn = "1630_PaganTeleporters"
 NPCS=[32034,32036,32039,32040]
 

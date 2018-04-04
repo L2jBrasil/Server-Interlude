@@ -2,14 +2,14 @@
 # Written by Fulminus
 # # # # # # # # # # #
 import sys
-from net.sf.l2j.gameserver.ai import CtrlIntention
-from net.sf.l2j.gameserver.idfactory import IdFactory
-from net.sf.l2j.gameserver.datatables import NpcTable
-from net.sf.l2j.gameserver.model.actor.instance import L2TamedBeastInstance
-from net.sf.l2j.gameserver.model.quest.jython import QuestJython as JQuest
-from net.sf.l2j.gameserver.serverpackets import CreatureSay
-from net.sf.l2j.gameserver.serverpackets import SocialAction
-from net.sf.l2j.util import Rnd;
+from com.l2jbr.gameserver.ai import CtrlIntention
+from com.l2jbr.gameserver.idfactory import IdFactory
+from com.l2jbr.gameserver.datatables import NpcTable
+from com.l2jbr.gameserver.model.actor.instance import L2TamedBeastInstance
+from com.l2jbr.gameserver.model.quest.jython import QuestJython as JQuest
+from com.l2jbr.gameserver.serverpackets import CreatureSay
+from com.l2jbr.gameserver.serverpackets import SocialAction
+from com.l2jbr.util import Rnd;
 
 GOLDEN_SPICE = 6643
 CRYSTAL_SPICE = 6644

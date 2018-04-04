@@ -1,13 +1,13 @@
--- 
+--
 -- Table structure for table `etcitem`
--- 
+--
 
 DROP TABLE IF EXISTS `etcitem`;
 CREATE TABLE `etcitem` (
   `item_id` decimal(11,0) NOT NULL default '0',
   `name` varchar(100) default NULL,
   `crystallizable` varchar(5) default NULL,
-  `item_type` varchar(12) default NULL,
+  `item_type` varchar(15) default NULL,
   `weight` decimal(4,0) default NULL,
   `consume_type` varchar(9) default NULL,
   `material` varchar(11) default NULL,
@@ -24,7 +24,7 @@ CREATE TABLE `etcitem` (
   PRIMARY KEY  (`item_id`)
 ) ENGINE=MyISAM;
 
--- 
+--
 -- Dumping data for table `etcitem`
 -- 
 INSERT INTO `etcitem` (`item_id`,`name`,`crystallizable`,`item_type`,`weight`,`consume_type`,`material`,`crystal_type`,`duration`,`price`,`crystal_count`,`sellable`,`dropable`,`destroyable`,`tradeable`,`oldname`,`oldtype`) VALUES 

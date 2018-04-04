@@ -4,9 +4,9 @@
 
 import sys
 
-from net.sf.l2j.gameserver.model.quest        import State
-from net.sf.l2j.gameserver.model.quest        import QuestState
-from net.sf.l2j.gameserver.model.quest.jython import QuestJython as JQuest
+from com.l2jbr.gameserver.model.quest        import State
+from com.l2jbr.gameserver.model.quest        import QuestState
+from com.l2jbr.gameserver.model.quest.jython import QuestJython as JQuest
 qn = "30520_reed_occupation_change"
 WAREHOUSE_CHIEF_REED = 30520
 

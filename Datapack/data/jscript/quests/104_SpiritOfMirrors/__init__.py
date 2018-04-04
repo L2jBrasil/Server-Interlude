@@ -1,9 +1,9 @@
 # Made by Mr. Have fun! - Version 0.5 updated by Censor for www.l2jdp.com 
 import sys 
-from net.sf.l2j.gameserver.model.quest import State 
-from net.sf.l2j.gameserver.model.quest import QuestState 
-from net.sf.l2j.gameserver.model.quest.jython import QuestJython as JQuest 
-from net.sf.l2j import Config 
+from com.l2jbr.gameserver.model.quest import State
+from com.l2jbr.gameserver.model.quest import QuestState
+from com.l2jbr.gameserver.model.quest.jython import QuestJython as JQuest
+from com.l2jbr import Config
 
 qn = "104_SpiritOfMirrors" 
 

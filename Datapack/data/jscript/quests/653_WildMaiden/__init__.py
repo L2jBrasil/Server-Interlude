@@ -1,9 +1,9 @@
 # Made by DrLecter, based on a Polo script and a DoomIta contribution
 import sys
-from net.sf.l2j.gameserver.model.quest import State
-from net.sf.l2j.gameserver.model.quest import QuestState
-from net.sf.l2j.gameserver.model.quest.jython import QuestJython as JQuest
-from net.sf.l2j.gameserver.serverpackets import MagicSkillUser
+from com.l2jbr.gameserver.model.quest import State
+from com.l2jbr.gameserver.model.quest import QuestState
+from com.l2jbr.gameserver.model.quest.jython import QuestJython as JQuest
+from com.l2jbr.gameserver.serverpackets import MagicSkillUser
 
 qn = "653_WildMaiden"
 #Npc

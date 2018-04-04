@@ -1,17 +1,17 @@
 # Made by Emperorc
 import sys
-from net.sf.l2j.gameserver.model.quest.jython import QuestJython as JQuest
-from net.sf.l2j.gameserver.model.quest import State
-from net.sf.l2j.gameserver.model.quest import QuestState
-from net.sf.l2j.gameserver.serverpackets import CreatureSay
-from net.sf.l2j.gameserver.datatables import SpawnTable
-from net.sf.l2j.gameserver.model import L2Spawn
-from net.sf.l2j.gameserver.ai import CtrlIntention
-from net.sf.l2j.gameserver.ai import CtrlEvent
-from net.sf.l2j.gameserver.serverpackets import MagicSkillUser
-from net.sf.l2j.gameserver.model import L2World
+from com.l2jbr.gameserver.model.quest.jython import QuestJython as JQuest
+from com.l2jbr.gameserver.model.quest import State
+from com.l2jbr.gameserver.model.quest import QuestState
+from com.l2jbr.gameserver.serverpackets import CreatureSay
+from com.l2jbr.gameserver.datatables import SpawnTable
+from com.l2jbr.gameserver.model import L2Spawn
+from com.l2jbr.gameserver.ai import CtrlIntention
+from com.l2jbr.gameserver.ai import CtrlEvent
+from com.l2jbr.gameserver.serverpackets import MagicSkillUser
+from com.l2jbr.gameserver.model import L2World
 from java.util import Iterator
-from net.sf.l2j.util import Rnd
+from com.l2jbr.util import Rnd
 
 qn = "SagasSuperclass"
 Archon_Minions = range(21646,21652)

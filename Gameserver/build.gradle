@@ -41,10 +41,6 @@ task zip(type: Zip, group: "Archive", description: "Zip Gameserver") {
         from('data')
     }
 
-    into('database/sql') {
-        from('sql')
-    }
-
     from('bin')
     from(sourceSets.main.resources)
 

@@ -2,14 +2,14 @@
 # by Fulminus
 
 import sys
-from net.sf.l2j.gameserver.model.quest import State
-from net.sf.l2j.gameserver.model.quest import QuestState
-from net.sf.l2j.gameserver.model.quest.jython import QuestJython as JQuest
-from net.sf.l2j.gameserver.serverpackets import SocialAction
-from net.sf.l2j.gameserver.serverpackets import Earthquake
-from net.sf.l2j.gameserver.serverpackets import PlaySound
-from net.sf.l2j.gameserver.ai import CtrlIntention
-from net.sf.l2j.util import Rnd
+from com.l2jbr.gameserver.model.quest import State
+from com.l2jbr.gameserver.model.quest import QuestState
+from com.l2jbr.gameserver.model.quest.jython import QuestJython as JQuest
+from com.l2jbr.gameserver.serverpackets import SocialAction
+from com.l2jbr.gameserver.serverpackets import Earthquake
+from com.l2jbr.gameserver.serverpackets import PlaySound
+from com.l2jbr.gameserver.ai import CtrlIntention
+from com.l2jbr.util import Rnd
 from java.lang import System
 
 STONE_BAIUM = 29025
