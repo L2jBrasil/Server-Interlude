@@ -25,7 +25,7 @@
 
 package com.l2jbr.commons.lib;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 
 import java.io.File;
 import java.io.FileWriter;

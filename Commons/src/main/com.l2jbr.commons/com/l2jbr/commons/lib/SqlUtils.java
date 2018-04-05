@@ -17,7 +17,7 @@
  */
 package com.l2jbr.commons.lib;
 
-import com.l2jbr.L2DatabaseFactory;
+import com.l2jbr.commons.L2DatabaseFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
