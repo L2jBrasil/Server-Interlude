@@ -4,6 +4,16 @@ plugins {
     id "eclipse"
 }
 
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/com.l2jbr.loginserver']
+        }
+        resources {
+            srcDirs = ['src/main/resources']
+        }
+    }
+}
 
 configurations.all {
     transitive = false
