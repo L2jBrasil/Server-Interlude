@@ -1,6 +1,6 @@
 # Made by Renji v0.1
 import sys
-from com.l2jbr import Config
+from com.l2jbr.commons import Config
 from com.l2jbr.gameserver.model.quest import State
 from com.l2jbr.gameserver.model.quest import QuestState
 from com.l2jbr.gameserver.model.quest.jython import QuestJython as JQuest

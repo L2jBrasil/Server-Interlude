@@ -9,7 +9,7 @@ from com.l2jbr.gameserver.serverpackets import SocialAction
 from com.l2jbr.gameserver.serverpackets import Earthquake
 from com.l2jbr.gameserver.serverpackets import PlaySound
 from com.l2jbr.gameserver.ai import CtrlIntention
-from com.l2jbr.util import Rnd
+from com.l2jbr.commons.util import Rnd
 from java.lang import System
 
 STONE_BAIUM = 29025

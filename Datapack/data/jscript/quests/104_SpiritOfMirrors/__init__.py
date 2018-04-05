@@ -3,7 +3,7 @@ import sys
 from com.l2jbr.gameserver.model.quest import State
 from com.l2jbr.gameserver.model.quest import QuestState
 from com.l2jbr.gameserver.model.quest.jython import QuestJython as JQuest
-from com.l2jbr import Config
+from com.l2jbr.commons import Config
 
 qn = "104_SpiritOfMirrors" 
 

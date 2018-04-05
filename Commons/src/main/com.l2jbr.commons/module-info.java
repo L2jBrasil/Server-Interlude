@@ -6,7 +6,7 @@ module com.l2jbr.commons {
     requires java.naming;
     requires java.desktop;
 
-    exports  com.l2jbr.commons;
+    exports com.l2jbr.commons;
     exports com.l2jbr.commons.util;
     exports com.l2jbr.commons.xml;
     exports com.l2jbr.commons.crypt;

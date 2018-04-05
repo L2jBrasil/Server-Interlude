@@ -4,6 +4,20 @@ plugins {
     id "eclipse"
 }
 
+ext.moduleName = 'com.l2jbr.gameserver'
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/com.l2jbr.gameserver']
+        }
+        resources {
+            srcDirs = ['src/main/resources']
+        }
+    }
+}
+
+
 
 configurations.all {
     transitive = false
@@ -15,7 +29,7 @@ dependencies {
 
     compile 'commons-logging:commons-logging:1.2'
     compile 'bsf:bsf:2.4.0'
-    compile 'org.python:jython:2.7.0'
+    compile 'org.python:jython-standalone:2.7.1'
 
     runtime 'org.beanshell:bsh:2.0b5'
     runtime 'com.mchange:c3p0:0.9.5.2'

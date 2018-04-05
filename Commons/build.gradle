@@ -4,6 +4,8 @@ plugins {
     id "eclipse"
 }
 
+ext.moduleName = 'com.l2jbr.commons'
+
 sourceSets {
     main {
         java {
@@ -15,11 +17,10 @@ sourceSets {
     }
 }
 
-
 dependencies {
     compile 'com.mchange:c3p0:0.9.5.2'
 }
 
 jar {
-    baseName 'l2j-commons'
+    baseName "l2j-commons"
 }

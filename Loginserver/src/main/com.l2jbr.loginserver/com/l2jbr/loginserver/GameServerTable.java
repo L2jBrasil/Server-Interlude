@@ -90,7 +90,7 @@ public class GameServerTable {
 
     private void loadServerNames() {
         try {
-            File f = new File("config/other/servername.xml");
+            File f = new File("servername.xml");
             Document doc = XMLDocumentFactory.getInstance().loadDocument(f);
 
             Node n = doc.getFirstChild();

@@ -9,7 +9,7 @@ from com.l2jbr.gameserver.model.actor.instance import L2TamedBeastInstance
 from com.l2jbr.gameserver.model.quest.jython import QuestJython as JQuest
 from com.l2jbr.gameserver.serverpackets import CreatureSay
 from com.l2jbr.gameserver.serverpackets import SocialAction
-from com.l2jbr.util import Rnd;
+from com.l2jbr.commons.util import Rnd;
 
 GOLDEN_SPICE = 6643
 CRYSTAL_SPICE = 6644

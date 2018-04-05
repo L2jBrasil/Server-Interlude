@@ -2,7 +2,7 @@
 # this script is part of the Official L2J Datapack Project.
 # Visit http://forum.l2jdp.com for more details.
 import sys
-from com.l2jbr import Config
+from com.l2jbr.commons import Config
 from com.l2jbr.gameserver.model.quest import State
 from com.l2jbr.gameserver.model.quest import QuestState
 from com.l2jbr.gameserver.model.quest.jython import QuestJython as JQuest

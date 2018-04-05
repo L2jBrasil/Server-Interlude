@@ -1,6 +1,6 @@
 # Made by disKret
 import sys
-from com.l2jbr.util import Rnd
+from com.l2jbr.commons.util import Rnd
 from com.l2jbr.gameserver.model.quest import State
 from com.l2jbr.gameserver.model.quest import QuestState
 from com.l2jbr.gameserver.model.quest.jython import QuestJython as JQuest

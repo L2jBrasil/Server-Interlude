@@ -3,6 +3,7 @@ plugins {
     id "idea"
     id "eclipse"
 }
+ext.moduleName = 'com.l2jbr.loginserver'
 
 sourceSets {
     main {

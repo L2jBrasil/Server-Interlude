@@ -1,5 +1,5 @@
 import sys
-from com.l2jbr.util import Rnd
+from com.l2jbr.commons.util import Rnd
 from com.l2jbr.gameserver.model.quest.jython import QuestJython as JQuest
 from com.l2jbr.gameserver.serverpackets import CreatureSay
 from com.l2jbr.gameserver.serverpackets import PlaySound

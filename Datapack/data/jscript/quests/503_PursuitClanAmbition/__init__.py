@@ -2,13 +2,13 @@
 # questdevs Team
 
 import sys
-from java.util                                 import Iterator
-from com.l2jbr.util                           import Rnd
+from java.util                                import Iterator
+from com.l2jbr.commons.util                   import Rnd
 from com.l2jbr.gameserver.serverpackets       import CreatureSay
 from com.l2jbr.gameserver.model.quest         import State
 from com.l2jbr.gameserver.model.quest         import QuestState
 from com.l2jbr.gameserver.model.quest.jython  import QuestJython as JQuest
-from com.l2jbr                                import L2DatabaseFactory
+from com.l2jbr.commons                        import L2DatabaseFactory
 
 qn = "503_PursuitClanAmbition"
 qd = "Pursuit Clan Ambition"

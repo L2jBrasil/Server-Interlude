@@ -5,7 +5,7 @@
 import sys
 from com.l2jbr.gameserver.ai import CtrlIntention
 from com.l2jbr.gameserver.model.quest.jython import QuestJython as JQuest
-from com.l2jbr.util import Rnd;
+from com.l2jbr.commons.util import Rnd;
 
 SKILL_DELUXE_KEY = 2229
 
