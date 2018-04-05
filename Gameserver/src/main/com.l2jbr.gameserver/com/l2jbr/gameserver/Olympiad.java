@@ -25,6 +25,7 @@ package com.l2jbr.gameserver;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.L2DatabaseFactory;
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.datatables.HeroSkillTable;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.instancemanager.OlympiadStadiaManager;
@@ -38,7 +39,6 @@ import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.StatsSet;
-import com.l2jbr.commons.util.Rnd;
 
 import java.io.*;
 import java.sql.Connection;
@@ -59,7 +59,7 @@ public class Olympiad {
     protected static List<L2PcInstance> _nonClassBasedRegisters;
     protected static Map<Integer, List<L2PcInstance>> _classBasedRegisters;
 
-    private static final String OLYMPIAD_DATA_FILE = "config/olympiad.properties";
+    private static final String OLYMPIAD_CONFIG_FILE_PATH = "config/olympiad.properties";
     public static final String OLYMPIAD_HTML_FILE = "data/html/olympiad/";
     private static final String OLYMPIAD_LOAD_NOBLES = "SELECT * from olympiad_nobles";
     private static final String OLYMPIAD_SAVE_NOBLES = "INSERT INTO olympiad_nobles " + "values (?,?,?,?,?)";
@@ -254,7 +254,7 @@ public class Olympiad {
         _nobles = new LinkedHashMap<>();
 
         Properties OlympiadProperties = new Properties();
-        InputStream is = new FileInputStream(new File("./" + OLYMPIAD_DATA_FILE));
+        InputStream is = new FileInputStream(new File(OLYMPIAD_CONFIG_FILE_PATH));
         OlympiadProperties.load(is);
         is.close();
 
@@ -1058,7 +1058,7 @@ public class Olympiad {
         saveNobleData();
 
         Properties OlympiadProperties = new Properties();
-        FileOutputStream fos = new FileOutputStream(new File(Config.DATAPACK_ROOT, OLYMPIAD_DATA_FILE));
+        FileOutputStream fos = new FileOutputStream(new File(OLYMPIAD_CONFIG_FILE_PATH));
 
         OlympiadProperties.setProperty("CurrentCycle", String.valueOf(_currentCycle));
         OlympiadProperties.setProperty("Period", String.valueOf(_period));
