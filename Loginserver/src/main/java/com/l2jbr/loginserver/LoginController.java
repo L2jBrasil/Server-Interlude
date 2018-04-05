@@ -27,8 +27,6 @@ import com.l2jbr.loginserver.crypt.ScrambledKeyPair;
 import com.l2jbr.loginserver.gameserverpackets.ServerStatus;
 import com.l2jbr.loginserver.serverpackets.LoginFail.LoginFailReason;
 import com.l2jbr.util.Rnd;
-import javolution.util.FastCollection.Record;
-import javolution.util.FastSet;
 
 import javax.crypto.Cipher;
 import java.net.InetAddress;
@@ -41,9 +39,7 @@ import java.security.spec.RSAKeyGenParameterSpec;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Logger;
 
 /**
@@ -64,7 +60,7 @@ public class LoginController {
     /**
      * Clients that are on the LS but arent assocated with a account yet
      */
-    protected FastSet<L2LoginClient> _clients = new FastSet<>();
+    protected Set<L2LoginClient> _clients = new LinkedHashSet<>();
 
     /**
      * Authed Clients on LoginServer
@@ -610,8 +606,7 @@ public class LoginController {
         public void run() {
             for (; ; ) {
                 synchronized (_clients) {
-                    for (Record e = _clients.head(), end = _clients.tail(); (e = e.getNext()) != end; ) {
-                        L2LoginClient client = _clients.valueOf(e);
+                    for (L2LoginClient client  : _clients ) {
                         if ((client.getConnectionStartTime() + LOGIN_TIMEOUT) >= System.currentTimeMillis()) {
                             client.close(LoginFailReason.REASON_ACCESS_FAILED);
                         }

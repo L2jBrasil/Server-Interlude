@@ -20,15 +20,12 @@ package com.l2jbr.loginserver;
 import com.l2jbr.L2DatabaseFactory;
 import com.l2jbr.loginserver.gameserverpackets.ServerStatus;
 import com.l2jbr.util.Rnd;
-import javolution.io.UTF8StreamReader;
-import javolution.xml.stream.XMLStreamConstants;
-import javolution.xml.stream.XMLStreamException;
-import javolution.xml.stream.XMLStreamReaderImpl;
+import com.l2jbr.xml.XMLDocumentFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.File;
 import java.math.BigInteger;
 import java.security.*;
 import java.security.spec.RSAKeyGenParameterSpec;
@@ -92,27 +89,25 @@ public class GameServerTable {
     }
 
     private void loadServerNames() {
-        try (InputStream in = new FileInputStream("servername.xml")) {
-            XMLStreamReaderImpl xpp = new XMLStreamReaderImpl();
-            try (UTF8StreamReader utf8 = new UTF8StreamReader()) {
-                xpp.setInput(utf8.setInput(in));
-                for (int e = xpp.getEventType(); e != XMLStreamConstants.END_DOCUMENT; e = xpp.next()) {
-                    if (e == XMLStreamConstants.START_ELEMENT) {
-                        if (xpp.getLocalName().toString().equals("server")) {
-                            Integer id = new Integer(xpp.getAttributeValue(null, "id").toString());
-                            String name = xpp.getAttributeValue(null, "name").toString();
-                            _serverNames.put(id, name);
-                        }
-                    }
+        try {
+            File f = new File("config/other/servername.xml");
+            Document doc = XMLDocumentFactory.getInstance().loadDocument(f);
+
+            Node n = doc.getFirstChild();
+            for (Node d = n.getFirstChild(); d != null; d = d.getNextSibling()) {
+                if (d.getNodeName().equalsIgnoreCase("server")) {
+                    NamedNodeMap attrs = d.getAttributes();
+
+                    int id = Integer.parseInt(attrs.getNamedItem("id").getNodeValue());
+                    String name = attrs.getNamedItem("name").getNodeValue();
+
+                    _serverNames.put(id, name);
                 }
             }
-        } catch (FileNotFoundException e) {
-            _log.warning("servername.xml could not be loaded: file not found");
-        } catch (XMLStreamException xppe) {
-            xppe.printStackTrace();
-        } catch (IOException e1) {
-            e1.printStackTrace();
+        } catch (Exception e) {
+            _log.warning("GameServerTable: servername.xml could not be loaded.");
         }
+
     }
 
     private void loadRegisteredGameServers() throws SQLException {
