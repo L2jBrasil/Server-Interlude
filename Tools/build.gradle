@@ -11,7 +11,6 @@ dependencies {
 
     runtime project(':Mmocore')
 
-    runtime 'javolution:javolution:5.5.1'
     runtime 'com.mchange:c3p0:0.9.5.2'
     runtime 'com.mchange:mchange-commons-java:0.2.15'
     runtime 'mysql:mysql-connector-java:8.0.9-rc'
@@ -29,7 +28,7 @@ jar {
 
 task zip(type: Zip, group: "Archive", description: "Zip Gameserver") {
     into('lib') {
-        from([jar, configurations.compile])
+        from([jar, configurations.runtime])
     }
 
     from('bin')
