@@ -17,7 +17,8 @@
  */
 package com.l2jbr.gameserver.model;
 
-import javolution.util.FastList;
+
+import java.util.List;
 
 /**
  * @author -Nemesiss-
@@ -27,7 +28,7 @@ public class L2ExtractableItem
 	private final int _itemId;
 	private final L2ExtractableProductItem[] _products;
 	
-	public L2ExtractableItem(int itemid, FastList<L2ExtractableProductItem> products)
+	public L2ExtractableItem(int itemid, List<L2ExtractableProductItem> products)
 	{
 		_itemId = itemid;
 		_products = new L2ExtractableProductItem[products.size()];

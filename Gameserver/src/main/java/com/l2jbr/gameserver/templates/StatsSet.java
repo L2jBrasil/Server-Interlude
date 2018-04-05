@@ -18,9 +18,9 @@
  */
 package com.l2jbr.gameserver.templates;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
-import javolution.util.FastMap;
 
 /**
  * @author mkizub <BR>
@@ -30,7 +30,7 @@ import javolution.util.FastMap;
 public final class StatsSet
 {
 	
-	private final Map<String, Object> _set = new FastMap<>();
+	private final Map<String, Object> _set = new LinkedHashMap<>();
 	
 	/**
 	 * Returns the set of values

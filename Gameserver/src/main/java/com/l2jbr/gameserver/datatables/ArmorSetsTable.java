@@ -25,11 +25,12 @@ package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.L2ArmorSet;
-import javolution.util.FastMap;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 /**
@@ -40,7 +41,7 @@ public class ArmorSetsTable
 	private static Logger _log = Logger.getLogger(ArmorSetsTable.class.getName());
 	private static ArmorSetsTable _instance;
 	
-	private final FastMap<Integer, L2ArmorSet> _armorSets;
+	private final Map<Integer, L2ArmorSet> _armorSets;
 	
 	public static ArmorSetsTable getInstance()
 	{
@@ -53,7 +54,7 @@ public class ArmorSetsTable
 	
 	private ArmorSetsTable()
 	{
-		_armorSets = new FastMap<>();
+		_armorSets = new LinkedHashMap<>();
 		loadData();
 	}
 	

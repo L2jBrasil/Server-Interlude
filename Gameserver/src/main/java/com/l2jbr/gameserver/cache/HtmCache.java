@@ -20,12 +20,13 @@ package com.l2jbr.gameserver.cache;
 
 import com.l2jbr.Config;
 import com.l2jbr.gameserver.util.Util;
-import javolution.util.FastMap;
 
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 /**
@@ -36,7 +37,7 @@ public class HtmCache
 	private static Logger _log = Logger.getLogger(HtmCache.class.getName());
 	private static HtmCache _instance;
 	
-	private final FastMap<Integer, String> _cache;
+	private final Map<Integer, String> _cache;
 	
 	private int _loadedFiles;
 	private long _bytesBuffLen;
@@ -53,7 +54,7 @@ public class HtmCache
 	
 	public HtmCache()
 	{
-		_cache = new FastMap<>();
+		_cache = new LinkedHashMap<>();
 		reload();
 	}
 	

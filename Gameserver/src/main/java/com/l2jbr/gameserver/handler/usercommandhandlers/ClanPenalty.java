@@ -19,59 +19,55 @@
 
 package com.l2jbr.gameserver.handler.usercommandhandlers;
 
-import javolution.text.TextBuilder;
 import com.l2jbr.gameserver.handler.IUserCommandHandler;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 
 /**
  * Support for clan penalty user command.
+ *
  * @author Tempy
  */
-public class ClanPenalty implements IUserCommandHandler
-{
-	private static final int[] COMMAND_IDS =
-	{
-		100
-	};
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.l2jbr.gameserver.handler.IUserCommandHandler#useUserCommand(int, com.l2jbr.gameserver.model.L2PcInstance)
-	 */
-	@Override
-	public boolean useUserCommand(int id, L2PcInstance activeChar)
-	{
-		if (id != COMMAND_IDS[0])
-		{
-			return false;
-		}
-		
-		String penaltyStr = "No current penalties in effect.";
-		
-		TextBuilder htmlContent = new TextBuilder("<html><body>");
-		htmlContent.append("<center><table width=\"270\" border=\"0\" bgcolor=\"111111\">");
-		htmlContent.append("<tr><td width=\"170\">Penalty</td>");
-		htmlContent.append("<td width=\"100\" align=\"center\">Expiration Date</td></tr>");
-		htmlContent.append("</table><table width=\"270\" border=\"0\">");
-		htmlContent.append("<tr><td>" + penaltyStr + "</td></tr>");
-		htmlContent.append("</table></center>");
-		htmlContent.append("</body></html>");
-		
-		NpcHtmlMessage penaltyHtml = new NpcHtmlMessage(0);
-		penaltyHtml.setHtml(htmlContent.toString());
-		activeChar.sendPacket(penaltyHtml);
-		
-		return true;
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.l2jbr.gameserver.handler.IUserCommandHandler#getUserCommandList()
-	 */
-	@Override
-	public int[] getUserCommandList()
-	{
-		return COMMAND_IDS;
-	}
+public class ClanPenalty implements IUserCommandHandler {
+    private static final int[] COMMAND_IDS =
+            {
+                    100
+            };
+
+    /*
+     * (non-Javadoc)
+     * @see com.l2jbr.gameserver.handler.IUserCommandHandler#useUserCommand(int, com.l2jbr.gameserver.model.L2PcInstance)
+     */
+    @Override
+    public boolean useUserCommand(int id, L2PcInstance activeChar) {
+        if (id != COMMAND_IDS[0]) {
+            return false;
+        }
+
+        String penaltyStr = "No current penalties in effect.";
+
+        StringBuilder htmlContent = new StringBuilder("<html><body>");
+        htmlContent.append("<center><table width=\"270\" border=\"0\" bgcolor=\"111111\">");
+        htmlContent.append("<tr><td width=\"170\">Penalty</td>");
+        htmlContent.append("<td width=\"100\" align=\"center\">Expiration Date</td></tr>");
+        htmlContent.append("</table><table width=\"270\" border=\"0\">");
+        htmlContent.append("<tr><td>" + penaltyStr + "</td></tr>");
+        htmlContent.append("</table></center>");
+        htmlContent.append("</body></html>");
+
+        NpcHtmlMessage penaltyHtml = new NpcHtmlMessage(0);
+        penaltyHtml.setHtml(htmlContent.toString());
+        activeChar.sendPacket(penaltyHtml);
+
+        return true;
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see com.l2jbr.gameserver.handler.IUserCommandHandler#getUserCommandList()
+     */
+    @Override
+    public int[] getUserCommandList() {
+        return COMMAND_IDS;
+    }
 }

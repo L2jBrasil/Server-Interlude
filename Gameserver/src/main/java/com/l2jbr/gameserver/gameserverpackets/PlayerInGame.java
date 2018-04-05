@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.gameserverpackets;
 
-import javolution.util.FastList;
+import java.util.List;
 
 /**
  * @author -Wooden-
@@ -32,7 +32,7 @@ public class PlayerInGame extends GameServerBasePacket
 		writeS(player);
 	}
 	
-	public PlayerInGame(FastList<String> players)
+	public PlayerInGame(List<String> players)
 	{
 		writeC(0x02);
 		writeH(players.size());

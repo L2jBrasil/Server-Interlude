@@ -17,60 +17,53 @@
  */
 package com.l2jbr.gameserver.instancemanager;
 
-import javolution.util.FastList;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.zone.type.L2ArenaZone;
 
-public class ArenaManager
-{
-	// =========================================================
-	private static ArenaManager _instance;
-	
-	public static final ArenaManager getInstance()
-	{
-		if (_instance == null)
-		{
-			System.out.println("Initializing ArenaManager");
-			_instance = new ArenaManager();
-		}
-		return _instance;
-	}
-	
-	// =========================================================
-	
-	// =========================================================
-	// Data Field
-	private FastList<L2ArenaZone> _arenas;
-	
-	// =========================================================
-	// Constructor
-	public ArenaManager()
-	{
-	}
-	
-	// =========================================================
-	// Property - Public
-	
-	public void addArena(L2ArenaZone arena)
-	{
-		if (_arenas == null)
-		{
-			_arenas = new FastList<>();
-		}
-		
-		_arenas.add(arena);
-	}
-	
-	public final L2ArenaZone getArena(L2Character character)
-	{
-		for (L2ArenaZone temp : _arenas)
-		{
-			if (temp.isCharacterInZone(character))
-			{
-				return temp;
-			}
-		}
-		
-		return null;
-	}
+import java.util.LinkedList;
+import java.util.List;
+
+public class ArenaManager {
+    // =========================================================
+    private static ArenaManager _instance;
+
+    public static final ArenaManager getInstance() {
+        if (_instance == null) {
+            System.out.println("Initializing ArenaManager");
+            _instance = new ArenaManager();
+        }
+        return _instance;
+    }
+
+    // =========================================================
+
+    // =========================================================
+    // Data Field
+    private List<L2ArenaZone> _arenas;
+
+    // =========================================================
+    // Constructor
+    public ArenaManager() {
+    }
+
+    // =========================================================
+    // Property - Public
+
+    public void addArena(L2ArenaZone arena) {
+        if (_arenas == null) {
+            _arenas = new LinkedList<>();
+        }
+
+        _arenas.add(arena);
+    }
+
+    public final L2ArenaZone getArena(L2Character character) {
+        for (L2ArenaZone temp : _arenas) {
+            if (temp.isCharacterInZone(character)) {
+                return temp;
+            }
+        }
+
+        return null;
+    }
 }

@@ -17,9 +17,6 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
-import java.util.List;
-
-import javolution.util.FastList;
 import com.l2jbr.gameserver.instancemanager.CursedWeaponsManager;
 import com.l2jbr.gameserver.model.CursedWeapon;
 import com.l2jbr.gameserver.model.L2Character;
@@ -27,55 +24,50 @@ import com.l2jbr.gameserver.serverpackets.ExCursedWeaponLocation;
 import com.l2jbr.gameserver.serverpackets.ExCursedWeaponLocation.CursedWeaponInfo;
 import com.l2jbr.util.Point3D;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Format: (ch)
+ *
  * @author -Wooden-
  */
-public final class RequestCursedWeaponLocation extends L2GameClientPacket
-{
-	private static final String _C__D0_23_REQUESTCURSEDWEAPONLOCATION = "[C] D0:23 RequestCursedWeaponLocation";
-	
-	@Override
-	protected void readImpl()
-	{
-		// nothing to read it's just a trigger
-	}
-	
-	@Override
-	protected void runImpl()
-	{
-		L2Character activeChar = getClient().getActiveChar();
-		if (activeChar == null)
-		{
-			return;
-		}
-		
-		List<CursedWeaponInfo> list = new FastList<>();
-		for (CursedWeapon cw : CursedWeaponsManager.getInstance().getCursedWeapons())
-		{
-			if (!cw.isActive())
-			{
-				continue;
-			}
-			
-			Point3D pos = cw.getWorldPosition();
-			
-			if (pos != null)
-			{
-				list.add(new CursedWeaponInfo(pos, cw.getItemId(), cw.isActivated() ? 1 : 0));
-			}
-		}
-		
-		// send the ExCursedWeaponLocation
-		if (!list.isEmpty())
-		{
-			activeChar.sendPacket(new ExCursedWeaponLocation(list));
-		}
-	}
-	
-	@Override
-	public String getType()
-	{
-		return _C__D0_23_REQUESTCURSEDWEAPONLOCATION;
-	}
+public final class RequestCursedWeaponLocation extends L2GameClientPacket {
+    private static final String _C__D0_23_REQUESTCURSEDWEAPONLOCATION = "[C] D0:23 RequestCursedWeaponLocation";
+
+    @Override
+    protected void readImpl() {
+        // nothing to read it's just a trigger
+    }
+
+    @Override
+    protected void runImpl() {
+        L2Character activeChar = getClient().getActiveChar();
+        if (activeChar == null) {
+            return;
+        }
+
+        List<CursedWeaponInfo> list = new LinkedList<>();
+        for (CursedWeapon cw : CursedWeaponsManager.getInstance().getCursedWeapons()) {
+            if (!cw.isActive()) {
+                continue;
+            }
+
+            Point3D pos = cw.getWorldPosition();
+
+            if (pos != null) {
+                list.add(new CursedWeaponInfo(pos, cw.getItemId(), cw.isActivated() ? 1 : 0));
+            }
+        }
+
+        // send the ExCursedWeaponLocation
+        if (!list.isEmpty()) {
+            activeChar.sendPacket(new ExCursedWeaponLocation(list));
+        }
+    }
+
+    @Override
+    public String getType() {
+        return _C__D0_23_REQUESTCURSEDWEAPONLOCATION;
+    }
 }

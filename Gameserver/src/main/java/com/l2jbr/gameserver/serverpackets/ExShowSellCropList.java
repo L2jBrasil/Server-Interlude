@@ -17,12 +17,14 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
-import javolution.util.FastList;
-import javolution.util.FastMap;
 import com.l2jbr.gameserver.instancemanager.CastleManorManager.CropProcure;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Manor;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * format(packet 0xFE) ch dd [ddddcdcdddc] c - id h - sub id d - manor id d - size [ d - Object id d - crop id d - seed level c d - reward 1 id c d - reward 2 id d - manor d - buy residual d - buy price d - reward ]
@@ -34,16 +36,16 @@ public class ExShowSellCropList extends L2GameServerPacket
 	private static final String _S__FE_21_EXSHOWSELLCROPLIST = "[S] FE:21 ExShowSellCropList";
 	
 	private int _manorId = 1;
-	private final FastMap<Integer, L2ItemInstance> _cropsItems;
-	private final FastMap<Integer, CropProcure> _castleCrops;
+	private final Map<Integer, L2ItemInstance> _cropsItems;
+	private final Map<Integer, CropProcure> _castleCrops;
 	
-	public ExShowSellCropList(L2PcInstance player, int manorId, FastList<CropProcure> crops)
+	public ExShowSellCropList(L2PcInstance player, int manorId, List<CropProcure> crops)
 	{
 		_manorId = manorId;
-		_castleCrops = new FastMap<>();
-		_cropsItems = new FastMap<>();
+		_castleCrops = new LinkedHashMap<>();
+		_cropsItems = new LinkedHashMap<>();
 		
-		FastList<Integer> allCrops = L2Manor.getInstance().getAllCrops();
+		List<Integer> allCrops = L2Manor.getInstance().getAllCrops();
 		for (int cropId : allCrops)
 		{
 			L2ItemInstance item = player.getInventory().getItemByItemId(cropId);

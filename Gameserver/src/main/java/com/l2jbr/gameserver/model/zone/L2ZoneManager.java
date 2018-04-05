@@ -17,8 +17,9 @@
  */
 package com.l2jbr.gameserver.model.zone;
 
-import javolution.util.FastList;
 import com.l2jbr.gameserver.model.L2Character;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * This class manages all zones for a given world region
@@ -26,14 +27,14 @@ import com.l2jbr.gameserver.model.L2Character;
  */
 public class L2ZoneManager
 {
-	private final FastList<L2ZoneType> _zones;
+	private final List<L2ZoneType> _zones;
 	
 	/**
 	 * The Constructor creates an initial zone list use registerNewZone() / unregisterZone() to change the zone list
 	 */
 	public L2ZoneManager()
 	{
-		_zones = new FastList<>();
+		_zones = new LinkedList<>();
 	}
 	
 	/**

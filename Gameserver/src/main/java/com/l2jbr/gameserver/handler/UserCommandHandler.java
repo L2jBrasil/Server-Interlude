@@ -19,64 +19,55 @@
 package com.l2jbr.gameserver.handler;
 
 import com.l2jbr.Config;
-import javolution.util.FastMap;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
 /**
  * This class ...
+ *
  * @version $Revision: 1.1.2.1.2.5 $ $Date: 2005/03/27 15:30:09 $
  */
-public class UserCommandHandler
-{
-	private static Logger _log = Logger.getLogger(UserCommandHandler.class.getName());
-	
-	private static UserCommandHandler _instance;
-	
-	private final Map<Integer, IUserCommandHandler> _datatable;
-	
-	public static UserCommandHandler getInstance()
-	{
-		if (_instance == null)
-		{
-			_instance = new UserCommandHandler();
-		}
-		return _instance;
-	}
-	
-	private UserCommandHandler()
-	{
-		_datatable = new FastMap<>();
-	}
-	
-	public void registerUserCommandHandler(IUserCommandHandler handler)
-	{
-		int[] ids = handler.getUserCommandList();
-		for (int id : ids)
-		{
-			if (Config.DEBUG)
-			{
-				_log.fine("Adding handler for user command " + id);
-			}
-			_datatable.put(new Integer(id), handler);
-		}
-	}
-	
-	public IUserCommandHandler getUserCommandHandler(int userCommand)
-	{
-		if (Config.DEBUG)
-		{
-			_log.fine("getting handler for user command: " + userCommand);
-		}
-		return _datatable.get(new Integer(userCommand));
-	}
-	
-	/**
-	 * @return
-	 */
-	public int size()
-	{
-		return _datatable.size();
-	}
+public class UserCommandHandler {
+    private static Logger _log = Logger.getLogger(UserCommandHandler.class.getName());
+
+    private static UserCommandHandler _instance;
+
+    private final Map<Integer, IUserCommandHandler> _datatable;
+
+    public static UserCommandHandler getInstance() {
+        if (_instance == null) {
+            _instance = new UserCommandHandler();
+        }
+        return _instance;
+    }
+
+    private UserCommandHandler() {
+        _datatable = new LinkedHashMap<>();
+    }
+
+    public void registerUserCommandHandler(IUserCommandHandler handler) {
+        int[] ids = handler.getUserCommandList();
+        for (int id : ids) {
+            if (Config.DEBUG) {
+                _log.fine("Adding handler for user command " + id);
+            }
+            _datatable.put(new Integer(id), handler);
+        }
+    }
+
+    public IUserCommandHandler getUserCommandHandler(int userCommand) {
+        if (Config.DEBUG) {
+            _log.fine("getting handler for user command: " + userCommand);
+        }
+        return _datatable.get(new Integer(userCommand));
+    }
+
+    /**
+     * @return
+     */
+    public int size() {
+        return _datatable.size();
+    }
 }

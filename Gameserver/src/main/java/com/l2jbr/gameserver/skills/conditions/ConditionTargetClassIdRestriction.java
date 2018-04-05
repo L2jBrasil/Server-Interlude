@@ -18,27 +18,24 @@
  */
 package com.l2jbr.gameserver.skills.conditions;
 
-import javolution.util.FastList;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.skills.Env;
 
-public class ConditionTargetClassIdRestriction extends Condition
-{
-	
-	private final FastList<Integer> _classIds;
-	
-	public ConditionTargetClassIdRestriction(FastList<Integer> classId)
-	{
-		_classIds = classId;
-	}
-	
-	@Override
-	public boolean testImpl(Env env)
-	{
-		if (!(env.target instanceof L2PcInstance))
-		{
-			return true;
-		}
-		return (!_classIds.contains(((L2PcInstance) env.target).getClassId().getId()));
-	}
+import java.util.List;
+
+public class ConditionTargetClassIdRestriction extends Condition {
+
+    private final List<Integer> _classIds;
+
+    public ConditionTargetClassIdRestriction(List<Integer> classId) {
+        _classIds = classId;
+    }
+
+    @Override
+    public boolean testImpl(Env env) {
+        if (!(env.target instanceof L2PcInstance)) {
+            return true;
+        }
+        return (!_classIds.contains(((L2PcInstance) env.target).getClassId().getId()));
+    }
 }

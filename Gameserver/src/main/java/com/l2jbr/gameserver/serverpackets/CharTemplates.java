@@ -18,64 +18,60 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
-import java.util.List;
-
-import javolution.util.FastList;
 import com.l2jbr.gameserver.templates.L2PcTemplate;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * This class ...
+ *
  * @version $Revision: 1.3.2.1.2.7 $ $Date: 2005/03/27 15:29:39 $
  */
-public class CharTemplates extends L2GameServerPacket
-{
-	// dddddddddddddddddddd
-	private static final String _S__23_CHARTEMPLATES = "[S] 23 CharTemplates";
-	private final List<L2PcTemplate> _chars = new FastList<>();
-	
-	public void addChar(L2PcTemplate template)
-	{
-		_chars.add(template);
-	}
-	
-	@Override
-	protected final void writeImpl()
-	{
-		writeC(0x17);
-		writeD(_chars.size());
-		
-		for (L2PcTemplate temp : _chars)
-		{
-			writeD(temp.race.ordinal());
-			writeD(temp.classId.getId());
-			writeD(0x46);
-			writeD(temp.baseSTR);
-			writeD(0x0a);
-			writeD(0x46);
-			writeD(temp.baseDEX);
-			writeD(0x0a);
-			writeD(0x46);
-			writeD(temp.baseCON);
-			writeD(0x0a);
-			writeD(0x46);
-			writeD(temp.baseINT);
-			writeD(0x0a);
-			writeD(0x46);
-			writeD(temp.baseWIT);
-			writeD(0x0a);
-			writeD(0x46);
-			writeD(temp.baseMEN);
-			writeD(0x0a);
-		}
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.l2jbr.gameserver.serverpackets.ServerBasePacket#getType()
-	 */
-	@Override
-	public String getType()
-	{
-		return _S__23_CHARTEMPLATES;
-	}
+public class CharTemplates extends L2GameServerPacket {
+    // dddddddddddddddddddd
+    private static final String _S__23_CHARTEMPLATES = "[S] 23 CharTemplates";
+    private final List<L2PcTemplate> _chars = new LinkedList<>();
+
+    public void addChar(L2PcTemplate template) {
+        _chars.add(template);
+    }
+
+    @Override
+    protected final void writeImpl() {
+        writeC(0x17);
+        writeD(_chars.size());
+
+        for (L2PcTemplate temp : _chars) {
+            writeD(temp.race.ordinal());
+            writeD(temp.classId.getId());
+            writeD(0x46);
+            writeD(temp.baseSTR);
+            writeD(0x0a);
+            writeD(0x46);
+            writeD(temp.baseDEX);
+            writeD(0x0a);
+            writeD(0x46);
+            writeD(temp.baseCON);
+            writeD(0x0a);
+            writeD(0x46);
+            writeD(temp.baseINT);
+            writeD(0x0a);
+            writeD(0x46);
+            writeD(temp.baseWIT);
+            writeD(0x0a);
+            writeD(0x46);
+            writeD(temp.baseMEN);
+            writeD(0x0a);
+        }
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see com.l2jbr.gameserver.serverpackets.ServerBasePacket#getType()
+     */
+    @Override
+    public String getType() {
+        return _S__23_CHARTEMPLATES;
+    }
 }

@@ -38,13 +38,13 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.serverpackets.UserInfo;
 import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.templates.StatsSet;
-import javolution.util.FastMap;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -107,8 +107,8 @@ public class Hero
 	
 	private void init()
 	{
-		_heroes = new FastMap<>();
-		_completeHeroes = new FastMap<>();
+		_heroes = new LinkedHashMap<>();
+		_completeHeroes = new LinkedHashMap<>();
 		
 		PreparedStatement statement;
 		PreparedStatement statement2;
@@ -341,7 +341,7 @@ public class Hero
 			return;
 		}
 		
-		Map<Integer, StatsSet> heroes = new FastMap<>();
+		Map<Integer, StatsSet> heroes = new LinkedHashMap<>();
 		
 		for (StatsSet hero : newHeroes)
 		{

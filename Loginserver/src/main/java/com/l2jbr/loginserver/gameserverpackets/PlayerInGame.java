@@ -18,38 +18,34 @@
  */
 package com.l2jbr.loginserver.gameserverpackets;
 
-import java.util.List;
-
-import javolution.util.FastList;
 import com.l2jbr.loginserver.clientpackets.ClientBasePacket;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author -Wooden-
  */
-public class PlayerInGame extends ClientBasePacket
-{
-	private final List<String> _accounts;
-	
-	/**
-	 * @param decrypt
-	 */
-	public PlayerInGame(byte[] decrypt)
-	{
-		super(decrypt);
-		_accounts = new FastList<>();
-		int size = readH();
-		for (int i = 0; i < size; i++)
-		{
-			_accounts.add(readS());
-		}
-	}
-	
-	/**
-	 * @return Returns the accounts.
-	 */
-	public List<String> getAccounts()
-	{
-		return _accounts;
-	}
-	
+public class PlayerInGame extends ClientBasePacket {
+    private final List<String> _accounts;
+
+    /**
+     * @param decrypt
+     */
+    public PlayerInGame(byte[] decrypt) {
+        super(decrypt);
+        _accounts = new LinkedList<>();
+        int size = readH();
+        for (int i = 0; i < size; i++) {
+            _accounts.add(readS());
+        }
+    }
+
+    /**
+     * @return Returns the accounts.
+     */
+    public List<String> getAccounts() {
+        return _accounts;
+    }
+
 }

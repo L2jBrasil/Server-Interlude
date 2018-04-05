@@ -18,14 +18,14 @@
  */
 package com.l2jbr.gameserver.instancemanager;
 
-import java.util.Map;
-import java.util.logging.Logger;
-
-import javolution.util.FastMap;
 import com.l2jbr.gameserver.GameTimeController;
 import com.l2jbr.gameserver.model.L2Spawn;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2RaidBossInstance;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  * This class ...
@@ -56,9 +56,9 @@ public class DayNightSpawnManager
 	
 	private DayNightSpawnManager()
 	{
-		_dayCreatures = new FastMap<>();
-		_nightCreatures = new FastMap<>();
-		_bosses = new FastMap<>();
+		_dayCreatures = new LinkedHashMap<>();
+		_nightCreatures = new LinkedHashMap<>();
+		_bosses = new LinkedHashMap<>();
 		
 		_log.info("DayNightSpawnManager: Day/Night handler initialised");
 	}

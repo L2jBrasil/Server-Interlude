@@ -2,18 +2,16 @@ package com.l2jbr.status;
 
 import com.l2jbr.Server;
 import com.l2jbr.util.Rnd;
-import javolution.text.TextBuilder;
 
 import java.io.IOException;
 import java.net.Socket;
 
-public class GameStatus extends  Status {
+public class GameStatus extends Status {
 
     public GameStatus() throws IOException {
         super(Server.MODE_GAMESERVER);
 
-        if (_statusPw == null)
-        {
+        if (_statusPw == null) {
             System.out.println("Server's Telnet Function Has No Password Defined!");
             System.out.println("A Password Has Been Automaticly Created!");
             _statusPw = rndPW(10);
@@ -22,7 +20,7 @@ public class GameStatus extends  Status {
     }
 
     @Override
-    protected void startStatusThread(Socket connection) throws  IOException {
+    protected void startStatusThread(Socket connection) throws IOException {
         new GameStatusThread(connection, _uptime, _statusPw);
     }
 
@@ -31,17 +29,14 @@ public class GameStatus extends  Status {
         // not implemented yet
     }
 
-    private String rndPW(int length)
-    {
-        TextBuilder password = new TextBuilder();
+    private String rndPW(int length) {
+        StringBuilder password = new StringBuilder();
         String lowerChar = "qwertyuiopasdfghjklzxcvbnm";
         String upperChar = "QWERTYUIOPASDFGHJKLZXCVBNM";
         String digits = "1234567890";
-        for (int i = 0; i < length; i++)
-        {
+        for (int i = 0; i < length; i++) {
             int charSet = Rnd.nextInt(3);
-            switch (charSet)
-            {
+            switch (charSet) {
                 case 0:
                     password.append(lowerChar.charAt(Rnd.nextInt(lowerChar.length() - 1)));
                     break;
