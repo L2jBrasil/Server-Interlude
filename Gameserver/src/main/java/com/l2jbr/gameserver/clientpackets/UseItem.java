@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.handler.IItemHandler;
 import com.l2jbr.gameserver.handler.ItemHandler;
 import com.l2jbr.gameserver.model.Inventory;

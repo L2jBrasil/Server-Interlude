@@ -19,7 +19,7 @@
 package com.l2jbr.gameserver.skills.conditions;
 
 import com.l2jbr.gameserver.skills.Env;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 
 /**
  * @author Advi

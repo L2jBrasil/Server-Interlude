@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.handler.itemhandlers;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.GameTimeController;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.ai.CtrlIntention;

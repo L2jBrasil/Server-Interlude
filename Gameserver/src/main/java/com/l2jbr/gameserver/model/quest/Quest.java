@@ -18,8 +18,8 @@
  */
 package com.l2jbr.gameserver.model.quest;
 
-import com.l2jbr.Config;
-import com.l2jbr.L2DatabaseFactory;
+import com.l2jbr.commons.Config;
+import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.cache.HtmCache;
 import com.l2jbr.gameserver.datatables.NpcTable;
@@ -31,7 +31,7 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

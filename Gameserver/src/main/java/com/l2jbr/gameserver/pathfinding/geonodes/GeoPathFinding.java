@@ -17,7 +17,7 @@
  */
 package com.l2jbr.gameserver.pathfinding.geonodes;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.pathfinding.AbstractNodeLoc;
 import com.l2jbr.gameserver.pathfinding.Node;
 import com.l2jbr.gameserver.pathfinding.PathFinding;

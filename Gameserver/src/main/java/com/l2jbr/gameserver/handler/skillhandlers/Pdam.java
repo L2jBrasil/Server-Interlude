@@ -18,10 +18,10 @@
  */
 package com.l2jbr.gameserver.handler.skillhandlers;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.handler.ISkillHandler;
-import com.l2jbr.lib.Log;
+import com.l2jbr.commons.lib.Log;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.L2Skill.SkillType;
 import com.l2jbr.gameserver.model.actor.instance.*;
@@ -31,7 +31,7 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.Formulas;
 import com.l2jbr.gameserver.skills.effects.EffectCharge;
 import com.l2jbr.gameserver.templates.L2WeaponType;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 
 import java.util.logging.Logger;
 

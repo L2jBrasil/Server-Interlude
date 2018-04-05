@@ -28,7 +28,7 @@
 package com.l2jbr.gameserver;
 
 import com.l2jbr.gameserver.model.L2Territory;
-import com.l2jbr.lib.SqlUtils;
+import com.l2jbr.commons.lib.SqlUtils;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

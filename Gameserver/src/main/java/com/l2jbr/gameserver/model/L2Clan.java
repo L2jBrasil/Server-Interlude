@@ -18,8 +18,8 @@
  */
 package com.l2jbr.gameserver.model;
 
-import com.l2jbr.Config;
-import com.l2jbr.L2DatabaseFactory;
+import com.l2jbr.commons.Config;
+import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.communitybbs.BB.Forum;
 import com.l2jbr.gameserver.communitybbs.Manager.ForumsBBSManager;
 import com.l2jbr.gameserver.datatables.ClanTable;

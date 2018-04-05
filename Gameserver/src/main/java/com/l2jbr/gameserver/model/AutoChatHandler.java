@@ -18,15 +18,15 @@
  */
 package com.l2jbr.gameserver.model;
 
-import com.l2jbr.Config;
-import com.l2jbr.L2DatabaseFactory;
+import com.l2jbr.commons.Config;
+import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.SevenSigns;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2SiegeGuardInstance;
 import com.l2jbr.gameserver.serverpackets.CreatureSay;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

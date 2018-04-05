@@ -17,7 +17,7 @@
  */
 package com.l2jbr.gameserver.instancemanager;
 
-import com.l2jbr.L2DatabaseFactory;
+import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.datatables.NpcTable;
 import com.l2jbr.gameserver.model.L2Spawn;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;

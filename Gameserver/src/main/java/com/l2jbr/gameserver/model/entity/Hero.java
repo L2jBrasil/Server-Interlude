@@ -23,8 +23,8 @@
 
 package com.l2jbr.gameserver.model.entity;
 
-import com.l2jbr.Config;
-import com.l2jbr.L2DatabaseFactory;
+import com.l2jbr.commons.Config;
+import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.Olympiad;
 import com.l2jbr.gameserver.datatables.ClanTable;
 import com.l2jbr.gameserver.model.L2Clan;

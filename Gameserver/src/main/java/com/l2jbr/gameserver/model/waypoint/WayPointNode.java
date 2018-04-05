@@ -14,7 +14,7 @@
  */
 package com.l2jbr.gameserver.model.waypoint;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Object;

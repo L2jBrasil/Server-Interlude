@@ -1,4 +1,4 @@
-package com.l2jbr.xml;
+package com.l2jbr.commons.xml;
 
 import org.w3c.dom.Document;
 

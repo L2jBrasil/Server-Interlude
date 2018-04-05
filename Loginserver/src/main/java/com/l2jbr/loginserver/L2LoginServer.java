@@ -17,13 +17,13 @@
  */
 package com.l2jbr.loginserver;
 
-import com.l2jbr.Config;
-import com.l2jbr.L2DatabaseFactory;
-import com.l2jbr.Server;
+import com.l2jbr.commons.Config;
+import com.l2jbr.commons.L2DatabaseFactory;
+import com.l2jbr.commons.Server;
 import com.l2jbr.loginserver.status.LoginStatus;
 import com.l2jbr.mmocore.SelectorConfig;
 import com.l2jbr.mmocore.SelectorThread;
-import com.l2jbr.status.Status;
+import com.l2jbr.commons.status.Status;
 
 import java.io.*;
 import java.net.InetAddress;

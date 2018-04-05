@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.model.L2Macro;
 import com.l2jbr.gameserver.model.L2Macro.L2MacroCmd;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;

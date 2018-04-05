@@ -24,7 +24,7 @@ import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Effect;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.skills.Env;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 
 import java.util.LinkedList;
 import java.util.List;

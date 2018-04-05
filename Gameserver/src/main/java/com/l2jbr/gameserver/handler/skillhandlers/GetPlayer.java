@@ -25,7 +25,7 @@ import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.L2Skill.SkillType;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.ValidateLocation;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 
 /*
  * Mobs can teleport players to them

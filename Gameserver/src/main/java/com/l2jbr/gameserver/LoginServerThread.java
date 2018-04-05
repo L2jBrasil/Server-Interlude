@@ -18,8 +18,8 @@
  */
 package com.l2jbr.gameserver;
 
-import com.l2jbr.Config;
-import com.l2jbr.crypt.NewCrypt;
+import com.l2jbr.commons.Config;
+import com.l2jbr.commons.crypt.NewCrypt;
 import com.l2jbr.gameserver.gameserverpackets.*;
 import com.l2jbr.gameserver.loginserverpackets.*;
 import com.l2jbr.gameserver.model.L2World;
@@ -28,8 +28,8 @@ import com.l2jbr.gameserver.network.L2GameClient;
 import com.l2jbr.gameserver.network.L2GameClient.GameClientState;
 import com.l2jbr.gameserver.serverpackets.AuthLoginFail;
 import com.l2jbr.gameserver.serverpackets.CharSelectInfo;
-import com.l2jbr.util.Rnd;
-import com.l2jbr.util.Util;
+import com.l2jbr.commons.util.Rnd;
+import com.l2jbr.commons.util.Util;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;

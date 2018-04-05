@@ -18,8 +18,8 @@
  */
 package com.l2jbr.gameserver.instancemanager;
 
-import com.l2jbr.Config;
-import com.l2jbr.L2DatabaseFactory;
+import com.l2jbr.commons.Config;
+import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.datatables.NpcTable;
 import com.l2jbr.gameserver.datatables.SpawnTable;
 import com.l2jbr.gameserver.model.L2ItemInstance;
@@ -30,7 +30,7 @@ import com.l2jbr.gameserver.model.entity.DimensionalRift;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.util.Util;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.w3c.dom.Document;

@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.datatables.SkillTreeTable;
 import com.l2jbr.gameserver.model.L2EnchantSkillLearn;
@@ -34,7 +34,7 @@ import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.util.IllegalPlayerAction;
 import com.l2jbr.gameserver.util.Util;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 
 import java.util.logging.Logger;
 

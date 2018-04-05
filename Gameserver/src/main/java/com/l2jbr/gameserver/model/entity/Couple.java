@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.model.entity;
 
-import com.l2jbr.L2DatabaseFactory;
+import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import org.apache.commons.logging.Log;

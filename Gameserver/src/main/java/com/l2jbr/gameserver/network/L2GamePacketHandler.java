@@ -17,12 +17,12 @@
  */
 package com.l2jbr.gameserver.network;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.clientpackets.*;
 import com.l2jbr.gameserver.network.L2GameClient.GameClientState;
 import com.l2jbr.mmocore.*;
-import com.l2jbr.util.Util;
+import com.l2jbr.commons.util.Util;
 
 import java.nio.ByteBuffer;
 import java.util.concurrent.RejectedExecutionException;

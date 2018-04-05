@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.TaskPriority;
 import com.l2jbr.gameserver.ai.CtrlIntention;
 import com.l2jbr.gameserver.model.L2CharPosition;

@@ -18,7 +18,7 @@
  */
 package com.l2jbr.loginserver.clientpackets;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.loginserver.LoginController;
 import com.l2jbr.loginserver.SessionKey;
 import com.l2jbr.loginserver.serverpackets.LoginFail.LoginFailReason;

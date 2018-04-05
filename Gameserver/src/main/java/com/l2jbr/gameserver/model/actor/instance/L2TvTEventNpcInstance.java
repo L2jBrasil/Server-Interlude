@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.model.actor.instance;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.cache.HtmCache;
 import com.l2jbr.gameserver.model.entity.TvTEvent;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;

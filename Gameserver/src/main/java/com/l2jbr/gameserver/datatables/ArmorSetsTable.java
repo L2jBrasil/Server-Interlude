@@ -23,7 +23,7 @@
 
 package com.l2jbr.gameserver.datatables;
 
-import com.l2jbr.L2DatabaseFactory;
+import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.L2ArmorSet;
 
 import java.sql.Connection;

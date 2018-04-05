@@ -17,7 +17,7 @@
  */
 package com.l2jbr.gameserver;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.datatables.DoorTable;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.L2World;

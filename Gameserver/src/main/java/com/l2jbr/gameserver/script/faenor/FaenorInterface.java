@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.script.faenor;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.Announcements;
 import com.l2jbr.gameserver.datatables.EventDroplist;
 import com.l2jbr.gameserver.model.L2DropCategory;

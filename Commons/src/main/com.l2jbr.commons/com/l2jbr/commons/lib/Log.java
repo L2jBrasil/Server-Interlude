@@ -23,7 +23,7 @@
  version 0.1, 2005-06-06
  */
 
-package com.l2jbr.lib;
+package com.l2jbr.commons.lib;
 
 import com.l2jbr.Config;
 

@@ -26,7 +26,7 @@ import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 
 /**
  * @author Drunkard Zabb0x Lets drink2code!

@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.handler.admincommandhandlers;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.datatables.SkillTreeTable;
 import com.l2jbr.gameserver.handler.IAdminCommandHandler;

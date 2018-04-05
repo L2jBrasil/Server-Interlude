@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.skills;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.SevenSigns;
 import com.l2jbr.gameserver.SevenSignsFestival;
 import com.l2jbr.gameserver.instancemanager.ClanHallManager;
@@ -39,7 +39,7 @@ import com.l2jbr.gameserver.skills.conditions.ConditionUsingItemType;
 import com.l2jbr.gameserver.skills.funcs.Func;
 import com.l2jbr.gameserver.templates.*;
 import com.l2jbr.gameserver.util.Util;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 
 import java.util.logging.Logger;
 

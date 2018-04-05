@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.model;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.ItemsAutoDestroy;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.ai.*;
@@ -39,7 +39,7 @@ import com.l2jbr.gameserver.skills.Stats;
 import com.l2jbr.gameserver.templates.L2EtcItemType;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.util.Util;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;

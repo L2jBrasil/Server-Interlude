@@ -17,8 +17,8 @@
  */
 package com.l2jbr.gameserver.datatables;
 
-import com.l2jbr.Config;
-import com.l2jbr.L2DatabaseFactory;
+import com.l2jbr.commons.Config;
+import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.instancemanager.ArenaManager;
 import com.l2jbr.gameserver.instancemanager.FishingZoneManager;
 import com.l2jbr.gameserver.instancemanager.OlympiadStadiaManager;

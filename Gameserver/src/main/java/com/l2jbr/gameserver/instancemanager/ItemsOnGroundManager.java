@@ -17,8 +17,8 @@
  */
 package com.l2jbr.gameserver.instancemanager;
 
-import com.l2jbr.Config;
-import com.l2jbr.L2DatabaseFactory;
+import com.l2jbr.commons.Config;
+import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.ItemsAutoDestroy;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.model.L2ItemInstance;

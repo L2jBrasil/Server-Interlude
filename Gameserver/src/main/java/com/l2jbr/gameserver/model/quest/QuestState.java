@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.model.quest;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.GameTimeController;
 import com.l2jbr.gameserver.instancemanager.QuestManager;
 import com.l2jbr.gameserver.model.L2Character;
@@ -29,7 +29,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.skills.Stats;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 
 import java.util.LinkedHashMap;
 import java.util.List;

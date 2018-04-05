@@ -18,13 +18,13 @@
  */
 package com.l2jbr.gameserver.ai;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.GameTimeController;
 import com.l2jbr.gameserver.GeoData;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.*;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 
 import java.util.concurrent.Future;
 

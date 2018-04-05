@@ -33,7 +33,7 @@ import com.l2jbr.gameserver.skills.Env;
 import com.l2jbr.gameserver.skills.Formulas;
 import com.l2jbr.gameserver.skills.funcs.Func;
 import com.l2jbr.gameserver.templates.L2WeaponType;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 
 /**
  * @author Steuf

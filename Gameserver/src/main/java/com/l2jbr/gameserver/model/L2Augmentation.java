@@ -18,7 +18,7 @@
 
 package com.l2jbr.gameserver.model;
 
-import com.l2jbr.L2DatabaseFactory;
+import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.datatables.AugmentationData;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;

@@ -18,13 +18,13 @@
  */
 package com.l2jbr.loginserver;
 
-import com.l2jbr.Config;
-import com.l2jbr.crypt.NewCrypt;
+import com.l2jbr.commons.Config;
+import com.l2jbr.commons.crypt.NewCrypt;
 import com.l2jbr.loginserver.GameServerTable.GameServerInfo;
 import com.l2jbr.loginserver.gameserverpackets.*;
 import com.l2jbr.loginserver.loginserverpackets.*;
 import com.l2jbr.loginserver.serverpackets.ServerBasePacket;
-import com.l2jbr.util.Util;
+import com.l2jbr.commons.util.Util;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;

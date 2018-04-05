@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.model.actor.instance;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.ai.CtrlIntention;
 import com.l2jbr.gameserver.ai.L2AttackableAI;
@@ -29,7 +29,7 @@ import com.l2jbr.gameserver.serverpackets.MyTargetSelected;
 import com.l2jbr.gameserver.serverpackets.SocialAction;
 import com.l2jbr.gameserver.serverpackets.ValidateLocation;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 
 import java.util.logging.Logger;
 

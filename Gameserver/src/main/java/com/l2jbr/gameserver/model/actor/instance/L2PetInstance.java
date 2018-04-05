@@ -23,8 +23,8 @@ import java.sql.ResultSet;
 import java.util.concurrent.Future;
 import java.util.logging.Logger;
 
-import com.l2jbr.Config;
-import com.l2jbr.L2DatabaseFactory;
+import com.l2jbr.commons.Config;
+import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.ai.CtrlIntention;
 import com.l2jbr.gameserver.idfactory.IdFactory;

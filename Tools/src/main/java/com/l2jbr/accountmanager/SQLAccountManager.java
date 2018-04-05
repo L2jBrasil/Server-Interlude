@@ -18,10 +18,10 @@
  */
 package com.l2jbr.accountmanager;
 
-import com.l2jbr.Base64;
-import com.l2jbr.Config;
-import com.l2jbr.L2DatabaseFactory;
-import com.l2jbr.Server;
+import com.l2jbr.commons.Base64;
+import com.l2jbr.commons.Config;
+import com.l2jbr.commons.L2DatabaseFactory;
+import com.l2jbr.commons.Server;
 
 import java.io.IOException;
 import java.io.InputStreamReader;

@@ -18,9 +18,9 @@
  */
 package com.l2jbr.gameserver;
 
-import com.l2jbr.Config;
-import com.l2jbr.L2DatabaseFactory;
-import com.l2jbr.Server;
+import com.l2jbr.commons.Config;
+import com.l2jbr.commons.L2DatabaseFactory;
+import com.l2jbr.commons.Server;
 import com.l2jbr.gameserver.cache.CrestCache;
 import com.l2jbr.gameserver.cache.HtmCache;
 import com.l2jbr.gameserver.communitybbs.Manager.ForumsBBSManager;
@@ -49,7 +49,7 @@ import com.l2jbr.gameserver.util.IPv4Filter;
 import com.l2jbr.mmocore.SelectorConfig;
 import com.l2jbr.mmocore.SelectorThread;
 import com.l2jbr.status.GameStatus;
-import com.l2jbr.status.Status;
+import com.l2jbr.commons.status.Status;
 
 import java.io.File;
 import java.io.FileInputStream;

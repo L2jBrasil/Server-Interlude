@@ -28,7 +28,7 @@ import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.PlaySound;
 import com.l2jbr.gameserver.serverpackets.SocialAction;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 
 /**
  * @author chris

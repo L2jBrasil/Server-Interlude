@@ -28,7 +28,7 @@ import com.l2jbr.gameserver.serverpackets.ExFishingHpRegen;
 import com.l2jbr.gameserver.serverpackets.ExFishingStartCombat;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 
 public class L2Fishing implements Runnable
 {

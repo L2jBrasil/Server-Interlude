@@ -18,7 +18,7 @@
  */
 package com.l2jbr.loginserver.clientpackets;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.loginserver.GameServerTable.GameServerInfo;
 import com.l2jbr.loginserver.L2LoginClient;
 import com.l2jbr.loginserver.L2LoginClient.LoginClientState;

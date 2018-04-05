@@ -17,8 +17,8 @@
  */
 package com.l2jbr.gameserver.model;
 
-import com.l2jbr.Config;
-import com.l2jbr.L2DatabaseFactory;
+import com.l2jbr.commons.Config;
+import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.instancemanager.CursedWeaponsManager;
@@ -27,7 +27,7 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.util.Point3D;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -18,8 +18,8 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
-import com.l2jbr.Config;
-import com.l2jbr.L2DatabaseFactory;
+import com.l2jbr.commons.Config;
+import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.Olympiad;
 import com.l2jbr.gameserver.SevenSignsFestival;
 import com.l2jbr.gameserver.communitybbs.Manager.RegionBBSManager;

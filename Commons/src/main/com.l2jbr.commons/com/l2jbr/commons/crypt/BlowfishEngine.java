@@ -16,7 +16,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jbr.crypt;
+package com.l2jbr.commons.crypt;
 
 import java.io.IOException;
 

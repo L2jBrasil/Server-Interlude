@@ -1,7 +1,7 @@
 package com.l2jbr.loginserver.status;
 
-import com.l2jbr.Server;
-import com.l2jbr.status.Status;
+import com.l2jbr.commons.Server;
+import com.l2jbr.commons.status.Status;
 
 import java.io.IOException;
 import java.net.Socket;

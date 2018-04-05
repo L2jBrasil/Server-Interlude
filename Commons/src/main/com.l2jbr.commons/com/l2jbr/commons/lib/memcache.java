@@ -15,7 +15,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jbr.lib;
+package com.l2jbr.commons.lib;
 
 import java.util.HashMap;
 import java.util.logging.Logger;

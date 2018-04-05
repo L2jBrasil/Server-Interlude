@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.datatables;
 
-import com.l2jbr.L2DatabaseFactory;
+import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.templates.L2HelperBuff;
 import com.l2jbr.gameserver.templates.StatsSet;
 

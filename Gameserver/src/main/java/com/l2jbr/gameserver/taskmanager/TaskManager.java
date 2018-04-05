@@ -17,7 +17,7 @@
  */
 package com.l2jbr.gameserver.taskmanager;
 
-import com.l2jbr.L2DatabaseFactory;
+import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.taskmanager.tasks.*;
 

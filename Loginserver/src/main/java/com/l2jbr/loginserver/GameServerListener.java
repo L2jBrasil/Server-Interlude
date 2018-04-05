@@ -17,7 +17,7 @@
  */
 package com.l2jbr.loginserver;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 
 import java.io.IOException;
 import java.net.Socket;

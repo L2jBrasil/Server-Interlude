@@ -17,7 +17,7 @@
  */
 package com.l2jbr.gameserver.taskmanager;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.taskmanager.TaskManager.ExecutedTask;
 
 import java.util.concurrent.ScheduledFuture;

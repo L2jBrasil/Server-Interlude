@@ -23,7 +23,7 @@ import com.l2jbr.gameserver.datatables.SpawnTable;
 import com.l2jbr.gameserver.model.actor.instance.L2ControllableMobInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 
 import java.util.LinkedList;
 import java.util.List;

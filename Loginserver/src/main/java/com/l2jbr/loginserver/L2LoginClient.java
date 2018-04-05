@@ -23,7 +23,7 @@ import java.nio.ByteBuffer;
 import java.security.interfaces.RSAPrivateKey;
 import java.util.logging.Logger;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.loginserver.crypt.LoginCrypt;
 import com.l2jbr.loginserver.crypt.ScrambledKeyPair;
 import com.l2jbr.loginserver.serverpackets.L2LoginServerPacket;
@@ -31,7 +31,7 @@ import com.l2jbr.loginserver.serverpackets.LoginFail;
 import com.l2jbr.loginserver.serverpackets.LoginFail.LoginFailReason;
 import com.l2jbr.loginserver.serverpackets.PlayFail;
 import com.l2jbr.loginserver.serverpackets.PlayFail.PlayFailReason;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 
 import com.l2jbr.mmocore.MMOClient;
 import com.l2jbr.mmocore.MMOConnection;

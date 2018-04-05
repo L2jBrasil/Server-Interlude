@@ -17,7 +17,7 @@
  */
 package com.l2jbr.gameserver.model.actor.status;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.ai.CtrlIntention;
 import com.l2jbr.gameserver.instancemanager.DuelManager;
@@ -30,7 +30,7 @@ import com.l2jbr.gameserver.model.actor.stat.CharStat;
 import com.l2jbr.gameserver.model.entity.Duel;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.skills.Formulas;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;

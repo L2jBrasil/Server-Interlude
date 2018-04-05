@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.cache;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.util.Util;
 
 import java.io.BufferedInputStream;

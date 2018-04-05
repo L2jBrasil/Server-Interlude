@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.model.ClanWarehouse;
 import com.l2jbr.gameserver.model.ItemContainer;
 import com.l2jbr.gameserver.model.L2ItemInstance;

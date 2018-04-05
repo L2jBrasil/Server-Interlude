@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.LoginServerThread;
 import com.l2jbr.gameserver.LoginServerThread.SessionKey;
 import com.l2jbr.gameserver.network.L2GameClient;

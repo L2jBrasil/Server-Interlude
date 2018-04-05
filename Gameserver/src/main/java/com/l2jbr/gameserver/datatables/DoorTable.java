@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.datatables;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.instancemanager.ClanHallManager;
 import com.l2jbr.gameserver.model.actor.instance.L2DoorInstance;

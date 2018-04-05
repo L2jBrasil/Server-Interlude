@@ -29,7 +29,7 @@ import com.l2jbr.gameserver.serverpackets.NpcInfo;
 import com.l2jbr.gameserver.serverpackets.StopMove;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.util.Point3D;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 
 import java.util.LinkedHashMap;
 import java.util.concurrent.Future;

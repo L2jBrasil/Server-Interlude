@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.model.actor.instance;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.SevenSigns;
 import com.l2jbr.gameserver.SevenSignsFestival;
 import com.l2jbr.gameserver.model.L2ItemInstance;

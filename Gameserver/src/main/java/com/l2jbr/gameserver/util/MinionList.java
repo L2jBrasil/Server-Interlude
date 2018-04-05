@@ -14,14 +14,14 @@
  */
 package com.l2jbr.gameserver.util;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.datatables.NpcTable;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.L2MinionData;
 import com.l2jbr.gameserver.model.actor.instance.L2MinionInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2MonsterInstance;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 
 import java.util.*;
 import java.util.logging.Logger;

@@ -15,9 +15,9 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jbr.status;
+package com.l2jbr.commons.status;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 
 import java.io.File;
 import java.io.FileInputStream;

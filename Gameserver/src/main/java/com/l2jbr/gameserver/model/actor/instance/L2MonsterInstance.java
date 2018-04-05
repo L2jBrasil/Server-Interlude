@@ -28,7 +28,7 @@ import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.actor.knownlist.MonsterKnownList;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.util.MinionList;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 
 /**
  * This class manages all Monsters. L2MonsterInstance :<BR>

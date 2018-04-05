@@ -18,6 +18,7 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.instancemanager.CastleManager;
 import com.l2jbr.gameserver.model.L2Attackable;
 import com.l2jbr.gameserver.model.L2Character;
@@ -37,7 +38,7 @@ public class Die extends L2GameServerPacket
 	private boolean _sweepable;
 	private int _access;
 	private com.l2jbr.gameserver.model.L2Clan _clan;
-	private static final int REQUIRED_LEVEL = com.l2jbr.Config.GM_FIXED;
+	private static final int REQUIRED_LEVEL = Config.GM_FIXED;
 	L2Character _activeChar;
 	
 	/**

@@ -17,9 +17,9 @@
  */
 package com.l2jbr.loginserver.status;
 
-import com.l2jbr.Base64;
-import com.l2jbr.Config;
-import com.l2jbr.L2DatabaseFactory;
+import com.l2jbr.commons.Base64;
+import com.l2jbr.commons.Config;
+import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.loginserver.GameServerTable;
 import com.l2jbr.loginserver.L2LoginServer;
 import com.l2jbr.loginserver.LoginController;

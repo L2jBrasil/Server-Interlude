@@ -43,7 +43,7 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.Formulas;
 import com.l2jbr.gameserver.skills.Stats;
 import com.l2jbr.gameserver.skills.funcs.Func;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 
 /**
  * This Handles Disabler skills

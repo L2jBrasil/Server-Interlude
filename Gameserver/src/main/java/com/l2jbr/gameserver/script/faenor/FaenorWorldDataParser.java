@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.script.faenor;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.script.IntList;
 import com.l2jbr.gameserver.script.Parser;
 import com.l2jbr.gameserver.script.ParserFactory;

@@ -17,7 +17,7 @@
  */
 package com.l2jbr.gameserver.model.quest.jython;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.model.quest.Quest;
 
 import org.apache.bsf.BSFException;

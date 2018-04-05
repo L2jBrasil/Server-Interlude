@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.handler.skillhandlers;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.handler.ISkillHandler;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.L2Skill.SkillType;

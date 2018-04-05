@@ -18,15 +18,15 @@
  */
 package com.l2jbr.loginserver;
 
-import com.l2jbr.Base64;
-import com.l2jbr.Config;
-import com.l2jbr.L2DatabaseFactory;
-import com.l2jbr.lib.Log;
+import com.l2jbr.commons.Base64;
+import com.l2jbr.commons.Config;
+import com.l2jbr.commons.L2DatabaseFactory;
+import com.l2jbr.commons.lib.Log;
 import com.l2jbr.loginserver.GameServerTable.GameServerInfo;
 import com.l2jbr.loginserver.crypt.ScrambledKeyPair;
 import com.l2jbr.loginserver.gameserverpackets.ServerStatus;
 import com.l2jbr.loginserver.serverpackets.LoginFail.LoginFailReason;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 
 import javax.crypto.Cipher;
 import java.net.InetAddress;

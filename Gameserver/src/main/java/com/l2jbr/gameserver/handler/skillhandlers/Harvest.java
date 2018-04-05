@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.handler.skillhandlers;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.handler.ISkillHandler;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.L2Skill.SkillType;
@@ -28,7 +28,7 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.ItemList;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 

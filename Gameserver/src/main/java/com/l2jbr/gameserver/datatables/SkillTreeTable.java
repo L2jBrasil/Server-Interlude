@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.datatables;
 
-import com.l2jbr.L2DatabaseFactory;
+import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.L2EnchantSkillLearn;
 import com.l2jbr.gameserver.model.L2PledgeSkillLearn;
 import com.l2jbr.gameserver.model.L2Skill;

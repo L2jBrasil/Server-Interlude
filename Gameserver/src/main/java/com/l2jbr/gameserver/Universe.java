@@ -17,7 +17,7 @@
  */
 package com.l2jbr.gameserver;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

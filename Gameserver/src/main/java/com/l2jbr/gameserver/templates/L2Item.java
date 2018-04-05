@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.templates;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Effect;
 import com.l2jbr.gameserver.model.L2ItemInstance;

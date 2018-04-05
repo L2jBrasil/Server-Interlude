@@ -21,7 +21,7 @@ package com.l2jbr.gameserver.communitybbs.BB;
 import java.sql.PreparedStatement;
 import java.util.logging.Logger;
 
-import com.l2jbr.L2DatabaseFactory;
+import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.communitybbs.Manager.TopicBBSManager;
 
 public class Topic

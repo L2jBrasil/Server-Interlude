@@ -17,8 +17,8 @@
  */
 package com.l2jbr.gameserver;
 
-import com.l2jbr.Config;
-import com.l2jbr.L2DatabaseFactory;
+import com.l2jbr.commons.Config;
+import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.ai.CtrlIntention;
 import com.l2jbr.gameserver.datatables.ClanTable;
 import com.l2jbr.gameserver.datatables.MapRegionTable;
@@ -37,7 +37,7 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.templates.StatsSet;
 import com.l2jbr.gameserver.util.Util;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

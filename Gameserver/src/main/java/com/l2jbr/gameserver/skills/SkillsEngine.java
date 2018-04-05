@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.skills;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.Item;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.L2Skill;

@@ -17,8 +17,8 @@
  */
 package com.l2jbr.loginserver.crypt;
 
-import com.l2jbr.crypt.NewCrypt;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.crypt.NewCrypt;
+import com.l2jbr.commons.util.Rnd;
 
 import java.io.IOException;
 

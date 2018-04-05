@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
-import com.l2jbr.L2DatabaseFactory;
+import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.CharSelectInfoPackage;
 import com.l2jbr.gameserver.model.Inventory;
 import com.l2jbr.gameserver.model.L2Clan;

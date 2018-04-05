@@ -17,7 +17,7 @@
  */
 package com.l2jbr.gameserver;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.instancemanager.CastleManager;
 import com.l2jbr.gameserver.model.ItemContainer;
 import com.l2jbr.gameserver.model.L2Clan;

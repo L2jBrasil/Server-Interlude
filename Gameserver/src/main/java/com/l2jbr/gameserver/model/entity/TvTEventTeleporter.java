@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.model.entity;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.model.L2Effect;
 import com.l2jbr.gameserver.model.L2Summon;

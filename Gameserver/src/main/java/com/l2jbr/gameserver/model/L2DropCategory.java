@@ -17,8 +17,8 @@
  */
 package com.l2jbr.gameserver.model;
 
-import com.l2jbr.Config;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.Config;
+import com.l2jbr.commons.util.Rnd;
 
 import java.util.LinkedList;
 import java.util.List;

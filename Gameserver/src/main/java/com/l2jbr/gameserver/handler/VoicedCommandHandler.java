@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.handler;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

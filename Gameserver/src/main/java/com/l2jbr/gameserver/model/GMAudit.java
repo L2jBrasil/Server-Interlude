@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.model;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

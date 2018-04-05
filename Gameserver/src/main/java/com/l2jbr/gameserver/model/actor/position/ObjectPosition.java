@@ -17,7 +17,7 @@
  */
 package com.l2jbr.gameserver.model.actor.position;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.L2World;

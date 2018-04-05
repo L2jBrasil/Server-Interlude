@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.handler.admincommandhandlers;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.LoginServerThread;
 import com.l2jbr.gameserver.gameserverpackets.ServerStatus;
 import com.l2jbr.gameserver.handler.IAdminCommandHandler;

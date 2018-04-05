@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.TaskPriority;
 import com.l2jbr.gameserver.Universe;
 import com.l2jbr.gameserver.geoeditorcon.GeoEditorListener;

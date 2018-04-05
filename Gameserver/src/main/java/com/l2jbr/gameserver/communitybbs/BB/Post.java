@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.communitybbs.BB;
 
-import com.l2jbr.L2DatabaseFactory;
+import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.communitybbs.Manager.PostBBSManager;
 
 import java.sql.PreparedStatement;

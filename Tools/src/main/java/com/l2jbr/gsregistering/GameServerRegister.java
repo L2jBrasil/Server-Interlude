@@ -18,9 +18,9 @@
  */
 package com.l2jbr.gsregistering;
 
-import com.l2jbr.Config;
-import com.l2jbr.L2DatabaseFactory;
-import com.l2jbr.Server;
+import com.l2jbr.commons.Config;
+import com.l2jbr.commons.L2DatabaseFactory;
+import com.l2jbr.commons.Server;
 import com.l2jbr.gameserver.LoginServerThread;
 import com.l2jbr.loginserver.GameServerTable;
 

@@ -17,7 +17,7 @@
  */
 package com.l2jbr.gameserver.model;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.templates.L2Item;
 

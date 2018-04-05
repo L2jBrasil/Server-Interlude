@@ -17,7 +17,7 @@
  */
 package com.l2jbr.gameserver.model.actor.knownlist;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.ai.CtrlIntention;
 import com.l2jbr.gameserver.ai.L2CharacterAI;
 import com.l2jbr.gameserver.model.L2Character;

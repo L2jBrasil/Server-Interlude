@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.network.L2GameClient;
 import com.l2jbr.mmocore.ReceivablePacket;
 

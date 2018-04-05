@@ -19,7 +19,7 @@
 package com.l2jbr.gameserver.handler.skillhandlers;
 
 import com.l2jbr.gameserver.handler.ISkillHandler;
-import com.l2jbr.lib.Log;
+import com.l2jbr.commons.lib.Log;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Effect;
 import com.l2jbr.gameserver.model.L2ItemInstance;

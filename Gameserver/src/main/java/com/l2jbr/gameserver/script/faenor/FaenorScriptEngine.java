@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.script.faenor;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.GameServer;
 import com.l2jbr.gameserver.script.*;
 import org.apache.bsf.BSFException;

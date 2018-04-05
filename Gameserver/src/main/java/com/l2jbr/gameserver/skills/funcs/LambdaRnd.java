@@ -19,7 +19,7 @@
 package com.l2jbr.gameserver.skills.funcs;
 
 import com.l2jbr.gameserver.skills.Env;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 
 /**
  * @author mkizub TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates

@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.handler.admincommandhandlers;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.GameTimeController;
 import com.l2jbr.gameserver.Shutdown;
 import com.l2jbr.gameserver.handler.IAdminCommandHandler;

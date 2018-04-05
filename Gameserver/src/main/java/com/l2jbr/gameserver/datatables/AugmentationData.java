@@ -17,12 +17,12 @@
  */
 package com.l2jbr.gameserver.datatables;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.model.L2Augmentation;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.skills.Stats;
-import com.l2jbr.util.Rnd;
+import com.l2jbr.commons.util.Rnd;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;

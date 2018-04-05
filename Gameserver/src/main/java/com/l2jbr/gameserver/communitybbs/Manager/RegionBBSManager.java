@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.communitybbs.Manager;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.GameServer;
 import com.l2jbr.gameserver.clientpackets.Say2;
 import com.l2jbr.gameserver.model.BlockList;

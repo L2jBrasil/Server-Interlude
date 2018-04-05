@@ -18,7 +18,7 @@
  */
 package com.l2jbr.loginserver.serverpackets;
 
-import com.l2jbr.Config;
+import com.l2jbr.commons.Config;
 
 import java.util.logging.Logger;
 

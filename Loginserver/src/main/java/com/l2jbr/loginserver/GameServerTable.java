@@ -17,10 +17,10 @@
  */
 package com.l2jbr.loginserver;
 
-import com.l2jbr.L2DatabaseFactory;
+import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.loginserver.gameserverpackets.ServerStatus;
-import com.l2jbr.util.Rnd;
-import com.l2jbr.xml.XMLDocumentFactory;
+import com.l2jbr.commons.util.Rnd;
+import com.l2jbr.commons.xml.XMLDocumentFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
