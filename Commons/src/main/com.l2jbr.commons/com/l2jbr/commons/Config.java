@@ -958,6 +958,7 @@ public final class Config {
      **/
     public static boolean JAIL_IS_PVP;
     public static boolean JAIL_DISABLE_CHAT;
+    public static String LOCALE;
 
     /**
      * Enumeration describing values for Allowing the use of L2Walker client
@@ -1919,6 +1920,8 @@ public final class Config {
                 if (MIN_PROTOCOL_REVISION > MAX_PROTOCOL_REVISION) {
                     throw new Error("MinProtocolRevision is bigger than MaxProtocolRevision in server configuration file.");
                 }
+
+                LOCALE = serverSettings.getProperty("locale", "en_US");
             } catch (Exception e) {
                 e.printStackTrace();
                 throw new Error("Failed to Load " + CONFIGURATION_FILE + " File.");
