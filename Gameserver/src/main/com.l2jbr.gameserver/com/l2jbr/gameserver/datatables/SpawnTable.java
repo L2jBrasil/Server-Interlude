@@ -121,6 +121,7 @@ public class SpawnTable {
         } catch (Exception e) {
             // problem with initializing spawn, go to next one
             _log.warning("SpawnTable: Spawn could not be initialized: " + e);
+            e.printStackTrace();
         } finally {
             try {
                 con.close();

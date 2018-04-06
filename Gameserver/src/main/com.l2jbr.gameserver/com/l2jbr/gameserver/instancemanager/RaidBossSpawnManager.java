@@ -41,6 +41,7 @@ import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Logger;
 
@@ -51,7 +52,7 @@ public class RaidBossSpawnManager {
     private static RaidBossSpawnManager _instance;
     protected static Map<Integer, L2RaidBossInstance> _bosses;
     protected static Map<Integer, L2Spawn> _spawns;
-    protected static Map<Integer, StatsSet> _storedInfo;
+    private Map<Integer, StatsSet> _storedInfo;
     protected static Map<Integer, ScheduledFuture<?>> _schedules;
 
     public static enum StatusEnum {
@@ -75,7 +76,7 @@ public class RaidBossSpawnManager {
     private void init() {
         _bosses = new LinkedHashMap<>();
         _schedules = new LinkedHashMap<>();
-        _storedInfo = new LinkedHashMap<>();
+        _storedInfo = new ConcurrentHashMap<>();
         _spawns = new LinkedHashMap<>();
 
         Connection con = null;
@@ -337,10 +338,6 @@ public class RaidBossSpawnManager {
 
                 if (boss == null) {
                     continue;
-                }
-
-                if (boss.getRaidStatus().equals(StatusEnum.ALIVE)) {
-                    updateStatus(boss, false);
                 }
 
                 StatsSet info = _storedInfo.get(bossId);
