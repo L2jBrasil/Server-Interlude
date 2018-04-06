@@ -14,7 +14,7 @@ allprojects {
         mavenCentral()
     }
 
-    version '1.2.0'
+    version '1.2.1'
 
     sourceCompatibility = JavaVersion.VERSION_1_9
 }
