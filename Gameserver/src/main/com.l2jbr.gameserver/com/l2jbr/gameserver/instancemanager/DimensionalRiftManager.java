@@ -261,7 +261,7 @@ public class DimensionalRiftManager {
             NpcHtmlMessage html = new NpcHtmlMessage(npc.getObjectId());
             html.setFile("data/html/seven_signs/rift/SmallParty.htm");
             html.replace("%npc_name%", npc.getName());
-            html.replace("%count%", new Integer(Config.RIFT_MIN_PARTY_SIZE).toString());
+            html.replace("%count%", String.valueOf(Config.RIFT_MIN_PARTY_SIZE));
             player.sendPacket(html);
             return;
         }
@@ -297,7 +297,7 @@ public class DimensionalRiftManager {
             NpcHtmlMessage html = new NpcHtmlMessage(npc.getObjectId());
             html.setFile("data/html/seven_signs/rift/NoFragments.htm");
             html.replace("%npc_name%", npc.getName());
-            html.replace("%count%", new Integer(getNeededItems(type)).toString());
+            html.replace("%count%", String.valueOf(getNeededItems(type)));
             player.sendPacket(html);
             return;
         }

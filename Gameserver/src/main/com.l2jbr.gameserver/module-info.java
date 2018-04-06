@@ -5,6 +5,7 @@ module com.l2jbr.gameserver {
     requires java.sql;
     requires java.desktop;
     requires commons.logging;
+    requires bsf;
 
     exports com.l2jbr.gameserver;
 }

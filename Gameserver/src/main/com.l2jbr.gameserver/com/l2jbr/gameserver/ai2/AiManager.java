@@ -22,6 +22,7 @@ import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.ai2.AiInstance.QueueEventRunner;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.*;
 import java.util.logging.Logger;
@@ -65,7 +66,7 @@ public class AiManager {
             if (file.endsWith(".class")) {
                 try {
                     Class<?> managerClass = Class.forName("com.l2jbr.gameserver.ai.managers." + file.substring(0, file.length() - 6));
-                    Object managerObject = managerClass.newInstance();
+                    Object managerObject = managerClass.getDeclaredConstructor().newInstance();
                     if (!(managerObject instanceof ISpecificAiManager)) {
                         _log.info("A class that was not a ISpecificAiManager was found in the ai managers folder.");
                         continue;
@@ -116,17 +117,8 @@ public class AiManager {
                         _aiList.add(newAi);
                     }
 
-                } catch (ClassCastException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                } catch (SecurityException e) {
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
+                } catch (ClassCastException | ClassNotFoundException | IllegalArgumentException  | SecurityException |
+                        InstantiationException |  IllegalAccessException | NoSuchMethodException  | InvocationTargetException e) {
                     e.printStackTrace();
                 }
             }

@@ -194,9 +194,9 @@ public class TradeController {
                             _log.warning("TradeController: Problem with buylist " + buy1.getListId() + " item " + itemId);
                         }
                         if (LimitedItem) {
-                            _listsTaskItem.put(new Integer(buy1.getListId()), buy1);
+                            _listsTaskItem.put(buy1.getListId(), buy1);
                         } else {
-                            _lists.put(new Integer(buy1.getListId()), buy1);
+                            _lists.put(buy1.getListId(), buy1);
                         }
                         _nextListId = Math.max(_nextListId, buy1.getListId() + 1);
                     }
@@ -264,15 +264,15 @@ public class TradeController {
             itemCreated++;
         }
 
-        _lists.put(new Integer(buy1.getListId()), buy1);
+        _lists.put(buy1.getListId(), buy1);
         return itemCreated;
     }
 
     public L2TradeList getBuyList(int listId) {
-        if (_lists.get(new Integer(listId)) != null) {
-            return _lists.get(new Integer(listId));
+        if (_lists.get(listId) != null) {
+            return _lists.get(listId);
         }
-        return _listsTaskItem.get(new Integer(listId));
+        return _listsTaskItem.get(listId);
     }
 
     public List<L2TradeList> getBuyListByNpcId(int npcId) {

@@ -6496,7 +6496,7 @@ public abstract class L2Character extends L2Object {
             return;
         }
 
-        _disabledSkills.remove(new Integer(skillId));
+        _disabledSkills.remove(skillId);
 
         if (this instanceof L2PcInstance) {
             removeTimeStamp(skillId);

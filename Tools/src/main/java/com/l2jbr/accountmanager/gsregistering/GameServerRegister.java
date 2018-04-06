@@ -16,13 +16,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jbr.tools.gsregistering;
-
-import com.l2jbr.commons.Config;
-import com.l2jbr.commons.L2DatabaseFactory;
-import com.l2jbr.commons.Server;
-import com.l2jbr.gameserver.LoginServerThread;
-import com.l2jbr.loginserver.GameServerTable;
+package com.l2jbr.gsregistering;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -31,6 +25,12 @@ import java.math.BigInteger;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Map;
+
+import net.sf.l2j.Config;
+import net.sf.l2j.L2DatabaseFactory;
+import net.sf.l2j.Server;
+import net.sf.l2j.gameserver.LoginServerThread;
+import net.sf.l2j.loginserver.GameServerTable;
 
 public class GameServerRegister
 {
@@ -89,7 +89,7 @@ public class GameServerRegister
 			{
 				try
 				{
-					int id = Integer.parseInt(_choice);
+					int id = new Integer(_choice).intValue();
 					int size = gameServerTable.getServerNames().size();
 					
 					if (size == 0)

@@ -60,7 +60,7 @@ public class MultiSort {
         Integer[] tempIntList = new Integer[valueList.length];
 
         for (int i = 0; i < valueList.length; i++) {
-            tempIntList[i] = new Integer(valueList[i]);
+            tempIntList[i] = valueList[i];
         }
 
         return Arrays.asList(tempIntList);

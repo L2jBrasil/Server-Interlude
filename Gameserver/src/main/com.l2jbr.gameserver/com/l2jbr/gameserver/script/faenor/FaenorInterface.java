@@ -179,7 +179,7 @@ public class FaenorInterface implements EngineInterface {
             petData[level - 1].setPetID(petID);
             petData[level - 1].setPetLevel(level);
 
-            context.declareBean("level", new Double(level), Double.TYPE);
+            context.declareBean("level", level, Double.TYPE);
             for (String stat : stats.keySet()) {
                 value = ((Number) Expression.eval(context, "beanshell", stats.get(stat))).intValue();
                 petData[level - 1].setStat(stat, value);

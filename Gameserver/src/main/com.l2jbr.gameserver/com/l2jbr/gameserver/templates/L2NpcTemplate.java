@@ -225,7 +225,7 @@ public final class L2NpcTemplate extends L2CharTemplate {
         if (_vulnerabilities == null) {
             _vulnerabilities = new LinkedHashMap<>();
         }
-        _vulnerabilities.put(id, new Double(vuln));
+        _vulnerabilities.put(id, vuln);
     }
 
     public double getVulnerability(Stats id) {

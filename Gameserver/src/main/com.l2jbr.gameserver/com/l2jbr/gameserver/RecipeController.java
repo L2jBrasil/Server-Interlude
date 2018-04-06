@@ -75,7 +75,7 @@ public class RecipeController {
 
     public L2RecipeList getRecipeByItemId(int itemId) {
         for (int i = 0; i < _lists.size(); i++) {
-            L2RecipeList find = _lists.get(new Integer(i));
+            L2RecipeList find = _lists.get(i);
             if (find.getRecipeId() == itemId) {
                 return find;
             }
@@ -85,7 +85,7 @@ public class RecipeController {
 
     public L2RecipeList getRecipeById(int recId) {
         for (int i = 0; i < _lists.size(); i++) {
-            L2RecipeList find = _lists.get(new Integer(i));
+            L2RecipeList find = _lists.get(i);
             if (find.getId() == recId) {
                 return find;
             }
@@ -241,7 +241,7 @@ public class RecipeController {
             for (L2RecipeInstance recipePart : recipePartList) {
                 recipeList.addRecipe(recipePart);
             }
-            _lists.put(new Integer(_lists.size()), recipeList);
+            _lists.put(_lists.size(), recipeList);
         } catch (Exception e) {
             _log.severe("Exception in RecipeController.parseList() - " + e);
         }
