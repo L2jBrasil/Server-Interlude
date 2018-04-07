@@ -21,7 +21,6 @@ import com.l2jbr.gameserver.Shutdown;
 import com.l2jbr.gameserver.taskmanager.Task;
 import com.l2jbr.gameserver.taskmanager.TaskManager.ExecutedTask;
 
-;
 
 /**
  * @author Layane

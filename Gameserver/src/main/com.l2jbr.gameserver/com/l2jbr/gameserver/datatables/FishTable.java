@@ -28,8 +28,6 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
-;
-
 
 /**
  * @author -Nemesiss-

@@ -17,7 +17,6 @@ package com.l2jbr.gameserver;
 import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.templates.StatsSet;
 
-;
 
 /**
  * This class ...

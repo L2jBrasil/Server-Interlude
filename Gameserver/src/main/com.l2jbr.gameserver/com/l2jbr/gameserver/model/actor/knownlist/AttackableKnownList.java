@@ -28,7 +28,6 @@ import com.l2jbr.gameserver.model.actor.instance.L2PlayableInstance;
 
 import java.util.Collection;
 
-;
 
 public class AttackableKnownList extends NpcKnownList
 {

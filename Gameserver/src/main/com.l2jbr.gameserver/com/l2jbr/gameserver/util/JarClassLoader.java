@@ -29,7 +29,6 @@ import java.util.HashSet;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-;
 
 /**
  * This is a class loader for the dynamic extensions used by DynamicExtension class.

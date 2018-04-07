@@ -21,7 +21,6 @@ package com.l2jbr.gameserver.handler;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PlayableInstance;
 
-;
 
 /**
  * Mother class of all itemHandlers.<BR>

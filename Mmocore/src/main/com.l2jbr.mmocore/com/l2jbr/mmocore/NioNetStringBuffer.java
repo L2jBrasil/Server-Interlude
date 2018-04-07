@@ -2,7 +2,6 @@ package com.l2jbr.mmocore;
 
 import java.nio.BufferOverflowException;
 
-;
 
 /**
  * @author Forsaiken

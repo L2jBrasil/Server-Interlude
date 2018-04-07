@@ -28,7 +28,6 @@ import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.RadarControl;
 import com.l2jbr.gameserver.serverpackets.ShowMiniMap;
 
-;
 
 public class Book implements IItemHandler
 {

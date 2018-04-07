@@ -29,8 +29,6 @@ import com.l2jbr.gameserver.serverpackets.BuyList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-;
-
 
 /**
  * This class handles following admin commands: - gmshop = shows menu - buy id = shows shop with respective id

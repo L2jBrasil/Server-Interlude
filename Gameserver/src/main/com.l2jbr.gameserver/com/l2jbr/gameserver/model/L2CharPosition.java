@@ -18,7 +18,6 @@
  */
 package com.l2jbr.gameserver.model;
 
-;
 
 /**
  * This class permit to pass (x, y, z, heading) position data to method.<BR>

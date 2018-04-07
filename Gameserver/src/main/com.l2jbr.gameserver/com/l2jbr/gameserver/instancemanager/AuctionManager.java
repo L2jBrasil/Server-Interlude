@@ -27,8 +27,6 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
-;
-
 
 public class AuctionManager {
     protected static final Logger _log = LoggerFactory.getLogger(AuctionManager.class.getName());

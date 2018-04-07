@@ -18,7 +18,6 @@
  */
 package com.l2jbr.gameserver.loginserverpackets;
 
-;
 
 public class KickPlayer extends LoginServerBasePacket
 {

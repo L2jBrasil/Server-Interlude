@@ -22,7 +22,6 @@ import com.l2jbr.gameserver.instancemanager.CastleManager;
 import com.l2jbr.gameserver.model.entity.Castle;
 import com.l2jbr.gameserver.serverpackets.SiegeDefenderList;
 
-;
 
 /**
  * This class ...

@@ -25,8 +25,6 @@ import org.slf4j.LoggerFactory;
 import java.util.LinkedList;
 import java.util.List;
 
-;
-
 
 public class OlympiadStadiaManager {
     protected static Logger _log = LoggerFactory.getLogger(OlympiadStadiaManager.class.getName());

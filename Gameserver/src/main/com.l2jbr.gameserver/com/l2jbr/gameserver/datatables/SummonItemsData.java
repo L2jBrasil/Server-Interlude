@@ -33,8 +33,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-;
-
 
 public class SummonItemsData {
     private static final Logger _log = LoggerFactory.getLogger(SummonItemsData.class.getName());

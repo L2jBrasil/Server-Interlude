@@ -24,7 +24,6 @@ import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.skills.effects.EffectSeed;
 import com.l2jbr.gameserver.templates.StatsSet;
 
-;
 
 public class L2SkillSeed extends L2Skill
 {

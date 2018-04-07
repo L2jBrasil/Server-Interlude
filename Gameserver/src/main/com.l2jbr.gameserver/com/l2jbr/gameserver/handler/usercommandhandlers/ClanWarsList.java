@@ -29,7 +29,6 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-;
 
 /**
  * Support for /clanwarlist command

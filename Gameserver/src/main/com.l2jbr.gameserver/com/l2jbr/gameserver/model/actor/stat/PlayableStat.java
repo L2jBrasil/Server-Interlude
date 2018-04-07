@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.model.actor.stat;
 import com.l2jbr.gameserver.model.actor.instance.L2PlayableInstance;
 import com.l2jbr.gameserver.model.base.Experience;
 
-;
 
 public class PlayableStat extends CharStat
 {

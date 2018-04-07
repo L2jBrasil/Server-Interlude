@@ -27,8 +27,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
-;
-
 
 /**
  * @author la2 Lets drink to code!

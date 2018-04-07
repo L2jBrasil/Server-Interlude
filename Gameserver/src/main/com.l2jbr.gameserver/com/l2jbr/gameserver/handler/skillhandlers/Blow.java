@@ -31,7 +31,6 @@ import com.l2jbr.gameserver.skills.Formulas;
 import com.l2jbr.gameserver.skills.funcs.Func;
 import com.l2jbr.gameserver.templates.L2WeaponType;
 
-;
 
 /**
  * @author Steuf

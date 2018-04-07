@@ -21,7 +21,6 @@ package com.l2jbr.loginserver.loginserverpackets;
 import com.l2jbr.loginserver.GameServerTable;
 import com.l2jbr.loginserver.serverpackets.ServerBasePacket;
 
-;
 
 /**
  * @author -Wooden-

@@ -22,7 +22,6 @@ import com.l2jbr.gameserver.model.L2RecipeList;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.RecipeBookItemList;
 
-;
 
 public final class RequestRecipeBookDestroy extends L2GameClientPacket
 {

@@ -21,7 +21,6 @@ package com.l2jbr.loginserver.serverpackets;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-;
 
 /**
  * This class ...

@@ -21,7 +21,6 @@ package com.l2jbr.gameserver.clientpackets;
 import com.l2jbr.gameserver.RecipeController;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
-;
 
 /**
  * @author Administrator TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates

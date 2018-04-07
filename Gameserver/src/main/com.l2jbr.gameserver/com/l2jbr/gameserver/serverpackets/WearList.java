@@ -25,7 +25,6 @@ import com.l2jbr.gameserver.templates.L2Item;
 
 import java.util.List;
 
-;
 
 public class WearList extends L2GameServerPacket
 {

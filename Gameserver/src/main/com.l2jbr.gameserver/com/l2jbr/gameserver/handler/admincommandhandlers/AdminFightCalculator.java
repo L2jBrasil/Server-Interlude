@@ -34,7 +34,6 @@ import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 import java.util.StringTokenizer;
 
-;
 
 /**
  * This class handles following admin commands: - gm = turns gm mode on/off

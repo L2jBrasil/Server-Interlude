@@ -21,7 +21,6 @@ package com.l2jbr.commons;
 import java.util.logging.Filter;
 import java.util.logging.LogRecord;
 
-;
 
 public class ErrorFilter implements Filter
 {

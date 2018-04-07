@@ -23,7 +23,6 @@ import com.l2jbr.gameserver.TaskPriority;
 import java.util.LinkedList;
 import java.util.List;
 
-;
 
 /**
  * @author -Wooden-

@@ -23,7 +23,6 @@ import com.l2jbr.gameserver.model.actor.instance.L2DoorInstance;
 import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.skills.Env;
 
-;
 
 class EffectHealOverTime extends L2Effect
 {

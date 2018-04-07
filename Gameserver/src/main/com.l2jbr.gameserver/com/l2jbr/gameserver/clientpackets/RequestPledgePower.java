@@ -24,7 +24,6 @@ import com.l2jbr.gameserver.serverpackets.ManagePledgePower;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-;
 
 public final class RequestPledgePower extends L2GameClientPacket
 {

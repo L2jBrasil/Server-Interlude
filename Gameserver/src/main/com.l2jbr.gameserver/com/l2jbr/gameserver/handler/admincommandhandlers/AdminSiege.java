@@ -36,7 +36,6 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
 import java.util.StringTokenizer;
 
-;
 
 /**
  * This class handles all siege commands: Todo: change the class name, and neaten it up

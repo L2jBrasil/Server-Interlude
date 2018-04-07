@@ -23,7 +23,6 @@ import com.l2jbr.gameserver.model.L2Manor;
 import java.util.LinkedList;
 import java.util.List;
 
-;
 
 /**
  * format(packet 0xFE) ch ddd [dddddcdcd] c - id h - sub id d - manor id d d - size [ d - seed id d - left to buy d - started amount d - sell price d - seed level c d - reward 1 id c d - reward 2 id ]

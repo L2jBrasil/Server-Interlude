@@ -24,9 +24,6 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-;
-
-
 
 /**
  * 0x42 WarehouseWithdrawalList dh (h dddhh dhhh d)

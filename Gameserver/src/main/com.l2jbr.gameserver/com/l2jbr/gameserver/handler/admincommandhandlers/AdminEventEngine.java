@@ -33,7 +33,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.StringTokenizer;
 
-;
 
 /**
  * This class handles following admin commands: - admin = shows menu

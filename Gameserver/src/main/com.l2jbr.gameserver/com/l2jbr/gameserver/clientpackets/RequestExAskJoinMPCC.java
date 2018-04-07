@@ -26,7 +26,6 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ExAskJoinMPCC;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
-;
 
 /**
  * Format: (ch) S

@@ -27,7 +27,6 @@ import com.l2jbr.gameserver.util.Point3D;
 import java.util.LinkedList;
 import java.util.List;
 
-;
 
 /**
  * Format: (ch)

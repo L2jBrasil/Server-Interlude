@@ -20,7 +20,6 @@ package com.l2jbr.loginserver;
 
 import com.l2jbr.commons.Config;
 
-;
 
 /**
  * <p>

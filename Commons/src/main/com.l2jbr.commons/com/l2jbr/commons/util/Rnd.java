@@ -16,7 +16,6 @@ package com.l2jbr.commons.util;
 import java.security.SecureRandom;
 import java.util.Random;
 
-;
 
 /**
  * @author Forsaiken

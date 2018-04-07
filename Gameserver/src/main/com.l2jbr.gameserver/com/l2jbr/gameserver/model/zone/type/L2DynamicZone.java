@@ -26,7 +26,6 @@ import com.l2jbr.gameserver.model.zone.L2ZoneType;
 
 import java.util.concurrent.Future;
 
-;
 
 /**
  * A dynamic zone? Maybe use this for interlude skills like protection field :>

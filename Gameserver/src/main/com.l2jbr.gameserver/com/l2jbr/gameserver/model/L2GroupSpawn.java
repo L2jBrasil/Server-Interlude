@@ -26,7 +26,6 @@ import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 import java.lang.reflect.Constructor;
 
-;
 
 /**
  * @author littlecrow A special spawn implementation to spawn controllable mob

@@ -26,7 +26,6 @@ import com.l2jbr.gameserver.instancemanager.CastleManorManager.SeedProduction;
 import java.util.LinkedList;
 import java.util.List;
 
-;
 
 /**
  * Format: (ch) dd [ddd] d - manor id d - size [ d - seed id d - sales d - price ]

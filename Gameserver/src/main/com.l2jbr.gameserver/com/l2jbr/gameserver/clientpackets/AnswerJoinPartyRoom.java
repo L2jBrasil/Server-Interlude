@@ -18,7 +18,6 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
-;
 
 /**
  * Format: (ch) d

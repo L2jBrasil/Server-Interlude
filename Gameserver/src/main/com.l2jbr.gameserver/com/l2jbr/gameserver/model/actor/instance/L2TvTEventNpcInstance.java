@@ -25,7 +25,6 @@ import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
-;
 
 public class L2TvTEventNpcInstance extends L2NpcInstance
 {

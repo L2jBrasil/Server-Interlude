@@ -30,7 +30,6 @@ import java.util.concurrent.Future;
 
 import static com.l2jbr.gameserver.ai.CtrlIntention.*;
 
-;
 
 /**
  * This class manages AI of L2Attackable.

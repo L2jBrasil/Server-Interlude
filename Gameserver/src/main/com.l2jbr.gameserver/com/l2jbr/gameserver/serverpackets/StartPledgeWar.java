@@ -18,7 +18,6 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
-;
 
 public class StartPledgeWar extends L2GameServerPacket
 {

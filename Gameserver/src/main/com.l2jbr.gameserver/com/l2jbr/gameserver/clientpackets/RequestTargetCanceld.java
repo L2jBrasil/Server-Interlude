@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.clientpackets;
 
 import com.l2jbr.gameserver.model.L2Character;
 
-;
 
 /**
  * This class ...

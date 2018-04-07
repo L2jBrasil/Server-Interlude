@@ -21,7 +21,6 @@ package com.l2jbr.gameserver.serverpackets;
 import com.l2jbr.gameserver.GameTimeController;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
-;
 
 /**
  * This class ...

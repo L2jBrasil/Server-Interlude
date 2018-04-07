@@ -23,7 +23,6 @@ import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import java.util.LinkedList;
 import java.util.List;
 
-;
 
 public class L2SiegeClan {
     // ==========================================================================================

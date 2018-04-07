@@ -36,7 +36,6 @@ import java.util.concurrent.Future;
 
 import static com.l2jbr.gameserver.ai.CtrlIntention.AI_INTENTION_IDLE;
 
-;
 
 // While a tamed beast behaves a lot like a pet (ingame) and does have
 // an owner, in all other aspects, it acts like a mob.

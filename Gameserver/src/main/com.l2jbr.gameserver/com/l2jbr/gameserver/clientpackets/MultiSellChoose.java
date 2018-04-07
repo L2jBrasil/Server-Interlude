@@ -42,8 +42,6 @@ import org.slf4j.LoggerFactory;
 import java.util.LinkedList;
 import java.util.List;
 
-;
-
 
 public class MultiSellChoose extends L2GameClientPacket {
     private static final String _C__A7_MULTISELLCHOOSE = "[C] A7 MultiSellChoose";

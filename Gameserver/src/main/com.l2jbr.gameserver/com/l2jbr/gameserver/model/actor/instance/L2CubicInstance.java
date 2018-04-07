@@ -34,8 +34,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Future;
 
-;
-
 
 public class L2CubicInstance {
     protected static final Logger _log = LoggerFactory.getLogger(L2CubicInstance.class.getName());

@@ -22,8 +22,6 @@ import com.l2jbr.commons.Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-;
-
 
 /**
  * Fromat: d d: response

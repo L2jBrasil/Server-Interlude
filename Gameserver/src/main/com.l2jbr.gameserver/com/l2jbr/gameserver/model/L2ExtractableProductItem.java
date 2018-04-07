@@ -17,7 +17,6 @@
  */
 package com.l2jbr.gameserver.model;
 
-;
 
 /**
  * @author -Nemesiss-

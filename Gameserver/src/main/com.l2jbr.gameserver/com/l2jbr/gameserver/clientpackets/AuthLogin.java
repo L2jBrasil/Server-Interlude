@@ -25,9 +25,6 @@ import com.l2jbr.gameserver.network.L2GameClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-;
-
-
 
 /**
  * This class ...

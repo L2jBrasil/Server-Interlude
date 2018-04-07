@@ -26,7 +26,6 @@ import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 import java.lang.reflect.Constructor;
 
-;
 
 public class MonsterRace
 {

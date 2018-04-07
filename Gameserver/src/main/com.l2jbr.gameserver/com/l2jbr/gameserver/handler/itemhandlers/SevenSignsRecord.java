@@ -25,7 +25,6 @@ import com.l2jbr.gameserver.model.actor.instance.L2PetInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PlayableInstance;
 import com.l2jbr.gameserver.serverpackets.SSQStatus;
 
-;
 
 /**
  * Item Handler for Seven Signs Record

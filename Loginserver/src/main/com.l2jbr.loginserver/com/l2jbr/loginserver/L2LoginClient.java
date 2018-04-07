@@ -37,7 +37,6 @@ import java.net.InetAddress;
 import java.nio.ByteBuffer;
 import java.security.interfaces.RSAPrivateKey;
 
-;
 
 /**
  * Represents a client connected into the LoginServer

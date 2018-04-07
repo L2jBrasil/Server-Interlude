@@ -20,7 +20,6 @@ package com.l2jbr.commons.crypt;
 
 import java.io.IOException;
 
-;
 
 /**
  * This file is based on the Blowfish Engine that is part of the BouncyCastle JCE Copyright (c) 2000 The Legion Of The Bouncy Castle (http://www.bouncycastle.org) Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the

@@ -20,7 +20,6 @@ import com.l2jbr.gameserver.model.actor.instance.L2PlayableInstance;
 
 import java.util.Iterator;
 
-;
 
 /**
  * This class ...

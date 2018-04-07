@@ -22,7 +22,6 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 
 import java.util.Vector;
 
-;
 
 /**
  * This class ...

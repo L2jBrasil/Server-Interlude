@@ -11,7 +11,6 @@ package com.l2jbr.gameserver.util;
 
 import java.util.Arrays;
 
-;
 
 /*
  * Modified for Trove to use the java.util.Arrays sort/search

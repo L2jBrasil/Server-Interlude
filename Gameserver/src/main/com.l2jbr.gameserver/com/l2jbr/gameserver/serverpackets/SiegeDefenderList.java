@@ -23,7 +23,7 @@ import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.L2SiegeClan;
 import com.l2jbr.gameserver.model.entity.Castle;
 
-;
+
 //import java.util.Calendar; //signed time related
 //
 

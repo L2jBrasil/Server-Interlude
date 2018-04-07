@@ -37,7 +37,6 @@ import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import java.text.SimpleDateFormat;
 import java.util.StringTokenizer;
 
-;
 
 public class L2ClanHallManagerInstance extends L2FolkInstance
 {

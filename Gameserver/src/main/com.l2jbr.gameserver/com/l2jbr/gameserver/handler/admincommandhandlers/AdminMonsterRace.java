@@ -29,7 +29,6 @@ import com.l2jbr.gameserver.serverpackets.MonRaceInfo;
 import com.l2jbr.gameserver.serverpackets.PlaySound;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
-;
 
 /**
  * This class handles following admin commands: - invul = turns invulnerability on/off

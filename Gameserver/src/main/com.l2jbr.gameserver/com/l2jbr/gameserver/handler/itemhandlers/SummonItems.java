@@ -43,7 +43,6 @@ import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.util.FloodProtector;
 
-;
 
 public class SummonItems implements IItemHandler
 {

@@ -26,7 +26,6 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.entity.TvTEvent;
 import com.l2jbr.gameserver.model.entity.TvTEventTeleporter;
 
-;
 
 /**
  * @author FBIagent The class handles administrator commands for the TvT Engine which was first implemented by FBIagent

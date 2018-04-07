@@ -24,7 +24,6 @@ import com.l2jbr.gameserver.model.L2TradeList;
 import java.util.LinkedList;
 import java.util.List;
 
-;
 
 /**
  * Format: c ddh[hdddhhd] c - id (0xE8) d - money d - manor id h - size [ h - item type 1 d - object id d - item id d - count h - item type 2 h d - price ]

@@ -22,7 +22,6 @@ import com.l2jbr.gameserver.serverpackets.RadarControl;
 
 import java.util.Vector;
 
-;
 
 /**
  * @author dalrond

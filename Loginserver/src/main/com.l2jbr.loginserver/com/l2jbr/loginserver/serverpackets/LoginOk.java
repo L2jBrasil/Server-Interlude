@@ -20,7 +20,6 @@ package com.l2jbr.loginserver.serverpackets;
 
 import com.l2jbr.loginserver.SessionKey;
 
-;
 
 /**
  * Format: dddddddd f: the session key d: ? d: ? d: ? d: ? d: ? d: ? b: 16 bytes - unknown

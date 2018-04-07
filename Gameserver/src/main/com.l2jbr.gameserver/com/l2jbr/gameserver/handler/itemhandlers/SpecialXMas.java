@@ -23,7 +23,6 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PlayableInstance;
 import com.l2jbr.gameserver.serverpackets.ShowXMasSeal;
 
-;
 
 /**
  * @author devScarlet & mrTJO

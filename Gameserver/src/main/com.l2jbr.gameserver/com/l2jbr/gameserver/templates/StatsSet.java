@@ -21,8 +21,6 @@ package com.l2jbr.gameserver.templates;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-;
-
 
 /**
  * @author mkizub <BR>

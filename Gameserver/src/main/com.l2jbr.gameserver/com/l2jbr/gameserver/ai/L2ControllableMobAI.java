@@ -30,7 +30,6 @@ import java.util.List;
 import static com.l2jbr.gameserver.ai.CtrlIntention.AI_INTENTION_ACTIVE;
 import static com.l2jbr.gameserver.ai.CtrlIntention.AI_INTENTION_ATTACK;
 
-;
 
 /**
  * @author littlecrow AI for controllable mobs

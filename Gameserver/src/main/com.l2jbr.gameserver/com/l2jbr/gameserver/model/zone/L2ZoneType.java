@@ -24,7 +24,6 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-;
 
 /**
  * Abstract base class for any zone type Handles basic operations

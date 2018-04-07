@@ -27,7 +27,6 @@ import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.L2Weapon;
 
-;
 
 public class FishingSkill implements ISkillHandler
 {

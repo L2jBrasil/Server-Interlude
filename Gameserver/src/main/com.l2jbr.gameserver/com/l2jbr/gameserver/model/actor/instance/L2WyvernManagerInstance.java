@@ -23,7 +23,6 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
-;
 
 public class L2WyvernManagerInstance extends L2CastleChamberlainInstance
 {

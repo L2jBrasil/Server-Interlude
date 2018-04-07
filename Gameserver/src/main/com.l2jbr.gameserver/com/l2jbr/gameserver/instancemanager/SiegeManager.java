@@ -39,8 +39,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.*;
 
-;
-
 
 public class SiegeManager {
     private static final Logger _log = LoggerFactory.getLogger(SiegeManager.class.getName());

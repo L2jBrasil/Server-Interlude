@@ -24,7 +24,6 @@ import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
-;
 
 /**
  * This class ...

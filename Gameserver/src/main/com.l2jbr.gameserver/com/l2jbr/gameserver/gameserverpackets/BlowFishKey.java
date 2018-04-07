@@ -25,7 +25,6 @@ import javax.crypto.Cipher;
 import java.security.GeneralSecurityException;
 import java.security.interfaces.RSAPublicKey;
 
-;
 
 /**
  * @author -Wooden-

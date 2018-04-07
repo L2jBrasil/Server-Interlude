@@ -29,8 +29,6 @@ import java.net.SocketException;
 import java.util.LinkedList;
 import java.util.List;
 
-;
-
 
 /**
  * @author Luno, Dezmond

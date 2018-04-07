@@ -31,7 +31,6 @@ import com.l2jbr.gameserver.templates.L2Weapon;
 import com.l2jbr.gameserver.templates.L2WeaponType;
 import com.l2jbr.gameserver.util.Broadcast;
 
-;
 
 /**
  * @author -Nemesiss-

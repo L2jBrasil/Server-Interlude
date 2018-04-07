@@ -18,7 +18,6 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
-;
 
 /**
  * Format chS c: (id) 0x39 h: (subid) 0x00 S: the character name (or maybe cmd string ?)

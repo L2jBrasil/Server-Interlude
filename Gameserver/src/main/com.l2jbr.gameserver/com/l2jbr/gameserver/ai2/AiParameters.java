@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.PriorityBlockingQueue;
 
-;
 
 /**
  * @author -Wooden-

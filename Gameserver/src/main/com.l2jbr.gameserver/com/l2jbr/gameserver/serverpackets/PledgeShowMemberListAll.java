@@ -23,7 +23,6 @@ import com.l2jbr.gameserver.model.L2Clan.SubPledge;
 import com.l2jbr.gameserver.model.L2ClanMember;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
-;
 
 //
 /**

@@ -70,7 +70,6 @@ import java.util.concurrent.Future;
 import static com.l2jbr.gameserver.ai.CtrlIntention.AI_INTENTION_ATTACK;
 import static com.l2jbr.gameserver.ai.CtrlIntention.AI_INTENTION_FOLLOW;
 
-;
 
 /**
  * Mother class of all character objects of the world (PC, NPC...)<BR>

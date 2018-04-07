@@ -30,7 +30,6 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.util.Broadcast;
 import com.l2jbr.gameserver.util.FloodProtector;
 
-;
 
 /**
  * This class ...

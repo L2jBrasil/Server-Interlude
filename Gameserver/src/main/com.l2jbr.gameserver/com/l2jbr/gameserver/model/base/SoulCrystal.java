@@ -18,7 +18,6 @@
  */
 package com.l2jbr.gameserver.model.base;
 
-;
 
 /**
  * $ Rewrite 06.12.06 - Yesod

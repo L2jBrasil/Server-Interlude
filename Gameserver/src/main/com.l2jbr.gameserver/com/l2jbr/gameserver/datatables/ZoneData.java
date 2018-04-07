@@ -42,8 +42,6 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
-;
-
 
 /**
  * This class manages the augmentation data and can also create new augmentations.

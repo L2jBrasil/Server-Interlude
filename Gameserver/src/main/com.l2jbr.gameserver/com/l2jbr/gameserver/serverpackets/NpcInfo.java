@@ -25,7 +25,6 @@ import com.l2jbr.gameserver.model.actor.instance.L2MonsterInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PetInstance;
 
-;
 
 /**
  * This class ...

@@ -25,7 +25,6 @@ import com.l2jbr.gameserver.skills.Calculator;
 import com.l2jbr.gameserver.skills.Env;
 import com.l2jbr.gameserver.skills.Stats;
 
-;
 
 public class CharStat
 {

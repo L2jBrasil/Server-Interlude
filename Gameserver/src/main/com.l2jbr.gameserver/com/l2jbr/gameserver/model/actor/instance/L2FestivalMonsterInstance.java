@@ -25,7 +25,6 @@ import com.l2jbr.gameserver.model.L2Party;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
-;
 
 /**
  * L2FestivalMonsterInstance This class manages all attackable festival NPCs, spawned during the Festival of Darkness.

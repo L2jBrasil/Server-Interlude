@@ -33,7 +33,6 @@ import com.l2jbr.gameserver.templates.StatsSet;
 import java.util.Calendar;
 import java.util.List;
 
-;
 
 /**
  * Festival of Darkness Guide (Seven Signs)

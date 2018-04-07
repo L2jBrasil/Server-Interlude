@@ -32,9 +32,6 @@ import com.l2jbr.gameserver.taskmanager.DecayTaskManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-;
-
-
 
 /**
  * This class handles following admin commands: - res = resurrects target L2Character

@@ -21,7 +21,6 @@ package com.l2jbr.gameserver.serverpackets;
 import java.util.LinkedList;
 import java.util.List;
 
-;
 
 /**
  * <code>

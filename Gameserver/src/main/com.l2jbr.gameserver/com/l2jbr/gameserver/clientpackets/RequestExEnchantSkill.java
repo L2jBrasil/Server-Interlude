@@ -38,9 +38,6 @@ import com.l2jbr.gameserver.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-;
-
-
 
 /**
  * Format chdd c: (id) 0xD0 h: (subid) 0x06 d: skill id d: skill lvl

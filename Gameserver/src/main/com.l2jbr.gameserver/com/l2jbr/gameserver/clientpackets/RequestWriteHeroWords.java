@@ -18,7 +18,6 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
-;
 
 /**
  * Format chS c (id) 0xD0 h (subid) 0x0C S the hero's words :)

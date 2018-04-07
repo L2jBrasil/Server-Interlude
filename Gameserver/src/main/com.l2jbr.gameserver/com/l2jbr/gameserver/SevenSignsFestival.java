@@ -51,8 +51,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ScheduledFuture;
 
-;
-
 
 /**
  * Seven Signs Festival of Darkness Engine TODO: - Archer mobs should target healer characters over other party members. - ADDED 29 Sep: Players that leave a party during the Seven Signs Festival will now take damage and cannot be healed.

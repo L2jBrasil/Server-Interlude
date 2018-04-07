@@ -32,7 +32,6 @@ import java.util.concurrent.ScheduledFuture;
 
 import static com.l2jbr.gameserver.taskmanager.TaskTypes.*;
 
-;
 
 /**
  * @author Layane

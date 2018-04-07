@@ -31,7 +31,6 @@ import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 import java.util.StringTokenizer;
 
-;
 
 /**
  * This class ...

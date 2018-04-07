@@ -23,7 +23,6 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.JoinParty;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
-;
 
 /**
  * sample 2a 01 00 00 00 format cdd

@@ -29,8 +29,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-;
-
 
 public class StaticObjects {
     private static Logger _log = LoggerFactory.getLogger(StaticObjects.class.getName());

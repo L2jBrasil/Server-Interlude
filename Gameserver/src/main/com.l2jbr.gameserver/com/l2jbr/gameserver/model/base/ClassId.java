@@ -18,7 +18,6 @@
  */
 package com.l2jbr.gameserver.model.base;
 
-;
 
 /**
  * This class defines all classes (ex : human fighter, darkFighter...) that a player can chose.<BR>

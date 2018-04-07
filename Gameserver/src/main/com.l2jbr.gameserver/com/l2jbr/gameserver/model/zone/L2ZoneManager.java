@@ -22,7 +22,6 @@ import com.l2jbr.gameserver.model.L2Character;
 import java.util.LinkedList;
 import java.util.List;
 
-;
 
 /**
  * This class manages all zones for a given world region

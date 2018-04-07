@@ -23,7 +23,6 @@ import com.l2jbr.gameserver.communitybbs.Manager.AdminBBSManager;
 import com.l2jbr.gameserver.handler.IAdminCommandHandler;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
-;
 
 public class AdminBBS implements IAdminCommandHandler
 {

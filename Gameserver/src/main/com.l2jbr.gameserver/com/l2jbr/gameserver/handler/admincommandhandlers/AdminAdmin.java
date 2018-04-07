@@ -33,7 +33,6 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
 import java.util.StringTokenizer;
 
-;
 
 /**
  * This class handles following admin commands: - admin|admin1/admin2/admin3/admin4/admin5 = slots for the 5 starting admin menus - gmliston/gmlistoff = includes/excludes active character from /gmlist results - silence = toggles private messages acceptance mode - diet = toggles weight penalty mode -

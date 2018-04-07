@@ -20,7 +20,6 @@ package com.l2jbr.gameserver;
 import java.util.logging.Filter;
 import java.util.logging.LogRecord;
 
-;
 
 /**
  * @author zabbix Lets drink to code!

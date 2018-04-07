@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.model;
 
 import com.l2jbr.gameserver.RecipeController;
 
-;
 
 /**
  * This class ...

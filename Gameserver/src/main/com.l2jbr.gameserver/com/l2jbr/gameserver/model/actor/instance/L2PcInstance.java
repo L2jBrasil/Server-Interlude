@@ -66,7 +66,6 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
-;
 
 /**
  * This class represents all player characters in the world.<br>

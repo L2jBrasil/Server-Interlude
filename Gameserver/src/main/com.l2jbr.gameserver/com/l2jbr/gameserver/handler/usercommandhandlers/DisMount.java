@@ -25,7 +25,6 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.Ride;
 import com.l2jbr.gameserver.util.Broadcast;
 
-;
 
 /**
  * Support for /dismount command.

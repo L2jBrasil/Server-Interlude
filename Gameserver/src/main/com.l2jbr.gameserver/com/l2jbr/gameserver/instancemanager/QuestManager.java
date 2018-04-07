@@ -26,8 +26,6 @@ import org.slf4j.LoggerFactory;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-;
-
 
 public class QuestManager {
     protected static final Logger _log = LoggerFactory.getLogger(QuestManager.class.getName());

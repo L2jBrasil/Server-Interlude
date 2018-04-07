@@ -50,8 +50,6 @@ import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.ScheduledFuture;
 
-;
-
 
 public class Olympiad {
     protected static final Logger _log = LoggerFactory.getLogger(Olympiad.class.getName());

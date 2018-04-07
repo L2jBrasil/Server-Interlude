@@ -24,7 +24,6 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.HennaItemInfo;
 import com.l2jbr.gameserver.templates.L2Henna;
 
-;
 
 /**
  * This class ...

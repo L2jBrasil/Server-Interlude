@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.clientpackets;
 import com.l2jbr.gameserver.datatables.ClanTable;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
-;
 
 public final class RequestReplySurrenderPledgeWar extends L2GameClientPacket
 {

@@ -18,7 +18,6 @@
  */
 package com.l2jbr.gameserver.model;
 
-;
 
 /**
  * This class describes a RecipeList componant (1 line of the recipe : Item-Quantity needed).<BR>

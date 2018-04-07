@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.clientpackets;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
-;
 
 public final class RequestDeleteMacro extends L2GameClientPacket
 {

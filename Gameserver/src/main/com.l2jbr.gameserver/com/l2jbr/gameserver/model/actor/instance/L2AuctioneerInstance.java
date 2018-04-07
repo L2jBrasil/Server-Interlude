@@ -35,7 +35,6 @@ import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-;
 
 public final class L2AuctioneerInstance extends L2FolkInstance {
     private static final int COND_ALL_FALSE = 0;

@@ -36,8 +36,6 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
-;
-
 
 /**
  * This class is similar to the SiegeGuardManager, except it handles the loading of the mercenary tickets that are dropped on castle floors by the castle lords. These tickets (aka badges) need to be read after each server reboot except when the server crashed in the middle of an ongoing siege. In

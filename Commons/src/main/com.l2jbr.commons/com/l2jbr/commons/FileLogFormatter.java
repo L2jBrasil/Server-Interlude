@@ -23,7 +23,6 @@ import java.util.Date;
 import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 
-;
 
 public class FileLogFormatter extends Formatter {
     private static final String CRLF = "\r\n";

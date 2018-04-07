@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
-;
 
 public class L2RiftInvaderInstance extends L2MonsterInstance
 {

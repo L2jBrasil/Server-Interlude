@@ -25,7 +25,6 @@ import com.l2jbr.gameserver.serverpackets.ExConfirmVariationRefiner;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.L2Item;
 
-;
 
 /**
  * Fromat(ch) dd

@@ -32,7 +32,6 @@ import com.l2jbr.gameserver.serverpackets.SocialAction;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.Formulas;
 
-;
 
 public class Unlock implements ISkillHandler
 {

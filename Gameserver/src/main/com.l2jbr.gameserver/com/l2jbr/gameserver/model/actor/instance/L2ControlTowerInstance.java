@@ -30,7 +30,6 @@ import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import java.util.LinkedList;
 import java.util.List;
 
-;
 
 public class L2ControlTowerInstance extends L2NpcInstance {
 

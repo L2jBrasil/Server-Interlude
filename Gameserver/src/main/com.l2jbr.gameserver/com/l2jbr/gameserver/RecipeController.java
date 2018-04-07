@@ -35,8 +35,6 @@ import java.io.FileReader;
 import java.io.LineNumberReader;
 import java.util.*;
 
-;
-
 
 public class RecipeController {
     protected static final Logger _log = LoggerFactory.getLogger(RecipeController.class.getName());

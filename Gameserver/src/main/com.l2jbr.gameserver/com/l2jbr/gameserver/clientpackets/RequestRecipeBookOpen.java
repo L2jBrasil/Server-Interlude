@@ -23,9 +23,6 @@ import com.l2jbr.gameserver.RecipeController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-;
-
-
 
 public final class RequestRecipeBookOpen extends L2GameClientPacket
 {

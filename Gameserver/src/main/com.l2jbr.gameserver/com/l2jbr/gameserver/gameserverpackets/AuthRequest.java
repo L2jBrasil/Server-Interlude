@@ -18,7 +18,6 @@
  */
 package com.l2jbr.gameserver.gameserverpackets;
 
-;
 
 public class AuthRequest extends GameServerBasePacket
 {

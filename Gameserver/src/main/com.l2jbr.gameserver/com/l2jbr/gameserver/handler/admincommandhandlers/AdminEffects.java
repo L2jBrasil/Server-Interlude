@@ -30,7 +30,6 @@ import com.l2jbr.gameserver.serverpackets.*;
 
 import java.util.StringTokenizer;
 
-;
 
 /**
  * This class handles following admin commands: <li>invis/invisible/vis/visible = makes yourself invisible or visible <li>earthquake = causes an earthquake of a given intensity and duration around you <li>bighead/shrinkhead = changes head size <li>gmspeed = temporary Super Haste effect. <li>

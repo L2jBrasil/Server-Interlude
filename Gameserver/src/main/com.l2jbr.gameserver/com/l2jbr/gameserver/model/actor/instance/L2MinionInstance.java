@@ -24,7 +24,6 @@ import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.L2WorldRegion;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
-;
 
 /**
  * This class manages all Minions. In a group mob, there are one master called RaidBoss and several slaves called Minions.

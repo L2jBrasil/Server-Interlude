@@ -34,8 +34,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-;
-
 
 public class DoorTable {
     private static Logger _log = LoggerFactory.getLogger(DoorTable.class.getName());

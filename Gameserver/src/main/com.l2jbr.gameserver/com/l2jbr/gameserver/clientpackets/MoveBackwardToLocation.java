@@ -29,7 +29,6 @@ import com.l2jbr.gameserver.templates.L2WeaponType;
 
 import java.nio.BufferUnderflowException;
 
-;
 
 /**
  * This class ...
