@@ -23,7 +23,6 @@ import com.l2jbr.gameserver.model.L2Summon;
 
 import static com.l2jbr.gameserver.ai.CtrlIntention.*;
 
-;
 
 public class L2SummonAI extends L2CharacterAI
 {

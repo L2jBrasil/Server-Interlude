@@ -23,7 +23,6 @@ import com.l2jbr.gameserver.TaskPriority;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-;
 
 /**
  * @author -Wooden-

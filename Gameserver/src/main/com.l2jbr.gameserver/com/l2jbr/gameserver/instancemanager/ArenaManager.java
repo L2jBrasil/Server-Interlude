@@ -23,7 +23,6 @@ import com.l2jbr.gameserver.model.zone.type.L2ArenaZone;
 import java.util.LinkedList;
 import java.util.List;
 
-;
 
 public class ArenaManager {
     // =========================================================

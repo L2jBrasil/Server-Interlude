@@ -29,8 +29,6 @@ import org.slf4j.LoggerFactory;
 import java.util.LinkedList;
 import java.util.List;
 
-;
-
 
 public class ItemsAutoDestroy {
     protected static final Logger _log = LoggerFactory.getLogger("ItemsAutoDestroy");

@@ -14,7 +14,6 @@
  */
 package com.l2jbr.commons.util;
 
-;
 
 /**
  * This class ...

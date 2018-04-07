@@ -27,8 +27,6 @@ import org.slf4j.LoggerFactory;
 import java.util.LinkedList;
 import java.util.List;
 
-;
-
 
 public class DuelManager {
     private static final Logger _log = LoggerFactory.getLogger(DuelManager.class.getName());

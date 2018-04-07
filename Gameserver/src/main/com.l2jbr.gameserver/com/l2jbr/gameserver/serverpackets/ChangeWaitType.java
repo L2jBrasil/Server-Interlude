@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.serverpackets;
 
 import com.l2jbr.gameserver.model.L2Character;
 
-;
 
 /**
  * sample 0000: 3f 2a 89 00 4c 01 00 00 00 0a 15 00 00 66 fe 00 ?*..L........f.. 0010: 00 7c f1 ff ff .|... format dd ddd

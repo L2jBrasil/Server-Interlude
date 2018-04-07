@@ -35,8 +35,6 @@ import org.slf4j.LoggerFactory;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-;
-
 
 public class Territory {
     private static Logger _log = LoggerFactory.getLogger(TradeController.class.getName());

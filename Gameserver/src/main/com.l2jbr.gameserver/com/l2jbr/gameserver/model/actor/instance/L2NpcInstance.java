@@ -59,7 +59,6 @@ import java.util.List;
 
 import static com.l2jbr.gameserver.ai.CtrlIntention.AI_INTENTION_ACTIVE;
 
-;
 
 /**
  * This class represents a Non-Player-Character in the world. It can be a monster or a friendly character. It also uses a template to fetch some static values. The templates are hardcoded in the client, so we can rely on them.<BR>

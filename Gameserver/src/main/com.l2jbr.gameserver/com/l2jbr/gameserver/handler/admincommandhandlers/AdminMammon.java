@@ -32,7 +32,6 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-;
 
 /**
  * Admin Command Handler for Mammon NPCs

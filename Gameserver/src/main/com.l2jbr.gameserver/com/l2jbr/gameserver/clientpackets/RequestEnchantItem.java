@@ -32,9 +32,6 @@ import com.l2jbr.gameserver.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-;
-
-
 
 public final class RequestEnchantItem extends L2GameClientPacket
 {

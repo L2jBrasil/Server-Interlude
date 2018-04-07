@@ -31,7 +31,6 @@ import com.l2jbr.gameserver.model.entity.Couple;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
-;
 
 public class L2WeddingManagerInstance extends L2NpcInstance
 {

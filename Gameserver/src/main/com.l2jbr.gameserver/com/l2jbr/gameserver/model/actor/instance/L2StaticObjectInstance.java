@@ -26,7 +26,6 @@ import com.l2jbr.gameserver.serverpackets.ShowTownMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-;
 
 /**
  * GODSON ROX!

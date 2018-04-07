@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.model;
 
 import java.util.Arrays;
 
-;
 
 /**
  * /* Special thanks to nuocnam Author: LittleVexy

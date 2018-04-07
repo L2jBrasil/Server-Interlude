@@ -16,7 +16,6 @@ package com.l2jbr.gameserver.util;
 
 import java.io.Serializable;
 
-;
 
 /**
  * This class ...

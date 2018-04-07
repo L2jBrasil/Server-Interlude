@@ -33,8 +33,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.StringTokenizer;
 
-;
-
 
 /**
  * This class handles following admin commands: - handles every admin menu command

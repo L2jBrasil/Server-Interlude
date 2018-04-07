@@ -29,8 +29,6 @@ import org.slf4j.LoggerFactory;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-;
-
 
 /**
  * This class ...

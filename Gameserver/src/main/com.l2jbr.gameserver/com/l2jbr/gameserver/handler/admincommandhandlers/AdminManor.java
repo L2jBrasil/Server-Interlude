@@ -29,7 +29,6 @@ import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import java.util.LinkedList;
 import java.util.StringTokenizer;
 
-;
 
 /**
  * Admin comand handler for Manor System This class handles following admin commands: - manor_info = shows info about current manor state - manor_approve = approves settings for the next manor period - manor_setnext = changes manor settings to the next day's - manor_reset castle = resets all manor

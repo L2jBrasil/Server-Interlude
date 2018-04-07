@@ -18,7 +18,6 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
-;
 
 /**
  * Format ch c: (id) 0x39 h: (subid) 0x02

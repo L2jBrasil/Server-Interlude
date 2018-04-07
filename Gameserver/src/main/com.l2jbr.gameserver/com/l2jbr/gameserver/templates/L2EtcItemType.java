@@ -18,7 +18,6 @@
  */
 package com.l2jbr.gameserver.templates;
 
-;
 
 /**
  * Description of EtcItem Type

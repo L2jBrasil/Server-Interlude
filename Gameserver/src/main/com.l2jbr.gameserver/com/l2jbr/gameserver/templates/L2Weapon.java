@@ -38,7 +38,6 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-;
 
 /**
  * This class is dedicated to the management of weapons.

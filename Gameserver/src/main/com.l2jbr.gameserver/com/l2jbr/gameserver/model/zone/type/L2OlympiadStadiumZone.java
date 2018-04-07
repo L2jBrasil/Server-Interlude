@@ -23,7 +23,6 @@ import com.l2jbr.gameserver.model.zone.L2ZoneType;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
-;
 
 /**
  * An olympiad stadium

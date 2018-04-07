@@ -28,8 +28,6 @@ import org.slf4j.LoggerFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-;
-
 
 /**
  * sample 5F 01 00 00 00 format cdd

@@ -25,7 +25,6 @@ import com.l2jbr.gameserver.datatables.*;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.L2World;
 
-;
 
 /**
  * @author Luis Arias TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates

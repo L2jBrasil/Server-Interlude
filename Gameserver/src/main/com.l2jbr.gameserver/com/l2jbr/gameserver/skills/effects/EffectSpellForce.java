@@ -19,7 +19,6 @@ package com.l2jbr.gameserver.skills.effects;
 
 import com.l2jbr.gameserver.skills.Env;
 
-;
 
 /**
  * @author kombat

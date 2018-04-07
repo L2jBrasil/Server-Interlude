@@ -27,7 +27,6 @@ import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 
 import java.util.StringTokenizer;
 
-;
 
 /**
  * This class handles the admin commands that acts on the login

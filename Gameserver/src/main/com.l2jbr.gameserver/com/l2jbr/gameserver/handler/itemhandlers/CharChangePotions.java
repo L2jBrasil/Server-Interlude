@@ -27,7 +27,6 @@ import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
 import com.l2jbr.gameserver.serverpackets.UserInfo;
 
-;
 
 /**
  * Itemhhandler for Character Appearance Change Potions

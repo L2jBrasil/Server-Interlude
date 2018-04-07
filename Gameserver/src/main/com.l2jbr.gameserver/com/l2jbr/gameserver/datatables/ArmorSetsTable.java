@@ -34,8 +34,6 @@ import java.sql.ResultSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-;
-
 
 /**
  * @author Luno

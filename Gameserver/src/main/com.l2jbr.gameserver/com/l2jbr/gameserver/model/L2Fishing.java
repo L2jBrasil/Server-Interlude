@@ -30,7 +30,6 @@ import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 import java.util.concurrent.Future;
 
-;
 
 public class L2Fishing implements Runnable
 {

@@ -24,7 +24,6 @@ import com.l2jbr.gameserver.serverpackets.ShowBoard;
 import java.util.LinkedList;
 import java.util.List;
 
-;
 
 public abstract class BaseBBSManager {
     public abstract void parsecmd(String command, L2PcInstance activeChar);

@@ -50,8 +50,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-;
-
 
 public class LoginServerThread extends Thread {
     protected static final Logger _log = LoggerFactory.getLogger(LoginServerThread.class.getName());

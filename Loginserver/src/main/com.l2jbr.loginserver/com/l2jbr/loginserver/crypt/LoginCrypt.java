@@ -22,7 +22,6 @@ import com.l2jbr.commons.util.Rnd;
 
 import java.io.IOException;
 
-;
 
 /**
  * @author KenM

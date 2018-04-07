@@ -35,7 +35,6 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.templates.StatsSet;
 
-;
 
 public class L2SkillSummon extends L2Skill
 {

@@ -29,8 +29,6 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
-;
-
 
 /**
  * This class represents the Newbie Helper Buff list.

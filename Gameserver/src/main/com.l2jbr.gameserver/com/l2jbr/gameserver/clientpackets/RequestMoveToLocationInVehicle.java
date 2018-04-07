@@ -28,7 +28,6 @@ import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.templates.L2WeaponType;
 import com.l2jbr.gameserver.util.Point3D;
 
-;
 
 public final class RequestMoveToLocationInVehicle extends L2GameClientPacket
 {

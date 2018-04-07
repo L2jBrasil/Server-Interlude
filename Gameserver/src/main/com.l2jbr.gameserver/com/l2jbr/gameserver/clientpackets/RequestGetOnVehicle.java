@@ -24,7 +24,6 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.GetOnVehicle;
 import com.l2jbr.gameserver.util.Point3D;
 
-;
 
 /**
  * This class ...

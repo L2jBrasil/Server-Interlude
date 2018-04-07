@@ -37,8 +37,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ScheduledFuture;
 
-;
-
 
 /**
  * Class For Castle Manor Manager Load manor data from DB Update/Reload/Delete Handles all schedule for manor

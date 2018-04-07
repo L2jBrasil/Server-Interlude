@@ -22,7 +22,6 @@ package com.l2jbr.gameserver;
 import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 
-;
 
 public class GMAuditFormatter extends Formatter
 {

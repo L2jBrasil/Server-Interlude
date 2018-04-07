@@ -28,8 +28,6 @@ import java.sql.ResultSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-;
-
 
 public class L2PetDataTable {
     private static Logger _log = LoggerFactory.getLogger(L2PetInstance.class.getName());

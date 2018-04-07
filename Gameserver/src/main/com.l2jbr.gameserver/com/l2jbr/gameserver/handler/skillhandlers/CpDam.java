@@ -24,7 +24,6 @@ import com.l2jbr.gameserver.model.L2Skill.SkillType;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.skills.Formulas;
 
-;
 
 /*
  * Just a quick draft to support Wrath skill. Missing angle based calculation etc.

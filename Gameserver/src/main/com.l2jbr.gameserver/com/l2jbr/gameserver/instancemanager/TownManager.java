@@ -27,8 +27,6 @@ import org.slf4j.LoggerFactory;
 import java.util.LinkedList;
 import java.util.List;
 
-;
-
 
 public class TownManager {
     private static final Logger _log = LoggerFactory.getLogger(TownManager.class.getName());

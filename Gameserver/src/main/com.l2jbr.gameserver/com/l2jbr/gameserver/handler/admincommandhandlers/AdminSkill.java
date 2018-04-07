@@ -36,8 +36,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.StringTokenizer;
 
-;
-
 
 /**
  * This class handles following admin commands: - show_skills - remove_skills - skill_list - skill_index - add_skill - remove_skill - get_skills - reset_skills - give_all_skills - remove_all_skills - add_clan_skills

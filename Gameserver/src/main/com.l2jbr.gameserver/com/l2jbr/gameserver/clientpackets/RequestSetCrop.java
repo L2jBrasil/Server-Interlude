@@ -26,7 +26,6 @@ import com.l2jbr.gameserver.instancemanager.CastleManorManager.CropProcure;
 import java.util.LinkedList;
 import java.util.List;
 
-;
 
 /**
  * Format: (ch) dd [dddc] d - manor id d - size [ d - crop id d - sales d - price c - reward type ]

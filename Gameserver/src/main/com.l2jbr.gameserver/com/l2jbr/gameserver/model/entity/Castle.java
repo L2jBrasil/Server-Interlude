@@ -44,8 +44,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.*;
 
-;
-
 
 public class Castle {
     protected static Logger _log = LoggerFactory.getLogger(Castle.class.getName());

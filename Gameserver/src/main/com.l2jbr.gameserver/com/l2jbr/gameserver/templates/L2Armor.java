@@ -29,7 +29,6 @@ import com.l2jbr.gameserver.skills.funcs.FuncTemplate;
 import java.util.LinkedList;
 import java.util.List;
 
-;
 
 /**
  * This class is dedicated to the management of armors.

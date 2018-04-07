@@ -33,8 +33,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.Future;
 
-;
-
 
 public class L2SummonInstance extends L2Summon
 {

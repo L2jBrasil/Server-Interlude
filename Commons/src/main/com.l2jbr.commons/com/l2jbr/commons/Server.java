@@ -18,7 +18,6 @@
  */
 package com.l2jbr.commons;
 
-;
 
 /**
  * This class used to be the starter class, since LS/GS split, it only retains server mode

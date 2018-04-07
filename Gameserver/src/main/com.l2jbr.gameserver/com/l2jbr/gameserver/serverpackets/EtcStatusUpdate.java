@@ -21,7 +21,6 @@ import com.l2jbr.gameserver.model.L2Effect;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.skills.effects.EffectCharge;
 
-;
 
 /* Packet format: F3 XX000000 YY000000 ZZ000000 */
 

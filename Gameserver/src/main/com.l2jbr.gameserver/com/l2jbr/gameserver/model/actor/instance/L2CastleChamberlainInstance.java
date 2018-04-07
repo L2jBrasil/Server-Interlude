@@ -35,7 +35,6 @@ import com.l2jbr.gameserver.util.Util;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
-;
 
 /**
  * Castle Chamberlains implementation used for: - tax rate control - regional manor system control - castle treasure control - ...

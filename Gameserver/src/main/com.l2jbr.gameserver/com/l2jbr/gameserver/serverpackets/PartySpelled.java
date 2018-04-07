@@ -25,7 +25,6 @@ import com.l2jbr.gameserver.model.actor.instance.L2SummonInstance;
 import java.util.LinkedList;
 import java.util.List;
 
-;
 
 /**
  * This class ...

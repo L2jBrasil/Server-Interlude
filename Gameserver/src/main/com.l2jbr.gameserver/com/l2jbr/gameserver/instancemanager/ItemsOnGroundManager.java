@@ -34,8 +34,6 @@ import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 
-;
-
 
 /**
  * This class manage all items on ground

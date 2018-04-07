@@ -62,7 +62,6 @@ import java.util.Locale;
 
 import static com.l2jbr.gameserver.util.GameserverMessages.getMessage;
 
-;
 
 /**
  * This class ...

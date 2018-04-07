@@ -31,8 +31,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-;
-
 
 /**
  * This class stores references to all online game masters. (access level > 100)

@@ -31,8 +31,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-;
-
 
 public class BoatManager {
     private static final Logger _log = LoggerFactory.getLogger(BoatManager.class.getName());

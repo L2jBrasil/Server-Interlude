@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.pathfinding.geonodes;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.pathfinding.AbstractNodeLoc;
 
-;
 
 /**
  * @author -Nemesiss-

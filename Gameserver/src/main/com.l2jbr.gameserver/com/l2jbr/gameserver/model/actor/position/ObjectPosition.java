@@ -27,8 +27,6 @@ import com.l2jbr.gameserver.util.Point3D;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-;
-
 
 public class ObjectPosition
 {

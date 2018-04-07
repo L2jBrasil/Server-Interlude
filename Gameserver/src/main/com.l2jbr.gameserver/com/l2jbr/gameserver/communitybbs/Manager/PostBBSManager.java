@@ -28,7 +28,6 @@ import com.l2jbr.gameserver.serverpackets.ShowBoard;
 import java.text.DateFormat;
 import java.util.*;
 
-;
 
 public class PostBBSManager extends BaseBBSManager {
     private final Map<Topic, Post> _postByTopic;

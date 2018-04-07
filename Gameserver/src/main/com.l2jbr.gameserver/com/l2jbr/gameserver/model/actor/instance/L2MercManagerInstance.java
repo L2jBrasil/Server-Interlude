@@ -27,7 +27,6 @@ import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 import java.util.StringTokenizer;
 
-;
 
 public final class L2MercManagerInstance extends L2FolkInstance
 {

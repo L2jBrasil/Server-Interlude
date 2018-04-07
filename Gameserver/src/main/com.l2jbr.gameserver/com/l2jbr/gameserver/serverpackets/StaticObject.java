@@ -16,7 +16,6 @@ package com.l2jbr.gameserver.serverpackets;
 
 import com.l2jbr.gameserver.model.actor.instance.L2StaticObjectInstance;
 
-;
 
 public class StaticObject extends L2GameServerPacket
 {

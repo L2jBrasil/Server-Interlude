@@ -20,7 +20,6 @@ package com.l2jbr.loginserver.serverpackets;
 
 import com.l2jbr.loginserver.L2LoginClient;
 
-;
 
 /**
  * Format: dd b dddd s d: session id d: protocol revision b: 0x90 bytes : 0x80 bytes for the scrambled RSA public key 0x10 bytes at 0x00 d: unknow d: unknow d: unknow d: unknow s: blowfish key

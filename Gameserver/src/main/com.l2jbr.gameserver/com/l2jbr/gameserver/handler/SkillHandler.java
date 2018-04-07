@@ -24,7 +24,6 @@ import com.l2jbr.gameserver.model.L2Skill.SkillType;
 import java.util.Map;
 import java.util.TreeMap;
 
-;
 
 /**
  * This class ...

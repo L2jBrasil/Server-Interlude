@@ -30,7 +30,6 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-;
 
 /**
  * Thanks to L2Fortress and balancer.ru - kombat

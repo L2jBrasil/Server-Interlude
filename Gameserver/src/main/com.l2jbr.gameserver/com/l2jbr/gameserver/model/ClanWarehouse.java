@@ -21,7 +21,6 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.model.L2ItemInstance.ItemLocation;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
-;
 
 public final class ClanWarehouse extends Warehouse
 {

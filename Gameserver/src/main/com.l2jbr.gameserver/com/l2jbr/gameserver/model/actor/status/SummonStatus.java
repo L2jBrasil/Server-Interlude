@@ -19,7 +19,6 @@ package com.l2jbr.gameserver.model.actor.status;
 
 import com.l2jbr.gameserver.model.L2Summon;
 
-;
 
 public class SummonStatus extends PlayableStatus
 {

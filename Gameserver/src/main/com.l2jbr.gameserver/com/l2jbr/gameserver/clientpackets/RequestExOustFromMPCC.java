@@ -22,7 +22,6 @@ import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
-;
 
 /**
  * @author -Wooden- D0 0F 00 5A 00 77 00 65 00 72 00 67 00 00 00

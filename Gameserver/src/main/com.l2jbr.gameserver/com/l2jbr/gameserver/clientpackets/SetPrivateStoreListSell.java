@@ -26,7 +26,6 @@ import com.l2jbr.gameserver.serverpackets.PrivateStoreManageListSell;
 import com.l2jbr.gameserver.serverpackets.PrivateStoreMsgSell;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
-;
 
 /**
  * This class ...

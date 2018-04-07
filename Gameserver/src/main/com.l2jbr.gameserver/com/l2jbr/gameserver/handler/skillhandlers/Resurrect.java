@@ -33,7 +33,6 @@ import com.l2jbr.gameserver.taskmanager.DecayTaskManager;
 import java.util.LinkedList;
 import java.util.List;
 
-;
 
 /**
  * This class ...

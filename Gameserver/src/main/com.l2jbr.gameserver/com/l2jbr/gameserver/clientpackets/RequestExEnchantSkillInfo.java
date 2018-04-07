@@ -28,7 +28,6 @@ import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.ExEnchantSkillInfo;
 
-;
 
 /**
  * Format chdd c: (id) 0xD0 h: (subid) 0x06 d: skill id d: skill lvl

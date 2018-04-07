@@ -41,7 +41,6 @@ import com.l2jbr.gameserver.util.Util;
 import java.util.Iterator;
 import java.util.Set;
 
-;
 
 /**
  * This class ...

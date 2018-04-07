@@ -36,8 +36,6 @@ import org.slf4j.LoggerFactory;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
-;
-
 
 /**
  * This class handles following admin commands: - show_moves - show_teleport - teleport_to_character - move_to - teleport_character

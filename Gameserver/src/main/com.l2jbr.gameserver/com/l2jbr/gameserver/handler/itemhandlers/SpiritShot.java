@@ -30,7 +30,6 @@ import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.templates.L2Weapon;
 import com.l2jbr.gameserver.util.Broadcast;
 
-;
 
 /**
  * This class ...

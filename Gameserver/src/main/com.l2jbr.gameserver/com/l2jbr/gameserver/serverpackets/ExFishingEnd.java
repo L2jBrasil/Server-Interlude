@@ -21,7 +21,6 @@ package com.l2jbr.gameserver.serverpackets;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
-;
 
 /**
  * Format: (ch) dc d: character object id c: 1 if won 0 if failed

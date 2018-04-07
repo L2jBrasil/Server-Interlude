@@ -34,8 +34,6 @@ import org.slf4j.LoggerFactory;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-;
-
 
 /**
  * This class ...

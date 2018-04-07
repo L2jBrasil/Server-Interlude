@@ -25,7 +25,6 @@ import com.l2jbr.gameserver.templates.L2WeaponType;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-;
 
 /**
  * This class ...

@@ -14,7 +14,6 @@
  */
 package com.l2jbr.gameserver.model.base;
 
-;
 
 /**
  * This class ...

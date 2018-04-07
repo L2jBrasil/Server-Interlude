@@ -27,8 +27,6 @@ import java.io.FileNotFoundException;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 
-;
-
 
 /**
  * extension loader for l2j

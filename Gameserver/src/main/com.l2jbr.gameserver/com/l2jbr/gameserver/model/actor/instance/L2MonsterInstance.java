@@ -30,7 +30,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ScheduledFuture;
 
-;
 
 /**
  * This class manages all Monsters. L2MonsterInstance :<BR>

@@ -29,7 +29,6 @@ import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
-;
 
 /**
  * This class ...

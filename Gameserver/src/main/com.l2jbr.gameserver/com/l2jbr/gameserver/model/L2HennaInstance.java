@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.model;
 
 import com.l2jbr.gameserver.templates.L2Henna;
 
-;
 
 /**
  * This class represents a Non-Player-Character in the world. it can be a monster or a friendly character. it also uses a template to fetch some static values. the templates are hardcoded in the client, so we can rely on them.

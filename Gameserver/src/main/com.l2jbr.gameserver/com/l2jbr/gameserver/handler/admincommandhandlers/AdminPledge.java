@@ -32,7 +32,6 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
-;
 
 /**
  * <B>Pledge Manipulation:</B><BR>

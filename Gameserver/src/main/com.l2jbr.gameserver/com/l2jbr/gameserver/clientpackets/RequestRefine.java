@@ -29,7 +29,6 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.util.Util;
 
-;
 
 /**
  * Format:(ch) dddd

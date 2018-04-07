@@ -34,9 +34,6 @@ import com.l2jbr.gameserver.templates.L2EtcItemType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-;
-
-
 
 /**
  * This class ... 31 SendWareHouseDepositList cd (dd)

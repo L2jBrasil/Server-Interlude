@@ -29,7 +29,6 @@ import com.l2jbr.gameserver.serverpackets.NpcInfo;
 import com.l2jbr.gameserver.serverpackets.PetInfo;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
-;
 
 /**
  * This class ...

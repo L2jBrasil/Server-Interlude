@@ -20,7 +20,6 @@ import com.l2jbr.gameserver.model.L2HennaInstance;
 import com.l2jbr.gameserver.serverpackets.HennaEquipList;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
-;
 
 /**
  * This class ...

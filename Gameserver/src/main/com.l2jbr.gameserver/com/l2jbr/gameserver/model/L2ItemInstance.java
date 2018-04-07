@@ -42,8 +42,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.concurrent.ScheduledFuture;
 
-;
-
 
 /**
  * This class manages items.

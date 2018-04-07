@@ -25,7 +25,6 @@ import com.l2jbr.gameserver.serverpackets.EtcStatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.Env;
 
-;
 
 public class EffectCharge extends L2Effect
 {

@@ -33,7 +33,6 @@ import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import java.util.List;
 import java.util.StringTokenizer;
 
-;
 
 public class L2ManorManagerInstance extends L2MerchantInstance {
 

@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.serverpackets;
 
 import com.l2jbr.gameserver.model.L2Object;
 
-;
 
 /**
  * sample 0000: 0c 9b da 12 40 ....@ format d

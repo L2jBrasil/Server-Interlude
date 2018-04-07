@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.serverpackets;
 
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
-;
 
 public class BeginRotation extends L2GameServerPacket
 {

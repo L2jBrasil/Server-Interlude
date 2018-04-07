@@ -33,8 +33,6 @@ import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
-;
-
 
 public class Duel {
     protected static final Logger _log = LoggerFactory.getLogger(Duel.class.getName());

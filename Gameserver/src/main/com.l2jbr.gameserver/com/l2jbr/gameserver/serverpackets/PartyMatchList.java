@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.serverpackets;
 
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
-;
 
 /**
  * sample af 02 00 00 00 count 71 b3 70 4b object id 44 00 79 00 66 00 65 00 72 00 00 00 name 14 00 00 00 level 0f 00 00 00 class id 00 00 00 00 sex ?? 00 00 00 00 clan id 02 00 00 00 ?? 6f 5f 00 00 x af a9 00 00 y f7 f1 ff ff z c1 9c c0 4b object id 43 00 6a 00 6a 00 6a 00 6a 00 6f 00 6e 00 00 00

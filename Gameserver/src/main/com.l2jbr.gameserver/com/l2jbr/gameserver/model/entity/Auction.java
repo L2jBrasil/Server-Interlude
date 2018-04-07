@@ -37,8 +37,6 @@ import java.util.Calendar;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-;
-
 
 public class Auction {
     protected static final Logger _log = LoggerFactory.getLogger(Auction.class.getName());

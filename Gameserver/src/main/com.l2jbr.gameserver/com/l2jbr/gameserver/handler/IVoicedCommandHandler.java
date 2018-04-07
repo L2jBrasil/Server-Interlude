@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.handler;
 
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
-;
 
 /**
  * This class ...

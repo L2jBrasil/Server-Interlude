@@ -21,7 +21,6 @@ package com.l2jbr.gameserver.model;
 import java.util.LinkedList;
 import java.util.List;
 
-;
 
 /**
  * This class ...

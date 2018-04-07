@@ -28,7 +28,6 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
-;
 
 /**
  * Main Table to Load Npc Walkers Routes and Chat SQL Table.<br>

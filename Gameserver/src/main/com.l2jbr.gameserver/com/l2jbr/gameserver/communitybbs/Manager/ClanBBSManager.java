@@ -26,7 +26,6 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
 import java.util.StringTokenizer;
 
-;
 
 public class ClanBBSManager extends BaseBBSManager {
     private static ClanBBSManager _instance = new ClanBBSManager();

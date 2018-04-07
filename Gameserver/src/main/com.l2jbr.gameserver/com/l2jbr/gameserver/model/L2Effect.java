@@ -38,8 +38,6 @@ import java.util.List;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
-;
-
 
 /**
  * This class ...

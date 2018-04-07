@@ -23,7 +23,6 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
-;
 
 /**
  * sample 5F 01 00 00 00 format cdd

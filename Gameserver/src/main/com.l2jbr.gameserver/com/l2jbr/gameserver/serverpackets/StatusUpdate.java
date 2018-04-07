@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.serverpackets;
 
 import java.util.Vector;
 
-;
 
 /**
  * 01 // Packet Identifier <BR>

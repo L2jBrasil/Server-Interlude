@@ -31,9 +31,6 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-;
-
-
 
 public final class RequestPetUseItem extends L2GameClientPacket
 {

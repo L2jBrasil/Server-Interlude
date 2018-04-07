@@ -30,7 +30,6 @@ import com.l2jbr.gameserver.network.L2GameClient;
 
 import java.nio.ByteBuffer;
 
-;
 
 /**
  * This interface can be implemented by custom extensions to l2j to get packets before the normal processing of PacketHandler

@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.serverpackets;
 
 import java.util.List;
 
-;
 
 /**
  * Format : (h) d [dS] h sub id d: number of manors [ d: id S: manor name ]

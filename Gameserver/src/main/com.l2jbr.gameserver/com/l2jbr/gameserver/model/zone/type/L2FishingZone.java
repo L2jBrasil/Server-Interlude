@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.model.zone.type;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.zone.L2ZoneType;
 
-;
 
 /**
  * A fishing zone

@@ -29,7 +29,6 @@ import com.l2jbr.gameserver.skills.Env;
 import java.util.LinkedList;
 import java.util.List;
 
-;
 
 /**
  * @author littlecrow Implementation of the Confusion Effect

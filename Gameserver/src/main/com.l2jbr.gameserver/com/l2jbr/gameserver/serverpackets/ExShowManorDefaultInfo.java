@@ -22,8 +22,6 @@ import com.l2jbr.gameserver.model.L2Manor;
 
 import java.util.List;
 
-;
-
 
 /**
  * format(packet 0xFE) ch cd [ddddcdcd] c - id h - sub id c d - size [ d - level d - seed price d - seed level d - crop price c d - reward 1 id c d - reward 2 id ]

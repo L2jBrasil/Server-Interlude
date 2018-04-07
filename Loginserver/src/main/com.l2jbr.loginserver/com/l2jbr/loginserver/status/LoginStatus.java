@@ -8,7 +8,6 @@ import java.net.Socket;
 import java.util.LinkedList;
 import java.util.List;
 
-;
 
 public class LoginStatus extends Status {
 

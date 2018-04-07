@@ -17,7 +17,6 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
-;
 
 /**
  * @author chris_00 opens the CommandChannel Information window

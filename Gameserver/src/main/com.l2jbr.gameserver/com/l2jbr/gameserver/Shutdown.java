@@ -29,8 +29,6 @@ import com.l2jbr.gameserver.serverpackets.ServerClose;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-;
-
 
 /**
  * This class provides the functions for shutting down and restarting the server It closes all open clientconnections and saves all data.

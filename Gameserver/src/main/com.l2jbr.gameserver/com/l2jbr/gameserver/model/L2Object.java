@@ -30,7 +30,6 @@ import com.l2jbr.gameserver.network.L2GameClient;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.GetItem;
 
-;
 
 /**
  * Mother class of all objects in the world which ones is it possible to interact (PC, NPC, Item...)<BR>

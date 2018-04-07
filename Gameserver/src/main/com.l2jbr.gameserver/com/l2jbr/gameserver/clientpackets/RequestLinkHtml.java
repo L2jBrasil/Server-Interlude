@@ -23,7 +23,6 @@ import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-;
 
 /**
  * @author zabbix Lets drink to code!

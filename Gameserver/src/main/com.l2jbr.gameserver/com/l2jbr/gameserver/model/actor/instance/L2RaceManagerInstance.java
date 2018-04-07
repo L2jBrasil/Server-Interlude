@@ -31,7 +31,6 @@ import com.l2jbr.gameserver.util.Broadcast;
 import java.util.LinkedList;
 import java.util.List;
 
-;
 
 public class L2RaceManagerInstance extends L2NpcInstance {
     public static final int LANES = 8;

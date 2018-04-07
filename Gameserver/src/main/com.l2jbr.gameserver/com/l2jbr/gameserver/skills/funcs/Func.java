@@ -22,7 +22,6 @@ import com.l2jbr.gameserver.skills.Env;
 import com.l2jbr.gameserver.skills.Stats;
 import com.l2jbr.gameserver.skills.conditions.Condition;
 
-;
 
 /**
  * A Func object is a component of a Calculator created to manage and dynamically calculate the effect of a character property (ex : MAX_HP, REGENERATE_HP_RATE...). In fact, each calculator is a table of Func object in which each Func represents a mathematic function : <BR>

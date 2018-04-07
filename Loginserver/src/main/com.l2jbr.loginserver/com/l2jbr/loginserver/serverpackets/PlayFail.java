@@ -18,7 +18,6 @@
  */
 package com.l2jbr.loginserver.serverpackets;
 
-;
 
 /**
  * This class ...

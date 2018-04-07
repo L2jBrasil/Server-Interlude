@@ -24,7 +24,6 @@ import com.l2jbr.gameserver.handler.IAdminCommandHandler;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.util.Util;
 
-;
 
 /**
  * This class handles all GM commands triggered by //command

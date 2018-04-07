@@ -52,7 +52,6 @@ import java.util.NoSuchElementException;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
-;
 
 public class GameStatusThread extends Thread
 {

@@ -21,7 +21,6 @@ package com.l2jbr.gameserver.handler;
 import java.util.Map;
 import java.util.TreeMap;
 
-;
 
 /**
  * This class manages handlers of items

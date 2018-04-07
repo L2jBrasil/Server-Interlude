@@ -18,7 +18,6 @@
  */
 package com.l2jbr.gameserver.model;
 
-;
 
 /**
  * Used to Store data sent to Client for Character Selection screen.

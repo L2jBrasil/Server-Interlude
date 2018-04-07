@@ -20,8 +20,7 @@ package com.l2jbr.gameserver.clientpackets;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.serverpackets.PackageSendableList;
 
-;
-;
+
 
 /**
  * Format: (c)d d: char object id (?)

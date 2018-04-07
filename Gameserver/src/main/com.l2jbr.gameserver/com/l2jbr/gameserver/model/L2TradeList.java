@@ -32,8 +32,6 @@ import java.sql.PreparedStatement;
 import java.util.LinkedList;
 import java.util.List;
 
-;
-
 
 /**
  * This class ...

@@ -22,7 +22,6 @@ import static com.l2jbr.gameserver.model.base.ClassLevel.*;
 import static com.l2jbr.gameserver.model.base.ClassType.*;
 import static com.l2jbr.gameserver.model.base.PlayerRace.*;
 
-;
 
 /**
  * This class ...

@@ -25,7 +25,6 @@ import com.l2jbr.mmocore.ReceivablePacket;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-;
 
 /**
  * <p>

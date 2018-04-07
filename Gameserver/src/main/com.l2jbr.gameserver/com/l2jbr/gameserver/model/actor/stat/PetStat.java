@@ -28,7 +28,6 @@ import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.Stats;
 
-;
 
 public class PetStat extends SummonStat
 {

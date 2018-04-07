@@ -35,7 +35,6 @@ import java.util.List;
 import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 
-;
 
 /**
  * @author Luis Arias

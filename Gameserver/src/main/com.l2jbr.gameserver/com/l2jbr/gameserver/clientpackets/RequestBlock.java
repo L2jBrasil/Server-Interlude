@@ -25,7 +25,6 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-;
 
 public final class RequestBlock extends L2GameClientPacket
 {

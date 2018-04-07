@@ -29,8 +29,6 @@ import org.slf4j.LoggerFactory;
 import java.nio.ByteBuffer;
 import java.util.concurrent.RejectedExecutionException;
 
-;
-
 
 /**
  * Stateful Packet Handler<BR>

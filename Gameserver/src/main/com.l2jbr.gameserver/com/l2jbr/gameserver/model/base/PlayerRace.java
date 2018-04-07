@@ -14,7 +14,6 @@
  */
 package com.l2jbr.gameserver.model.base;
 
-;
 
 public enum PlayerRace
 {

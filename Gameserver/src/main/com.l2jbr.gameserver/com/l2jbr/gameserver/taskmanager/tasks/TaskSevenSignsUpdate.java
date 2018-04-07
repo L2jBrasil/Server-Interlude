@@ -26,7 +26,6 @@ import com.l2jbr.gameserver.taskmanager.TaskTypes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-;
 
 /**
  * Updates all data for the Seven Signs and Festival of Darkness engines, when time is elapsed.

@@ -22,7 +22,6 @@ import com.l2jbr.gameserver.model.quest.Quest;
 import org.apache.bsf.BSFException;
 import org.apache.bsf.BSFManager;
 
-;
 
 public abstract class QuestJython extends Quest
 {

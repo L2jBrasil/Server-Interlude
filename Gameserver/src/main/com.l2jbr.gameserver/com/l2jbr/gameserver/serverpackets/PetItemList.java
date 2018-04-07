@@ -24,9 +24,6 @@ import com.l2jbr.gameserver.model.actor.instance.L2PetInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-;
-
-
 
 /**
  * This class ...

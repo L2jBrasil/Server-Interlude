@@ -20,7 +20,6 @@ package com.l2jbr.gameserver;
 
 import java.nio.ByteBuffer;
 
-;
 
 /**
  * This class ...

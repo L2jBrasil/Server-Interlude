@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.serverpackets;
 
 import com.l2jbr.gameserver.model.L2Clan;
 
-;
 
 public class ManagePledgePower extends L2GameServerPacket
 {

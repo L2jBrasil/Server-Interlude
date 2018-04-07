@@ -30,7 +30,6 @@ import com.l2jbr.gameserver.serverpackets.PlaySound;
 import com.l2jbr.gameserver.serverpackets.SocialAction;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
-;
 
 /**
  * @author chris

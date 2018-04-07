@@ -19,7 +19,6 @@ package com.l2jbr.gameserver.model.actor.stat;
 
 import com.l2jbr.gameserver.model.actor.instance.L2DoorInstance;
 
-;
 
 public class DoorStat extends CharStat
 {

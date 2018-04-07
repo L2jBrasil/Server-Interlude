@@ -24,7 +24,6 @@ import com.l2jbr.gameserver.serverpackets.ExQuestInfo;
 import com.l2jbr.gameserver.serverpackets.RadarControl;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
-;
 
 /**
  * This class ...

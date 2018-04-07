@@ -18,7 +18,6 @@
  */
 package com.l2jbr.gameserver.ai2;
 
-;
 
 /**
  * @author -Wooden-

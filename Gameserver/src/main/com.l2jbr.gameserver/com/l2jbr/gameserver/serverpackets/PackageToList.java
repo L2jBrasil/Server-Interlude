@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.serverpackets;
 
 import java.util.Map;
 
-;
 
 /**
  * Format: (c) d[dS] d: list size [ d: char ID S: char Name ]

@@ -30,7 +30,6 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.Stats;
 import com.l2jbr.gameserver.util.Util;
 
-;
 
 public class PcStatus extends PlayableStatus
 {

@@ -22,7 +22,6 @@ import com.l2jbr.gameserver.model.L2Effect;
 import com.l2jbr.gameserver.model.actor.instance.L2PlayableInstance;
 import com.l2jbr.gameserver.skills.Env;
 
-;
 
 /**
  * @author earendil TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates

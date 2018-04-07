@@ -25,8 +25,6 @@ import com.l2jbr.gameserver.model.entity.Castle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-;
-
 
 /**
  * Thorgrim - 2005 Class managing periodical events with castle

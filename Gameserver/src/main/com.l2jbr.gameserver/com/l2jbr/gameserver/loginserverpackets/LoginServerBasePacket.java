@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.loginserverpackets;
 
 import com.l2jbr.gameserver.TaskPriority;
 
-;
 
 /**
  * @author -Wooden-

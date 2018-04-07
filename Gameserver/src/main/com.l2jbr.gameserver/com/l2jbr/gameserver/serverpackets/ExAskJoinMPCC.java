@@ -17,7 +17,6 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
-;
 
 /**
  * @author chris_00 Asks the player to join a CC

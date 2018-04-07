@@ -35,8 +35,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.StringTokenizer;
 
-;
-
 
 /**
  * Dawn/Dusk Seven Signs Priest Instance

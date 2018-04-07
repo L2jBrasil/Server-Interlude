@@ -30,7 +30,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-;
+
 /*
  * This class implements a L2Box instance which is used like a warehouse but
  * without limits on item numbers. It can be thought of a box with six drawers.

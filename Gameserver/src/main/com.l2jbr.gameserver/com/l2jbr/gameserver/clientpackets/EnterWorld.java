@@ -42,8 +42,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-;
-
 
 /**
  * Enter World Packet Handler

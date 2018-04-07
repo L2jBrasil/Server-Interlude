@@ -27,7 +27,6 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
 import java.io.File;
 
-;
 
 /**
  * @author Layanere

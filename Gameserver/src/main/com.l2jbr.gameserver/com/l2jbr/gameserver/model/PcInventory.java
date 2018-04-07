@@ -28,7 +28,6 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
-;
 
 public class PcInventory extends Inventory {
     public static final int ADENA_ID = 57;

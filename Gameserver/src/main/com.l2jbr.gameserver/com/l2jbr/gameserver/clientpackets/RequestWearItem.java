@@ -42,8 +42,6 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.concurrent.Future;
 
-;
-
 
 /**
  * This class ...

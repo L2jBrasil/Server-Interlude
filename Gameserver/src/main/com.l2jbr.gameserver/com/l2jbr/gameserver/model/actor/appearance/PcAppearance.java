@@ -18,7 +18,6 @@
  */
 package com.l2jbr.gameserver.model.actor.appearance;
 
-;
 
 public class PcAppearance
 {

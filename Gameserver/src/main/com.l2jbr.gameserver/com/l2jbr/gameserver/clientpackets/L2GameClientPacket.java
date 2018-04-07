@@ -25,7 +25,6 @@ import com.l2jbr.mmocore.ReceivablePacket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-;
 
 /**
  * Packets received by the game server from clients

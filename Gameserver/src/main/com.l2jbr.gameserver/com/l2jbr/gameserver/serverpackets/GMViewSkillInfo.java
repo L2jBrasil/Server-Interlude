@@ -22,7 +22,6 @@ package com.l2jbr.gameserver.serverpackets;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
-;
 
 public class GMViewSkillInfo extends L2GameServerPacket
 {

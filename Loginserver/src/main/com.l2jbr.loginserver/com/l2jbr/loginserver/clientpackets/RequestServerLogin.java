@@ -25,7 +25,6 @@ import com.l2jbr.loginserver.serverpackets.LoginFail.LoginFailReason;
 import com.l2jbr.loginserver.serverpackets.PlayFail.PlayFailReason;
 import com.l2jbr.loginserver.serverpackets.PlayOk;
 
-;
 
 /**
  * Fromat is ddc d: first part of session id d: second part of session id c: server ID

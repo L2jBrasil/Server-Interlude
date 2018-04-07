@@ -48,7 +48,6 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-;
 
 /**
  * Thanks to L2Fortress and balancer.ru - kombat

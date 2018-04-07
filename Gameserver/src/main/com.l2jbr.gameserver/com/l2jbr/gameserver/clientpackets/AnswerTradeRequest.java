@@ -26,7 +26,6 @@ import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.SendTradeDone;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
-;
 
 /**
  * This class ...

@@ -38,8 +38,6 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-;
-
 
 /**
  * This class handles following admin commands: - edit_character - current_player - character_list - show_characters - find_character - find_ip - find_account - rec - nokarma - setkarma - settitle - setname - setsex - setclass - fullfood - save_modifications

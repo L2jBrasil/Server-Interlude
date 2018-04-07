@@ -25,7 +25,6 @@ import com.l2jbr.gameserver.model.actor.instance.L2PetInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2SummonInstance;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 
-;
 
 /**
  * This class ...

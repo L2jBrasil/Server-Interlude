@@ -25,7 +25,6 @@ import com.l2jbr.gameserver.model.L2Skill.SkillType;
 
 import java.io.IOException;
 
-;
 
 /**
  * an IItemHandler implementation has to be stateless

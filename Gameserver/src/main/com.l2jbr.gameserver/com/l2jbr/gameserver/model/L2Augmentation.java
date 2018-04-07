@@ -31,8 +31,6 @@ import org.slf4j.LoggerFactory;
 import java.sql.PreparedStatement;
 import java.util.List;
 
-;
-
 
 /**
  * Used to store an augmentation and its boni

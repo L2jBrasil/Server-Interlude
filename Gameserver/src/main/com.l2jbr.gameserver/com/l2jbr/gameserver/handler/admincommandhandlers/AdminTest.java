@@ -26,7 +26,6 @@ import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
-;
 
 /**
  * This class ...

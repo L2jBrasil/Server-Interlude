@@ -21,9 +21,6 @@ package com.l2jbr.gameserver.clientpackets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-;
-
-
 
 /**
  * Format (ch) dd

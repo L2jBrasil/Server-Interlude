@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.serverpackets;
 import com.l2jbr.gameserver.model.entity.ClanHall;
 import com.l2jbr.gameserver.model.entity.ClanHall.ClanHallFunction;
 
-;
 
 /**
  * @author Steuf

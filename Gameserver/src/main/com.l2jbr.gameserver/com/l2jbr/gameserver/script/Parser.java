@@ -21,7 +21,6 @@ package com.l2jbr.gameserver.script;
 import org.apache.bsf.BSFManager;
 import org.w3c.dom.Node;
 
-;
 
 /**
  * @author Luis Arias

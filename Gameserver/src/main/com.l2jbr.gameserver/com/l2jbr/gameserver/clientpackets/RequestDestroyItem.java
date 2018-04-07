@@ -36,8 +36,6 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 
-;
-
 
 /**
  * This class ...

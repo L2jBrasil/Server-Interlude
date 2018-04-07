@@ -37,7 +37,6 @@ import com.l2jbr.gameserver.taskmanager.DecayTaskManager;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.templates.L2Weapon;
 
-;
 
 public abstract class L2Summon extends L2PlayableInstance
 {

@@ -25,7 +25,6 @@ import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.StatsSet;
 
-;
 
 public class L2SkillDefault extends L2Skill
 {

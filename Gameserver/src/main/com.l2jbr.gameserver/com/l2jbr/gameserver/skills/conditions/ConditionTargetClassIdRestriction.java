@@ -23,7 +23,6 @@ import com.l2jbr.gameserver.skills.Env;
 
 import java.util.List;
 
-;
 
 public class ConditionTargetClassIdRestriction extends Condition {
 

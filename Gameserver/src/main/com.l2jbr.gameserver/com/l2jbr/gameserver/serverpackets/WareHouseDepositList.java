@@ -27,8 +27,6 @@ import org.slf4j.LoggerFactory;
 import java.util.LinkedList;
 import java.util.List;
 
-;
-
 
 /**
  * 0x53 WareHouseDepositList dh (h dddhh dhhh d)

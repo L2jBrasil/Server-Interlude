@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.serverpackets;
 
 import java.util.List;
 
-;
 
 public class ShowBoard extends L2GameServerPacket
 {

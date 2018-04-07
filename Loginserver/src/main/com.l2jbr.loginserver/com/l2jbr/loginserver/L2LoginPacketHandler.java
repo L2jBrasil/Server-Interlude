@@ -27,7 +27,6 @@ import com.l2jbr.mmocore.ReceivablePacket;
 
 import java.nio.ByteBuffer;
 
-;
 
 /**
  * Handler for packets received by Login Server

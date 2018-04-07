@@ -26,7 +26,6 @@ import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.actor.instance.L2DoorInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2SiegeGuardInstance;
 
-;
 
 /**
  * @author mkizub TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates

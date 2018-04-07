@@ -17,7 +17,6 @@
  */
 package com.l2jbr.mmocore;
 
-;
 
 /**
  * @author KenM

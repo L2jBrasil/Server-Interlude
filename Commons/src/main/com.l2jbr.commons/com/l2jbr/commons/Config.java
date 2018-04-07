@@ -27,8 +27,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 
-;
-
 
 /**
  * This class contains global server configuration.<br>

@@ -26,7 +26,6 @@ import com.l2jbr.gameserver.model.actor.stat.PlayableStat;
 import com.l2jbr.gameserver.model.actor.status.PlayableStatus;
 import com.l2jbr.gameserver.templates.L2CharTemplate;
 
-;
 
 /**
  * This class represents all Playable characters in the world.<BR>

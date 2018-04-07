@@ -29,7 +29,6 @@ import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.util.FloodProtector;
 
-;
 
 /**
  * This class ...

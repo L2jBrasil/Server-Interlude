@@ -17,7 +17,6 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
-;
 
 /**
  * Fromat:(ch) dddddc

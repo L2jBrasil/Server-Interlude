@@ -19,7 +19,6 @@ package com.l2jbr.gameserver.clientpackets;
 
 import com.l2jbr.gameserver.instancemanager.DuelManager;
 
-;
 
 /**
  * Format:(ch) just a trigger

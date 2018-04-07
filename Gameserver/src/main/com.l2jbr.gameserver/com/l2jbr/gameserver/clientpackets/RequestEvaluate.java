@@ -23,7 +23,6 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.serverpackets.UserInfo;
 
-;
 
 public final class RequestEvaluate extends L2GameClientPacket
 {

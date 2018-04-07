@@ -27,7 +27,6 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-;
 
 /**
  * @author _drunk_ TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates

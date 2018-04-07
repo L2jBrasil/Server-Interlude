@@ -22,7 +22,6 @@ import com.l2jbr.gameserver.model.L2ClanMember;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.PledgeShowMemberListUpdate;
 
-;
 
 /**
  * Format: (ch) dSdS

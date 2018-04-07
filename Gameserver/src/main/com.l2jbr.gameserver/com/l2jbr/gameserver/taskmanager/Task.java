@@ -24,8 +24,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ScheduledFuture;
 
-;
-
 
 /**
  * @author Layane

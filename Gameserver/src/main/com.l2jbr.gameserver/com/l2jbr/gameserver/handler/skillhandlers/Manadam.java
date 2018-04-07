@@ -27,7 +27,6 @@ import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.Formulas;
 
-;
 
 /**
  * Class handling the Mana damage skill

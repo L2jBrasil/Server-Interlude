@@ -27,7 +27,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Calendar;
 
-;
 
 /**
  * Shows the Siege Info<BR>

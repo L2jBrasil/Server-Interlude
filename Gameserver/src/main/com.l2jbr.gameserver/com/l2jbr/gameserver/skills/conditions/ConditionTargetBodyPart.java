@@ -23,7 +23,6 @@ import com.l2jbr.gameserver.skills.Env;
 import com.l2jbr.gameserver.templates.L2Armor;
 import com.l2jbr.gameserver.templates.L2Item;
 
-;
 
 /**
  * @author mkizub TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates

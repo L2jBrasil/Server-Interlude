@@ -21,7 +21,6 @@ package com.l2jbr.gameserver.clientpackets;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.UserInfo;
 
-;
 
 /**
  * Appearing Packet Handler

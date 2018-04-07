@@ -31,8 +31,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-;
-
 
 public class ForumsBBSManager extends BaseBBSManager {
     private static Logger _log = LoggerFactory.getLogger(ForumsBBSManager.class.getName());

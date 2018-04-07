@@ -27,8 +27,6 @@ import org.slf4j.LoggerFactory;
 import java.util.LinkedList;
 import java.util.List;
 
-;
-
 
 /**
  * This class ...

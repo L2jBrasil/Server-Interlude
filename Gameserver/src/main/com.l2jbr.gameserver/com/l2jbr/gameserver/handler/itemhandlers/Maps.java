@@ -25,7 +25,6 @@ import com.l2jbr.gameserver.model.actor.instance.L2PlayableInstance;
 import com.l2jbr.gameserver.serverpackets.RadarControl;
 import com.l2jbr.gameserver.serverpackets.ShowMiniMap;
 
-;
 
 /**
  * This class provides handling for items that should display a map when double clicked.

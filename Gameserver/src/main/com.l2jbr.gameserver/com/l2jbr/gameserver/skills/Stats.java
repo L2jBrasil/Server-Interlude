@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.skills;
 
 import java.util.NoSuchElementException;
 
-;
 
 /**
  * Enum of basic stats.

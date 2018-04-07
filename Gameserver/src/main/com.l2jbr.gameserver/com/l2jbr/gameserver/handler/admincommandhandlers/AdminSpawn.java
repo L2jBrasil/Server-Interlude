@@ -40,8 +40,6 @@ import org.slf4j.LoggerFactory;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
-;
-
 
 /**
  * This class handles following admin commands: - show_spawns = shows menu - spawn_index lvl = shows menu for monsters with respective level - spawn_monster id = spawns monster id on target

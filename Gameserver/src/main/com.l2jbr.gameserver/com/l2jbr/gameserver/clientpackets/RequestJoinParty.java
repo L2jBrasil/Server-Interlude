@@ -28,9 +28,6 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-;
-
-
 
 /**
  * sample 29 42 00 00 10 01 00 00 00 format cdd

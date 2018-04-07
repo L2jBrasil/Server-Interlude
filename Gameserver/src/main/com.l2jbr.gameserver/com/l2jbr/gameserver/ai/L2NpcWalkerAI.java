@@ -27,7 +27,6 @@ import com.l2jbr.gameserver.model.actor.instance.L2NpcWalkerInstance;
 
 import java.util.List;
 
-;
 
 public class L2NpcWalkerAI extends L2CharacterAI implements Runnable {
     private static final int DEFAULT_MOVE_DELAY = 0;

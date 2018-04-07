@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.serverpackets;
 
 import com.l2jbr.gameserver.SevenSigns;
 
-;
 
 /**
  * sample format d

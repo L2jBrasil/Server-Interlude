@@ -33,8 +33,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.StringTokenizer;
 
-;
-
 
 /**
  * This class handles following admin commands: - kill = kills target L2Character - kill_monster = kills target non-player - kill <radius> = If radius is specified, then ALL players only in that radius will be killed. - kill_monster <radius> = If radius is specified, then ALL non-players only in

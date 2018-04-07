@@ -28,8 +28,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.*;
 
-;
-
 
 /**
  * This class will load all the AI's and retain all of them. It is a singleton

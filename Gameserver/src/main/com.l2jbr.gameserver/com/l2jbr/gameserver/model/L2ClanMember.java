@@ -25,7 +25,6 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-;
 
 /**
  * This class ...

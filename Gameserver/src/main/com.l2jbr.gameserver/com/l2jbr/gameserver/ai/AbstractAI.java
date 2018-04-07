@@ -34,7 +34,6 @@ import java.util.concurrent.Future;
 
 import static com.l2jbr.gameserver.ai.CtrlIntention.*;
 
-;
 
 /**
  * Mother class of all objects AI in the world.<BR>

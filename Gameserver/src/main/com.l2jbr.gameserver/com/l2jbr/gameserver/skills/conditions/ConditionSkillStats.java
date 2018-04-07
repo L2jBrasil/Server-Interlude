@@ -21,7 +21,6 @@ package com.l2jbr.gameserver.skills.conditions;
 import com.l2jbr.gameserver.skills.Env;
 import com.l2jbr.gameserver.skills.Stats;
 
-;
 
 /**
  * @author mkizub TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates

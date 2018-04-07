@@ -27,7 +27,6 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.effects.EffectCharge;
 import com.l2jbr.gameserver.templates.StatsSet;
 
-;
 
 public class L2SkillCharge extends L2Skill
 {

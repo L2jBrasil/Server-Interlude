@@ -41,8 +41,6 @@ import java.util.Calendar;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-;
-
 
 /**
  * Seven Signs Engine TODO: - Implementation of the Seal of Strife for sieges.

@@ -35,8 +35,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-;
-
 
 /**
  * This class manages the augmentation data and can also create new augmentations.

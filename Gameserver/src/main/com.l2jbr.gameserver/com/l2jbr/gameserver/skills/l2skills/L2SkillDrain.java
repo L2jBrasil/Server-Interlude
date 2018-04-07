@@ -25,7 +25,6 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.Formulas;
 import com.l2jbr.gameserver.templates.StatsSet;
 
-;
 
 public class L2SkillDrain extends L2Skill
 {

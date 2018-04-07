@@ -27,7 +27,6 @@ import com.l2jbr.gameserver.skills.effects.EffectCharge;
 import com.l2jbr.gameserver.templates.L2WeaponType;
 import com.l2jbr.gameserver.templates.StatsSet;
 
-;
 
 public class L2SkillChargeDmg extends L2Skill
 {

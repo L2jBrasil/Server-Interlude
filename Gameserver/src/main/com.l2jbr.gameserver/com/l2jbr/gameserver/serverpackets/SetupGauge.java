@@ -18,7 +18,6 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
-;
 
 /**
  * sample 0000: 85 00 00 00 00 f0 1a 00 00

@@ -28,7 +28,6 @@ import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import java.util.LinkedHashMap;
 import java.util.concurrent.Future;
 
-;
 
 /**
  * This class ...

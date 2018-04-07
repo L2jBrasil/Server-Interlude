@@ -23,7 +23,6 @@ import com.l2jbr.gameserver.handler.IUserCommandHandler;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 
-;
 
 /**
  * Support for clan penalty user command.

@@ -26,7 +26,6 @@ import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 
 import java.util.StringTokenizer;
 
-;
 
 /**
  * This class handles commands for gm to forge packets

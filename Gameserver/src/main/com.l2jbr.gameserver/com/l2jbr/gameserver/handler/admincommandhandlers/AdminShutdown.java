@@ -29,7 +29,6 @@ import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-;
 
 /**
  * This class handles following admin commands: - server_shutdown [sec] = shows menu or shuts down server in sec seconds

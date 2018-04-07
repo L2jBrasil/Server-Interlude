@@ -25,7 +25,6 @@ import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 
 import java.util.Iterator;
 
-;
 
 /**
  *

@@ -42,8 +42,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-;
-
 
 /**
  * @author terry Window - Preferences - Java - Code Style - Code Templates

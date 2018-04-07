@@ -19,7 +19,6 @@ package com.l2jbr.gameserver.network;
 
 import com.l2jbr.commons.util.Rnd;
 
-;
 
 /**
  * Blowfish keygen for GameServer client connections

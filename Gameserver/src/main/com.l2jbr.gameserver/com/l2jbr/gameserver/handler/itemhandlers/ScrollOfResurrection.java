@@ -31,7 +31,6 @@ import com.l2jbr.gameserver.model.entity.Castle;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
-;
 
 /**
  * This class ...

@@ -23,8 +23,6 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-;
-
 
 /**
  * @author Dezmond_snz Format: cddd

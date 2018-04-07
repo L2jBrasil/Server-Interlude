@@ -24,7 +24,6 @@ import com.l2jbr.gameserver.model.zone.L2ZoneType;
 import java.util.Collection;
 import java.util.concurrent.Future;
 
-;
 
 /**
  * A damage zone

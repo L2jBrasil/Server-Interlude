@@ -24,7 +24,6 @@ import com.l2jbr.gameserver.util.Point3D;
 
 import java.util.*;
 
-;
 
 /**
  * This class ...

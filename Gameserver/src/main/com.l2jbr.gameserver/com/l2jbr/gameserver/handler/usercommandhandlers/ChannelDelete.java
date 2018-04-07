@@ -22,7 +22,6 @@ import com.l2jbr.gameserver.model.L2CommandChannel;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
-;
 
 /**
  * @author Chris

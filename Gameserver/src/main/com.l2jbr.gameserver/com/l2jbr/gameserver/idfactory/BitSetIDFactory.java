@@ -22,7 +22,6 @@ import org.slf4j.LoggerFactory;
 import java.util.BitSet;
 import java.util.concurrent.atomic.AtomicInteger;
 
-;
 
 /**
  * This class ..

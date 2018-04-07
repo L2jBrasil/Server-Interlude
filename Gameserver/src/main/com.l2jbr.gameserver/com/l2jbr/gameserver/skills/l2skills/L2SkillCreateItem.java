@@ -29,7 +29,6 @@ import com.l2jbr.gameserver.serverpackets.ItemList;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.StatsSet;
 
-;
 
 /**
  * @author Nemesiss

@@ -24,7 +24,6 @@ import com.l2jbr.gameserver.serverpackets.ShowBoard;
 
 import java.util.StringTokenizer;
 
-;
 
 public class TopBBSManager extends BaseBBSManager
 {

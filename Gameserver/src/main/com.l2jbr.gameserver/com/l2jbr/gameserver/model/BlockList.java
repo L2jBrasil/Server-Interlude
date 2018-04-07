@@ -21,7 +21,6 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-;
 
 public class BlockList {
     private final Set<String> _blockSet;

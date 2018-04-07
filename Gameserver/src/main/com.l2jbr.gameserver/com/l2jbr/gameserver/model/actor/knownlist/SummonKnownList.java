@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.model.actor.knownlist;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.L2Summon;
 
-;
 
 public class SummonKnownList extends PlayableKnownList
 {

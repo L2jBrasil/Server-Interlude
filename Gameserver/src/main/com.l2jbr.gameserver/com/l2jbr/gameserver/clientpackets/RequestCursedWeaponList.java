@@ -24,7 +24,6 @@ import com.l2jbr.gameserver.serverpackets.ExCursedWeaponList;
 import java.util.LinkedList;
 import java.util.List;
 
-;
 
 /**
  * Format: (ch)

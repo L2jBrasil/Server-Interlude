@@ -22,7 +22,6 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import java.io.File;
 import java.util.Collection;
 
-;
 
 /**
  * General Utility functions related to Gameserver

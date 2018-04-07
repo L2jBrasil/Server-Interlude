@@ -38,8 +38,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ScheduledFuture;
 
-;
-
 
 /**
  * Auto Chat Handler Allows NPCs to automatically send messages to nearby players at a set time interval.

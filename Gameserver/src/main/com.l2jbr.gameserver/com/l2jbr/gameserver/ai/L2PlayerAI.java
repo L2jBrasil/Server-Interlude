@@ -31,7 +31,6 @@ import java.util.Stack;
 
 import static com.l2jbr.gameserver.ai.CtrlIntention.*;
 
-;
 
 public class L2PlayerAI extends L2CharacterAI
 {

@@ -27,7 +27,6 @@ import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.L2Henna;
 
-;
 
 /**
  * This class ...

@@ -36,7 +36,6 @@ import com.l2jbr.gameserver.util.Util;
 import java.util.LinkedList;
 import java.util.List;
 
-;
 
 /**
  * This class ...

@@ -28,7 +28,6 @@ import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 import java.util.concurrent.ScheduledFuture;
 
-;
 
 /**
  * @author Drunkard Zabb0x Lets drink2code!

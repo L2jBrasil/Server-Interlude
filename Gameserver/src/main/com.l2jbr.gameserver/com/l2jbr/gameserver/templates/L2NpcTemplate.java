@@ -33,8 +33,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-;
-
 
 /**
  * This cl contains all generic data of a L2Spawn object.<BR>

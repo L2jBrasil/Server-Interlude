@@ -25,7 +25,6 @@ import com.l2jbr.gameserver.pathfinding.utils.FastNodeList;
 import java.util.LinkedList;
 import java.util.List;
 
-;
 
 /**
  * @author -Nemesiss-

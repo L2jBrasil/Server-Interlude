@@ -33,7 +33,6 @@ import com.l2jbr.gameserver.util.Util;
 
 import java.util.List;
 
-;
 
 /**
  * @authors BiTi, Sami

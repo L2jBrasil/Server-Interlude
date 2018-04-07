@@ -21,7 +21,6 @@ package com.l2jbr.gameserver.skills.effects;
 import com.l2jbr.gameserver.model.L2Effect;
 import com.l2jbr.gameserver.skills.Env;
 
-;
 
 public class EffectInvincible extends L2Effect
 {

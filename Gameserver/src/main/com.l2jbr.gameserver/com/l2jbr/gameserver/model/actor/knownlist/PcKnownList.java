@@ -25,7 +25,6 @@ import com.l2jbr.gameserver.model.L2Summon;
 import com.l2jbr.gameserver.model.actor.instance.*;
 import com.l2jbr.gameserver.serverpackets.*;
 
-;
 
 public class PcKnownList extends PlayableKnownList
 {

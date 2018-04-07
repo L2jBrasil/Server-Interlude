@@ -29,8 +29,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-;
-
 
 /**
  * Service class for manor

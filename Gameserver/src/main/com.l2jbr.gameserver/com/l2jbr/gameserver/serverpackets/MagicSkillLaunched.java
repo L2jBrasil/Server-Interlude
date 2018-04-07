@@ -21,7 +21,6 @@ package com.l2jbr.gameserver.serverpackets;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Object;
 
-;
 
 /**
  * sample 0000: 8e d8 a8 10 48 10 04 00 00 01 00 00 00 01 00 00 ....H........... 0010: 00 d8 a8 10 48 ....H format ddddd d

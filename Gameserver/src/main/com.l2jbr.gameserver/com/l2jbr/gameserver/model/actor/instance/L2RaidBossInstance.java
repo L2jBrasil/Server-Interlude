@@ -27,7 +27,6 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
-;
 
 /**
  * This class manages all RaidBoss. In a group mob, there are one master called RaidBoss and several slaves called Minions.

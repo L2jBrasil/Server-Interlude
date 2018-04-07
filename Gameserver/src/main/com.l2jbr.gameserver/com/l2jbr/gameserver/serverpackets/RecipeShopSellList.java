@@ -22,7 +22,6 @@ import com.l2jbr.gameserver.model.L2ManufactureItem;
 import com.l2jbr.gameserver.model.L2ManufactureList;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
-;
 
 /**
  * This class ... dddd d(ddd)

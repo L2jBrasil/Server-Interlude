@@ -20,7 +20,6 @@ package com.l2jbr.loginserver.serverpackets;
 
 import com.l2jbr.loginserver.SessionKey;
 
-;
 
 /**
  *

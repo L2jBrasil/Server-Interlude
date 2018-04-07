@@ -27,7 +27,6 @@ import com.l2jbr.gameserver.pathfinding.geonodes.GeoPathFinding;
 
 import java.util.List;
 
-;
 
 public class AdminPathNode implements IAdminCommandHandler
 {

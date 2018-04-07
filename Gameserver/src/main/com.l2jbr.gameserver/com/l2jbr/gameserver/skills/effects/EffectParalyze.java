@@ -22,7 +22,6 @@ import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Effect;
 import com.l2jbr.gameserver.skills.Env;
 
-;
 
 final class EffectParalyze extends L2Effect
 {

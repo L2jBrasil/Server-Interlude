@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.model.zone.type;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.zone.L2ZoneType;
 
-;
 
 /**
  * A scripted zone... Creation of such a zone should require somekind of jython script reference which can handle onEnter() / onExit()

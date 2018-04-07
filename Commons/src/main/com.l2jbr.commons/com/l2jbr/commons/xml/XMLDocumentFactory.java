@@ -11,7 +11,6 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.FileOutputStream;
 
-;
 
 /**
  * @author Forsaiken

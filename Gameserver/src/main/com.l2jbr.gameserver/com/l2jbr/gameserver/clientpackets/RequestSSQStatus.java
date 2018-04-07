@@ -22,7 +22,6 @@ import com.l2jbr.gameserver.SevenSigns;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.SSQStatus;
 
-;
 
 /**
  * Seven Signs Record Update Request packet type id 0xc7 format: cc

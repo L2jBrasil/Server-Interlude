@@ -18,7 +18,6 @@
  */
 package com.l2jbr.gameserver.script;
 
-;
 
 public class ParserNotCreatedException extends Exception
 {

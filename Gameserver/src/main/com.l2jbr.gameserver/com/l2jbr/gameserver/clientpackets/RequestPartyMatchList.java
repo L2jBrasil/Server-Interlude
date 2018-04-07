@@ -24,9 +24,6 @@ import com.l2jbr.gameserver.serverpackets.PartyMatchList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-;
-
-
 
 /**
  * Packetformat Rev650 cdddddS

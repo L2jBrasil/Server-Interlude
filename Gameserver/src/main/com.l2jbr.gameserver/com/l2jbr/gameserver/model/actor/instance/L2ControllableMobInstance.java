@@ -24,7 +24,6 @@ import com.l2jbr.gameserver.ai.L2ControllableMobAI;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
-;
 
 /**
  * @author littlecrow

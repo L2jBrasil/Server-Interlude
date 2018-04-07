@@ -26,7 +26,6 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
-;
 
 public final class RequestStartPledgeWar extends L2GameClientPacket
 {

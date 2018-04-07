@@ -28,7 +28,6 @@ import com.l2jbr.gameserver.templates.L2Item;
 
 import java.util.StringTokenizer;
 
-;
 
 /**
  * This class handles following admin commands: - itemcreate = show menu - create_item <id> [num] = creates num items with respective id, if num is not specified, assumes 1.

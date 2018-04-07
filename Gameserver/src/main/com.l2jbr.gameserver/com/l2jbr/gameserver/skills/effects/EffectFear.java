@@ -24,7 +24,6 @@ import com.l2jbr.gameserver.model.L2Effect;
 import com.l2jbr.gameserver.model.actor.instance.*;
 import com.l2jbr.gameserver.skills.Env;
 
-;
 
 /**
  * @author littlecrow Implementation of the Fear Effect

@@ -22,7 +22,6 @@ import com.l2jbr.gameserver.ai.CtrlIntention;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
-;
 
 /**
  * This class manages all RaidBoss.

@@ -29,7 +29,6 @@ import java.util.*;
 import java.util.List;
 import java.util.zip.GZIPInputStream;
 
-;
 
 public class Universe implements java.io.Serializable
 {

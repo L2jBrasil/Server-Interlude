@@ -18,7 +18,6 @@
  */
 package com.l2jbr.gameserver.model.base;
 
-;
 
 /**
  * Character Sub-Class Definition <BR>

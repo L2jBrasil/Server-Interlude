@@ -25,7 +25,6 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
 import java.util.StringTokenizer;
 
-;
 
 /**
  * @author Luno, Dezmond

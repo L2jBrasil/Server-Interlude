@@ -22,7 +22,6 @@ import com.l2jbr.loginserver.clientpackets.ClientBasePacket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-;
 
 /**
  * Format: cccddb c desired ID c accept alternative ID c reserve Host s ExternalHostName s InetranlHostName d max players d hexid size b hexid

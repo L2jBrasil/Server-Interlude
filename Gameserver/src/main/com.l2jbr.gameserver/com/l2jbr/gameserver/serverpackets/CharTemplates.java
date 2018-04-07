@@ -23,7 +23,6 @@ import com.l2jbr.gameserver.templates.L2PcTemplate;
 import java.util.LinkedList;
 import java.util.List;
 
-;
 
 /**
  * This class ...

@@ -18,7 +18,6 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
-;
 
 /**
  * Format chS c: (id) 0x39 h: (subid) 0x01 S: the summon name (or maybe cmd string ?)
