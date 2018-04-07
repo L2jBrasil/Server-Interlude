@@ -31,6 +31,8 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
+;
+
 public class CastleManager {
     // =========================================================
     private static CastleManager _instance;

@@ -25,20 +25,24 @@ package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.L2ArmorSet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * @author Luno
  */
 public class ArmorSetsTable
 {
-	private static Logger _log = Logger.getLogger(ArmorSetsTable.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(ArmorSetsTable.class.getName());
 	private static ArmorSetsTable _instance;
 	
 	private final Map<Integer, L2ArmorSet> _armorSets;
@@ -81,7 +85,7 @@ public class ArmorSetsTable
 				_armorSets.put(chest, new L2ArmorSet(chest, legs, head, gloves, feet, skill_id, shield, shield_skill_id, enchant6skill));
 			}
 			
-			_log.config("ArmorSetsTable: Loaded " + _armorSets.size() + " armor sets.");
+			_log.info("ArmorSetsTable: Loaded " + _armorSets.size() + " armor sets.");
 			
 			rset.close();
 			statement.close();
@@ -89,7 +93,7 @@ public class ArmorSetsTable
 		}
 		catch (Exception e)
 		{
-			_log.severe("ArmorSetsTable: Error reading ArmorSets table: " + e);
+			_log.error("ArmorSetsTable: Error reading ArmorSets table: " + e);
 		}
 	}
 	

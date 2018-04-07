@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.templates;
 
+;
+
 /**
  * @author mkizub <BR>
  *         Description of Weapon Type

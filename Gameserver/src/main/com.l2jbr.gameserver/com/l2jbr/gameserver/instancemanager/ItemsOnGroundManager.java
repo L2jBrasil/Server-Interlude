@@ -25,14 +25,17 @@ import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.templates.L2EtcItemType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class manage all items on ground
@@ -42,7 +45,7 @@ import java.util.logging.Logger;
  * @version $Revision: $ $Date: $
  */
 public class ItemsOnGroundManager {
-    static final Logger _log = Logger.getLogger(ItemsOnGroundManager.class.getName());
+    static final Logger _log = LoggerFactory.getLogger(ItemsOnGroundManager.class.getName());
     private static ItemsOnGroundManager _instance;
     protected List<L2ItemInstance> _items = null;
 
@@ -90,7 +93,7 @@ public class ItemsOnGroundManager {
                 statement.execute();
                 statement.close();
             } catch (Exception e) {
-                _log.log(Level.SEVERE, "error while updating table ItemsOnGround " + e);
+                _log.error( "error while updating table ItemsOnGround " + e);
                 e.printStackTrace();
             } finally {
                 try {
@@ -148,7 +151,7 @@ public class ItemsOnGroundManager {
                     System.out.println("Initializing ItemsOnGroundManager.");
                 }
             } catch (Exception e) {
-                _log.log(Level.SEVERE, "error while loading ItemsOnGround " + e);
+                _log.error( "error while loading ItemsOnGround " + e);
                 e.printStackTrace();
             }
         } finally {
@@ -192,7 +195,7 @@ public class ItemsOnGroundManager {
             del.execute();
             del.close();
         } catch (Exception e1) {
-            _log.log(Level.SEVERE, "error while cleaning table ItemsOnGround " + e1);
+            _log.error( "error while cleaning table ItemsOnGround " + e1);
             e1.printStackTrace();
         } finally {
             try {
@@ -213,7 +216,7 @@ public class ItemsOnGroundManager {
 
             if (_items.isEmpty()) {
                 if (Config.DEBUG) {
-                    _log.warning("ItemsOnGroundManager: nothing to save...");
+                    _log.warn("ItemsOnGroundManager: nothing to save...");
                 }
                 return;
             }
@@ -249,7 +252,7 @@ public class ItemsOnGroundManager {
                     statement.execute();
                     statement.close();
                 } catch (Exception e) {
-                    _log.log(Level.SEVERE, "error while inserting into table ItemsOnGround " + e);
+                    _log.error( "error while inserting into table ItemsOnGround " + e);
                     e.printStackTrace();
                 } finally {
                     try {
@@ -259,7 +262,7 @@ public class ItemsOnGroundManager {
                 }
             }
             if (Config.DEBUG) {
-                _log.warning("ItemsOnGroundManager: " + _items.size() + " items on ground saved");
+                _log.warn("ItemsOnGroundManager: " + _items.size() + " items on ground saved");
             }
         }
     }

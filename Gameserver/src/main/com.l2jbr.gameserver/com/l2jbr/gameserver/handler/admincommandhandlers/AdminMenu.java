@@ -26,11 +26,15 @@ import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class handles following admin commands: - handles every admin menu command
@@ -38,7 +42,7 @@ import java.util.logging.Logger;
  */
 public class AdminMenu implements IAdminCommandHandler
 {
-	private static final Logger _log = Logger.getLogger(AdminMenu.class.getName());
+	private static final Logger _log = LoggerFactory.getLogger(AdminMenu.class.getName());
 	
 	private static final String[] ADMIN_COMMANDS =
 	{
@@ -351,7 +355,7 @@ public class AdminMenu implements IAdminCommandHandler
 		}
 		catch (Exception e)
 		{
-			_log.warning("Could not set accessLevel:" + e);
+			_log.warn("Could not set accessLevel:" + e);
 			if (Config.DEBUG)
 			{
 				e.printStackTrace();

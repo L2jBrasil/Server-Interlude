@@ -22,10 +22,14 @@ import com.l2jbr.gameserver.GameTimeController;
 import com.l2jbr.gameserver.model.L2Spawn;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2RaidBossInstance;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -36,7 +40,7 @@ import java.util.logging.Logger;
 
 public class DayNightSpawnManager {
 
-    private Logger _log = Logger.getLogger(DayNightSpawnManager.class.getName());
+    private Logger _log = LoggerFactory.getLogger(DayNightSpawnManager.class.getName());
 
     private static DayNightSpawnManager _instance;
     private Set<L2Spawn> dayCreatures;
@@ -121,7 +125,7 @@ public class DayNightSpawnManager {
                 specialNightBoss(1);
                 break;
             default:
-                _log.warning("DayNightSpawnManager: Wrong mode sent");
+                _log.warn("DayNightSpawnManager: Wrong mode sent");
                 break;
         }
     }

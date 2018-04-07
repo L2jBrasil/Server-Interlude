@@ -18,11 +18,13 @@
 package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.model.L2Augmentation;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.skills.Stats;
-import com.l2jbr.commons.util.Rnd;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -32,8 +34,9 @@ import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class manages the augmentation data and can also create new augmentations.
@@ -41,7 +44,7 @@ import java.util.logging.Logger;
  * @author durgus
  */
 public class AugmentationData {
-    private static final Logger _log = Logger.getLogger(AugmentationData.class.getName());
+    private static final Logger _log = LoggerFactory.getLogger(AugmentationData.class.getName());
 
     // =========================================================
     private static AugmentationData _instance;
@@ -226,7 +229,7 @@ public class AugmentationData {
                 }
             }
         } catch (Exception e) {
-            _log.log(Level.SEVERE, "Error parsing augmentation_skillmap.xml.", e);
+            _log.error( "Error parsing augmentation_skillmap.xml.", e);
             return;
         }
 
@@ -288,7 +291,7 @@ public class AugmentationData {
                     }
                 }
             } catch (Exception e) {
-                _log.log(Level.SEVERE, "Error parsing augmentation_stats" + i + ".xml.", e);
+                _log.error( "Error parsing augmentation_stats" + i + ".xml.", e);
                 return;
             }
         }

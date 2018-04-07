@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.model;
 
+;
+
 public class L2PetData
 {
 	public static final String PET_TYPE = "typeID";

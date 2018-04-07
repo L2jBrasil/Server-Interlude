@@ -22,6 +22,8 @@ import com.l2jbr.gameserver.model.actor.instance.L2ControllableMobInstance;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+;
+
 /**
  * @author littlecrow
  */

@@ -31,6 +31,8 @@ import com.l2jbr.gameserver.skills.funcs.FuncTemplate;
 import java.util.LinkedList;
 import java.util.List;
 
+;
+
 /**
  * This class contains all informations concerning the item (weapon, armor, etc).<BR>
  * Mother class of : <LI>L2Armor</LI> <LI>L2EtcItem</LI> <LI>L2Weapon</LI>

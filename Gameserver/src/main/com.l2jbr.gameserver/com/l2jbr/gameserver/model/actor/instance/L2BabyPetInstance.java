@@ -18,15 +18,17 @@
  */
 package com.l2jbr.gameserver.model.actor.instance;
 
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
-import com.l2jbr.commons.util.Rnd;
 
 import java.util.LinkedHashMap;
 import java.util.concurrent.Future;
+
+;
 
 /**
  * This class ...

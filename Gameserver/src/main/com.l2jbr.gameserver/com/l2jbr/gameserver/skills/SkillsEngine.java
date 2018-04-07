@@ -23,19 +23,23 @@ import com.l2jbr.gameserver.Item;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.templates.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * @author mkizub TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates
  */
 public class SkillsEngine {
 
-    protected static final Logger _log = Logger.getLogger(SkillsEngine.class.getName());
+    protected static final Logger _log = LoggerFactory.getLogger(SkillsEngine.class.getName());
 
     private static final SkillsEngine _instance = new SkillsEngine();
 
@@ -58,7 +62,7 @@ public class SkillsEngine {
     private void hashFiles(String dirname, List<File> hash) {
         File dir = new File(Config.DATAPACK_ROOT, dirname);
         if (!dir.exists()) {
-            _log.config("Dir " + dir.getAbsolutePath() + " not exists");
+            _log.info("Dir " + dir.getAbsolutePath() + " not exists");
             return;
         }
         File[] files = dir.listFiles();
@@ -77,7 +81,7 @@ public class SkillsEngine {
 
     public List<L2Skill> loadSkills(File file) {
         if (file == null) {
-            _log.config("Skill file not found.");
+            _log.info("Skill file not found.");
             return null;
         }
         DocumentSkill doc = new DocumentSkill(file);
@@ -97,7 +101,7 @@ public class SkillsEngine {
                 count++;
             }
         }
-        _log.config("SkillsEngine: Loaded " + count + " Skill templates from XML files.");
+        _log.info("SkillsEngine: Loaded " + count + " Skill templates from XML files.");
     }
 
     public List<L2Armor> loadArmors(Map<Integer, Item> armorData) {

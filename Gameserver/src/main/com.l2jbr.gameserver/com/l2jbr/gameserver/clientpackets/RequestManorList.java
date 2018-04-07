@@ -24,6 +24,8 @@ import com.l2jbr.gameserver.serverpackets.ExSendManorList;
 import java.util.LinkedList;
 import java.util.List;
 
+;
+
 /**
  * Format: ch c (id) 0xD0 h (subid) 0x08
  *

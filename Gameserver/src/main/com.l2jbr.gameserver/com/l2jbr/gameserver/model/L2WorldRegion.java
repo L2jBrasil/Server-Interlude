@@ -27,12 +27,16 @@ import com.l2jbr.gameserver.model.actor.instance.L2PlayableInstance;
 import com.l2jbr.gameserver.model.zone.L2ZoneManager;
 import com.l2jbr.gameserver.model.zone.L2ZoneType;
 import com.l2jbr.gameserver.util.L2ObjectSet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ScheduledFuture;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -40,7 +44,7 @@ import java.util.logging.Logger;
  * @version $Revision: 1.3.4.4 $ $Date: 2005/03/27 15:29:33 $
  */
 public final class L2WorldRegion {
-    private static Logger _log = Logger.getLogger(L2WorldRegion.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(L2WorldRegion.class.getName());
 
     /**
      * L2ObjectHashSet(L2PlayableInstance) containing L2PlayableInstance of all player & summon in game in this L2WorldRegion
@@ -193,7 +197,7 @@ public final class L2WorldRegion {
                     // mob.getStatus().stopHpMpRegeneration();
                 }
             }
-            _log.fine(c + " mobs were turned off");
+            _log.debug(c + " mobs were turned off");
         } else {
             for (L2Object o : _visibleObjects) {
                 if (o instanceof L2Attackable) {
@@ -209,7 +213,7 @@ public final class L2WorldRegion {
                     ((L2NpcInstance) o).startRandomAnimationTimer();
                 }
             }
-            _log.fine(c + " mobs were turned on");
+            _log.debug(c + " mobs were turned on");
         }
 
     }
@@ -255,9 +259,9 @@ public final class L2WorldRegion {
         // TODO
         // turn the geodata on or off to match the region's activation.
         if (value) {
-            _log.fine("Starting Grid " + _tileX + "," + _tileY);
+            _log.debug("Starting Grid " + _tileX + "," + _tileY);
         } else {
-            _log.fine("Stoping Grid " + _tileX + "," + _tileY);
+            _log.debug("Stoping Grid " + _tileX + "," + _tileY);
         }
     }
 
@@ -379,7 +383,7 @@ public final class L2WorldRegion {
      * Deleted all spawns in the world.
      */
     public synchronized void deleteVisibleNpcSpawns() {
-        _log.fine("Deleting all visible NPC's in Region: " + getName());
+        _log.debug("Deleting all visible NPC's in Region: " + getName());
         for (L2Object obj : _visibleObjects) {
             if (obj instanceof L2NpcInstance) {
                 L2NpcInstance target = (L2NpcInstance) obj;
@@ -389,7 +393,7 @@ public final class L2WorldRegion {
                     spawn.stopRespawn();
                     SpawnTable.getInstance().deleteSpawn(spawn, false);
                 }
-                _log.finest("Removed NPC " + target.getObjectId());
+                _log.debug("Removed NPC " + target.getObjectId());
             }
         }
         _log.info("All visible NPC's deleted in Region: " + getName());

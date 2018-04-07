@@ -30,6 +30,8 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
 import java.util.StringTokenizer;
 
+;
+
 /**
  * This class handles following admin commands: polymorph
  * @version $Revision: 1.2.2.1.2.4 $ $Date: 2007/07/31 10:05:56 $

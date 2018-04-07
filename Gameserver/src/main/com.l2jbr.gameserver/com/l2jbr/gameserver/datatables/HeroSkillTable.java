@@ -19,6 +19,8 @@ package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.gameserver.model.L2Skill;
 
+;
+
 /**
  * @author BiTi
  */

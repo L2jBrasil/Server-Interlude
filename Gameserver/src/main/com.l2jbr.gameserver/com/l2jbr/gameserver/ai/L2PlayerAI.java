@@ -18,16 +18,6 @@
  */
 package com.l2jbr.gameserver.ai;
 
-import static com.l2jbr.gameserver.ai.CtrlIntention.AI_INTENTION_ATTACK;
-import static com.l2jbr.gameserver.ai.CtrlIntention.AI_INTENTION_CAST;
-import static com.l2jbr.gameserver.ai.CtrlIntention.AI_INTENTION_IDLE;
-import static com.l2jbr.gameserver.ai.CtrlIntention.AI_INTENTION_INTERACT;
-import static com.l2jbr.gameserver.ai.CtrlIntention.AI_INTENTION_PICK_UP;
-import static com.l2jbr.gameserver.ai.CtrlIntention.AI_INTENTION_REST;
-
-import java.util.EmptyStackException;
-import java.util.Stack;
-
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Character.AIAccessor;
@@ -35,6 +25,13 @@ import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2StaticObjectInstance;
 import com.l2jbr.gameserver.model.actor.knownlist.ObjectKnownList.KnownListAsynchronousUpdateTask;
+
+import java.util.EmptyStackException;
+import java.util.Stack;
+
+import static com.l2jbr.gameserver.ai.CtrlIntention.*;
+
+;
 
 public class L2PlayerAI extends L2CharacterAI
 {
@@ -72,7 +69,7 @@ public class L2PlayerAI extends L2CharacterAI
 	synchronized void changeIntention(CtrlIntention intention, Object arg0, Object arg1)
 	{
 		/*
-		 * if (Config.DEBUG) _log.warning("L2PlayerAI: changeIntention -> " + intention + " " + arg0 + " " + arg1);
+		 * if (Config.DEBUG) _log.warn("L2PlayerAI: changeIntention -> " + intention + " " + arg0 + " " + arg1);
 		 */
 		
 		// nothing to do if it does not CAST intention
@@ -90,7 +87,7 @@ public class L2PlayerAI extends L2CharacterAI
 		}
 		
 		/*
-		 * if (Config.DEBUG) _log.warning("L2PlayerAI: changeIntention -> Saving current intention: " + _intention + " " + _intention_arg0 + " " + _intention_arg1);
+		 * if (Config.DEBUG) _log.warn("L2PlayerAI: changeIntention -> Saving current intention: " + _intention + " " + _intention_arg0 + " " + _intention_arg1);
 		 */
 		
 		// push current intention to stack
@@ -127,7 +124,7 @@ public class L2PlayerAI extends L2CharacterAI
 				}
 				
 				/*
-				 * if (Config.DEBUG) _log.warning("L2PlayerAI: onEvtFinishCasting -> " + cmd._intention + " " + cmd._arg0 + " " + cmd._arg1);
+				 * if (Config.DEBUG) _log.warn("L2PlayerAI: onEvtFinishCasting -> " + cmd._intention + " " + cmd._arg0 + " " + cmd._arg1);
 				 */
 				
 				if ((cmd != null) && (cmd._crtlIntention != AI_INTENTION_CAST)) // previous state shouldn't be casting
@@ -142,7 +139,7 @@ public class L2PlayerAI extends L2CharacterAI
 			else
 			{
 				/*
-				 * if (Config.DEBUG) _log.warning("L2PlayerAI: no previous intention set... Setting it to IDLE");
+				 * if (Config.DEBUG) _log.warn("L2PlayerAI: no previous intention set... Setting it to IDLE");
 				 */
 				// set intention to idle if skill doesn't change intention.
 				setIntention(AI_INTENTION_IDLE);
@@ -206,7 +203,7 @@ public class L2PlayerAI extends L2CharacterAI
 	{
 		
 		L2Character target = getCastTarget();
-		// if (Config.DEBUG) _log.warning("L2PlayerAI: thinkCast -> Start");
+		// if (Config.DEBUG) _log.warn("L2PlayerAI: thinkCast -> Start");
 		
 		if (checkTargetLost(target))
 		{
@@ -309,7 +306,7 @@ public class L2PlayerAI extends L2CharacterAI
 		}
 		
 		/*
-		 * if (Config.DEBUG) _log.warning("L2PlayerAI: onEvtThink -> Check intention");
+		 * if (Config.DEBUG) _log.warn("L2PlayerAI: onEvtThink -> Check intention");
 		 */
 		
 		_thinking = true;

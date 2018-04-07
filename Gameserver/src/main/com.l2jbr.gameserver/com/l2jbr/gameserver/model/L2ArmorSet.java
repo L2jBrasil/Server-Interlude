@@ -21,6 +21,8 @@ package com.l2jbr.gameserver.model;
 
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
+;
+
 /**
  * @author Luno
  */

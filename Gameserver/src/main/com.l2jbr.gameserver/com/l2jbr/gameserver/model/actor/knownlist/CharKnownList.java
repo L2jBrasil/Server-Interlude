@@ -26,6 +26,8 @@ import com.l2jbr.gameserver.util.Util;
 
 import java.util.*;
 
+;
+
 public class CharKnownList extends ObjectKnownList {
     // =========================================================
     // Data Field

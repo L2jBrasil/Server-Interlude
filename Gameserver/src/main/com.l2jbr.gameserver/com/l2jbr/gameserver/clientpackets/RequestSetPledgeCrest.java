@@ -25,11 +25,14 @@ import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -38,7 +41,7 @@ import java.util.logging.Logger;
 public final class RequestSetPledgeCrest extends L2GameClientPacket
 {
 	private static final String _C__53_REQUESTSETPLEDGECREST = "[C] 53 RequestSetPledgeCrest";
-	static Logger _log = Logger.getLogger(RequestSetPledgeCrest.class.getName());
+	static Logger _log = LoggerFactory.getLogger(RequestSetPledgeCrest.class.getName());
 	
 	private int _length;
 	private byte[] _data;
@@ -122,7 +125,7 @@ public final class RequestSetPledgeCrest extends L2GameClientPacket
 			
 			if (!crestCache.savePledgeCrest(newId, _data))
 			{
-				_log.log(Level.INFO, "Error loading crest of clan:" + clan.getName());
+				_log.info( "Error loading crest of clan:" + clan.getName());
 				return;
 			}
 			
@@ -139,7 +142,7 @@ public final class RequestSetPledgeCrest extends L2GameClientPacket
 			}
 			catch (SQLException e)
 			{
-				_log.warning("could not update the crest id:" + e.getMessage());
+				_log.warn("could not update the crest id:" + e.getMessage());
 			}
 			finally
 			{

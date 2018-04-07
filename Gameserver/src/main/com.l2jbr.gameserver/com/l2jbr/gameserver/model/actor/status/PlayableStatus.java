@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.model.actor.status;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.actor.instance.L2PlayableInstance;
 
+;
+
 public class PlayableStatus extends CharStatus
 {
 	// =========================================================

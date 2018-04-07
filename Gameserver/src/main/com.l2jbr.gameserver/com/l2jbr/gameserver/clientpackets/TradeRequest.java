@@ -26,8 +26,12 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.SendTradeRequest;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 /**
  * This class ...
@@ -36,7 +40,7 @@ import java.util.logging.Logger;
 public final class TradeRequest extends L2GameClientPacket
 {
 	private static final String TRADEREQUEST__C__15 = "[C] 15 TradeRequest";
-	private static Logger _log = Logger.getLogger(TradeRequest.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(TradeRequest.class.getName());
 	
 	private int _objectId;
 	
@@ -94,7 +98,7 @@ public final class TradeRequest extends L2GameClientPacket
 		{
 			if (Config.DEBUG)
 			{
-				_log.fine("already trading with someone");
+				_log.debug("already trading with someone");
 			}
 			player.sendPacket(new SystemMessage(SystemMessageId.ALREADY_TRADING));
 			return;

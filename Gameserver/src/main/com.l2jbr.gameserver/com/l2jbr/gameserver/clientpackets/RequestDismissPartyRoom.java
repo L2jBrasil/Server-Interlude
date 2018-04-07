@@ -18,7 +18,12 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+;
+
+
 
 /**
  * Format: (ch) dd
@@ -26,7 +31,7 @@ import java.util.logging.Logger;
  */
 public class RequestDismissPartyRoom extends L2GameClientPacket
 {
-	private static Logger _log = Logger.getLogger(RequestDismissPartyRoom.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RequestDismissPartyRoom.class.getName());
 	private static final String _C__D0_02_REQUESTDISMISSPARTYROOM = "[C] D0:02 RequestDismissPartyRoom";
 	private int _data1;
 	private int _data2;

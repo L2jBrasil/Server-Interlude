@@ -19,6 +19,8 @@ package com.l2jbr.gameserver.skills.conditions;
 
 import com.l2jbr.gameserver.skills.Env;
 
+;
+
 public class ConditionPlayerHpPercentage extends Condition
 {
 	private final double _p;

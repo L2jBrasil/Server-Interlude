@@ -18,17 +18,19 @@
 
 package com.l2jbr.gameserver.clientpackets;
 
-import java.util.logging.Logger;
-
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+;
 
 /**
  * @author zabbix Lets drink to code!
  */
 public final class RequestLinkHtml extends L2GameClientPacket
 {
-	private static Logger _log = Logger.getLogger(RequestLinkHtml.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RequestLinkHtml.class.getName());
 	private static final String REQUESTLINKHTML__C__20 = "[C] 20 RequestLinkHtml";
 	private String _link;
 	
@@ -49,7 +51,7 @@ public final class RequestLinkHtml extends L2GameClientPacket
 		
 		if (_link.contains("..") || !_link.contains(".htm"))
 		{
-			_log.warning("[RequestLinkHtml] hack? link contains prohibited characters: '" + _link + "', skipped");
+			_log.warn("[RequestLinkHtml] hack? link contains prohibited characters: '" + _link + "', skipped");
 			return;
 		}
 		

@@ -25,12 +25,15 @@ import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.actor.instance.L2GuardInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2MonsterInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
 
 public class GuardKnownList extends AttackableKnownList
 {
-	private static Logger _log = Logger.getLogger(GuardKnownList.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(GuardKnownList.class.getName());
 	
 	// =========================================================
 	// Data Field
@@ -73,7 +76,7 @@ public class GuardKnownList extends AttackableKnownList
 			{
 				if (Config.DEBUG)
 				{
-					_log.fine(getActiveChar().getObjectId() + ": PK " + player.getObjectId() + " entered scan range");
+					_log.debug(getActiveChar().getObjectId() + ": PK " + player.getObjectId() + " entered scan range");
 				}
 				
 				// Set the L2GuardInstance Intention to AI_INTENTION_ACTIVE
@@ -92,7 +95,7 @@ public class GuardKnownList extends AttackableKnownList
 			{
 				if (Config.DEBUG)
 				{
-					_log.fine(getActiveChar().getObjectId() + ": Aggressive mob " + mob.getObjectId() + " entered scan range");
+					_log.debug(getActiveChar().getObjectId() + ": Aggressive mob " + mob.getObjectId() + " entered scan range");
 				}
 				
 				// Set the L2GuardInstance Intention to AI_INTENTION_ACTIVE

@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.loginserverpackets;
 
+;
+
 public class InitLS extends LoginServerBasePacket
 {
 	private final int _rev;

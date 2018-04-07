@@ -27,9 +27,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+;
+
 public class SellListProcure extends L2GameServerPacket {
     private static final String _S__E9_SELLLISTPROCURE = "[S] E9 SellListProcure";
-    // private static Logger _log = Logger.getLogger(SellListProcure.class.getName());
+    // private static Logger _log = LoggerFactory.getLogger(SellListProcure.class.getName());
 
     private final L2PcInstance _activeChar;
     private final int _money;

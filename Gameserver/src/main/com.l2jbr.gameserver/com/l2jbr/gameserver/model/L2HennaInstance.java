@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.model;
 
 import com.l2jbr.gameserver.templates.L2Henna;
 
+;
+
 /**
  * This class represents a Non-Player-Character in the world. it can be a monster or a friendly character. it also uses a template to fetch some static values. the templates are hardcoded in the client, so we can rely on them.
  * @version $Revision$ $Date$
@@ -27,7 +29,7 @@ import com.l2jbr.gameserver.templates.L2Henna;
 
 public class L2HennaInstance
 {
-	// private static Logger _log = Logger.getLogger(L2HennaInstance.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(L2HennaInstance.class.getName());
 	
 	private final L2Henna _template;
 	private int _symbolId;

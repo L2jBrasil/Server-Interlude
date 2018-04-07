@@ -18,8 +18,13 @@
  */
 package com.l2jbr.commons.crypt;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -27,7 +32,7 @@ import java.util.logging.Logger;
  */
 public class NewCrypt
 {
-	protected static Logger _log = Logger.getLogger(NewCrypt.class.getName());
+	protected static Logger _log = LoggerFactory.getLogger(NewCrypt.class.getName());
 	BlowfishEngine _crypt;
 	BlowfishEngine _decrypt;
 	

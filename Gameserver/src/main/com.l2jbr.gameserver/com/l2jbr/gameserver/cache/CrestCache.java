@@ -23,6 +23,8 @@ import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.datatables.ClanTable;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.L2Clan;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.sql.Connection;
@@ -30,14 +32,15 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * @author Layane
  */
 public class CrestCache {
-    private static Logger _log = Logger.getLogger(CrestCache.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(CrestCache.class.getName());
 
     private static CrestCache _instance;
 
@@ -101,7 +104,7 @@ public class CrestCache {
                     _loadedFiles++;
                     _bytesBuffLen += content.length;
                 } catch (Exception e) {
-                    _log.warning("problem with crest bmp file " + e);
+                    _log.warn("problem with crest bmp file " + e);
                 }
             }
         }
@@ -135,7 +138,7 @@ public class CrestCache {
                     statement.setInt(2, clan.getClanId());
                     statement.executeUpdate();
                 } catch (SQLException e) {
-                    _log.warning("could not update the crest id:" + e.getMessage());
+                    _log.warn("could not update the crest id:" + e.getMessage());
                 }
 
                 clan.setCrestId(newId);
@@ -211,7 +214,7 @@ public class CrestCache {
             _cachePledge.put(newId, data);
             return true;
         } catch (IOException e) {
-            _log.log(Level.INFO, "Error saving pledge crest" + crestFile + ":", e);
+            _log.info( "Error saving pledge crest" + crestFile + ":", e);
             return false;
         }
     }
@@ -225,7 +228,7 @@ public class CrestCache {
             _cachePledgeLarge.put(newId, data);
             return true;
         } catch (IOException e) {
-            _log.log(Level.INFO, "Error saving Large pledge crest" + crestFile + ":", e);
+            _log.info( "Error saving Large pledge crest" + crestFile + ":", e);
             return false;
         }
     }
@@ -239,7 +242,7 @@ public class CrestCache {
             _cacheAlly.put(newId, data);
             return true;
         } catch (IOException e) {
-            _log.log(Level.INFO, "Error saving ally crest" + crestFile + ":", e);
+            _log.info( "Error saving ally crest" + crestFile + ":", e);
             return false;
         }
     }

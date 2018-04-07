@@ -19,14 +19,12 @@
 package com.l2jbr.gameserver.handler.skillhandlers;
 
 import com.l2jbr.gameserver.handler.ISkillHandler;
-import com.l2jbr.gameserver.model.L2Character;
-import com.l2jbr.gameserver.model.L2ItemInstance;
-import com.l2jbr.gameserver.model.L2Object;
-import com.l2jbr.gameserver.model.L2Skill;
+import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.L2Skill.SkillType;
-import com.l2jbr.gameserver.model.L2Summon;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.skills.Formulas;
+
+;
 
 /*
  * Just a quick draft to support Wrath skill. Missing angle based calculation etc.
@@ -34,7 +32,7 @@ import com.l2jbr.gameserver.skills.Formulas;
 
 public class CpDam implements ISkillHandler
 {
-	// private static Logger _log = Logger.getLogger(Mdam.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(Mdam.class.getName());
 	
 	/*
 	 * (non-Javadoc)

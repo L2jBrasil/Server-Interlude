@@ -22,6 +22,8 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
+;
+
 /**
  * Format:(ch) ddd
  * @author -Wooden-

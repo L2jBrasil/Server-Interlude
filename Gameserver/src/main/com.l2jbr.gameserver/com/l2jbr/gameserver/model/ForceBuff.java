@@ -23,17 +23,19 @@ import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.skills.effects.EffectForce;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.Future;
+
+;
 
 /**
  * @author kombat
  */
-public class ForceBuff
-{
-	static final Log _log = LogFactory.getLog(ForceBuff.class.getName());
+public class ForceBuff {
+
+	private static final Logger _log = LoggerFactory.getLogger(ForceBuff.class.getName());
 	
 	protected L2PcInstance _caster;
 	private final L2PcInstance _target;

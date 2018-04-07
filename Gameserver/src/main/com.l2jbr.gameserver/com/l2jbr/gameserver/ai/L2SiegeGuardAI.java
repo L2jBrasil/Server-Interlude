@@ -19,16 +19,18 @@
 package com.l2jbr.gameserver.ai;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.GameTimeController;
 import com.l2jbr.gameserver.GeoData;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.*;
-import com.l2jbr.commons.util.Rnd;
 
 import java.util.concurrent.Future;
 
 import static com.l2jbr.gameserver.ai.CtrlIntention.*;
+
+;
 
 /**
  * This class manages AI of L2Attackable.
@@ -315,7 +317,7 @@ public class L2SiegeGuardAI extends L2CharacterAI implements Runnable
 		}
 		catch (NullPointerException e)
 		{
-			// _log.warning("AttackableAI: Attack target is NULL.");
+			// _log.warn("AttackableAI: Attack target is NULL.");
 			_actor.setTarget(null);
 			setIntention(AI_INTENTION_IDLE, null, null);
 			return;

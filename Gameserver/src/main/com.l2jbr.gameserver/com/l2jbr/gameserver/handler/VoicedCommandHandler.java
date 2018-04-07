@@ -19,10 +19,14 @@
 package com.l2jbr.gameserver.handler;
 
 import com.l2jbr.commons.Config;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -30,7 +34,7 @@ import java.util.logging.Logger;
  * @version $Revision: 1.1.4.5 $ $Date: 2005/03/27 15:30:09 $
  */
 public class VoicedCommandHandler {
-    private static Logger _log = Logger.getLogger(ItemHandler.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(ItemHandler.class.getName());
 
     private static VoicedCommandHandler _instance;
 
@@ -51,7 +55,7 @@ public class VoicedCommandHandler {
         String[] ids = handler.getVoicedCommandList();
         for (String id : ids) {
             if (Config.DEBUG) {
-                _log.fine("Adding handler for command " + id);
+                _log.debug("Adding handler for command " + id);
             }
             _datatable.put(id, handler);
         }
@@ -63,7 +67,7 @@ public class VoicedCommandHandler {
             command = voicedCommand.substring(0, voicedCommand.indexOf(" "));
         }
         if (Config.DEBUG) {
-            _log.fine("getting handler for command: " + command + " -> " + (_datatable.get(command) != null));
+            _log.debug("getting handler for command: " + command + " -> " + (_datatable.get(command) != null));
         }
         return _datatable.get(command);
     }

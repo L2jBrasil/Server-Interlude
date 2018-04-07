@@ -23,11 +23,14 @@ import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.handler.IAdminCommandHandler;
 import com.l2jbr.gameserver.model.GMAudit;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class handles following admin commands: - delete = deletes target
@@ -35,7 +38,7 @@ import java.util.logging.Logger;
  */
 public class AdminRepairChar implements IAdminCommandHandler
 {
-	private static Logger _log = Logger.getLogger(AdminRepairChar.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(AdminRepairChar.class.getName());
 	
 	private static final String[] ADMIN_COMMANDS =
 	{
@@ -125,7 +128,7 @@ public class AdminRepairChar implements IAdminCommandHandler
 		}
 		catch (Exception e)
 		{
-			_log.log(Level.WARNING, "could not repair char:", e);
+			_log.warn( "could not repair char:", e);
 		}
 		finally
 		{

@@ -19,6 +19,7 @@
 package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.ItemsAutoDestroy;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.ai.*;
@@ -39,13 +40,13 @@ import com.l2jbr.gameserver.skills.Stats;
 import com.l2jbr.gameserver.templates.L2EtcItemType;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.util.Util;
-import com.l2jbr.commons.util.Rnd;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
+
+;
 
 /**
  * This class manages all NPC that can be attacked.<BR>
@@ -57,7 +58,7 @@ import java.util.logging.Level;
  * @version $Revision: 1.24.2.3.2.16 $ $Date: 2005/04/11 19:11:21 $
  */
 public class L2Attackable extends L2NpcInstance {
-    // protected static Logger _log = Logger.getLogger(L2Attackable.class.getName());
+    // protected static Logger _log = LoggerFactory.getLogger(L2Attackable.class.getName());
 
     /**
      * This class contains all AggroInfo of the L2Attackable against the attacker L2Character.<BR>
@@ -466,7 +467,7 @@ public class L2Attackable extends L2NpcInstance {
                 levelSoulCrystals(killer);
             }
         } catch (Exception e) {
-            _log.log(Level.SEVERE, "", e);
+            _log.error( "", e);
         }
 
         // Notify the Quest Engine of the L2Attackable death if necessary
@@ -481,7 +482,7 @@ public class L2Attackable extends L2NpcInstance {
                 }
             }
         } catch (Exception e) {
-            _log.log(Level.SEVERE, "", e);
+            _log.error( "", e);
         }
         setChampion(false);
         if (Config.L2JMOD_CHAMPION_ENABLE) {
@@ -769,7 +770,7 @@ public class L2Attackable extends L2NpcInstance {
             rewards = null;
 
         } catch (Exception e) {
-            _log.log(Level.SEVERE, "", e);
+            _log.error( "", e);
         }
     }
 
@@ -841,7 +842,7 @@ public class L2Attackable extends L2NpcInstance {
                     }
                 }
             } catch (Exception e) {
-                _log.log(Level.SEVERE, "", e);
+                _log.error( "", e);
             }
         }
     }
@@ -1069,7 +1070,7 @@ public class L2Attackable extends L2NpcInstance {
         if (itemCount > 0) {
             return new RewardItem(drop.getItemId(), itemCount);
         } else if ((itemCount == 0) && Config.DEBUG) {
-            _log.fine("Roll produced 0 items to drop...");
+            _log.debug("Roll produced 0 items to drop...");
         }
 
         return null;
@@ -1206,7 +1207,7 @@ public class L2Attackable extends L2NpcInstance {
             if (itemCount > 0) {
                 return new RewardItem(drop.getItemId(), itemCount);
             } else if ((itemCount == 0) && Config.DEBUG) {
-                _log.fine("Roll produced 0 items to drop...");
+                _log.debug("Roll produced 0 items to drop...");
             }
         }
         return null;
@@ -1214,7 +1215,7 @@ public class L2Attackable extends L2NpcInstance {
         /*
          * // Applies Drop rates if (drop.getItemId() == 57) dropChance *= Config.RATE_DROP_ADENA; else if (isSweep) dropChance *= Config.RATE_DROP_SPOIL; else dropChance *= Config.RATE_DROP_ITEMS; // Round drop chance dropChance = Math.round(dropChance); // Set our limits for chance of drop if
          * (dropChance < 1) dropChance = 1; // if (drop.getItemId() == 57 && dropChance > L2DropData.MAX_CHANCE) dropChance = L2DropData.MAX_CHANCE; // If item is adena, dont drop multiple time // Get min and max Item quantity that can be dropped in one time int minCount = drop.getMinDrop(); int
-         * maxCount = drop.getMaxDrop(); int itemCount = 0; if (itemCount > 0) return new RewardItem(drop.getItemId(), itemCount); else if (itemCount == 0 && Config.DEBUG) _log.fine("Roll produced 0 items to drop..."); return null;
+         * maxCount = drop.getMaxDrop(); int itemCount = 0; if (itemCount > 0) return new RewardItem(drop.getItemId(), itemCount); else if (itemCount == 0 && Config.DEBUG) _log.debug("Roll produced 0 items to drop..."); return null;
          */
     }
 
@@ -1301,7 +1302,7 @@ public class L2Attackable extends L2NpcInstance {
                         }
 
                         if (Config.DEBUG) {
-                            _log.fine("Item id to spoil: " + item.getItemId() + " amount: " + item.getCount());
+                            _log.debug("Item id to spoil: " + item.getItemId() + " amount: " + item.getCount());
                         }
                         sweepList.add(item);
                     }
@@ -1325,7 +1326,7 @@ public class L2Attackable extends L2NpcInstance {
 
                 if (item != null) {
                     if (Config.DEBUG) {
-                        _log.fine("Item id to drop: " + item.getItemId() + " amount: " + item.getCount());
+                        _log.debug("Item id to drop: " + item.getItemId() + " amount: " + item.getCount());
                     }
 
                     // Check if the autoLoot mode is active
@@ -1932,7 +1933,7 @@ public class L2Attackable extends L2NpcInstance {
                                     crystalNEW = id + 1;
                                 }
                             } catch (NumberFormatException nfe) {
-                                _log.log(Level.WARNING, "An attempt to identify a soul crystal failed, " + "verify the names have not changed in etcitem " + "table.", nfe);
+                                _log.warn( "An attempt to identify a soul crystal failed, " + "verify the names have not changed in etcitem " + "table.", nfe);
 
                                 player.sendMessage("There has been an error handling your soul crystal." + " Please notify your server admin.");
 

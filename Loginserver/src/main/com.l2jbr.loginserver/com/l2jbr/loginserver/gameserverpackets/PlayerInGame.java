@@ -23,6 +23,8 @@ import com.l2jbr.loginserver.clientpackets.ClientBasePacket;
 import java.util.LinkedList;
 import java.util.List;
 
+;
+
 /**
  * @author -Wooden-
  */

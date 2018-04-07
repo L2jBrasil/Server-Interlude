@@ -23,8 +23,12 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.L2GameClient.GameClientState;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.CharSelected;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 /**
  * This class ...
@@ -33,7 +37,7 @@ import java.util.logging.Logger;
 public class CharacterSelected extends L2GameClientPacket
 {
 	private static final String _C__0D_CHARACTERSELECTED = "[C] 0D CharacterSelected";
-	private static Logger _log = Logger.getLogger(CharacterSelected.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(CharacterSelected.class.getName());
 	
 	// cd
 	private int _charSlot;
@@ -80,14 +84,14 @@ public class CharacterSelected extends L2GameClientPacket
 					// The L2PcInstance must be created here, so that it can be attached to the L2GameClient
 					if (Config.DEBUG)
 					{
-						_log.fine("selected slot:" + _charSlot);
+						_log.debug("selected slot:" + _charSlot);
 					}
 					
 					// load up character from disk
 					L2PcInstance cha = getClient().loadCharFromDisk(_charSlot);
 					if (cha == null)
 					{
-						_log.severe("Character could not be loaded (slot:" + _charSlot + ")");
+						_log.error("Character could not be loaded (slot:" + _charSlot + ")");
 						sendPacket(new ActionFailed());
 						return;
 					}
@@ -116,8 +120,8 @@ public class CharacterSelected extends L2GameClientPacket
 	 * private void playLogFile(Connection connection) { long diff = 0; long first = -1; try { LineNumberReader lnr = new LineNumberReader(new FileReader("playback.dat")); String line = null; while ((line = lnr.readLine()) != null) { if (line.length() > 0 && line.substring(0, 1).equals("1")) {
 	 * String timestamp = line.substring(0, 13); long time = Long.parseLong(timestamp); if (first == -1) { long start = System.currentTimeMillis(); first = time; diff = start - first; } String cs = line.substring(14, 15); // read packet definition ByteArrayOutputStream bais = new
 	 * ByteArrayOutputStream(); while (true) { String temp = lnr.readLine(); if (temp.length() < 53) { break; } String bytes = temp.substring(6, 53); StringTokenizer st = new StringTokenizer(bytes); while (st.hasMoreTokens()) { String b = st.nextToken(); int number = Integer.parseInt(b, 16);
-	 * bais.write(number); } } if (cs.equals("S")) { //wait for timestamp and send packet int wait = (int) (time + diff - System.currentTimeMillis()); if (wait > 0) { if (Config.DEBUG) _log.fine("waiting"+ wait); Thread.sleep(wait); } if (Config.DEBUG) _log.fine("sending:"+ time); byte[] data =
-	 * bais.toByteArray(); if (data.length != 0) { //connection.sendPacket(data); } else { if (Config.DEBUG) _log.fine("skipping broken data"); } } else { // skip packet } } } } catch (FileNotFoundException f) { // should not happen } catch (Exception e) { _log.log(Level.SEVERE, "Error:", e); } }
+	 * bais.write(number); } } if (cs.equals("S")) { //wait for timestamp and send packet int wait = (int) (time + diff - System.currentTimeMillis()); if (wait > 0) { if (Config.DEBUG) _log.debug("waiting"+ wait); Thread.sleep(wait); } if (Config.DEBUG) _log.debug("sending:"+ time); byte[] data =
+	 * bais.toByteArray(); if (data.length != 0) { //connection.sendPacket(data); } else { if (Config.DEBUG) _log.debug("skipping broken data"); } } else { // skip packet } } } } catch (FileNotFoundException f) { // should not happen } catch (Exception e) { _log.error( "Error:", e); } }
 	 */
 	
 	/*

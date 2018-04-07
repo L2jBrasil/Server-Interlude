@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.serverpackets;
 
 import java.util.List;
 
+;
+
 public class ShowBoard extends L2GameServerPacket
 {
 	private static final String _S__6E_SHOWBOARD = "[S] 6e ShowBoard";

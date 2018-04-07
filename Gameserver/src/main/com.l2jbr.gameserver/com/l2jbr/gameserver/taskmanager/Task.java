@@ -19,16 +19,20 @@ package com.l2jbr.gameserver.taskmanager;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.taskmanager.TaskManager.ExecutedTask;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ScheduledFuture;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * @author Layane
  */
 public abstract class Task
 {
-	private static Logger _log = Logger.getLogger(Task.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(Task.class.getName());
 	
 	public void initializate()
 	{

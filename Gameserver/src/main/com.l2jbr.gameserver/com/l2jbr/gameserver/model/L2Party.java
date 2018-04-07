@@ -19,6 +19,7 @@
 package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.SevenSignsFestival;
 import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.instancemanager.DuelManager;
@@ -31,10 +32,11 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.skills.Stats;
 import com.l2jbr.gameserver.util.Util;
-import com.l2jbr.commons.util.Rnd;
 
 import java.util.LinkedList;
 import java.util.List;
+
+;
 
 /**
  * This class ...

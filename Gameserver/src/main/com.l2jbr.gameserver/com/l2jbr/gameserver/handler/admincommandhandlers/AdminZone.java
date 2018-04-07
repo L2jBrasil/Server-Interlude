@@ -24,6 +24,8 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
 import java.util.StringTokenizer;
 
+;
+
 public class AdminZone implements IAdminCommandHandler
 {
 	private static final int REQUIRED_LEVEL = Config.GM_TEST;

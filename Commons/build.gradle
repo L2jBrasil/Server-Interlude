@@ -19,6 +19,7 @@ sourceSets {
 
 dependencies {
     compile 'com.mchange:c3p0:0.9.5.2'
+    compile 'org.slf4j:slf4j-api:1.8.0-beta2'
 }
 
 jar {

@@ -19,15 +19,18 @@
 package com.l2jbr.commons;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+;
+
 
 public class L2DatabaseFactory
 {
-	static Logger _log = Logger.getLogger(L2DatabaseFactory.class.getName());
+	static Logger _log = LoggerFactory.getLogger(L2DatabaseFactory.class.getName());
 	
 	public static enum ProviderType
 	{
@@ -50,7 +53,7 @@ public class L2DatabaseFactory
 			if (Config.DATABASE_MAX_CONNECTIONS < 2)
 			{
 				Config.DATABASE_MAX_CONNECTIONS = 2;
-				_log.warning("at least " + Config.DATABASE_MAX_CONNECTIONS + " db connections are required.");
+				_log.warn("at least " + Config.DATABASE_MAX_CONNECTIONS + " db connections are required.");
 			}
 			
 			_source = new ComboPooledDataSource();
@@ -100,7 +103,7 @@ public class L2DatabaseFactory
 			
 			if (Config.DEBUG)
 			{
-				_log.fine("Database Connection Working");
+				_log.debug("Database Connection Working");
 			}
 			
 			if (Config.DATABASE_DRIVER.toLowerCase().contains("microsoft"))
@@ -116,7 +119,7 @@ public class L2DatabaseFactory
 		{
 			if (Config.DEBUG)
 			{
-				_log.fine("Database Connection FAILED");
+				_log.debug("Database Connection FAILED");
 			}
 			// rethrow the exception
 			throw x;
@@ -125,7 +128,7 @@ public class L2DatabaseFactory
 		{
 			if (Config.DEBUG)
 			{
-				_log.fine("Database Connection FAILED");
+				_log.debug("Database Connection FAILED");
 			}
 			throw new SQLException("could not init DB connection:" + e);
 		}
@@ -160,7 +163,7 @@ public class L2DatabaseFactory
 		}
 		catch (Exception e)
 		{
-			_log.log(Level.INFO, "", e);
+			_log.info( "", e);
 		}
 		try
 		{
@@ -168,7 +171,7 @@ public class L2DatabaseFactory
 		}
 		catch (Exception e)
 		{
-			_log.log(Level.INFO, "", e);
+			_log.info( "", e);
 		}
 	}
 	
@@ -218,7 +221,7 @@ public class L2DatabaseFactory
 			}
 			catch (SQLException e)
 			{
-				_log.warning("L2DatabaseFactory: getConnection() failed, trying again " + e);
+				_log.warn("L2DatabaseFactory: getConnection() failed, trying again " + e);
 			}
 		}
 		return con;

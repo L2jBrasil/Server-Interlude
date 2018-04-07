@@ -33,11 +33,15 @@ import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.FriendList;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.taskmanager.AttackStanceTaskManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -46,7 +50,7 @@ import java.util.logging.Logger;
 public final class Logout extends L2GameClientPacket
 {
 	private static final String _C__09_LOGOUT = "[C] 09 Logout";
-	private static Logger _log = Logger.getLogger(Logout.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(Logout.class.getName());
 	
 	@Override
 	protected void readImpl()
@@ -71,7 +75,7 @@ public final class Logout extends L2GameClientPacket
 		{
 			if (Config.DEBUG)
 			{
-				_log.fine("Player " + player.getName() + " tried to logout while fighting");
+				_log.debug("Player " + player.getName() + " tried to logout while fighting");
 			}
 			
 			player.sendPacket(new SystemMessage(SystemMessageId.CANT_LOGOUT_WHILE_FIGHTING));
@@ -142,7 +146,7 @@ public final class Logout extends L2GameClientPacket
 		}
 		catch (Exception e)
 		{
-			_log.warning("could not restore friend data:" + e);
+			_log.warn("could not restore friend data:" + e);
 		}
 	}
 	

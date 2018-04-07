@@ -17,16 +17,17 @@
  */
 package com.l2jbr.loginserver;
 
-import java.nio.ByteBuffer;
-
 import com.l2jbr.loginserver.L2LoginClient.LoginClientState;
 import com.l2jbr.loginserver.clientpackets.AuthGameGuard;
 import com.l2jbr.loginserver.clientpackets.RequestAuthLogin;
 import com.l2jbr.loginserver.clientpackets.RequestServerList;
 import com.l2jbr.loginserver.clientpackets.RequestServerLogin;
-
 import com.l2jbr.mmocore.IPacketHandler;
 import com.l2jbr.mmocore.ReceivablePacket;
+
+import java.nio.ByteBuffer;
+
+;
 
 /**
  * Handler for packets received by Login Server

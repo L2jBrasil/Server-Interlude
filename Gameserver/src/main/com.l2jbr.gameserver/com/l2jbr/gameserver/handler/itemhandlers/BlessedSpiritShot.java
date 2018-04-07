@@ -30,6 +30,8 @@ import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.templates.L2Weapon;
 import com.l2jbr.gameserver.util.Broadcast;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.1.2.1.2.5 $ $Date: 2005/03/27 15:30:07 $

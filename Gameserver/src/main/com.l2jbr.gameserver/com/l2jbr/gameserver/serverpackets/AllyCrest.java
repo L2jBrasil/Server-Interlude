@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
+;
+
 /**
  * <code>
  * sample
@@ -32,7 +34,7 @@ package com.l2jbr.gameserver.serverpackets;
 public class AllyCrest extends L2GameServerPacket
 {
 	private static final String _S__C7_ALLYCREST = "[S] ae AllyCrest";
-	// private static Logger _log = Logger.getLogger(AllyCrest.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(AllyCrest.class.getName());
 	private final int _crestId;
 	private final int _crestSize;
 	private byte[] _data;

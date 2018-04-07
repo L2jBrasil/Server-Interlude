@@ -19,6 +19,7 @@
 package com.l2jbr.gameserver.skills;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.SevenSigns;
 import com.l2jbr.gameserver.SevenSignsFestival;
 import com.l2jbr.gameserver.instancemanager.ClanHallManager;
@@ -39,9 +40,12 @@ import com.l2jbr.gameserver.skills.conditions.ConditionUsingItemType;
 import com.l2jbr.gameserver.skills.funcs.Func;
 import com.l2jbr.gameserver.templates.*;
 import com.l2jbr.gameserver.util.Util;
-import com.l2jbr.commons.util.Rnd;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 /**
  * Global calculations, can be modified by server admins
@@ -49,7 +53,7 @@ import java.util.logging.Logger;
 public final class Formulas
 {
 	/** Regen Task period */
-	protected static final Logger _log = Logger.getLogger(L2Character.class.getName());
+	protected static final Logger _log = LoggerFactory.getLogger(L2Character.class.getName());
 	private static final int HP_REGENERATE_PERIOD = 3000; // 3 secs
 	
 	public static final int MAX_STAT_VALUE = 100;

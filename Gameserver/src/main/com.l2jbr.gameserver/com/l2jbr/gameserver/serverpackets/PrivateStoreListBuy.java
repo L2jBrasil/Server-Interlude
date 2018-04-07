@@ -21,6 +21,8 @@ package com.l2jbr.gameserver.serverpackets;
 import com.l2jbr.gameserver.model.TradeList;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.7.2.2.2.3 $ $Date: 2005/03/27 15:29:39 $

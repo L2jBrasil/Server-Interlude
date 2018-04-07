@@ -17,6 +17,8 @@
  */
 package com.l2jbr.mmocore;
 
+;
+
 /**
  * @author Forsaiken
  * @param <E>

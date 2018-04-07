@@ -28,8 +28,12 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.util.IllegalPlayerAction;
 import com.l2jbr.gameserver.util.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 /**
  * This class ...
@@ -39,7 +43,7 @@ public class RequestAquireSkill extends L2GameClientPacket
 {
 	private static final String _C__6C_REQUESTAQUIRESKILL = "[C] 6C RequestAquireSkill";
 	
-	private static Logger _log = Logger.getLogger(RequestAquireSkill.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RequestAquireSkill.class.getName());
 	
 	private int _id;
 	
@@ -265,7 +269,7 @@ public class RequestAquireSkill extends L2GameClientPacket
 			
 			if (Config.DEBUG)
 			{
-				_log.fine("Learned pledge skill " + _id + " for " + _requiredSp + " SP.");
+				_log.debug("Learned pledge skill " + _id + " for " + _requiredSp + " SP.");
 			}
 			
 			SystemMessage cr = new SystemMessage(SystemMessageId.S1_DEDUCTED_FROM_CLAN_REP);
@@ -289,7 +293,7 @@ public class RequestAquireSkill extends L2GameClientPacket
 		
 		else
 		{
-			_log.warning("Recived Wrong Packet Data in Aquired Skill - unk1:" + _skillType);
+			_log.warn("Recived Wrong Packet Data in Aquired Skill - unk1:" + _skillType);
 			return;
 		}
 		
@@ -297,7 +301,7 @@ public class RequestAquireSkill extends L2GameClientPacket
 		
 		if (Config.DEBUG)
 		{
-			_log.fine("Learned skill " + _id + " for " + _requiredSp + " SP.");
+			_log.debug("Learned skill " + _id + " for " + _requiredSp + " SP.");
 		}
 		
 		player.setSp(player.getSp() - _requiredSp);

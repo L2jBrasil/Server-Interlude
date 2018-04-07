@@ -25,6 +25,8 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.Ride;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
+;
+
 /**
  * @author TODO nothing.
  */

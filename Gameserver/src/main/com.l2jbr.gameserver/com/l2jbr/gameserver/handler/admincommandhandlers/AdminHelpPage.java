@@ -24,6 +24,8 @@ import com.l2jbr.gameserver.handler.IAdminCommandHandler;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 
+;
+
 /**
  * This class handles following admin commands: - help path = shows /data/html/admin/path file to char, should not be used by GM's directly
  * @version $Revision: 1.2.4.3 $ $Date: 2005/04/11 10:06:02 $

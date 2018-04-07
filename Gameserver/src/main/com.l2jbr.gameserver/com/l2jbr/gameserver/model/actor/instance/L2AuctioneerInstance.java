@@ -35,6 +35,8 @@ import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+;
+
 public final class L2AuctioneerInstance extends L2FolkInstance {
     private static final int COND_ALL_FALSE = 0;
     private static final int COND_BUSY_BECAUSE_OF_SIEGE = 1;
@@ -183,7 +185,7 @@ public final class L2AuctioneerInstance extends L2FolkInstance {
                         html.replace("%AGIT_LINK_BIDLIST%", "bypass -h npc_" + getObjectId() + "_bidlist " + a.getId());
                         html.replace("%AGIT_LINK_RE%", "bypass -h npc_" + getObjectId() + "_bid1 " + a.getId());
                     } else {
-                        _log.warning("Auctioneer Auction null for AuctionId : " + auctionId);
+                        _log.warn("Auctioneer Auction null for AuctionId : " + auctionId);
                     }
                     player.sendPacket(html);
                 } catch (Exception e) {
@@ -341,7 +343,7 @@ public final class L2AuctioneerInstance extends L2FolkInstance {
                         html.replace("%objectId%", String.valueOf(getObjectId()));
                         html.replace("%AGIT_LINK_BACK%", "bypass -h npc_" + getObjectId() + "_start");
                     } else {
-                        _log.warning("Auctioneer Auction null for AuctionBiddedAt : " + player.getClan().getAuctionBiddedAt());
+                        _log.warn("Auctioneer Auction null for AuctionBiddedAt : " + player.getClan().getAuctionBiddedAt());
                     }
                     player.sendPacket(html);
                     return;
@@ -367,7 +369,7 @@ public final class L2AuctioneerInstance extends L2FolkInstance {
                         html.replace("%id%", String.valueOf(a.getId()));
                         html.replace("%objectId%", String.valueOf(getObjectId()));
                     } else {
-                        _log.warning("Auctioneer Auction null for getHasHideout : " + player.getClan().getHasHideout());
+                        _log.warn("Auctioneer Auction null for getHasHideout : " + player.getClan().getHasHideout());
                     }
                     player.sendPacket(html);
                     return;
@@ -386,7 +388,7 @@ public final class L2AuctioneerInstance extends L2FolkInstance {
                         html.replace("%AGIT_LINK_BACK%", "bypass -h npc_" + getObjectId() + "_start");
                         html.replace("%objectId%", String.valueOf(getObjectId()));
                     } else {
-                        _log.warning("Clan Hall ID NULL : " + ItemId + " Can be caused by concurent write in ClanHallManager");
+                        _log.warn("Clan Hall ID NULL : " + ItemId + " Can be caused by concurent write in ClanHallManager");
                     }
                     player.sendPacket(html);
                     return;
@@ -468,7 +470,7 @@ public final class L2AuctioneerInstance extends L2FolkInstance {
                         html.replace("%AGIT_LINK_BACK%", "bypass -h npc_" + getObjectId() + "_selectedItems");
                         html.replace("npc_%objectId%_bid1", "npc_" + getObjectId() + "_bid1 " + a.getId());
                     } else {
-                        _log.warning("Auctioneer Auction null for AuctionBiddedAt : " + player.getClan().getAuctionBiddedAt());
+                        _log.warn("Auctioneer Auction null for AuctionBiddedAt : " + player.getClan().getAuctionBiddedAt());
                     }
                     player.sendPacket(html);
                 } catch (Exception e) {

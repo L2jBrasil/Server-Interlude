@@ -18,9 +18,11 @@
  */
 package com.l2jbr.loginserver.gameserverpackets;
 
-import java.util.logging.Logger;
-
 import com.l2jbr.loginserver.clientpackets.ClientBasePacket;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+;
 
 /**
  * Format: cccddb c desired ID c accept alternative ID c reserve Host s ExternalHostName s InetranlHostName d max players d hexid size b hexid
@@ -28,7 +30,7 @@ import com.l2jbr.loginserver.clientpackets.ClientBasePacket;
  */
 public class GameServerAuth extends ClientBasePacket
 {
-	protected static Logger _log = Logger.getLogger(GameServerAuth.class.getName());
+	protected static Logger _log = LoggerFactory.getLogger(GameServerAuth.class.getName());
 	private final byte[] _hexId;
 	private final int _desiredId;
 	private final boolean _hostReserved;

@@ -22,6 +22,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+;
+
 /**
  * Encodes and decodes to and from Base64 notation. The source is based on the work of Robert Harder
  * <p>

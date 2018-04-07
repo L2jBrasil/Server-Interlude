@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
+;
+
 /**
  * Fromat: (ch) (just a trigger)
  * @author -Wooden-

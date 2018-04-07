@@ -18,13 +18,16 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
-import java.util.Calendar;
-import java.util.logging.Logger;
-
 import com.l2jbr.gameserver.datatables.ClanTable;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.entity.Castle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Calendar;
+
+;
 
 /**
  * Shows the Siege Info<BR>
@@ -48,7 +51,7 @@ import com.l2jbr.gameserver.model.entity.Castle;
 public class SiegeInfo extends L2GameServerPacket
 {
 	private static final String _S__C9_SIEGEINFO = "[S] c9 SiegeInfo";
-	private static Logger _log = Logger.getLogger(SiegeInfo.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(SiegeInfo.class.getName());
 	private final Castle _castle;
 	
 	public SiegeInfo(Castle castle)
@@ -81,7 +84,7 @@ public class SiegeInfo extends L2GameServerPacket
 			}
 			else
 			{
-				_log.warning("Null owner for castle: " + _castle.getName());
+				_log.warn("Null owner for castle: " + _castle.getName());
 			}
 		}
 		else

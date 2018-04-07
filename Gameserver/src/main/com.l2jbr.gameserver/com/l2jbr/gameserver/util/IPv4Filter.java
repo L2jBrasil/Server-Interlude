@@ -14,13 +14,15 @@
  */
 package com.l2jbr.gameserver.util;
 
+import com.l2jbr.mmocore.IAcceptFilter;
+
 import java.net.InetAddress;
 import java.nio.channels.SocketChannel;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
-import com.l2jbr.mmocore.IAcceptFilter;
+;
 
 /**
  * Formatted Forsaiken's IPv4 filter [DrHouse]

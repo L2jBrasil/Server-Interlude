@@ -27,7 +27,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
+
+;
 
 public class PcInventory extends Inventory {
     public static final int ADENA_ID = 57;
@@ -570,12 +571,12 @@ public class PcInventory extends Inventory {
             invdata.close();
             statement2.close();
         } catch (Exception e) {
-            _log.log(Level.WARNING, "could not restore inventory:", e);
+            _log.warn( "could not restore inventory:", e);
         } finally {
             try {
                 con.close();
             } catch (Exception e) {
-                _log.warning("");
+                _log.warn("");
             }
         }
         return paperdoll;

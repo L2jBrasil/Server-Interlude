@@ -28,6 +28,8 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.LeaveWorld;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
+;
+
 /**
  * This class handles following admin commands: - character_disconnect = disconnects target player
  * @version $Revision: 1.2.4.4 $ $Date: 2005/04/11 10:06:00 $

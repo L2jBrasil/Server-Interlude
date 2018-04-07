@@ -23,6 +23,8 @@ import com.l2jbr.gameserver.model.L2ItemInstance;
 import java.util.logging.Filter;
 import java.util.logging.LogRecord;
 
+;
+
 /**
  * @author Advi
  */

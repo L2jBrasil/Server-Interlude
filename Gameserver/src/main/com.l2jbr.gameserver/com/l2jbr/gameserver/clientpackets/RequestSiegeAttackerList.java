@@ -22,6 +22,8 @@ import com.l2jbr.gameserver.instancemanager.CastleManager;
 import com.l2jbr.gameserver.model.entity.Castle;
 import com.l2jbr.gameserver.serverpackets.SiegeAttackerList;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.3.4.2 $ $Date: 2005/03/27 15:29:30 $
@@ -30,7 +32,7 @@ public final class RequestSiegeAttackerList extends L2GameClientPacket
 {
 	
 	private static final String _C__A2_RequestSiegeAttackerList = "[C] a2 RequestSiegeAttackerList";
-	// private static Logger _log = Logger.getLogger(RequestJoinParty.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(RequestJoinParty.class.getName());
 	
 	private int _castleId;
 	

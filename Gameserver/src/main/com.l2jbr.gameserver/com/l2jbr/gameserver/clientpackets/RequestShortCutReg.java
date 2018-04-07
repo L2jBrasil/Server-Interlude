@@ -22,6 +22,8 @@ import com.l2jbr.gameserver.model.L2ShortCut;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.ShortCutRegister;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.3.4.3 $ $Date: 2005/03/27 15:29:30 $

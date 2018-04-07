@@ -19,10 +19,14 @@
 package com.l2jbr.gameserver.handler;
 
 import com.l2jbr.commons.Config;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -30,7 +34,7 @@ import java.util.logging.Logger;
  * @version $Revision: 1.1.2.1.2.5 $ $Date: 2005/03/27 15:30:09 $
  */
 public class UserCommandHandler {
-    private static Logger _log = Logger.getLogger(UserCommandHandler.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(UserCommandHandler.class.getName());
 
     private static UserCommandHandler _instance;
 
@@ -51,7 +55,7 @@ public class UserCommandHandler {
         int[] ids = handler.getUserCommandList();
         for (int id : ids) {
             if (Config.DEBUG) {
-                _log.fine("Adding handler for user command " + id);
+                _log.debug("Adding handler for user command " + id);
             }
             _datatable.put(id, handler);
         }
@@ -59,7 +63,7 @@ public class UserCommandHandler {
 
     public IUserCommandHandler getUserCommandHandler(int userCommand) {
         if (Config.DEBUG) {
-            _log.fine("getting handler for user command: " + userCommand);
+            _log.debug("getting handler for user command: " + userCommand);
         }
         return _datatable.get(userCommand);
     }

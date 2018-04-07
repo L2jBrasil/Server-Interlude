@@ -17,19 +17,21 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
-import java.util.logging.Logger;
-
 import com.l2jbr.gameserver.datatables.ClanTable;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+;
 
 public final class RequestSurrenderPersonally extends L2GameClientPacket
 {
 	private static final String _C__69_REQUESTSURRENDERPERSONALLY = "[C] 69 RequestSurrenderPersonally";
-	private static Logger _log = Logger.getLogger(RequestSurrenderPledgeWar.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RequestSurrenderPledgeWar.class.getName());
 	
 	private String _pledgeName;
 	private L2Clan _clan;

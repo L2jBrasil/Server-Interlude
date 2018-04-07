@@ -18,6 +18,7 @@
  */
 package com.l2jbr.gameserver.model.actor.instance;
 
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.handler.ISkillHandler;
@@ -26,16 +27,18 @@ import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Party;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
-import com.l2jbr.commons.util.Rnd;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Future;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+;
+
 
 public class L2CubicInstance {
-    protected static final Logger _log = Logger.getLogger(L2CubicInstance.class.getName());
+    protected static final Logger _log = LoggerFactory.getLogger(L2CubicInstance.class.getName());
 
     public static final int STORM_CUBIC = 1;
     public static final int VAMPIRIC_CUBIC = 2;
@@ -208,7 +211,7 @@ public class L2CubicInstance {
                         }
                     }
                 } catch (Exception e) {
-                    _log.log(Level.SEVERE, "", e);
+                    _log.error( "", e);
                 }
             }
         }

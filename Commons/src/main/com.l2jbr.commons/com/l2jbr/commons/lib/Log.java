@@ -26,22 +26,25 @@
 package com.l2jbr.commons.lib;
 
 import com.l2jbr.commons.Config;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Logger;
+
+
 
 public class Log
 {
-	private static final Logger _log = Logger.getLogger(Log.class.getName());
+	private static final Logger _log = LoggerFactory.getLogger(Log.class.getName());
 	
 	public static final void add(String text, String cat)
 	{
 		/*
-		 * Logger _log = logs.get(cat); if(_log == null) { _log = Logger.getLogger(cat); logs.put(cat, _log); }
+		 * Logger _log = logs.get(cat); if(_log == null) { _log = LoggerFactory.getLogger(cat); logs.put(cat, _log); }
 		 */
 		
 		String date = (new SimpleDateFormat("yy.MM.dd H:mm:ss")).format(new Date());
@@ -62,7 +65,7 @@ public class Log
 		}
 		catch (IOException e)
 		{
-			_log.warning("saving chat log failed: " + e);
+			_log.warn("saving chat log failed: " + e);
 			e.printStackTrace();
 		}
 		

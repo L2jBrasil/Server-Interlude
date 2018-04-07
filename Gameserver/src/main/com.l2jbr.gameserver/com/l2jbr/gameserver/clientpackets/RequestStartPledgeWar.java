@@ -26,10 +26,12 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
+;
+
 public final class RequestStartPledgeWar extends L2GameClientPacket
 {
 	private static final String _C__4D_REQUESTSTARTPLEDGEWAR = "[C] 4D RequestStartPledgewar";
-	// private static Logger _log = Logger.getLogger(RequestStartPledgeWar.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(RequestStartPledgeWar.class.getName());
 	
 	private String _pledgeName;
 	private L2Clan _clan;
@@ -106,7 +108,7 @@ public final class RequestStartPledgeWar extends L2GameClientPacket
 			return;
 		}
 		
-		// _log.warning("RequestStartPledgeWar, leader: " + clan.getLeaderName() + " clan: "+ _clan.getName());
+		// _log.warn("RequestStartPledgeWar, leader: " + clan.getLeaderName() + " clan: "+ _clan.getName());
 		
 		// L2PcInstance leader = L2World.getInstance().getPlayer(clan.getLeaderName());
 		

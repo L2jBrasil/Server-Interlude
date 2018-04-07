@@ -19,11 +19,7 @@
 package com.l2jbr.gameserver.handler.skillhandlers;
 
 import com.l2jbr.gameserver.handler.ISkillHandler;
-import com.l2jbr.gameserver.model.L2Character;
-import com.l2jbr.gameserver.model.L2Fishing;
-import com.l2jbr.gameserver.model.L2ItemInstance;
-import com.l2jbr.gameserver.model.L2Object;
-import com.l2jbr.gameserver.model.L2Skill;
+import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.L2Skill.SkillType;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
@@ -31,9 +27,11 @@ import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.L2Weapon;
 
+;
+
 public class FishingSkill implements ISkillHandler
 {
-	// private static Logger _log = Logger.getLogger(SiegeFlag.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(SiegeFlag.class.getName());
 	private static final SkillType[] SKILL_IDS =
 	{
 		SkillType.PUMPING,

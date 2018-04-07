@@ -18,18 +18,22 @@
 package com.l2jbr.loginserver;
 
 import com.l2jbr.commons.Config;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.Socket;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * @author KenM
  */
 public class GameServerListener extends FloodProtectedListener {
-    private static Logger _log = Logger.getLogger(GameServerListener.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(GameServerListener.class.getName());
     private static List<GameServerThread> _gameServers = new LinkedList<>();
 
     public GameServerListener() throws IOException {

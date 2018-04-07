@@ -32,6 +32,8 @@ import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.templates.StatsSet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,13 +41,15 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * @author terry Window - Preferences - Java - Code Style - Code Templates
  */
 public class AdminEditNpc implements IAdminCommandHandler {
-    private static Logger _log = Logger.getLogger(AdminEditChar.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(AdminEditChar.class.getName());
     private final static int PAGE_LIMIT = 7;
 
     private static final String[] ADMIN_COMMANDS =
@@ -151,7 +155,7 @@ public class AdminEditNpc implements IAdminCommandHandler {
 
                         updateDropData(activeChar, npcId, itemId, min, max, category, chance);
                     } catch (Exception e) {
-                        _log.fine("admin_edit_drop parements error: " + command);
+                        _log.debug("admin_edit_drop parements error: " + command);
                     }
                 } else {
                     activeChar.sendMessage("Usage: //edit_drop <npc_id> <item_id> <category> [<min> <max> <chance>]");
@@ -188,7 +192,7 @@ public class AdminEditNpc implements IAdminCommandHandler {
 
                         addDropData(activeChar, npcId, itemId, min, max, category, chance);
                     } catch (Exception e) {
-                        _log.fine("admin_add_drop parements error: " + command);
+                        _log.debug("admin_add_drop parements error: " + command);
                     }
                 } else {
                     activeChar.sendMessage("Usage: //add_drop <npc_id> [<item_id> <category> <min> <max> <chance>]");
@@ -732,7 +736,7 @@ public class AdminEditNpc implements IAdminCommandHandler {
                 newNpcData.set("absorb_level", intVal < 0 ? 0 : intVal > 12 ? 0 : intVal);
             }
         } catch (Exception e) {
-            _log.warning("Error saving new npc value: " + e);
+            _log.warn("Error saving new npc value: " + e);
         }
 
         NpcTable.getInstance().saveNpc(newNpcData);

@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.1.4.2 $ $Date: 2005/03/27 15:29:30 $
@@ -26,7 +28,7 @@ package com.l2jbr.gameserver.clientpackets;
 public final class RequestPartyMatchConfig extends L2GameClientPacket
 {
 	private static final String _C__6F_REQUESTPARTYMATCHCONFIG = "[C] 6F RequestPartyMatchConfig";
-	// private static Logger _log = Logger.getLogger(RequestPartyMatchConfig.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(RequestPartyMatchConfig.class.getName());
 	
 	private int _automaticRegistration;
 	private int _showLevel;
@@ -41,7 +43,7 @@ public final class RequestPartyMatchConfig extends L2GameClientPacket
 		_showClass = readD();
 		
 		/*
-		 * TODO: Check if this this part of the packet has been removed by latest versions. try { _memo = readS(); } catch (BufferUnderflowException e) { _memo = ""; _log.warning("Memo field non existant in packet. Notify devs."); e.printStackTrace(); }
+		 * TODO: Check if this this part of the packet has been removed by latest versions. try { _memo = readS(); } catch (BufferUnderflowException e) { _memo = ""; _log.warn("Memo field non existant in packet. Notify devs."); e.printStackTrace(); }
 		 */
 	}
 	

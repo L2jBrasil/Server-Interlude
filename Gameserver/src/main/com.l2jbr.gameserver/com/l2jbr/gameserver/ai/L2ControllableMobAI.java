@@ -18,17 +18,19 @@
  */
 package com.l2jbr.gameserver.ai;
 
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.L2Character.AIAccessor;
 import com.l2jbr.gameserver.model.actor.instance.*;
 import com.l2jbr.gameserver.util.Util;
-import com.l2jbr.commons.util.Rnd;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import static com.l2jbr.gameserver.ai.CtrlIntention.AI_INTENTION_ACTIVE;
 import static com.l2jbr.gameserver.ai.CtrlIntention.AI_INTENTION_ATTACK;
+
+;
 
 /**
  * @author littlecrow AI for controllable mobs
@@ -123,7 +125,7 @@ public class L2ControllableMobAI extends L2AttackableAI {
             skills = _actor.getAllSkills();
             // dist2 = _actor.getPlanDistanceSq(getAttackTarget().getX(), getAttackTarget().getY());
         } catch (NullPointerException e) {
-            _log.warning("Encountered Null Value.");
+            _log.warn("Encountered Null Value.");
             e.printStackTrace();
         }
 
@@ -177,7 +179,7 @@ public class L2ControllableMobAI extends L2AttackableAI {
             range = _actor.getPhysicalAttackRange() + _actor.getTemplate().collisionRadius + target.getTemplate().collisionRadius;
             max_range = range;
         } catch (NullPointerException e) {
-            _log.warning("Encountered Null Value.");
+            _log.warn("Encountered Null Value.");
             e.printStackTrace();
         }
 
@@ -222,7 +224,7 @@ public class L2ControllableMobAI extends L2AttackableAI {
             range = _actor.getPhysicalAttackRange() + _actor.getTemplate().collisionRadius + getForcedTarget().getTemplate().collisionRadius;
             max_range = range;
         } catch (NullPointerException e) {
-            _log.warning("Encountered Null Value.");
+            _log.warn("Encountered Null Value.");
             e.printStackTrace();
         }
 
@@ -292,7 +294,7 @@ public class L2ControllableMobAI extends L2AttackableAI {
                 range = _actor.getPhysicalAttackRange() + _actor.getTemplate().collisionRadius + getAttackTarget().getTemplate().collisionRadius;
                 max_range = range;
             } catch (NullPointerException e) {
-                _log.warning("Encountered Null Value.");
+                _log.warn("Encountered Null Value.");
                 e.printStackTrace();
             }
 

@@ -17,6 +17,8 @@
  */
 package com.l2jbr.gameserver.model.zone;
 
+;
+
 /**
  * Abstract base class for any zone form
  * @author durgus

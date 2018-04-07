@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
+;
+
 /**
  * This class ...
  * @version $Revision: $ $Date: $

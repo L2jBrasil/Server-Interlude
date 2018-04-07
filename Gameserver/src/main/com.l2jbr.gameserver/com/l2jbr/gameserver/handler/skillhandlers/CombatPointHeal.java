@@ -27,6 +27,8 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.1.2.2.2.1 $ $Date: 2005/03/02 15:38:36 $
@@ -34,7 +36,7 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
 public class CombatPointHeal implements ISkillHandler
 {
-	// private static Logger _log = Logger.getLogger(CombatPointHeal.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(CombatPointHeal.class.getName());
 	
 	/*
 	 * (non-Javadoc)

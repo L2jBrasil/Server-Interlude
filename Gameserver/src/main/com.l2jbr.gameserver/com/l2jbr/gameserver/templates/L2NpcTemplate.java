@@ -25,12 +25,16 @@ import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.base.ClassId;
 import com.l2jbr.gameserver.model.quest.Quest;
 import com.l2jbr.gameserver.skills.Stats;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This cl contains all generic data of a L2Spawn object.<BR>
@@ -43,7 +47,7 @@ import java.util.logging.Logger;
  * @version $Revision: 1.1.2.4 $ $Date: 2005/04/02 15:57:51 $
  */
 public final class L2NpcTemplate extends L2CharTemplate {
-    protected static final Logger _log = Logger.getLogger(Quest.class.getName());
+    protected static final Logger _log = LoggerFactory.getLogger(Quest.class.getName());
 
     public final int npcId;
     public final int idTemplate;
@@ -309,7 +313,7 @@ public final class L2NpcTemplate extends L2CharTemplate {
                 if (_quests[0].getName().equals(q.getName())) {
                     _quests[0] = q;
                 } else {
-                    _log.warning("Quest event not allowed in multiple quests.  Skipped addition of Event Type \"" + EventType + "\" for NPC \"" + name + "\" and quest \"" + q.getName() + "\".");
+                    _log.warn("Quest event not allowed in multiple quests.  Skipped addition of Event Type \"" + EventType + "\" for NPC \"" + name + "\" and quest \"" + q.getName() + "\".");
                 }
             } else {
                 // be ready to add a new quest to a new copy of the list, with larger size than previously.

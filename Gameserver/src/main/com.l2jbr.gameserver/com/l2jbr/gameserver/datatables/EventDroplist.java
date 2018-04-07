@@ -24,6 +24,8 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+;
+
 /**
  * This class manage drop of Special Events created by GM for a defined period. During a Special Event all L2Attackable can drop extra Items. Those extra Items are defined in the table <B>allNpcDateDrops</B>. Each Special Event has a start and end date to stop to drop extra Items automatically.<BR>
  * <BR>
@@ -31,7 +33,7 @@ import java.util.List;
 
 public class EventDroplist {
 
-    // private static Logger _log = Logger.getLogger(EventDroplist.class.getName());
+    // private static Logger _log = LoggerFactory.getLogger(EventDroplist.class.getName());
 
     private static EventDroplist _instance;
 

@@ -29,6 +29,8 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.1.2.4 $ $Date: 2005/04/06 16:13:51 $

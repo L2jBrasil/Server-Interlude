@@ -19,6 +19,7 @@ package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.L2DatabaseFactory;
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.Announcements;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.datatables.MapRegionTable;
@@ -27,7 +28,8 @@ import com.l2jbr.gameserver.datatables.SpawnTable;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
-import com.l2jbr.commons.util.Rnd;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,7 +39,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * Auto Spawn Handler Allows spawning of a NPC object based on a timer. (From the official idea used for the Merchant and Blacksmith of Mammon) General Usage: - Call registerSpawn() with the parameters listed below. int npcId int[][] spawnPoints or specify NULL to add points later. int initialDelay
@@ -48,7 +52,7 @@ import java.util.logging.Logger;
  * @author Tempy
  */
 public class AutoSpawnHandler {
-    protected static final Logger _log = Logger.getLogger(AutoSpawnHandler.class.getName());
+    protected static final Logger _log = LoggerFactory.getLogger(AutoSpawnHandler.class.getName());
 
     private static AutoSpawnHandler _instance;
 
@@ -122,10 +126,10 @@ public class AutoSpawnHandler {
             statement.close();
 
             if (Config.DEBUG) {
-                _log.config("AutoSpawnHandler: Loaded " + numLoaded + " spawn group(s) from the database.");
+                _log.info("AutoSpawnHandler: Loaded " + numLoaded + " spawn group(s) from the database.");
             }
         } catch (Exception e) {
-            _log.warning("AutoSpawnHandler: Could not restore spawn data: " + e);
+            _log.warn("AutoSpawnHandler: Could not restore spawn data: " + e);
         } finally {
             try {
                 con.close();
@@ -172,7 +176,7 @@ public class AutoSpawnHandler {
         setSpawnActive(newSpawn, true);
 
         if (Config.DEBUG) {
-            _log.config("AutoSpawnHandler: Registered auto spawn for NPC ID " + npcId + " (Object ID = " + newId + ").");
+            _log.info("AutoSpawnHandler: Registered auto spawn for NPC ID " + npcId + " (Object ID = " + newId + ").");
         }
 
         return newSpawn;
@@ -212,10 +216,10 @@ public class AutoSpawnHandler {
             respawnTask.cancel(false);
 
             if (Config.DEBUG) {
-                _log.config("AutoSpawnHandler: Removed auto spawn for NPC ID " + spawnInst._npcId + " (Object ID = " + spawnInst._objectId + ").");
+                _log.info("AutoSpawnHandler: Removed auto spawn for NPC ID " + spawnInst._npcId + " (Object ID = " + spawnInst._objectId + ").");
             }
         } catch (Exception e) {
-            _log.warning("AutoSpawnHandler: Could not auto spawn for NPC ID " + spawnInst._npcId + " (Object ID = " + spawnInst._objectId + "): " + e);
+            _log.warn("AutoSpawnHandler: Could not auto spawn for NPC ID " + spawnInst._npcId + " (Object ID = " + spawnInst._objectId + "): " + e);
             return false;
         }
 
@@ -419,7 +423,7 @@ public class AutoSpawnHandler {
                 // Fetch the template for this NPC ID and create a new spawn.
                 L2NpcTemplate npcTemp = NpcTable.getInstance().getTemplate(spawnInst.getNpcId());
                 if (npcTemp == null) {
-                    _log.warning("Couldnt find NPC id" + spawnInst.getNpcId() + " Try to update your DP");
+                    _log.warn("Couldnt find NPC id" + spawnInst.getNpcId() + " Try to update your DP");
                     return;
                 }
                 L2Spawn newSpawn = new L2Spawn(npcTemp);
@@ -477,7 +481,7 @@ public class AutoSpawnHandler {
                     ThreadPoolManager.getInstance().scheduleAi(rd, spawnInst.getDespawnDelay() - 1000);
                 }
             } catch (Exception e) {
-                _log.warning("AutoSpawnHandler: An error occurred while initializing spawn instance (Object ID = " + _objectId + "): " + e);
+                _log.warn("AutoSpawnHandler: An error occurred while initializing spawn instance (Object ID = " + _objectId + "): " + e);
                 e.printStackTrace();
             }
         }
@@ -520,7 +524,7 @@ public class AutoSpawnHandler {
                     }
                 }
             } catch (Exception e) {
-                _log.warning("AutoSpawnHandler: An error occurred while despawning spawn (Object ID = " + _objectId + "): " + e);
+                _log.warn("AutoSpawnHandler: An error occurred while despawning spawn (Object ID = " + _objectId + "): " + e);
             }
         }
     }

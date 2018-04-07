@@ -22,10 +22,14 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2MerchantInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -34,7 +38,7 @@ import java.util.logging.Logger;
  */
 public class SellList extends L2GameServerPacket {
     private static final String _S__10_SELLLIST = "[S] 10 SellList";
-    private static Logger _log = Logger.getLogger(SellList.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(SellList.class.getName());
     private final L2PcInstance _activeChar;
     private final L2MerchantInstance _lease;
     private final int _money;
@@ -64,7 +68,7 @@ public class SellList extends L2GameServerPacket {
                 {
                     _selllist.add(item);
                     if (Config.DEBUG) {
-                        _log.fine("item added to selllist: " + item.getItem().getName());
+                        _log.debug("item added to selllist: " + item.getItem().getName());
                     }
                 }
             }

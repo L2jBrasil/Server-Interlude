@@ -22,6 +22,8 @@ import com.l2jbr.gameserver.model.L2CommandChannel;
 import com.l2jbr.gameserver.model.L2Party;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
+;
+
 /**
  * @author chris_00 when User press the "List Update" button in CCInfo window
  */

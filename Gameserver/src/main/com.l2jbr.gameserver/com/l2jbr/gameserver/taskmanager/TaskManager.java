@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.taskmanager;
 import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.taskmanager.tasks.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,15 +29,16 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.*;
 import java.util.concurrent.ScheduledFuture;
-import java.util.logging.Logger;
 
 import static com.l2jbr.gameserver.taskmanager.TaskTypes.*;
+
+;
 
 /**
  * @author Layane
  */
 public final class TaskManager {
-    protected static final Logger _log = Logger.getLogger(TaskManager.class.getName());
+    protected static final Logger _log = LoggerFactory.getLogger(TaskManager.class.getName());
     private static TaskManager _instance;
 
     protected static final String[] SQL_STATEMENTS =
@@ -86,7 +89,7 @@ public final class TaskManager {
                 statement.executeUpdate();
                 statement.close();
             } catch (SQLException e) {
-                _log.warning("cannot updated the Global Task " + id + ": " + e.getMessage());
+                _log.warn("cannot updated the Global Task " + id + ": " + e.getMessage());
             } finally {
                 try {
                     con.close();
@@ -201,7 +204,7 @@ public final class TaskManager {
                 statement.close();
 
             } catch (Exception e) {
-                _log.severe("error while loading Global Task table " + e);
+                _log.error("error while loading Global Task table " + e);
                 e.printStackTrace();
             }
 
@@ -252,7 +255,7 @@ public final class TaskManager {
             String[] hour = task.getParams()[1].split(":");
 
             if (hour.length != 3) {
-                _log.warning("Task " + task.getId() + " has incorrect parameters");
+                _log.warn("Task " + task.getId() + " has incorrect parameters");
                 return false;
             }
 
@@ -265,7 +268,7 @@ public final class TaskManager {
                 min.set(Calendar.MINUTE, Integer.valueOf(hour[1]));
                 min.set(Calendar.SECOND, Integer.valueOf(hour[2]));
             } catch (Exception e) {
-                _log.warning("Bad parameter on task " + task.getId() + ": " + e.getMessage());
+                _log.warn("Bad parameter on task " + task.getId() + ": " + e.getMessage());
                 return false;
             }
 
@@ -312,7 +315,7 @@ public final class TaskManager {
 
             return true;
         } catch (SQLException e) {
-            _log.warning("cannot add the unique task: " + e.getMessage());
+            _log.warn("cannot add the unique task: " + e.getMessage());
         } finally {
             try {
                 con.close();
@@ -344,7 +347,7 @@ public final class TaskManager {
             statement.close();
             return true;
         } catch (SQLException e) {
-            _log.warning("cannot add the task:  " + e.getMessage());
+            _log.warn("cannot add the task:  " + e.getMessage());
         } finally {
             try {
                 con.close();

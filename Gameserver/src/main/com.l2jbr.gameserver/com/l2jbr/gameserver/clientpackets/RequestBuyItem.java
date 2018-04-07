@@ -29,9 +29,13 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.util.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -40,7 +44,7 @@ import java.util.logging.Logger;
 public final class RequestBuyItem extends L2GameClientPacket
 {
 	private static final String _C__1F_REQUESTBUYITEM = "[C] 1F RequestBuyItem";
-	private static Logger _log = Logger.getLogger(RequestBuyItem.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RequestBuyItem.class.getName());
 	
 	private int _listId;
 	private int _count;
@@ -250,7 +254,7 @@ public final class RequestBuyItem extends L2GameClientPacket
 			 */
 			if (price < 0)
 			{
-				_log.warning("ERROR, no price found .. wrong buylist ??");
+				_log.warn("ERROR, no price found .. wrong buylist ??");
 				sendPacket(new ActionFailed());
 				return;
 			}

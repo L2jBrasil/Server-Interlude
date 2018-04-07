@@ -26,6 +26,8 @@ import com.l2jbr.gameserver.model.L2SiegeClan;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.entity.Castle;
 
+;
+
 /**
  * sample 0b 952a1048 objectId 00000000 00000000 00000000 00000000 00000000 00000000 format dddddd rev 377 format ddddddd rev 417
  * @version $Revision: 1.3.2.1.2.5 $ $Date: 2005/03/27 18:46:18 $

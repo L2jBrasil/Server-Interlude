@@ -21,6 +21,8 @@ package com.l2jbr.gameserver.clientpackets;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.RecipeShopItemInfo;
 
+;
+
 /**
  * This class ... cdd
  * @version $Revision: 1.1.2.1.2.2 $ $Date: 2005/03/27 15:29:30 $
@@ -28,7 +30,7 @@ import com.l2jbr.gameserver.serverpackets.RecipeShopItemInfo;
 public final class RequestRecipeShopMakeInfo extends L2GameClientPacket
 {
 	private static final String _C__B5_RequestRecipeShopMakeInfo = "[C] b5 RequestRecipeShopMakeInfo";
-	// private static Logger _log = Logger.getLogger(RequestRecipeShopMakeInfo.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(RequestRecipeShopMakeInfo.class.getName());
 	
 	private int _playerObjectId;
 	private int _recipeId;

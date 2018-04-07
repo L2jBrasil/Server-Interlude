@@ -26,6 +26,8 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
 import java.util.StringTokenizer;
 
+;
+
 public class AdminLevel implements IAdminCommandHandler
 {
 	private static final int REQUIRED_LEVEL = Config.GM_CHAR_EDIT;

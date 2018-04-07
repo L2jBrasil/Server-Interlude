@@ -21,19 +21,11 @@ package com.l2jbr.gameserver.script;
 import com.l2jbr.gameserver.Announcements;
 import com.l2jbr.gameserver.GameTimeController;
 import com.l2jbr.gameserver.RecipeController;
-import com.l2jbr.gameserver.datatables.CharNameTable;
-import com.l2jbr.gameserver.datatables.CharTemplateTable;
-import com.l2jbr.gameserver.datatables.ClanTable;
-import com.l2jbr.gameserver.datatables.ItemTable;
-import com.l2jbr.gameserver.datatables.LevelUpData;
-import com.l2jbr.gameserver.datatables.MapRegionTable;
-import com.l2jbr.gameserver.datatables.NpcTable;
-import com.l2jbr.gameserver.datatables.SkillTable;
-import com.l2jbr.gameserver.datatables.SkillTreeTable;
-import com.l2jbr.gameserver.datatables.SpawnTable;
-import com.l2jbr.gameserver.datatables.TeleportLocationTable;
+import com.l2jbr.gameserver.datatables.*;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.L2World;
+
+;
 
 /**
  * @author Luis Arias TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates

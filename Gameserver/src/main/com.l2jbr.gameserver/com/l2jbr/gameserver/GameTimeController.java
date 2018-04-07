@@ -21,13 +21,17 @@ package com.l2jbr.gameserver;
 import com.l2jbr.gameserver.ai.CtrlEvent;
 import com.l2jbr.gameserver.instancemanager.DayNightSpawnManager;
 import com.l2jbr.gameserver.model.L2Character;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ScheduledFuture;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -35,7 +39,7 @@ import java.util.logging.Logger;
  * @version $Revision: 1.1.4.8 $ $Date: 2005/04/06 16:13:24 $
  */
 public class GameTimeController {
-    static final Logger _log = Logger.getLogger(GameTimeController.class.getName());
+    static final Logger _log = LoggerFactory.getLogger(GameTimeController.class.getName());
 
     public static final int TICKS_PER_SECOND = 10;
     public static final int MILLIS_IN_TICK = 1000 / TICKS_PER_SECOND;
@@ -185,7 +189,7 @@ public class GameTimeController {
                     // calculate sleep time... time needed to next tick minus time it takes to call moveObjects()
                     int sleepTime = (1 + MILLIS_IN_TICK) - (((int) runtime) % MILLIS_IN_TICK);
 
-                    // _log.finest("TICK: "+_gameTicks);
+                    // _log.debug("TICK: "+_gameTicks);
 
                     sleep(sleepTime); // hope other threads will have much more cpu time available now
                     // SelectorThread most of all
@@ -201,7 +205,7 @@ public class GameTimeController {
         public void run() {
             if (!_timer.isAlive()) {
                 String time = (new SimpleDateFormat("HH:mm:ss")).format(new Date());
-                _log.warning(time + " TimerThread stop with following error. restart it.");
+                _log.warn(time + " TimerThread stop with following error. restart it.");
                 if (_timer._error != null) {
                     _timer._error.printStackTrace();
                 }

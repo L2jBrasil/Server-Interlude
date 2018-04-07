@@ -30,10 +30,14 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class handles following admin commands: - show_moves - show_teleport - teleport_to_character - move_to - teleport_character
@@ -41,7 +45,7 @@ import java.util.logging.Logger;
  * @version $Revision: 1.3.2.6.2.4 $ $Date: 2005/04/11 10:06:06 $
  */
 public class AdminTeleport implements IAdminCommandHandler {
-    private static final Logger _log = Logger.getLogger(AdminTeleport.class.getName());
+    private static final Logger _log = LoggerFactory.getLogger(AdminTeleport.class.getName());
 
     private static final String[] ADMIN_COMMANDS =
             {
@@ -332,14 +336,14 @@ public class AdminTeleport implements IAdminCommandHandler {
             L2NpcTemplate template1 = NpcTable.getInstance().getTemplate(monsterTemplate);
             if (template1 == null) {
                 activeChar.sendMessage("Incorrect monster template.");
-                _log.warning("ERROR: NPC " + target.getObjectId() + " has a 'null' template.");
+                _log.warn("ERROR: NPC " + target.getObjectId() + " has a 'null' template.");
                 return;
             }
 
             L2Spawn spawn = target.getSpawn();
             if (spawn == null) {
                 activeChar.sendMessage("Incorrect monster spawn.");
-                _log.warning("ERROR: NPC " + target.getObjectId() + " has a 'null' spawn.");
+                _log.warn("ERROR: NPC " + target.getObjectId() + " has a 'null' spawn.");
                 return;
             }
             int respawnTime = spawn.getRespawnDelay();
@@ -366,8 +370,8 @@ public class AdminTeleport implements IAdminCommandHandler {
                 activeChar.sendPacket(sm);
 
                 if (Config.DEBUG) {
-                    _log.fine("Spawn at X=" + spawn.getLocx() + " Y=" + spawn.getLocy() + " Z=" + spawn.getLocz());
-                    _log.warning("GM: " + activeChar.getName() + "(" + activeChar.getObjectId() + ") moved NPC " + target.getObjectId());
+                    _log.debug("Spawn at X=" + spawn.getLocx() + " Y=" + spawn.getLocy() + " Z=" + spawn.getLocz());
+                    _log.warn("GM: " + activeChar.getName() + "(" + activeChar.getObjectId() + ") moved NPC " + target.getObjectId());
                 }
             } catch (Exception e) {
                 activeChar.sendMessage("Target is not in game.");

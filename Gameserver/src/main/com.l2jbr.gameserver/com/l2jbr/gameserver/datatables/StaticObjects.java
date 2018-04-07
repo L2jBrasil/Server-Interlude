@@ -21,15 +21,19 @@ package com.l2jbr.gameserver.datatables;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.actor.instance.L2StaticObjectInstance;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
+
+;
+
 
 public class StaticObjects {
-    private static Logger _log = Logger.getLogger(StaticObjects.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(StaticObjects.class.getName());
 
     private static StaticObjects _instance;
     private final Map<Integer, L2StaticObjectInstance> _staticObjects;
@@ -44,7 +48,7 @@ public class StaticObjects {
     public StaticObjects() {
         _staticObjects = new LinkedHashMap<>();
         parseData();
-        _log.config("StaticObject: Loaded " + _staticObjects.size() + " StaticObject Templates.");
+        _log.info("StaticObject: Loaded " + _staticObjects.size() + " StaticObject Templates.");
     }
 
     private void parseData() {
@@ -63,9 +67,9 @@ public class StaticObjects {
                 _staticObjects.put(obj.getStaticObjectId(), obj);
             }
         } catch (FileNotFoundException e) {
-            _log.warning("staticobjects.csv is missing in data folder");
+            _log.warn("staticobjects.csv is missing in data folder");
         } catch (Exception e) {
-            _log.warning("error while creating StaticObjects table " + e);
+            _log.warn("error while creating StaticObjects table " + e);
         } finally {
             try {
                 lnr.close();

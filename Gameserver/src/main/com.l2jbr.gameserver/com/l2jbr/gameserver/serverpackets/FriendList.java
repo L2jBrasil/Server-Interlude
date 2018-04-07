@@ -21,11 +21,15 @@ package com.l2jbr.gameserver.serverpackets;
 import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * Support for "Chat with Friends" dialog. Format: ch (hdSdh) h: Total Friend Count h: Unknown d: Player Object ID S: Friend Name d: Online/Offline h: Unknown
@@ -33,7 +37,7 @@ import java.util.logging.Logger;
  */
 public class FriendList extends L2GameServerPacket
 {
-	private static Logger _log = Logger.getLogger(FriendList.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(FriendList.class.getName());
 	private static final String _S__FA_FRIENDLIST = "[S] FA FriendList";
 	
 	private final L2PcInstance _activeChar;
@@ -106,7 +110,7 @@ public class FriendList extends L2GameServerPacket
 		}
 		catch (Exception e)
 		{
-			_log.warning("Error found in " + _activeChar.getName() + "'s FriendList: " + e);
+			_log.warn("Error found in " + _activeChar.getName() + "'s FriendList: " + e);
 		}
 		finally
 		{

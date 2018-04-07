@@ -17,6 +17,7 @@
  */
 package com.l2jbr.gameserver.model.actor.instance;
 
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.ai.CtrlEvent;
 import com.l2jbr.gameserver.clientpackets.Say2;
 import com.l2jbr.gameserver.datatables.SpawnTable;
@@ -24,7 +25,8 @@ import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Spawn;
 import com.l2jbr.gameserver.serverpackets.CreatureSay;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
-import com.l2jbr.commons.util.Rnd;
+
+;
 
 public class L2PenaltyMonsterInstance extends L2MonsterInstance
 {

@@ -35,11 +35,13 @@ import com.l2jbr.gameserver.util.Util;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
+;
+
 /**
  * Castle Chamberlains implementation used for: - tax rate control - regional manor system control - castle treasure control - ...
  */
 public class L2CastleChamberlainInstance extends L2FolkInstance {
-    // private static Logger _log = Logger.getLogger(L2CastleChamberlainInstance.class.getName());
+    // private static Logger _log = LoggerFactory.getLogger(L2CastleChamberlainInstance.class.getName());
 
     protected static final int COND_ALL_FALSE = 0;
     protected static final int COND_BUSY_BECAUSE_OF_SIEGE = 1;
@@ -186,7 +188,7 @@ public class L2CastleChamberlainInstance extends L2FolkInstance {
                 player.tempInvetoryDisable();
 
                 if (Config.DEBUG) {
-                    _log.fine("Showing chamberlain buylist");
+                    _log.debug("Showing chamberlain buylist");
                 }
 
                 int buy;
@@ -205,8 +207,8 @@ public class L2CastleChamberlainInstance extends L2FolkInstance {
                     BuyList bl = new BuyList(list, player.getAdena(), 0);
                     player.sendPacket(bl);
                 } else {
-                    _log.warning("player: " + player.getName() + " attempting to buy from chamberlain that don't have buylist!");
-                    _log.warning("buylist id:" + buy);
+                    _log.warn("player: " + player.getName() + " attempting to buy from chamberlain that don't have buylist!");
+                    _log.warn("buylist id:" + buy);
                 }
                 player.sendPacket(new ActionFailed());
             } else if (actualCommand.equalsIgnoreCase("manage_siege_defender")) {

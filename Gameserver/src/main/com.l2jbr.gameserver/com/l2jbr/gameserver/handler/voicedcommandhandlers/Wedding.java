@@ -17,18 +17,20 @@ import com.l2jbr.gameserver.model.entity.TvTEvent;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.util.Broadcast;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
+;
 
 /**
  * @author evill33t
  */
 public class Wedding implements IVoicedCommandHandler
 {
-	static final Log _log = LogFactory.getLog(Wedding.class);
+	static final Logger _log = LoggerFactory.getLogger(Wedding.class);
 	private static String[] _voicedCommands =
 	{
 		"divorce",

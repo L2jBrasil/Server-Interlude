@@ -26,14 +26,18 @@ import com.l2jbr.gameserver.model.L2Effect;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Logger;
+
+;
+
 
 public class Duel {
-    protected static final Logger _log = Logger.getLogger(Duel.class.getName());
+    protected static final Logger _log = LoggerFactory.getLogger(Duel.class.getName());
 
     public static final int DUELSTATE_NODUEL = 0;
     public static final int DUELSTATE_DUELLING = 1;
@@ -871,7 +875,7 @@ public class Duel {
             }
         } else {
             if ((player != _playerA) && (player != _playerB)) {
-                _log.warning("Error in onPlayerDefeat(): player is not part of this 1vs1 duel");
+                _log.warn("Error in onPlayerDefeat(): player is not part of this 1vs1 duel");
             }
 
             if (_playerA == player) {

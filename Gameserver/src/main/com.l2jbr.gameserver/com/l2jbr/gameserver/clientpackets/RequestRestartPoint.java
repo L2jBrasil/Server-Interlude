@@ -18,8 +18,6 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
-import java.util.logging.Logger;
-
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.datatables.MapRegionTable;
 import com.l2jbr.gameserver.instancemanager.CastleManager;
@@ -34,6 +32,10 @@ import com.l2jbr.gameserver.serverpackets.Revive;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.util.IllegalPlayerAction;
 import com.l2jbr.gameserver.util.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+;
 
 /**
  * This class ...
@@ -42,7 +44,7 @@ import com.l2jbr.gameserver.util.Util;
 public final class RequestRestartPoint extends L2GameClientPacket
 {
 	private static final String _C__6d_REQUESTRESTARTPOINT = "[C] 6d RequestRestartPoint";
-	private static Logger _log = Logger.getLogger(RequestRestartPoint.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RequestRestartPoint.class.getName());
 	
 	protected int _requestedPointType;
 	protected boolean _continuation;
@@ -167,7 +169,7 @@ public final class RequestRestartPoint extends L2GameClientPacket
 			}
 			catch (Throwable e)
 			{
-				// _log.log(Level.SEVERE, "", e);
+				// _log.error( "", e);
 			}
 		}
 	}
@@ -194,7 +196,7 @@ public final class RequestRestartPoint extends L2GameClientPacket
 		}
 		else if (!activeChar.isAlikeDead())
 		{
-			_log.warning("Living player [" + activeChar.getName() + "] called RestartPointPacket! Ban this player!");
+			_log.warn("Living player [" + activeChar.getName() + "] called RestartPointPacket! Ban this player!");
 			return;
 		}
 		

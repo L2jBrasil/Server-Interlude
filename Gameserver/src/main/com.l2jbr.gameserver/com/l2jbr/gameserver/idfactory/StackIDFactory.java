@@ -20,12 +20,16 @@ package com.l2jbr.gameserver.idfactory;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.L2DatabaseFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Stack;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -33,7 +37,7 @@ import java.util.logging.Logger;
  */
 public class StackIDFactory extends IdFactory
 {
-	private static Logger _log = Logger.getLogger(IdFactory.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(IdFactory.class.getName());
 	
 	private int _curOID;
 	private int _tempOID;
@@ -66,13 +70,13 @@ public class StackIDFactory extends IdFactory
 			}
 			
 			_curOID++;
-			_log.config("IdFactory: Next usable Object ID is: " + _curOID);
+			_log.info("IdFactory: Next usable Object ID is: " + _curOID);
 			_initialized = true;
 		}
 		catch (Exception e1)
 		{
 			e1.printStackTrace();
-			_log.severe("ID Factory could not be initialized correctly:" + e1);
+			_log.error("ID Factory could not be initialized correctly:" + e1);
 		}
 		finally
 		{
@@ -107,7 +111,7 @@ public class StackIDFactory extends IdFactory
 				while (rs.next())
 				{
 					int badId = rs.getInt(1);
-					_log.severe("Bad ID " + badId + " in DB found by: " + check);
+					_log.error("Bad ID " + badId + " in DB found by: " + check);
 					throw new RuntimeException();
 				}
 				rs.close();

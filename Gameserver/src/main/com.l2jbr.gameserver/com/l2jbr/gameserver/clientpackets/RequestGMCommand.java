@@ -22,8 +22,11 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
 
 /**
  * This class ...
@@ -32,7 +35,7 @@ import java.util.logging.Logger;
 public final class RequestGMCommand extends L2GameClientPacket
 {
 	private static final String _C__6E_REQUESTGMCOMMAND = "[C] 6e RequestGMCommand";
-	static Logger _log = Logger.getLogger(RequestGMCommand.class.getName());
+	static Logger _log = LoggerFactory.getLogger(RequestGMCommand.class.getName());
 	
 	private String _targetName;
 	private int _command;

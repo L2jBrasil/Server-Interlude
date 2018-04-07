@@ -21,6 +21,8 @@ package com.l2jbr.gameserver.serverpackets;
 import com.l2jbr.gameserver.model.Inventory;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
+;
+
 /**
  * TODO Add support for Eval. Score dddddSdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddffffddddSddd rev420 dddddSdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddffffddddSdddcccddhh rev478
  * dddddSdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddffffddddSdddcccddhhddd rev551

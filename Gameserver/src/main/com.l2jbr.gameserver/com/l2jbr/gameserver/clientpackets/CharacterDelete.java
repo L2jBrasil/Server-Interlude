@@ -23,9 +23,11 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.CharDeleteFail;
 import com.l2jbr.gameserver.serverpackets.CharDeleteOk;
 import com.l2jbr.gameserver.serverpackets.CharSelectInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+;
+
 
 /**
  * This class ...
@@ -34,7 +36,7 @@ import java.util.logging.Logger;
 public final class CharacterDelete extends L2GameClientPacket
 {
 	private static final String _C__0C_CHARACTERDELETE = "[C] 0C CharacterDelete";
-	private static Logger _log = Logger.getLogger(CharacterDelete.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(CharacterDelete.class.getName());
 	
 	// cd
 	private int _charSlot;
@@ -50,7 +52,7 @@ public final class CharacterDelete extends L2GameClientPacket
 	{
 		if (Config.DEBUG)
 		{
-			_log.fine("deleting slot:" + _charSlot);
+			_log.debug("deleting slot:" + _charSlot);
 		}
 		
 		L2PcInstance character = null;
@@ -67,7 +69,7 @@ public final class CharacterDelete extends L2GameClientPacket
 		}
 		catch (Exception e)
 		{
-			_log.log(Level.SEVERE, "Error:", e);
+			_log.error( "Error:", e);
 		}
 		
 		if (character == null)

@@ -22,12 +22,14 @@ import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
+;
+
 /**
  * @author -Wooden- D0 0F 00 5A 00 77 00 65 00 72 00 67 00 00 00
  */
 public final class RequestExOustFromMPCC extends L2GameClientPacket
 {
-	// private static Logger _log = Logger.getLogger(RequestExOustFromMPCC.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(RequestExOustFromMPCC.class.getName());
 	private static final String _C__D0_0F_REQUESTEXOUSTFROMMPCC = "[C] D0:0F RequestExOustFromMPCC";
 	private String _name;
 	

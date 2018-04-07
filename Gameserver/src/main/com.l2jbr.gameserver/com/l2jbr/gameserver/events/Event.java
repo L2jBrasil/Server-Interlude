@@ -18,9 +18,10 @@
  */
 package com.l2jbr.gameserver.events;
 
-
 import java.util.LinkedList;
 import java.util.List;
+
+;
 
 /**
  * @author Layane

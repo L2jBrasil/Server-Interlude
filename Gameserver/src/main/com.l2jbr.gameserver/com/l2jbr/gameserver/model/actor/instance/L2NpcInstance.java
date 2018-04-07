@@ -19,6 +19,7 @@
 package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.Olympiad;
 import com.l2jbr.gameserver.SevenSigns;
 import com.l2jbr.gameserver.SevenSignsFestival;
@@ -51,13 +52,14 @@ import com.l2jbr.gameserver.templates.L2HelperBuff;
 import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.templates.L2Weapon;
-import com.l2jbr.commons.util.Rnd;
 
 import java.text.DateFormat;
 import java.util.LinkedList;
 import java.util.List;
 
 import static com.l2jbr.gameserver.ai.CtrlIntention.AI_INTENTION_ACTIVE;
+
+;
 
 /**
  * This class represents a Non-Player-Character in the world. It can be a monster or a friendly character. It also uses a template to fetch some static values. The templates are hardcoded in the client, so we can rely on them.<BR>
@@ -251,7 +253,7 @@ public class L2NpcInstance extends L2Character {
         _currentCollisionRadius = getTemplate().collisionRadius;
 
         if (template == null) {
-            _log.severe("No template for Npc. Please check your datapack is setup correctly.");
+            _log.error("No template for Npc. Please check your datapack is setup correctly.");
             return;
         }
 
@@ -597,7 +599,7 @@ public class L2NpcInstance extends L2Character {
         // Check if the L2PcInstance already target the L2NpcInstance
         if (this != player.getTarget()) {
             if (Config.DEBUG) {
-                _log.fine("new target selected:" + getObjectId());
+                _log.debug("new target selected:" + getObjectId());
             }
 
             // Set the target of the L2PcInstance player
@@ -1232,9 +1234,9 @@ public class L2NpcInstance extends L2Character {
 
             if (Config.DEBUG) {
                 if (content != null) {
-                    _log.fine("Showing quest window for quest " + questId + " html path: " + path);
+                    _log.debug("Showing quest window for quest " + questId + " html path: " + path);
                 } else {
-                    _log.fine("File not exists for quest " + questId + " html path: " + path);
+                    _log.debug("File not exists for quest " + questId + " html path: " + path);
                 }
             }
         }
@@ -2115,14 +2117,14 @@ public class L2NpcInstance extends L2Character {
         try {
             decayMe();
         } catch (Throwable t) {
-            _log.severe("deletedMe(): " + t);
+            _log.error("deletedMe(): " + t);
         }
 
         // Remove all L2Object from _knownObjects and _knownPlayer of the L2Character then cancel Attak or Cast and notify AI
         try {
             getKnownList().removeAllKnownObjects();
         } catch (Throwable t) {
-            _log.severe("deletedMe(): " + t);
+            _log.error("deletedMe(): " + t);
         }
 
         // Remove L2Object object from _allObjects of L2World

@@ -33,6 +33,8 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.effects.EffectCharge;
 import com.l2jbr.gameserver.skills.l2skills.L2SkillCharge;
 
+;
+
 public class EnergyStone implements IItemHandler
 {
 	private static final int[] ITEM_IDS =

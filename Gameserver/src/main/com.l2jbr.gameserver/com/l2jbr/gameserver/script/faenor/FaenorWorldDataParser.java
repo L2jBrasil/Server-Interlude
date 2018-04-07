@@ -24,17 +24,21 @@ import com.l2jbr.gameserver.script.Parser;
 import com.l2jbr.gameserver.script.ParserFactory;
 import com.l2jbr.gameserver.script.ScriptEngine;
 import org.apache.bsf.BSFManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Node;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * @author Luis Arias
  */
 public class FaenorWorldDataParser extends FaenorParser {
-    static Logger _log = Logger.getLogger(FaenorWorldDataParser.class.getName());
+    static Logger _log = LoggerFactory.getLogger(FaenorWorldDataParser.class.getName());
     // Script Types
     private final static String PET_DATA = "PetData";
 
@@ -82,7 +86,7 @@ public class FaenorWorldDataParser extends FaenorParser {
             _bridge.addPetData(context, petData.petId, petData.levelStart, petData.levelEnd, petData.statValues);
         } catch (Exception e) {
             petData.petId = -1;
-            _log.warning("Error in pet Data parser.");
+            _log.warn("Error in pet Data parser.");
             e.printStackTrace();
         }
     }

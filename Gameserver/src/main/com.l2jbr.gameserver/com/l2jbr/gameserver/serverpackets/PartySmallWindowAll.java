@@ -23,6 +23,8 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import java.util.LinkedList;
 import java.util.List;
 
+;
+
 /**
  * sample 63 01 00 00 00 count c1 b2 e0 4a object id 54 00 75 00 65 00 73 00 64 00 61 00 79 00 00 00 name 5a 01 00 00 hp 5a 01 00 00 hp max 89 00 00 00 mp 89 00 00 00 mp max 0e 00 00 00 level 12 00 00 00 class 00 00 00 00 01 00 00 00 format d (dSdddddddd)
  *

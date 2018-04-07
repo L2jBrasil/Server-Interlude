@@ -19,11 +19,9 @@ package com.l2jbr.gameserver.model.actor.knownlist;
 
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Object;
-import com.l2jbr.gameserver.model.actor.instance.L2CabaleBufferInstance;
-import com.l2jbr.gameserver.model.actor.instance.L2FestivalGuideInstance;
-import com.l2jbr.gameserver.model.actor.instance.L2FolkInstance;
-import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
-import com.l2jbr.gameserver.model.actor.instance.L2PlayableInstance;
+import com.l2jbr.gameserver.model.actor.instance.*;
+
+;
 
 public class NpcKnownList extends CharKnownList
 {

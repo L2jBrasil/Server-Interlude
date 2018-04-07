@@ -19,6 +19,7 @@ package com.l2jbr.gameserver;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.L2DatabaseFactory;
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.ai.CtrlIntention;
 import com.l2jbr.gameserver.datatables.ClanTable;
 import com.l2jbr.gameserver.datatables.MapRegionTable;
@@ -37,7 +38,8 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.templates.StatsSet;
 import com.l2jbr.gameserver.util.Util;
-import com.l2jbr.commons.util.Rnd;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -48,7 +50,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ScheduledFuture;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * Seven Signs Festival of Darkness Engine TODO: - Archer mobs should target healer characters over other party members. - ADDED 29 Sep: Players that leave a party during the Seven Signs Festival will now take damage and cannot be healed.
@@ -56,7 +60,7 @@ import java.util.logging.Logger;
  * @author Tempy
  */
 public class SevenSignsFestival implements SpawnListener {
-    protected static final Logger _log = Logger.getLogger(SevenSignsFestival.class.getName());
+    protected static final Logger _log = LoggerFactory.getLogger(SevenSignsFestival.class.getName());
     private static SevenSignsFestival _instance;
 
     private static final String GET_CLAN_NAME = "SELECT clan_name FROM clan_data WHERE clan_id = (SELECT clanid FROM characters WHERE char_name = ?)";
@@ -3363,7 +3367,7 @@ public class SevenSignsFestival implements SpawnListener {
                 _log.info("SevenSignsFestival: Loaded data from database.");
             }
         } catch (SQLException e) {
-            _log.severe("SevenSignsFestival: Failed to load configuration: " + e);
+            _log.error("SevenSignsFestival: Failed to load configuration: " + e);
         }
     }
 
@@ -3425,7 +3429,7 @@ public class SevenSignsFestival implements SpawnListener {
                 SevenSigns.getInstance().saveSevenSignsData(null, true);
             }
         } catch (SQLException e) {
-            _log.severe("SevenSignsFestival: Failed to save configuration: " + e);
+            _log.error("SevenSignsFestival: Failed to save configuration: " + e);
         }
     }
 
@@ -3507,7 +3511,7 @@ public class SevenSignsFestival implements SpawnListener {
                     }
                 }
             } catch (Exception e) {
-                _log.warning("could not get clan name of " + partyMemberName + ": " + e);
+                _log.warn("could not get clan name of " + partyMemberName + ": " + e);
             }
         }
     }
@@ -4018,7 +4022,7 @@ public class SevenSignsFestival implements SpawnListener {
         // If the spawned NPC ID matches the ones we need, assign their instances.
         if (npcId == 31127) {
             if (Config.DEBUG) {
-                _log.config("SevenSignsFestival: Instance found for NPC ID 31127 (" + npc.getObjectId() + ").");
+                _log.info("SevenSignsFestival: Instance found for NPC ID 31127 (" + npc.getObjectId() + ").");
             }
 
             _dawnChatGuide = npc;
@@ -4026,7 +4030,7 @@ public class SevenSignsFestival implements SpawnListener {
 
         if (npcId == 31137) {
             if (Config.DEBUG) {
-                _log.config("SevenSignsFestival: Instance found for NPC ID 31137 (" + npc.getObjectId() + ").");
+                _log.info("SevenSignsFestival: Instance found for NPC ID 31137 (" + npc.getObjectId() + ").");
             }
 
             _duskChatGuide = npc;
@@ -4347,10 +4351,10 @@ public class SevenSignsFestival implements SpawnListener {
                 _witchInst = npcSpawn.doSpawn();
 
                 if (Config.DEBUG) {
-                    _log.fine("SevenSignsFestival: Spawned the Festival Witch " + npcSpawn.getNpcid() + " at " + _witchSpawn._x + " " + _witchSpawn._y + " " + _witchSpawn._z);
+                    _log.debug("SevenSignsFestival: Spawned the Festival Witch " + npcSpawn.getNpcid() + " at " + _witchSpawn._x + " " + _witchSpawn._y + " " + _witchSpawn._z);
                 }
             } catch (Exception e) {
-                _log.warning("SevenSignsFestival: Error while spawning Festival Witch ID " + _witchSpawn._npcId + ": " + e);
+                _log.warn("SevenSignsFestival: Error while spawning Festival Witch ID " + _witchSpawn._npcId + ": " + e);
             }
 
             // Make it appear as though the Witch has apparated there.
@@ -4481,10 +4485,10 @@ public class SevenSignsFestival implements SpawnListener {
                     _npcInsts.add(festivalMob);
 
                     if (Config.DEBUG) {
-                        _log.fine("SevenSignsFestival: Spawned NPC ID " + currSpawn._npcId + " at " + currSpawn._x + " " + currSpawn._y + " " + currSpawn._z);
+                        _log.debug("SevenSignsFestival: Spawned NPC ID " + currSpawn._npcId + " at " + currSpawn._x + " " + currSpawn._y + " " + currSpawn._z);
                     }
                 } catch (Exception e) {
-                    _log.warning("SevenSignsFestival: Error while spawning NPC ID " + currSpawn._npcId + ": " + e);
+                    _log.warn("SevenSignsFestival: Error while spawning NPC ID " + currSpawn._npcId + ": " + e);
                 }
             }
         }

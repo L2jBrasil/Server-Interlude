@@ -18,13 +18,15 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
-import java.util.logging.Logger;
-
 import com.l2jbr.gameserver.handler.IUserCommandHandler;
 import com.l2jbr.gameserver.handler.UserCommandHandler;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+;
 
 /**
  * This class ...
@@ -33,7 +35,7 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 public class RequestUserCommand extends L2GameClientPacket
 {
 	private static final String _C__AA_REQUESTUSERCOMMAND = "[C] aa RequestUserCommand";
-	static Logger _log = Logger.getLogger(RequestUserCommand.class.getName());
+	static Logger _log = LoggerFactory.getLogger(RequestUserCommand.class.getName());
 	
 	private int _command;
 	

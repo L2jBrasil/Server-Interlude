@@ -32,6 +32,8 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
+;
+
 /**
  * <B>Pledge Manipulation:</B><BR>
  * <LI>With target in a character without clan:<BR>

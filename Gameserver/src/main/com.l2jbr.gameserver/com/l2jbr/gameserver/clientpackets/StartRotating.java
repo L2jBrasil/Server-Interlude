@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.clientpackets;
 
 import com.l2jbr.gameserver.serverpackets.BeginRotation;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.1.4.3 $ $Date: 2005/03/27 15:29:30 $

@@ -17,21 +17,23 @@
  */
 package com.l2jbr.gameserver.handler.skillhandlers;
 
-import java.util.logging.Logger;
-
 import com.l2jbr.gameserver.handler.ISkillHandler;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.L2Skill.SkillType;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+;
 
 /**
  * @author Julian
  */
 public class DeluxeKey implements ISkillHandler
 {
-	private static Logger _log = Logger.getLogger(BeastFeed.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(BeastFeed.class.getName());
 	private static final SkillType[] SKILL_IDS =
 	{
 		SkillType.DELUXE_KEY_UNLOCK
@@ -52,7 +54,7 @@ public class DeluxeKey implements ISkillHandler
 			return;
 		}
 		
-		_log.fine("Delux key casting succeded.");
+		_log.debug("Delux key casting succeded.");
 		
 		// This is just a dummy skill handler for the golden food and crystal food skills,
 		// since the AI responce onSkillUse handles the rest.

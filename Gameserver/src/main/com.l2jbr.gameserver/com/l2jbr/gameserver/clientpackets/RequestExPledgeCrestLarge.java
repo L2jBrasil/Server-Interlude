@@ -21,6 +21,8 @@ package com.l2jbr.gameserver.clientpackets;
 import com.l2jbr.gameserver.cache.CrestCache;
 import com.l2jbr.gameserver.serverpackets.ExPledgeCrestLarge;
 
+;
+
 /**
  * Fomat : chd c: (id) 0xD0 h: (subid) 0x10 d: the crest id This is a trigger
  * @author -Wooden-

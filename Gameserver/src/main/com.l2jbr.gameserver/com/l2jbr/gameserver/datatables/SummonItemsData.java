@@ -25,15 +25,19 @@ package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.model.L2SummonItem;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.logging.Logger;
+
+;
+
 
 public class SummonItemsData {
-    private static final Logger _log = Logger.getLogger(SummonItemsData.class.getName());
+    private static final Logger _log = LoggerFactory.getLogger(SummonItemsData.class.getName());
     private Map<Integer, L2SummonItem> _summonitems;
 
     private static SummonItemsData _instance;
@@ -54,7 +58,7 @@ public class SummonItemsData {
         try {
             s = new Scanner(new File("./data/summon_items.csv"));
         } catch (Exception e) {
-            _log.warning("Summon items data: Can not find './data/summon_items.csv'");
+            _log.warn("Summon items data: Can not find './data/summon_items.csv'");
             return;
         }
 
@@ -82,8 +86,8 @@ public class SummonItemsData {
                 npcID = Integer.parseInt(lineSplit[1]);
                 summonType = Byte.parseByte(lineSplit[2]);
             } catch (Exception e) {
-                _log.warning("Summon items data: Error in line " + lineCount + " -> incomplete/invalid data or wrong seperator!");
-                _log.warning("		" + line);
+                _log.warn("Summon items data: Error in line " + lineCount + " -> incomplete/invalid data or wrong seperator!");
+                _log.warn("		" + line);
                 ok = false;
             }
 
@@ -95,9 +99,9 @@ public class SummonItemsData {
             _summonitems.put(itemID, summonitem);
         }
 
-        _log.warning("Summon items data: Loaded " + _summonitems.size() + " summon items.");
+        _log.warn("Summon items data: Loaded " + _summonitems.size() + " summon items.");
         if (Config.DEBUG) {
-            _log.warning("Summon items data: " + commentLinesCount + " comments skipped.");
+            _log.warn("Summon items data: " + commentLinesCount + " comments skipped.");
         }
     }
 

@@ -18,9 +18,10 @@
  */
 package com.l2jbr.gameserver.skills.conditions;
 
-//import java.util.logging.Logger;
-
 import com.l2jbr.gameserver.skills.Env;
+
+;
+//
 
 /**
  * @author mkizub TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates
@@ -28,7 +29,7 @@ import com.l2jbr.gameserver.skills.Env;
 public abstract class Condition implements ConditionListener
 {
 	
-	// private static final Logger _log = Logger.getLogger(Condition.class.getName());
+	// private static final Logger _log = LoggerFactory.getLogger(Condition.class.getName());
 	
 	private ConditionListener _listener;
 	private String _msg;

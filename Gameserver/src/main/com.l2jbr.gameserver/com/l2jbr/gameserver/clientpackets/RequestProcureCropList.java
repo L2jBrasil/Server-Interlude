@@ -37,6 +37,8 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.util.Util;
 
+;
+
 /**
  * Format: (ch) d [dddd] d: size [ d obj id d item id d manor id d count ]
  * @author l3x

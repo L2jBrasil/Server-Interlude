@@ -19,6 +19,7 @@
 package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.ai.CtrlIntention;
 import com.l2jbr.gameserver.ai.L2AttackableAI;
@@ -29,9 +30,11 @@ import com.l2jbr.gameserver.serverpackets.MyTargetSelected;
 import com.l2jbr.gameserver.serverpackets.SocialAction;
 import com.l2jbr.gameserver.serverpackets.ValidateLocation;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
-import com.l2jbr.commons.util.Rnd;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
 
 /**
  * This class manages all Guards in the world. It inherits all methods from L2Attackable and adds some more such as tracking PK and aggressive L2MonsterInstance.<BR>
@@ -40,7 +43,7 @@ import java.util.logging.Logger;
  */
 public final class L2GuardInstance extends L2Attackable
 {
-	private static Logger _log = Logger.getLogger(L2GuardInstance.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(L2GuardInstance.class.getName());
 	
 	private int _homeX;
 	private int _homeY;
@@ -114,7 +117,7 @@ public final class L2GuardInstance extends L2Attackable
 		
 		if (Config.DEBUG)
 		{
-			_log.finer(getObjectId() + ": Home location set to" + " X:" + _homeX + " Y:" + _homeY + " Z:" + _homeZ);
+			_log.debug(getObjectId() + ": Home location set to" + " X:" + _homeX + " Y:" + _homeY + " Z:" + _homeZ);
 		}
 	}
 	
@@ -133,7 +136,7 @@ public final class L2GuardInstance extends L2Attackable
 		{
 			if (Config.DEBUG)
 			{
-				_log.fine(getObjectId() + ": moving hometo" + " X:" + _homeX + " Y:" + _homeY + " Z:" + _homeZ);
+				_log.debug(getObjectId() + ": moving hometo" + " X:" + _homeX + " Y:" + _homeY + " Z:" + _homeZ);
 			}
 			
 			clearAggroList();
@@ -156,7 +159,7 @@ public final class L2GuardInstance extends L2Attackable
 		
 		if (Config.DEBUG)
 		{
-			_log.finer(getObjectId() + ": Home location set to" + " X:" + _homeX + " Y:" + _homeY + " Z:" + _homeZ);
+			_log.debug(getObjectId() + ": Home location set to" + " X:" + _homeX + " Y:" + _homeY + " Z:" + _homeZ);
 		}
 		
 		// check the region where this mob is, do not activate the AI if region is inactive.
@@ -224,7 +227,7 @@ public final class L2GuardInstance extends L2Attackable
 		{
 			if (Config.DEBUG)
 			{
-				_log.fine(player.getObjectId() + ": Targetted guard " + getObjectId());
+				_log.debug(player.getObjectId() + ": Targetted guard " + getObjectId());
 			}
 			
 			// Set the target of the L2PcInstance player
@@ -245,7 +248,7 @@ public final class L2GuardInstance extends L2Attackable
 			{
 				if (Config.DEBUG)
 				{
-					_log.fine(player.getObjectId() + ": Attacked guard " + getObjectId());
+					_log.debug(player.getObjectId() + ": Attacked guard " + getObjectId());
 				}
 				
 				// Set the L2PcInstance Intention to AI_INTENTION_ATTACK

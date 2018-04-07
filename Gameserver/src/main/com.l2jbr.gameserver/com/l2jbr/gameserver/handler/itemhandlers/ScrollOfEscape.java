@@ -38,6 +38,8 @@ import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
 import com.l2jbr.gameserver.serverpackets.SetupGauge;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.2.2.3.2.5 $ $Date: 2005/03/27 15:30:07 $

@@ -19,6 +19,8 @@ package com.l2jbr.gameserver.model.actor.knownlist;
 
 import com.l2jbr.gameserver.model.actor.instance.L2PlayableInstance;
 
+;
+
 public class PlayableKnownList extends CharKnownList
 {
 	// =========================================================

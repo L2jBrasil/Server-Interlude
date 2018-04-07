@@ -22,6 +22,8 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.quest.Quest;
 import com.l2jbr.gameserver.model.quest.QuestState;
 
+;
+
 /**
  * sample for rev 377: 98 05 00 number of quests ff 00 00 00 0a 01 00 00 39 01 00 00 04 01 00 00 a2 00 00 00 format h (d) h (dddh) rev 377 format h (dd) h (dddd) rev 417
  * @version $Revision: 1.4.2.2.2.2 $ $Date: 2005/02/10 16:44:28 $

@@ -23,6 +23,8 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.Env;
 
+;
+
 class EffectManaDamOverTime extends L2Effect
 {
 	public EffectManaDamOverTime(Env env, EffectTemplate template)

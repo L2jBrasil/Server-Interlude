@@ -19,6 +19,8 @@ package com.l2jbr.gameserver.pathfinding.utils;
 
 import com.l2jbr.gameserver.pathfinding.Node;
 
+;
+
 /**
  * @author -Nemesiss-
  */

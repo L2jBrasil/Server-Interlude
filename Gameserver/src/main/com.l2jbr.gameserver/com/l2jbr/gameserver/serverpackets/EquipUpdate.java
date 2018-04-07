@@ -21,8 +21,12 @@ package com.l2jbr.gameserver.serverpackets;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.templates.L2Item;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 /**
  * 5e 01 00 00 00 01 - added ? 02 - modified 7b 86 73 42 object id 08 00 00 00 body slot body slot 0000 ?? underwear 0001 ear 0002 ear 0003 neck 0004 finger (magic ring) 0005 finger (magic ring) 0006 head (l.cap) 0007 r.hand (dagger) 0008 l.hand (arrows) 0009 hands (short gloves) 000a chest (squire
@@ -32,7 +36,7 @@ import java.util.logging.Logger;
 public class EquipUpdate extends L2GameServerPacket
 {
 	private static final String _S__5E_EQUIPUPDATE = "[S] 4b EquipUpdate";
-	private static Logger _log = Logger.getLogger(EquipUpdate.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(EquipUpdate.class.getName());
 	
 	private final L2ItemInstance _item;
 	private final int _change;
@@ -101,7 +105,7 @@ public class EquipUpdate extends L2GameServerPacket
 		
 		if (Config.DEBUG)
 		{
-			_log.fine("body:" + bodypart);
+			_log.debug("body:" + bodypart);
 		}
 		writeD(bodypart);
 	}

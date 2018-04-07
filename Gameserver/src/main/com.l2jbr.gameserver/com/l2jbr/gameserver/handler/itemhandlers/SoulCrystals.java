@@ -32,6 +32,8 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.2.4 $ $Date: 2005/08/14 21:31:07 $

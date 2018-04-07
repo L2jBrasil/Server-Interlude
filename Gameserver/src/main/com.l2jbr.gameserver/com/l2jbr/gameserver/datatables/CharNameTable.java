@@ -19,11 +19,15 @@
 package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.L2DatabaseFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -31,7 +35,7 @@ import java.util.logging.Logger;
  */
 public class CharNameTable
 {
-	private static Logger _log = Logger.getLogger(CharNameTable.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(CharNameTable.class.getName());
 	
 	private static CharNameTable _instance;
 	
@@ -61,7 +65,7 @@ public class CharNameTable
 		}
 		catch (SQLException e)
 		{
-			_log.warning("could not check existing charname:" + e.getMessage());
+			_log.warn("could not check existing charname:" + e.getMessage());
 		}
 		finally
 		{
@@ -96,7 +100,7 @@ public class CharNameTable
 		}
 		catch (SQLException e)
 		{
-			_log.warning("could not check existing char number:" + e.getMessage());
+			_log.warn("could not check existing char number:" + e.getMessage());
 		}
 		finally
 		{

@@ -21,10 +21,14 @@ package com.l2jbr.gameserver.serverpackets;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * 0x53 WareHouseDepositList dh (h dddhh dhhh d)
@@ -36,7 +40,7 @@ public class WareHouseDepositList extends L2GameServerPacket {
     public static final int CLAN = 2;
     public static final int CASTLE = 3; // not sure
     public static final int FREIGHT = 4; // not sure
-    private static Logger _log = Logger.getLogger(WareHouseDepositList.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(WareHouseDepositList.class.getName());
     private static final String _S__53_WAREHOUSEDEPOSITLIST = "[S] 41 WareHouseDepositList";
     private final L2PcInstance _activeChar;
     private final int _playerAdena;
@@ -73,7 +77,7 @@ public class WareHouseDepositList extends L2GameServerPacket {
         writeD(_playerAdena);
         int count = _items.size();
         if (Config.DEBUG) {
-            _log.fine("count:" + count);
+            _log.debug("count:" + count);
         }
         writeH(count);
 

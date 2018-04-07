@@ -19,6 +19,8 @@ package com.l2jbr.gameserver.model.zone.form;
 
 import com.l2jbr.gameserver.model.zone.L2ZoneForm;
 
+;
+
 /**
  * A primitive circular zone
  * @author durgus

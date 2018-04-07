@@ -24,6 +24,8 @@ import com.l2jbr.gameserver.skills.Stats;
 import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.templates.L2WeaponType;
 
+;
+
 public class FuncEnchant extends Func
 {
 	

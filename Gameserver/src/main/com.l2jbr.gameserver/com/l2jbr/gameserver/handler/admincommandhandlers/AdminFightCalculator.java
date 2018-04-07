@@ -19,6 +19,7 @@
 package com.l2jbr.gameserver.handler.admincommandhandlers;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.datatables.NpcTable;
 import com.l2jbr.gameserver.handler.IAdminCommandHandler;
 import com.l2jbr.gameserver.idfactory.IdFactory;
@@ -30,9 +31,10 @@ import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.Formulas;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
-import com.l2jbr.commons.util.Rnd;
 
 import java.util.StringTokenizer;
+
+;
 
 /**
  * This class handles following admin commands: - gm = turns gm mode on/off
@@ -40,7 +42,7 @@ import java.util.StringTokenizer;
  * @version $Revision: 1.1.2.1 $ $Date: 2005/03/15 21:32:48 $
  */
 public class AdminFightCalculator implements IAdminCommandHandler {
-    // private static Logger _log = Logger.getLogger(AdminFightCalculator.class.getName());
+    // private static Logger _log = LoggerFactory.getLogger(AdminFightCalculator.class.getName());
     private static final String[] ADMIN_COMMANDS =
             {
                     "admin_fight_calculator",

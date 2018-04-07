@@ -18,10 +18,12 @@
  */
 package com.l2jbr.gameserver.gameserverpackets;
 
+import com.l2jbr.gameserver.TaskPriority;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import com.l2jbr.gameserver.TaskPriority;
+;
 
 /**
  * @author -Wooden-

@@ -20,13 +20,17 @@ package com.l2jbr.gameserver.instancemanager;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.model.quest.Quest;
 import com.l2jbr.gameserver.model.quest.jython.QuestJython;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.logging.Logger;
+
+;
+
 
 public class QuestManager {
-    protected static final Logger _log = Logger.getLogger(QuestManager.class.getName());
+    protected static final Logger _log = LoggerFactory.getLogger(QuestManager.class.getName());
 
     // =========================================================
     private static QuestManager _instance;

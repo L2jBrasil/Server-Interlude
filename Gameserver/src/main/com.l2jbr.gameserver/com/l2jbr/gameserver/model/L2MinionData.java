@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.util.Rnd;
 
+;
+
 /**
  * This class defines the spawn data of a Minion type In a group mob, there are one master called RaidBoss and several slaves called Minions. <B><U> Data</U> :</B><BR>
  * <BR>

@@ -31,6 +31,8 @@ import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 import java.util.StringTokenizer;
 
+;
+
 public class L2FishermanInstance extends L2FolkInstance {
     /**
      * @param objectId
@@ -60,7 +62,7 @@ public class L2FishermanInstance extends L2FolkInstance {
         }
         player.tempInvetoryDisable();
         if (Config.DEBUG) {
-            _log.fine("Showing buylist");
+            _log.debug("Showing buylist");
         }
         L2TradeList list = TradeController.getInstance().getBuyList(val);
 
@@ -68,8 +70,8 @@ public class L2FishermanInstance extends L2FolkInstance {
             BuyList bl = new BuyList(list, player.getAdena(), taxRate);
             player.sendPacket(bl);
         } else {
-            _log.warning("possible client hacker: " + player.getName() + " attempting to buy from GM shop! < Ban him!");
-            _log.warning("buylist id:" + val);
+            _log.warn("possible client hacker: " + player.getName() + " attempting to buy from GM shop! < Ban him!");
+            _log.warn("buylist id:" + val);
         }
 
         player.sendPacket(new ActionFailed());
@@ -77,13 +79,13 @@ public class L2FishermanInstance extends L2FolkInstance {
 
     private void showSellWindow(L2PcInstance player) {
         if (Config.DEBUG) {
-            _log.fine("Showing selllist");
+            _log.debug("Showing selllist");
         }
 
         player.sendPacket(new SellList(player));
 
         if (Config.DEBUG) {
-            _log.fine("Showing sell window");
+            _log.debug("Showing sell window");
         }
 
         player.sendPacket(new ActionFailed());

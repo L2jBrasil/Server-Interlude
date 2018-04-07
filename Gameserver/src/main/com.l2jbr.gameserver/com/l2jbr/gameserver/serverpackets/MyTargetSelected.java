@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
+;
+
 /**
  * <p>
  * sample bf 73 5d 30 49 01 00

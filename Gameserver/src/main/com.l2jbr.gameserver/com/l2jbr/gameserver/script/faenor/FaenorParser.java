@@ -18,17 +18,18 @@
  */
 package com.l2jbr.gameserver.script.faenor;
 
+import com.l2jbr.gameserver.script.Parser;
+import org.apache.bsf.BSFManager;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import com.l2jbr.gameserver.script.Parser;
-
-import org.apache.bsf.BSFManager;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+;
 
 /**
  * @author Luis Arias

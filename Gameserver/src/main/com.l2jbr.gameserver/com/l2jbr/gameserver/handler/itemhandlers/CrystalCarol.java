@@ -24,6 +24,8 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PlayableInstance;
 import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.2.4.4 $ $Date: 2005/03/27 15:30:07 $

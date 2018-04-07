@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.serverpackets;
 
 import java.util.Vector;
 
+;
+
 /**
  * 01 // Packet Identifier <BR>
  * c6 37 50 40 // ObjectId <BR>

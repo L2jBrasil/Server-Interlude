@@ -19,6 +19,8 @@ import com.l2jbr.gameserver.handler.IAdminCommandHandler;
 import com.l2jbr.gameserver.instancemanager.QuestManager;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
+;
+
 public class AdminQuest implements IAdminCommandHandler
 {
 	private static final int REQUIRED_LEVEL = Config.GM_TEST;

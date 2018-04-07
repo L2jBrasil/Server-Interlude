@@ -21,15 +21,19 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.Location;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 /**
  * @author -Nemesiss-
  */
 public class GeoData
 {
-	private static Logger _log = Logger.getLogger(GeoData.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(GeoData.class.getName());
 	private static GeoData _instance;
 	
 	public static GeoData getInstance()

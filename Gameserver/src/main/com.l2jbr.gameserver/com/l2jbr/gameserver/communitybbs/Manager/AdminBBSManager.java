@@ -22,6 +22,8 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.ShowBoard;
 
+;
+
 public class AdminBBSManager extends BaseBBSManager
 {
 	private static AdminBBSManager _instance = null;

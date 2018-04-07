@@ -22,6 +22,8 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.quest.Quest;
 import com.l2jbr.gameserver.model.quest.QuestState;
 
+;
+
 /**
  * Sh (dd) h (dddd)
  * @author Tempy

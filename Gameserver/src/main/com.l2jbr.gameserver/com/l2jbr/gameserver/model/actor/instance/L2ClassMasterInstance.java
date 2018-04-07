@@ -29,6 +29,8 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
+;
+
 /**
  * This class ...
  *
@@ -101,7 +103,7 @@ public final class L2ClassMasterInstance extends L2FolkInstance {
             }
 
             if (Config.DEBUG) {
-                _log.fine("ClassMaster activated");
+                _log.debug("ClassMaster activated");
             }
 
             ClassId classId = player.getClassId();
@@ -471,7 +473,7 @@ public final class L2ClassMasterInstance extends L2FolkInstance {
 
     private void changeClass(L2PcInstance player, int val) {
         if (Config.DEBUG) {
-            _log.fine("Changing class to ClassId:" + val);
+            _log.debug("Changing class to ClassId:" + val);
         }
         player.setClassId(val);
 

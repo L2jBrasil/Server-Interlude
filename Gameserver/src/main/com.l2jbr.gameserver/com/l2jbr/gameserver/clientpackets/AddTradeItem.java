@@ -26,8 +26,11 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.serverpackets.TradeOtherAdd;
 import com.l2jbr.gameserver.serverpackets.TradeOwnAdd;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
 
 /**
  * This class ...
@@ -36,7 +39,7 @@ import java.util.logging.Logger;
 public final class AddTradeItem extends L2GameClientPacket
 {
 	private static final String _C__16_ADDTRADEITEM = "[C] 16 AddTradeItem";
-	private static Logger _log = Logger.getLogger(AddTradeItem.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(AddTradeItem.class.getName());
 	
 	private int _tradeId;
 	private int _objectId;
@@ -66,7 +69,7 @@ public final class AddTradeItem extends L2GameClientPacket
 		TradeList trade = player.getActiveTradeList();
 		if (trade == null)
 		{
-			_log.warning("Character: " + player.getName() + " requested item:" + _objectId + " add without active tradelist:" + _tradeId);
+			_log.warn("Character: " + player.getName() + " requested item:" + _objectId + " add without active tradelist:" + _tradeId);
 			return;
 		}
 		
@@ -75,7 +78,7 @@ public final class AddTradeItem extends L2GameClientPacket
 			// Trade partner not found, cancel trade
 			if (trade.getPartner() != null)
 			{
-				_log.warning("Character:" + player.getName() + " requested invalid trade object: " + _objectId);
+				_log.warn("Character:" + player.getName() + " requested invalid trade object: " + _objectId);
 			}
 			SystemMessage msg = new SystemMessage(SystemMessageId.TARGET_IS_NOT_FOUND_IN_THE_GAME);
 			player.sendPacket(msg);

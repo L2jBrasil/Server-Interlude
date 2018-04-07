@@ -33,12 +33,14 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.Formulas;
 import com.l2jbr.gameserver.templates.L2WeaponType;
 
+;
+
 /**
  * @author _tomciaaa_
  */
 public class StrSiegeAssault implements ISkillHandler
 {
-	// private static Logger _log = Logger.getLogger(StrSiegeAssault.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(StrSiegeAssault.class.getName());
 	private static final SkillType[] SKILL_IDS =
 	{
 		SkillType.STRSIEGEASSAULT

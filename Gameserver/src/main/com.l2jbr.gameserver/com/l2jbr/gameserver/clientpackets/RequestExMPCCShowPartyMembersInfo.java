@@ -17,6 +17,8 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
+;
+
 /**
  * Format:(ch) h
  * @author -Wooden-

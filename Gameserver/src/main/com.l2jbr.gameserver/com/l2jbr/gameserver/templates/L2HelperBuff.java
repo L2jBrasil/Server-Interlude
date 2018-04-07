@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.templates;
 
+;
+
 /**
  * This class represents a Newbie Helper Buff Author: Ayor
  */

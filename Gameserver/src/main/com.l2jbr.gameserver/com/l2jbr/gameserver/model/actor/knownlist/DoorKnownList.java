@@ -22,6 +22,8 @@ import com.l2jbr.gameserver.model.actor.instance.L2DoorInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2SiegeGuardInstance;
 
+;
+
 public class DoorKnownList extends CharKnownList
 {
 	// =========================================================

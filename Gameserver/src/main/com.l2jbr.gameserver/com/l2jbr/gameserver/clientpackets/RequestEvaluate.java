@@ -23,11 +23,13 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.serverpackets.UserInfo;
 
+;
+
 public final class RequestEvaluate extends L2GameClientPacket
 {
 	private static final String _C__B9_REQUESTEVALUATE = "[C] B9 RequestEvaluate";
 	
-	// private static Logger _log = Logger.getLogger(RequestEvaluate.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(RequestEvaluate.class.getName());
 	
 	@SuppressWarnings("unused")
 	private int _targetId;

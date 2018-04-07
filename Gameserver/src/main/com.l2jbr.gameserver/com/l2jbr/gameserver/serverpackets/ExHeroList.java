@@ -18,11 +18,13 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
-import java.util.Map;
-
 import com.l2jbr.gameserver.Olympiad;
 import com.l2jbr.gameserver.model.entity.Hero;
 import com.l2jbr.gameserver.templates.StatsSet;
+
+import java.util.Map;
+
+;
 
 /**
  * Format: (ch) d [SdSdSdd] d: size [ S: hero name d: hero class ID S: hero clan name d: hero clan crest id S: hero ally name d: hero Ally id d: count ]

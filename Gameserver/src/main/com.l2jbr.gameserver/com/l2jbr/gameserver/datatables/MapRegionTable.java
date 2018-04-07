@@ -18,11 +18,6 @@
  */
 package com.l2jbr.gameserver.datatables;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.List;
-import java.util.logging.Logger;
-
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.instancemanager.ArenaManager;
@@ -37,13 +32,21 @@ import com.l2jbr.gameserver.model.entity.Castle;
 import com.l2jbr.gameserver.model.entity.ClanHall;
 import com.l2jbr.gameserver.model.zone.type.L2ArenaZone;
 import com.l2jbr.gameserver.model.zone.type.L2ClanHallZone;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.List;
+
+;
 
 /**
  * This class ...
  */
 public class MapRegionTable
 {
-	private static Logger _log = Logger.getLogger(MapRegionTable.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(MapRegionTable.class.getName());
 	
 	private static MapRegionTable _instance;
 	
@@ -88,7 +91,7 @@ public class MapRegionTable
 				{
 					_regions[j][region] = rset.getInt(j + 2);
 					count2++;
-					// _log.fine(j+","+region+" -> "+rset.getInt(j+2));
+					// _log.debug(j+","+region+" -> "+rset.getInt(j+2));
 				}
 			}
 			
@@ -96,12 +99,12 @@ public class MapRegionTable
 			statement.close();
 			if (Config.DEBUG)
 			{
-				_log.fine(count2 + " mapregion loaded");
+				_log.debug(count2 + " mapregion loaded");
 			}
 		}
 		catch (Exception e)
 		{
-			_log.warning("error while creating map region data: " + e);
+			_log.warn("error while creating map region data: " + e);
 		}
 		finally
 		{

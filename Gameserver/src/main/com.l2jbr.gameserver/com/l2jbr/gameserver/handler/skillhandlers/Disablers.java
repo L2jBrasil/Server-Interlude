@@ -18,23 +18,14 @@
  */
 package com.l2jbr.gameserver.handler.skillhandlers;
 
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.ai.CtrlEvent;
 import com.l2jbr.gameserver.ai.CtrlIntention;
 import com.l2jbr.gameserver.ai.L2AttackableAI;
 import com.l2jbr.gameserver.handler.ISkillHandler;
 import com.l2jbr.gameserver.handler.SkillHandler;
-import com.l2jbr.gameserver.model.L2Attackable;
-import com.l2jbr.gameserver.model.L2Character;
-import com.l2jbr.gameserver.model.L2Effect;
-import com.l2jbr.gameserver.model.L2ItemInstance;
-import com.l2jbr.gameserver.model.L2Object;
-import com.l2jbr.gameserver.model.L2Skill;
+import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.L2Skill.SkillType;
-import com.l2jbr.gameserver.model.L2Summon;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2SiegeSummonInstance;
 import com.l2jbr.gameserver.model.base.Experience;
@@ -43,7 +34,12 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.Formulas;
 import com.l2jbr.gameserver.skills.Stats;
 import com.l2jbr.gameserver.skills.funcs.Func;
-import com.l2jbr.commons.util.Rnd;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+
+;
 
 /**
  * This Handles Disabler skills
@@ -75,7 +71,7 @@ public class Disablers implements ISkillHandler
 		L2Skill.SkillType.BETRAY
 	};
 	
-	protected static final Logger _log = Logger.getLogger(L2Skill.class.getName());
+	protected static final Logger _log = LoggerFactory.getLogger(L2Skill.class.getName());
 	private String[] _negateStats = null;
 	private float _negatePower = 0.f;
 	private int _negateId = 0;
@@ -658,7 +654,7 @@ public class Disablers implements ISkillHandler
 								ISkillHandler Healhandler = SkillHandler.getInstance().getSkillHandler(SkillType.HEAL);
 								if (Healhandler == null)
 								{
-									_log.severe("Couldn't find skill handler for HEAL.");
+									_log.error("Couldn't find skill handler for HEAL.");
 									continue;
 								}
 								L2Object tgts[] = new L2Object[]
@@ -671,7 +667,7 @@ public class Disablers implements ISkillHandler
 								}
 								catch (IOException e)
 								{
-									_log.log(Level.WARNING, "", e);
+									_log.warn( "", e);
 								}
 							}
 						}// end for

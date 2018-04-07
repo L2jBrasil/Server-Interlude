@@ -19,6 +19,7 @@
 package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.ai.CtrlIntention;
 import com.l2jbr.gameserver.ai.L2CharacterAI;
 import com.l2jbr.gameserver.ai.L2SiegeGuardAI;
@@ -28,9 +29,11 @@ import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.actor.knownlist.SiegeGuardKnownList;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
-import com.l2jbr.commons.util.Rnd;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
 
 /**
  * This class represents all guards in the world. It inherits all methods from L2Attackable and adds some more such as tracking PK's or custom interactions.
@@ -38,7 +41,7 @@ import java.util.logging.Logger;
  */
 public final class L2SiegeGuardInstance extends L2Attackable
 {
-	private static Logger _log = Logger.getLogger(L2GuardInstance.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(L2GuardInstance.class.getName());
 	
 	private int _homeX;
 	private int _homeY;
@@ -96,7 +99,7 @@ public final class L2SiegeGuardInstance extends L2Attackable
 		
 		if (Config.DEBUG)
 		{
-			_log.finer(getObjectId() + ": Home location set to" + " X:" + _homeX + " Y:" + _homeY + " Z:" + _homeZ);
+			_log.debug(getObjectId() + ": Home location set to" + " X:" + _homeX + " Y:" + _homeY + " Z:" + _homeZ);
 		}
 	}
 	
@@ -119,7 +122,7 @@ public final class L2SiegeGuardInstance extends L2Attackable
 		{
 			if (Config.DEBUG)
 			{
-				_log.fine(getObjectId() + ": moving home");
+				_log.debug(getObjectId() + ": moving home");
 			}
 			setisReturningToSpawnPoint(true);
 			clearAggroList();
@@ -147,7 +150,7 @@ public final class L2SiegeGuardInstance extends L2Attackable
 		{
 			if (Config.DEBUG)
 			{
-				_log.fine("new target selected:" + getObjectId());
+				_log.debug("new target selected:" + getObjectId());
 			}
 			
 			// Set the target of the L2PcInstance player

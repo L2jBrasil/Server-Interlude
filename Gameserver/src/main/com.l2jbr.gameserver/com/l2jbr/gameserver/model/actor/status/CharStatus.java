@@ -18,6 +18,7 @@
 package com.l2jbr.gameserver.model.actor.status;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.ai.CtrlIntention;
 import com.l2jbr.gameserver.instancemanager.DuelManager;
@@ -30,17 +31,19 @@ import com.l2jbr.gameserver.model.actor.stat.CharStat;
 import com.l2jbr.gameserver.model.entity.Duel;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.skills.Formulas;
-import com.l2jbr.commons.util.Rnd;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.Future;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+;
+
 
 public class CharStatus
 {
-	protected static final Logger _log = Logger.getLogger(CharStatus.class.getName());
+	protected static final Logger _log = LoggerFactory.getLogger(CharStatus.class.getName());
 	
 	private final L2Character _activeChar;
 	private double _currentCp = 0; // Current CP of the L2Character
@@ -238,7 +241,7 @@ public class CharStatus
 			// then overhit may be calculated
 			if (Config.DEBUG)
 			{
-				_log.fine("char is dead.");
+				_log.debug("char is dead.");
 			}
 			
 			// Start the doDie process
@@ -303,7 +306,7 @@ public class CharStatus
 		{
 			if (Config.DEBUG)
 			{
-				_log.fine("HP/MP/CP regen started");
+				_log.debug("HP/MP/CP regen started");
 			}
 			
 			// Get the Regeneration periode
@@ -328,7 +331,7 @@ public class CharStatus
 		{
 			if (Config.DEBUG)
 			{
-				_log.fine("HP/MP/CP regen stop");
+				_log.debug("HP/MP/CP regen stop");
 			}
 			
 			// Stop the HP/MP/CP Regeneration task
@@ -572,7 +575,7 @@ public class CharStatus
 			}
 			catch (Throwable e)
 			{
-				_log.log(Level.SEVERE, "", e);
+				_log.error( "", e);
 			}
 		}
 	}

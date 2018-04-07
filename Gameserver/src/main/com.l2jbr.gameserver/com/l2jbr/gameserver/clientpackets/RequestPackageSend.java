@@ -30,17 +30,21 @@ import com.l2jbr.gameserver.serverpackets.ItemList;
 import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.L2EtcItemType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * @author -Wooden-
  */
 public final class RequestPackageSend extends L2GameClientPacket {
     private static final String _C_9F_REQUESTPACKAGESEND = "[C] 9F RequestPackageSend";
-    private static Logger _log = Logger.getLogger(RequestPackageSend.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(RequestPackageSend.class.getName());
     private final List<Item> _items = new LinkedList<>();
     private int _objectID;
     private int _count;
@@ -104,7 +108,7 @@ public final class RequestPackageSend extends L2GameClientPacket {
             // Check validity of requested item
             L2ItemInstance item = player.checkItemManipulation(objectId, count, "deposit");
             if (item == null) {
-                _log.warning("Error depositing a warehouse object for char " + player.getName() + " (validity check)");
+                _log.warn("Error depositing a warehouse object for char " + player.getName() + " (validity check)");
                 i.id = 0;
                 i.count = 0;
                 continue;
@@ -150,7 +154,7 @@ public final class RequestPackageSend extends L2GameClientPacket {
 
             L2ItemInstance oldItem = player.getInventory().getItemByObjectId(objectId);
             if (oldItem == null) {
-                _log.warning("Error depositing a warehouse object for char " + player.getName() + " (olditem == null)");
+                _log.warn("Error depositing a warehouse object for char " + player.getName() + " (olditem == null)");
                 continue;
             }
 
@@ -162,7 +166,7 @@ public final class RequestPackageSend extends L2GameClientPacket {
 
             L2ItemInstance newItem = player.getInventory().transferItem("Warehouse", objectId, count, warehouse, player, player.getLastFolkNPC());
             if (newItem == null) {
-                _log.warning("Error depositing a warehouse object for char " + player.getName() + " (newitem == null)");
+                _log.warn("Error depositing a warehouse object for char " + player.getName() + " (newitem == null)");
                 continue;
             }
 

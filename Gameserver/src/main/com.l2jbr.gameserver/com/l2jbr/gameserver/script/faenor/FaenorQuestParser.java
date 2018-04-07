@@ -21,9 +21,10 @@ package com.l2jbr.gameserver.script.faenor;
 import com.l2jbr.gameserver.script.Parser;
 import com.l2jbr.gameserver.script.ParserFactory;
 import com.l2jbr.gameserver.script.ScriptEngine;
-
 import org.apache.bsf.BSFManager;
 import org.w3c.dom.Node;
+
+;
 
 /**
  * @author Luis Arias

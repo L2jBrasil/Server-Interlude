@@ -25,6 +25,8 @@ import com.l2jbr.mmocore.ReceivablePacket;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+;
+
 /**
  * <p>
  * This class is made to handle all the ThreadPools used in L2j.

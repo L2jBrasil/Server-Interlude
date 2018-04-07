@@ -25,6 +25,8 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
+;
+
 /**
  * <p>
  * Format: (c) Sd
@@ -38,7 +40,7 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 public final class RequestPetition extends L2GameClientPacket
 {
 	private static final String _C__7F_RequestPetition = "[C] 7F RequestPetition";
-	// private static Logger _log = Logger.getLogger(RequestPetition.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(RequestPetition.class.getName());
 	
 	private String _content;
 	private int _type; // 1 = on : 0 = off;

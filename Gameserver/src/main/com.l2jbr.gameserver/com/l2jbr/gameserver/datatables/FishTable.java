@@ -20,19 +20,22 @@ package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.FishData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * @author -Nemesiss-
  */
 public class FishTable {
-    private static Logger _log = Logger.getLogger(SkillTreeTable.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(SkillTreeTable.class.getName());
     private static final FishTable _instance = new FishTable();
 
     private static List<FishData> _fishsNormal;
@@ -84,14 +87,14 @@ public class FishTable {
             statement.close();
             count = _fishsEasy.size() + _fishsNormal.size() + _fishsHard.size();
         } catch (Exception e) {
-            _log.log(Level.SEVERE, "error while creating fishes table" + e);
+            _log.error( "error while creating fishes table" + e);
         } finally {
             try {
                 con.close();
             } catch (Exception e) {
             }
         }
-        _log.config("FishTable: Loaded " + count + " Fishes.");
+        _log.info("FishTable: Loaded " + count + " Fishes.");
     }
 
     /**
@@ -115,7 +118,7 @@ public class FishTable {
         }
         if (_Fishs == null) {
             // the fish list is empty
-            _log.warning("Fish are not defined !");
+            _log.warn("Fish are not defined !");
             return null;
         }
         for (FishData f : _Fishs) {
@@ -129,7 +132,7 @@ public class FishTable {
             result.add(f);
         }
         if (result.size() == 0) {
-            _log.warning("Cant Find Any Fish!? - Lvl: " + lvl + " Type: " + type);
+            _log.warn("Cant Find Any Fish!? - Lvl: " + lvl + " Type: " + type);
         }
         return result;
     }

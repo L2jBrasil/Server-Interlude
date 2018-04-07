@@ -32,6 +32,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
+;
+
 public class ExtractableItemsData {
     // Map<itemid, L2ExtractableItem>
     private LinkedHashMap<Integer, L2ExtractableItem> _items;

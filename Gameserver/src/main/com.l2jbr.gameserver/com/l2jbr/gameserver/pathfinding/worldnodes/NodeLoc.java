@@ -19,6 +19,8 @@ package com.l2jbr.gameserver.pathfinding.worldnodes;
 
 import com.l2jbr.gameserver.pathfinding.AbstractNodeLoc;
 
+;
+
 /**
  * @author -Nemesiss-
  */

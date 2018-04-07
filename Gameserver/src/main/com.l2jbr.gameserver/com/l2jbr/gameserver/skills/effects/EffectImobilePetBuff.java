@@ -23,6 +23,8 @@ import com.l2jbr.gameserver.model.L2Summon;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.skills.Env;
 
+;
+
 /**
  * @author demonia TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates
  */

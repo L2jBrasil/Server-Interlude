@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.model;
 
 import com.l2jbr.gameserver.templates.StatsSet;
 
+;
+
 /**
  * @author Rayan RPG
  * @since 927

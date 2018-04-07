@@ -17,14 +17,15 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
-import java.util.logging.Logger;
-
 import com.l2jbr.gameserver.GameTimeController;
 import com.l2jbr.gameserver.network.L2GameClient;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.L2GameServerPacket;
-
 import com.l2jbr.mmocore.ReceivablePacket;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+;
 
 /**
  * Packets received by the game server from clients
@@ -32,7 +33,7 @@ import com.l2jbr.mmocore.ReceivablePacket;
  */
 public abstract class L2GameClientPacket extends ReceivablePacket<L2GameClient>
 {
-	private static final Logger _log = Logger.getLogger(L2GameClientPacket.class.getName());
+	private static final Logger _log = LoggerFactory.getLogger(L2GameClientPacket.class.getName());
 	
 	@Override
 	protected boolean read()
@@ -45,7 +46,7 @@ public abstract class L2GameClientPacket extends ReceivablePacket<L2GameClient>
 		}
 		catch (Throwable t)
 		{
-			_log.severe("Client: " + getClient().toString() + " - Failed reading: " + getType() + ";");
+			_log.error("Client: " + getClient().toString() + " - Failed reading: " + getType() + ";");
 			t.printStackTrace();
 		}
 		return false;
@@ -91,7 +92,7 @@ public abstract class L2GameClientPacket extends ReceivablePacket<L2GameClient>
 		}
 		catch (Throwable t)
 		{
-			_log.severe("Client: " + getClient().toString() + " - Failed running: " + getType() + ";");
+			_log.error("Client: " + getClient().toString() + " - Failed running: " + getType() + ";");
 			t.printStackTrace();
 		}
 	}

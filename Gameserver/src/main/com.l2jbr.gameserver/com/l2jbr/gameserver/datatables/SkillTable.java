@@ -25,13 +25,15 @@ import com.l2jbr.gameserver.templates.L2WeaponType;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+;
+
 /**
  * This class ...
  *
  * @version $Revision: 1.8.2.6.2.18 $ $Date: 2005/04/06 16:13:25 $
  */
 public class SkillTable {
-    // private static Logger _log = Logger.getLogger(SkillTable.class.getName());
+    // private static Logger _log = LoggerFactory.getLogger(SkillTable.class.getName());
     private static SkillTable _instance;
 
     private final Map<Integer, L2Skill> _skills;

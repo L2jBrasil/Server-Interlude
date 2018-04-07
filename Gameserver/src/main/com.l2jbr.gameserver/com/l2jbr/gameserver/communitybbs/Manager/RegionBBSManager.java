@@ -29,14 +29,14 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.CreatureSay;
 import com.l2jbr.gameserver.serverpackets.ShowBoard;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.LogRecord;
-import java.util.logging.Logger;
+
 
 public class RegionBBSManager extends BaseBBSManager {
-    private static Logger _logChat = Logger.getLogger("chat");
+    private static Logger _logChat = LoggerFactory.getLogger("chat");
 
     @Override
     public void parsecmd(String command, L2PcInstance activeChar) {
@@ -178,14 +178,7 @@ public class RegionBBSManager extends BaseBBSManager {
                 }
 
                 if (Config.LOG_CHAT) {
-                    LogRecord record = new LogRecord(Level.INFO, ar3);
-                    record.setLoggerName("chat");
-                    record.setParameters(new Object[]
-                            {
-                                    "TELL",
-                                    "[" + activeChar.getName() + " to " + receiver.getName() + "]"
-                            });
-                    _logChat.log(record);
+                    _logChat.info(ar3);
                 }
                 CreatureSay cs = new CreatureSay(activeChar.getObjectId(), Say2.TELL, activeChar.getName(), ar3);
                 if (!BlockList.isBlocked(receiver, activeChar)) {

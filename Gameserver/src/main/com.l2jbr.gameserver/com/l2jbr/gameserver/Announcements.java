@@ -28,14 +28,17 @@ import com.l2jbr.gameserver.script.DateRange;
 import com.l2jbr.gameserver.serverpackets.CreatureSay;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -43,7 +46,7 @@ import java.util.logging.Logger;
  * @version $Revision: 1.5.2.1.2.7 $ $Date: 2005/03/29 23:15:14 $
  */
 public class Announcements {
-    private static Logger _log = Logger.getLogger(Announcements.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(Announcements.class.getName());
 
     private static Announcements _instance;
     private final List<String> _announcements = new LinkedList<>();
@@ -67,7 +70,7 @@ public class Announcements {
         if (file.exists()) {
             readFromDisk(file);
         } else {
-            _log.config("data/announcements.txt doesn't exist");
+            _log.info("data/announcements.txt doesn't exist");
         }
     }
 
@@ -139,9 +142,9 @@ public class Announcements {
                 }
             }
 
-            _log.config("Announcements: Loaded " + i + " Announcements.");
+            _log.info("Announcements: Loaded " + i + " Announcements.");
         } catch (IOException e1) {
-            _log.log(Level.SEVERE, "Error reading announcements", e1);
+            _log.error( "Error reading announcements", e1);
         }
     }
 
@@ -159,7 +162,7 @@ public class Announcements {
             save.close();
             save = null;
         } catch (IOException e) {
-            _log.warning("saving the announcements file has failed: " + e);
+            _log.warn("saving the announcements file has failed: " + e);
         }
     }
 

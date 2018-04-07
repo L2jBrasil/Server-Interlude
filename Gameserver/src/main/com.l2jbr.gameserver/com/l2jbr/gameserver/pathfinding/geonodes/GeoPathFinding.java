@@ -21,6 +21,8 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.pathfinding.AbstractNodeLoc;
 import com.l2jbr.gameserver.pathfinding.Node;
 import com.l2jbr.gameserver.pathfinding.PathFinding;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.nio.ByteBuffer;
@@ -28,13 +30,15 @@ import java.nio.IntBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.*;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * @author -Nemesiss-
  */
 public class GeoPathFinding extends PathFinding {
-    private static Logger _log = Logger.getLogger(GeoPathFinding.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(GeoPathFinding.class.getName());
     private static GeoPathFinding _instance;
     private static Map<Short, ByteBuffer> _pathNodes = new LinkedHashMap<>();
     private static Map<Short, IntBuffer> _pathNodesIndex = new LinkedHashMap<>();
@@ -192,7 +196,7 @@ public class GeoPathFinding extends PathFinding {
         byte nodes = pn.get(idx);
         idx += (layer * 10) + 1;// byte + layer*10byte
         if (nodes < layer) {
-            _log.warning("SmthWrong!");
+            _log.warn("SmthWrong!");
         }
         short node_z = pn.getShort(idx);
         idx += 2;
@@ -284,7 +288,7 @@ public class GeoPathFinding extends PathFinding {
             _pathNodes.put(regionoffset, nodes);
         } catch (Exception e) {
             e.printStackTrace();
-            _log.warning("Failed to Load PathNode File: " + fname + "\n");
+            _log.warn("Failed to Load PathNode File: " + fname + "\n");
         }
 
     }

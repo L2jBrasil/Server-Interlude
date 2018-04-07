@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.templates;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.2.4.6 $ $Date: 2005/04/02 15:57:51 $

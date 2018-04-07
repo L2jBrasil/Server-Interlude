@@ -31,13 +31,15 @@ import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.serverpackets.UserInfo;
 
+;
+
 /**
  * This class handles following admin commands: - enchant_armor
  * @version $Revision: 1.3.2.1.2.10 $ $Date: 2005/08/24 21:06:06 $
  */
 public class AdminEnchant implements IAdminCommandHandler
 {
-	// private static Logger _log = Logger.getLogger(AdminEnchant.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(AdminEnchant.class.getName());
 	private static final String[] ADMIN_COMMANDS =
 	{
 		"admin_seteh",// 6

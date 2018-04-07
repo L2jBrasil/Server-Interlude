@@ -23,11 +23,14 @@ import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -37,7 +40,7 @@ public final class RequestFriendDel extends L2GameClientPacket
 {
 	
 	private static final String _C__61_REQUESTFRIENDDEL = "[C] 61 RequestFriendDel";
-	private static Logger _log = Logger.getLogger(RequestFriendDel.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RequestFriendDel.class.getName());
 	
 	private String _name;
 	
@@ -117,7 +120,7 @@ public final class RequestFriendDel extends L2GameClientPacket
 		}
 		catch (Exception e)
 		{
-			_log.log(Level.WARNING, "could not del friend objectid: ", e);
+			_log.warn( "could not del friend objectid: ", e);
 		}
 		finally
 		{

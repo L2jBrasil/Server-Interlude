@@ -29,6 +29,8 @@ import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.Stats;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.1.2.2.2.1 $ $Date: 2005/03/02 15:38:36 $
@@ -36,7 +38,7 @@ import com.l2jbr.gameserver.skills.Stats;
 
 public class ManaHeal implements ISkillHandler
 {
-	// private static Logger _log = Logger.getLogger(ManaHeal.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(ManaHeal.class.getName());
 	
 	/*
 	 * (non-Javadoc)

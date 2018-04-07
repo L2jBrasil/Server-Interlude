@@ -20,12 +20,16 @@ package com.l2jbr.gameserver.ai2;
 
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.ai2.AiInstance.QueueEventRunner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.*;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class will load all the AI's and retain all of them. It is a singleton
@@ -33,7 +37,7 @@ import java.util.logging.Logger;
  * @author -Wooden-
  */
 public class AiManager {
-    protected static final Logger _log = Logger.getLogger(AiManager.class.getName());
+    protected static final Logger _log = LoggerFactory.getLogger(AiManager.class.getName());
     private static AiManager _instance;
     private final List<AiInstance> _aiList;
     private final Map<Integer, AiInstance> _aiMap;
@@ -58,7 +62,7 @@ public class AiManager {
     public void load() {
         URL url = Class.class.getResource("/net/sf/l2j/gameserver/ai/managers");
         if (url == null) {
-            _log.severe("Could not open the ai managers folder. No ai will be loaded!");
+            _log.error("Could not open the ai managers folder. No ai will be loaded!");
             return;
         }
         File directory = new File(url.getFile());

@@ -18,7 +18,6 @@
  */
 package com.l2jbr.gameserver;
 
-
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.commons.Server;
@@ -51,20 +50,19 @@ import com.l2jbr.gameserver.util.FloodProtector;
 import com.l2jbr.gameserver.util.IPv4Filter;
 import com.l2jbr.mmocore.SelectorConfig;
 import com.l2jbr.mmocore.SelectorThread;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Calendar;
 import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
 
 import static com.l2jbr.gameserver.util.GameserverMessages.getMessage;
+
+;
 
 /**
  * This class ...
@@ -72,7 +70,7 @@ import static com.l2jbr.gameserver.util.GameserverMessages.getMessage;
  * @version $Revision: 1.29.2.15.2.19 $ $Date: 2005/04/05 19:41:23 $
  */
 public class GameServer {
-    private static final Logger _log = Logger.getLogger(GameServer.class.getName());
+    private static Logger _log;
     private final SelectorThread<L2GameClient> _selectorThread;
     private final SkillTable _skillTable;
     private final ItemTable _itemTable;
@@ -113,14 +111,12 @@ public class GameServer {
     }
 
     public GameServer() throws Exception {
-
-
         gameServer = this;
-        _log.finest(getMessage("debug.used.memory", getUsedMemoryMB()));
+        _log.debug(getMessage("debug.used.memory", getUsedMemoryMB()));
 
         _idFactory = IdFactory.getInstance();
         if (!_idFactory.isInitialized()) {
-            _log.severe(getMessage("error.read.object.id"));
+            _log.error(getMessage("error.read.object.id"));
             throw new Exception(getMessage("error.initialize.id.factory"));
         }
 
@@ -138,7 +134,7 @@ public class GameServer {
 
         _itemTable = ItemTable.getInstance();
         if (!_itemTable.isInitialized()) {
-            _log.severe(getMessage("error.extracted.file.not.found"));
+            _log.error(getMessage("error.extracted.file.not.found"));
             throw new Exception( getMessage("error.initialize.table", "Item"));
         }
 
@@ -148,7 +144,7 @@ public class GameServer {
         TradeController.getInstance();
         _skillTable = SkillTable.getInstance();
         if (!_skillTable.isInitialized()) {
-            _log.severe(getMessage("error.extracted.file.not.found"));
+            _log.error(getMessage("error.extracted.file.not.found"));
             throw new Exception(getMessage("error.initialize.table", "Skill"));
         }
 
@@ -174,7 +170,7 @@ public class GameServer {
         _npcTable = NpcTable.getInstance();
 
         if (!_npcTable.isInitialized()) {
-            _log.severe(getMessage("error.extracted.file.not.found"));
+            _log.error(getMessage("error.extracted.file.not.found"));
             throw new Exception(getMessage("error.initialize.table", "Npc"));
         }
 
@@ -259,8 +255,8 @@ public class GameServer {
         CursedWeaponsManager.getInstance();
 
 
-        _log.config(getMessage("info.loaded.handlers", _autoChatHandler.size(), "AutoChatHandler"));
-        _log.config(getMessage("info.loaded.handlers", _autoSpawnHandler.size(), "AutoSpawnHandler"));
+        _log.info(getMessage("info.loaded.handlers", _autoChatHandler.size(), "AutoChatHandler"));
+        _log.info(getMessage("info.loaded.handlers", _autoSpawnHandler.size(), "AutoSpawnHandler"));
 
         _itemHandler = ItemHandler.getInstance();
         _itemHandler.registerItemHandler(new ScrollOfEscape());
@@ -295,7 +291,7 @@ public class GameServer {
         _itemHandler.registerItemHandler(new SpecialXMas());
         _itemHandler.registerItemHandler(new SummonItems());
         _itemHandler.registerItemHandler(new BeastSpice());
-        _log.config(getMessage("info.loaded.handlers", _itemHandler.size(), "ItemHandler"));
+        _log.info(getMessage("info.loaded.handlers", _itemHandler.size(), "ItemHandler"));
 
         _skillHandler = SkillHandler.getInstance();
         _skillHandler.registerSkillHandler(new Blow());
@@ -330,7 +326,7 @@ public class GameServer {
         _skillHandler.registerSkillHandler(new Harvest());
         _skillHandler.registerSkillHandler(new Signets());
         _skillHandler.registerSkillHandler(new GetPlayer());
-        _log.config(getMessage("info.loaded.handlers", _skillHandler.size(), "SkillHandler"));
+        _log.info(getMessage("info.loaded.handlers", _skillHandler.size(), "SkillHandler"));
 
         _adminCommandHandler = AdminCommandHandler.getInstance();
         _adminCommandHandler.registerAdminCommandHandler(new AdminAdmin());
@@ -388,7 +384,7 @@ public class GameServer {
         _adminCommandHandler.registerAdminCommandHandler(new AdminManor());
         _adminCommandHandler.registerAdminCommandHandler(new AdminTvTEvent());
         // _adminCommandHandler.registerAdminCommandHandler(new AdminRadar());
-        _log.config(getMessage("info.loaded.handlers", _adminCommandHandler.size(), "AdminCommandHandler"));
+        _log.info(getMessage("info.loaded.handlers", _adminCommandHandler.size(), "AdminCommandHandler"));
 
 
         _userCommandHandler = UserCommandHandler.getInstance();
@@ -404,7 +400,7 @@ public class GameServer {
         _userCommandHandler.registerUserCommandHandler(new ChannelLeave());
         _userCommandHandler.registerUserCommandHandler(new ChannelDelete());
         _userCommandHandler.registerUserCommandHandler(new ChannelListUpdate());
-        _log.config(getMessage("info.loaded.handlers", _userCommandHandler.size(), "UserCommandHandler"));
+        _log.info(getMessage("info.loaded.handlers", _userCommandHandler.size(), "UserCommandHandler"));
 
         _voicedCommandHandler = VoicedCommandHandler.getInstance();
         _voicedCommandHandler.registerVoicedCommandHandler(new stats());
@@ -413,7 +409,7 @@ public class GameServer {
             _voicedCommandHandler.registerVoicedCommandHandler(new Wedding());
         }
 
-        _log.config(getMessage("info.loaded.handlers", _voicedCommandHandler.size(),  "VoicedCommandHandler"));
+        _log.info(getMessage("info.loaded.handlers", _voicedCommandHandler.size(),  "VoicedCommandHandler"));
 
         if (Config.L2JMOD_ALLOW_WEDDING) {
             CoupleManager.getInstance();
@@ -449,20 +445,20 @@ public class GameServer {
 
             _doorTable.checkAutoOpen();
         } catch (NullPointerException e) {
-            _log.warning(getMessage("error.door.file"));
+            _log.warn(getMessage("error.door.file"));
             if (Config.DEBUG) {
                 e.printStackTrace();
             }
         }
         ForumsBBSManager.getInstance();
 
-        _log.config(getMessage("info.object.id.free", IdFactory.getInstance().size()));
+        _log.info(getMessage("info.object.id.free", IdFactory.getInstance().size()));
 
         // initialize the dynamic extension loader
         try {
             DynamicExtension.getInstance();
         } catch (Exception ex) {
-            _log.log(Level.WARNING, getMessage("error.dynamic.extension.not.loaded"), ex);
+            _log.warn( getMessage("error.dynamic.extension.not.loaded"), ex);
         }
 
         FloodProtector.getInstance();
@@ -492,7 +488,7 @@ public class GameServer {
             try {
                 bindAddress = InetAddress.getByName(Config.GAMESERVER_HOSTNAME);
             } catch (UnknownHostException e1) {
-                _log.log(Level.SEVERE, getMessage("error.invalid.bind.address",  e1.getMessage()), e1);
+                _log.error( getMessage("error.invalid.bind.address",  e1.getMessage()), e1);
             }
         }
 
@@ -500,31 +496,18 @@ public class GameServer {
             _selectorThread.openServerSocket(bindAddress, Config.PORT_GAME);
         } catch (IOException e) {
             ;
-            _log.log(Level.SEVERE, getMessage("error.open.socket", e.getMessage()), e);
+            _log.error( getMessage("error.open.socket", e.getMessage()), e);
             System.exit(1);
         }
 
         _selectorThread.start();
 
-        _log.config(getMessage("info.max.connected.players", Config.MAXIMUM_ONLINE_USERS));
+        _log.info(getMessage("info.max.connected.players", Config.MAXIMUM_ONLINE_USERS));
     }
 
     public static void main(String[] args) throws Exception {
+        configureLogger();
         Server.serverMode = Server.MODE_GAMESERVER;
-        // Local Constants
-        final String LOG_FOLDER = "log"; // Name of folder for log file
-        final String LOG_NAME = "./log.cfg"; // Name of log file
-
-
-        /*** Main ***/
-        // Create log folder
-        File logFolder = new File(Config.DATAPACK_ROOT, LOG_FOLDER);
-        logFolder.mkdir();
-
-        // Create input stream for log file -- or store file data into memory
-        InputStream is = new FileInputStream(new File(LOG_NAME));
-        LogManager.getLogManager().readConfiguration(is);
-        is.close();
 
         // Initialize config
         Config.load();
@@ -544,5 +527,13 @@ public class GameServer {
         } else {
             System.out.println(getMessage("info.telnet.disabled"));
         }
+    }
+
+    private static void configureLogger() {
+        String logConfigurationFile = System.getProperty("log4j.configurationFile");
+        if(logConfigurationFile == null || logConfigurationFile.isEmpty()) {
+            System.setProperty("log4j.configurationFile", "log4j.xml");
+        }
+        _log = LoggerFactory.getLogger(GameServer.class);
     }
 }

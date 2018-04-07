@@ -20,8 +20,12 @@ package com.l2jbr.gameserver.clientpackets;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.serverpackets.KeyPacket;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 /**
  * This class ...
@@ -30,7 +34,7 @@ import java.util.logging.Logger;
 public final class ProtocolVersion extends L2GameClientPacket
 {
 	private static final String _C__00_PROTOCOLVERSION = "[C] 00 ProtocolVersion";
-	static Logger _log = Logger.getLogger(ProtocolVersion.class.getName());
+	static Logger _log = LoggerFactory.getLogger(ProtocolVersion.class.getName());
 	
 	private int _version;
 	
@@ -56,14 +60,14 @@ public final class ProtocolVersion extends L2GameClientPacket
 		else if ((_version < Config.MIN_PROTOCOL_REVISION) || (_version > Config.MAX_PROTOCOL_REVISION))
 		{
 			_log.info("Client: " + getClient().toString() + " -> Protocol Revision: " + _version + " is invalid. Minimum is " + Config.MIN_PROTOCOL_REVISION + " and Maximum is " + Config.MAX_PROTOCOL_REVISION + " are supported. Closing connection.");
-			_log.warning("Wrong Protocol Version " + _version);
+			_log.warn("Wrong Protocol Version " + _version);
 			getClient().closeNow();
 		}
 		else
 		{
 			if (Config.DEBUG)
 			{
-				_log.fine("Client Protocol Revision is ok: " + _version);
+				_log.debug("Client Protocol Revision is ok: " + _version);
 			}
 			
 			KeyPacket pk = new KeyPacket(getClient().enableCrypt());

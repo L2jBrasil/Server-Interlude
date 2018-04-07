@@ -17,13 +17,15 @@
  */
 package com.l2jbr.gameserver.pathfinding;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.pathfinding.geonodes.GeoPathFinding;
 import com.l2jbr.gameserver.pathfinding.utils.BinaryNodeHeap;
 import com.l2jbr.gameserver.pathfinding.utils.FastNodeList;
+
+import java.util.LinkedList;
+import java.util.List;
+
+;
 
 /**
  * @author -Nemesiss-

@@ -17,18 +17,15 @@
  */
 package com.l2jbr.gameserver.skills.l2skills;
 
-import com.l2jbr.gameserver.model.L2Character;
-import com.l2jbr.gameserver.model.L2Effect;
-import com.l2jbr.gameserver.model.L2ItemInstance;
-import com.l2jbr.gameserver.model.L2Object;
-import com.l2jbr.gameserver.model.L2Skill;
-import com.l2jbr.gameserver.model.L2Summon;
+import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.Formulas;
 import com.l2jbr.gameserver.templates.StatsSet;
+
+;
 
 public class L2SkillDrain extends L2Skill
 {

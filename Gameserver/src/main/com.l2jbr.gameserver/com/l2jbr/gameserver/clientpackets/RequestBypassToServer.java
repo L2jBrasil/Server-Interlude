@@ -31,9 +31,11 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.entity.L2Event;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+;
+
 
 /**
  * This class ...
@@ -42,7 +44,7 @@ import java.util.logging.Logger;
 public final class RequestBypassToServer extends L2GameClientPacket
 {
 	private static final String _C__21_REQUESTBYPASSTOSERVER = "[C] 21 RequestBypassToServer";
-	private static Logger _log = Logger.getLogger(RequestBypassToServer.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RequestBypassToServer.class.getName());
 	
 	// S
 	private String _command;
@@ -81,7 +83,7 @@ public final class RequestBypassToServer extends L2GameClientPacket
 				}
 				else
 				{
-					_log.warning("No handler registered for bypass '" + _command + "'");
+					_log.warn("No handler registered for bypass '" + _command + "'");
 				}
 			}
 			else if (_command.equals("come_here") && (activeChar.getAccessLevel() >= Config.GM_ACCESSLEVEL))
@@ -188,7 +190,7 @@ public final class RequestBypassToServer extends L2GameClientPacket
 		}
 		catch (Exception e)
 		{
-			_log.log(Level.WARNING, "Bad RequestBypassToServer: ", e);
+			_log.warn( "Bad RequestBypassToServer: ", e);
 		}
 		// finally
 		// {

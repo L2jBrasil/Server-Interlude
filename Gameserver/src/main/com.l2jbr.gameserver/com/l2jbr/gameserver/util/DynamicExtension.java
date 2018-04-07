@@ -19,12 +19,16 @@
 
 package com.l2jbr.gameserver.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * extension loader for l2j
@@ -33,7 +37,7 @@ import java.util.logging.Logger;
  */
 public class DynamicExtension
 {
-	private static Logger _log = Logger.getLogger(DynamicExtension.class.getCanonicalName());
+	private static Logger _log = LoggerFactory.getLogger(DynamicExtension.class.getCanonicalName());
 	private JarClassLoader _classLoader;
 	private static final String CONFIG = "config/extensions.properties";
 	private Properties _prop;
@@ -98,7 +102,7 @@ public class DynamicExtension
 		}
 		catch (Exception ex)
 		{
-			_log.log(Level.WARNING, "could not load properties", ex);
+			_log.warn( "could not load properties", ex);
 		}
 		_classLoader = new JarClassLoader();
 		for (Object o : _prop.keySet())
@@ -141,7 +145,7 @@ public class DynamicExtension
 		}
 		catch (Exception ex)
 		{
-			_log.log(Level.WARNING, name, ex);
+			_log.warn( name, ex);
 			res = ex.toString();
 		}
 		return res;
@@ -205,7 +209,7 @@ public class DynamicExtension
 		}
 		catch (Exception ex)
 		{
-			_log.log(Level.WARNING, "could not unload " + className, ex);
+			_log.warn( "could not unload " + className, ex);
 			res = ex.toString();
 		}
 		return res;

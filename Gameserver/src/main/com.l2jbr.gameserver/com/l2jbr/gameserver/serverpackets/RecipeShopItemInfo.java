@@ -21,6 +21,8 @@ package com.l2jbr.gameserver.serverpackets;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
+;
+
 /**
  * ddddd
  * @version $Revision: 1.1.2.3.2.3 $ $Date: 2005/03/27 15:29:39 $

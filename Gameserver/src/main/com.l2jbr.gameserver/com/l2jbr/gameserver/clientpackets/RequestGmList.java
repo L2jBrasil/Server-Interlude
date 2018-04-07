@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.clientpackets;
 
 import com.l2jbr.gameserver.GmListTable;
 
+;
+
 /**
  * This class handles RequestGmLista packet triggered by /gmlist command
  * @version $Revision: 1.1.4.2 $ $Date: 2005/03/27 15:29:30 $

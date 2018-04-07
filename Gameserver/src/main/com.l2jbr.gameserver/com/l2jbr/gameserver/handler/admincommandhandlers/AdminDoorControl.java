@@ -28,6 +28,8 @@ import com.l2jbr.gameserver.model.actor.instance.L2DoorInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.entity.Castle;
 
+;
+
 /**
  * This class handles following admin commands: - open1 = open coloseum door 24190001 - open2 = open coloseum door 24190002 - open3 = open coloseum door 24190003 - open4 = open coloseum door 24190004 - openall = open all coloseum door - close1 = close coloseum door 24190001 - close2 = close coloseum
  * door 24190002 - close3 = close coloseum door 24190003 - close4 = close coloseum door 24190004 - closeall = close all coloseum door - open = open selected door - close = close selected door
@@ -35,7 +37,7 @@ import com.l2jbr.gameserver.model.entity.Castle;
  */
 public class AdminDoorControl implements IAdminCommandHandler
 {
-	// private static Logger _log = Logger.getLogger(AdminDoorControl.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(AdminDoorControl.class.getName());
 	private static final int REQUIRED_LEVEL = Config.GM_DOOR;
 	private static DoorTable _doorTable;
 	private static final String[] ADMIN_COMMANDS =

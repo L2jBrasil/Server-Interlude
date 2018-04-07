@@ -21,6 +21,8 @@ package com.l2jbr.gameserver;
 import java.util.logging.Filter;
 import java.util.logging.LogRecord;
 
+;
+
 public class GMAuditFilter implements Filter
 {
 	@Override

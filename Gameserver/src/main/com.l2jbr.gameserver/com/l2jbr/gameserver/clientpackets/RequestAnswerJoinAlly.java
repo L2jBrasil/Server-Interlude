@@ -23,6 +23,8 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
+;
+
 /**
  * sample 5F 01 00 00 00 format cdd
  * @version $Revision: 1.7.4.2 $ $Date: 2005/03/27 15:29:30 $
@@ -30,7 +32,7 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 public final class RequestAnswerJoinAlly extends L2GameClientPacket
 {
 	private static final String _C__83_REQUESTANSWERJOINALLY = "[C] 83 RequestAnswerJoinAlly";
-	// private static Logger _log = Logger.getLogger(RequestAnswerJoinAlly.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(RequestAnswerJoinAlly.class.getName());
 	
 	private int _response;
 	

@@ -17,11 +17,6 @@
  */
 package com.l2jbr.gameserver.model.actor.stat;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Logger;
-
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.L2Character;
@@ -29,15 +24,19 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PetInstance;
 import com.l2jbr.gameserver.model.base.Experience;
 import com.l2jbr.gameserver.network.SystemMessageId;
-import com.l2jbr.gameserver.serverpackets.PledgeShowMemberListUpdate;
-import com.l2jbr.gameserver.serverpackets.SocialAction;
-import com.l2jbr.gameserver.serverpackets.StatusUpdate;
-import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.serverpackets.UserInfo;
+import com.l2jbr.gameserver.serverpackets.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+;
 
 public class PcStat extends PlayableStat
 {
-	private static Logger _log = Logger.getLogger(L2PcInstance.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(L2PcInstance.class.getName());
 	
 	// =========================================================
 	// Data Field
@@ -213,7 +212,7 @@ public class PcStat extends PlayableStat
 					}
 					catch (SQLException e)
 					{
-						_log.warning("Could not check character for newbie: " + e);
+						_log.warn("Could not check character for newbie: " + e);
 					}
 					finally
 					{

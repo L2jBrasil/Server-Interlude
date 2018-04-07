@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.model;
 import com.l2jbr.gameserver.model.L2ItemInstance.ItemLocation;
 import com.l2jbr.gameserver.model.actor.instance.L2PetInstance;
 
+;
+
 public class PetInventory extends Inventory
 {
 	private final L2PetInstance _owner;

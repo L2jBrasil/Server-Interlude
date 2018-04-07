@@ -18,12 +18,17 @@
  */
 package com.l2jbr.commons;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.*;
 import java.math.BigInteger;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class contains global server configuration.<br>
@@ -33,7 +38,7 @@ import java.util.logging.Logger;
  * @author mkizub
  */
 public final class Config {
-    protected static final Logger _log = Logger.getLogger(Config.class.getName());
+    protected static final Logger _log = LoggerFactory.getLogger(Config.class.getName());
     /**
      * Debug/release mode
      */
@@ -2694,7 +2699,7 @@ public final class Config {
                 SERVER_ID = Integer.parseInt(Settings.getProperty("ServerID"));
                 HEX_ID = new BigInteger(Settings.getProperty("HexID"), 16).toByteArray();
             } catch (Exception e) {
-                _log.warning("Could not load HexID file (" + HEXID_FILE + "). Hopefully login will give us one.");
+                _log.warn("Could not load HexID file (" + HEXID_FILE + "). Hopefully login will give us one.");
             }
         } else if (Server.serverMode == Server.MODE_LOGINSERVER) {
             _log.info("loading login config");
@@ -2763,7 +2768,7 @@ public final class Config {
             }
 
         } else {
-            _log.severe("Could not Load Config: server mode was not set");
+            _log.error("Could not Load Config: server mode was not set");
         }
 
     }
@@ -3187,7 +3192,7 @@ public final class Config {
             hexSetting.store(out, "the hexID to auth into login");
             out.close();
         } catch (Exception e) {
-            _log.warning("Failed to save hex id to " + fileName + " File.");
+            _log.warn("Failed to save hex id to " + fileName + " File.");
             e.printStackTrace();
         }
     }

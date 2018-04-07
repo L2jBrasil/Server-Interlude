@@ -30,6 +30,8 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SignsSky;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.StatsSet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -38,7 +40,9 @@ import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * Seven Signs Engine TODO: - Implementation of the Seal of Strife for sieges.
@@ -46,7 +50,7 @@ import java.util.logging.Logger;
  * @author Tempy
  */
 public class SevenSigns {
-    protected static final Logger _log = Logger.getLogger(SevenSigns.class.getName());
+    protected static final Logger _log = LoggerFactory.getLogger(SevenSigns.class.getName());
     private static SevenSigns _instance;
 
     // Basic Seven Signs Constants \\
@@ -145,7 +149,7 @@ public class SevenSigns {
         try {
             restoreSevenSignsData();
         } catch (Exception e) {
-            _log.severe("SevenSigns: Failed to load configuration: " + e);
+            _log.error("SevenSigns: Failed to load configuration: " + e);
         }
 
         _log.info("SevenSigns: Currently in the " + getCurrentPeriodName() + " period!");
@@ -671,7 +675,7 @@ public class SevenSigns {
                 ps3.execute();
             }
         } catch (SQLException e) {
-            _log.severe("SevenSigns: Unable to load Seven Signs data from database: " + e);
+            _log.error("SevenSigns: Unable to load Seven Signs data from database: " + e);
         }
         // Festival data is loaded now after the Seven Signs engine data.
     }
@@ -763,7 +767,7 @@ public class SevenSigns {
 
             }
         } catch (SQLException e) {
-            _log.severe("SevenSigns: Unable to save data to database: " + e);
+            _log.error("SevenSigns: Unable to save data to database: " + e);
         } finally {
             try {
                 statement.close();
@@ -856,7 +860,7 @@ public class SevenSigns {
                     _log.info("SevenSigns: Inserted data in DB for char ID " + currPlayerData.getInteger("char_obj_id") + " (" + currPlayerData.getString("cabal") + ")");
                 }
             } catch (SQLException e) {
-                _log.severe("SevenSigns: Failed to save data: " + e);
+                _log.error("SevenSigns: Failed to save data: " + e);
             } finally {
                 try {
                     statement.close();

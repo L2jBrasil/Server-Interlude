@@ -25,8 +25,11 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SocialAction;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.util.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
 
 /**
  * This class ...
@@ -35,7 +38,7 @@ import java.util.logging.Logger;
 public class RequestSocialAction extends L2GameClientPacket
 {
 	private static final String _C__1B_REQUESTSOCIALACTION = "[C] 1B RequestSocialAction";
-	private static Logger _log = Logger.getLogger(RequestSocialAction.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RequestSocialAction.class.getName());
 	
 	// format cd
 	private int _actionId;
@@ -75,7 +78,7 @@ public class RequestSocialAction extends L2GameClientPacket
 		{
 			if (Config.DEBUG)
 			{
-				_log.fine("Social Action:" + _actionId);
+				_log.debug("Social Action:" + _actionId);
 			}
 			
 			SocialAction atk = new SocialAction(activeChar.getObjectId(), _actionId);

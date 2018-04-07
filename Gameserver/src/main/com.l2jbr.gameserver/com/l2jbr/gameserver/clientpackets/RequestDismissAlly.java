@@ -22,6 +22,8 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.3.2.1.2.3 $ $Date: 2005/03/27 15:29:30 $
@@ -30,7 +32,7 @@ public final class RequestDismissAlly extends L2GameClientPacket
 {
 	private static final String _C__86_REQUESTDISMISSALLY = "[C] 86 RequestDismissAlly";
 	
-	// static Logger _log = Logger.getLogger(RequestDismissAlly.class.getName());
+	// static Logger _log = LoggerFactory.getLogger(RequestDismissAlly.class.getName());
 	
 	@Override
 	protected void readImpl()

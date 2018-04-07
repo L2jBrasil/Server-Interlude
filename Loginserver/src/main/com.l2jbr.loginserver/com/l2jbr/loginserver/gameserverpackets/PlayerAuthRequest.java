@@ -21,6 +21,8 @@ package com.l2jbr.loginserver.gameserverpackets;
 import com.l2jbr.loginserver.SessionKey;
 import com.l2jbr.loginserver.clientpackets.ClientBasePacket;
 
+;
+
 /**
  * @author -Wooden-
  */

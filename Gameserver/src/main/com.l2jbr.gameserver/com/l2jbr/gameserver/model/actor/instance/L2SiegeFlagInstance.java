@@ -28,6 +28,8 @@ import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.ValidateLocation;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
+;
+
 public class L2SiegeFlagInstance extends L2NpcInstance
 {
 	private final L2PcInstance _player;

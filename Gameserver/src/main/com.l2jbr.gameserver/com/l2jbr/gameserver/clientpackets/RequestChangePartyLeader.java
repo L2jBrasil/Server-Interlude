@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.clientpackets;
 
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.3.4.2 $ $Date: 2005/03/27 15:29:30 $
@@ -28,7 +30,7 @@ public final class RequestChangePartyLeader extends L2GameClientPacket
 {
 	
 	private static final String _C__EE_REQUESTCHANGEPARTYLEADER = "[C] EE RequestChangePartyLeader";
-	// private static Logger _log = Logger.getLogger(RequestJoinParty.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(RequestJoinParty.class.getName());
 	
 	private String _name;
 	

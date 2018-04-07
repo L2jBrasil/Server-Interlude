@@ -22,16 +22,17 @@ import com.l2jbr.gameserver.model.L2Effect;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.skills.Env;
 import com.l2jbr.gameserver.util.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+;
 
 /**
  * @author kombat
  */
 public class EffectForce extends L2Effect
 {
-	static final Log _log = LogFactory.getLog(EffectForce.class.getName());
+	static final Logger _log = LoggerFactory.getLogger(EffectForce.class.getName());
 	
 	public int forces = 0;
 	private int _range = -1;

@@ -20,18 +20,16 @@ package com.l2jbr.gameserver.handler.skillhandlers;
 
 import com.l2jbr.gameserver.handler.ISkillHandler;
 import com.l2jbr.gameserver.handler.SkillHandler;
-import com.l2jbr.gameserver.model.L2Character;
-import com.l2jbr.gameserver.model.L2ItemInstance;
-import com.l2jbr.gameserver.model.L2Object;
-import com.l2jbr.gameserver.model.L2Skill;
+import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.L2Skill.SkillType;
-import com.l2jbr.gameserver.model.L2Summon;
 import com.l2jbr.gameserver.model.actor.instance.L2DoorInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.Stats;
+
+;
 
 /**
  * This class ...
@@ -41,7 +39,7 @@ import com.l2jbr.gameserver.skills.Stats;
 public class Heal implements ISkillHandler
 {
 	// all the items ids that this handler knowns
-	// private static Logger _log = Logger.getLogger(Heal.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(Heal.class.getName());
 	
 	/*
 	 * (non-Javadoc)

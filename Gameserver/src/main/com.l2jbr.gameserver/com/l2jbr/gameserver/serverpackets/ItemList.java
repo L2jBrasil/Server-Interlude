@@ -21,8 +21,12 @@ package com.l2jbr.gameserver.serverpackets;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 /**
  * sample 27 00 00 01 00 // item count 04 00 // itemType1 0-weapon/ring/earring/necklace 1-armor/shield 4-item/questitem/adena c6 37 50 40 // objectId cd 09 00 00 // itemId 05 00 00 00 // count 05 00 // itemType2 0-weapon 1-shield/armor 2-ring/earring/necklace 3-questitem 4-adena 5-item 00 00 //
@@ -32,7 +36,7 @@ import java.util.logging.Logger;
  */
 public class ItemList extends L2GameServerPacket
 {
-	private static Logger _log = Logger.getLogger(ItemList.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(ItemList.class.getName());
 	private static final String _S__27_ITEMLIST = "[S] 1b ItemList";
 	private final L2ItemInstance[] _items;
 	private final boolean _showWindow;
@@ -61,7 +65,7 @@ public class ItemList extends L2GameServerPacket
 	{
 		for (L2ItemInstance temp : _items)
 		{
-			_log.fine("item:" + temp.getItem().getName() + " type1:" + temp.getItem().getType1() + " type2:" + temp.getItem().getType2());
+			_log.debug("item:" + temp.getItem().getName() + " type1:" + temp.getItem().getType1() + " type2:" + temp.getItem().getType2());
 		}
 	}
 	

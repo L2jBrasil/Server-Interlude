@@ -28,10 +28,14 @@ package com.l2jbr.gameserver.taskmanager;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.serverpackets.AutoAttackStop;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -40,7 +44,7 @@ import java.util.logging.Logger;
  * @version $Revision: $ $Date: $
  */
 public class AttackStanceTaskManager {
-    protected static final Logger _log = Logger.getLogger(AttackStanceTaskManager.class.getName());
+    protected static final Logger _log = LoggerFactory.getLogger(AttackStanceTaskManager.class.getName());
 
     protected Map<L2Character, Long> _attackStanceTasks = new LinkedHashMap<>();
 
@@ -92,7 +96,7 @@ public class AttackStanceTaskManager {
                 }
             } catch (Throwable e) {
                 // TODO: Find out the reason for exception. Unless caught here, players remain in attack positions.
-                _log.warning(e.toString());
+                _log.warn(e.toString());
             }
         }
     }

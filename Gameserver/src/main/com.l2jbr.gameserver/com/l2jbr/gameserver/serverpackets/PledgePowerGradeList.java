@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.serverpackets;
 
 import com.l2jbr.gameserver.model.L2Clan.RankPrivs;
 
+;
+
 /**
  * sample 0000: 9c c10c0000 48 00 61 00 6d 00 62 00 75 00 72 .....H.a.m.b.u.r 0010: 00 67 00 00 00 00000000 00000000 00000000 00000000 00000000 00000000 00 00 00000000 ... format dd ??
  * @version $Revision: 1.3.2.1.2.3 $ $Date: 2005/03/27 15:29:57 $
@@ -44,7 +46,7 @@ public class PledgePowerGradeList extends L2GameServerPacket
 		{
 			writeD(_priv.getRank());
 			writeD(_priv.getParty());
-			// _log.warning("rank: "+_privs[i].getRank()+" party: "+_privs[i].getParty());
+			// _log.warn("rank: "+_privs[i].getRank()+" party: "+_privs[i].getParty());
 		}
 		
 	}

@@ -33,11 +33,14 @@ import com.l2jbr.gameserver.serverpackets.CharSelectInfo;
 import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.templates.L2PcTemplate;
 import com.l2jbr.gameserver.util.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
+
+;
 
 /**
  * This class ...
@@ -47,7 +50,7 @@ import java.util.regex.PatternSyntaxException;
 public final class CharacterCreate extends L2GameClientPacket
 {
 	private static final String _C__0B_CHARACTERCREATE = "[C] 0B CharacterCreate";
-	private static Logger _log = Logger.getLogger(CharacterCreate.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(CharacterCreate.class.getName());
 	
 	// cSdddddddddddd
 	private String _name;
@@ -89,7 +92,7 @@ public final class CharacterCreate extends L2GameClientPacket
 		{
 			if (Config.DEBUG)
 			{
-				_log.fine("Max number of characters reached. Creation failed.");
+				_log.debug("Max number of characters reached. Creation failed.");
 			}
 			CharCreateFail ccf = new CharCreateFail(CharCreateFail.REASON_TOO_MANY_CHARACTERS);
 			sendPacket(ccf);
@@ -99,7 +102,7 @@ public final class CharacterCreate extends L2GameClientPacket
 		{
 			if (Config.DEBUG)
 			{
-				_log.fine("charname: " + _name + " already exists. creation failed.");
+				_log.debug("charname: " + _name + " already exists. creation failed.");
 			}
 			CharCreateFail ccf = new CharCreateFail(CharCreateFail.REASON_NAME_ALREADY_EXISTS);
 			sendPacket(ccf);
@@ -109,7 +112,7 @@ public final class CharacterCreate extends L2GameClientPacket
 		{
 			if (Config.DEBUG)
 			{
-				_log.fine("charname: " + _name + " is invalid. creation failed.");
+				_log.debug("charname: " + _name + " is invalid. creation failed.");
 			}
 			CharCreateFail ccf = new CharCreateFail(CharCreateFail.REASON_16_ENG_CHARS);
 			sendPacket(ccf);
@@ -118,7 +121,7 @@ public final class CharacterCreate extends L2GameClientPacket
 		
 		if (Config.DEBUG)
 		{
-			_log.fine("charname: " + _name + " classId: " + _classId);
+			_log.debug("charname: " + _name + " classId: " + _classId);
 		}
 		
 		L2PcTemplate template = CharTemplateTable.getInstance().getTemplate(_classId);
@@ -154,7 +157,7 @@ public final class CharacterCreate extends L2GameClientPacket
 		}
 		catch (PatternSyntaxException e) // case of illegal pattern
 		{
-			_log.warning("ERROR : Character name pattern of config is wrong!");
+			_log.warn("ERROR : Character name pattern of config is wrong!");
 			pattern = Pattern.compile(".*");
 		}
 		Matcher regexp = pattern.matcher(test);
@@ -169,7 +172,7 @@ public final class CharacterCreate extends L2GameClientPacket
 	{
 		if (Config.DEBUG)
 		{
-			_log.fine("Character init start");
+			_log.debug("Character init start");
 		}
 		L2World.getInstance().storeObject(newChar);
 		
@@ -227,7 +230,7 @@ public final class CharacterCreate extends L2GameClientPacket
 			}
 			if (Config.DEBUG)
 			{
-				_log.fine("adding starter skill:" + startSkill.getId() + " / " + startSkill.getLevel());
+				_log.debug("adding starter skill:" + startSkill.getId() + " / " + startSkill.getLevel());
 			}
 		}
 		
@@ -241,7 +244,7 @@ public final class CharacterCreate extends L2GameClientPacket
 		client.setCharSelection(cl.getCharInfo());
 		if (Config.DEBUG)
 		{
-			_log.fine("Character init end");
+			_log.debug("Character init end");
 		}
 	}
 	

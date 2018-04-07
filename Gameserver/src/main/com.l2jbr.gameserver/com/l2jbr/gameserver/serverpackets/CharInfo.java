@@ -25,8 +25,11 @@ import com.l2jbr.gameserver.model.Inventory;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
 
 /**
  * 0000: 03 32 15 00 00 44 fe 00 00 80 f1 ff ff 00 00 00 .2...D..........
@@ -65,7 +68,7 @@ import java.util.logging.Logger;
  */
 public class CharInfo extends L2GameServerPacket
 {
-	private static final Logger _log = Logger.getLogger(CharInfo.class.getName());
+	private static final Logger _log = LoggerFactory.getLogger(CharInfo.class.getName());
 	
 	private static final String _S__03_CHARINFO = "[S] 03 CharInfo";
 	private final L2PcInstance _activeChar;
@@ -202,7 +205,7 @@ public class CharInfo extends L2GameServerPacket
 			}
 			else
 			{
-				_log.warning("Character " + _activeChar.getName() + " (" + _activeChar.getObjectId() + ") morphed in a Npc (" + _activeChar.getPoly().getPolyId() + ") w/o template.");
+				_log.warn("Character " + _activeChar.getName() + " (" + _activeChar.getObjectId() + ") morphed in a Npc (" + _activeChar.getPoly().getPolyId() + ") w/o template.");
 			}
 		}
 		else

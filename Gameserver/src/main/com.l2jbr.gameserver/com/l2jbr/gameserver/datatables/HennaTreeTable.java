@@ -22,6 +22,8 @@ import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.L2HennaInstance;
 import com.l2jbr.gameserver.model.base.ClassId;
 import com.l2jbr.gameserver.templates.L2Henna;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,7 +31,9 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -37,7 +41,7 @@ import java.util.logging.Logger;
  * @version $Revision$ $Date$
  */
 public class HennaTreeTable {
-    private static Logger _log = Logger.getLogger(HennaTreeTable.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(HennaTreeTable.class.getName());
     private static final HennaTreeTable _instance = new HennaTreeTable();
     private Map<ClassId, List<L2HennaInstance>> _hennaTrees;
     private final boolean _initialized = true;
@@ -94,14 +98,14 @@ public class HennaTreeTable {
                 hennatree.close();
                 statement2.close();
                 count += list.size();
-                _log.fine("Henna Tree for Class: " + classId + " has " + list.size() + " Henna Templates.");
+                _log.debug("Henna Tree for Class: " + classId + " has " + list.size() + " Henna Templates.");
             }
 
             classlist.close();
             statement.close();
 
         } catch (Exception e) {
-            _log.warning("error while creating henna tree for classId " + classId + "  " + e);
+            _log.warn("error while creating henna tree for classId " + classId + "  " + e);
             e.printStackTrace();
         } finally {
             try {
@@ -110,7 +114,7 @@ public class HennaTreeTable {
             }
         }
 
-        _log.config("HennaTreeTable: Loaded " + count + " Henna Tree Templates.");
+        _log.info("HennaTreeTable: Loaded " + count + " Henna Tree Templates.");
 
     }
 
@@ -119,7 +123,7 @@ public class HennaTreeTable {
         List<L2HennaInstance> henna = _hennaTrees.get(classId);
         if (henna == null) {
             // the hennatree for this class is undefined, so we give an empty list
-            _log.warning("Hennatree for class " + classId + " is not defined !");
+            _log.warn("Hennatree for class " + classId + " is not defined !");
             return new L2HennaInstance[0];
         }
 

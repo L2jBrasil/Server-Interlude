@@ -18,12 +18,6 @@
  */
 package com.l2jbr.gameserver.model.actor.instance;
 
-/**
- * @author NightMarez
- * @version $Revision: 1.3.2.2.2.5 $ $Date: 2005/03/27 15:29:32 $
- *
- */
-
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.datatables.TeleportLocationTable;
 import com.l2jbr.gameserver.model.L2CharPosition;
@@ -33,6 +27,12 @@ import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 import java.util.StringTokenizer;
+
+;
+/**
+ * @author NightMarez
+ * @version $Revision: 1.3.2.2.2.5 $ $Date: 2005/03/27 15:29:32 $
+ */
 
 public final class L2CastleTeleporterInstance extends L2FolkInstance
 {
@@ -153,7 +153,7 @@ public final class L2CastleTeleporterInstance extends L2FolkInstance
 			{
 				if (Config.DEBUG)
 				{
-					_log.fine("Teleporting player " + player.getName() + " to new location: " + list.getLocX() + ":" + list.getLocY() + ":" + list.getLocZ());
+					_log.debug("Teleporting player " + player.getName() + " to new location: " + list.getLocX() + ":" + list.getLocY() + ":" + list.getLocZ());
 				}
 				
 				// teleport
@@ -163,7 +163,7 @@ public final class L2CastleTeleporterInstance extends L2FolkInstance
 		}
 		else
 		{
-			_log.warning("No teleport destination with id:" + val);
+			_log.warn("No teleport destination with id:" + val);
 		}
 		player.sendPacket(new ActionFailed());
 	}

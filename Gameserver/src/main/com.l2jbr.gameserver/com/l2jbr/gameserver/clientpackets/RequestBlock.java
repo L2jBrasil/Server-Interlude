@@ -17,18 +17,20 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
-import java.util.logging.Logger;
-
 import com.l2jbr.gameserver.model.BlockList;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+;
 
 public final class RequestBlock extends L2GameClientPacket
 {
 	private static final String _C__A0_REQUESTBLOCK = "[C] A0 RequestBlock";
-	private static Logger _log = Logger.getLogger(L2PcInstance.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(L2PcInstance.class.getName());
 	
 	private final static int BLOCK = 0;
 	private final static int UNBLOCK = 1;

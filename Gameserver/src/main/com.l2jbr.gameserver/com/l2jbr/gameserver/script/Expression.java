@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.script;
 
 import org.apache.bsf.BSFManager;
 
+;
+
 public class Expression
 {
 	private final BSFManager _context;

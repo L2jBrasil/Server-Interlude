@@ -31,6 +31,8 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
+;
+
 public class ChristmasTree implements IItemHandler
 {
 	private static final int[] ITEM_IDS =

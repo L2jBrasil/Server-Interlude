@@ -20,15 +20,19 @@ package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.actor.instance.L2PetInstance;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.logging.Logger;
+
+;
+
 
 public class L2PetDataTable {
-    private static Logger _log = Logger.getLogger(L2PetInstance.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(L2PetInstance.class.getName());
     private static L2PetDataTable _instance;
 
     // private static final int[] PET_LIST = { 12077, 12312, 12313, 12311, 12527, 12528, 12526 };
@@ -97,7 +101,7 @@ public class L2PetDataTable {
             rset.close();
             statement.close();
         } catch (Exception e) {
-            _log.warning("Could not load pets stats: " + e);
+            _log.warn("Could not load pets stats: " + e);
         } finally {
             try {
                 con.close();

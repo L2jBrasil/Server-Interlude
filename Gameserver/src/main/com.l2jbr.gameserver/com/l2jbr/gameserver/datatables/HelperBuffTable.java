@@ -21,12 +21,16 @@ package com.l2jbr.gameserver.datatables;
 import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.templates.L2HelperBuff;
 import com.l2jbr.gameserver.templates.StatsSet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class represents the Newbie Helper Buff list.
@@ -35,7 +39,7 @@ import java.util.logging.Logger;
  */
 public class HelperBuffTable {
 
-    private static Logger _log = Logger.getLogger(HennaTable.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(HennaTable.class.getName());
 
     private static HelperBuffTable _instance;
 
@@ -91,7 +95,7 @@ public class HelperBuffTable {
                 helperbuffdata.close();
                 statement.close();
             } catch (Exception e) {
-                _log.severe("Table helper_buff_list not found : Update your DataPack" + e);
+                _log.error("Table helper_buff_list not found : Update your DataPack" + e);
                 e.printStackTrace();
             }
 
@@ -146,7 +150,7 @@ public class HelperBuffTable {
             _helperBuff.add(template);
         }
 
-        _log.config("Helper Buff Table: Loaded " + _helperBuff.size() + " Templates.");
+        _log.info("Helper Buff Table: Loaded " + _helperBuff.size() + " Templates.");
 
     }
 

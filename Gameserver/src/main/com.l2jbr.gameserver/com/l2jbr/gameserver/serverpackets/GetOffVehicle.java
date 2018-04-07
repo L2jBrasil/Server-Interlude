@@ -21,6 +21,8 @@ package com.l2jbr.gameserver.serverpackets;
 import com.l2jbr.gameserver.model.actor.instance.L2BoatInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
+;
+
 /**
  * @author Maktakien
  */

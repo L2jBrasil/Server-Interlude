@@ -27,9 +27,13 @@ import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * Olympiad Npc's Instance
@@ -38,7 +42,7 @@ import java.util.logging.Logger;
  */
 
 public class L2OlympiadManagerInstance extends L2FolkInstance {
-    private static Logger _logOlymp = Logger.getLogger(L2OlympiadManagerInstance.class.getName());
+    private static Logger _logOlymp = LoggerFactory.getLogger(L2OlympiadManagerInstance.class.getName());
 
     private static final int GATE_PASS = 6651;
 
@@ -125,7 +129,7 @@ public class L2OlympiadManagerInstance extends L2FolkInstance {
                     L2Multisell.getInstance().SeparateAndSend(102, player, false, getCastle().getTaxRate());
                     break;
                 default:
-                    _logOlymp.warning("Olympiad System: Couldnt send packet for request " + val);
+                    _logOlymp.warn("Olympiad System: Couldnt send packet for request " + val);
                     break;
 
             }
@@ -193,7 +197,7 @@ public class L2OlympiadManagerInstance extends L2FolkInstance {
                     player.sendPacket(new ExHeroList());
                     break;
                 default:
-                    _logOlymp.warning("Olympiad System: Couldnt send packet for request " + val);
+                    _logOlymp.warn("Olympiad System: Couldnt send packet for request " + val);
                     break;
             }
         } else {

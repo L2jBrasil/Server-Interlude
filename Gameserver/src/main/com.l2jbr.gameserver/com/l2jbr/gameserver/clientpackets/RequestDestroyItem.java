@@ -31,10 +31,13 @@ import com.l2jbr.gameserver.serverpackets.ItemList;
 import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.util.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -43,7 +46,7 @@ import java.util.logging.Logger;
 public final class RequestDestroyItem extends L2GameClientPacket
 {
 	private static final String _C__59_REQUESTDESTROYITEM = "[C] 59 RequestDestroyItem";
-	private static Logger _log = Logger.getLogger(RequestDestroyItem.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RequestDestroyItem.class.getName());
 	
 	private int _objectId;
 	private int _count;
@@ -149,7 +152,7 @@ public final class RequestDestroyItem extends L2GameClientPacket
 			}
 			catch (Exception e)
 			{
-				_log.log(Level.WARNING, "could not delete pet objectid: ", e);
+				_log.warn( "could not delete pet objectid: ", e);
 			}
 			finally
 			{

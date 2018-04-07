@@ -26,6 +26,8 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
+;
+
 /**
  * This class handles following admin commands: - target name = sets player with respective name as target
  * @version $Revision: 1.2.4.3 $ $Date: 2005/04/11 10:05:56 $

@@ -19,16 +19,19 @@ package com.l2jbr.gameserver.instancemanager;
 
 import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.entity.Auction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+;
+
 
 public class AuctionManager {
-    protected static final Logger _log = Logger.getLogger(AuctionManager.class.getName());
+    protected static final Logger _log = LoggerFactory.getLogger(AuctionManager.class.getName());
     private static AuctionManager _instance;
     private final List<Auction> _auctions;
     private static final String[] ITEM_INIT_DATA = {
@@ -189,7 +192,7 @@ public class AuctionManager {
             }
         }
         if (i >= ItemInitDataId.length) {
-            _log.warning("Clan Hall auction not found for Id :" + id);
+            _log.warn("Clan Hall auction not found for Id :" + id);
             return;
         }
         try {
@@ -200,7 +203,7 @@ public class AuctionManager {
             statement.close();
             _auctions.add(new Auction(id));
         } catch (Exception e) {
-            _log.log(Level.SEVERE, "Exception: Auction.initNPC(): " + e.getMessage(), e);
+            _log.error( "Exception: Auction.initNPC(): " + e.getMessage(), e);
         } finally {
             try {
                 con.close();

@@ -35,6 +35,8 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.templates.StatsSet;
 
+;
+
 public class L2SkillSummon extends L2Skill
 {
 	
@@ -164,7 +166,7 @@ public class L2SkillSummon extends L2Skill
 			{
 				if (Config.DEBUG)
 				{
-					_log.fine("player can't summon any more cubics. ignore summon skill");
+					_log.debug("player can't summon any more cubics. ignore summon skill");
 				}
 				activeChar.sendPacket(new SystemMessage(SystemMessageId.CUBIC_SUMMONING_FAILED));
 				return;
@@ -183,7 +185,7 @@ public class L2SkillSummon extends L2Skill
 		{
 			if (Config.DEBUG)
 			{
-				_log.fine("player has a pet already. ignore summon skill");
+				_log.debug("player has a pet already. ignore summon skill");
 			}
 			return;
 		}
@@ -205,7 +207,7 @@ public class L2SkillSummon extends L2Skill
 		if (summon.getLevel() >= Experience.LEVEL.length)
 		{
 			summon.getStat().setExp(Experience.LEVEL[Experience.LEVEL.length - 1]);
-			_log.warning("Summon (" + summon.getName() + ") NpcID: " + summon.getNpcId() + " has a level above 75. Please rectify.");
+			_log.warn("Summon (" + summon.getName() + ") NpcID: " + summon.getNpcId() + " has a level above 75. Please rectify.");
 		}
 		else
 		{

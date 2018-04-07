@@ -22,6 +22,8 @@ import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
+;
+
 public class L2SiegeSummonInstance extends L2SummonInstance
 {
 	public static final int SIEGE_GOLEM_ID = 14737;

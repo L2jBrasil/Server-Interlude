@@ -25,6 +25,8 @@
  */
 package com.l2jbr.gameserver.util;
 
+;
+
 /**
  * This interface can be implemented by extensions to register simple functions with the DynamicExtension handler It's in the responsibility of the extensions to interpret the get and set functions
  * @version $Revision: $ $Date: $

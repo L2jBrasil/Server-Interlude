@@ -22,11 +22,13 @@ import com.l2jbr.commons.Base64;
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.commons.lib.Log;
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.loginserver.GameServerTable.GameServerInfo;
 import com.l2jbr.loginserver.crypt.ScrambledKeyPair;
 import com.l2jbr.loginserver.gameserverpackets.ServerStatus;
 import com.l2jbr.loginserver.serverpackets.LoginFail.LoginFailReason;
-import com.l2jbr.commons.util.Rnd;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.crypto.Cipher;
 import java.net.InetAddress;
@@ -40,7 +42,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.*;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -48,7 +52,7 @@ import java.util.logging.Logger;
  * @version $Revision: 1.7.4.3 $ $Date: 2005/03/27 15:30:09 $
  */
 public class LoginController {
-    protected static final Logger _log = Logger.getLogger(LoginController.class.getName());
+    protected static final Logger _log = LoggerFactory.getLogger(LoginController.class.getName());
 
     private static LoginController _instance;
 
@@ -350,7 +354,7 @@ public class LoginController {
                     statement.setString(2, client.getAccount());
                     statement.executeUpdate();
                 } catch (Exception e) {
-                    _log.warning("Could not set lastServer: " + e);
+                    _log.warn("Could not set lastServer: " + e);
                 }
             }
             return loginOk;
@@ -365,7 +369,7 @@ public class LoginController {
             statement.setString(2, account);
             statement.executeUpdate();
         } catch (Exception e) {
-            _log.warning("Could not set accessLevel: " + e);
+            _log.warn("Could not set accessLevel: " + e);
         }
     }
 
@@ -383,7 +387,7 @@ public class LoginController {
                 }
             }
         } catch (Exception e) {
-            _log.warning("could not check gm state:" + e);
+            _log.warn("could not check gm state:" + e);
             ok = false;
         }
         return ok;
@@ -439,7 +443,7 @@ public class LoginController {
                         lastServer = 1; // minServerId is 1 in Interlude
                     }
                     if (Config.DEBUG) {
-                        _log.fine("account exists");
+                        _log.debug("account exists");
                     }
                 }
             }
@@ -461,10 +465,10 @@ public class LoginController {
                         return true;
 
                     }
-                    _log.warning("Invalid username creation/use attempt: " + user);
+                    _log.warn("Invalid username creation/use attempt: " + user);
                     return false;
                 }
-                _log.warning("account missing for user " + user);
+                _log.warn("account missing for user " + user);
                 return false;
             }
 
@@ -494,7 +498,7 @@ public class LoginController {
                 }
             }
         } catch (Exception e) {
-            _log.warning("Could not check password:" + e);
+            _log.warn("Could not check password:" + e);
             ok = false;
         }
 
@@ -539,7 +543,7 @@ public class LoginController {
         } catch (Exception e) {
             // digest algo not found ??
             // out of bounds should not be possible
-            _log.warning("could not check ban state:" + e);
+            _log.warn("could not check ban state:" + e);
             ok = false;
         }
         return ok;

@@ -30,6 +30,8 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import java.util.LinkedList;
 import java.util.List;
 
+;
+
 /**
  * A castle zone
  *

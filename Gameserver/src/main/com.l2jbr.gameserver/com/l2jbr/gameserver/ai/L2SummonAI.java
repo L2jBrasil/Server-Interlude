@@ -18,14 +18,12 @@
  */
 package com.l2jbr.gameserver.ai;
 
-import static com.l2jbr.gameserver.ai.CtrlIntention.AI_INTENTION_ATTACK;
-import static com.l2jbr.gameserver.ai.CtrlIntention.AI_INTENTION_CAST;
-import static com.l2jbr.gameserver.ai.CtrlIntention.AI_INTENTION_FOLLOW;
-import static com.l2jbr.gameserver.ai.CtrlIntention.AI_INTENTION_IDLE;
-import static com.l2jbr.gameserver.ai.CtrlIntention.AI_INTENTION_INTERACT;
-import static com.l2jbr.gameserver.ai.CtrlIntention.AI_INTENTION_PICK_UP;
 import com.l2jbr.gameserver.model.L2Character.AIAccessor;
 import com.l2jbr.gameserver.model.L2Summon;
+
+import static com.l2jbr.gameserver.ai.CtrlIntention.*;
+
+;
 
 public class L2SummonAI extends L2CharacterAI
 {

@@ -25,11 +25,15 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -37,7 +41,7 @@ import java.util.logging.Logger;
  * @version $Revision: 1.4.2.1.2.5 $ $Date: 2005/03/27 15:29:33 $
  */
 public class L2TradeList {
-    private static Logger _log = Logger.getLogger(L2TradeList.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(L2TradeList.class.getName());
 
     private final List<L2ItemInstance> _items;
     private final int _listId;
@@ -268,7 +272,7 @@ public class L2TradeList {
             recieverItem = recieverInv.addItem("!L2TradeList!", newitem, null, null);
 
             if (playerItem == null) {
-                _log.warning("L2TradeList: PlayersInv.destroyItem returned NULL!");
+                _log.warn("L2TradeList: PlayersInv.destroyItem returned NULL!");
                 continue;
             }
 
@@ -313,7 +317,7 @@ public class L2TradeList {
             statement.executeUpdate();
             statement.close();
         } catch (Exception e) {
-            _log.warning("could not change pet item object id: " + e);
+            _log.warn("could not change pet item object id: " + e);
         } finally {
             try {
                 con.close();
@@ -414,7 +418,7 @@ public class L2TradeList {
                     amount = buyerItem.getCount();
                 }
                 if (buyerItem.getCount() > (Integer.MAX_VALUE / buyerItem.getOwnersPrice())) {
-                    _log.warning("Integer Overflow on Cost. Possible Exploit attempt between " + buyer.getName() + " and " + seller.getName() + ".");
+                    _log.warn("Integer Overflow on Cost. Possible Exploit attempt between " + buyer.getName() + " and " + seller.getName() + ".");
                     return;
                 }
                 // int cost = amount * buyerItem.getOwnersPrice();

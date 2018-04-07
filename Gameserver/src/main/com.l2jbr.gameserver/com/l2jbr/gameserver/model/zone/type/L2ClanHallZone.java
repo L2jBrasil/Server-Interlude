@@ -26,6 +26,8 @@ import com.l2jbr.gameserver.model.entity.ClanHall;
 import com.l2jbr.gameserver.model.zone.L2ZoneType;
 import com.l2jbr.gameserver.serverpackets.ClanHallDecoration;
 
+;
+
 /**
  * A clan hall zone
  * @author durgus

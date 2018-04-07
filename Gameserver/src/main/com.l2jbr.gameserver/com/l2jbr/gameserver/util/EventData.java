@@ -16,6 +16,8 @@ package com.l2jbr.gameserver.util;
 
 import java.util.LinkedList;
 
+;
+
 public class EventData
 {
 	public int eventX;

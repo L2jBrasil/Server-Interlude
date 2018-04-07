@@ -22,8 +22,12 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.LoginServerThread;
 import com.l2jbr.gameserver.LoginServerThread.SessionKey;
 import com.l2jbr.gameserver.network.L2GameClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 /**
  * This class ...
@@ -32,7 +36,7 @@ import java.util.logging.Logger;
 public final class AuthLogin extends L2GameClientPacket
 {
 	private static final String _C__08_AUTHLOGIN = "[C] 08 AuthLogin";
-	private static Logger _log = Logger.getLogger(AuthLogin.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(AuthLogin.class.getName());
 	
 	// loginName + keys must match what the loginserver used.
 	private String _loginName;

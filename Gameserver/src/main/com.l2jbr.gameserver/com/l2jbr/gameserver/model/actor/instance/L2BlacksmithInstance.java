@@ -21,6 +21,8 @@ package com.l2jbr.gameserver.model.actor.instance;
 import com.l2jbr.gameserver.model.L2Multisell;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
+;
+
 /**
  * @author zabbix Lets drink to code!
  */

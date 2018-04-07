@@ -29,6 +29,8 @@ import com.l2jbr.gameserver.serverpackets.NpcInfo;
 import com.l2jbr.gameserver.serverpackets.PetInfo;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.3.4.4 $ $Date: 2005/04/06 16:13:48 $
@@ -36,7 +38,7 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 public final class RequestChangePetName extends L2GameClientPacket
 {
 	private static final String REQUESTCHANGEPETNAME__C__89 = "[C] 89 RequestChangePetName";
-	// private static Logger _log = Logger.getLogger(RequestChangePetName.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(RequestChangePetName.class.getName());
 	
 	private String _name;
 	

@@ -21,12 +21,16 @@ package com.l2jbr.gameserver.datatables;
 import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.templates.L2Henna;
 import com.l2jbr.gameserver.templates.StatsSet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -34,7 +38,7 @@ import java.util.logging.Logger;
  * @version $Revision$ $Date$
  */
 public class HennaTable {
-    private static Logger _log = Logger.getLogger(HennaTable.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(HennaTable.class.getName());
 
     private static HennaTable _instance;
 
@@ -69,7 +73,7 @@ public class HennaTable {
                 hennadata.close();
                 statement.close();
             } catch (Exception e) {
-                _log.severe("error while creating henna table " + e);
+                _log.error("error while creating henna table " + e);
                 e.printStackTrace();
             }
 
@@ -102,7 +106,7 @@ public class HennaTable {
             L2Henna template = new L2Henna(hennaDat);
             _henna.put(id, template);
         }
-        _log.config("HennaTable: Loaded " + _henna.size() + " Templates.");
+        _log.info("HennaTable: Loaded " + _henna.size() + " Templates.");
     }
 
     public boolean isInitialized() {

@@ -21,6 +21,8 @@ import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.zone.L2ZoneType;
 
+;
+
 /**
  * A no landing zone
  * @author durgus

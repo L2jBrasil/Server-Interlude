@@ -23,6 +23,8 @@ import com.l2jbr.gameserver.model.L2HennaInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.HennaEquipList;
 
+;
+
 /**
  * RequestHennaList - 0xba
  * @author Tempy

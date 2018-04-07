@@ -34,8 +34,12 @@ import com.l2jbr.gameserver.serverpackets.CharSelectInfo;
 import com.l2jbr.gameserver.serverpackets.RestartResponse;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.taskmanager.AttackStanceTaskManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 /**
  * This class ...
@@ -44,7 +48,7 @@ import java.util.logging.Logger;
 public final class RequestRestart extends L2GameClientPacket
 {
 	private static final String _C__46_REQUESTRESTART = "[C] 46 RequestRestart";
-	private static Logger _log = Logger.getLogger(RequestRestart.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RequestRestart.class.getName());
 	
 	@Override
 	protected void readImpl()
@@ -58,7 +62,7 @@ public final class RequestRestart extends L2GameClientPacket
 		L2PcInstance player = getClient().getActiveChar();
 		if (player == null)
 		{
-			_log.warning("[RequestRestart] activeChar null!?");
+			_log.warn("[RequestRestart] activeChar null!?");
 			return;
 		}
 		
@@ -86,7 +90,7 @@ public final class RequestRestart extends L2GameClientPacket
 		{
 			if (Config.DEBUG)
 			{
-				_log.fine("Player " + player.getName() + " tried to logout while fighting.");
+				_log.debug("Player " + player.getName() + " tried to logout while fighting.");
 			}
 			
 			player.sendPacket(new SystemMessage(SystemMessageId.CANT_RESTART_WHILE_FIGHTING));

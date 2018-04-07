@@ -24,6 +24,8 @@ import com.l2jbr.gameserver.model.L2Summon;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.skills.Env;
 
+;
+
 /**
  * @author decad
  */

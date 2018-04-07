@@ -21,8 +21,12 @@ package com.l2jbr.gameserver.clientpackets;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.cache.CrestCache;
 import com.l2jbr.gameserver.serverpackets.PledgeCrest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 /**
  * This class ...
@@ -30,7 +34,7 @@ import java.util.logging.Logger;
  */
 public final class RequestPledgeCrest extends L2GameClientPacket
 {
-	private static Logger _log = Logger.getLogger(RequestPledgeCrest.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RequestPledgeCrest.class.getName());
 	private static final String _C__68_REQUESTPLEDGECREST = "[C] 68 RequestPledgeCrest";
 	
 	private int _crestId;
@@ -50,7 +54,7 @@ public final class RequestPledgeCrest extends L2GameClientPacket
 		}
 		if (Config.DEBUG)
 		{
-			_log.fine("crestid " + _crestId + " requested");
+			_log.debug("crestid " + _crestId + " requested");
 		}
 		
 		byte[] data = CrestCache.getInstance().getPledgeCrest(_crestId);
@@ -64,7 +68,7 @@ public final class RequestPledgeCrest extends L2GameClientPacket
 		{
 			if (Config.DEBUG)
 			{
-				_log.fine("crest is missing:" + _crestId);
+				_log.debug("crest is missing:" + _crestId);
 			}
 		}
 	}

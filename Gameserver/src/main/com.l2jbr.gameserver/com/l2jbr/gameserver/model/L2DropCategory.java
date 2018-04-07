@@ -23,6 +23,8 @@ import com.l2jbr.commons.util.Rnd;
 import java.util.LinkedList;
 import java.util.List;
 
+;
+
 /**
  * @author Fulminus
  */

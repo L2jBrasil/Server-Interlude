@@ -21,6 +21,8 @@ package com.l2jbr.gameserver.serverpackets;
 import java.util.LinkedList;
 import java.util.List;
 
+;
+
 /**
  * MagicEffectIcons format h (dhd)
  *

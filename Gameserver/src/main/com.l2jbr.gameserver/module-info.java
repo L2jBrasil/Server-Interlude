@@ -4,8 +4,9 @@ module com.l2jbr.gameserver {
 
     requires java.sql;
     requires java.desktop;
-    requires commons.logging;
     requires bsf;
+    requires org.slf4j;
 
     exports com.l2jbr.gameserver;
+
 }

@@ -23,15 +23,19 @@ import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.actor.instance.L2BoatInstance;
 import com.l2jbr.gameserver.templates.L2CharTemplate;
 import com.l2jbr.gameserver.templates.StatsSet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
+
+;
+
 
 public class BoatManager {
-    private static final Logger _log = Logger.getLogger(BoatManager.class.getName());
+    private static final Logger _log = LoggerFactory.getLogger(BoatManager.class.getName());
 
     // =========================================================
     private static BoatManager _instance;
@@ -80,9 +84,9 @@ public class BoatManager {
                 }
             }
         } catch (FileNotFoundException e) {
-            _log.warning("boat.csv is missing in data folder");
+            _log.warn("boat.csv is missing in data folder");
         } catch (Exception e) {
-            _log.warning("error while creating boat table " + e);
+            _log.warn("error while creating boat table " + e);
             e.printStackTrace();
         } finally {
             try {

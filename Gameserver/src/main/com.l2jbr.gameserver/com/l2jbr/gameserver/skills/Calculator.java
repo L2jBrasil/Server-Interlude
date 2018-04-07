@@ -23,6 +23,8 @@ import com.l2jbr.gameserver.skills.funcs.Func;
 import java.util.LinkedList;
 import java.util.List;
 
+;
+
 /**
  * A calculator is created to manage and dynamically calculate the effect of a character property (ex : MAX_HP, REGENERATE_HP_RATE...). In fact, each calculator is a table of Func object in which each Func represents a mathematic function : <BR>
  * <BR>

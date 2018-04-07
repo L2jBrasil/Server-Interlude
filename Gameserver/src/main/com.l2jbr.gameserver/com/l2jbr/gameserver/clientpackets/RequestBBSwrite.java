@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.clientpackets;
 
 import com.l2jbr.gameserver.communitybbs.CommunityBoard;
 
+;
+
 /**
  * Format SSSSSS
  * @author -Wooden-

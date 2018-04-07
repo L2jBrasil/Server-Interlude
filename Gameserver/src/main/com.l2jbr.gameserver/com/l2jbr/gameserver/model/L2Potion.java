@@ -20,9 +20,13 @@ package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.ThreadPoolManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.Future;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -30,7 +34,7 @@ import java.util.logging.Logger;
  */
 public class L2Potion extends L2Object
 {
-	protected static final Logger _log = Logger.getLogger(L2Character.class.getName());
+	protected static final Logger _log = LoggerFactory.getLogger(L2Character.class.getName());
 	
 	private Future<?> _potionhpRegTask;
 	private Future<?> _potionmpRegTask;
@@ -73,7 +77,7 @@ public class L2Potion extends L2Object
 			}
 			catch (Exception e)
 			{
-				_log.warning("Error in hp potion task:" + e);
+				_log.warn("Error in hp potion task:" + e);
 			}
 		}
 	}
@@ -92,7 +96,7 @@ public class L2Potion extends L2Object
 		_potionhpRegTask = null;
 		if (Config.DEBUG)
 		{
-			_log.fine("Potion HP regen stop");
+			_log.debug("Potion HP regen stop");
 		}
 	}
 	
@@ -169,7 +173,7 @@ public class L2Potion extends L2Object
 			}
 			catch (Exception e)
 			{
-				_log.warning("error in mp potion task:" + e);
+				_log.warn("error in mp potion task:" + e);
 			}
 		}
 	}
@@ -179,7 +183,7 @@ public class L2Potion extends L2Object
 		_potionmpRegTask = ThreadPoolManager.getInstance().scheduleEffectAtFixedRate(new PotionMpHealing(activeChar), 1000, _milliseconds);
 		if (Config.DEBUG)
 		{
-			_log.fine("Potion MP regen Started");
+			_log.debug("Potion MP regen Started");
 		}
 	}
 	
@@ -193,7 +197,7 @@ public class L2Potion extends L2Object
 		_potionmpRegTask = null;
 		if (Config.DEBUG)
 		{
-			_log.fine("Potion MP regen stop");
+			_log.debug("Potion MP regen stop");
 		}
 	}
 	

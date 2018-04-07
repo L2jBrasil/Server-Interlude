@@ -17,8 +17,7 @@
  */
 package com.l2jbr.gameserver.model.actor.instance;
 
-import java.util.concurrent.ScheduledFuture;
-
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.SevenSigns;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.ai.CtrlIntention;
@@ -27,14 +26,12 @@ import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.network.SystemMessageId;
-import com.l2jbr.gameserver.serverpackets.ActionFailed;
-import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
-import com.l2jbr.gameserver.serverpackets.MyTargetSelected;
-import com.l2jbr.gameserver.serverpackets.SocialAction;
-import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.serverpackets.ValidateLocation;
+import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
-import com.l2jbr.commons.util.Rnd;
+
+import java.util.concurrent.ScheduledFuture;
+
+;
 
 /**
  * @author Layane

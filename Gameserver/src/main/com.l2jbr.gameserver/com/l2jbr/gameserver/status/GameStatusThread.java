@@ -52,9 +52,11 @@ import java.util.NoSuchElementException;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
+;
+
 public class GameStatusThread extends Thread
 {
-	// private static final Logger _log = Logger.getLogger(AdminTeleport.class.getName());
+	// private static final Logger _log = LoggerFactory.getLogger(AdminTeleport.class.getName());
 	
 	private final Socket _cSocket;
 	
@@ -440,7 +442,7 @@ public class GameStatusThread extends Thread
 					}
 				}
 				/*
-				 * else if (_usrCommand.startsWith("unblock")) { try { _usrCommand = _usrCommand.substring(8); if (LoginServer.getInstance().unblockIp(_usrCommand)) { _log.warning("IP removed via TELNET by host: " + _csocket.getInetAddress().getHostAddress()); _print.println("The IP " + _usrCommand
+				 * else if (_usrCommand.startsWith("unblock")) { try { _usrCommand = _usrCommand.substring(8); if (LoginServer.getInstance().unblockIp(_usrCommand)) { _log.warn("IP removed via TELNET by host: " + _csocket.getInetAddress().getHostAddress()); _print.println("The IP " + _usrCommand
 				 * + " has been removed from the hack protection list!"); } else { _print.println("IP not found in hack protection list..."); } //TODO: with packet } catch (StringIndexOutOfBoundsException e) { _print.println("Please Enter the IP to Unblock!"); } }
 				 */
 				else if (_usrCommand.startsWith("kick"))

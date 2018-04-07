@@ -19,6 +19,7 @@
 package com.l2jbr.gameserver.model.quest;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.GameTimeController;
 import com.l2jbr.gameserver.instancemanager.QuestManager;
 import com.l2jbr.gameserver.model.L2Character;
@@ -29,18 +30,21 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.skills.Stats;
-import com.l2jbr.commons.util.Rnd;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * @author Luis Arias
  */
 public final class QuestState {
-    protected static final Logger _log = Logger.getLogger(Quest.class.getName());
+    protected static final Logger _log = LoggerFactory.getLogger(Quest.class.getName());
 
     /**
      * Quest associated to the QuestState
@@ -246,7 +250,7 @@ public final class QuestState {
                 }
                 setCond(Integer.parseInt(val), previousVal);
             } catch (Exception e) {
-                _log.finer(getPlayer().getName() + ", " + getQuestName() + " cond [" + val + "] is not an integer.  Value stored, but no packet was sent: " + e);
+                _log.debug(getPlayer().getName() + ", " + getQuestName() + " cond [" + val + "] is not an integer.  Value stored, but no packet was sent: " + e);
             }
         }
 
@@ -386,7 +390,7 @@ public final class QuestState {
         try {
             varint = Integer.parseInt(_vars.get(var));
         } catch (Exception e) {
-            _log.finer(getPlayer().getName() + ": variable " + var + " isn't an integer: " + varint + e);
+            _log.debug(getPlayer().getName() + ": variable " + var + " isn't an integer: " + varint + e);
             // if (Config.AUTODELETE_INVALID_QUEST_DATA)
             // exitQuest(true);
         }

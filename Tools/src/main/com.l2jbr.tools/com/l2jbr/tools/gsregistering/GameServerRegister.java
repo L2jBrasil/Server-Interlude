@@ -32,6 +32,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Map;
 
+;
+
 public class GameServerRegister
 {
 	private static String _choice;

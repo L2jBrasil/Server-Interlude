@@ -19,6 +19,7 @@ package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.L2DatabaseFactory;
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.instancemanager.CursedWeaponsManager;
@@ -27,17 +28,20 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.util.Point3D;
-import com.l2jbr.commons.util.Rnd;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.concurrent.ScheduledFuture;
-import java.util.logging.Logger;
+
+;
+
 
 public class CursedWeapon
 {
-	private static final Logger _log = Logger.getLogger(CursedWeaponsManager.class.getName());
+	private static final Logger _log = LoggerFactory.getLogger(CursedWeaponsManager.class.getName());
 	
 	private final String _name;
 	private final int _itemId;
@@ -133,12 +137,12 @@ public class CursedWeapon
 					statement.setInt(2, _itemId);
 					if (statement.executeUpdate() != 1)
 					{
-						_log.warning("Error while deleting itemId " + _itemId + " from userId " + _playerId);
+						_log.warn("Error while deleting itemId " + _itemId + " from userId " + _playerId);
 					}
 					statement.close();
 					/*
 					 * Yesod: Skill is not stored into database any more. // Delete the skill statement = con.prepareStatement("DELETE FROM character_skills WHERE char_obj_id=? AND skill_id=?"); statement.setInt(1, _playerId); statement.setInt(2, _skillId); if (statement.executeUpdate() != 1) {
-					 * _log.warning("Error while deleting skillId "+ _skillId +" from userId "+_playerId); }
+					 * _log.warn("Error while deleting skillId "+ _skillId +" from userId "+_playerId); }
 					 */
 					// Restore the karma
 					statement = con.prepareStatement("UPDATE characters SET karma=?, pkkills=? WHERE obj_id=?");
@@ -147,14 +151,14 @@ public class CursedWeapon
 					statement.setInt(3, _playerId);
 					if (statement.executeUpdate() != 1)
 					{
-						_log.warning("Error while updating karma & pkkills for userId " + _playerId);
+						_log.warn("Error while updating karma & pkkills for userId " + _playerId);
 					}
 					
 					statement.close();
 				}
 				catch (Exception e)
 				{
-					_log.warning("Could not delete : " + e);
+					_log.warn("Could not delete : " + e);
 				}
 				finally
 				{
@@ -484,7 +488,7 @@ public class CursedWeapon
 		}
 		catch (SQLException e)
 		{
-			_log.severe("CursedWeapon: Failed to save data: " + e);
+			_log.error("CursedWeapon: Failed to save data: " + e);
 		}
 	}
 	

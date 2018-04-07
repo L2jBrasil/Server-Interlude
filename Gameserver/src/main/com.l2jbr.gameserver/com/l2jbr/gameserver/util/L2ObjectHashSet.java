@@ -24,6 +24,8 @@ import com.l2jbr.gameserver.model.L2Object;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+;
+
 /**
  * This class is a highly optimized hashtable, where keys are integers. The main goal of this class is to allow concurent read/iterate and write access to this table, plus minimal used memory. This class uses plain array as the table of values, and keys are used to get position in the table. If the
  * position is already busy, we iterate to the next position, unil we find the needed element or null. To iterate over the table (read access) we may simply iterate throgh table array. In case we remove an element from the table, we check - if the next position is null, we reset table's slot to

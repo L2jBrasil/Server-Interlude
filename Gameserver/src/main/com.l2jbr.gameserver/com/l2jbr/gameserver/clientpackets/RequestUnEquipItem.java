@@ -25,8 +25,12 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.L2Item;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 /**
  * This class ...
@@ -35,7 +39,7 @@ import java.util.logging.Logger;
 public class RequestUnEquipItem extends L2GameClientPacket
 {
 	private static final String _C__11_REQUESTUNEQUIPITEM = "[C] 11 RequestUnequipItem";
-	private static Logger _log = Logger.getLogger(RequestUnEquipItem.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RequestUnEquipItem.class.getName());
 	
 	// cd
 	private int _slot;
@@ -54,7 +58,7 @@ public class RequestUnEquipItem extends L2GameClientPacket
 	{
 		if (Config.DEBUG)
 		{
-			_log.fine("request unequip slot " + _slot);
+			_log.debug("request unequip slot " + _slot);
 		}
 		
 		L2PcInstance activeChar = getClient().getActiveChar();

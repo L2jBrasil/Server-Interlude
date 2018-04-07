@@ -21,13 +21,15 @@ package com.l2jbr.gameserver.handler;
 import java.util.Map;
 import java.util.TreeMap;
 
+;
+
 /**
  * This class manages handlers of items
  * @version $Revision: 1.1.4.3 $ $Date: 2005/03/27 15:30:09 $
  */
 public class ItemHandler
 {
-	// private static Logger _log = Logger.getLogger(ItemHandler.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(ItemHandler.class.getName());
 	
 	private static ItemHandler _instance;
 	

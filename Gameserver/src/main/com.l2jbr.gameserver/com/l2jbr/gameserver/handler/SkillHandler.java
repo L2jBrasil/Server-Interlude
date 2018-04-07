@@ -18,11 +18,13 @@
  */
 package com.l2jbr.gameserver.handler;
 
+import com.l2jbr.gameserver.model.L2Skill;
+import com.l2jbr.gameserver.model.L2Skill.SkillType;
+
 import java.util.Map;
 import java.util.TreeMap;
 
-import com.l2jbr.gameserver.model.L2Skill;
-import com.l2jbr.gameserver.model.L2Skill.SkillType;
+;
 
 /**
  * This class ...
@@ -30,7 +32,7 @@ import com.l2jbr.gameserver.model.L2Skill.SkillType;
  */
 public class SkillHandler
 {
-	// private static Logger _log = Logger.getLogger(SkillHandler.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(SkillHandler.class.getName());
 	
 	private static SkillHandler _instance;
 	

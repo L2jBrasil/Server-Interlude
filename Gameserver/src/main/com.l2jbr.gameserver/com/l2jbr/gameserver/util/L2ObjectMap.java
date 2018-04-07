@@ -19,6 +19,8 @@ import com.l2jbr.gameserver.model.L2Object;
 
 import java.util.Iterator;
 
+;
+
 /**
  * @version $Revision: 1.2 $ $Date: 2004/06/27 08:12:59 $
  * @param <T>

@@ -39,6 +39,8 @@ import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.StatsSet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.sql.Connection;
@@ -47,10 +49,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.ScheduledFuture;
-import java.util.logging.Logger;
+
+;
+
 
 public class Olympiad {
-    protected static final Logger _log = Logger.getLogger(Olympiad.class.getName());
+    protected static final Logger _log = LoggerFactory.getLogger(Olympiad.class.getName());
 
     private static Olympiad _instance;
 
@@ -292,7 +296,7 @@ public class Olympiad {
                 }
                 break;
             default:
-                _log.warning("Olympiad System: Omg something went wrong in loading!! Period = " + _period);
+                _log.warn("Olympiad System: Omg something went wrong in loading!! Period = " + _period);
                 return;
         }
 
@@ -410,7 +414,7 @@ public class Olympiad {
             try {
                 save();
             } catch (Exception e) {
-                _log.warning("Olympiad System: Failed to save Olympiad configuration: " + e);
+                _log.warn("Olympiad System: Failed to save Olympiad configuration: " + e);
             }
 
             _scheduledValdationTask = ThreadPoolManager.getInstance().scheduleGeneral(() ->
@@ -628,7 +632,7 @@ public class Olympiad {
                 try {
                     save();
                 } catch (Exception e) {
-                    _log.warning("Olympiad System: Failed to save Olympiad configuration: " + e);
+                    _log.warn("Olympiad System: Failed to save Olympiad configuration: " + e);
                 }
 
                 init();
@@ -676,7 +680,7 @@ public class Olympiad {
         try {
             save();
         } catch (Exception e) {
-            _log.warning("Olympiad System: Failed to save Olympiad configuration: " + e);
+            _log.warn("Olympiad System: Failed to save Olympiad configuration: " + e);
         }
 
         _scheduledValdationTask = ThreadPoolManager.getInstance().scheduleGeneral(() ->
@@ -902,7 +906,7 @@ public class Olympiad {
                 }
             }
         } catch (SQLException e) {
-            _log.warning("Olympiad System: Couldnt save nobles info in db");
+            _log.warn("Olympiad System: Couldnt save nobles info in db");
         }
     }
 
@@ -936,7 +940,7 @@ public class Olympiad {
                 rset.close();
             }
         } catch (SQLException e) {
-            _log.warning("Olympiad System: Couldnt heros from db");
+            _log.warn("Olympiad System: Couldnt heros from db");
         }
     }
 
@@ -952,7 +956,7 @@ public class Olympiad {
             }
             return names;
         } catch (SQLException e) {
-            _log.warning("Olympiad System: Couldnt heros from db");
+            _log.warn("Olympiad System: Couldnt heros from db");
         }
 
         return names;
@@ -1048,7 +1052,7 @@ public class Olympiad {
              PreparedStatement statement = con.prepareStatement(OLYMPIAD_DELETE_ALL)) {
             statement.execute();
         } catch (SQLException e) {
-            _log.warning("Olympiad System: Couldnt delete nobles from db");
+            _log.warn("Olympiad System: Couldnt delete nobles from db");
         }
 
         _nobles.clear();

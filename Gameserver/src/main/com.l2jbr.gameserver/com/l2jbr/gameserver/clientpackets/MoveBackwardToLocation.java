@@ -29,13 +29,15 @@ import com.l2jbr.gameserver.templates.L2WeaponType;
 
 import java.nio.BufferUnderflowException;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.11.2.4.2.4 $ $Date: 2005/03/27 15:29:30 $
  */
 public class MoveBackwardToLocation extends L2GameClientPacket
 {
-	// private static Logger _log = Logger.getLogger(MoveBackwardToLocation.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(MoveBackwardToLocation.class.getName());
 	// cdddddd
 	private int _targetX;
 	private int _targetY;

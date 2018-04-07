@@ -17,6 +17,8 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
+;
+
 /**
  * Format: ch d[Sdd]
  * @author KenM

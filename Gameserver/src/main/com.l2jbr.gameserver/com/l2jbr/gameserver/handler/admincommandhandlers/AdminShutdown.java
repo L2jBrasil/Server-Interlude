@@ -29,13 +29,15 @@ import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+;
+
 /**
  * This class handles following admin commands: - server_shutdown [sec] = shows menu or shuts down server in sec seconds
  * @version $Revision: 1.5.2.1.2.4 $ $Date: 2005/04/11 10:06:06 $
  */
 public class AdminShutdown implements IAdminCommandHandler
 {
-	// private static Logger _log = Logger.getLogger(AdminShutdown.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(AdminShutdown.class.getName());
 	
 	private static final String[] ADMIN_COMMANDS =
 	{

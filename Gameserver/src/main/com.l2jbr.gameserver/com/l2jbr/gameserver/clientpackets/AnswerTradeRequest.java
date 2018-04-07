@@ -26,6 +26,8 @@ import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.SendTradeDone;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.5.4.2 $ $Date: 2005/03/27 15:29:30 $
@@ -33,7 +35,7 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 public final class AnswerTradeRequest extends L2GameClientPacket
 {
 	private static final String _C__40_ANSWERTRADEREQUEST = "[C] 40 AnswerTradeRequest";
-	// private static Logger _log = Logger.getLogger(AnswerTradeRequest.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(AnswerTradeRequest.class.getName());
 	
 	private int _response;
 	

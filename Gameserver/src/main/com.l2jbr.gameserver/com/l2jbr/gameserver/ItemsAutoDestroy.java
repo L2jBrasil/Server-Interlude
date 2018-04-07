@@ -23,13 +23,17 @@ import com.l2jbr.gameserver.instancemanager.ItemsOnGroundManager;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.templates.L2EtcItemType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Logger;
+
+;
+
 
 public class ItemsAutoDestroy {
-    protected static final Logger _log = Logger.getLogger("ItemsAutoDestroy");
+    protected static final Logger _log = LoggerFactory.getLogger("ItemsAutoDestroy");
     private static ItemsAutoDestroy _instance;
     protected List<L2ItemInstance> _items = null;
     protected static long _sleep;

@@ -25,9 +25,13 @@ import com.l2jbr.gameserver.model.actor.instance.L2PetInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PlayableInstance;
 import com.l2jbr.gameserver.util.L2ObjectMap;
 import com.l2jbr.gameserver.util.Point3D;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -35,7 +39,7 @@ import java.util.logging.Logger;
  * @version $Revision: 1.21.2.5.2.7 $ $Date: 2005/03/27 15:29:32 $
  */
 public final class L2World {
-    private static Logger _log = Logger.getLogger(L2World.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(L2World.class.getName());
 
     /*
      * biteshift, defines number of regions note, shifting by 15 will result in regions corresponding to map tiles shifting by 12 divides one tile to 8x8 regions
@@ -117,7 +121,7 @@ public final class L2World {
     public void storeObject(L2Object object) {
         if (_allObjects.get(object.getObjectId()) != null) {
             if (Config.DEBUG) {
-                _log.warning("[L2World] objectId " + object.getObjectId() + " already exist in OID map!");
+                _log.warn("[L2World] objectId " + object.getObjectId() + " already exist in OID map!");
             }
             return;
         }
@@ -343,7 +347,7 @@ public final class L2World {
             if (!player.isTeleporting()) {
                 L2PcInstance tmp = _allPlayers.get(player.getName().toLowerCase());
                 if (tmp != null) {
-                    _log.warning("Duplicate character!? Closing both characters (" + player.getName() + ")");
+                    _log.warn("Duplicate character!? Closing both characters (" + player.getName() + ")");
                     player.closeNetConnection();
                     tmp.closeNetConnection();
                     return;
@@ -356,7 +360,7 @@ public final class L2World {
         // in a circular area of 2000 units
         List<L2Object> visibles = getVisibleObjects(object, 2000);
         if (Config.DEBUG) {
-            _log.finest("objects in range:" + visibles.size());
+            _log.debug("objects in range:" + visibles.size());
         }
 
         // tell the player about the surroundings
@@ -751,7 +755,7 @@ public final class L2World {
      * <li>Constructor of L2World</li><BR>
      */
     private void initRegions() {
-        _log.config("L2World: Setting up World Regions");
+        _log.info("L2World: Setting up World Regions");
 
         _worldRegions = new L2WorldRegion[REGIONS_X + 1][REGIONS_Y + 1];
 
@@ -773,7 +777,7 @@ public final class L2World {
             }
         }
 
-        _log.config("L2World: (" + REGIONS_X + " by " + REGIONS_Y + ") World Region Grid set up.");
+        _log.info("L2World: (" + REGIONS_X + " by " + REGIONS_Y + ") World Region Grid set up.");
 
     }
 

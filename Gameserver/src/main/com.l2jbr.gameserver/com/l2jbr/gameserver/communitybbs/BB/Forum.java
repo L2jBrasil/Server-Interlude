@@ -21,6 +21,8 @@ package com.l2jbr.gameserver.communitybbs.BB;
 import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.communitybbs.Manager.ForumsBBSManager;
 import com.l2jbr.gameserver.communitybbs.Manager.TopicBBSManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,7 +30,9 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
+
+;
+
 
 public class Forum {
     // type
@@ -43,7 +47,7 @@ public class Forum {
     public static final int CLANMEMBERONLY = 2;
     public static final int OWNERONLY = 3;
 
-    private static Logger _log = Logger.getLogger(Forum.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(Forum.class.getName());
     private final List<Forum> _children;
     private final Map<Integer, Topic> _topic;
     private final int _forumId;
@@ -118,7 +122,7 @@ public class Forum {
             result.close();
             statement.close();
         } catch (Exception e) {
-            _log.warning("data error on Forum " + _forumId + " : " + e);
+            _log.warn("data error on Forum " + _forumId + " : " + e);
             e.printStackTrace();
         } finally {
             try {
@@ -142,7 +146,7 @@ public class Forum {
             result.close();
             statement.close();
         } catch (Exception e) {
-            _log.warning("data error on Forum " + _forumId + " : " + e);
+            _log.warn("data error on Forum " + _forumId + " : " + e);
             e.printStackTrace();
         } finally {
             try {
@@ -170,7 +174,7 @@ public class Forum {
             result.close();
             statement.close();
         } catch (Exception e) {
-            _log.warning("data error on Forum (children): " + e);
+            _log.warn("data error on Forum (children): " + e);
             e.printStackTrace();
         } finally {
             try {
@@ -278,7 +282,7 @@ public class Forum {
             statement.close();
 
         } catch (Exception e) {
-            _log.warning("error while saving new Forum to db " + e);
+            _log.warn("error while saving new Forum to db " + e);
         } finally {
             try {
                 con.close();

@@ -21,13 +21,17 @@ import com.l2jbr.gameserver.model.L2Effect;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.entity.Duel;
 import com.l2jbr.gameserver.serverpackets.L2GameServerPacket;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Logger;
+
+;
+
 
 public class DuelManager {
-    private static final Logger _log = Logger.getLogger(DuelManager.class.getName());
+    private static final Logger _log = LoggerFactory.getLogger(DuelManager.class.getName());
 
     // =========================================================
     private static DuelManager _instance;

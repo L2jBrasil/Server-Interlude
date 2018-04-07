@@ -36,11 +36,13 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
 import java.util.StringTokenizer;
 
+;
+
 /**
  * This class handles all siege commands: Todo: change the class name, and neaten it up
  */
 public class AdminSiege implements IAdminCommandHandler {
-    // private static Logger _log = Logger.getLogger(AdminSiege.class.getName());
+    // private static Logger _log = LoggerFactory.getLogger(AdminSiege.class.getName());
 
     private static final String[] ADMIN_COMMANDS =
             {

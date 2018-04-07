@@ -26,6 +26,8 @@ import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 import java.util.Map;
 
+;
+
 /**
  * This class manages some npcs can walk in the city. <br>
  * It inherits all methods from L2NpcInstance. <br>

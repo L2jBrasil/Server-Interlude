@@ -17,8 +17,9 @@
  */
 package com.l2jbr.gameserver.model;
 
-
 import java.util.List;
+
+;
 
 /**
  * @author -Nemesiss-

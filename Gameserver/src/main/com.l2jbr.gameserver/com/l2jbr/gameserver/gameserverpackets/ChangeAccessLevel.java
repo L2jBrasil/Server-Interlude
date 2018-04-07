@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.gameserverpackets;
 
+;
+
 /**
  * @author -Wooden-
  */

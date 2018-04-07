@@ -26,9 +26,13 @@ import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.*;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Map;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -37,7 +41,7 @@ import java.util.logging.Logger;
 public final class RequestActionUse extends L2GameClientPacket
 {
 	private static final String _C__45_REQUESTACTIONUSE = "[C] 45 RequestActionUse";
-	private static Logger _log = Logger.getLogger(RequestActionUse.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RequestActionUse.class.getName());
 	
 	private int _actionId;
 	private boolean _ctrlPressed;
@@ -63,7 +67,7 @@ public final class RequestActionUse extends L2GameClientPacket
 		
 		if (Config.DEBUG)
 		{
-			_log.finest(activeChar.getName() + " request Action use: id " + _actionId + " 2:" + _ctrlPressed + " 3:" + _shiftPressed);
+			_log.debug(activeChar.getName() + " request Action use: id " + _actionId + " 2:" + _ctrlPressed + " 3:" + _shiftPressed);
 		}
 		
 		// dont do anything if player is dead
@@ -116,7 +120,7 @@ public final class RequestActionUse extends L2GameClientPacket
 				
 				if (Config.DEBUG)
 				{
-					_log.fine("new wait type: " + (activeChar.isSitting() ? "SITTING" : "STANDING"));
+					_log.debug("new wait type: " + (activeChar.isSitting() ? "SITTING" : "STANDING"));
 				}
 				
 				break;
@@ -132,7 +136,7 @@ public final class RequestActionUse extends L2GameClientPacket
 				
 				if (Config.DEBUG)
 				{
-					_log.fine("new move type: " + (activeChar.isRunning() ? "RUNNING" : "WALKIN"));
+					_log.debug("new move type: " + (activeChar.isRunning() ? "RUNNING" : "WALKIN"));
 				}
 				break;
 			case 15:
@@ -497,7 +501,7 @@ public final class RequestActionUse extends L2GameClientPacket
 				}
 				break;
 			default:
-				_log.warning(activeChar.getName() + ": unhandled action type " + _actionId);
+				_log.warn(activeChar.getName() + ": unhandled action type " + _actionId);
 		}
 	}
 	
@@ -541,7 +545,7 @@ public final class RequestActionUse extends L2GameClientPacket
 			{
 				if (Config.DEBUG)
 				{
-					_log.warning("Skill " + skillId + " missing from npcskills.sql for a summon id " + activeSummon.getNpcId());
+					_log.warn("Skill " + skillId + " missing from npcskills.sql for a summon id " + activeSummon.getNpcId());
 				}
 				return;
 			}

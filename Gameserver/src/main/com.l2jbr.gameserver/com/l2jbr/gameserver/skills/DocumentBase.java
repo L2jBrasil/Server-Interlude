@@ -28,6 +28,8 @@ import com.l2jbr.gameserver.skills.conditions.ConditionPlayerState.CheckPlayerSt
 import com.l2jbr.gameserver.skills.effects.EffectTemplate;
 import com.l2jbr.gameserver.skills.funcs.*;
 import com.l2jbr.gameserver.templates.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -35,14 +37,15 @@ import org.w3c.dom.Node;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * @author mkizub TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates
  */
 abstract class DocumentBase {
-    static Logger _log = Logger.getLogger(DocumentBase.class.getName());
+    static Logger _log = LoggerFactory.getLogger(DocumentBase.class.getName());
 
     private final File _file;
     protected Map<String, String[]> _tables;
@@ -60,13 +63,13 @@ abstract class DocumentBase {
             factory.setIgnoringComments(true);
             doc = factory.newDocumentBuilder().parse(_file);
         } catch (Exception e) {
-            _log.log(Level.SEVERE, "Error loading file " + _file, e);
+            _log.error( "Error loading file " + _file, e);
             return null;
         }
         try {
             parseDocument(doc);
         } catch (Exception e) {
-            _log.log(Level.SEVERE, "Error in file " + _file, e);
+            _log.error( "Error in file " + _file, e);
             return null;
         }
         return doc;
@@ -280,7 +283,7 @@ abstract class DocumentBase {
             }
         }
         if ((cond.conditions == null) || (cond.conditions.length == 0)) {
-            _log.severe("Empty <and> condition in " + _file);
+            _log.error("Empty <and> condition in " + _file);
         }
         return cond;
     }
@@ -293,7 +296,7 @@ abstract class DocumentBase {
             }
         }
         if ((cond.conditions == null) || (cond.conditions.length == 0)) {
-            _log.severe("Empty <or> condition in " + _file);
+            _log.error("Empty <or> condition in " + _file);
         }
         return cond;
     }
@@ -304,7 +307,7 @@ abstract class DocumentBase {
                 return new ConditionLogicNot(parseCondition(n, template));
             }
         }
-        _log.severe("Empty <not> condition in " + _file);
+        _log.error("Empty <not> condition in " + _file);
         return null;
     }
 
@@ -378,7 +381,7 @@ abstract class DocumentBase {
         }
 
         if (cond == null) {
-            _log.severe("Unrecognized <player> condition in " + _file);
+            _log.error("Unrecognized <player> condition in " + _file);
         }
         return cond;
     }
@@ -432,7 +435,7 @@ abstract class DocumentBase {
             }
         }
         if (cond == null) {
-            _log.severe("Unrecognized <target> condition in " + _file);
+            _log.error("Unrecognized <target> condition in " + _file);
         }
         return cond;
     }
@@ -482,7 +485,7 @@ abstract class DocumentBase {
             }
         }
         if (cond == null) {
-            _log.severe("Unrecognized <using> condition in " + _file);
+            _log.error("Unrecognized <using> condition in " + _file);
         }
         return cond;
     }
@@ -506,7 +509,7 @@ abstract class DocumentBase {
             }
         }
         if (cond == null) {
-            _log.severe("Unrecognized <game> condition in " + _file);
+            _log.error("Unrecognized <game> condition in " + _file);
         }
         return cond;
     }

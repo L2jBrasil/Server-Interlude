@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.gameserverpackets;
 
 import com.l2jbr.gameserver.LoginServerThread.SessionKey;
 
+;
+
 /**
  * @author -Wooden-
  */

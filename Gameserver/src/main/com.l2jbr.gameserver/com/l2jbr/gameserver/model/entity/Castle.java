@@ -37,14 +37,18 @@ import com.l2jbr.gameserver.model.actor.instance.L2DoorInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.zone.type.L2CastleZone;
 import com.l2jbr.gameserver.serverpackets.PledgeShowInfoUpdate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.*;
-import java.util.logging.Logger;
+
+;
+
 
 public class Castle {
-    protected static Logger _log = Logger.getLogger(Castle.class.getName());
+    protected static Logger _log = LoggerFactory.getLogger(Castle.class.getName());
 
     private List<CropProcure> _procure = new LinkedList<>();
     private List<SeedProduction> _production = new LinkedList<>();

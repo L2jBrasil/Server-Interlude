@@ -26,6 +26,8 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.Env;
 
+;
+
 final class EffectSilentMove extends L2Effect
 {
 	public EffectSilentMove(Env env, EffectTemplate template)

@@ -22,13 +22,15 @@ import com.l2jbr.gameserver.ai.CtrlIntention;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
+;
+
 /**
  * This class manages all RaidBoss.
  * @version $Revision: 1.0.0.0 $ $Date: 2006/06/16 $
  */
 public final class L2BossInstance extends L2MonsterInstance
 {
-	// protected static Logger _log = Logger.getLogger(L2BossInstance.class.getName());
+	// protected static Logger _log = LoggerFactory.getLogger(L2BossInstance.class.getName());
 	private boolean _teleportedToNest;
 	
 	private static final int BOSS_MAINTENANCE_INTERVAL = 10000;

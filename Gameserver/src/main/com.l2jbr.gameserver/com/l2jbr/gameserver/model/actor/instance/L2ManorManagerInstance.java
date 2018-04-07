@@ -33,9 +33,11 @@ import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import java.util.List;
 import java.util.StringTokenizer;
 
+;
+
 public class L2ManorManagerInstance extends L2MerchantInstance {
 
-    // private static Logger _log = Logger.getLogger(L2ManorManagerInstance.class.getName());
+    // private static Logger _log = LoggerFactory.getLogger(L2ManorManagerInstance.class.getName());
 
     public L2ManorManagerInstance(int objectId, L2NpcTemplate template) {
         super(objectId, template);

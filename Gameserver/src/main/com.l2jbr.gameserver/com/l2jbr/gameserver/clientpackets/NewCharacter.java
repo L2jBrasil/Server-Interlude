@@ -23,8 +23,12 @@ import com.l2jbr.gameserver.datatables.CharTemplateTable;
 import com.l2jbr.gameserver.model.base.ClassId;
 import com.l2jbr.gameserver.serverpackets.CharTemplates;
 import com.l2jbr.gameserver.templates.L2PcTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 /**
  * This class ...
@@ -33,7 +37,7 @@ import java.util.logging.Logger;
 public final class NewCharacter extends L2GameClientPacket
 {
 	private static final String _C__0E_NEWCHARACTER = "[C] 0E NewCharacter";
-	private static Logger _log = Logger.getLogger(NewCharacter.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(NewCharacter.class.getName());
 	
 	@Override
 	protected void readImpl()
@@ -46,7 +50,7 @@ public final class NewCharacter extends L2GameClientPacket
 	{
 		if (Config.DEBUG)
 		{
-			_log.fine("CreateNewChar");
+			_log.debug("CreateNewChar");
 		}
 		
 		CharTemplates ct = new CharTemplates();

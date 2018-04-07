@@ -20,18 +20,22 @@ package com.l2jbr.gameserver.communitybbs.BB;
 
 import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.communitybbs.Manager.PostBBSManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * @author Maktakien
  */
 public class Post {
-    private static Logger _log = Logger.getLogger(Post.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(Post.class.getName());
 
     public class CPost {
         public int postId;
@@ -83,7 +87,7 @@ public class Post {
             statement.execute();
             statement.close();
         } catch (Exception e) {
-            _log.warning("error while saving new Post to db " + e);
+            _log.warn("error while saving new Post to db " + e);
         } finally {
             try {
                 con.close();
@@ -154,7 +158,7 @@ public class Post {
             result.close();
             statement.close();
         } catch (Exception e) {
-            _log.warning("data error on Post " + t.getForumID() + "/" + t.getID() + " : " + e);
+            _log.warn("data error on Post " + t.getForumID() + "/" + t.getID() + " : " + e);
             e.printStackTrace();
         } finally {
             try {
@@ -180,7 +184,7 @@ public class Post {
             statement.execute();
             statement.close();
         } catch (Exception e) {
-            _log.warning("error while saving new Post to db " + e);
+            _log.warn("error while saving new Post to db " + e);
         } finally {
             try {
                 con.close();

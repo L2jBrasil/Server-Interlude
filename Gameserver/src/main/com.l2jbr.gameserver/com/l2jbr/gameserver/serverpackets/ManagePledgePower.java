@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.serverpackets;
 
 import com.l2jbr.gameserver.model.L2Clan;
 
+;
+
 public class ManagePledgePower extends L2GameServerPacket
 {
 	private static final String _S__30_MANAGEPLEDGEPOWER = "[S] 30 ManagePledgePower";

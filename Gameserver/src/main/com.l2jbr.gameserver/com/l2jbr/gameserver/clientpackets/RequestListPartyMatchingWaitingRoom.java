@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
+;
+
 /**
  * Format: (ch) this is just a trigger : no data
  * @author -Wooden-

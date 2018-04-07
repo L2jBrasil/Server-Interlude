@@ -19,6 +19,7 @@
 package com.l2jbr.gameserver.clientpackets;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.datatables.SkillTreeTable;
 import com.l2jbr.gameserver.model.L2EnchantSkillLearn;
@@ -34,9 +35,12 @@ import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.util.IllegalPlayerAction;
 import com.l2jbr.gameserver.util.Util;
-import com.l2jbr.commons.util.Rnd;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 /**
  * Format chdd c: (id) 0xD0 h: (subid) 0x06 d: skill id d: skill lvl
@@ -45,7 +49,7 @@ import java.util.logging.Logger;
 public final class RequestExEnchantSkill extends L2GameClientPacket
 {
 	private static final String _C__D0_07_REQUESTEXENCHANTSKILL = "[C] D0:07 RequestExEnchantSkill";
-	private static Logger _log = Logger.getLogger(RequestAquireSkill.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RequestAquireSkill.class.getName());
 	private int _skillId;
 	private int _skillLvl;
 	
@@ -163,7 +167,7 @@ public final class RequestExEnchantSkill extends L2GameClientPacket
 			
 			if (Config.DEBUG)
 			{
-				_log.fine("Learned skill " + _skillId + " for " + _requiredSp + " SP.");
+				_log.debug("Learned skill " + _skillId + " for " + _requiredSp + " SP.");
 			}
 			
 			player.getStat().removeExpAndSp(_requiredExp, _requiredSp);

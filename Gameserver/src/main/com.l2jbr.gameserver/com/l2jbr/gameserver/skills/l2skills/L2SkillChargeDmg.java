@@ -17,11 +17,7 @@
  */
 package com.l2jbr.gameserver.skills.l2skills;
 
-import com.l2jbr.gameserver.model.L2Character;
-import com.l2jbr.gameserver.model.L2Effect;
-import com.l2jbr.gameserver.model.L2ItemInstance;
-import com.l2jbr.gameserver.model.L2Object;
-import com.l2jbr.gameserver.model.L2Skill;
+import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.EtcStatusUpdate;
@@ -30,6 +26,8 @@ import com.l2jbr.gameserver.skills.Formulas;
 import com.l2jbr.gameserver.skills.effects.EffectCharge;
 import com.l2jbr.gameserver.templates.L2WeaponType;
 import com.l2jbr.gameserver.templates.StatsSet;
+
+;
 
 public class L2SkillChargeDmg extends L2Skill
 {

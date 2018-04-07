@@ -22,6 +22,8 @@ import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.PartyMatchDetail;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.1.4.3 $ $Date: 2005/03/27 15:29:30 $
@@ -30,7 +32,7 @@ import com.l2jbr.gameserver.serverpackets.PartyMatchDetail;
 public final class RequestPartyMatchDetail extends L2GameClientPacket
 {
 	private static final String _C__71_REQUESTPARTYMATCHDETAIL = "[C] 71 RequestPartyMatchDetail";
-	// private static Logger _log = Logger.getLogger(RequestPartyMatchDetail.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(RequestPartyMatchDetail.class.getName());
 	
 	private int _objectId;
 	@SuppressWarnings("unused")

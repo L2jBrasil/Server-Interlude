@@ -26,8 +26,12 @@ import com.l2jbr.gameserver.model.TradeList;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.util.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 /**
  * This class ...
@@ -37,7 +41,7 @@ public final class RequestPrivateStoreSell extends L2GameClientPacket
 {
 	// private static final String _C__96_SENDPRIVATESTOREBUYBUYLIST = "[C] 96 SendPrivateStoreBuyBuyList";
 	private static final String _C__96_REQUESTPRIVATESTORESELL = "[C] 96 RequestPrivateStoreSell";
-	private static Logger _log = Logger.getLogger(RequestPrivateStoreSell.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RequestPrivateStoreSell.class.getName());
 	
 	private int _storePlayerId;
 	private int _count;
@@ -133,7 +137,7 @@ public final class RequestPrivateStoreSell extends L2GameClientPacket
 		if (!storeList.PrivateStoreSell(player, _items, _price))
 		{
 			sendPacket(new ActionFailed());
-			_log.warning("PrivateStore sell has failed due to invalid list or request. Player: " + player.getName() + ", Private store of: " + storePlayer.getName());
+			_log.warn("PrivateStore sell has failed due to invalid list or request. Player: " + player.getName() + ", Private store of: " + storePlayer.getName());
 			return;
 		}
 		

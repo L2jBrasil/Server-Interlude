@@ -19,6 +19,8 @@ package com.l2jbr.gameserver.model;
 
 import com.l2jbr.gameserver.templates.L2Item;
 
+;
+
 /**
  * Get all information from L2ItemInstance to generate ItemInfo.<BR>
  * <BR>

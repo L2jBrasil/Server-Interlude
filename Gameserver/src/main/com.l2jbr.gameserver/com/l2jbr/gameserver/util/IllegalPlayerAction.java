@@ -17,10 +17,9 @@ package com.l2jbr.gameserver.util;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.GmListTable;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Level;
-import java.util.logging.LogRecord;
-import java.util.logging.Logger;
 
 /**
  * This class ...
@@ -28,7 +27,7 @@ import java.util.logging.Logger;
  */
 public final class IllegalPlayerAction implements Runnable
 {
-	private static Logger _logAudit = Logger.getLogger("audit");
+	private static Logger _logAudit = LoggerFactory.getLogger("audit");
 	
 	String _message;
 	int _punishment;
@@ -63,14 +62,7 @@ public final class IllegalPlayerAction implements Runnable
 	@Override
 	public void run()
 	{
-		LogRecord record = new LogRecord(Level.INFO, "AUDIT:" + _message);
-		record.setLoggerName("audit");
-		record.setParameters(new Object[]
-		{
-			_actor,
-			_punishment
-		});
-		_logAudit.log(record);
+		_logAudit.info("AUDIT: {} {} " + _message, _actor, _punishment);
 		
 		GmListTable.broadcastMessageToGMs(_message);
 		

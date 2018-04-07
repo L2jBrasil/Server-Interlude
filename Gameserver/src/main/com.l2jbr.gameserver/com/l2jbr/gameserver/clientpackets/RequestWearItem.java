@@ -36,11 +36,14 @@ import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.util.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.concurrent.Future;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -49,7 +52,7 @@ import java.util.logging.Logger;
 public final class RequestWearItem extends L2GameClientPacket
 {
 	private static final String _C__C6_REQUESTWEARITEM = "[C] C6 RequestWearItem";
-	protected static final Logger _log = Logger.getLogger(RequestWearItem.class.getName());
+	protected static final Logger _log = LoggerFactory.getLogger(RequestWearItem.class.getName());
 	
 	protected Future<?> _removeWearItemsTask;
 	
@@ -80,7 +83,7 @@ public final class RequestWearItem extends L2GameClientPacket
 			}
 			catch (Throwable e)
 			{
-				_log.log(Level.SEVERE, "", e);
+				_log.error( "", e);
 			}
 		}
 	}

@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.model;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.3.2.1.2.12 $ $Date: 2005/04/06 16:13:42 $

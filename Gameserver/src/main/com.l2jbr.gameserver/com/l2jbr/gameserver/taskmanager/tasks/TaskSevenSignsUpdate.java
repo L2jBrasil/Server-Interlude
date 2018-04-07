@@ -17,14 +17,16 @@
  */
 package com.l2jbr.gameserver.taskmanager.tasks;
 
-import java.util.logging.Logger;
-
 import com.l2jbr.gameserver.SevenSigns;
 import com.l2jbr.gameserver.SevenSignsFestival;
 import com.l2jbr.gameserver.taskmanager.Task;
 import com.l2jbr.gameserver.taskmanager.TaskManager;
 import com.l2jbr.gameserver.taskmanager.TaskManager.ExecutedTask;
 import com.l2jbr.gameserver.taskmanager.TaskTypes;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+;
 
 /**
  * Updates all data for the Seven Signs and Festival of Darkness engines, when time is elapsed.
@@ -32,7 +34,7 @@ import com.l2jbr.gameserver.taskmanager.TaskTypes;
  */
 public class TaskSevenSignsUpdate extends Task
 {
-	private static final Logger _log = Logger.getLogger(TaskOlympiadSave.class.getName());
+	private static final Logger _log = LoggerFactory.getLogger(TaskOlympiadSave.class.getName());
 	public static final String NAME = "SevenSignsUpdate";
 	
 	@Override
@@ -57,7 +59,7 @@ public class TaskSevenSignsUpdate extends Task
 		}
 		catch (Exception e)
 		{
-			_log.warning("SevenSigns: Failed to save Seven Signs configuration: " + e);
+			_log.warn("SevenSigns: Failed to save Seven Signs configuration: " + e);
 		}
 	}
 	

@@ -22,6 +22,8 @@ import com.l2jbr.gameserver.model.zone.type.L2FishingZone;
 import java.util.LinkedList;
 import java.util.List;
 
+;
+
 public class FishingZoneManager {
     // =========================================================
     private static FishingZoneManager _instance;

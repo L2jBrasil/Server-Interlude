@@ -23,6 +23,8 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.4.2.1.2.3 $ $Date: 2005/03/27 15:29:30 $
@@ -30,7 +32,7 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 public final class RequestReplyStartPledgeWar extends L2GameClientPacket
 {
 	private static final String _C__4e_REQUESTREPLYSTARTPLEDGEWAR = "[C] 4e RequestReplyStartPledgeWar";
-	// private static Logger _log = Logger.getLogger(RequestReplyStartPledgeWar.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(RequestReplyStartPledgeWar.class.getName());
 	
 	private int _answer;
 	

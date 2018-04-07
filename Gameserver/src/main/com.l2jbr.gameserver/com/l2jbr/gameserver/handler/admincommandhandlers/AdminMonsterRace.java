@@ -29,13 +29,15 @@ import com.l2jbr.gameserver.serverpackets.MonRaceInfo;
 import com.l2jbr.gameserver.serverpackets.PlaySound;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
+;
+
 /**
  * This class handles following admin commands: - invul = turns invulnerability on/off
  * @version $Revision: 1.1.6.4 $ $Date: 2007/07/31 10:06:00 $
  */
 public class AdminMonsterRace implements IAdminCommandHandler
 {
-	// private static Logger _log = Logger.getLogger(AdminMonsterRace.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(AdminMonsterRace.class.getName());
 	
 	private static final String[] ADMIN_COMMANDS =
 	{

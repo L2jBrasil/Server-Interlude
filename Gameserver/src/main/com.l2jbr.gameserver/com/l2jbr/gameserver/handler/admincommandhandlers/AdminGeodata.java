@@ -23,12 +23,14 @@ import com.l2jbr.gameserver.handler.IAdminCommandHandler;
 import com.l2jbr.gameserver.model.GMAudit;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
+;
+
 /**
  * @author -Nemesiss-
  */
 public class AdminGeodata implements IAdminCommandHandler
 {
-	// private static Logger _log = Logger.getLogger(AdminKill.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(AdminKill.class.getName());
 	private static final String[] ADMIN_COMMANDS =
 	{
 		"admin_geo_z",

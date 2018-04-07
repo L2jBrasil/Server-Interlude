@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.5.4.8 $ $Date: 2005/04/02 15:57:52 $

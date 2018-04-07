@@ -21,12 +21,10 @@ package com.l2jbr.gameserver.skills.effects;
 import com.l2jbr.gameserver.ai.CtrlIntention;
 import com.l2jbr.gameserver.model.L2CharPosition;
 import com.l2jbr.gameserver.model.L2Effect;
-import com.l2jbr.gameserver.model.actor.instance.L2FolkInstance;
-import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.actor.instance.L2SiegeFlagInstance;
-import com.l2jbr.gameserver.model.actor.instance.L2SiegeGuardInstance;
-import com.l2jbr.gameserver.model.actor.instance.L2SiegeSummonInstance;
+import com.l2jbr.gameserver.model.actor.instance.*;
 import com.l2jbr.gameserver.skills.Env;
+
+;
 
 /**
  * @author littlecrow Implementation of the Fear Effect

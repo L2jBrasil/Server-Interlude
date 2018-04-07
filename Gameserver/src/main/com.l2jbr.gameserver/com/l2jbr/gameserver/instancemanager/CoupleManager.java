@@ -22,19 +22,21 @@ import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.entity.Couple;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
+;
+
 /**
  * @author evill33t
  */
 public class CoupleManager {
-    private static final Log _log = LogFactory.getLog(CoupleManager.class.getName());
+    private static final Logger _log = LoggerFactory.getLogger(CoupleManager.class.getName());
 
     // =========================================================
     private static CoupleManager _instance;

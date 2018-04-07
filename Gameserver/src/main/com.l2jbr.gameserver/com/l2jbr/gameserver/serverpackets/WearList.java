@@ -25,6 +25,8 @@ import com.l2jbr.gameserver.templates.L2Item;
 
 import java.util.List;
 
+;
+
 public class WearList extends L2GameServerPacket
 {
 	private static final String _S__EF_WEARLIST = "[S] EF WearList";

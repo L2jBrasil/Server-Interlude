@@ -20,13 +20,17 @@ package com.l2jbr.gameserver.model;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.templates.L2Item;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * Service class for manor
@@ -35,7 +39,7 @@ import java.util.logging.Logger;
  */
 
 public class L2Manor {
-    private static Logger _log = Logger.getLogger(L2Manor.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(L2Manor.class.getName());
     private static L2Manor _instance;
 
     private static LinkedHashMap<Integer, SeedData> _seeds = new LinkedHashMap<>();

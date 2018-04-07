@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.model;
 
+;
+
 /**
  * Used to Store data sent to Client for Character Selection screen.
  * @version $Revision: 1.2.2.2.2.4 $ $Date: 2005/03/27 15:29:33 $

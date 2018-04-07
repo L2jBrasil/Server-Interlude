@@ -19,6 +19,7 @@
 package com.l2jbr.gameserver.ai;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.GameTimeController;
 import com.l2jbr.gameserver.GeoData;
 import com.l2jbr.gameserver.Territory;
@@ -28,18 +29,19 @@ import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.*;
 import com.l2jbr.gameserver.templates.L2Weapon;
 import com.l2jbr.gameserver.templates.L2WeaponType;
-import com.l2jbr.commons.util.Rnd;
 
 import java.util.concurrent.Future;
 
 import static com.l2jbr.gameserver.ai.CtrlIntention.*;
+
+;
 
 /**
  * This class manages AI of L2Attackable.
  */
 public class L2AttackableAI extends L2CharacterAI implements Runnable
 {
-	// protected static final Logger _log = Logger.getLogger(L2AttackableAI.class.getName());
+	// protected static final Logger _log = LoggerFactory.getLogger(L2AttackableAI.class.getName());
 	
 	private static final int RANDOM_WALK_RATE = 30; // confirmed
 	// private static final int MAX_DRIFT_RANGE = 300;
@@ -524,7 +526,7 @@ public class L2AttackableAI extends L2CharacterAI implements Runnable
 				z1 = npc.getZ();
 			}
 			
-			// _log.config("Curent pos ("+getX()+", "+getY()+"), moving to ("+x1+", "+y1+").");
+			// _log.info("Curent pos ("+getX()+", "+getY()+"), moving to ("+x1+", "+y1+").");
 			// Move the actor to Location (x,y,z) server side AND client side by sending Server->Client packet CharMoveToLocation (broadcast)
 			moveTo(x1, y1, z1);
 		}
@@ -631,7 +633,7 @@ public class L2AttackableAI extends L2CharacterAI implements Runnable
 			}
 			catch (NullPointerException e)
 			{
-				// _log.warning("AttackableAI: Attack target is NULL.");
+				// _log.warn("AttackableAI: Attack target is NULL.");
 				setIntention(AI_INTENTION_ACTIVE);
 				return;
 			}

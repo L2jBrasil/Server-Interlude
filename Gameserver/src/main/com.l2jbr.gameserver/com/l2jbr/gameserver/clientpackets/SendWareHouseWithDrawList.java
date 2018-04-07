@@ -31,8 +31,12 @@ import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.ItemList;
 import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 /**
  * This class ... 32 SendWareHouseWithDrawList cd (dd) WootenGil rox :P
@@ -41,7 +45,7 @@ import java.util.logging.Logger;
 public final class SendWareHouseWithDrawList extends L2GameClientPacket
 {
 	private static final String _C__32_SENDWAREHOUSEWITHDRAWLIST = "[C] 32 SendWareHouseWithDrawList";
-	private static Logger _log = Logger.getLogger(SendWareHouseWithDrawList.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(SendWareHouseWithDrawList.class.getName());
 	
 	private int _count;
 	private int[] _items;
@@ -174,7 +178,7 @@ public final class SendWareHouseWithDrawList extends L2GameClientPacket
 			L2ItemInstance newItem = warehouse.transferItem("Warehouse", objectId, count, player.getInventory(), player, player.getLastFolkNPC());
 			if (newItem == null)
 			{
-				_log.warning("Error withdrawing a warehouse object for char " + player.getName());
+				_log.warn("Error withdrawing a warehouse object for char " + player.getName());
 				continue;
 			}
 			

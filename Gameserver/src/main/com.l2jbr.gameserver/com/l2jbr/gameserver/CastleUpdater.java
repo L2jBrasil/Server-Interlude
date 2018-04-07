@@ -22,15 +22,18 @@ import com.l2jbr.gameserver.instancemanager.CastleManager;
 import com.l2jbr.gameserver.model.ItemContainer;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.entity.Castle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
 
 /**
  * Thorgrim - 2005 Class managing periodical events with castle
  */
 public class CastleUpdater implements Runnable
 {
-	protected static Logger _log = Logger.getLogger(CastleUpdater.class.getName());
+	protected static Logger _log = LoggerFactory.getLogger(CastleUpdater.class.getName());
 	private final L2Clan _clan;
 	private int _runCount = 0;
 	

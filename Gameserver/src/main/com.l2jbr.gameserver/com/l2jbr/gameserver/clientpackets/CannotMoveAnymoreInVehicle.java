@@ -22,6 +22,8 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.StopMoveInVehicle;
 import com.l2jbr.gameserver.util.Point3D;
 
+;
+
 /**
  * @author Maktakien
  */

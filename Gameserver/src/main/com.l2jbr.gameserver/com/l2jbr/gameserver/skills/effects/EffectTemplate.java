@@ -18,22 +18,25 @@
  */
 package com.l2jbr.gameserver.skills.effects;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.util.logging.Logger;
-
 import com.l2jbr.gameserver.model.L2Effect;
 import com.l2jbr.gameserver.skills.Env;
 import com.l2jbr.gameserver.skills.conditions.Condition;
 import com.l2jbr.gameserver.skills.funcs.FuncTemplate;
 import com.l2jbr.gameserver.skills.funcs.Lambda;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
+;
 
 /**
  * @author mkizub TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates
  */
 public final class EffectTemplate
 {
-	static Logger _log = Logger.getLogger(EffectTemplate.class.getName());
+	static Logger _log = LoggerFactory.getLogger(EffectTemplate.class.getName());
 	
 	private final Class<?> _func;
 	private final Constructor<?> _constructor;
@@ -102,7 +105,7 @@ public final class EffectTemplate
 		}
 		catch (InvocationTargetException e)
 		{
-			_log.warning("Error creating new instance of Class " + _func + " Exception was:");
+			_log.warn("Error creating new instance of Class " + _func + " Exception was:");
 			e.getTargetException().printStackTrace();
 			return null;
 		}

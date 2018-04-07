@@ -36,6 +36,8 @@ import java.sql.SQLException;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
+;
+
 /**
  * This class handles following admin commands: - ban account_name = changes account access level to -100 and logs him off. If no account is specified, target's account is used. - unban account_name = changes account access level to 0. - jail charname [penalty_time] = jails character. Time specified
  * in minutes. For ever if no time is specified. - unjail charname = Unjails player, teleport him to Floran.

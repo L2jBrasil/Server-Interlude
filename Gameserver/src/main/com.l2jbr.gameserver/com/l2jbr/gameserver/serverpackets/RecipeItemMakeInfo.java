@@ -22,8 +22,12 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.RecipeController;
 import com.l2jbr.gameserver.model.L2RecipeList;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 /**
  * format dddd
@@ -32,7 +36,7 @@ import java.util.logging.Logger;
 public class RecipeItemMakeInfo extends L2GameServerPacket
 {
 	private static final String _S__D7_RECIPEITEMMAKEINFO = "[S] D7 RecipeItemMakeInfo";
-	private static Logger _log = Logger.getLogger(RecipeItemMakeInfo.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RecipeItemMakeInfo.class.getName());
 	
 	private final int _id;
 	private final L2PcInstance _activeChar;

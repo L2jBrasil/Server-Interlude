@@ -29,6 +29,8 @@ import com.l2jbr.gameserver.model.zone.L2ZoneType;
 import com.l2jbr.gameserver.model.zone.form.ZoneCuboid;
 import com.l2jbr.gameserver.model.zone.form.ZoneNPoly;
 import com.l2jbr.gameserver.model.zone.type.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -39,8 +41,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class manages the augmentation data and can also create new augmentations.
@@ -48,7 +51,7 @@ import java.util.logging.Logger;
  * @author durgus
  */
 public class ZoneData {
-    private static final Logger _log = Logger.getLogger(ZoneData.class.getName());
+    private static final Logger _log = LoggerFactory.getLogger(ZoneData.class.getName());
 
     // =========================================================
     private static ZoneData _instance;
@@ -144,7 +147,7 @@ public class ZoneData {
 
                             // Check for unknown type
                             if (temp == null) {
-                                _log.warning("ZoneData: No such zone type: " + zoneType);
+                                _log.warn("ZoneData: No such zone type: " + zoneType);
                                 continue;
                             }
 
@@ -178,7 +181,7 @@ public class ZoneData {
                                             x[i] = rset.getInt("x");
                                             y[i] = rset.getInt("y");
                                         } else {
-                                            _log.warning("ZoneData: Missing cuboid vertex in sql data for zone: " + zoneId);
+                                            _log.warn("ZoneData: Missing cuboid vertex in sql data for zone: " + zoneId);
                                             rset.close();
                                             statement.close();
                                             successfulLoad = false;
@@ -215,13 +218,13 @@ public class ZoneData {
                                         // Create the zone
                                         temp.setZone(new ZoneNPoly(aX, aY, minZ, maxZ));
                                     } else {
-                                        _log.warning("ZoneData: Bad sql data for zone: " + zoneId);
+                                        _log.warn("ZoneData: Bad sql data for zone: " + zoneId);
                                         rset.close();
                                         statement.close();
                                         continue;
                                     }
                                 } else {
-                                    _log.warning("ZoneData: Unknown shape: " + zoneShape);
+                                    _log.warn("ZoneData: Unknown shape: " + zoneShape);
                                     rset.close();
                                     statement.close();
                                     continue;
@@ -230,7 +233,7 @@ public class ZoneData {
                                 rset.close();
                                 statement.close();
                             } catch (Exception e) {
-                                _log.warning("ZoneData: Failed to load zone coordinates: " + e);
+                                _log.warn("ZoneData: Failed to load zone coordinates: " + e);
                             }
 
                             // Check for aditional parameters
@@ -285,7 +288,7 @@ public class ZoneData {
                 }
             }
         } catch (Exception e) {
-            _log.log(Level.SEVERE, "Error while loading zones.", e);
+            _log.error( "Error while loading zones.", e);
             return;
         } finally {
             try {

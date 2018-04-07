@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.model.quest;
 
 import com.l2jbr.gameserver.instancemanager.QuestManager;
 
+;
+
 /**
  * @author Luis Arias Functions in this class are used in python files
  */

@@ -33,6 +33,8 @@ import com.l2jbr.gameserver.taskmanager.DecayTaskManager;
 import java.util.LinkedList;
 import java.util.List;
 
+;
+
 /**
  * This class ...
  *
@@ -40,7 +42,7 @@ import java.util.List;
  */
 
 public class Resurrect implements ISkillHandler {
-    // private static Logger _log = Logger.getLogger(Resurrect.class.getName());
+    // private static Logger _log = LoggerFactory.getLogger(Resurrect.class.getName());
 
     private static final SkillType[] SKILL_IDS =
             {

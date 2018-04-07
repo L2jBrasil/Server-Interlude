@@ -30,12 +30,14 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.Formulas;
 
+;
+
 /**
  * @author _drunk_ TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates
  */
 public class Spoil implements ISkillHandler
 {
-	// private static Logger _log = Logger.getLogger(Spoil.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(Spoil.class.getName());
 	private static final SkillType[] SKILL_IDS =
 	{
 		SkillType.SPOIL

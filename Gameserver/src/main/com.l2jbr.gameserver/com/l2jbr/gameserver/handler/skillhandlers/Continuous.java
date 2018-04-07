@@ -22,20 +22,16 @@ import com.l2jbr.gameserver.ai.CtrlEvent;
 import com.l2jbr.gameserver.ai.CtrlIntention;
 import com.l2jbr.gameserver.handler.ISkillHandler;
 import com.l2jbr.gameserver.instancemanager.DuelManager;
-import com.l2jbr.gameserver.model.L2Attackable;
-import com.l2jbr.gameserver.model.L2Character;
-import com.l2jbr.gameserver.model.L2Effect;
-import com.l2jbr.gameserver.model.L2ItemInstance;
-import com.l2jbr.gameserver.model.L2Object;
-import com.l2jbr.gameserver.model.L2Skill;
+import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.L2Skill.SkillType;
-import com.l2jbr.gameserver.model.L2Summon;
 import com.l2jbr.gameserver.model.actor.instance.L2DoorInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PlayableInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.Formulas;
+
+;
 
 /**
  * This class ...
@@ -44,7 +40,7 @@ import com.l2jbr.gameserver.skills.Formulas;
 
 public class Continuous implements ISkillHandler
 {
-	// private static Logger _log = Logger.getLogger(Continuous.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(Continuous.class.getName());
 	
 	private static final SkillType[] SKILL_IDS =
 	{

@@ -22,6 +22,8 @@ import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.PledgeShowMemberListAll;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.5.4.2 $ $Date: 2005/03/27 15:29:30 $
@@ -30,7 +32,7 @@ public final class RequestPledgeMemberList extends L2GameClientPacket
 {
 	private static final String _C__3C_REQUESTPLEDGEMEMBERLIST = "[C] 3C RequestPledgeMemberList";
 	
-	// private static Logger _log = Logger.getLogger(RequestPledgeMemberList.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(RequestPledgeMemberList.class.getName());
 	
 	@Override
 	protected void readImpl()

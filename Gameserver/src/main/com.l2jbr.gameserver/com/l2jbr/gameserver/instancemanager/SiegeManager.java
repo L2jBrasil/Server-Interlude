@@ -29,6 +29,8 @@ import com.l2jbr.gameserver.model.entity.Castle;
 import com.l2jbr.gameserver.model.entity.Siege;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -36,10 +38,12 @@ import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.*;
-import java.util.logging.Logger;
+
+;
+
 
 public class SiegeManager {
-    private static final Logger _log = Logger.getLogger(SiegeManager.class.getName());
+    private static final Logger _log = LoggerFactory.getLogger(SiegeManager.class.getName());
 
     // =========================================================
     private static SiegeManager _instance;
@@ -209,7 +213,7 @@ public class SiegeManager {
 
                         _controlTowersSpawns.add(new SiegeSpawn(castle.getCastleId(), x, y, z, 0, npc_id, hp));
                     } catch (Exception e) {
-                        _log.warning("Error while loading control tower(s) for " + castle.getName() + " castle.");
+                        _log.warn("Error while loading control tower(s) for " + castle.getName() + " castle.");
                     }
                 }
 
@@ -233,7 +237,7 @@ public class SiegeManager {
 
                         _artefactSpawns.add(new SiegeSpawn(castle.getCastleId(), x, y, z, heading, npc_id));
                     } catch (Exception e) {
-                        _log.warning("Error while loading artefact(s) for " + castle.getName() + " castle.");
+                        _log.warn("Error while loading artefact(s) for " + castle.getName() + " castle.");
                     }
                 }
 

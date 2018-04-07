@@ -30,13 +30,15 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
+;
+
 /**
  * This class handles following admin commands: - delete = deletes target
  * @version $Revision: 1.2.2.1.2.4 $ $Date: 2005/04/11 10:05:56 $
  */
 public class AdminDelete implements IAdminCommandHandler
 {
-	// private static Logger _log = Logger.getLogger(AdminDelete.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(AdminDelete.class.getName());
 	
 	private static final String[] ADMIN_COMMANDS =
 	{

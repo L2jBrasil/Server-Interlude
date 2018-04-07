@@ -31,11 +31,15 @@ import com.l2jbr.gameserver.model.base.ClassId;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.util.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Collection;
 import java.util.Map;
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class handles following admin commands: - edit_character - current_player - character_list - show_characters - find_character - find_ip - find_account - rec - nokarma - setkarma - settitle - setname - setsex - setclass - fullfood - save_modifications
@@ -43,7 +47,7 @@ import java.util.logging.Logger;
  * @version $Revision: 1.3.2.1.2.10 $ $Date: 2005/04/11 10:06:06 $
  */
 public class AdminEditChar implements IAdminCommandHandler {
-    private static Logger _log = Logger.getLogger(AdminEditChar.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(AdminEditChar.class.getName());
 
     private static final String[] ADMIN_COMMANDS =
             {
@@ -444,13 +448,13 @@ public class AdminEditChar implements IAdminCommandHandler {
             // Admin information
             activeChar.sendMessage("Successfully Changed karma for " + player.getName() + " from (" + oldKarma + ") to (" + newKarma + ").");
             if (Config.DEBUG) {
-                _log.fine("[SET KARMA] [GM]" + activeChar.getName() + " Changed karma for " + player.getName() + " from (" + oldKarma + ") to (" + newKarma + ").");
+                _log.debug("[SET KARMA] [GM]" + activeChar.getName() + " Changed karma for " + player.getName() + " from (" + oldKarma + ") to (" + newKarma + ").");
             }
         } else {
             // tell admin of mistake
             activeChar.sendMessage("You must enter a value for karma greater than or equal to 0.");
             if (Config.DEBUG) {
-                _log.fine("[SET KARMA] ERROR: [GM]" + activeChar.getName() + " entered an incorrect value for new karma: " + newKarma + " for " + player.getName() + ".");
+                _log.debug("[SET KARMA] ERROR: [GM]" + activeChar.getName() + " entered an incorrect value for new karma: " + newKarma + " for " + player.getName() + ".");
             }
         }
     }
@@ -509,7 +513,7 @@ public class AdminEditChar implements IAdminCommandHandler {
         player.sendMessage("Changed stats of " + player.getName() + "." + "  HP: " + hpval + "  MP: " + mpval + "  CP: " + cpval + "  PvP: " + pvpflagval + " / " + pvpkillsval);
 
         if (Config.DEBUG) {
-            _log.fine("[GM]" + activeChar.getName() + " changed stats of " + player.getName() + ". " + " HP: " + hpval + " MP: " + mpval + " CP: " + cpval + " PvP: " + pvpflagval + " / " + pvpkillsval);
+            _log.debug("[GM]" + activeChar.getName() + " changed stats of " + player.getName() + ". " + " HP: " + hpval + " MP: " + mpval + " CP: " + cpval + " PvP: " + pvpflagval + " / " + pvpkillsval);
         }
 
         showCharacterInfo(activeChar, null); // Back to start

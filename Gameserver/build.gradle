@@ -27,14 +27,20 @@ dependencies {
     compile project(':Commons')
     compile project(':Mmocore')
 
-    compile 'commons-logging:commons-logging:1.2'
     compile 'bsf:bsf:2.4.0'
     compile 'org.python:jython-standalone:2.7.1'
+    compile 'org.slf4j:slf4j-api:1.8.0-beta2'
 
+    //remove commons-logging
+    runtime 'commons-logging:commons-logging:1.2'
+    runtime 'org.apache.logging.log4j:log4j-core:2.11.0'
+    runtime 'org.apache.logging.log4j:log4j-api:2.11.0'
+    runtime 'org.apache.logging.log4j:log4j-slf4j-impl:2.11.0'
     runtime 'org.beanshell:bsh:2.0b5'
     runtime 'com.mchange:c3p0:0.9.5.2'
     runtime 'com.mchange:mchange-commons-java:0.2.15'
     runtime 'mysql:mysql-connector-java:8.0.9-rc'
+
 }
 
 def generalManifest = manifest {

@@ -21,8 +21,12 @@ package com.l2jbr.gameserver.clientpackets;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.PartyMatchList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 /**
  * Packetformat Rev650 cdddddS
@@ -32,7 +36,7 @@ import java.util.logging.Logger;
 public class RequestPartyMatchList extends L2GameClientPacket
 {
 	private static final String _C__70_REQUESTPARTYMATCHLIST = "[C] 70 RequestPartyMatchList";
-	private static Logger _log = Logger.getLogger(RequestPartyMatchList.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RequestPartyMatchList.class.getName());
 	
 	private int _status;
 	
@@ -65,14 +69,14 @@ public class RequestPartyMatchList extends L2GameClientPacket
 			// client does not need any more updates
 			if (Config.DEBUG)
 			{
-				_log.fine("PartyMatch window was closed.");
+				_log.debug("PartyMatch window was closed.");
 			}
 		}
 		else
 		{
 			if (Config.DEBUG)
 			{
-				_log.fine("party match status: " + _status);
+				_log.debug("party match status: " + _status);
 			}
 		}
 	}

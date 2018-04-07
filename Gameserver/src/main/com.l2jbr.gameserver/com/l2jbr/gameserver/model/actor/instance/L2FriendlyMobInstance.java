@@ -23,6 +23,8 @@ import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.actor.knownlist.FriendlyMobKnownList;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
+;
+
 /**
  * This class represents Friendly Mobs lying over the world. These friendly mobs should only attack players with karma > 0 and it is always aggro, since it just attacks players with karma
  * @version $Revision: 1.20.4.6 $ $Date: 2005/07/23 16:13:39 $

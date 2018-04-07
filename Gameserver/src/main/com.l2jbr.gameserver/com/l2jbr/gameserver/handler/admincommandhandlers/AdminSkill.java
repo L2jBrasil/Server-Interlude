@@ -31,9 +31,13 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.PledgeSkillList;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class handles following admin commands: - show_skills - remove_skills - skill_list - skill_index - add_skill - remove_skill - get_skills - reset_skills - give_all_skills - remove_all_skills - add_clan_skills
@@ -41,7 +45,7 @@ import java.util.logging.Logger;
  * @version $Revision: 1.2.4.7 $ $Date: 2005/04/11 10:06:02 $
  */
 public class AdminSkill implements IAdminCommandHandler {
-    private static Logger _log = Logger.getLogger(AdminSkill.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(AdminSkill.class.getName());
 
     private static final String[] ADMIN_COMMANDS =
             {
@@ -363,7 +367,7 @@ public class AdminSkill implements IAdminCommandHandler {
                 // Admin information
                 activeChar.sendMessage("You gave the skill " + name + " to " + player.getName() + ".");
                 if (Config.DEBUG) {
-                    _log.fine("[GM]" + activeChar.getName() + " gave skill " + name + " to " + player.getName() + ".");
+                    _log.debug("[GM]" + activeChar.getName() + " gave skill " + name + " to " + player.getName() + ".");
                 }
                 activeChar.sendSkillList();
             } else {
@@ -390,7 +394,7 @@ public class AdminSkill implements IAdminCommandHandler {
             // Admin information
             activeChar.sendMessage("You removed the skill " + skillname + " from " + player.getName() + ".");
             if (Config.DEBUG) {
-                _log.fine("[GM]" + activeChar.getName() + " removed skill " + skillname + " from " + player.getName() + ".");
+                _log.debug("[GM]" + activeChar.getName() + " removed skill " + skillname + " from " + player.getName() + ".");
             }
             activeChar.sendSkillList();
         } else {

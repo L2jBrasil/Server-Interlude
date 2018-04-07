@@ -19,24 +19,27 @@
 package com.l2jbr.gameserver;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.skills.Stats;
 import com.l2jbr.gameserver.util.Util;
-import com.l2jbr.commons.util.Rnd;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.LineNumberReader;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+;
+
 
 public class RecipeController {
-    protected static final Logger _log = Logger.getLogger(RecipeController.class.getName());
+    protected static final Logger _log = LoggerFactory.getLogger(RecipeController.class.getName());
 
     private static RecipeController _instance;
     private final Map<Integer, L2RecipeList> _lists;
@@ -59,9 +62,9 @@ public class RecipeController {
                 parseList(line);
 
             }
-            _log.config("RecipeController: Loaded " + _lists.size() + " Recipes.");
+            _log.info("RecipeController: Loaded " + _lists.size() + " Recipes.");
         } catch (Exception e) {
-            _log.log(Level.WARNING, "Error while creating recipe controller!", e);
+            _log.warn( "Error while creating recipe controller!", e);
         }
     }
 
@@ -208,7 +211,7 @@ public class RecipeController {
             } else if (recipeTypeString.equalsIgnoreCase("common")) {
                 isDwarvenRecipe = false;
             } else { // prints a helpfull message
-                _log.warning("Error parsing recipes.csv, unknown recipe type " + recipeTypeString);
+                _log.warn("Error parsing recipes.csv, unknown recipe type " + recipeTypeString);
                 return;
             }
 
@@ -243,7 +246,7 @@ public class RecipeController {
             }
             _lists.put(_lists.size(), recipeList);
         } catch (Exception e) {
-            _log.severe("Exception in RecipeController.parseList() - " + e);
+            _log.error("Exception in RecipeController.parseList() - " + e);
         }
     }
 
@@ -384,13 +387,13 @@ public class RecipeController {
             }
 
             if ((_player == null) || (_target == null)) {
-                _log.warning("player or target == null (disconnected?), aborting" + _target + _player);
+                _log.warn("player or target == null (disconnected?), aborting" + _target + _player);
                 abort();
                 return;
             }
 
             if ((_player.isOnline() == 0) || (_target.isOnline() == 0)) {
-                _log.warning("player or target is not online, aborting " + _target + _player);
+                _log.warn("player or target is not online, aborting " + _target + _player);
                 abort();
                 return;
             }

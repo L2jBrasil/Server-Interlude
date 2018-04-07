@@ -27,6 +27,8 @@ import com.l2jbr.gameserver.model.actor.instance.L2SiegeSummonInstance;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.Env;
 
+;
+
 /**
  * @author decad Implementation of the Bluff Effect
  */

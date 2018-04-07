@@ -24,6 +24,8 @@ import com.l2jbr.gameserver.model.L2Effect;
 import com.l2jbr.gameserver.model.L2Summon;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
+;
+
 public class TvTEventTeleporter implements Runnable
 {
 	/** The instance of the player to teleport */

@@ -22,13 +22,17 @@ import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.base.ClassId;
 import com.l2jbr.gameserver.templates.L2PcTemplate;
 import com.l2jbr.gameserver.templates.StatsSet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -36,7 +40,7 @@ import java.util.logging.Logger;
  * @version $Revision: 1.6.2.1.2.10 $ $Date: 2005/03/29 14:00:54 $
  */
 public class CharTemplateTable {
-    private static Logger _log = Logger.getLogger(CharTemplateTable.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(CharTemplateTable.class.getName());
 
     private static CharTemplateTable _instance;
 
@@ -239,7 +243,7 @@ public class CharTemplateTable {
             rset.close();
             statement.close();
         } catch (SQLException e) {
-            _log.warning("error while loading char templates " + e.getMessage());
+            _log.warn("error while loading char templates " + e.getMessage());
         } finally {
             try {
                 con.close();
@@ -247,7 +251,7 @@ public class CharTemplateTable {
             }
         }
 
-        _log.config("CharTemplateTable: Loaded " + _templates.size() + " Character Templates.");
+        _log.info("CharTemplateTable: Loaded " + _templates.size() + " Character Templates.");
     }
 
     public L2PcTemplate getTemplate(ClassId classId) {

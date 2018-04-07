@@ -19,19 +19,22 @@
 package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.GeoData;
 import com.l2jbr.gameserver.Territory;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
-import com.l2jbr.commons.util.Rnd;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Constructor;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class manages the spawn and respawn of a group of L2NpcInstance that are in the same are and have the same type. <B><U> Concept</U> :</B><BR>
@@ -43,7 +46,7 @@ import java.util.logging.Logger;
  * @version $Revision: 1.9.2.3.2.8 $ $Date: 2005/03/27 15:29:32 $
  */
 public class L2Spawn {
-    protected static final Logger _log = Logger.getLogger(L2Spawn.class.getName());
+    protected static final Logger _log = LoggerFactory.getLogger(L2Spawn.class.getName());
 
     /**
      * The link on the L2NpcTemplate object containing generic and static properties of this spawn (ex : RewardExp, RewardSP, AggroRange...)
@@ -144,7 +147,7 @@ public class L2Spawn {
                 // doSpawn();
                 respawnNpc(_oldNpc);
             } catch (Exception e) {
-                _log.log(Level.WARNING, "", e);
+                _log.warn( "", e);
             }
 
             _scheduledCount--;
@@ -471,7 +474,7 @@ public class L2Spawn {
             mob = (L2NpcInstance) tmp;
             return intializeNpcInstance(mob);
         } catch (Exception e) {
-            _log.log(Level.WARNING, "NPC " + _template.npcId + " class not found", e);
+            _log.warn( "NPC " + _template.npcId + " class not found", e);
         }
         return mob;
     }
@@ -537,7 +540,7 @@ public class L2Spawn {
         _lastSpawn = mob;
 
         if (Config.DEBUG) {
-            _log.finest("spawned Mob ID: " + _template.npcId + " ,at: " + mob.getX() + " x, " + mob.getY() + " y, " + mob.getZ() + " z");
+            _log.debug("spawned Mob ID: " + _template.npcId + " ,at: " + mob.getX() + " x, " + mob.getY() + " y, " + mob.getZ() + " z");
         }
 
         // Increase the current number of L2NpcInstance managed by this L2Spawn
@@ -570,7 +573,7 @@ public class L2Spawn {
      */
     public void setRespawnDelay(int i) {
         if (i < 0) {
-            _log.warning("respawn delay is negative for spawnId:" + _id);
+            _log.warn("respawn delay is negative for spawnId:" + _id);
         }
 
         if (i < 60) {

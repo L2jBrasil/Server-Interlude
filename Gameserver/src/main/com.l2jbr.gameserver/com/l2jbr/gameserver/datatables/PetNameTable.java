@@ -21,18 +21,21 @@ package com.l2jbr.gameserver.datatables;
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.L2PetDataTable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+;
+
 public class PetNameTable
 {
-	private static Logger _log = Logger.getLogger(PetNameTable.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(PetNameTable.class.getName());
 	
 	private static PetNameTable _instance;
 	
@@ -73,7 +76,7 @@ public class PetNameTable
 		}
 		catch (SQLException e)
 		{
-			_log.warning("could not check existing petname:" + e.getMessage());
+			_log.warn("could not check existing petname:" + e.getMessage());
 		}
 		finally
 		{
@@ -104,7 +107,7 @@ public class PetNameTable
 		}
 		catch (PatternSyntaxException e) // case of illegal pattern
 		{
-			_log.warning("ERROR : Pet name pattern of config is wrong!");
+			_log.warn("ERROR : Pet name pattern of config is wrong!");
 			pattern = Pattern.compile(".*");
 		}
 		Matcher regexp = pattern.matcher(name);

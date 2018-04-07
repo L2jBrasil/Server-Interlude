@@ -19,9 +19,10 @@
 package com.l2jbr.gameserver.handler.skillhandlers;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.lib.Log;
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.handler.ISkillHandler;
-import com.l2jbr.commons.lib.Log;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.L2Skill.SkillType;
 import com.l2jbr.gameserver.model.actor.instance.*;
@@ -31,9 +32,11 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.Formulas;
 import com.l2jbr.gameserver.skills.effects.EffectCharge;
 import com.l2jbr.gameserver.templates.L2WeaponType;
-import com.l2jbr.commons.util.Rnd;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
 
 /**
  * This class ...
@@ -43,7 +46,7 @@ import java.util.logging.Logger;
 public class Pdam implements ISkillHandler
 {
 	// all the items ids that this handler knowns
-	private static Logger _log = Logger.getLogger(Pdam.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(Pdam.class.getName());
 	
 	/*
 	 * (non-Javadoc)
@@ -73,7 +76,7 @@ public class Pdam implements ISkillHandler
 		{
 			if (Config.DEBUG)
 			{
-				_log.fine("Begin Skill processing in Pdam.java " + skill.getSkillType());
+				_log.debug("Begin Skill processing in Pdam.java " + skill.getSkillType());
 			}
 		}
 		

@@ -21,19 +21,21 @@ package com.l2jbr.gameserver.model.entity;
 import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Calendar;
+
+;
 
 /**
  * @author evill33t
  */
 public class Couple
 {
-	private static final Log _log = LogFactory.getLog(Couple.class.getName());
+	private static final Logger _log = LoggerFactory.getLogger(Couple.class.getName());
 	
 	// =========================================================
 	// Data Field

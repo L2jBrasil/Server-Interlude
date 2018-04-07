@@ -24,13 +24,15 @@ import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.L2WorldRegion;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
+;
+
 /**
  * This class manages all Minions. In a group mob, there are one master called RaidBoss and several slaves called Minions.
  * @version $Revision: 1.20.4.6 $ $Date: 2005/04/06 16:13:39 $
  */
 public final class L2MinionInstance extends L2MonsterInstance
 {
-	// private static Logger _log = Logger.getLogger(L2RaidMinionInstance.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(L2RaidMinionInstance.class.getName());
 	
 	/** The master L2Character whose depends this L2MinionInstance on */
 	private L2MonsterInstance _master;

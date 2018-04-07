@@ -30,12 +30,16 @@ import com.l2jbr.gameserver.model.entity.Siege;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.util.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -43,7 +47,7 @@ import java.util.logging.Logger;
  * @version $Revision: 1.11.2.5.2.5 $ $Date: 2005/03/27 15:29:18 $
  */
 public class ClanTable {
-    private static Logger _log = Logger.getLogger(ClanTable.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(ClanTable.class.getName());
 
     private static ClanTable _instance;
 
@@ -87,9 +91,9 @@ public class ClanTable {
             result.close();
             statement.close();
 
-            _log.config("Restored " + clanCount + " clans from the database.");
+            _log.info("Restored " + clanCount + " clans from the database.");
         } catch (Exception e) {
-            _log.warning("data error on ClanTable: " + e);
+            _log.warn("data error on ClanTable: " + e);
             e.printStackTrace();
         } finally {
             try {
@@ -135,7 +139,7 @@ public class ClanTable {
         }
 
         if (Config.DEBUG) {
-            _log.fine(player.getObjectId() + "(" + player.getName() + ") requested a clan creation.");
+            _log.debug(player.getObjectId() + "(" + player.getName() + ") requested a clan creation.");
         }
 
         if (10 > player.getLevel()) {
@@ -178,7 +182,7 @@ public class ClanTable {
         player.setClanPrivileges(L2Clan.CP_ALL);
 
         if (Config.DEBUG) {
-            _log.fine("New clan created: " + clan.getClanId() + " " + clan.getName());
+            _log.debug("New clan created: " + clan.getClanId() + " " + clan.getName());
         }
 
         _clans.put(clan.getClanId(), clan);
@@ -257,10 +261,10 @@ public class ClanTable {
             }
 
             if (Config.DEBUG) {
-                _log.fine("clan removed in db: " + clanId);
+                _log.debug("clan removed in db: " + clanId);
             }
         } catch (Exception e) {
-            _log.warning("error while removing clan in db " + e);
+            _log.warn("error while removing clan in db " + e);
         } finally {
             try {
                 con.close();
@@ -309,7 +313,7 @@ public class ClanTable {
             statement.execute();
             statement.close();
         } catch (Exception e) {
-            _log.warning("could not store clans wars data:" + e);
+            _log.warn("could not store clans wars data:" + e);
         } finally {
             try {
                 con.close();
@@ -362,7 +366,7 @@ public class ClanTable {
 
             statement.close();
         } catch (Exception e) {
-            _log.warning("could not restore clans wars data:" + e);
+            _log.warn("could not restore clans wars data:" + e);
         } finally {
             try {
                 con.close();
@@ -408,7 +412,7 @@ public class ClanTable {
             }
             statement.close();
         } catch (Exception e) {
-            _log.warning("could not restore clan wars data:" + e);
+            _log.warn("could not restore clan wars data:" + e);
         } finally {
             try {
                 con.close();

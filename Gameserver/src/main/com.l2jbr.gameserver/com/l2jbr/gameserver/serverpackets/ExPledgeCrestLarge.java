@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
+;
+
 /**
  * Format: (ch) ddd b d: ? d: crest ID d: crest size b: raw data
  * @author -Wooden-

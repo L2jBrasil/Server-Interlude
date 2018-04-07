@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.serverpackets;
 
 import java.util.List;
 
+;
+
 /**
  * Format: (ch) d[d]
  * @author -Wooden-

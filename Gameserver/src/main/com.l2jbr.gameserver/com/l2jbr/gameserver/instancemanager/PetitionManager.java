@@ -28,10 +28,14 @@ import com.l2jbr.gameserver.serverpackets.CreatureSay;
 import com.l2jbr.gameserver.serverpackets.L2GameServerPacket;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * Petition Manager
@@ -39,7 +43,7 @@ import java.util.logging.Logger;
  * @author Tempy
  */
 public final class PetitionManager {
-    protected static final Logger _log = Logger.getLogger(PetitionManager.class.getName());
+    protected static final Logger _log = LoggerFactory.getLogger(PetitionManager.class.getName());
     private static PetitionManager _instance;
 
     private final Map<Integer, Petition> _pendingPetitions;
@@ -94,7 +98,7 @@ public final class PetitionManager {
             petitionType--;
             _id = IdFactory.getInstance().getNextId();
             if (petitionType >= PetitionType.values().length) {
-                _log.warning("PetitionManager:Petition : invalid petition type (received type was +1) : " + petitionType);
+                _log.warn("PetitionManager:Petition : invalid petition type (received type was +1) : " + petitionType);
             }
             _type = PetitionType.values()[petitionType];
             _content = petitionText;

@@ -26,16 +26,12 @@ import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Manor;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.L2Skill;
-import com.l2jbr.gameserver.model.actor.instance.L2BossInstance;
-import com.l2jbr.gameserver.model.actor.instance.L2ChestInstance;
-import com.l2jbr.gameserver.model.actor.instance.L2MonsterInstance;
-import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
-import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.actor.instance.L2PlayableInstance;
-import com.l2jbr.gameserver.model.actor.instance.L2RaidBossInstance;
+import com.l2jbr.gameserver.model.actor.instance.*;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+
+;
 
 /**
  * @author l3x

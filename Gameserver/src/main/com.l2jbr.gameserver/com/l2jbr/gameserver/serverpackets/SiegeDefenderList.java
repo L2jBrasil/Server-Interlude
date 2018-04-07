@@ -18,13 +18,14 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
-//import java.util.Calendar; //signed time related
-//import java.util.logging.Logger;
-
 import com.l2jbr.gameserver.datatables.ClanTable;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.L2SiegeClan;
 import com.l2jbr.gameserver.model.entity.Castle;
+
+;
+//import java.util.Calendar; //signed time related
+//
 
 /**
  * Populates the Siege Defender List in the SiegeInfo Window<BR>
@@ -55,7 +56,7 @@ import com.l2jbr.gameserver.model.entity.Castle;
 public class SiegeDefenderList extends L2GameServerPacket
 {
 	private static final String _S__CA_SiegeDefenderList = "[S] cb SiegeDefenderList";
-	// private static Logger _log = Logger.getLogger(SiegeDefenderList.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(SiegeDefenderList.class.getName());
 	private final Castle _castle;
 	
 	public SiegeDefenderList(Castle castle)

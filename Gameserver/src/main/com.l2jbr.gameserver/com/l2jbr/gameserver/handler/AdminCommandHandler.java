@@ -20,13 +20,18 @@ package com.l2jbr.gameserver.handler;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
-import java.util.logging.Logger;
+
+;
+
+
 
 /**
  * This class ...
@@ -34,14 +39,14 @@ import java.util.logging.Logger;
  * @version $Revision: 1.1.4.5 $ $Date: 2005/03/27 15:30:09 $
  */
 public class AdminCommandHandler {
-    private static Logger _log = Logger.getLogger(AdminCommandHandler.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(AdminCommandHandler.class.getName());
 
     private static AdminCommandHandler _instance;
 
     private final Map<String, IAdminCommandHandler> _datatable;
 
     // Alt privileges setting
-    private static Logger _priviLog = Logger.getLogger("AltPrivilegesAdmin");
+    private static Logger _priviLog = LoggerFactory.getLogger("AltPrivilegesAdmin");
     private static LinkedHashMap<String, Integer> _privileges;
 
     public static AdminCommandHandler getInstance() {
@@ -59,7 +64,7 @@ public class AdminCommandHandler {
         String[] ids = handler.getAdminCommandList();
         for (String id : ids) {
             if (Config.DEBUG) {
-                _log.fine("Adding handler for command " + id);
+                _log.debug("Adding handler for command " + id);
             }
             _datatable.put(id, handler);
         }
@@ -71,7 +76,7 @@ public class AdminCommandHandler {
             command = adminCommand.substring(0, adminCommand.indexOf(" "));
         }
         if (Config.DEBUG) {
-            _log.fine("getting handler for command: " + command + " -> " + (_datatable.get(command) != null));
+            _log.debug("getting handler for command: " + command + " -> " + (_datatable.get(command) != null));
         }
         return _datatable.get(command);
     }
@@ -145,7 +150,7 @@ public class AdminCommandHandler {
         }
 
         if (player.getAccessLevel() < requireLevel) {
-            _priviLog.warning("<GM>" + player.getName() + ": have not access level to execute the command '" + command + "'");
+            _priviLog.warn("<GM>" + player.getName() + ": have not access level to execute the command '" + command + "'");
             return false;
         }
 

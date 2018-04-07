@@ -17,14 +17,16 @@
  */
 package com.l2jbr.gameserver.model.zone.type;
 
-import java.util.concurrent.Future;
-
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.L2WorldRegion;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.zone.L2ZoneType;
+
+import java.util.concurrent.Future;
+
+;
 
 /**
  * A dynamic zone? Maybe use this for interlude skills like protection field :>

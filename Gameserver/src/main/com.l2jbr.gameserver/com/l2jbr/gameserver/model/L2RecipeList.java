@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.model;
 
+;
+
 /**
  * This class describes a Recipe used by Dwarf to craft Item. All L2RecipeList are made of L2RecipeInstance (1 line of the recipe : Item-Quantity needed).<BR>
  * <BR>

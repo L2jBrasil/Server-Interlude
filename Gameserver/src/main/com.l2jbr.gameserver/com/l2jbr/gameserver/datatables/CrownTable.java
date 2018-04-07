@@ -21,6 +21,8 @@ package com.l2jbr.gameserver.datatables;
 import java.util.LinkedList;
 import java.util.List;
 
+;
+
 /**
  * This class has just one simple function to return the item id of a crown regarding to castleid
  *

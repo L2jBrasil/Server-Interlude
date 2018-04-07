@@ -18,12 +18,14 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
+;
+
 /**
  * @author zabbix Lets drink to code!
  */
 public final class DummyPacket extends L2GameClientPacket
 {
-	// private static Logger _log = Logger.getLogger(DummyPacket.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(DummyPacket.class.getName());
 	
 	@Override
 	protected void readImpl()

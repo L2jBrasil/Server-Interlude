@@ -19,8 +19,9 @@ package com.l2jbr.gameserver.taskmanager.tasks;
 
 import com.l2jbr.gameserver.taskmanager.Task;
 import com.l2jbr.gameserver.taskmanager.TaskManager.ExecutedTask;
-
 import org.python.util.PythonInterpreter;
+
+;
 
 /**
  * @author Layane

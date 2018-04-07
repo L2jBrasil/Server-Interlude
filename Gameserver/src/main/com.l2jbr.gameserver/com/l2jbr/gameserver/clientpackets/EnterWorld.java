@@ -34,12 +34,16 @@ import com.l2jbr.gameserver.model.quest.Quest;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.util.FloodProtector;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * Enter World Packet Handler
@@ -54,7 +58,7 @@ import java.util.logging.Logger;
 public class EnterWorld extends L2GameClientPacket
 {
 	private static final String _C__03_ENTERWORLD = "[C] 03 EnterWorld";
-	private static Logger _log = Logger.getLogger(EnterWorld.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(EnterWorld.class.getName());
 	
 	public TaskPriority getPriority()
 	{
@@ -74,7 +78,7 @@ public class EnterWorld extends L2GameClientPacket
 		
 		if (activeChar == null)
 		{
-			_log.warning("EnterWorld failed! activeChar is null...");
+			_log.warn("EnterWorld failed! activeChar is null...");
 			getClient().closeNow();
 			return;
 		}
@@ -86,7 +90,7 @@ public class EnterWorld extends L2GameClientPacket
 		{
 			if (Config.DEBUG)
 			{
-				_log.warning("User already exist in OID map! User " + activeChar.getName() + " is character clone");
+				_log.warn("User already exist in OID map! User " + activeChar.getName() + " is character clone");
 				// activeChar.closeNetConnection();
 			}
 		}
@@ -424,7 +428,7 @@ public class EnterWorld extends L2GameClientPacket
 		}
 		catch (Exception e)
 		{
-			_log.warning("could not restore friend data:" + e);
+			_log.warn("could not restore friend data:" + e);
 		}
 	}
 	

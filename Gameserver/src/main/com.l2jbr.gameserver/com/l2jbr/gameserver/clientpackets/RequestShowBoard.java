@@ -21,6 +21,8 @@ package com.l2jbr.gameserver.clientpackets;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.communitybbs.CommunityBoard;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.2.4.2 $ $Date: 2005/03/27 15:29:30 $

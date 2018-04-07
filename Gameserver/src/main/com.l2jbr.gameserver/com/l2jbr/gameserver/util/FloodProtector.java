@@ -19,9 +19,13 @@ package com.l2jbr.gameserver.util;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.GameTimeController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * Flood protector
@@ -29,7 +33,7 @@ import java.util.logging.Logger;
  * @author durgus
  */
 public class FloodProtector {
-    private static final Logger _log = Logger.getLogger(FloodProtector.class.getName());
+    private static final Logger _log = LoggerFactory.getLogger(FloodProtector.class.getName());
     private static FloodProtector _instance;
 
     public static final FloodProtector getInstance() {

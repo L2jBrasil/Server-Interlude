@@ -17,6 +17,8 @@ package com.l2jbr.gameserver.model;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+;
+
 /**
  * This class ...
  *

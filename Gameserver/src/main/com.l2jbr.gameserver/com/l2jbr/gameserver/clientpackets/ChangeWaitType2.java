@@ -25,6 +25,8 @@ import com.l2jbr.gameserver.model.actor.instance.L2StaticObjectInstance;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.ChairSit;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.1.4.3 $ $Date: 2005/03/27 15:29:30 $

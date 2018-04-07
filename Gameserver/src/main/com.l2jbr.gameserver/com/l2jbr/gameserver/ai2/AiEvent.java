@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.ai2;
 
 import com.l2jbr.gameserver.model.L2Character;
 
+;
+
 public class AiEvent
 {
 	private final AiEventType _type;

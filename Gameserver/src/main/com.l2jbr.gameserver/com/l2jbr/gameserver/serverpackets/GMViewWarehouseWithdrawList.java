@@ -23,6 +23,8 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.templates.L2Weapon;
 
+;
+
 /**
  * Sdh(h dddhh [dhhh] d) Sdh ddddd ddddd ddddd ddddd
  * @version $Revision: 1.1.2.1.2.5 $ $Date: 2007/11/26 16:10:05 $

@@ -14,12 +14,15 @@
  */
 package com.l2jbr.gameserver.idfactory;
 
-import java.util.BitSet;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.logging.Logger;
-
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.util.PrimeFinder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.BitSet;
+import java.util.concurrent.atomic.AtomicInteger;
+
+;
 
 /**
  * This class ..
@@ -27,7 +30,7 @@ import com.l2jbr.gameserver.util.PrimeFinder;
  */
 public class BitSetIDFactory extends IdFactory
 {
-	private static Logger _log = Logger.getLogger(BitSetIDFactory.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(BitSetIDFactory.class.getName());
 	
 	private BitSet _freeIds;
 	private AtomicInteger _freeIdCount;
@@ -72,7 +75,7 @@ public class BitSetIDFactory extends IdFactory
 				int objectID = usedObjectId - FIRST_OID;
 				if (objectID < 0)
 				{
-					_log.warning("Object ID " + usedObjectId + " in DB is less than minimum ID of " + FIRST_OID);
+					_log.warn("Object ID " + usedObjectId + " in DB is less than minimum ID of " + FIRST_OID);
 					continue;
 				}
 				_freeIds.set(usedObjectId - FIRST_OID);
@@ -85,7 +88,7 @@ public class BitSetIDFactory extends IdFactory
 		catch (Exception e)
 		{
 			_initialized = false;
-			_log.severe("BitSet ID Factory could not be initialized correctly");
+			_log.error("BitSet ID Factory could not be initialized correctly");
 			e.printStackTrace();
 		}
 	}
@@ -100,7 +103,7 @@ public class BitSetIDFactory extends IdFactory
 		}
 		else
 		{
-			_log.warning("BitSet ID Factory: release objectID " + objectID + " failed (< " + FIRST_OID + ")");
+			_log.warn("BitSet ID Factory: release objectID " + objectID + " failed (< " + FIRST_OID + ")");
 		}
 	}
 	

@@ -28,6 +28,8 @@ import com.l2jbr.gameserver.serverpackets.Ride;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.util.Broadcast;
 
+;
+
 /**
  * Support for /mount command.
  * @author Tempy

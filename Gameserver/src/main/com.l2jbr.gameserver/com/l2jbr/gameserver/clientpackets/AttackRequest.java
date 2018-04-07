@@ -23,6 +23,8 @@ import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.7.2.1.2.2 $ $Date: 2005/03/27 15:29:30 $
@@ -82,9 +84,9 @@ public final class AttackRequest extends L2GameClientPacket
 		{
 			if ((target.getObjectId() != activeChar.getObjectId()) && (activeChar.getPrivateStoreType() == 0) && (activeChar.getActiveRequester() == null))
 			{
-				// _log.config("Starting ForcedAttack");
+				// _log.info("Starting ForcedAttack");
 				target.onForcedAttack(activeChar);
-				// _log.config("Ending ForcedAttack");
+				// _log.info("Ending ForcedAttack");
 			}
 			else
 			{

@@ -25,6 +25,8 @@ import com.l2jbr.gameserver.model.Location;
 import com.l2jbr.gameserver.model.actor.instance.L2DoorInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2SiegeGuardInstance;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.nio.ByteBuffer;
@@ -35,13 +37,15 @@ import java.nio.channels.FileChannel;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * @author -Nemesiss-
  */
 public class GeoEngine extends GeoData {
-    private static Logger _log = Logger.getLogger(GeoData.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(GeoData.class.getName());
     private static GeoEngine _instance;
     private final static byte _e = 1;
     private final static byte _w = 2;
@@ -260,14 +264,14 @@ public class GeoEngine extends GeoData {
                     z += inc_z_directionx;
                     next_y += inc_y;
                     z += inc_z_directiony;
-                    // _log.warning("1: next_x:"+next_x+" next_y"+next_y);
+                    // _log.warn("1: next_x:"+next_x+" next_y"+next_y);
                     if (!nLOS(x, y, (int) z, inc_x, inc_y, tz, false)) {
                         return false;
                     }
                 } else {
                     d += delta_A;
                     next_x += inc_x;
-                    // _log.warning("2: next_x:"+next_x+" next_y"+next_y);
+                    // _log.warn("2: next_x:"+next_x+" next_y"+next_y);
                     z += inc_z_directionx;
                     if (!nLOS(x, y, (int) z, inc_x, 0, tz, false)) {
                         return false;
@@ -287,14 +291,14 @@ public class GeoEngine extends GeoData {
                     z += inc_z_directiony;
                     next_x += inc_x;
                     z += inc_z_directionx;
-                    // _log.warning("3: next_x:"+next_x+" next_y"+next_y);
+                    // _log.warn("3: next_x:"+next_x+" next_y"+next_y);
                     if (!nLOS(x, y, (int) z, inc_x, inc_y, tz, false)) {
                         return false;
                     }
                 } else {
                     d += delta_A;
                     next_y += inc_y;
-                    // _log.warning("4: next_x:"+next_x+" next_y"+next_y);
+                    // _log.warn("4: next_x:"+next_x+" next_y"+next_y);
                     z += inc_z_directiony;
                     if (!nLOS(x, y, (int) z, 0, inc_y, tz, false)) {
                         return false;
@@ -369,14 +373,14 @@ public class GeoEngine extends GeoData {
                     z += inc_z_directionx;
                     next_y += inc_y;
                     z += inc_z_directiony;
-                    // _log.warning("1: next_x:"+next_x+" next_y"+next_y);
+                    // _log.warn("1: next_x:"+next_x+" next_y"+next_y);
                     if (!nLOS(x, y, (int) z, inc_x, inc_y, tz, true)) {
                         return false;
                     }
                 } else {
                     d += delta_A;
                     next_x += inc_x;
-                    // _log.warning("2: next_x:"+next_x+" next_y"+next_y);
+                    // _log.warn("2: next_x:"+next_x+" next_y"+next_y);
                     z += inc_z_directionx;
                     if (!nLOS(x, y, (int) z, inc_x, 0, tz, true)) {
                         return false;
@@ -396,14 +400,14 @@ public class GeoEngine extends GeoData {
                     z += inc_z_directiony;
                     next_x += inc_x;
                     z += inc_z_directionx;
-                    // _log.warning("3: next_x:"+next_x+" next_y"+next_y);
+                    // _log.warn("3: next_x:"+next_x+" next_y"+next_y);
                     if (!nLOS(x, y, (int) z, inc_x, inc_y, tz, true)) {
                         return false;
                     }
                 } else {
                     d += delta_A;
                     next_y += inc_y;
-                    // _log.warning("4: next_x:"+next_x+" next_y"+next_y);
+                    // _log.warn("4: next_x:"+next_x+" next_y"+next_y);
                     z += inc_z_directiony;
                     if (!nLOS(x, y, (int) z, 0, inc_y, tz, true)) {
                         return false;
@@ -470,7 +474,7 @@ public class GeoEngine extends GeoData {
                     d += delta_B;
                     next_x += inc_x;
                     next_y += inc_y;
-                    // _log.warning("2: next_x:"+next_x+" next_y"+next_y);
+                    // _log.warn("2: next_x:"+next_x+" next_y"+next_y);
                     tempz = nCanMoveNext(x, y, (int) z, next_x, next_y, tz);
                     if (tempz == Double.MIN_VALUE) {
                         return new Location((x << 4) + L2World.MAP_MIN_X, (y << 4) + L2World.MAP_MIN_Y, (int) z);
@@ -479,7 +483,7 @@ public class GeoEngine extends GeoData {
                 } else {
                     d += delta_A;
                     next_x += inc_x;
-                    // _log.warning("3: next_x:"+next_x+" next_y"+next_y);
+                    // _log.warn("3: next_x:"+next_x+" next_y"+next_y);
                     tempz = nCanMoveNext(x, y, (int) z, next_x, next_y, tz);
                     if (tempz == Double.MIN_VALUE) {
                         return new Location((x << 4) + L2World.MAP_MIN_X, (y << 4) + L2World.MAP_MIN_Y, (int) z);
@@ -498,7 +502,7 @@ public class GeoEngine extends GeoData {
                     d += delta_B;
                     next_y += inc_y;
                     next_x += inc_x;
-                    // _log.warning("5: next_x:"+next_x+" next_y"+next_y);
+                    // _log.warn("5: next_x:"+next_x+" next_y"+next_y);
                     tempz = nCanMoveNext(x, y, (int) z, next_x, next_y, tz);
                     if (tempz == Double.MIN_VALUE) {
                         return new Location((x << 4) + L2World.MAP_MIN_X, (y << 4) + L2World.MAP_MIN_Y, (int) z);
@@ -507,7 +511,7 @@ public class GeoEngine extends GeoData {
                 } else {
                     d += delta_A;
                     next_y += inc_y;
-                    // _log.warning("6: next_x:"+next_x+" next_y"+next_y);
+                    // _log.warn("6: next_x:"+next_x+" next_y"+next_y);
                     tempz = nCanMoveNext(x, y, (int) z, next_x, next_y, tz);
                     if (tempz == Double.MIN_VALUE) {
                         return new Location((x << 4) + L2World.MAP_MIN_X, (y << 4) + L2World.MAP_MIN_Y, (int) z);
@@ -616,7 +620,7 @@ public class GeoEngine extends GeoData {
             _log.info("Geo Engine: - Max Layers: " + flor + " Size: " + size + " Loaded: " + index);
         } catch (Exception e) {
             e.printStackTrace();
-            _log.warning("Failed to Load GeoFile at block: " + block + "\n");
+            _log.warn("Failed to Load GeoFile at block: " + block + "\n");
             return false;
         }
         return true;
@@ -673,7 +677,7 @@ public class GeoEngine extends GeoData {
         ByteBuffer geo = _geodata.get(region);
         if (geo == null) {
             if (Config.DEBUG) {
-                _log.warning("Geo Region - Region Offset: " + region + " dosnt exist!!");
+                _log.warn("Geo Region - Region Offset: " + region + " dosnt exist!!");
             }
             return 0;
         }
@@ -701,7 +705,7 @@ public class GeoEngine extends GeoData {
         ByteBuffer geo = _geodata.get(region);
         if (geo == null) {
             if (Config.DEBUG) {
-                _log.warning("Geo Region - Region Offset: " + region + " dosnt exist!!");
+                _log.warn("Geo Region - Region Offset: " + region + " dosnt exist!!");
             }
             return (short) z;
         }
@@ -734,7 +738,7 @@ public class GeoEngine extends GeoData {
             index++;
             short height = -1;
             if ((layers <= 0) || (layers > 125)) {
-                _log.warning("Broken geofile (case1), region: " + region + " - invalid layer count: " + layers + " at: " + geox + " " + geoy);
+                _log.warn("Broken geofile (case1), region: " + region + " - invalid layer count: " + layers + " at: " + geox + " " + geoy);
                 return (short) z;
             }
             short temph = Short.MIN_VALUE;
@@ -776,7 +780,7 @@ public class GeoEngine extends GeoData {
         ByteBuffer geo = _geodata.get(region);
         if (geo == null) {
             if (Config.DEBUG) {
-                _log.warning("Geo Region - Region Offset: " + region + " dosnt exist!!");
+                _log.warn("Geo Region - Region Offset: " + region + " dosnt exist!!");
             }
             return (short) zmin;
         }
@@ -810,7 +814,7 @@ public class GeoEngine extends GeoData {
             byte layers = geo.get(index);
             index++;
             if ((layers <= 0) || (layers > 125)) {
-                _log.warning("Broken geofile (case2), region: " + region + " - invalid layer count: " + layers + " at: " + geox + " " + geoy);
+                _log.warn("Broken geofile (case2), region: " + region + " - invalid layer count: " + layers + " at: " + geox + " " + geoy);
                 return (short) zmin;
             }
             while (layers > 0) {
@@ -825,14 +829,14 @@ public class GeoEngine extends GeoData {
             }
             if ((temph > (zmax + 200)) || (temph < (zmin - 200))) {
                 if (Config.DEBUG) {
-                    _log.warning("SpawnHeight Error - Couldnt find correct layer to spawn NPC - GeoData or Spawnlist Bug!: zmin: " + zmin + " zmax: " + zmax + " value: " + temph + " SpawnId: " + spawnid + " at: " + geox + " : " + geoy);
+                    _log.warn("SpawnHeight Error - Couldnt find correct layer to spawn NPC - GeoData or Spawnlist Bug!: zmin: " + zmin + " zmax: " + zmax + " value: " + temph + " SpawnId: " + spawnid + " at: " + geox + " : " + geoy);
                 }
                 return (short) zmin;
             }
         }
         if ((temph > (zmax + 1000)) || (temph < (zmin - 1000))) {
             if (Config.DEBUG) {
-                _log.warning("SpawnHeight Error - Spawnlist z value is wrong or GeoData error: zmin: " + zmin + " zmax: " + zmax + " value: " + temph + " SpawnId: " + spawnid + " at: " + geox + " : " + geoy);
+                _log.warn("SpawnHeight Error - Spawnlist z value is wrong or GeoData error: zmin: " + zmin + " zmax: " + zmax + " value: " + temph + " SpawnId: " + spawnid + " at: " + geox + " : " + geoy);
             }
             return (short) zmin;
         }
@@ -866,7 +870,7 @@ public class GeoEngine extends GeoData {
         ByteBuffer geo = _geodata.get(region);
         if (geo == null) {
             if (Config.DEBUG) {
-                _log.warning("Geo Region - Region Offset: " + region + " dosnt exist!!");
+                _log.warn("Geo Region - Region Offset: " + region + " dosnt exist!!");
             }
             return z;
         }
@@ -901,11 +905,11 @@ public class GeoEngine extends GeoData {
                 offset--;
             }
             byte layers = geo.get(index);
-            // _log.warning("layers"+layers);
+            // _log.warn("layers"+layers);
             index++;
             short height = -1;
             if ((layers <= 0) || (layers > 125)) {
-                _log.warning("Broken geofile (case3), region: " + region + " - invalid layer count: " + layers + " at: " + x + " " + y);
+                _log.warn("Broken geofile (case3), region: " + region + " - invalid layer count: " + layers + " at: " + x + " " + y);
                 return z;
             }
             short tempz = Short.MIN_VALUE;
@@ -959,7 +963,7 @@ public class GeoEngine extends GeoData {
         ByteBuffer geo = _geodata.get(region);
         if (geo == null) {
             if (Config.DEBUG) {
-                _log.warning("Geo Region - Region Offset: " + region + " dosnt exist!!");
+                _log.warn("Geo Region - Region Offset: " + region + " dosnt exist!!");
             }
             return true;
         }
@@ -969,7 +973,7 @@ public class GeoEngine extends GeoData {
         if (type == 0) // flat, movement and sight always possible
         {
             if (debug) {
-                _log.warning("flatheight:" + geo.getShort(index));
+                _log.warn("flatheight:" + geo.getShort(index));
             }
             return true;
         } else if (type == 1) // complex
@@ -982,9 +986,9 @@ public class GeoEngine extends GeoData {
             height = (short) (height & 0x0fff0);
             height = (short) (height >> 1); // height / 2
             if (debug) {
-                _log.warning("height:" + height + " z" + z);
+                _log.warn("height:" + height + " z" + z);
                 if (!checkNSWE(NSWE, x, y, x + inc_x, y + inc_y)) {
-                    _log.warning("would block");
+                    _log.warn("would block");
                 }
             }
             if ((z - height) > 50) {
@@ -1004,12 +1008,12 @@ public class GeoEngine extends GeoData {
             }
             byte layers = geo.get(index);
             if (debug) {
-                _log.warning("layers" + layers);
+                _log.warn("layers" + layers);
             }
             index++;
             short height = -1;
             if ((layers <= 0) || (layers > 125)) {
-                _log.warning("Broken geofile (case4), region: " + region + " - invalid layer count: " + layers + " at: " + x + " " + y);
+                _log.warn("Broken geofile (case4), region: " + region + " - invalid layer count: " + layers + " at: " + x + " " + y);
                 return false;
             }
             short tempz = Short.MIN_VALUE; // big negative value
@@ -1031,7 +1035,7 @@ public class GeoEngine extends GeoData {
                     }
                     tempz = height;
                     if (debug) {
-                        _log.warning("z" + (z + 45) + " tempz" + tempz + " dz" + (z - tempz));
+                        _log.warn("z" + (z + 45) + " tempz" + tempz + " dz" + (z - tempz));
                     }
                     NSWE = geo.getShort(index);
                     NSWE = (short) (NSWE & 0x0F);
@@ -1061,10 +1065,10 @@ public class GeoEngine extends GeoData {
                     // the height after 2 inc_x,inc_y
                     short nextheight = nGetHeight(x + (2 * inc_x), y + (2 * inc_y), z - 50);
                     if (debug) {
-                        _log.warning("0: z:" + z + " tz" + nGetHeight(x, y, z - 60));
-                        _log.warning("1: z:" + z + " tz" + nGetHeight(x + inc_x, y + inc_y, z - 60));
-                        _log.warning("2: z:" + z + " tz" + nGetHeight(x + (2 * inc_x), y + (2 * inc_y), z - 60));
-                        _log.warning("3: z:" + z + " tz" + nGetHeight(x + (3 * inc_x), y + (3 * inc_y), z - 60));
+                        _log.warn("0: z:" + z + " tz" + nGetHeight(x, y, z - 60));
+                        _log.warn("1: z:" + z + " tz" + nGetHeight(x + inc_x, y + inc_y, z - 60));
+                        _log.warn("2: z:" + z + " tz" + nGetHeight(x + (2 * inc_x), y + (2 * inc_y), z - 60));
+                        _log.warn("3: z:" + z + " tz" + nGetHeight(x + (3 * inc_x), y + (3 * inc_y), z - 60));
                     }
                     // Probably a very thin fence (e.g. castle fences above artefact),
                     // where height instantly drops after 1-2 cells and layer ends.
@@ -1108,7 +1112,7 @@ public class GeoEngine extends GeoData {
         ByteBuffer geo = _geodata.get(region);
         if (geo == null) {
             if (Config.DEBUG) {
-                _log.warning("Geo Region - Region Offset: " + region + " dosnt exist!!");
+                _log.warn("Geo Region - Region Offset: " + region + " dosnt exist!!");
             }
             return 15;
         }
@@ -1139,7 +1143,7 @@ public class GeoEngine extends GeoData {
             index++;
             short height = -1;
             if ((layers <= 0) || (layers > 125)) {
-                _log.warning("Broken geofile (case5), region: " + region + " - invalid layer count: " + layers + " at: " + x + " " + y);
+                _log.warn("Broken geofile (case5), region: " + region + " - invalid layer count: " + layers + " at: " + x + " " + y);
                 return 15;
             }
             short tempz = Short.MIN_VALUE;

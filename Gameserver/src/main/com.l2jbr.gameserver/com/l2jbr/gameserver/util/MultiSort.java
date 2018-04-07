@@ -19,6 +19,8 @@ package com.l2jbr.gameserver.util;
 
 import java.util.*;
 
+;
+
 /**
  * Descending Integer Sort Algorithm - Fast ordering system. - Can easily be ported elsewhere. - Can handle any number of values, from a list or even from a map. - Handles duplicate values.
  *

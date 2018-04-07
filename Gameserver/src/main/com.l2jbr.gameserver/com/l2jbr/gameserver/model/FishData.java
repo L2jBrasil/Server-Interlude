@@ -17,6 +17,8 @@
  */
 package com.l2jbr.gameserver.model;
 
+;
+
 public class FishData
 {
 	private final int _id;

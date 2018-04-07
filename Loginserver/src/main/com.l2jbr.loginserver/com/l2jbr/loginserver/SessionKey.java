@@ -20,6 +20,8 @@ package com.l2jbr.loginserver;
 
 import com.l2jbr.commons.Config;
 
+;
+
 /**
  * <p>
  * This class is used to represent session keys used by the client to authenticate in the gameserver

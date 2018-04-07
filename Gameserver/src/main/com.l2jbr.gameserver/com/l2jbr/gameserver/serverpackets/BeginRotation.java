@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.serverpackets;
 
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
+;
+
 public class BeginRotation extends L2GameServerPacket
 {
 	private static final String _S__77_BEGINROTATION = "[S] 62 BeginRotation";

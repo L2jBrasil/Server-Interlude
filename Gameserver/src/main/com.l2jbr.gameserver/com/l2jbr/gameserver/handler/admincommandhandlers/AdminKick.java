@@ -28,6 +28,8 @@ import com.l2jbr.gameserver.serverpackets.LeaveWorld;
 
 import java.util.StringTokenizer;
 
+;
+
 public class AdminKick implements IAdminCommandHandler
 {
 	private static final String[] ADMIN_COMMANDS =

@@ -20,17 +20,21 @@ package com.l2jbr.gameserver.taskmanager;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.actor.instance.L2RaidBossInstance;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * @author la2 Lets drink to code!
  */
 public class DecayTaskManager {
-    protected static final Logger _log = Logger.getLogger(DecayTaskManager.class.getName());
+    protected static final Logger _log = LoggerFactory.getLogger(DecayTaskManager.class.getName());
     protected Map<L2Character, Long> _decayTasks = new LinkedHashMap<L2Character, Long>();
 
     private static DecayTaskManager _instance;
@@ -87,7 +91,7 @@ public class DecayTaskManager {
                 }
             } catch (Throwable e) {
                 // TODO: Find out the reason for exception. Unless caught here, mob decay would stop.
-                _log.warning(e.toString());
+                _log.warn(e.toString());
             }
         }
     }

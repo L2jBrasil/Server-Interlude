@@ -22,6 +22,8 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.PrivateStoreManageListBuy;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.2.2.1.2.4 $ $Date: 2005/03/27 15:29:30 $
@@ -30,7 +32,7 @@ public final class RequestPrivateStoreManageBuy extends L2GameClientPacket
 {
 	private static final String _C__90_REQUESTPRIVATESTOREMANAGEBUY = "[C] 90 RequestPrivateStoreManageBuy";
 	
-	// private static Logger _log = Logger.getLogger(RequestPrivateStoreBuyManage.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(RequestPrivateStoreBuyManage.class.getName());
 	
 	@Override
 	protected void readImpl()

@@ -21,13 +21,15 @@ package com.l2jbr.gameserver.clientpackets;
 import com.l2jbr.gameserver.RecipeController;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
+;
+
 /**
  * @author Administrator TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates
  */
 public final class RequestRecipeItemMakeSelf extends L2GameClientPacket
 {
 	private static final String _C__AF_REQUESTRECIPEITEMMAKESELF = "[C] AF RequestRecipeItemMakeSelf";
-	// private static Logger _log = Logger.getLogger(RequestSellItem.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(RequestSellItem.class.getName());
 	
 	private int _id;
 	

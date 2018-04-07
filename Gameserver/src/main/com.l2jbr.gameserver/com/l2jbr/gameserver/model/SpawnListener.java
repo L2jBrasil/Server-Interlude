@@ -16,6 +16,8 @@ package com.l2jbr.gameserver.model;
 
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.2 $ $Date: 2004/06/27 08:12:59 $

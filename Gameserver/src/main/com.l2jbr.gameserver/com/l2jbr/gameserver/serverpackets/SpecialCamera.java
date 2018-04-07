@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
+;
+
 public class SpecialCamera extends L2GameServerPacket
 {
 	private static final String _S__C7_SPECIALCAMERA = "[S] C7 SpecialCamera";

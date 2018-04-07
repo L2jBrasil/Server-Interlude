@@ -22,6 +22,8 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 
 import java.util.Vector;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.18.2.5.2.8 $ $Date: 2005/04/05 19:41:08 $

@@ -19,6 +19,7 @@
 package com.l2jbr.gameserver.model.entity;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.datatables.DoorTable;
 import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.datatables.NpcTable;
@@ -31,7 +32,8 @@ import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
-import com.l2jbr.commons.util.Rnd;
+
+;
 
 /**
  * @author FBIagent

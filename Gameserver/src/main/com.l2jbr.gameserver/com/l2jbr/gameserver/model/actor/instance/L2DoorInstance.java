@@ -34,13 +34,17 @@ import com.l2jbr.gameserver.network.L2GameClient;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.templates.L2CharTemplate;
 import com.l2jbr.gameserver.templates.L2Weapon;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ScheduledFuture;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+;
+
+
 
 /**
  * This class ...
@@ -48,7 +52,7 @@ import java.util.logging.Logger;
  * @version $Revision: 1.3.2.2.2.5 $ $Date: 2005/03/27 15:29:32 $
  */
 public class L2DoorInstance extends L2Character {
-    protected static final Logger log = Logger.getLogger(L2DoorInstance.class.getName());
+    protected static final Logger log = LoggerFactory.getLogger(L2DoorInstance.class.getName());
 
     /**
      * The castle index in the array of L2Castle this L2NpcInstance belongs to
@@ -130,7 +134,7 @@ public class L2DoorInstance extends L2Character {
             try {
                 onClose();
             } catch (Throwable e) {
-                log.log(Level.SEVERE, "", e);
+                log.error( "", e);
             }
         }
     }
@@ -156,7 +160,7 @@ public class L2DoorInstance extends L2Character {
                     log.info("Auto " + doorAction + " door ID " + _doorId + " (" + _name + ") for " + (_autoActionDelay / 60000) + " minute(s).");
                 }
             } catch (Exception e) {
-                log.warning("Could not auto open/close door ID " + _doorId + " (" + _name + ")");
+                log.warn("Could not auto open/close door ID " + _doorId + " (" + _name + ")");
             }
         }
     }

@@ -21,6 +21,8 @@ package com.l2jbr.gameserver.clientpackets;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.PrivateStoreMsgBuy;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.2.4.2 $ $Date: 2005/03/27 15:29:30 $
@@ -28,7 +30,7 @@ import com.l2jbr.gameserver.serverpackets.PrivateStoreMsgBuy;
 public final class SetPrivateStoreMsgBuy extends L2GameClientPacket
 {
 	private static final String _C__94_SETPRIVATESTOREMSGBUY = "[C] 94 SetPrivateStoreMsgBuy";
-	// private static Logger _log = Logger.getLogger(SetPrivateStoreMsgBuy.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(SetPrivateStoreMsgBuy.class.getName());
 	
 	private String _storeMsg;
 	

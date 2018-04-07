@@ -21,11 +21,9 @@ package com.l2jbr.gameserver.clientpackets;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
-import com.l2jbr.gameserver.serverpackets.JoinPledge;
-import com.l2jbr.gameserver.serverpackets.PledgeShowInfoUpdate;
-import com.l2jbr.gameserver.serverpackets.PledgeShowMemberListAdd;
-import com.l2jbr.gameserver.serverpackets.PledgeShowMemberListAll;
-import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import com.l2jbr.gameserver.serverpackets.*;
+
+;
 
 /**
  * This class ...
@@ -34,7 +32,7 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 public final class RequestAnswerJoinPledge extends L2GameClientPacket
 {
 	private static final String _C__25_REQUESTANSWERJOINPLEDGE = "[C] 25 RequestAnswerJoinPledge";
-	// private static Logger _log = Logger.getLogger(RequestAnswerJoinPledge.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(RequestAnswerJoinPledge.class.getName());
 	
 	private int _answer;
 	

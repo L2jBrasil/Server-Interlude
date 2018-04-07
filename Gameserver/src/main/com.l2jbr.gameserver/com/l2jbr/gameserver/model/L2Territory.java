@@ -26,13 +26,17 @@
 package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.util.Rnd;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Logger;
+
+;
+
 
 public class L2Territory {
-    private static Logger _log = Logger.getLogger(L2Territory.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(L2Territory.class.getName());
 
     protected class Point {
         protected int _x, _y, _zmin, _zmax, _proc;
@@ -174,7 +178,7 @@ public class L2Territory {
                 return p;
             }
         }
-        _log.warning("Can't make point for territory" + _terr);
+        _log.warn("Can't make point for territory" + _terr);
         return p;
     }
 

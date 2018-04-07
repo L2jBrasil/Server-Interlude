@@ -20,12 +20,16 @@ package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.L2TeleportLocation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -33,7 +37,7 @@ import java.util.logging.Logger;
  * @version $Revision: 1.3.2.2.2.3 $ $Date: 2005/03/27 15:29:18 $
  */
 public class TeleportLocationTable {
-    private static Logger _log = Logger.getLogger(TeleportLocationTable.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(TeleportLocationTable.class.getName());
 
     private static TeleportLocationTable _instance;
 
@@ -76,9 +80,9 @@ public class TeleportLocationTable {
             rset.close();
             statement.close();
 
-            _log.config("TeleportLocationTable: Loaded " + _teleports.size() + " Teleport Location Templates.");
+            _log.info("TeleportLocationTable: Loaded " + _teleports.size() + " Teleport Location Templates.");
         } catch (Exception e) {
-            _log.warning("error while creating teleport table " + e);
+            _log.warn("error while creating teleport table " + e);
         } finally {
             try {
                 con.close();

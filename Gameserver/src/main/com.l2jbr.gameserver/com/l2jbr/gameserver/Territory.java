@@ -27,15 +27,19 @@
 
 package com.l2jbr.gameserver;
 
-import com.l2jbr.gameserver.model.L2Territory;
 import com.l2jbr.commons.lib.SqlUtils;
+import com.l2jbr.gameserver.model.L2Territory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.logging.Logger;
+
+;
+
 
 public class Territory {
-    private static Logger _log = Logger.getLogger(TradeController.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(TradeController.class.getName());
     private static final Territory _instance = new Territory();
     private static final Map<Integer, L2Territory> _territory = new LinkedHashMap<>();
 
@@ -71,7 +75,7 @@ public class Territory {
             // _log.info("row = "+row[0]);
             Integer terr = row[0];
             if (terr == null) {
-                _log.warning("Null territory!");
+                _log.warn("Null territory!");
                 continue;
             }
 

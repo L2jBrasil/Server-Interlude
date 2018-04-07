@@ -18,6 +18,7 @@
 package com.l2jbr.gameserver.clientpackets;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.model.Inventory;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2World;
@@ -28,13 +29,16 @@ import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.templates.L2WeaponType;
 import com.l2jbr.gameserver.util.IllegalPlayerAction;
 import com.l2jbr.gameserver.util.Util;
-import com.l2jbr.commons.util.Rnd;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 public final class RequestEnchantItem extends L2GameClientPacket
 {
-	protected static final Logger _log = Logger.getLogger(Inventory.class.getName());
+	protected static final Logger _log = LoggerFactory.getLogger(Inventory.class.getName());
 	private static final String _C__58_REQUESTENCHANTITEM = "[C] 58 RequestEnchantItem";
 	private static final int[] CRYSTAL_SCROLLS =
 	{

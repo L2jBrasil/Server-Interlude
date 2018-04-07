@@ -26,6 +26,8 @@ import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
+;
+
 /**
  * This class handles following admin commands: - admin_banchat = Imposes a chat ban on the specified player/target. - admin_unbanchat = Removes any chat ban on the specified player/target. Uses: admin_banchat [<player_name>] [<ban_duration>] admin_unbanchat [<player_name>] If <player_name> is not
  * specified, the current target player is used.
@@ -33,7 +35,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
  */
 public class AdminBanChat implements IAdminCommandHandler
 {
-	// private static Logger _log = Logger.getLogger(AdminBan.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(AdminBan.class.getName());
 	private static final String[] ADMIN_COMMANDS =
 	{
 		"admin_banchat",

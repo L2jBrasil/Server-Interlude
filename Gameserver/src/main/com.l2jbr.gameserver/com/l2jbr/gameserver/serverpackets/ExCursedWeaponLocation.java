@@ -18,9 +18,11 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
+import com.l2jbr.gameserver.util.Point3D;
+
 import java.util.List;
 
-import com.l2jbr.gameserver.util.Point3D;
+;
 
 /**
  * Format: (ch) d[ddddd]

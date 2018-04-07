@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.ai;
 
 import com.l2jbr.gameserver.model.L2Character;
 
+;
+
 /**
  * Interface of AI and client state. To correctly send messages to client we need it's state. For example, if we've sent 'StartAutoAttack' message, we need to send 'StopAutoAttack' message before any other action. Or if we've sent 'MoveToPawn', we need to send 'StopMove' when the movement of a
  * character is canceled (by Root spell or any other reason). Thus, we need to know the state of client, i.e. which messages we've sent and how the client will show the scene. Close to this task is the task of AI. If a player's character is attacking a mob, his ATTACK may be iterrupted by an event,

@@ -21,6 +21,8 @@ package com.l2jbr.gameserver.skills.funcs;
 import com.l2jbr.gameserver.skills.Env;
 import com.l2jbr.gameserver.skills.Stats;
 
+;
+
 public class FuncSub extends Func
 {
 	private final Lambda _lambda;

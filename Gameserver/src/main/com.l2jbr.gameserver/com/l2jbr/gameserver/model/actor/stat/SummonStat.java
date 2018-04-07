@@ -19,6 +19,8 @@ package com.l2jbr.gameserver.model.actor.stat;
 
 import com.l2jbr.gameserver.model.L2Summon;
 
+;
+
 public class SummonStat extends PlayableStat
 {
 	// =========================================================

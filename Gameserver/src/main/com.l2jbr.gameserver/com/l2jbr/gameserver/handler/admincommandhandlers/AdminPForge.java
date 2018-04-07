@@ -26,13 +26,15 @@ import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 
 import java.util.StringTokenizer;
 
+;
+
 /**
  * This class handles commands for gm to forge packets
  *
  * @author Maktakien
  */
 public class AdminPForge implements IAdminCommandHandler {
-    // private static Logger _log = Logger.getLogger(AdminKick.class.getName());
+    // private static Logger _log = LoggerFactory.getLogger(AdminKick.class.getName());
     private static final String[] ADMIN_COMMANDS =
             {
                     "admin_forge",

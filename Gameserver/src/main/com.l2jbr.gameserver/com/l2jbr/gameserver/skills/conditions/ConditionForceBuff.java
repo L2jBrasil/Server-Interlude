@@ -23,6 +23,8 @@ import com.l2jbr.gameserver.skills.Env;
 import com.l2jbr.gameserver.skills.effects.EffectBattleForce;
 import com.l2jbr.gameserver.skills.effects.EffectSpellForce;
 
+;
+
 /**
  * @author kombat
  */

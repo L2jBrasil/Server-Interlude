@@ -21,12 +21,16 @@ package com.l2jbr.gameserver.datatables;
 import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.L2LvlupData;
 import com.l2jbr.gameserver.model.base.ClassId;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -48,7 +52,7 @@ public class LevelUpData {
     private static final String CP_BASE = "defaultcpbase";
     private static final String CLASS_ID = "classid";
 
-    private static Logger _log = Logger.getLogger(LevelUpData.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(LevelUpData.class.getName());
 
     private static LevelUpData _instance;
 
@@ -90,9 +94,9 @@ public class LevelUpData {
             rset.close();
             statement.close();
 
-            _log.config("LevelUpData: Loaded " + _lvlTable.size() + " Character Level Up Templates.");
+            _log.info("LevelUpData: Loaded " + _lvlTable.size() + " Character Level Up Templates.");
         } catch (Exception e) {
-            _log.warning("error while creating Lvl up data table " + e);
+            _log.warn("error while creating Lvl up data table " + e);
         } finally {
             try {
                 con.close();

@@ -33,11 +33,13 @@ import com.l2jbr.gameserver.util.Util;
 
 import java.util.List;
 
+;
+
 /**
  * @authors BiTi, Sami
  */
 public class SummonFriend implements ISkillHandler {
-    // private static Logger _log = Logger.getLogger(SummonFriend.class.getName());
+    // private static Logger _log = LoggerFactory.getLogger(SummonFriend.class.getName());
     private static final SkillType[] SKILL_IDS =
             {
                     SkillType.SUMMON_FRIEND

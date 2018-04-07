@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
+;
+
 public class StartPledgeWar extends L2GameServerPacket
 {
 	private static final String _S__65_STARTPLEDGEWAR = "[S] 65 StartPledgeWar";

@@ -17,6 +17,8 @@ package com.l2jbr.gameserver.serverpackets;
 import com.l2jbr.gameserver.model.L2HennaInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
+;
+
 public class HennaItemInfo extends L2GameServerPacket
 {
 	private static final String _S__E3_HennaItemInfo = "[S] E3 HennaItemInfo";

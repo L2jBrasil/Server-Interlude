@@ -25,6 +25,8 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.5.4.2 $ $Date: 2005/03/27 15:29:33 $
@@ -225,7 +227,7 @@ public class L2ClanMember
 		}
 		catch (Exception e)
 		{
-			// _log.warning("could not set char power_grade:"+e);
+			// _log.warn("could not set char power_grade:"+e);
 		}
 		finally
 		{
@@ -284,7 +286,7 @@ public class L2ClanMember
 		}
 		catch (Exception e)
 		{
-			// _log.warning("could not set char power_grade:"+e);
+			// _log.warn("could not set char power_grade:"+e);
 		}
 		finally
 		{
@@ -524,7 +526,7 @@ public class L2ClanMember
 		}
 		catch (SQLException e)
 		{
-			// _log.warning("could not set apprentice/sponsor:"+e.getMessage());
+			// _log.warn("could not set apprentice/sponsor:"+e.getMessage());
 		}
 		finally
 		{

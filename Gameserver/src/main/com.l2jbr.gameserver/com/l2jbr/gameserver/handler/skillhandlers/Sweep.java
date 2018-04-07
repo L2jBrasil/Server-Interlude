@@ -28,12 +28,14 @@ import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.ItemList;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
+;
+
 /**
  * @author _drunk_ TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates
  */
 public class Sweep implements ISkillHandler
 {
-	// private static Logger _log = Logger.getLogger(Sweep.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(Sweep.class.getName());
 	private static final SkillType[] SKILL_IDS =
 	{
 		SkillType.SWEEP

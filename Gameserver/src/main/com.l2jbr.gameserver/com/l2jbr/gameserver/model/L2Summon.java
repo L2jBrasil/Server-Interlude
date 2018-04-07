@@ -37,9 +37,11 @@ import com.l2jbr.gameserver.taskmanager.DecayTaskManager;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.templates.L2Weapon;
 
+;
+
 public abstract class L2Summon extends L2PlayableInstance
 {
-	// private static Logger _log = Logger.getLogger(L2Summon.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(L2Summon.class.getName());
 	
 	protected int _pkKills;
 	private byte _pvpFlag;
@@ -180,7 +182,7 @@ public abstract class L2Summon extends L2PlayableInstance
 		{
 			if (Config.DEBUG)
 			{
-				_log.fine("new target selected:" + getObjectId());
+				_log.debug("new target selected:" + getObjectId());
 			}
 			player.setTarget(this);
 			MyTargetSelected my = new MyTargetSelected(getObjectId(), player.getLevel() - getLevel());

@@ -18,9 +18,11 @@
  */
 package com.l2jbr.gameserver.script;
 
+import com.l2jbr.gameserver.script.faenor.FaenorInterface;
+
 import java.util.Hashtable;
 
-import com.l2jbr.gameserver.script.faenor.FaenorInterface;
+;
 
 /**
  * @author Luis Arias TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates

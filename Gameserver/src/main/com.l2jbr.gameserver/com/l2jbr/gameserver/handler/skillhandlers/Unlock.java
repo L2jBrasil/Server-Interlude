@@ -17,6 +17,7 @@
  */
 package com.l2jbr.gameserver.handler.skillhandlers;
 
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.ai.CtrlIntention;
 import com.l2jbr.gameserver.handler.ISkillHandler;
 import com.l2jbr.gameserver.model.L2Character;
@@ -30,11 +31,12 @@ import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.SocialAction;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.Formulas;
-import com.l2jbr.commons.util.Rnd;
+
+;
 
 public class Unlock implements ISkillHandler
 {
-	// private static Logger _log = Logger.getLogger(Unlock.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(Unlock.class.getName());
 	private static final SkillType[] SKILL_IDS =
 	{
 		SkillType.UNLOCK

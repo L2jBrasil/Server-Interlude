@@ -38,13 +38,16 @@ import com.l2jbr.gameserver.skills.l2skills.*;
 import com.l2jbr.gameserver.templates.L2WeaponType;
 import com.l2jbr.gameserver.templates.StatsSet;
 import com.l2jbr.gameserver.util.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Constructor;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class...
@@ -52,7 +55,7 @@ import java.util.logging.Logger;
  * @version $Revision: 1.3.2.8.2.22 $ $Date: 2005/04/06 16:13:42 $
  */
 public abstract class L2Skill {
-    protected static final Logger _log = Logger.getLogger(L2Skill.class.getName());
+    protected static final Logger _log = LoggerFactory.getLogger(L2Skill.class.getName());
 
     public static final int SKILL_CUBIC_MASTERY = 143;
     public static final int SKILL_LUCKY = 194;
@@ -543,7 +546,7 @@ public abstract class L2Skill {
                 try {
                     _canLearn.add(ClassId.valueOf(cls));
                 } catch (Throwable t) {
-                    _log.log(Level.SEVERE, "Bad class " + cls + " to learn skill", t);
+                    _log.error( "Bad class " + cls + " to learn skill", t);
                 }
             }
         }
@@ -559,7 +562,7 @@ public abstract class L2Skill {
                 try {
                     _teachers.add(Integer.parseInt(npcid));
                 } catch (Throwable t) {
-                    _log.log(Level.SEVERE, "Bad teacher id " + npcid + " to teach skill", t);
+                    _log.error( "Bad teacher id " + npcid + " to teach skill", t);
                 }
             }
         }

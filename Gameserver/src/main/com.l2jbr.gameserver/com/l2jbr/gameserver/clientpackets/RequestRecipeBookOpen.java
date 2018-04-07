@@ -20,13 +20,17 @@ package com.l2jbr.gameserver.clientpackets;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.RecipeController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 public final class RequestRecipeBookOpen extends L2GameClientPacket
 {
 	private static final String _C__AC_REQUESTRECIPEBOOKOPEN = "[C] AC RequestRecipeBookOpen";
-	private static Logger _log = Logger.getLogger(RequestRecipeBookOpen.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RequestRecipeBookOpen.class.getName());
 	
 	private boolean _isDwarvenCraft;
 	

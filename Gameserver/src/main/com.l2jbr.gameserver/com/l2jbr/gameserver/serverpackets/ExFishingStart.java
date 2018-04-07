@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.serverpackets;
 
 import com.l2jbr.gameserver.model.L2Character;
 
+;
+
 /**
  * Format (ch)ddddd
  * @author -Wooden-

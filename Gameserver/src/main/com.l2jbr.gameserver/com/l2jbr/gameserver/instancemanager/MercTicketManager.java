@@ -28,12 +28,16 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2SiegeGuardInstance;
 import com.l2jbr.gameserver.model.entity.Castle;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class is similar to the SiegeGuardManager, except it handles the loading of the mercenary tickets that are dropped on castle floors by the castle lords. These tickets (aka badges) need to be read after each server reboot except when the server crashed in the middle of an ongoing siege. In
@@ -43,7 +47,7 @@ import java.util.logging.Logger;
  * @author yellowperil & Fulminus
  */
 public class MercTicketManager {
-    protected static Logger _log = Logger.getLogger(CastleManager.class.getName());
+    protected static Logger _log = LoggerFactory.getLogger(CastleManager.class.getName());
 
     // =========================================================
     private static MercTicketManager _instance;

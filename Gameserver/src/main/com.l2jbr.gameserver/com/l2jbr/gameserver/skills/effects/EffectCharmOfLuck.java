@@ -21,6 +21,8 @@ import com.l2jbr.gameserver.model.L2Effect;
 import com.l2jbr.gameserver.model.actor.instance.L2PlayableInstance;
 import com.l2jbr.gameserver.skills.Env;
 
+;
+
 /**
  * @author kerberos_20
  */

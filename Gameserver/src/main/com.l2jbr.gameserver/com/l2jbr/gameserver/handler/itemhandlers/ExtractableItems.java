@@ -19,8 +19,7 @@
 
 package com.l2jbr.gameserver.handler.itemhandlers;
 
-import java.util.logging.Logger;
-
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.datatables.ExtractableItemsData;
 import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.handler.IItemHandler;
@@ -31,14 +30,17 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PlayableInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.commons.util.Rnd;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+;
 
 /**
  * @author FBIagent 11/12/2006
  */
 public class ExtractableItems implements IItemHandler
 {
-	private static Logger _log = Logger.getLogger(ItemTable.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(ItemTable.class.getName());
 	
 	@Override
 	public void useItem(L2PlayableInstance playable, L2ItemInstance item)
@@ -85,7 +87,7 @@ public class ExtractableItems implements IItemHandler
 		{
 			if (ItemTable.getInstance().createDummyItem(createItemID) == null)
 			{
-				_log.warning("createItemID " + createItemID + " doesn't have template!");
+				_log.warn("createItemID " + createItemID + " doesn't have template!");
 				activeChar.sendMessage("Nothing happened.");
 				return;
 			}

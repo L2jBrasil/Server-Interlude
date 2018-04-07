@@ -21,6 +21,8 @@ package com.l2jbr.gameserver.skills.effects;
 import com.l2jbr.gameserver.model.L2Effect;
 import com.l2jbr.gameserver.skills.Env;
 
+;
+
 public class EffectMute extends L2Effect
 {
 	public EffectMute(Env env, EffectTemplate template)

@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.model.actor.stat;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.skills.Stats;
 
+;
+
 public class NpcStat extends CharStat
 {
 	// =========================================================

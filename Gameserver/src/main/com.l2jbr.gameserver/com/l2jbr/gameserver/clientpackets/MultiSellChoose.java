@@ -36,14 +36,18 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.L2Armor;
 import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.templates.L2Weapon;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Logger;
+
+;
+
 
 public class MultiSellChoose extends L2GameClientPacket {
     private static final String _C__A7_MULTISELLCHOOSE = "[C] A7 MultiSellChoose";
-    private static Logger _log = Logger.getLogger(MultiSellChoose.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(MultiSellChoose.class.getName());
     private int _listId;
     private int _entryId;
     private int _amount;
@@ -168,7 +172,7 @@ public class MultiSellChoose extends L2GameClientPacket {
             if (e.getItemId() != 65336) {
                 L2ItemInstance itemToTake = inv.getItemByItemId(e.getItemId()); // initialize and initial guess for the item to take.
                 if (itemToTake == null) { // this is a cheat, transaction will be aborted and if any items already tanken will not be returned back to inventory!
-                    _log.severe("Character: " + player.getName() + " is trying to cheat in multisell, merchatnt id:" + merchant.getNpcId());
+                    _log.error("Character: " + player.getName() + " is trying to cheat in multisell, merchatnt id:" + merchant.getNpcId());
                     return;
                 }
 

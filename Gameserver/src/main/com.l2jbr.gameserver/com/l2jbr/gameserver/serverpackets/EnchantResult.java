@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
+;
+
 public class EnchantResult extends L2GameServerPacket
 {
 	private static final String _S__81_ENCHANTRESULT = "[S] 81 EnchantResult";

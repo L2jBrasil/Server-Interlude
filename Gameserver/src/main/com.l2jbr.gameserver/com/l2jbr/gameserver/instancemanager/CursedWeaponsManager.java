@@ -26,6 +26,8 @@ import com.l2jbr.gameserver.model.actor.instance.L2RiftInvaderInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2SiegeGuardInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -40,14 +42,15 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * @author Micht
  */
 public class CursedWeaponsManager {
-    private static final Logger _log = Logger.getLogger(CursedWeaponsManager.class.getName());
+    private static final Logger _log = LoggerFactory.getLogger(CursedWeaponsManager.class.getName());
 
     // =========================================================
     private static CursedWeaponsManager _instance;
@@ -151,7 +154,7 @@ public class CursedWeaponsManager {
                 System.out.println("OK");
             }
         } catch (Exception e) {
-            _log.log(Level.SEVERE, "Error parsing cursed weapons file.", e);
+            _log.error( "Error parsing cursed weapons file.", e);
 
             if (Config.DEBUG) {
                 System.out.println("ERROR");
@@ -196,7 +199,7 @@ public class CursedWeaponsManager {
                 System.out.println("OK");
             }
         } catch (Exception e) {
-            _log.warning("Could not restore CursedWeapons data: " + e);
+            _log.warn("Could not restore CursedWeapons data: " + e);
 
             if (Config.DEBUG) {
                 System.out.println("ERROR");
@@ -250,14 +253,14 @@ public class CursedWeaponsManager {
                         statement.setInt(1, playerId);
                         statement.setInt(2, itemId);
                         if (statement.executeUpdate() != 1) {
-                            _log.warning("Error while deleting cursed weapon " + itemId + " from userId " + playerId);
+                            _log.warn("Error while deleting cursed weapon " + itemId + " from userId " + playerId);
                         }
                         statement.close();
 
                         // Delete the skill
                         /*
                          * statement = con.prepareStatement("DELETE FROM character_skills WHERE char_obj_id=? AND skill_id="); statement.setInt(1, playerId); statement.setInt(2, cw.getSkillId()); if (statement.executeUpdate() != 1) {
-                         * _log.warning("Error while deleting cursed weapon "+itemId+" skill from userId "+playerId); }
+                         * _log.warn("Error while deleting cursed weapon "+itemId+" skill from userId "+playerId); }
                          */
                         // Restore the player's old karma and pk count
                         statement = con.prepareStatement("UPDATE characters SET karma=?, pkkills=? WHERE obj_id=?");
@@ -265,7 +268,7 @@ public class CursedWeaponsManager {
                         statement.setInt(2, cw.getPlayerPkKills());
                         statement.setInt(3, playerId);
                         if (statement.executeUpdate() != 1) {
-                            _log.warning("Error while updating karma & pkkills for userId " + cw.getPlayerId());
+                            _log.warn("Error while updating karma & pkkills for userId " + cw.getPlayerId());
                         }
                         // clean up the cursedweapons table.
                         removeFromDb(itemId);
@@ -281,7 +284,7 @@ public class CursedWeaponsManager {
                 }
             }
         } catch (Exception e) {
-            _log.warning("Could not check CursedWeapons data: " + e);
+            _log.warn("Could not check CursedWeapons data: " + e);
 
             if (Config.DEBUG) {
                 System.out.println("ERROR");
@@ -406,7 +409,7 @@ public class CursedWeaponsManager {
             statement.close();
             con.close();
         } catch (SQLException e) {
-            _log.severe("CursedWeaponsManager: Failed to remove data: " + e);
+            _log.error("CursedWeaponsManager: Failed to remove data: " + e);
         } finally {
             try {
                 con.close();

@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.clientpackets;
 
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
+;
+
 /**
  * format ch c: (id) 0xD0 h: (subid) 0x12
  * @author -Wooden-

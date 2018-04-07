@@ -18,7 +18,12 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+;
+
+
 
 /**
  * Format (ch) dd
@@ -26,7 +31,7 @@ import java.util.logging.Logger;
  */
 public final class RequestWithdrawPartyRoom extends L2GameClientPacket
 {
-	private static Logger _log = Logger.getLogger(RequestWithdrawPartyRoom.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RequestWithdrawPartyRoom.class.getName());
 	private static final String _C__D0_02_REQUESTWITHDRAWPARTYROOM = "[C] D0:02 RequestWithdrawPartyRoom";
 	private int _data1;
 	private int _data2;

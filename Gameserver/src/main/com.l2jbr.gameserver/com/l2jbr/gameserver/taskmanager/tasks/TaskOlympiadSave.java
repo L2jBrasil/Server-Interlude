@@ -17,13 +17,15 @@
  */
 package com.l2jbr.gameserver.taskmanager.tasks;
 
-import java.util.logging.Logger;
-
 import com.l2jbr.gameserver.Olympiad;
 import com.l2jbr.gameserver.taskmanager.Task;
 import com.l2jbr.gameserver.taskmanager.TaskManager;
 import com.l2jbr.gameserver.taskmanager.TaskManager.ExecutedTask;
 import com.l2jbr.gameserver.taskmanager.TaskTypes;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+;
 
 /**
  * Updates all data of Olympiad nobles in db
@@ -31,7 +33,7 @@ import com.l2jbr.gameserver.taskmanager.TaskTypes;
  */
 public class TaskOlympiadSave extends Task
 {
-	private static final Logger _log = Logger.getLogger(TaskOlympiadSave.class.getName());
+	private static final Logger _log = LoggerFactory.getLogger(TaskOlympiadSave.class.getName());
 	public static final String NAME = "OlympiadSave";
 	
 	@Override
@@ -50,7 +52,7 @@ public class TaskOlympiadSave extends Task
 		}
 		catch (Exception e)
 		{
-			_log.warning("Olympiad System: Failed to save Olympiad configuration: " + e);
+			_log.warn("Olympiad System: Failed to save Olympiad configuration: " + e);
 		}
 	}
 	

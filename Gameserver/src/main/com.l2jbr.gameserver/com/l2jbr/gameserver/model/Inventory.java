@@ -32,13 +32,15 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
+;
+
 /**
  * This class manages inventory
  *
  * @version $Revision: 1.13.2.9.2.12 $ $Date: 2005/03/29 23:15:15 $ rewritten 23.2.2006 by Advi
  */
 public abstract class Inventory extends ItemContainer {
-    // protected static final Logger _log = Logger.getLogger(Inventory.class.getName());
+    // protected static final Logger _log = LoggerFactory.getLogger(Inventory.class.getName());
 
     public interface PaperdollListener {
         public void notifyEquiped(int slot, L2ItemInstance inst);
@@ -309,7 +311,7 @@ public abstract class Inventory extends ItemContainer {
                         player.addSkill(skill, false);
                         player.sendSkillList();
                     } else {
-                        _log.warning("Inventory.ArmorSetListener: Incorrect skill: " + armorSet.getSkillId() + ".");
+                        _log.warn("Inventory.ArmorSetListener: Incorrect skill: " + armorSet.getSkillId() + ".");
                     }
 
                     if (armorSet.containShield(player)) // has shield from set
@@ -319,7 +321,7 @@ public abstract class Inventory extends ItemContainer {
                             player.addSkill(skills, false);
                             player.sendSkillList();
                         } else {
-                            _log.warning("Inventory.ArmorSetListener: Incorrect skill: " + armorSet.getShieldSkillId() + ".");
+                            _log.warn("Inventory.ArmorSetListener: Incorrect skill: " + armorSet.getShieldSkillId() + ".");
                         }
                     }
                     if (armorSet.isEnchanted6(player)) // has all parts of set enchanted to 6 or more
@@ -331,7 +333,7 @@ public abstract class Inventory extends ItemContainer {
                                 player.addSkill(skille, false);
                                 player.sendSkillList();
                             } else {
-                                _log.warning("Inventory.ArmorSetListener: Incorrect skill: " + armorSet.getEnchant6skillId() + ".");
+                                _log.warn("Inventory.ArmorSetListener: Incorrect skill: " + armorSet.getEnchant6skillId() + ".");
                             }
                         }
                     }
@@ -343,7 +345,7 @@ public abstract class Inventory extends ItemContainer {
                         player.addSkill(skills, false);
                         player.sendSkillList();
                     } else {
-                        _log.warning("Inventory.ArmorSetListener: Incorrect skill: " + armorSet.getShieldSkillId() + ".");
+                        _log.warn("Inventory.ArmorSetListener: Incorrect skill: " + armorSet.getShieldSkillId() + ".");
                     }
                 }
             }
@@ -402,7 +404,7 @@ public abstract class Inventory extends ItemContainer {
                     if (skill != null) {
                         player.removeSkill(skill);
                     } else {
-                        _log.warning("Inventory.ArmorSetListener: Incorrect skill: " + removeSkillId1 + ".");
+                        _log.warn("Inventory.ArmorSetListener: Incorrect skill: " + removeSkillId1 + ".");
                     }
                 }
                 if (removeSkillId2 != 0) {
@@ -410,7 +412,7 @@ public abstract class Inventory extends ItemContainer {
                     if (skill != null) {
                         player.removeSkill(skill);
                     } else {
-                        _log.warning("Inventory.ArmorSetListener: Incorrect skill: " + removeSkillId2 + ".");
+                        _log.warn("Inventory.ArmorSetListener: Incorrect skill: " + removeSkillId2 + ".");
                     }
                 }
                 if (removeSkillId3 != 0) {
@@ -418,7 +420,7 @@ public abstract class Inventory extends ItemContainer {
                     if (skill != null) {
                         player.removeSkill(skill);
                     } else {
-                        _log.warning("Inventory.ArmorSetListener: Incorrect skill: " + removeSkillId3 + ".");
+                        _log.warn("Inventory.ArmorSetListener: Incorrect skill: " + removeSkillId3 + ".");
                     }
                 }
                 player.sendSkillList();
@@ -848,7 +850,7 @@ public abstract class Inventory extends ItemContainer {
      */
     private void unEquipItemInBodySlot(int slot) {
         if (Config.DEBUG) {
-            _log.fine("--- unequip body slot:" + slot);
+            _log.debug("--- unequip body slot:" + slot);
         }
         int pdollSlot = -1;
 
@@ -1095,7 +1097,7 @@ public abstract class Inventory extends ItemContainer {
                 setPaperdollItem(PAPERDOLL_BACK, item);
                 break;
             default:
-                _log.warning("unknown body slot:" + targetSlot);
+                _log.warn("unknown body slot:" + targetSlot);
         }
     }
 
@@ -1209,7 +1211,7 @@ public abstract class Inventory extends ItemContainer {
             statement.close();
             refreshWeight();
         } catch (Exception e) {
-            _log.warning("Could not restore inventory : " + e);
+            _log.warn("Could not restore inventory : " + e);
         } finally {
             try {
                 con.close();

@@ -20,13 +20,15 @@ import com.l2jbr.gameserver.model.L2HennaInstance;
 import com.l2jbr.gameserver.serverpackets.HennaEquipList;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
+;
+
 /**
  * This class ...
  *
  * @version $Revision$ $Date$
  */
 public class L2SymbolMakerInstance extends L2FolkInstance {
-    // private static Logger _log = Logger.getLogger(L2SymbolMakerInstance.class.getName());
+    // private static Logger _log = LoggerFactory.getLogger(L2SymbolMakerInstance.class.getName());
 
     @Override
     public void onBypassFeedback(L2PcInstance player, String command) {

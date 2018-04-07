@@ -28,6 +28,8 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.zone.form.ZoneCylinder;
 import com.l2jbr.gameserver.model.zone.type.L2DynamicZone;
 
+;
+
 /*
  *  Symbol skills creating a signet, temporary zone with effects and an owner
  *  (something like a L2EffectPointInstance (doesn't exist) could also be created

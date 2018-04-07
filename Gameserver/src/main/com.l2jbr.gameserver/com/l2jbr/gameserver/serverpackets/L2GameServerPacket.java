@@ -17,18 +17,19 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
-import java.util.logging.Logger;
-
 import com.l2jbr.gameserver.network.L2GameClient;
-
 import com.l2jbr.mmocore.SendablePacket;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+;
 
 /**
  * @author KenM
  */
 public abstract class L2GameServerPacket extends SendablePacket<L2GameClient>
 {
-	private static final Logger _log = Logger.getLogger(L2GameServerPacket.class.getName());
+	private static final Logger _log = LoggerFactory.getLogger(L2GameServerPacket.class.getName());
 	
 	@Override
 	protected void write()
@@ -39,7 +40,7 @@ public abstract class L2GameServerPacket extends SendablePacket<L2GameClient>
 		}
 		catch (Throwable t)
 		{
-			_log.severe("Client: " + getClient().toString() + " - Failed writing: " + getType() + ";");
+			_log.error("Client: " + getClient().toString() + " - Failed writing: " + getType() + ";");
 			t.printStackTrace();
 		}
 	}

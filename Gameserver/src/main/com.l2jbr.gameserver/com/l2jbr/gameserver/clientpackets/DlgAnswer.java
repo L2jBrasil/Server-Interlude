@@ -20,8 +20,11 @@ package com.l2jbr.gameserver.clientpackets;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.network.SystemMessageId;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
 
 /**
  * @author Dezmond_snz Format: cddd
@@ -29,7 +32,7 @@ import java.util.logging.Logger;
 public final class DlgAnswer extends L2GameClientPacket
 {
 	private static final String _C__C5_DLGANSWER = "[C] C5 DlgAnswer";
-	private static Logger _log = Logger.getLogger(DlgAnswer.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(DlgAnswer.class.getName());
 	
 	private int _messageId;
 	private int _answer, _unk;
@@ -47,7 +50,7 @@ public final class DlgAnswer extends L2GameClientPacket
 	{
 		if (Config.DEBUG)
 		{
-			_log.fine(getType() + ": Answer acepted. Message ID " + _messageId + ", asnwer " + _answer + ", unknown field " + _unk);
+			_log.debug(getType() + ": Answer acepted. Message ID " + _messageId + ", asnwer " + _answer + ", unknown field " + _unk);
 		}
 		if (_messageId == SystemMessageId.RESSURECTION_REQUEST.getId())
 		{

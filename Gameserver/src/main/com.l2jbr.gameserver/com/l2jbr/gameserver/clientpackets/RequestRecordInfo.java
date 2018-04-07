@@ -23,25 +23,10 @@ import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.L2Summon;
-import com.l2jbr.gameserver.model.actor.instance.L2BoatInstance;
-import com.l2jbr.gameserver.model.actor.instance.L2DoorInstance;
-import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
-import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.actor.instance.L2PetInstance;
-import com.l2jbr.gameserver.model.actor.instance.L2StaticObjectInstance;
-import com.l2jbr.gameserver.serverpackets.CharInfo;
-import com.l2jbr.gameserver.serverpackets.DoorInfo;
-import com.l2jbr.gameserver.serverpackets.DoorStatusUpdate;
-import com.l2jbr.gameserver.serverpackets.GetOnVehicle;
-import com.l2jbr.gameserver.serverpackets.NpcInfo;
-import com.l2jbr.gameserver.serverpackets.PetInfo;
-import com.l2jbr.gameserver.serverpackets.PetItemList;
-import com.l2jbr.gameserver.serverpackets.RelationChanged;
-import com.l2jbr.gameserver.serverpackets.SpawnItem;
-import com.l2jbr.gameserver.serverpackets.SpawnItemPoly;
-import com.l2jbr.gameserver.serverpackets.StaticObject;
-import com.l2jbr.gameserver.serverpackets.UserInfo;
-import com.l2jbr.gameserver.serverpackets.VehicleInfo;
+import com.l2jbr.gameserver.model.actor.instance.*;
+import com.l2jbr.gameserver.serverpackets.*;
+
+;
 
 public class RequestRecordInfo extends L2GameClientPacket
 {

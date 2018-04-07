@@ -30,6 +30,8 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.Stats;
 import com.l2jbr.gameserver.util.Util;
 
+;
+
 public class PcStatus extends PlayableStatus
 {
 	// =========================================================
@@ -155,7 +157,7 @@ public class PcStatus extends PlayableStatus
 			
 			if (Config.DEBUG)
 			{
-				_log.fine("Attacker:" + attacker.getName());
+				_log.debug("Attacker:" + attacker.getName());
 			}
 			
 			if (attacker instanceof L2NpcInstance)
@@ -164,7 +166,7 @@ public class PcStatus extends PlayableStatus
 				
 				if (Config.DEBUG)
 				{
-					_log.fine("mob id:" + mobId);
+					_log.debug("mob id:" + mobId);
 				}
 				
 				smsg.addNpcName(mobId);

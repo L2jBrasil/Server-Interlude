@@ -18,9 +18,6 @@
  */
 package com.l2jbr.gameserver.handler.itemhandlers;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.handler.IItemHandler;
@@ -34,6 +31,10 @@ import com.l2jbr.gameserver.model.entity.TvTEvent;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+;
 
 /**
  * This class ...
@@ -42,7 +43,7 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
 public class Potions implements IItemHandler
 {
-	protected static final Logger _log = Logger.getLogger(Potions.class.getName());
+	protected static final Logger _log = LoggerFactory.getLogger(Potions.class.getName());
 	private int _herbstask = 0;
 	
 	/** Task for Herbs */
@@ -68,7 +69,7 @@ public class Potions implements IItemHandler
 			}
 			catch (Throwable t)
 			{
-				_log.log(Level.WARNING, "", t);
+				_log.warn( "", t);
 			}
 		}
 	}

@@ -23,6 +23,8 @@ import com.l2jbr.gameserver.model.L2Clan.RankPrivs;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.PledgePowerGradeList;
 
+;
+
 /**
  * Format: (ch)
  * @author -Wooden-
@@ -46,7 +48,7 @@ public final class RequestPledgePowerGradeList extends L2GameClientPacket
 		{
 			RankPrivs[] privs = clan.getAllRankPrivs();
 			player.sendPacket(new PledgePowerGradeList(privs));
-			// _log.warning("plegdepowergradelist send, privs length: "+privs.length);
+			// _log.warn("plegdepowergradelist send, privs length: "+privs.length);
 		}
 	}
 	

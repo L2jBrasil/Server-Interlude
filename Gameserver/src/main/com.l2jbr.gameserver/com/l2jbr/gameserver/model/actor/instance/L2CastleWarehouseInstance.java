@@ -2,12 +2,10 @@ package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.network.SystemMessageId;
-import com.l2jbr.gameserver.serverpackets.ActionFailed;
-import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
-import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.serverpackets.WareHouseDepositList;
-import com.l2jbr.gameserver.serverpackets.WareHouseWithdrawalList;
+import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
+
+;
 
 /**
  * @author l3x

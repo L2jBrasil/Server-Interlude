@@ -18,15 +18,19 @@
 package com.l2jbr.gameserver.network;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.util.Util;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.clientpackets.*;
 import com.l2jbr.gameserver.network.L2GameClient.GameClientState;
 import com.l2jbr.mmocore.*;
-import com.l2jbr.commons.util.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.ByteBuffer;
 import java.util.concurrent.RejectedExecutionException;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * Stateful Packet Handler<BR>
@@ -38,7 +42,7 @@ import java.util.logging.Logger;
  */
 public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, IClientFactory<L2GameClient>, IMMOExecutor<L2GameClient>
 {
-	private static final Logger _log = Logger.getLogger(L2GamePacketHandler.class.getName());
+	private static final Logger _log = LoggerFactory.getLogger(L2GamePacketHandler.class.getName());
 	
 	// implementation
 	@Override
@@ -645,7 +649,7 @@ public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, 
 						}
 						else
 						{
-							_log.warning("Client: " + client.toString() + " sent a 0xd0 without the second opcode.");
+							_log.warn("Client: " + client.toString() + " sent a 0xd0 without the second opcode.");
 							break;
 						}
 						
@@ -811,19 +815,19 @@ public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, 
 	private void printDebug(int opcode, ByteBuffer buf, GameClientState state, L2GameClient client)
 	{
 		int size = buf.remaining();
-		_log.warning("Unknown Packet: " + Integer.toHexString(opcode) + " on State: " + state.name() + " Client: " + client.toString());
+		_log.warn("Unknown Packet: " + Integer.toHexString(opcode) + " on State: " + state.name() + " Client: " + client.toString());
 		byte[] array = new byte[size];
 		buf.get(array);
-		_log.warning(Util.printData(array, size));
+		_log.warn(Util.printData(array, size));
 	}
 	
 	private void printDebugDoubleOpcode(int opcode, int id2, ByteBuffer buf, GameClientState state, L2GameClient client)
 	{
 		int size = buf.remaining();
-		_log.warning("Unknown Packet: " + Integer.toHexString(opcode) + ":" + Integer.toHexString(id2) + " on State: " + state.name() + " Client: " + client.toString());
+		_log.warn("Unknown Packet: " + Integer.toHexString(opcode) + ":" + Integer.toHexString(id2) + " on State: " + state.name() + " Client: " + client.toString());
 		byte[] array = new byte[size];
 		buf.get(array);
-		_log.warning(Util.printData(array, size));
+		_log.warn(Util.printData(array, size));
 	}
 	
 	// impl
@@ -852,7 +856,7 @@ public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, 
 			// if the server is shutdown we ignore
 			if (!ThreadPoolManager.getInstance().isShutdown())
 			{
-				_log.severe("Failed executing: " + rp.getClass().getSimpleName() + " for Client: " + rp.getClient().toString());
+				_log.error("Failed executing: " + rp.getClass().getSimpleName() + " for Client: " + rp.getClient().toString());
 			}
 		}
 	}

@@ -21,10 +21,14 @@ package com.l2jbr.gameserver.serverpackets;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.model.ItemInfo;
 import com.l2jbr.gameserver.model.L2ItemInstance;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -33,7 +37,7 @@ import java.util.logging.Logger;
  * @version $Revision: 1.3.2.1.2.5 $ $Date: 2005/03/27 15:29:57 $ Rebuild 23.2.2006 by Advi
  */
 public class PetInventoryUpdate extends L2GameServerPacket {
-    private static Logger _log = Logger.getLogger(InventoryUpdate.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(InventoryUpdate.class.getName());
     private static final String _S__37_INVENTORYUPDATE = "[S] b3 InventoryUpdate";
     private final List<ItemInfo> _items;
 
@@ -75,7 +79,7 @@ public class PetInventoryUpdate extends L2GameServerPacket {
 
     private void showDebug() {
         for (ItemInfo item : _items) {
-            _log.fine("oid:" + Integer.toHexString(item.getObjectId()) + " item:" + item.getItem().getName() + " last change:" + item.getChange());
+            _log.debug("oid:" + Integer.toHexString(item.getObjectId()) + " item:" + item.getItem().getName() + " last change:" + item.getChange());
         }
     }
 

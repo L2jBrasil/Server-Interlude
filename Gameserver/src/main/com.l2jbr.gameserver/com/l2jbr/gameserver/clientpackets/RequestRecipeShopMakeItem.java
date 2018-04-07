@@ -25,13 +25,15 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.util.Util;
 
+;
+
 /**
  * @author Administrator TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates
  */
 public final class RequestRecipeShopMakeItem extends L2GameClientPacket
 {
 	private static final String _C__AF_REQUESTRECIPESHOPMAKEITEM = "[C] B6 RequestRecipeShopMakeItem";
-	// private static Logger _log = Logger.getLogger(RequestSellItem.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(RequestSellItem.class.getName());
 	
 	private int _id;
 	private int _recipeId;

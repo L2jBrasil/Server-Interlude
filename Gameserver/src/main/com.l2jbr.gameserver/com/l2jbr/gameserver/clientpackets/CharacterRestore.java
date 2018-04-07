@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.clientpackets;
 
 import com.l2jbr.gameserver.serverpackets.CharSelectInfo;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.4.2.1.2.2 $ $Date: 2005/03/27 15:29:29 $
@@ -27,7 +29,7 @@ import com.l2jbr.gameserver.serverpackets.CharSelectInfo;
 public final class CharacterRestore extends L2GameClientPacket
 {
 	private static final String _C__62_CHARACTERRESTORE = "[C] 62 CharacterRestore";
-	// private static Logger _log = Logger.getLogger(CharacterRestore.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(CharacterRestore.class.getName());
 	
 	// cd
 	private int _charSlot;

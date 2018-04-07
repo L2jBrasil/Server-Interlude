@@ -31,9 +31,11 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
+;
+
 public class Recall implements ISkillHandler
 {
-	// private static Logger _log = Logger.getLogger(Recall.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(Recall.class.getName());
 	private static final SkillType[] SKILL_IDS =
 	{
 		SkillType.RECALL

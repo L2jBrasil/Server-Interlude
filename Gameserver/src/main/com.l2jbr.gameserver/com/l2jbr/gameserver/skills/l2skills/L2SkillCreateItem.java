@@ -17,6 +17,7 @@
  */
 package com.l2jbr.gameserver.skills.l2skills;
 
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2ItemInstance;
@@ -27,7 +28,8 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ItemList;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.StatsSet;
-import com.l2jbr.commons.util.Rnd;
+
+;
 
 /**
  * @author Nemesiss

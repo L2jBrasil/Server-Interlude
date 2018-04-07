@@ -24,8 +24,12 @@ import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 /**
  * This class ...
@@ -34,7 +38,7 @@ import java.util.logging.Logger;
 public final class Action extends L2GameClientPacket
 {
 	private static final String ACTION__C__04 = "[C] 04 Action";
-	private static Logger _log = Logger.getLogger(Action.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(Action.class.getName());
 	
 	// cddddc
 	private int _objectId;
@@ -61,11 +65,11 @@ public final class Action extends L2GameClientPacket
 	{
 		if (Config.DEBUG)
 		{
-			_log.fine("Action:" + _actionId);
+			_log.debug("Action:" + _actionId);
 		}
 		if (Config.DEBUG)
 		{
-			_log.fine("oid:" + _objectId);
+			_log.debug("oid:" + _objectId);
 		}
 		
 		// Get the current L2PcInstance of the player
@@ -91,7 +95,7 @@ public final class Action extends L2GameClientPacket
 		if (obj == null)
 		{
 			// pressing e.g. pickup many times quickly would get you here
-			// _log.warning("Character: " + activeChar.getName() + " request action with non existent ObjectID:" + _objectId);
+			// _log.warn("Character: " + activeChar.getName() + " request action with non existent ObjectID:" + _objectId);
 			getClient().sendPacket(new ActionFailed());
 			return;
 		}
@@ -116,7 +120,7 @@ public final class Action extends L2GameClientPacket
 					break;
 				default:
 					// Ivalid action detected (probably client cheating), log this
-					_log.warning("Character: " + activeChar.getName() + " requested invalid action: " + _actionId);
+					_log.warn("Character: " + activeChar.getName() + " requested invalid action: " + _actionId);
 					getClient().sendPacket(new ActionFailed());
 					break;
 			}

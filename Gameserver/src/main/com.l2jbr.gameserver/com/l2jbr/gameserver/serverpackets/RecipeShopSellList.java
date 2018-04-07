@@ -22,6 +22,8 @@ import com.l2jbr.gameserver.model.L2ManufactureItem;
 import com.l2jbr.gameserver.model.L2ManufactureList;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
+;
+
 /**
  * This class ... dddd d(ddd)
  * @version $Revision: 1.1.2.1.2.3 $ $Date: 2005/03/27 15:29:39 $

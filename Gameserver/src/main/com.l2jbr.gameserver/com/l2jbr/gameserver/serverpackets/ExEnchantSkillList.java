@@ -21,6 +21,8 @@ package com.l2jbr.gameserver.serverpackets;
 import java.util.LinkedList;
 import java.util.List;
 
+;
+
 public class ExEnchantSkillList extends L2GameServerPacket {
     private static final String _S__FE_17_EXENCHANTSKILLLIST = "[S] FE:17 ExEnchantSkillList";
     private final List<Skill> _skills;

@@ -21,6 +21,8 @@ package com.l2jbr.gameserver.serverpackets;
 import com.l2jbr.gameserver.model.L2Summon;
 import com.l2jbr.gameserver.model.actor.instance.L2PetInstance;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.6.2.5.2.12 $ $Date: 2005/03/31 09:19:16 $

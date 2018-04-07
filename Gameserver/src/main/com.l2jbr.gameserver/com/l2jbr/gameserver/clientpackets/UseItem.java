@@ -30,9 +30,13 @@ import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.templates.L2Weapon;
 import com.l2jbr.gameserver.templates.L2WeaponType;
 import com.l2jbr.gameserver.util.FloodProtector;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -40,7 +44,7 @@ import java.util.logging.Logger;
  */
 public final class UseItem extends L2GameClientPacket
 {
-	private static Logger _log = Logger.getLogger(UseItem.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(UseItem.class.getName());
 	private static final String _C__14_USEITEM = "[C] 14 UseItem";
 	
 	private int _objectId;
@@ -142,7 +146,7 @@ public final class UseItem extends L2GameClientPacket
 		
 		if (Config.DEBUG)
 		{
-			_log.finest(activeChar.getObjectId() + ": use item " + _objectId);
+			_log.debug(activeChar.getObjectId() + ": use item " + _objectId);
 		}
 		
 		if (item.isEquipable())
@@ -324,7 +328,7 @@ public final class UseItem extends L2GameClientPacket
 		{
 			L2Weapon weaponItem = activeChar.getActiveWeaponItem();
 			int itemid = item.getItemId();
-			// _log.finest("item not equipable id:"+ item.getItemId());
+			// _log.debug("item not equipable id:"+ item.getItemId());
 			if (itemid == 4393)
 			{
 				activeChar.sendPacket(new ShowCalculator(4393));
@@ -344,7 +348,7 @@ public final class UseItem extends L2GameClientPacket
 				
 				if (handler == null)
 				{
-					_log.warning("No item handler registered for item ID " + item.getItemId() + ".");
+					_log.warn("No item handler registered for item ID " + item.getItemId() + ".");
 				}
 				else
 				{

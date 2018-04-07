@@ -21,13 +21,17 @@ import com.l2jbr.gameserver.datatables.MapRegionTable;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.entity.Castle;
 import com.l2jbr.gameserver.model.zone.type.L2TownZone;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Logger;
+
+;
+
 
 public class TownManager {
-    private static final Logger _log = Logger.getLogger(TownManager.class.getName());
+    private static final Logger _log = LoggerFactory.getLogger(TownManager.class.getName());
 
     // =========================================================
     private static TownManager _instance;

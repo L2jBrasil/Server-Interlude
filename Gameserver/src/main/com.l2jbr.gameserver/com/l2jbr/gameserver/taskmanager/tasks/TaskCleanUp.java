@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.taskmanager.tasks;
 import com.l2jbr.gameserver.taskmanager.Task;
 import com.l2jbr.gameserver.taskmanager.TaskManager.ExecutedTask;
 
+;
+
 /**
  * @author Tempy
  */

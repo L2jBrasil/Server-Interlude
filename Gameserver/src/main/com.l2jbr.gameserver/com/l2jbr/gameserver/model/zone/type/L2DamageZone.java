@@ -17,12 +17,14 @@
  */
 package com.l2jbr.gameserver.model.zone.type;
 
-import java.util.Collection;
-import java.util.concurrent.Future;
-
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.zone.L2ZoneType;
+
+import java.util.Collection;
+import java.util.concurrent.Future;
+
+;
 
 /**
  * A damage zone

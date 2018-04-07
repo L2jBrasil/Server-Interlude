@@ -22,8 +22,12 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.cache.HtmCache;
 import com.l2jbr.gameserver.clientpackets.RequestBypassToServer;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 /**
  * the HTML parser in the client knowns these standard and non-standard tags and attributes VOLUMN UNKNOWN UL U TT TR TITLE TEXTCODE TEXTAREA TD TABLE SUP SUB STRIKE SPIN SELECT RIGHT PRE P OPTION OL MULTIEDIT LI LEFT INPUT IMG I HTML H7 H6 H5 H4 H3 H2 H1 FONT EXTEND EDIT COMMENT COMBOBOX CENTER
@@ -37,7 +41,7 @@ public class NpcHtmlMessage extends L2GameServerPacket
 	// d is usually 0, S is the html text starting with <html> and ending with </html>
 	//
 	private static final String _S__1B_NPCHTMLMESSAGE = "[S] 0f NpcHtmlMessage";
-	private static Logger _log = Logger.getLogger(RequestBypassToServer.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RequestBypassToServer.class.getName());
 	private final int _npcObjId;
 	private String _html;
 	
@@ -69,7 +73,7 @@ public class NpcHtmlMessage extends L2GameServerPacket
 	{
 		if (text.length() > 8192)
 		{
-			_log.warning("Html is too long! this will crash the client!");
+			_log.warn("Html is too long! this will crash the client!");
 			_html = "<html><body>Html was too long</body></html>";
 			return;
 		}
@@ -83,7 +87,7 @@ public class NpcHtmlMessage extends L2GameServerPacket
 		if (content == null)
 		{
 			setHtml("<html><body>My Text is missing:<br>" + path + "</body></html>");
-			_log.warning("missing html page " + path);
+			_log.warn("missing html page " + path);
 			return false;
 		}
 		

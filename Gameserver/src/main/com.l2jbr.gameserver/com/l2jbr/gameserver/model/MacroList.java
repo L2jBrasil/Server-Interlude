@@ -22,12 +22,15 @@ import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.L2Macro.L2MacroCmd;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.SendMacroList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -35,7 +38,7 @@ import java.util.logging.Logger;
  * @version $Revision: 1.1.2.1.2.2 $ $Date: 2005/03/02 15:38:41 $
  */
 public class MacroList {
-    private static Logger _log = Logger.getLogger(MacroList.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(MacroList.class.getName());
 
     private final L2PcInstance _owner;
     private int _revision;
@@ -133,7 +136,7 @@ public class MacroList {
             statement.execute();
             statement.close();
         } catch (Exception e) {
-            _log.log(Level.WARNING, "could not store macro:", e);
+            _log.warn( "could not store macro:", e);
         } finally {
             try {
                 con.close();
@@ -156,7 +159,7 @@ public class MacroList {
             statement.execute();
             statement.close();
         } catch (Exception e) {
-            _log.log(Level.WARNING, "could not delete macro:", e);
+            _log.warn( "could not delete macro:", e);
         } finally {
             try {
                 con.close();
@@ -203,7 +206,7 @@ public class MacroList {
             rset.close();
             statement.close();
         } catch (Exception e) {
-            _log.log(Level.WARNING, "could not store shortcuts:", e);
+            _log.warn( "could not store shortcuts:", e);
         } finally {
             try {
                 con.close();

@@ -21,6 +21,8 @@ package com.l2jbr.gameserver;
 import java.io.IOException;
 import java.util.logging.FileHandler;
 
+;
+
 /**
  * @author Advi
  */

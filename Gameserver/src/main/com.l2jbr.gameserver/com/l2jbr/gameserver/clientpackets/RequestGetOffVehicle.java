@@ -23,6 +23,8 @@ import com.l2jbr.gameserver.model.actor.instance.L2BoatInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.GetOffVehicle;
 
+;
+
 /**
  * @author Maktakien
  */

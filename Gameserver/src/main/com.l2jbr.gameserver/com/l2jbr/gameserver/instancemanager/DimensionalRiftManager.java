@@ -20,6 +20,7 @@ package com.l2jbr.gameserver.instancemanager;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.L2DatabaseFactory;
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.datatables.NpcTable;
 import com.l2jbr.gameserver.datatables.SpawnTable;
 import com.l2jbr.gameserver.model.L2ItemInstance;
@@ -30,9 +31,8 @@ import com.l2jbr.gameserver.model.entity.DimensionalRift;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.util.Util;
-import com.l2jbr.commons.util.Rnd;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -48,12 +48,14 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+;
+
 /**
  * Thanks to L2Fortress and balancer.ru - kombat
  */
 public class DimensionalRiftManager {
 
-    private static Log _log = LogFactory.getLog(DimensionalRiftManager.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(DimensionalRiftManager.class.getName());
     private static DimensionalRiftManager _instance;
     private final LinkedHashMap<Byte, LinkedHashMap<Byte, DimensionalRiftRoom>> _rooms = new LinkedHashMap<>();
     private final short DIMENSIONAL_FRAGMENT_ITEM_ID = 7079;

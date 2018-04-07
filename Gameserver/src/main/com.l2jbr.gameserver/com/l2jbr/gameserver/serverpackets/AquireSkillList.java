@@ -21,6 +21,8 @@ package com.l2jbr.gameserver.serverpackets;
 import java.util.LinkedList;
 import java.util.List;
 
+;
+
 /**
  * sample a3 05000000 03000000 03000000 06000000 3c000000 00000000 power strike 10000000 02000000 06000000 3c000000 00000000 mortal blow 38000000 04000000 06000000 36010000 00000000 power shot 4d000000 01000000 01000000 98030000 01000000 ATTACK aura 920sp 8e000000 03000000 03000000 cc010000 00000000
  * Armor Mastery format d (ddddd) skillid, level, maxlevel?, C4 format changes: 0000: [8a] [00 00 00 00] [35 00 00 00] 92 00 00 00 01 00 00 .....5.......... ^^^^^^^^^^^^^ 0010: 00 2d 00 00 00 04 01 00 00 00 00 00 00 a4 00 00 .-.............. 0020: 00 01 00 00 00 03 00 00 00 e4 0c 00 00 00 00 00
@@ -29,7 +31,7 @@ import java.util.List;
  * @version $Revision: 1.3.2.1.2.5 $ $Date: 2005/03/27 15:29:57 $
  */
 public class AquireSkillList extends L2GameServerPacket {
-    // private static Logger _log = Logger.getLogger(AquireSkillList.class.getName());
+    // private static Logger _log = LoggerFactory.getLogger(AquireSkillList.class.getName());
     public enum skillType {
         Usual,
         Fishing,

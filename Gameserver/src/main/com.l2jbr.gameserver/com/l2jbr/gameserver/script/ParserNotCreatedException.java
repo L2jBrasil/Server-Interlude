@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.script;
 
+;
+
 public class ParserNotCreatedException extends Exception
 {
 	private static final long serialVersionUID = 1L;

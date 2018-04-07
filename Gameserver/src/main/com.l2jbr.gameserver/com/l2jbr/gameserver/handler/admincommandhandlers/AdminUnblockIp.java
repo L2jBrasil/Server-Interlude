@@ -23,8 +23,12 @@ import com.l2jbr.gameserver.handler.IAdminCommandHandler;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 /**
  * This class handles following admin commands:
@@ -36,7 +40,7 @@ import java.util.logging.Logger;
 public class AdminUnblockIp implements IAdminCommandHandler
 {
 	
-	private static final Logger _log = Logger.getLogger(AdminTeleport.class.getName());
+	private static final Logger _log = LoggerFactory.getLogger(AdminTeleport.class.getName());
 	
 	private static final int REQUIRED_LEVEL = Config.GM_UNBLOCK;
 	private static final String[] ADMIN_COMMANDS =
@@ -97,7 +101,7 @@ public class AdminUnblockIp implements IAdminCommandHandler
 	private boolean unblockIp(String ipAddress, L2PcInstance activeChar)
 	{
 		// LoginServerThread.getInstance().unBlockip(ipAddress);
-		_log.warning("IP removed by GM " + activeChar.getName());
+		_log.warn("IP removed by GM " + activeChar.getName());
 		return true;
 	}
 	

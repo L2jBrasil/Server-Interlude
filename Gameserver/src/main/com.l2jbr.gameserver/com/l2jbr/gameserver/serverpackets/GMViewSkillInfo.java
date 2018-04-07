@@ -22,6 +22,8 @@ package com.l2jbr.gameserver.serverpackets;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
+;
+
 public class GMViewSkillInfo extends L2GameServerPacket
 {
 	private static final String _S__91_GMViewSkillInfo = "[S] 91 GMViewSkillInfo";

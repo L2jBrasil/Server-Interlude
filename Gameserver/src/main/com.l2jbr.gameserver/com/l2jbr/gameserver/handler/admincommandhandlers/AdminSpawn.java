@@ -34,10 +34,14 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class handles following admin commands: - show_spawns = shows menu - spawn_index lvl = shows menu for monsters with respective level - spawn_monster id = spawns monster id on target
@@ -62,7 +66,7 @@ public class AdminSpawn implements IAdminCommandHandler
 		"admin_spawnnight",
 		"admin_spawnday"
 	};
-	public static Logger _log = Logger.getLogger(AdminSpawn.class.getName());
+	public static Logger _log = LoggerFactory.getLogger(AdminSpawn.class.getName());
 	
 	private static final int REQUIRED_LEVEL = Config.GM_NPC_EDIT;
 	private static final int REQUIRED_LEVEL2 = Config.GM_TELEPORT_OTHER;

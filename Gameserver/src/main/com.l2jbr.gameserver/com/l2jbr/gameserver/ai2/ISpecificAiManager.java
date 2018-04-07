@@ -20,6 +20,8 @@ package com.l2jbr.gameserver.ai2;
 
 import java.util.List;
 
+;
+
 /**
  * @author -Wooden-
  */

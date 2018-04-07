@@ -23,8 +23,12 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ExDuelAskStart;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 /**
  * Format:(ch) Sd
@@ -33,7 +37,7 @@ import java.util.logging.Logger;
 public final class RequestDuelStart extends L2GameClientPacket
 {
 	private static final String _C__D0_27_REQUESTDUELSTART = "[C] D0:27 RequestDuelStart";
-	private static Logger _log = Logger.getLogger(RequestDuelStart.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RequestDuelStart.class.getName());
 	private String _player;
 	private int _partyDuel;
 	
@@ -137,7 +141,7 @@ public final class RequestDuelStart extends L2GameClientPacket
 				
 				if (Config.DEBUG)
 				{
-					_log.fine(activeChar.getName() + " requested a duel with " + partyLeader.getName());
+					_log.debug(activeChar.getName() + " requested a duel with " + partyLeader.getName());
 				}
 				
 				SystemMessage msg = new SystemMessage(SystemMessageId.S1S_PARTY_HAS_BEEN_CHALLENGED_TO_A_DUEL);
@@ -165,7 +169,7 @@ public final class RequestDuelStart extends L2GameClientPacket
 				
 				if (Config.DEBUG)
 				{
-					_log.fine(activeChar.getName() + " requested a duel with " + targetChar.getName());
+					_log.debug(activeChar.getName() + " requested a duel with " + targetChar.getName());
 				}
 				
 				SystemMessage msg = new SystemMessage(SystemMessageId.S1_HAS_BEEN_CHALLENGED_TO_A_DUEL);

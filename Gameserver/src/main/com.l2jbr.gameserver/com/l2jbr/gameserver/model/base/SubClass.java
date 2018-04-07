@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.model.base;
 
+;
+
 /**
  * Character Sub-Class Definition <BR>
  * Used to store key information about a character's sub-class.

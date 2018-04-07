@@ -19,6 +19,8 @@ package com.l2jbr.gameserver.model.actor.poly;
 
 import com.l2jbr.gameserver.model.L2Object;
 
+;
+
 public class ObjectPoly
 {
 	// =========================================================

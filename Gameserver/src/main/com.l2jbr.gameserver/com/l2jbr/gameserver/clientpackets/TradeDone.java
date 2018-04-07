@@ -24,8 +24,12 @@ import com.l2jbr.gameserver.model.TradeList;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 /**
  * This class ...
@@ -34,7 +38,7 @@ import java.util.logging.Logger;
 public final class TradeDone extends L2GameClientPacket
 {
 	private static final String _C__17_TRADEDONE = "[C] 17 TradeDone";
-	private static Logger _log = Logger.getLogger(TradeDone.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(TradeDone.class.getName());
 	
 	private int _response;
 	
@@ -55,7 +59,7 @@ public final class TradeDone extends L2GameClientPacket
 		TradeList trade = player.getActiveTradeList();
 		if (trade == null)
 		{
-			_log.warning("player.getTradeList == null in " + getType() + " for player " + player.getName());
+			_log.warn("player.getTradeList == null in " + getType() + " for player " + player.getName());
 			return;
 		}
 		if (trade.isLocked())

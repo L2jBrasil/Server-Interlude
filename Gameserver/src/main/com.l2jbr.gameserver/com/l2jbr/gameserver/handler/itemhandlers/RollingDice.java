@@ -18,6 +18,7 @@
  */
 package com.l2jbr.gameserver.handler.itemhandlers;
 
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.handler.IItemHandler;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2ItemInstance;
@@ -28,7 +29,8 @@ import com.l2jbr.gameserver.serverpackets.Dice;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.util.Broadcast;
 import com.l2jbr.gameserver.util.FloodProtector;
-import com.l2jbr.commons.util.Rnd;
+
+;
 
 /**
  * This class ...

@@ -24,6 +24,8 @@ import com.l2jbr.gameserver.ai.L2ControllableMobAI;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
+;
+
 /**
  * @author littlecrow
  */
@@ -119,7 +121,7 @@ public class L2ControllableMobInstance extends L2MonsterInstance
 			// then overhit may be calculated
 			if (Config.DEBUG)
 			{
-				_log.fine("char is dead.");
+				_log.debug("char is dead.");
 			}
 			
 			stopMove(null);

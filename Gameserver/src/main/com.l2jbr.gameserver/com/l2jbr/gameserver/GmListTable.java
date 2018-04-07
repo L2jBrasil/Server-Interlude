@@ -23,12 +23,16 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.L2GameServerPacket;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class stores references to all online game masters. (access level > 100)
@@ -36,7 +40,7 @@ import java.util.logging.Logger;
  * @version $Revision: 1.2.2.1.2.7 $ $Date: 2005/04/05 19:41:24 $
  */
 public class GmListTable {
-    private static Logger _log = Logger.getLogger(GmListTable.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(GmListTable.class.getName());
     private static GmListTable _instance;
 
     /**
@@ -89,14 +93,14 @@ public class GmListTable {
      */
     public void addGm(L2PcInstance player, boolean hidden) {
         if (Config.DEBUG) {
-            _log.fine("added gm: " + player.getName());
+            _log.debug("added gm: " + player.getName());
         }
         _gmList.put(player, hidden);
     }
 
     public void deleteGm(L2PcInstance player) {
         if (Config.DEBUG) {
-            _log.fine("deleted gm: " + player.getName());
+            _log.debug("deleted gm: " + player.getName());
         }
 
         _gmList.remove(player);

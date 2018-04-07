@@ -18,6 +18,8 @@
  */
 package com.l2jbr.loginserver.serverpackets;
 
+;
+
 /**
  * Fromat: d d: the failure reason
  */

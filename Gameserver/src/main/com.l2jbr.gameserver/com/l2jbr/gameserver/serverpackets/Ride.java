@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
+;
+
 public class Ride extends L2GameServerPacket
 {
 	private static final String _S__86_Ride = "[S] 86 Ride";

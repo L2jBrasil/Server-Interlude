@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
+;
+
 /**
  * This class makes runImpl() and writeImpl() abstract for custom classes outside of this package
  * @version $Revision: $ $Date: $

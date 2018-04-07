@@ -26,8 +26,11 @@ import com.l2jbr.gameserver.model.L2TradeList;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.BuyList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
 
 /**
  * This class handles following admin commands: - gmshop = shows menu - buy id = shows shop with respective id
@@ -35,7 +38,7 @@ import java.util.logging.Logger;
  */
 public class AdminShop implements IAdminCommandHandler
 {
-	private static Logger _log = Logger.getLogger(AdminShop.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(AdminShop.class.getName());
 	
 	private static final String[] ADMIN_COMMANDS =
 	{
@@ -95,7 +98,7 @@ public class AdminShop implements IAdminCommandHandler
 		}
 		catch (Exception e)
 		{
-			_log.warning("admin buylist failed:" + command);
+			_log.warn("admin buylist failed:" + command);
 		}
 		
 		L2TradeList list = TradeController.getInstance().getBuyList(val);
@@ -105,12 +108,12 @@ public class AdminShop implements IAdminCommandHandler
 			activeChar.sendPacket(new BuyList(list, activeChar.getAdena()));
 			if (Config.DEBUG)
 			{
-				_log.fine("GM: " + activeChar.getName() + "(" + activeChar.getObjectId() + ") opened GM shop id " + val);
+				_log.debug("GM: " + activeChar.getName() + "(" + activeChar.getObjectId() + ") opened GM shop id " + val);
 			}
 		}
 		else
 		{
-			_log.warning("no buylist with id:" + val);
+			_log.warn("no buylist with id:" + val);
 		}
 		activeChar.sendPacket(new ActionFailed());
 	}

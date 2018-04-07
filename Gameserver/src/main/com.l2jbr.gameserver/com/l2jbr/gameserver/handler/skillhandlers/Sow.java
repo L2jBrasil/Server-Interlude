@@ -18,13 +18,10 @@
  */
 package com.l2jbr.gameserver.handler.skillhandlers;
 
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.ai.CtrlIntention;
 import com.l2jbr.gameserver.handler.ISkillHandler;
-import com.l2jbr.gameserver.model.L2Character;
-import com.l2jbr.gameserver.model.L2ItemInstance;
-import com.l2jbr.gameserver.model.L2Manor;
-import com.l2jbr.gameserver.model.L2Object;
-import com.l2jbr.gameserver.model.L2Skill;
+import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.L2Skill.SkillType;
 import com.l2jbr.gameserver.model.actor.instance.L2MonsterInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
@@ -32,17 +29,17 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.PlaySound;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.commons.util.Rnd;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+;
 
 /**
  * @author l3x
  */
 public class Sow implements ISkillHandler
 {
-	private static Log _log = LogFactory.getLog(Sow.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(Sow.class.getName());
 	private static final SkillType[] SKILL_IDS =
 	{
 		SkillType.SOW

@@ -27,6 +27,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Properties;
 
+;
+
 public abstract class Status extends Thread
 {
 	

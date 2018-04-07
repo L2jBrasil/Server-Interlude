@@ -25,8 +25,12 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.PledgeShowMemberListDelete;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 /**
  * This class ...
@@ -35,7 +39,7 @@ import java.util.logging.Logger;
 public final class RequestOustPledgeMember extends L2GameClientPacket
 {
 	private static final String _C__27_REQUESTOUSTPLEDGEMEMBER = "[C] 27 RequestOustPledgeMember";
-	static Logger _log = Logger.getLogger(RequestOustPledgeMember.class.getName());
+	static Logger _log = LoggerFactory.getLogger(RequestOustPledgeMember.class.getName());
 	
 	private String _target;
 	
@@ -74,7 +78,7 @@ public final class RequestOustPledgeMember extends L2GameClientPacket
 		L2ClanMember member = clan.getClanMember(_target);
 		if (member == null)
 		{
-			_log.warning("Target (" + _target + ") is not member of the clan");
+			_log.warn("Target (" + _target + ") is not member of the clan");
 			return;
 		}
 		if (member.isOnline() && member.getPlayerInstance().isInCombat())

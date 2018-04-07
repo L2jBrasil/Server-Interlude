@@ -19,13 +19,17 @@ package com.l2jbr.gameserver.instancemanager;
 
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.zone.type.L2OlympiadStadiumZone;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Logger;
+
+;
+
 
 public class OlympiadStadiaManager {
-    protected static Logger _log = Logger.getLogger(OlympiadStadiaManager.class.getName());
+    protected static Logger _log = LoggerFactory.getLogger(OlympiadStadiaManager.class.getName());
 
     // =========================================================
     private static OlympiadStadiaManager _instance;

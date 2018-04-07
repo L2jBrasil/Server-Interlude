@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.ai;
 
+;
+
 /**
  * Enumaration of generic intentions of an NPC/PC, an intention may require several steps to be completed
  */

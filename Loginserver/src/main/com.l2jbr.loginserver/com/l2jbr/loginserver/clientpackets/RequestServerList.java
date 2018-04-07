@@ -21,6 +21,8 @@ package com.l2jbr.loginserver.clientpackets;
 import com.l2jbr.loginserver.serverpackets.LoginFail.LoginFailReason;
 import com.l2jbr.loginserver.serverpackets.ServerList;
 
+;
+
 /**
  * Format: ddc d: fist part of session id d: second part of session id c: ?
  */

@@ -20,11 +20,13 @@ package com.l2jbr.loginserver;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.crypt.NewCrypt;
+import com.l2jbr.commons.util.Util;
 import com.l2jbr.loginserver.GameServerTable.GameServerInfo;
 import com.l2jbr.loginserver.gameserverpackets.*;
 import com.l2jbr.loginserver.loginserverpackets.*;
 import com.l2jbr.loginserver.serverpackets.ServerBasePacket;
-import com.l2jbr.commons.util.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;
@@ -40,14 +42,16 @@ import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * @author -Wooden-
  * @author KenM
  */
 public class GameServerThread extends Thread {
-    protected static final Logger _log = Logger.getLogger(GameServerThread.class.getName());
+    protected static final Logger _log = LoggerFactory.getLogger(GameServerThread.class.getName());
     private final Socket _connection;
     private InputStream _in;
     private OutputStream _out;
@@ -91,7 +95,7 @@ public class GameServerThread extends Thread {
                 length = (lengthHi * 256) + lengthLo;
 
                 if ((lengthHi < 0) || _connection.isClosed()) {
-                    _log.finer("LoginServerThread: Login terminated the connection.");
+                    _log.debug("LoginServerThread: Login terminated the connection.");
                     break;
                 }
 
@@ -105,7 +109,7 @@ public class GameServerThread extends Thread {
                 }
 
                 if (receivedBytes != (length - 2)) {
-                    _log.warning("Incomplete Packet is sent to the server, closing connection.(LS)");
+                    _log.warn("Incomplete Packet is sent to the server, closing connection.(LS)");
                     break;
                 }
 
@@ -113,12 +117,12 @@ public class GameServerThread extends Thread {
                 data = _blowfish.decrypt(data);
                 checksumOk = NewCrypt.verifyChecksum(data);
                 if (!checksumOk) {
-                    _log.warning("Incorrect packet checksum, closing connection (LS)");
+                    _log.warn("Incorrect packet checksum, closing connection (LS)");
                     return;
                 }
 
                 if (Config.DEBUG) {
-                    _log.warning("[C]\n" + Util.printData(data));
+                    _log.warn("[C]\n" + Util.printData(data));
                 }
 
                 int packetType = data[0] & 0xff;
@@ -145,7 +149,7 @@ public class GameServerThread extends Thread {
                         onReceiveServerStatus(data);
                         break;
                     default:
-                        _log.warning("Unknown Opcode (" + Integer.toHexString(packetType).toUpperCase() + ") from GameServer, closing connection.");
+                        _log.warn("Unknown Opcode (" + Integer.toHexString(packetType).toUpperCase() + ") from GameServer, closing connection.");
                         forceClose(LoginServerFail.NOT_AUTHED);
                 }
 
@@ -176,7 +180,7 @@ public class GameServerThread extends Thread {
             _log.info("New BlowFish key received, Blowfih Engine initialized:");
         }
         /*
-         * } else { _log.warning("GameServer attempted to re-initialize the blowfish key."); // TODO get a better reason this.forceClose(LoginServerFail.NOT_AUTHED); }
+         * } else { _log.warn("GameServer attempted to re-initialize the blowfish key."); // TODO get a better reason this.forceClose(LoginServerFail.NOT_AUTHED); }
          */
     }
 
@@ -357,13 +361,13 @@ public class GameServerThread extends Thread {
         try {
             sendPacket(lsf);
         } catch (IOException e) {
-            _log.finer("GameServerThread: Failed kicking banned server. Reason: " + e.getMessage());
+            _log.debug("GameServerThread: Failed kicking banned server. Reason: " + e.getMessage());
         }
 
         try {
             _connection.close();
         } catch (IOException e) {
-            _log.finer("GameServerThread: Failed disconnecting banned server, server already disconnected.");
+            _log.debug("GameServerThread: Failed disconnecting banned server, server already disconnected.");
         }
     }
 
@@ -415,7 +419,7 @@ public class GameServerThread extends Thread {
         byte[] data = sl.getContent();
         NewCrypt.appendChecksum(data);
         if (Config.DEBUG) {
-            _log.finest("[S] " + sl.getClass().getSimpleName() + ":\n" + Util.printData(data));
+            _log.debug("[S] " + sl.getClass().getSimpleName() + ":\n" + Util.printData(data));
         }
         data = _blowfish.crypt(data);
 
@@ -458,7 +462,7 @@ public class GameServerThread extends Thread {
             try {
                 _gsi.setExternalIp(InetAddress.getByName(gameExternalHost).getHostAddress());
             } catch (UnknownHostException e) {
-                _log.warning("Couldn't resolve hostname \"" + gameExternalHost + "\"");
+                _log.warn("Couldn't resolve hostname \"" + gameExternalHost + "\"");
             }
         } else {
             _gsi.setExternalIp(_connectionIp);
@@ -467,7 +471,7 @@ public class GameServerThread extends Thread {
             try {
                 _gsi.setInternalIp(InetAddress.getByName(gameInternalHost).getHostAddress());
             } catch (UnknownHostException e) {
-                _log.warning("Couldn't resolve hostname \"" + gameInternalHost + "\"");
+                _log.warn("Couldn't resolve hostname \"" + gameInternalHost + "\"");
             }
         } else {
             _gsi.setInternalIp(_connectionIp);

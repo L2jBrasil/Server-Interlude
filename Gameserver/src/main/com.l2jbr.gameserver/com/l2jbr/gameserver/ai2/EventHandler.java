@@ -18,14 +18,17 @@
  */
 package com.l2jbr.gameserver.ai2;
 
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+;
 
 /**
  * @author -Wooden-
  */
 public abstract class EventHandler
 {
-	protected static final Logger _log = Logger.getLogger(EventHandler.class.getName());
+	protected static final Logger _log = LoggerFactory.getLogger(EventHandler.class.getName());
 	
 	abstract AiEventType getEvenType();
 	

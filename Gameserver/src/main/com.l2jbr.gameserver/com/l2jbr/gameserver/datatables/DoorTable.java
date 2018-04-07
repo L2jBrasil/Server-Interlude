@@ -26,15 +26,19 @@ import com.l2jbr.gameserver.model.entity.ClanHall;
 import com.l2jbr.gameserver.pathfinding.AbstractNodeLoc;
 import com.l2jbr.gameserver.templates.L2CharTemplate;
 import com.l2jbr.gameserver.templates.StatsSet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
+
+;
+
 
 public class DoorTable {
-    private static Logger _log = Logger.getLogger(DoorTable.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(DoorTable.class.getName());
 
     private Map<Integer, L2DoorInstance> _staticItems;
 
@@ -71,7 +75,7 @@ public class DoorTable {
             lnr = new LineNumberReader(new BufferedReader(new FileReader(doorData)));
 
             String line = null;
-            _log.warning("Searching clan halls doors:");
+            _log.warn("Searching clan halls doors:");
 
             while ((line = lnr.readLine()) != null) {
                 if ((line.trim().length() == 0) || line.startsWith("#")) {
@@ -86,18 +90,18 @@ public class DoorTable {
                     clanhall.getDoors().add(door);
                     door.setClanHall(clanhall);
                     if (Config.DEBUG) {
-                        _log.warning("door " + door.getDoorName() + " attached to ch " + clanhall.getName());
+                        _log.warn("door " + door.getDoorName() + " attached to ch " + clanhall.getName());
                     }
                 }
             }
 
-            _log.config("DoorTable: Loaded " + _staticItems.size() + " Door Templates.");
+            _log.info("DoorTable: Loaded " + _staticItems.size() + " Door Templates.");
         } catch (FileNotFoundException e) {
             _initialized = false;
-            _log.warning("door.csv is missing in data folder");
+            _log.warn("door.csv is missing in data folder");
         } catch (IOException e) {
             _initialized = false;
-            _log.warning("error while creating door table " + e);
+            _log.warn("error while creating door table " + e);
         } finally {
             try {
                 lnr.close();
@@ -130,13 +134,13 @@ public class DoorTable {
         }
 
         if (rangeXMin > rangeXMax) {
-            _log.severe("Error in door data, ID:" + id);
+            _log.error("Error in door data, ID:" + id);
         }
         if (rangeYMin > rangeYMax) {
-            _log.severe("Error in door data, ID:" + id);
+            _log.error("Error in door data, ID:" + id);
         }
         if (rangeZMin > rangeZMax) {
-            _log.severe("Error in door data, ID:" + id);
+            _log.error("Error in door data, ID:" + id);
         }
         int collisionRadius; // (max) radius for movement checks
         if ((rangeXMax - rangeXMin) > (rangeYMax - rangeYMin)) {
@@ -196,7 +200,7 @@ public class DoorTable {
         try {
             door.setMapRegion(MapRegionTable.getInstance().getMapRegion(x, y));
         } catch (Exception e) {
-            _log.severe("Error in door data, ID:" + id);
+            _log.error("Error in door data, ID:" + id);
         }
         door.setCurrentHpMp(door.getMaxHp(), door.getMaxMp());
         door.setOpen(1);

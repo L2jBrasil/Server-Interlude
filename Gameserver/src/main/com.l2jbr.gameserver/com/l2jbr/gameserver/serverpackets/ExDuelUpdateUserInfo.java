@@ -19,6 +19,8 @@ package com.l2jbr.gameserver.serverpackets;
 
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
+;
+
 /**
  * Format: ch Sddddddddd
  * @author KenM

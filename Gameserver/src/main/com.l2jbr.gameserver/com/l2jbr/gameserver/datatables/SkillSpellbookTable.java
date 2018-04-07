@@ -20,15 +20,19 @@ package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.L2Skill;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.logging.Logger;
+
+;
+
 
 public class SkillSpellbookTable {
-    private static Logger _log = Logger.getLogger(SkillTreeTable.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(SkillTreeTable.class.getName());
     private static SkillSpellbookTable _instance;
 
     private static Map<Integer, Integer> _skillSpellbooks;
@@ -57,9 +61,9 @@ public class SkillSpellbookTable {
             spbooks.close();
             statement.close();
 
-            _log.config("SkillSpellbookTable: Loaded " + _skillSpellbooks.size() + " Spellbooks.");
+            _log.info("SkillSpellbookTable: Loaded " + _skillSpellbooks.size() + " Spellbooks.");
         } catch (Exception e) {
-            _log.warning("Error while loading spellbook data: " + e);
+            _log.warn("Error while loading spellbook data: " + e);
         } finally {
             try {
                 con.close();

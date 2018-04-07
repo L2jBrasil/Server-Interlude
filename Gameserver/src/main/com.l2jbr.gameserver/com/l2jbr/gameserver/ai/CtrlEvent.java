@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.ai;
 
+;
+
 /**
  * This class contains an enum of each possibles evenements that can happen on an AI character.
  */

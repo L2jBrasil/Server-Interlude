@@ -26,6 +26,8 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.RecipeShopMsg;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
+;
+
 /**
  * This class ... cd(dd)
  * @version $Revision: 1.1.2.3.2.3 $ $Date: 2005/03/27 15:29:30 $
@@ -33,7 +35,7 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 public final class RequestRecipeShopListSet extends L2GameClientPacket
 {
 	private static final String _C__B2_RequestRecipeShopListSet = "[C] b2 RequestRecipeShopListSet";
-	// private static Logger _log = Logger.getLogger(RequestRecipeShopListSet.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(RequestRecipeShopListSet.class.getName());
 	
 	private int _count;
 	private int[] _items; // count*2

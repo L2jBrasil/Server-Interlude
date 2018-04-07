@@ -18,8 +18,9 @@
 package com.l2jbr.loginserver.serverpackets;
 
 import com.l2jbr.loginserver.L2LoginClient;
-
 import com.l2jbr.mmocore.SendablePacket;
+
+;
 
 /**
  * @author KenM

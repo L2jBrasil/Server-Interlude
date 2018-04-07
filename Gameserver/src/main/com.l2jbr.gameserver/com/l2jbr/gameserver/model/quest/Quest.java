@@ -20,6 +20,7 @@ package com.l2jbr.gameserver.model.quest;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.L2DatabaseFactory;
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.cache.HtmCache;
 import com.l2jbr.gameserver.datatables.NpcTable;
@@ -31,21 +32,23 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
-import com.l2jbr.commons.util.Rnd;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * @author Luis Arias
  */
 public abstract class Quest {
-    protected static final Logger _log = Logger.getLogger(Quest.class.getName());
+    protected static final Logger _log = LoggerFactory.getLogger(Quest.class.getName());
 
     /**
      * HashMap containing events from String value of the event
@@ -410,7 +413,7 @@ public abstract class Quest {
      * @return boolean
      */
     private boolean showError(L2PcInstance player, Throwable t) {
-        _log.log(Level.WARNING, "", t);
+        _log.warn( "", t);
         if (player.getAccessLevel() > 0) {
             StringWriter sw = new StringWriter();
             PrintWriter pw = new PrintWriter(sw);
@@ -483,7 +486,7 @@ public abstract class Quest {
                 // Search quest associated with the ID
                 Quest q = QuestManager.getInstance().getQuest(questId);
                 if (q == null) {
-                    _log.finer("Unknown quest " + questId + " for player " + player.getName());
+                    _log.debug("Unknown quest " + questId + " for player " + player.getName());
                     if (Config.AUTODELETE_INVALID_QUEST_DATA) {
                         invalidQuestData.setInt(1, player.getObjectId());
                         invalidQuestData.setString(2, questId);
@@ -501,7 +504,7 @@ public abstract class Quest {
                 // Create an object State containing the state of the quest
                 State state = q._states.get(stateId);
                 if (state == null) {
-                    _log.finer("Unknown state in quest " + questId + " for player " + player.getName());
+                    _log.debug("Unknown state in quest " + questId + " for player " + player.getName());
                     if (Config.AUTODELETE_INVALID_QUEST_DATA) {
                         invalidQuestData.setInt(1, player.getObjectId());
                         invalidQuestData.setString(2, questId);
@@ -527,7 +530,7 @@ public abstract class Quest {
                 // Get the QuestState saved in the loop before
                 QuestState qs = player.getQuestState(questId);
                 if (qs == null) {
-                    _log.finer("Lost variable " + var + " in quest " + questId + " for player " + player.getName());
+                    _log.debug("Lost variable " + var + " in quest " + questId + " for player " + player.getName());
                     if (Config.AUTODELETE_INVALID_QUEST_DATA) {
                         invalidQuestDataVar.setInt(1, player.getObjectId());
                         invalidQuestDataVar.setString(2, questId);
@@ -544,7 +547,7 @@ public abstract class Quest {
             statement.close();
 
         } catch (Exception e) {
-            _log.log(Level.WARNING, "could not insert char quest:", e);
+            _log.warn( "could not insert char quest:", e);
         } finally {
             try {
                 con.close();
@@ -577,7 +580,7 @@ public abstract class Quest {
             statement.executeUpdate();
             statement.close();
         } catch (Exception e) {
-            _log.log(Level.WARNING, "could not insert global quest variable:", e);
+            _log.warn( "could not insert global quest variable:", e);
         } finally {
             try {
                 con.close();
@@ -609,7 +612,7 @@ public abstract class Quest {
             rs.close();
             statement.close();
         } catch (Exception e) {
-            _log.log(Level.WARNING, "could not load global quest variable:", e);
+            _log.warn( "could not load global quest variable:", e);
         } finally {
             try {
                 con.close();
@@ -635,7 +638,7 @@ public abstract class Quest {
             statement.executeUpdate();
             statement.close();
         } catch (Exception e) {
-            _log.log(Level.WARNING, "could not delete global quest variable:", e);
+            _log.warn( "could not delete global quest variable:", e);
         } finally {
             try {
                 con.close();
@@ -657,7 +660,7 @@ public abstract class Quest {
             statement.executeUpdate();
             statement.close();
         } catch (Exception e) {
-            _log.log(Level.WARNING, "could not delete global quest variables:", e);
+            _log.warn( "could not delete global quest variables:", e);
         } finally {
             try {
                 con.close();
@@ -686,7 +689,7 @@ public abstract class Quest {
             statement.executeUpdate();
             statement.close();
         } catch (Exception e) {
-            _log.log(Level.WARNING, "could not insert char quest:", e);
+            _log.warn( "could not insert char quest:", e);
         } finally {
             try {
                 con.close();
@@ -720,7 +723,7 @@ public abstract class Quest {
             statement.executeUpdate();
             statement.close();
         } catch (Exception e) {
-            _log.log(Level.WARNING, "could not update char quest:", e);
+            _log.warn( "could not update char quest:", e);
         } finally {
             try {
                 con.close();
@@ -747,7 +750,7 @@ public abstract class Quest {
             statement.executeUpdate();
             statement.close();
         } catch (Exception e) {
-            _log.log(Level.WARNING, "could not delete char quest:", e);
+            _log.warn( "could not delete char quest:", e);
         } finally {
             try {
                 con.close();
@@ -772,7 +775,7 @@ public abstract class Quest {
             statement.executeUpdate();
             statement.close();
         } catch (Exception e) {
-            _log.log(Level.WARNING, "could not delete char quest:", e);
+            _log.warn( "could not delete char quest:", e);
         } finally {
             try {
                 con.close();
@@ -1110,7 +1113,7 @@ public abstract class Quest {
                 // with quest spawns! For both of the above cases, we need a fail-safe spawn. For this, we use the
                 // default spawn location, which is at the player's loc.
                 if ((x == 0) && (y == 0)) {
-                    _log.log(Level.SEVERE, "Failed to adjust bad locks for quest spawn!  Spawn aborted!");
+                    _log.error( "Failed to adjust bad locks for quest spawn!  Spawn aborted!");
                     return null;
                 }
                 if (randomOffset) {
@@ -1145,7 +1148,7 @@ public abstract class Quest {
                 return result;
             }
         } catch (Exception e1) {
-            _log.warning("Could not spawn Npc " + npcId);
+            _log.warn("Could not spawn Npc " + npcId);
         }
 
         return null;

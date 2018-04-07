@@ -25,13 +25,15 @@ import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.ValidateLocation;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
+;
+
 /**
  * This class ...
  * @version $Revision$ $Date$
  */
 public class L2SiegeNpcInstance extends L2FolkInstance
 {
-	// private static Logger _log = Logger.getLogger(L2SiegeNpcInstance.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(L2SiegeNpcInstance.class.getName());
 	
 	public L2SiegeNpcInstance(int objectID, L2NpcTemplate template)
 	{

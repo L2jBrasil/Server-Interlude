@@ -22,10 +22,12 @@ import com.l2jbr.gameserver.model.L2RecipeList;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.RecipeBookItemList;
 
+;
+
 public final class RequestRecipeBookDestroy extends L2GameClientPacket
 {
 	private static final String _C__AC_REQUESTRECIPEBOOKDESTROY = "[C] AD RequestRecipeBookDestroy";
-	// private static Logger _log = Logger.getLogger(RequestSellItem.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(RequestSellItem.class.getName());
 	
 	private int _recipeID;
 	

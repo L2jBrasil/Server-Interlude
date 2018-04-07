@@ -20,13 +20,15 @@ package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.L2NpcWalkerNode;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
+
+;
 
 /**
  * Main Table to Load Npc Walkers Routes and Chat SQL Table.<br>
@@ -35,7 +37,7 @@ import java.util.List;
  * @since 927
  */
 public class NpcWalkerRoutesTable {
-    private final static Log _log = LogFactory.getLog(SpawnTable.class.getName());
+    private final static Logger _log = LoggerFactory.getLogger(SpawnTable.class.getName());
 
     private static NpcWalkerRoutesTable _instance;
 
@@ -85,7 +87,7 @@ public class NpcWalkerRoutesTable {
             rset.close();
             statement.close();
         } catch (Exception e) {
-            _log.fatal("WalkerRoutesTable: Error while loading Npc Walkers Routes: " + e.getMessage());
+            _log.error("WalkerRoutesTable: Error while loading Npc Walkers Routes: " + e.getMessage());
         } finally {
             try {
                 con.close();

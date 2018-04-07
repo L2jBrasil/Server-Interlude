@@ -22,6 +22,8 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.RecipeShopSellList;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.1.2.1.2.2 $ $Date: 2005/03/27 15:29:30 $
@@ -30,7 +32,7 @@ public final class RequestRecipeShopManagePrev extends L2GameClientPacket
 {
 	private static final String _C__B7_RequestRecipeShopPrev = "[C] b7 RequestRecipeShopPrev";
 	
-	// private static Logger _log = Logger.getLogger(RequestPrivateStoreManage.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(RequestPrivateStoreManage.class.getName());
 	
 	@Override
 	protected void readImpl()

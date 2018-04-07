@@ -24,11 +24,13 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
+;
+
 public final class AllyLeave extends L2GameClientPacket
 {
 	private static final String _C__84_ALLYLEAVE = "[C] 84 AllyLeave";
 	
-	// private static Logger _log = Logger.getLogger(AllyLeave.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(AllyLeave.class.getName());
 	
 	@Override
 	protected void readImpl()

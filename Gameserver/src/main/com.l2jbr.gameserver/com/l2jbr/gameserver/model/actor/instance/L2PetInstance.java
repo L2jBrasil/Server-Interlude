@@ -18,11 +18,6 @@
  */
 package com.l2jbr.gameserver.model.actor.instance;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.concurrent.Future;
-import java.util.logging.Logger;
-
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.ThreadPoolManager;
@@ -30,33 +25,23 @@ import com.l2jbr.gameserver.ai.CtrlIntention;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.instancemanager.CursedWeaponsManager;
 import com.l2jbr.gameserver.instancemanager.ItemsOnGroundManager;
-import com.l2jbr.gameserver.model.Inventory;
-import com.l2jbr.gameserver.model.L2Character;
-import com.l2jbr.gameserver.model.L2ItemInstance;
-import com.l2jbr.gameserver.model.L2Object;
-import com.l2jbr.gameserver.model.L2PetData;
-import com.l2jbr.gameserver.model.L2PetDataTable;
-import com.l2jbr.gameserver.model.L2Skill;
-import com.l2jbr.gameserver.model.L2Summon;
-import com.l2jbr.gameserver.model.L2World;
-import com.l2jbr.gameserver.model.PcInventory;
-import com.l2jbr.gameserver.model.PetInventory;
+import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.stat.PetStat;
 import com.l2jbr.gameserver.network.SystemMessageId;
-import com.l2jbr.gameserver.serverpackets.ActionFailed;
-import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
-import com.l2jbr.gameserver.serverpackets.ItemList;
-import com.l2jbr.gameserver.serverpackets.MyTargetSelected;
-import com.l2jbr.gameserver.serverpackets.PetInventoryUpdate;
-import com.l2jbr.gameserver.serverpackets.PetItemList;
-import com.l2jbr.gameserver.serverpackets.PetStatusShow;
-import com.l2jbr.gameserver.serverpackets.StatusUpdate;
-import com.l2jbr.gameserver.serverpackets.StopMove;
-import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.taskmanager.DecayTaskManager;
 import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.templates.L2Weapon;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.concurrent.Future;
+
+;
+
 
 /**
  * This class ...
@@ -64,7 +49,7 @@ import com.l2jbr.gameserver.templates.L2Weapon;
  */
 public class L2PetInstance extends L2Summon
 {
-	protected static final Logger _logPet = Logger.getLogger(L2PetInstance.class.getName());
+	protected static final Logger _logPet = LoggerFactory.getLogger(L2PetInstance.class.getName());
 	
 	// private byte _pvpFlag;
 	private int _curFed;
@@ -172,7 +157,7 @@ public class L2PetInstance extends L2Summon
 			{
 				if (Config.DEBUG)
 				{
-					_logPet.warning("Pet [#" + getObjectId() + "] a feed task error has occurred: " + e);
+					_logPet.warn("Pet [#" + getObjectId() + "] a feed task error has occurred: " + e);
 				}
 			}
 		}
@@ -270,7 +255,7 @@ public class L2PetInstance extends L2Summon
 		{
 			if (Config.DEBUG)
 			{
-				_logPet.fine("new target selected:" + getObjectId());
+				_logPet.debug("new target selected:" + getObjectId());
 			}
 			player.setTarget(this);
 			MyTargetSelected my = new MyTargetSelected(getObjectId(), player.getLevel() - getLevel());
@@ -446,7 +431,7 @@ public class L2PetInstance extends L2Summon
 		
 		if (Config.DEBUG)
 		{
-			_logPet.fine("Pet pickup pos: " + object.getX() + " " + object.getY() + " " + object.getZ());
+			_logPet.debug("Pet pickup pos: " + object.getX() + " " + object.getY() + " " + object.getZ());
 		}
 		
 		broadcastPacket(sm);
@@ -454,7 +439,7 @@ public class L2PetInstance extends L2Summon
 		if (!(object instanceof L2ItemInstance))
 		{
 			// dont try to pickup anything that is not an item :)
-			_logPet.warning("trying to pickup wrong target." + object);
+			_logPet.warn("trying to pickup wrong target." + object);
 			getOwner().sendPacket(new ActionFailed());
 			return;
 		}
@@ -676,7 +661,7 @@ public class L2PetInstance extends L2Summon
 		}
 		catch (Exception e)
 		{
-			_logPet.warning("Give all items error " + e);
+			_logPet.warn("Give all items error " + e);
 		}
 	}
 	
@@ -693,7 +678,7 @@ public class L2PetInstance extends L2Summon
 		}
 		catch (Exception e)
 		{
-			_logPet.warning("Error while giving item to owner: " + e);
+			_logPet.warn("Error while giving item to owner: " + e);
 		}
 	}
 	
@@ -727,7 +712,7 @@ public class L2PetInstance extends L2Summon
 		}
 		catch (Exception e)
 		{
-			_logPet.warning("Error while destroying control item: " + e);
+			_logPet.warn("Error while destroying control item: " + e);
 		}
 		
 		// pet control item no longer exists, delete the pet from the db
@@ -742,7 +727,7 @@ public class L2PetInstance extends L2Summon
 		}
 		catch (Exception e)
 		{
-			_logPet.warning("could not delete pet:" + e);
+			_logPet.warn("could not delete pet:" + e);
 		}
 		finally
 		{
@@ -768,7 +753,7 @@ public class L2PetInstance extends L2Summon
 		}
 		catch (Exception e)
 		{
-			_logPet.warning("Pet Drop Error: " + e);
+			_logPet.warn("Pet Drop Error: " + e);
 		}
 	}
 	
@@ -778,7 +763,7 @@ public class L2PetInstance extends L2Summon
 		
 		if (dropit != null)
 		{
-			_logPet.finer("Item id to drop: " + dropit.getItemId() + " amount: " + dropit.getCount());
+			_logPet.debug("Item id to drop: " + dropit.getItemId() + " amount: " + dropit.getCount());
 			dropit.dropMe(this, getX(), getY(), getZ() + 100);
 		}
 	}
@@ -860,7 +845,7 @@ public class L2PetInstance extends L2Summon
 		}
 		catch (Exception e)
 		{
-			_logPet.warning("could not restore pet data: " + e);
+			_logPet.warn("could not restore pet data: " + e);
 			return null;
 		}
 		finally
@@ -914,7 +899,7 @@ public class L2PetInstance extends L2Summon
 		}
 		catch (Exception e)
 		{
-			_logPet.warning("could not store pet data: " + e);
+			_logPet.warn("could not store pet data: " + e);
 		}
 		finally
 		{
@@ -943,7 +928,7 @@ public class L2PetInstance extends L2Summon
 			_feedTask = null;
 			if (Config.DEBUG)
 			{
-				_logPet.fine("Pet [#" + getObjectId() + "] feed task stop");
+				_logPet.debug("Pet [#" + getObjectId() + "] feed task stop");
 			}
 		}
 	}

@@ -23,6 +23,8 @@ import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Effect;
 import com.l2jbr.gameserver.skills.Env;
 
+;
+
 public class EffectPetrification extends L2Effect
 {
 	public EffectPetrification(Env env, EffectTemplate template)

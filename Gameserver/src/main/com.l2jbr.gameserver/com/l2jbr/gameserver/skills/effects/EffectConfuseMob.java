@@ -18,16 +18,18 @@
  */
 package com.l2jbr.gameserver.skills.effects;
 
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.ai.CtrlIntention;
 import com.l2jbr.gameserver.model.L2Attackable;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Effect;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.skills.Env;
-import com.l2jbr.commons.util.Rnd;
 
 import java.util.LinkedList;
 import java.util.List;
+
+;
 
 /**
  * @author littlecrow Implementation of the Confusion Effect

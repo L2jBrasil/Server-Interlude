@@ -23,10 +23,14 @@ import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -34,7 +38,7 @@ import java.util.logging.Logger;
  */
 public final class RequestFriendList extends L2GameClientPacket
 {
-	private static Logger _log = Logger.getLogger(RequestFriendList.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RequestFriendList.class.getName());
 	private static final String _C__60_REQUESTFRIENDLIST = "[C] 60 RequestFriendList";
 	
 	@Override
@@ -98,7 +102,7 @@ public final class RequestFriendList extends L2GameClientPacket
 		}
 		catch (Exception e)
 		{
-			_log.warning("Error in /friendlist for " + activeChar + ": " + e);
+			_log.warn("Error in /friendlist for " + activeChar + ": " + e);
 		}
 		finally
 		{

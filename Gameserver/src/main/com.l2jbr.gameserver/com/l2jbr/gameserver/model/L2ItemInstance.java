@@ -35,13 +35,15 @@ import com.l2jbr.gameserver.skills.funcs.Func;
 import com.l2jbr.gameserver.templates.L2Armor;
 import com.l2jbr.gameserver.templates.L2EtcItem;
 import com.l2jbr.gameserver.templates.L2Item;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.concurrent.ScheduledFuture;
-import java.util.logging.Level;
-import java.util.logging.LogRecord;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class manages items.
@@ -49,8 +51,8 @@ import java.util.logging.Logger;
  */
 public final class L2ItemInstance extends L2Object
 {
-	private static final Logger _log = Logger.getLogger(L2ItemInstance.class.getName());
-	private static final Logger _logItems = Logger.getLogger("item");
+	private static final Logger _log = LoggerFactory.getLogger(L2ItemInstance.class.getName());
+	private static final Logger _logItems = LoggerFactory.getLogger("item");
 	
 	/** Enumeration of locations for item */
 	public static enum ItemLocation
@@ -197,15 +199,7 @@ public final class L2ItemInstance extends L2Object
 		
 		if (Config.LOG_ITEMS)
 		{
-			LogRecord record = new LogRecord(Level.INFO, "CHANGE:" + process);
-			record.setLoggerName("item");
-			record.setParameters(new Object[]
-			{
-				this,
-				creator,
-				reference
-			});
-			_logItems.log(record);
+			_logItems.info("CHANGE: {}", process);
 		}
 	}
 	
@@ -302,19 +296,9 @@ public final class L2ItemInstance extends L2Object
 			_count = 0;
 		}
 		_storedInDb = false;
-		
-		if (Config.LOG_ITEMS)
-		{
-			LogRecord record = new LogRecord(Level.INFO, "CHANGE:" + process);
-			record.setLoggerName("item");
-			record.setParameters(new Object[]
-			{
-				this,
-				creator,
-				reference
-			});
-			_logItems.log(record);
-		}
+
+		_logItems.info("CHANGE: {}", process);
+
 	}
 	
 	// No logging (function designed for shots only)
@@ -1023,7 +1007,7 @@ public final class L2ItemInstance extends L2Object
 				L2Item item = ItemTable.getInstance().getTemplate(item_id);
 				if (item == null)
 				{
-					_log.severe("Item item_id=" + item_id + " not known, object_id=" + objectId);
+					_log.error("Item item_id=" + item_id + " not known, object_id=" + objectId);
 					rs.close();
 					statement.close();
 					return null;
@@ -1065,7 +1049,7 @@ public final class L2ItemInstance extends L2Object
 			}
 			else
 			{
-				_log.severe("Item object_id=" + objectId + " not found");
+				_log.error("Item object_id=" + objectId + " not found");
 				rs.close();
 				statement.close();
 				return null;
@@ -1088,7 +1072,7 @@ public final class L2ItemInstance extends L2Object
 		}
 		catch (Exception e)
 		{
-			_log.log(Level.SEVERE, "Could not restore item " + objectId + " from DB:", e);
+			_log.error( "Could not restore item " + objectId + " from DB:", e);
 		}
 		finally
 		{
@@ -1194,7 +1178,7 @@ public final class L2ItemInstance extends L2Object
 		}
 		catch (Exception e)
 		{
-			_log.log(Level.SEVERE, "Could not update item " + getObjectId() + " in DB: Reason: " + "Duplicate itemId");
+			_log.error( "Could not update item " + getObjectId() + " in DB: Reason: " + "Duplicate itemId");
 		}
 		finally
 		{
@@ -1246,7 +1230,7 @@ public final class L2ItemInstance extends L2Object
 		}
 		catch (Exception e)
 		{
-			_log.log(Level.SEVERE, "Could not insert item " + getObjectId() + " into DB: Reason: " + "Duplicate itemId");
+			_log.error( "Could not insert item " + getObjectId() + " into DB: Reason: " + "Duplicate itemId");
 		}
 		finally
 		{
@@ -1293,7 +1277,7 @@ public final class L2ItemInstance extends L2Object
 		}
 		catch (Exception e)
 		{
-			_log.log(Level.SEVERE, "Could not delete item " + getObjectId() + " in DB:", e);
+			_log.error( "Could not delete item " + getObjectId() + " in DB:", e);
 		}
 		finally
 		{

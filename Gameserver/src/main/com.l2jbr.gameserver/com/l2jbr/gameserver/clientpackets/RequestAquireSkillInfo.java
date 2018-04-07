@@ -29,8 +29,12 @@ import com.l2jbr.gameserver.model.actor.instance.L2FolkInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.AquireSkillInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 /**
  * This class ...
@@ -39,7 +43,7 @@ import java.util.logging.Logger;
 public class RequestAquireSkillInfo extends L2GameClientPacket
 {
 	private static final String _C__6B_REQUESTAQUIRESKILLINFO = "[C] 6B RequestAquireSkillInfo";
-	private static Logger _log = Logger.getLogger(RequestAquireSkillInfo.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RequestAquireSkillInfo.class.getName());
 	
 	private int _id;
 	private int _level;
@@ -78,7 +82,7 @@ public class RequestAquireSkillInfo extends L2GameClientPacket
 		{
 			if (Config.DEBUG)
 			{
-				_log.warning("skill id " + _id + " level " + _level + " is undefined. aquireSkillInfo failed.");
+				_log.warn("skill id " + _id + " level " + _level + " is undefined. aquireSkillInfo failed.");
 			}
 			return;
 		}

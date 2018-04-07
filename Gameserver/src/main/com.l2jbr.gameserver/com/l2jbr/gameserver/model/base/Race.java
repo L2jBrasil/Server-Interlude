@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.model.base;
 
+;
+
 /**
  * This class defines all races (human, elf, darkelf, orc, dwarf) that a player can chose.<BR>
  * <BR>

@@ -24,6 +24,8 @@ import com.l2jbr.gameserver.serverpackets.MultiSellList;
 import com.l2jbr.gameserver.templates.L2Armor;
 import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.templates.L2Weapon;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
@@ -31,14 +33,15 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * Multisell list manager
  */
 public class L2Multisell {
-    private static Logger _log = Logger.getLogger(L2Multisell.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(L2Multisell.class.getName());
     private final List<MultiSellListContainer> _entries = new LinkedList<>();
     private static L2Multisell _instance = new L2Multisell();
 
@@ -51,7 +54,7 @@ public class L2Multisell {
             }
         }
 
-        _log.warning("[L2Multisell] can't find list with id: " + id);
+        _log.warn("[L2Multisell] can't find list with id: " + id);
         return null;
     }
 
@@ -408,7 +411,7 @@ public class L2Multisell {
     private void hashFiles(String dirname, List<File> hash) {
         File dir = new File(Config.DATAPACK_ROOT, "data/" + dirname);
         if (!dir.exists()) {
-            _log.config("Dir " + dir.getAbsolutePath() + " not exists");
+            _log.info("Dir " + dir.getAbsolutePath() + " not exists");
             return;
         }
         File[] files = dir.listFiles();
@@ -434,14 +437,14 @@ public class L2Multisell {
                 factory.setIgnoringComments(true);
                 doc = factory.newDocumentBuilder().parse(f);
             } catch (Exception e) {
-                _log.log(Level.SEVERE, "Error loading file " + f, e);
+                _log.error( "Error loading file " + f, e);
             }
             try {
                 MultiSellListContainer list = parseDocument(doc);
                 list.setListId(id);
                 _entries.add(list);
             } catch (Exception e) {
-                _log.log(Level.SEVERE, "Error in file " + f, e);
+                _log.error( "Error in file " + f, e);
             }
         }
     }

@@ -37,6 +37,8 @@ import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import java.text.SimpleDateFormat;
 import java.util.StringTokenizer;
 
+;
+
 public class L2ClanHallManagerInstance extends L2FolkInstance
 {
 	protected static final int COND_OWNER_FALSE = 0;
@@ -229,7 +231,7 @@ public class L2ClanHallManagerInstance extends L2FolkInstance
 									int fee;
 									if (Config.DEBUG)
 									{
-										_log.warning("Mp editing invoked");
+										_log.warn("Mp editing invoked");
 									}
 									val = st.nextToken();
 									int percent = Integer.valueOf(val);
@@ -295,7 +297,7 @@ public class L2ClanHallManagerInstance extends L2FolkInstance
 									int fee;
 									if (Config.DEBUG)
 									{
-										_log.warning("Mp editing invoked");
+										_log.warn("Mp editing invoked");
 									}
 									val = st.nextToken();
 									int percent = Integer.valueOf(val);
@@ -337,7 +339,7 @@ public class L2ClanHallManagerInstance extends L2FolkInstance
 									int fee;
 									if (Config.DEBUG)
 									{
-										_log.warning("Exp editing invoked");
+										_log.warn("Exp editing invoked");
 									}
 									val = st.nextToken();
 									int percent = Integer.valueOf(val);
@@ -440,7 +442,7 @@ public class L2ClanHallManagerInstance extends L2FolkInstance
 									}
 									if (Config.DEBUG)
 									{
-										_log.warning("Item editing invoked");
+										_log.warn("Item editing invoked");
 									}
 									val = st.nextToken();
 									int fee;
@@ -477,7 +479,7 @@ public class L2ClanHallManagerInstance extends L2FolkInstance
 									int fee;
 									if (Config.DEBUG)
 									{
-										_log.warning("Tele editing invoked");
+										_log.warn("Tele editing invoked");
 									}
 									val = st.nextToken();
 									int lvl = Integer.valueOf(val);
@@ -510,7 +512,7 @@ public class L2ClanHallManagerInstance extends L2FolkInstance
 									int fee;
 									if (Config.DEBUG)
 									{
-										_log.warning("Support editing invoked");
+										_log.warn("Support editing invoked");
 									}
 									val = st.nextToken();
 									int lvl = Integer.valueOf(val);
@@ -612,7 +614,7 @@ public class L2ClanHallManagerInstance extends L2FolkInstance
 									int fee;
 									if (Config.DEBUG)
 									{
-										_log.warning("Deco curtains editing invoked");
+										_log.warn("Deco curtains editing invoked");
 									}
 									val = st.nextToken();
 									int lvl = Integer.valueOf(val);
@@ -645,7 +647,7 @@ public class L2ClanHallManagerInstance extends L2FolkInstance
 									int fee;
 									if (Config.DEBUG)
 									{
-										_log.warning("Deco curtains editing invoked");
+										_log.warn("Deco curtains editing invoked");
 									}
 									val = st.nextToken();
 									int lvl = Integer.valueOf(val);
@@ -929,14 +931,14 @@ public class L2ClanHallManagerInstance extends L2FolkInstance
 			{
 				if (Config.DEBUG)
 				{
-					_log.warning("Teleporting player " + player.getName() + " for CH to new location: " + list.getLocX() + ":" + list.getLocY() + ":" + list.getLocZ());
+					_log.warn("Teleporting player " + player.getName() + " for CH to new location: " + list.getLocX() + ":" + list.getLocY() + ":" + list.getLocZ());
 				}
 				player.teleToLocation(list.getLocX(), list.getLocY(), list.getLocZ());
 			}
 		}
 		else
 		{
-			_log.warning("No teleport destination with id:" + val);
+			_log.warn("No teleport destination with id:" + val);
 		}
 		player.sendPacket(new ActionFailed());
 	}
@@ -954,7 +956,7 @@ public class L2ClanHallManagerInstance extends L2FolkInstance
 		
 		if (Config.DEBUG)
 		{
-			_log.fine("Showing buylist :" + player.getName() + " List ID :" + val);
+			_log.debug("Showing buylist :" + player.getName() + " List ID :" + val);
 		}
 		
 		L2TradeList list = TradeController.getInstance().getBuyList(val);
@@ -966,8 +968,8 @@ public class L2ClanHallManagerInstance extends L2FolkInstance
 		}
 		else
 		{
-			_log.warning("possible client hacker: " + player.getName() + " attempting to buy from GM shop! < Ban him!");
-			_log.warning("buylist id:" + val);
+			_log.warn("possible client hacker: " + player.getName() + " attempting to buy from GM shop! < Ban him!");
+			_log.warn("buylist id:" + val);
 		}
 		
 		player.sendPacket(new ActionFailed());

@@ -25,6 +25,8 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.PledgeShowMemberListDelete;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.3.2.1.2.3 $ $Date: 2005/03/27 15:29:30 $
@@ -33,7 +35,7 @@ public final class RequestWithdrawalPledge extends L2GameClientPacket
 {
 	private static final String _C__26_REQUESTWITHDRAWALPLEDGE = "[C] 26 RequestWithdrawalPledge";
 	
-	// static Logger _log = Logger.getLogger(RequestWithdrawalPledge.class.getName());
+	// static Logger _log = LoggerFactory.getLogger(RequestWithdrawalPledge.class.getName());
 	
 	@Override
 	protected void readImpl()

@@ -28,19 +28,24 @@ import com.l2jbr.gameserver.model.actor.knownlist.BoatKnownList;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.templates.L2CharTemplate;
 import com.l2jbr.gameserver.templates.L2Weapon;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
+
+;
+
+
 
 /**
  * @author Maktakien
  */
 public class L2BoatInstance extends L2Character {
-    protected static final Logger _logBoat = Logger.getLogger(L2BoatInstance.class.getName());
+    protected static final Logger _logBoat = LoggerFactory.getLogger(L2BoatInstance.class.getName());
 
     private class L2BoatTrajet {
         private Map<Integer, L2BoatPoint> _path;
@@ -134,11 +139,11 @@ public class L2BoatInstance extends L2Character {
                     parseLine(line);
                     return;
                 }
-                _logBoat.warning("No path for boat " + boatName + " !!!");
+                _logBoat.warn("No path for boat " + boatName + " !!!");
             } catch (FileNotFoundException e) {
-                _logBoat.warning("boatpath.csv is missing in data folder");
+                _logBoat.warn("boatpath.csv is missing in data folder");
             } catch (Exception e) {
-                _logBoat.warning("error while creating boat table " + e);
+                _logBoat.warn("error while creating boat table " + e);
             } finally {
                 try {
                     lnr.close();
@@ -220,7 +225,7 @@ public class L2BoatInstance extends L2Character {
         double distance = Math.sqrt((dx * dx) + (dy * dy));
 
         if (Config.DEBUG) {
-            _logBoat.fine("distance to target:" + distance);
+            _logBoat.debug("distance to target:" + distance);
         }
 
         // Define movement angles needed
@@ -253,7 +258,7 @@ public class L2BoatInstance extends L2Character {
         getPosition().setHeading(heading);
 
         if (Config.DEBUG) {
-            _logBoat.fine("dist:" + distance + "speed:" + speed + " ttt:" + m._ticksToMove + " dx:" + (int) m._xSpeedTicks + " dy:" + (int) m._ySpeedTicks + " heading:" + heading);
+            _logBoat.debug("dist:" + distance + "speed:" + speed + " ttt:" + m._ticksToMove + " dx:" + (int) m._xSpeedTicks + " dy:" + (int) m._ySpeedTicks + " heading:" + heading);
         }
 
         m._xDestination = x;
@@ -272,7 +277,7 @@ public class L2BoatInstance extends L2Character {
         }
 
         if (Config.DEBUG) {
-            _logBoat.fine("time to target:" + m._ticksToMove);
+            _logBoat.debug("time to target:" + m._ticksToMove);
         }
 
         // Set the L2Character _move object to MoveData object

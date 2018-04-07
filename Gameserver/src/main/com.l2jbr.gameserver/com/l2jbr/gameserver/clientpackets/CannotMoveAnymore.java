@@ -24,8 +24,11 @@ import com.l2jbr.gameserver.model.L2CharPosition;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.PartyMemberPosition;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
 
 /**
  * This class ...
@@ -35,7 +38,7 @@ public final class CannotMoveAnymore extends L2GameClientPacket
 {
 	private static final String _C__36_STOPMOVE = "[C] 36 CannotMoveAnymore";
 	
-	private static Logger _log = Logger.getLogger(CannotMoveAnymore.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(CannotMoveAnymore.class.getName());
 	
 	private int _x;
 	private int _y;
@@ -62,7 +65,7 @@ public final class CannotMoveAnymore extends L2GameClientPacket
 		
 		if (Config.DEBUG)
 		{
-			_log.fine("client: x:" + _x + " y:" + _y + " z:" + _z + " server x:" + player.getX() + " y:" + player.getY() + " z:" + player.getZ());
+			_log.debug("client: x:" + _x + " y:" + _y + " z:" + _z + " server x:" + player.getX() + " y:" + player.getY() + " z:" + player.getZ());
 		}
 		if (player.getAI() != null)
 		{
@@ -76,7 +79,7 @@ public final class CannotMoveAnymore extends L2GameClientPacket
 		// player.stopMove();
 		//
 		// if (Config.DEBUG)
-		// _log.fine("client: x:"+_x+" y:"+_y+" z:"+_z+
+		// _log.debug("client: x:"+_x+" y:"+_y+" z:"+_z+
 		// " server x:"+player.getX()+" y:"+player.getZ()+" z:"+player.getZ());
 		// StopMove smwl = new StopMove(player);
 		// getClient().getActiveChar().sendPacket(smwl);

@@ -7,6 +7,8 @@ import com.l2jbr.gameserver.model.entity.Castle;
 
 import java.util.LinkedHashMap;
 
+;
+
 /**
  * format(packet 0xFE) ch dd [dddc] c - id h - sub id d - crop id d - size [ d - manor name d - buy residual d - buy price c - reward type ]
  *

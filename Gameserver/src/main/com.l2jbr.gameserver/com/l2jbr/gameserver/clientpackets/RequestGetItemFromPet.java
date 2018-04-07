@@ -22,8 +22,11 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PetInstance;
 import com.l2jbr.gameserver.util.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
 
 /**
  * This class ...
@@ -32,7 +35,7 @@ import java.util.logging.Logger;
 public final class RequestGetItemFromPet extends L2GameClientPacket
 {
 	private static final String REQUESTGETITEMFROMPET__C__8C = "[C] 8C RequestGetItemFromPet";
-	private static Logger _log = Logger.getLogger(RequestGetItemFromPet.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RequestGetItemFromPet.class.getName());
 	
 	private int _objectId;
 	private int _amount;
@@ -69,7 +72,7 @@ public final class RequestGetItemFromPet extends L2GameClientPacket
 		
 		if (pet.transferItem("Transfer", _objectId, _amount, player.getInventory(), player, pet) == null)
 		{
-			_log.warning("Invalid item transfer request: " + pet.getName() + "(pet) --> " + player.getName());
+			_log.warn("Invalid item transfer request: " + pet.getName() + "(pet) --> " + player.getName());
 		}
 	}
 	

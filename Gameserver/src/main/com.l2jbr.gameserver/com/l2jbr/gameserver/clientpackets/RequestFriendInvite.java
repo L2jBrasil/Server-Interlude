@@ -18,11 +18,6 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import com.l2jbr.commons.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
@@ -30,6 +25,13 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.AskJoinFriend;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.util.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+;
 
 /**
  * This class ...
@@ -38,7 +40,7 @@ import com.l2jbr.gameserver.util.Util;
 public final class RequestFriendInvite extends L2GameClientPacket
 {
 	private static final String _C__5E_REQUESTFRIENDINVITE = "[C] 5E RequestFriendInvite";
-	private static Logger _log = Logger.getLogger(RequestFriendInvite.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RequestFriendInvite.class.getName());
 	
 	private String _name;
 	
@@ -118,7 +120,7 @@ public final class RequestFriendInvite extends L2GameClientPacket
 		}
 		catch (Exception e)
 		{
-			_log.log(Level.WARNING, "could not add friend objectid: ", e);
+			_log.warn( "could not add friend objectid: ", e);
 		}
 		finally
 		{

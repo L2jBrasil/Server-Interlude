@@ -25,8 +25,12 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.AskJoinParty;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 /**
  * sample 29 42 00 00 10 01 00 00 00 format cdd
@@ -35,7 +39,7 @@ import java.util.logging.Logger;
 public final class RequestJoinParty extends L2GameClientPacket
 {
 	private static final String _C__29_REQUESTJOINPARTY = "[C] 29 RequestJoinParty";
-	private static Logger _log = Logger.getLogger(RequestJoinParty.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RequestJoinParty.class.getName());
 	
 	private String _name;
 	private int _itemDistribution;
@@ -148,7 +152,7 @@ public final class RequestJoinParty extends L2GameClientPacket
 			
 			if (Config.DEBUG)
 			{
-				_log.fine("sent out a party invitation to:" + target.getName());
+				_log.debug("sent out a party invitation to:" + target.getName());
 			}
 			
 			msg = new SystemMessage(SystemMessageId.YOU_INVITED_S1_TO_PARTY);
@@ -162,7 +166,7 @@ public final class RequestJoinParty extends L2GameClientPacket
 			
 			if (Config.DEBUG)
 			{
-				_log.warning(requestor.getName() + " already received a party invitation");
+				_log.warn(requestor.getName() + " already received a party invitation");
 			}
 		}
 		msg = null;
@@ -186,7 +190,7 @@ public final class RequestJoinParty extends L2GameClientPacket
 			
 			if (Config.DEBUG)
 			{
-				_log.fine("sent out a party invitation to:" + target.getName());
+				_log.debug("sent out a party invitation to:" + target.getName());
 			}
 			
 			msg = new SystemMessage(SystemMessageId.YOU_INVITED_S1_TO_PARTY);
@@ -201,7 +205,7 @@ public final class RequestJoinParty extends L2GameClientPacket
 			
 			if (Config.DEBUG)
 			{
-				_log.warning(requestor.getName() + " already received a party invitation");
+				_log.warn(requestor.getName() + " already received a party invitation");
 			}
 		}
 	}

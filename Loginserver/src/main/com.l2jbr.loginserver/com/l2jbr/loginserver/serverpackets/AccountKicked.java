@@ -17,6 +17,8 @@
  */
 package com.l2jbr.loginserver.serverpackets;
 
+;
+
 /**
  * @author KenM
  */

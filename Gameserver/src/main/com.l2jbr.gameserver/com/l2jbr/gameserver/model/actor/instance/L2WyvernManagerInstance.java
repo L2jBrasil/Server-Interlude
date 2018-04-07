@@ -20,13 +20,10 @@ package com.l2jbr.gameserver.model.actor.instance;
 import com.l2jbr.gameserver.ai.CtrlIntention;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.network.SystemMessageId;
-import com.l2jbr.gameserver.serverpackets.ActionFailed;
-import com.l2jbr.gameserver.serverpackets.MyTargetSelected;
-import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
-import com.l2jbr.gameserver.serverpackets.Ride;
-import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.serverpackets.ValidateLocation;
+import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
+
+;
 
 public class L2WyvernManagerInstance extends L2CastleChamberlainInstance
 {

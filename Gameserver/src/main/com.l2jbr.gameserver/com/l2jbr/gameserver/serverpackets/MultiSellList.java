@@ -19,6 +19,8 @@ import com.l2jbr.gameserver.model.L2Multisell.MultiSellEntry;
 import com.l2jbr.gameserver.model.L2Multisell.MultiSellIngredient;
 import com.l2jbr.gameserver.model.L2Multisell.MultiSellListContainer;
 
+;
+
 /**
  * This class ...
  * @version $Revision: 1.2 $ $Date: 2004/06/27 08:12:59 $

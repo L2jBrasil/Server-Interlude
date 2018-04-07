@@ -22,6 +22,8 @@ import com.l2jbr.loginserver.L2LoginClient.LoginClientState;
 import com.l2jbr.loginserver.serverpackets.GGAuth;
 import com.l2jbr.loginserver.serverpackets.LoginFail.LoginFailReason;
 
+;
+
 /**
  * @author -Wooden- Format: ddddd
  */

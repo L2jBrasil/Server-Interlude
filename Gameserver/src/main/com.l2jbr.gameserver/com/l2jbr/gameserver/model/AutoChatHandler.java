@@ -20,13 +20,15 @@ package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.L2DatabaseFactory;
+import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.SevenSigns;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2SiegeGuardInstance;
 import com.l2jbr.gameserver.serverpackets.CreatureSay;
-import com.l2jbr.commons.util.Rnd;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,7 +37,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ScheduledFuture;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * Auto Chat Handler Allows NPCs to automatically send messages to nearby players at a set time interval.
@@ -43,7 +47,7 @@ import java.util.logging.Logger;
  * @author Tempy
  */
 public class AutoChatHandler implements SpawnListener {
-    protected static final Logger _log = Logger.getLogger(AutoChatHandler.class.getName());
+    protected static final Logger _log = LoggerFactory.getLogger(AutoChatHandler.class.getName());
     private static AutoChatHandler _instance;
 
     private static final long DEFAULT_CHAT_DELAY = 30000; // 30 secs by default
@@ -95,10 +99,10 @@ public class AutoChatHandler implements SpawnListener {
             statement.close();
 
             if (Config.DEBUG) {
-                _log.config("AutoChatHandler: Loaded " + numLoaded + " chat group(s) from the database.");
+                _log.info("AutoChatHandler: Loaded " + numLoaded + " chat group(s) from the database.");
             }
         } catch (Exception e) {
-            _log.warning("AutoSpawnHandler: Could not restore chat data: " + e);
+            _log.warn("AutoSpawnHandler: Could not restore chat data: " + e);
         } finally {
             try {
                 con.close();
@@ -192,7 +196,7 @@ public class AutoChatHandler implements SpawnListener {
         chatInst.setActive(false);
 
         if (Config.DEBUG) {
-            _log.config("AutoChatHandler: Removed auto chat for NPC ID " + chatInst.getNPCId());
+            _log.info("AutoChatHandler: Removed auto chat for NPC ID " + chatInst.getNPCId());
         }
         return true;
     }
@@ -276,7 +280,7 @@ public class AutoChatHandler implements SpawnListener {
             _globalChat = isGlobal;
 
             if (Config.DEBUG) {
-                _log.config("AutoChatHandler: Registered auto chat for NPC ID " + _npcId + " (Global Chat = " + _globalChat + ").");
+                _log.info("AutoChatHandler: Registered auto chat for NPC ID " + _npcId + " (Global Chat = " + _globalChat + ").");
             }
 
             setActive(true);
@@ -631,7 +635,7 @@ public class AutoChatHandler implements SpawnListener {
                     AutoChatDefinition chatDef = chatInst.getChatDefinition(_objectId);
 
                     if (chatDef == null) {
-                        _log.warning("AutoChatHandler: Auto chat definition is NULL for NPC ID " + _npcId + ".");
+                        _log.warn("AutoChatHandler: Auto chat definition is NULL for NPC ID " + _npcId + ".");
                         return;
                     }
 
@@ -741,7 +745,7 @@ public class AutoChatHandler implements SpawnListener {
                         }
 
                         if (Config.DEBUG) {
-                            _log.fine("AutoChatHandler: Chat propogation for object ID " + chatNpc.getObjectId() + " (" + creatureName + ") with text '" + text + "' sent to " + nearbyPlayers.size() + " nearby players.");
+                            _log.debug("AutoChatHandler: Chat propogation for object ID " + chatNpc.getObjectId() + " (" + creatureName + ") with text '" + text + "' sent to " + nearbyPlayers.size() + " nearby players.");
                         }
                     } catch (Exception e) {
                         e.printStackTrace();

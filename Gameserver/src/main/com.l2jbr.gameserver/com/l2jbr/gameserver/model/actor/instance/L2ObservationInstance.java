@@ -18,14 +18,16 @@
  */
 package com.l2jbr.gameserver.model.actor.instance;
 
-import java.util.StringTokenizer;
-
 import com.l2jbr.gameserver.instancemanager.SiegeManager;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.ItemList;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
+
+import java.util.StringTokenizer;
+
+;
 
 /**
  * @author NightMarez

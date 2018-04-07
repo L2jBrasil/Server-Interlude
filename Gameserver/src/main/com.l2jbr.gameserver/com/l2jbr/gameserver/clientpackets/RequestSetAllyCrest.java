@@ -24,11 +24,14 @@ import com.l2jbr.gameserver.datatables.ClanTable;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+;
+
 
 /**
  * This class ...
@@ -37,7 +40,7 @@ import java.util.logging.Logger;
 public final class RequestSetAllyCrest extends L2GameClientPacket
 {
 	private static final String _C__87_REQUESTSETALLYCREST = "[C] 87 RequestSetAllyCrest";
-	static Logger _log = Logger.getLogger(RequestSetAllyCrest.class.getName());
+	static Logger _log = LoggerFactory.getLogger(RequestSetAllyCrest.class.getName());
 	
 	private int _length;
 	private byte[] _data;
@@ -90,7 +93,7 @@ public final class RequestSetAllyCrest extends L2GameClientPacket
 			
 			if (!crestCache.saveAllyCrest(newId, _data))
 			{
-				_log.log(Level.INFO, "Error loading crest of ally:" + leaderclan.getAllyName());
+				_log.info( "Error loading crest of ally:" + leaderclan.getAllyName());
 				return;
 			}
 			
@@ -112,7 +115,7 @@ public final class RequestSetAllyCrest extends L2GameClientPacket
 			}
 			catch (SQLException e)
 			{
-				_log.warning("could not update the ally crest id:" + e.getMessage());
+				_log.warn("could not update the ally crest id:" + e.getMessage());
 			}
 			finally
 			{

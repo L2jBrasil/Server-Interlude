@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
+;
+
 /**
  * format ch c: (id) 0xD0 h: (subid) 0x13
  * @author -Wooden-

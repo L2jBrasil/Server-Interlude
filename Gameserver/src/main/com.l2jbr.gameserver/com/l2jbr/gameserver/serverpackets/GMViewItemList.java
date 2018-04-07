@@ -21,12 +21,14 @@ package com.l2jbr.gameserver.serverpackets;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
+;
+
 /**
  * @version $Revision: 1.1.2.1.2.3 $ $Date: 2005/03/27 15:29:57 $
  */
 public class GMViewItemList extends L2GameServerPacket
 {
-	// private static Logger _log = Logger.getLogger(GMViewItemList.class.getName());
+	// private static Logger _log = LoggerFactory.getLogger(GMViewItemList.class.getName());
 	private static final String _S__AD_GMVIEWITEMLIST = "[S] 94 GMViewItemList";
 	private final L2ItemInstance[] _items;
 	private final L2PcInstance _cha;

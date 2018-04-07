@@ -29,8 +29,12 @@ import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.util.IllegalPlayerAction;
 import com.l2jbr.gameserver.util.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
+;
+
+
 
 /**
  * This class ...
@@ -40,7 +44,7 @@ public final class RequestCrystallizeItem extends L2GameClientPacket
 {
 	private static final String _C__72_REQUESTDCRYSTALLIZEITEM = "[C] 72 RequestCrystallizeItem";
 	
-	private static Logger _log = Logger.getLogger(RequestCrystallizeItem.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(RequestCrystallizeItem.class.getName());
 	
 	private int _objectId;
 	private int _count;
@@ -59,7 +63,7 @@ public final class RequestCrystallizeItem extends L2GameClientPacket
 		
 		if (activeChar == null)
 		{
-			_log.fine("RequestCrystalizeItem: activeChar was null");
+			_log.debug("RequestCrystalizeItem: activeChar was null");
 			return;
 		}
 		
@@ -116,7 +120,7 @@ public final class RequestCrystallizeItem extends L2GameClientPacket
 		}
 		if (!itemToRemove.getItem().isCrystallizable() || (itemToRemove.getItem().getCrystalCount() <= 0) || (itemToRemove.getItem().getCrystalType() == L2Item.CRYSTAL_NONE))
 		{
-			_log.warning("" + activeChar.getObjectId() + " tried to crystallize " + itemToRemove.getItem().getItemId());
+			_log.warn("" + activeChar.getObjectId() + " tried to crystallize " + itemToRemove.getItem().getItemId());
 			return;
 		}
 		

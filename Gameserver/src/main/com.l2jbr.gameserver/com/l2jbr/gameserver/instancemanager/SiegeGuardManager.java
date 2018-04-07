@@ -23,16 +23,20 @@ import com.l2jbr.gameserver.model.L2Spawn;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.entity.Castle;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Logger;
+
+;
+
 
 public class SiegeGuardManager {
 
-    private static Logger _log = Logger.getLogger(SiegeGuardManager.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(SiegeGuardManager.class.getName());
 
     // =========================================================
     // Data Field
@@ -124,7 +128,7 @@ public class SiegeGuardManager {
             statement.execute();
             statement.close();
         } catch (Exception e1) {
-            _log.warning("Error deleting hired siege guard at " + x + ',' + y + ',' + z + ":" + e1);
+            _log.warn("Error deleting hired siege guard at " + x + ',' + y + ',' + z + ":" + e1);
         } finally {
             try {
                 con.close();
@@ -146,7 +150,7 @@ public class SiegeGuardManager {
             statement.execute();
             statement.close();
         } catch (Exception e1) {
-            _log.warning("Error deleting hired siege guard for castle " + getCastle().getName() + ":" + e1);
+            _log.warn("Error deleting hired siege guard for castle " + getCastle().getName() + ":" + e1);
         } finally {
             try {
                 con.close();
@@ -223,12 +227,12 @@ public class SiegeGuardManager {
 
                     _siegeGuardSpawn.add(spawn1);
                 } else {
-                    _log.warning("Missing npc data in npc table for id: " + rs.getInt("npcId"));
+                    _log.warn("Missing npc data in npc table for id: " + rs.getInt("npcId"));
                 }
             }
             statement.close();
         } catch (Exception e1) {
-            _log.warning("Error loading siege guard for castle " + getCastle().getName() + ":" + e1);
+            _log.warn("Error loading siege guard for castle " + getCastle().getName() + ":" + e1);
         } finally {
             try {
                 con.close();
@@ -268,7 +272,7 @@ public class SiegeGuardManager {
             statement.execute();
             statement.close();
         } catch (Exception e1) {
-            _log.warning("Error adding siege guard for castle " + getCastle().getName() + ":" + e1);
+            _log.warn("Error adding siege guard for castle " + getCastle().getName() + ":" + e1);
         } finally {
             try {
                 con.close();
