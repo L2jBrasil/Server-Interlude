@@ -81,7 +81,7 @@ public final class L2World {
      */
     private final LinkedHashMap<Integer, L2PetInstance> _petsInstance;
 
-    private static final L2World _instance = new L2World();
+    private static L2World _instance;
 
     private L2WorldRegion[][] _worldRegions;
 
@@ -104,7 +104,7 @@ public final class L2World {
      * @return
      */
     public static L2World getInstance() {
-        return _instance;
+        return _instance == null ? _instance = new L2World() : _instance;
     }
 
     /**

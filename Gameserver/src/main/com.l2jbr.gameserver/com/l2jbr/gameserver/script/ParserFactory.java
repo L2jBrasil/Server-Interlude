@@ -19,8 +19,7 @@
 package com.l2jbr.gameserver.script;
 
 
-public abstract class ParserFactory
-{
-	public abstract Parser create();
+public interface ParserFactory {
+	Parser create();
 	
 }

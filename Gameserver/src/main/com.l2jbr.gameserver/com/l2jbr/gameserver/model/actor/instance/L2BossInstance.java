@@ -46,7 +46,7 @@ public final class L2BossInstance extends L2MonsterInstance
 	 * <li>12052 Core</li>
 	 * </ul>
 	 * <br>
-	 * <b>For now it's nothing more than a L2Monster but there'll be a scripting<br>
+	 * <b>For now it's nothing more than a L2Monster but there'll be a script<br>
 	 * engine for AI soon and we could add special behaviour for those boss</b><br>
 	 * <br>
 	 * @param objectId ID of the instance

@@ -16,17 +16,35 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jbr.commons;
+package com.l2jbr.gameserver.script;
 
-import java.util.logging.Filter;
-import java.util.logging.LogRecord;
+import com.l2jbr.commons.xml.XMLDocumentFactory;
+import org.w3c.dom.Node;
+import org.xml.sax.SAXException;
 
+import java.io.File;
+import java.io.IOException;
 
-public class ErrorFilter implements Filter
-{
-	@Override
-	public boolean isLoggable(LogRecord record)
-	{
-		return record.getThrown() != null;
-	}
+public class Document {
+    private final org.w3c.dom.Document xmlDocument;
+    private final String name;
+
+    public Document(File file) throws IOException, SAXException {
+        XMLDocumentFactory factory = XMLDocumentFactory.getInstance();
+        xmlDocument = factory.loadDocument(file);
+        name = file.getName();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    public Node getFirstChild() {
+        return xmlDocument.getFirstChild();
+    }
 }

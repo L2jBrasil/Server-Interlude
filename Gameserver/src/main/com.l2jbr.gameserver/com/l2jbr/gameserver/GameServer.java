@@ -42,7 +42,7 @@ import com.l2jbr.gameserver.model.entity.TvTManager;
 import com.l2jbr.gameserver.network.L2GameClient;
 import com.l2jbr.gameserver.network.L2GamePacketHandler;
 import com.l2jbr.gameserver.pathfinding.geonodes.GeoPathFinding;
-import com.l2jbr.gameserver.script.faenor.FaenorScriptEngine;
+import com.l2jbr.gameserver.script.event.ScriptEventManager;
 import com.l2jbr.gameserver.status.GameStatus;
 import com.l2jbr.gameserver.taskmanager.TaskManager;
 import com.l2jbr.gameserver.util.DynamicExtension;
@@ -66,7 +66,6 @@ import static com.l2jbr.gameserver.util.GameserverMessages.getMessage;
 /**
  * This class ...
  *
- * @version $Revision: 1.29.2.15.2.19 $ $Date: 2005/04/05 19:41:23 $
  */
 public class GameServer {
     public static final String ERROR_EXTRACTED_FILE_NOT_FOUND = "error.extracted.file.not.found";
@@ -253,7 +252,7 @@ public class GameServer {
 
         Olympiad.getInstance();
         Hero.getInstance();
-        FaenorScriptEngine.getInstance();
+        ScriptEventManager.getInstance();
         // Init of a cursed weapon manager
         CursedWeaponsManager.getInstance();
 

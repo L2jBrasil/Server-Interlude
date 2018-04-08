@@ -22,6 +22,7 @@ package com.l2jbr.commons.util;
  */
 
 public class Util {
+
     public static boolean isInternalIP(String ipAddress) {
         return (ipAddress.startsWith("192.168.") || ipAddress.startsWith("10.") ||
                 // ipAddress.startsWith("172.16.") ||

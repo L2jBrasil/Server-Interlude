@@ -1,6 +1,7 @@
 package com.l2jbr.commons.xml;
 
 import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -10,6 +11,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 
 /**
@@ -47,11 +49,7 @@ public final class XMLDocumentFactory
         return loadDocument(new File(filePath));
     }
 
-    public final Document loadDocument(final File file) throws Exception
-    {
-        if (!checkFile(file))
-            throw new Exception("File: " + file.getAbsolutePath() + " doesn't exist and/or is not a file.");
-
+    public final Document loadDocument(final File file) throws IOException, SAXException {
         return _builder.parse(file);
     }
 
@@ -67,16 +65,7 @@ public final class XMLDocumentFactory
         return _builder.newDocument();
     }
 
-    private final static boolean checkFile(final File file)
-    {
-        if (!file.exists())
-            return false;
 
-        if (!file.isFile())
-            return false;
-
-        return true;
-    }
 
     private static class SingletonHolder
     {

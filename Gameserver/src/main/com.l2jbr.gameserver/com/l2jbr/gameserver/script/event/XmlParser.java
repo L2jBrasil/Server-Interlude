@@ -16,10 +16,9 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jbr.gameserver.script.faenor;
+package com.l2jbr.gameserver.script.event;
 
 import com.l2jbr.gameserver.script.Parser;
-import org.apache.bsf.BSFManager;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -29,14 +28,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-
-/**
- * @author Luis Arias
- */
-public abstract class FaenorParser extends Parser
+public abstract class XmlParser implements Parser
 {
-	protected static FaenorInterface _bridge = FaenorInterface.getInstance();
-	protected static final DateFormat DATE_FORMAT = new SimpleDateFormat("dd MMM yyyy", Locale.US);
+	protected static Engine _bridge = Engine.getInstance();
+	protected static final DateFormat DATE_FORMAT = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
 	
 	public final static boolean DEBUG = true;
 	
@@ -126,9 +121,6 @@ public abstract class FaenorParser extends Parser
 	
 	protected static String getParserName(String name)
 	{
-		return "faenor.Faenor" + name + "Parser";
+		return "event.Xml" + name + "Parser";
 	}
-	
-	@Override
-	public abstract void parseScript(Node node, BSFManager context);
 }

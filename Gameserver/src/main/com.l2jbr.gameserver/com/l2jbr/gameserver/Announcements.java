@@ -24,7 +24,7 @@ import com.l2jbr.gameserver.clientpackets.Say2;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
-import com.l2jbr.gameserver.script.DateRange;
+import com.l2jbr.commons.util.DateRange;
 import com.l2jbr.gameserver.serverpackets.CreatureSay;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;

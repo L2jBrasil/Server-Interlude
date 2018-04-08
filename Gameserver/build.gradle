@@ -17,8 +17,6 @@ sourceSets {
     }
 }
 
-
-
 configurations.all {
     transitive = false
 }
@@ -27,9 +25,9 @@ dependencies {
     compile project(':Commons')
     compile project(':Mmocore')
 
-    compile 'bsf:bsf:2.4.0'
-    compile 'org.python:jython-standalone:2.7.1'
     compile 'org.slf4j:slf4j-api:1.8.0-beta2'
+    compile 'org.python:jython-standalone:2.7.1'
+    compile 'bsf:bsf:2.4.0'
 
     //remove commons-logging
     runtime 'commons-logging:commons-logging:1.2'
@@ -52,7 +50,6 @@ jar {
     baseName 'l2j-gameserver'
 
     exclude('config/**')
-    exclude('*.cfg')
     manifest {
         from(generalManifest)
         attributes('Main-Class': 'com.l2jbr.gameserver.GameServer')
@@ -69,7 +66,12 @@ task zip(type: Zip, group: "Archive", description: "Zip Gameserver") {
     }
 
     from('bin')
-    from(sourceSets.main.resources)
+
+    from(sourceSets.main.resources) {
+        exclude('gameserver-messages*properties')
+    }
+
+
 
     destinationDir project.buildDir
 }

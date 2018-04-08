@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.datatables;
 
-import com.l2jbr.gameserver.script.DateRange;
+import com.l2jbr.commons.util.DateRange;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -114,7 +114,6 @@ public class EventDroplist {
 
         for (DateDrop drop : _allNpcDateDrops) {
             Date currentDate = new Date();
-            // System.out.println("From: "+drop.from+" To: "+drop.to+" Now: "+ currentDate);
             if (drop.dateRange.isWithinRange(currentDate)) {
                 list.add(drop);
             }

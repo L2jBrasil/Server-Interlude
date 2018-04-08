@@ -18,14 +18,11 @@
  */
 package com.l2jbr.gameserver.script;
 
-import org.apache.bsf.BSFManager;
 import org.w3c.dom.Node;
 
 
-/**
- * @author Luis Arias
- */
-public abstract class Parser
-{
-	public abstract void parseScript(Node node, BSFManager context);
+
+public interface Parser {
+
+	void parseScript(Node node);
 }

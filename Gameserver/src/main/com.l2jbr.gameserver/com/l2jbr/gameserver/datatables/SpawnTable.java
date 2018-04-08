@@ -42,7 +42,7 @@ import java.util.Map;
 public class SpawnTable {
     private static Logger _log = LoggerFactory.getLogger(SpawnTable.class.getName());
 
-    private static final SpawnTable _instance = new SpawnTable();
+    private static SpawnTable _instance;
 
     private final Map<Integer, L2Spawn> _spawntable = new LinkedHashMap<>();
     private int _npcSpawnCount;
@@ -50,7 +50,7 @@ public class SpawnTable {
     private int _highestId;
 
     public static SpawnTable getInstance() {
-        return _instance;
+        return _instance == null ? _instance = new SpawnTable() : _instance;
     }
 
     private SpawnTable() {

@@ -1,8 +1,5 @@
 package com.l2jbr.commons.util;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Locale;
@@ -11,8 +8,6 @@ import java.util.ResourceBundle;
 
 
 public class Messages {
-
-    private static Logger _log = LoggerFactory.getLogger(Messages.class.getName());
 
     private static Map<String, ResourceBundle> messagesBundle = new HashMap<>();
     private static Locale locale = Locale.getDefault();
