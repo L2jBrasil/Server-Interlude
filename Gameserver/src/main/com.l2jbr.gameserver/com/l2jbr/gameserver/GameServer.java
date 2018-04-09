@@ -42,6 +42,7 @@ import com.l2jbr.gameserver.model.entity.TvTManager;
 import com.l2jbr.gameserver.network.L2GameClient;
 import com.l2jbr.gameserver.network.L2GamePacketHandler;
 import com.l2jbr.gameserver.pathfinding.geonodes.GeoPathFinding;
+import com.l2jbr.gameserver.script.ScriptingManager;
 import com.l2jbr.gameserver.script.event.ScriptEventManager;
 import com.l2jbr.gameserver.status.GameStatus;
 import com.l2jbr.gameserver.taskmanager.TaskManager;
@@ -62,16 +63,12 @@ import java.util.Locale;
 
 import static com.l2jbr.gameserver.util.GameserverMessages.getMessage;
 
-
-/**
- * This class ...
- *
- */
 public class GameServer {
-    public static final String ERROR_EXTRACTED_FILE_NOT_FOUND = "error.extracted.file.not.found";
-    public static final String ERROR_INITIALIZE_TABLE = "error.initialize.table";
-    public static final String INFO_LOADED_HANDLERS = "info.loaded.handlers";
-    public static final String LOG4J_CONFIGURATION_FILE = "log4j.configurationFile";
+    private static final String ERROR_EXTRACTED_FILE_NOT_FOUND = "error.extracted.file.not.found";
+    private static final String ERROR_INITIALIZE_TABLE = "error.initialize.table";
+    private static final String INFO_LOADED_HANDLERS = "info.loaded.handlers";
+    private static final String LOG4J_CONFIGURATION_FILE = "log4j.configurationFile";
+
     private static Logger _log;
     private final SelectorThread<L2GameClient> _selectorThread;
     private final SkillTable _skillTable;
@@ -226,6 +223,7 @@ public class GameServer {
         MercTicketManager.getInstance();
         // PartyCommandManager.getInstance();
         PetitionManager.getInstance();
+        ScriptingManager.getInstance();
         QuestManager.getInstance();
         AugmentationData.getInstance();
         if (Config.SAVE_DROPPED_ITEM) {
@@ -514,11 +512,7 @@ public class GameServer {
         // Initialize config
         Config.load();
 
-        try{
-            Locale.setDefault(Locale.forLanguageTag(Config.LANGUAGE));
-        } catch (Exception e) {
-
-        }
+        Locale.setDefault(Locale.forLanguageTag(Config.LANGUAGE));
 
         L2DatabaseFactory.getInstance();
         gameServer = new GameServer();

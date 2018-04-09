@@ -31,7 +31,7 @@ import java.util.Locale;
 public abstract class XmlParser implements Parser
 {
 	protected static Engine _bridge = Engine.getInstance();
-	protected static final DateFormat DATE_FORMAT = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
+	protected static final DateFormat DATE_FORMAT = new SimpleDateFormat("dd MMM yyyy", Locale.US);
 	
 	public final static boolean DEBUG = true;
 	

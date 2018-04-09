@@ -27,10 +27,7 @@ dependencies {
 
     compile 'org.slf4j:slf4j-api:1.8.0-beta2'
     compile 'org.python:jython-standalone:2.7.1'
-    compile 'bsf:bsf:2.4.0'
 
-    //remove commons-logging
-    runtime 'commons-logging:commons-logging:1.2'
     runtime 'org.apache.logging.log4j:log4j-core:2.11.0'
     runtime 'org.apache.logging.log4j:log4j-api:2.11.0'
     runtime 'org.apache.logging.log4j:log4j-slf4j-impl:2.11.0'

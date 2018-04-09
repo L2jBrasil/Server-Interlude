@@ -44,7 +44,7 @@ public class XmlEventParser extends XmlParser {
 
         Date currentDate = new Date();
         if (eventDates.getEndDate().before(currentDate)) {
-            _log.info(getMessage("info.event.passed"));
+            _log.info(getMessage("info.event.passed", id));
             return;
         }
 

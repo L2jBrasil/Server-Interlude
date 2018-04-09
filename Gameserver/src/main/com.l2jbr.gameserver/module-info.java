@@ -6,7 +6,7 @@ module com.l2jbr.gameserver {
     requires java.desktop;
     requires org.slf4j;
     requires java.scripting;
-    requires bsf;
+    requires jython.standalone;
 
     exports com.l2jbr.gameserver;
 
