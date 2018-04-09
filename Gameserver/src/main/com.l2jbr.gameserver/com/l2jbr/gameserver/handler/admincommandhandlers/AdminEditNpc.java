@@ -19,7 +19,7 @@
 package com.l2jbr.gameserver.handler.admincommandhandlers;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.L2DatabaseFactory;
+import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.TradeController;
 import com.l2jbr.gameserver.cache.HtmCache;
 import com.l2jbr.gameserver.datatables.ItemTable;

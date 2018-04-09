@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
-import com.l2jbr.commons.L2DatabaseFactory;
+import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.cache.CrestCache;
 import com.l2jbr.gameserver.datatables.ClanTable;
 import com.l2jbr.gameserver.idfactory.IdFactory;

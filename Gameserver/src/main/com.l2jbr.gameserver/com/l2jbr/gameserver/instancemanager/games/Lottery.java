@@ -19,7 +19,7 @@
 package com.l2jbr.gameserver.instancemanager.games;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.L2DatabaseFactory;
+import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.Announcements;
 import com.l2jbr.gameserver.ThreadPoolManager;

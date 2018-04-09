@@ -19,7 +19,7 @@
 package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.L2DatabaseFactory;
+import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.*;
 import com.l2jbr.gameserver.ai.CtrlIntention;

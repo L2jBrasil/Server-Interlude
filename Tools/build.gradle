@@ -4,7 +4,7 @@ plugins {
     id "eclipse"
 }
 
-version '1.3.0'
+version '1.3.1'
 
 ext.moduleName = 'com.l2jbr.tools'
 
@@ -27,8 +27,7 @@ dependencies {
 
     runtime project(':Mmocore')
 
-    runtime 'com.mchange:c3p0:0.9.5.2'
-    runtime 'com.mchange:mchange-commons-java:0.2.15'
+    runtime 'com.zaxxer:HikariCP:3.0.0'
     runtime 'mysql:mysql-connector-java:8.0.9-rc'
 }
 

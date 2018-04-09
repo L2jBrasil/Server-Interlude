@@ -17,7 +17,7 @@
  */
 package com.l2jbr.gameserver.model;
 
-import com.l2jbr.commons.L2DatabaseFactory;
+import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.L2ItemInstance.ItemLocation;
 import com.l2jbr.gameserver.model.TradeList.TradeItem;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;

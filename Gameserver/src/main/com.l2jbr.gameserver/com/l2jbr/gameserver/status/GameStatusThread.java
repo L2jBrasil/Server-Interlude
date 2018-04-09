@@ -18,7 +18,7 @@
 package com.l2jbr.gameserver.status;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.L2DatabaseFactory;
+import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.*;
 import com.l2jbr.gameserver.Shutdown;
 import com.l2jbr.gameserver.cache.HtmCache;

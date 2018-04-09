@@ -2,7 +2,7 @@
 package com.l2jbr.gameserver.handler.voicedcommandhandlers;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.L2DatabaseFactory;
+import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.GameTimeController;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.ai.CtrlIntention;

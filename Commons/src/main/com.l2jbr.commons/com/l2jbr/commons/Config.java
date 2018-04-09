@@ -37,6 +37,8 @@ import java.util.Properties;
  */
 public final class Config {
     protected static final Logger _log = LoggerFactory.getLogger(Config.class.getName());
+
+
     /**
      * Debug/release mode
      */
@@ -101,6 +103,8 @@ public final class Config {
      * Maximum number of connections to the database
      */
     public static int DATABASE_MAX_CONNECTIONS;
+
+    public static int DATABASE_MAX_IDLE_TIME;
 
     /**
      * Maximum number of players allowed to play simultaneously on server
@@ -1908,6 +1912,7 @@ public final class Config {
                 DATABASE_LOGIN = serverSettings.getProperty("Login", "root");
                 DATABASE_PASSWORD = serverSettings.getProperty("Password", "");
                 DATABASE_MAX_CONNECTIONS = Integer.parseInt(serverSettings.getProperty("MaximumDbConnections", "10"));
+                DATABASE_MAX_IDLE_TIME = Integer.parseInt(serverSettings.getProperty("MaximumDbIdleTime", "0"));
 
                 DATAPACK_ROOT = new File(serverSettings.getProperty("DatapackRoot", ".")).getCanonicalFile();
 
@@ -2735,7 +2740,8 @@ public final class Config {
                 DATABASE_LOGIN = serverSettings.getProperty("Login", "root");
                 DATABASE_PASSWORD = serverSettings.getProperty("Password", "");
                 DATABASE_MAX_CONNECTIONS = Integer.parseInt(serverSettings.getProperty("MaximumDbConnections", "10"));
-
+                DATABASE_MAX_IDLE_TIME = Integer.parseInt(serverSettings.getProperty("MaximumDbIdleTime", "0"));
+                
                 SHOW_LICENCE = Boolean.parseBoolean(serverSettings.getProperty("ShowLicence", "true"));
                 IP_UPDATE_TIME = Integer.parseInt(serverSettings.getProperty("IpUpdateTime", "15"));
                 FORCE_GGAUTH = Boolean.parseBoolean(serverSettings.getProperty("ForceGGAuth", "false"));

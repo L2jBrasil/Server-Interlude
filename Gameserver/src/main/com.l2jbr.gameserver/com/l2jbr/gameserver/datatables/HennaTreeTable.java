@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.datatables;
 
-import com.l2jbr.commons.L2DatabaseFactory;
+import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.L2HennaInstance;
 import com.l2jbr.gameserver.model.base.ClassId;
 import com.l2jbr.gameserver.templates.L2Henna;

@@ -17,7 +17,7 @@
  */
 package com.l2jbr.loginserver;
 
-import com.l2jbr.commons.L2DatabaseFactory;
+import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.commons.xml.XMLDocumentFactory;
 import com.l2jbr.loginserver.gameserverpackets.ServerStatus;

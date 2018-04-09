@@ -19,7 +19,7 @@
 package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.L2DatabaseFactory;
+import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.L2DropCategory;
 import com.l2jbr.gameserver.model.L2DropData;
 import com.l2jbr.gameserver.model.L2MinionData;

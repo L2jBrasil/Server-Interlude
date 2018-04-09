@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.communitybbs.Manager;
 
-import com.l2jbr.commons.L2DatabaseFactory;
+import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.communitybbs.BB.Forum;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import org.slf4j.Logger;

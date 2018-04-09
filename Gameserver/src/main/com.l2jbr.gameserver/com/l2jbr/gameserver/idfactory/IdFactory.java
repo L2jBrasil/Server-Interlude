@@ -19,7 +19,7 @@
 package com.l2jbr.gameserver.idfactory;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.L2DatabaseFactory;
+import com.l2jbr.commons.database.L2DatabaseFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

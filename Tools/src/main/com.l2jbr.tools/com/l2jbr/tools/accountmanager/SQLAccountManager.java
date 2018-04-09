@@ -20,7 +20,7 @@ package com.l2jbr.tools.accountmanager;
 
 import com.l2jbr.commons.Base64;
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.L2DatabaseFactory;
+import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.Server;
 
 import java.io.IOException;

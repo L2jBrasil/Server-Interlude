@@ -17,7 +17,7 @@
  */
 package com.l2jbr.commons.lib;
 
-import com.l2jbr.commons.L2DatabaseFactory;
+import com.l2jbr.commons.database.L2DatabaseFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.communitybbs.BB;
 
-import com.l2jbr.commons.L2DatabaseFactory;
+import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.communitybbs.Manager.PostBBSManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
