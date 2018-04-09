@@ -4,6 +4,10 @@ plugins {
     id "eclipse"
 }
 
+version '1.3.0'
+
+ext.moduleName = 'com.l2jbr.mmocore'
+
 sourceSets {
     main {
         java {
