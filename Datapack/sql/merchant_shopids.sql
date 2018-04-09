@@ -6,668 +6,668 @@ CREATE TABLE merchant_shopids (
   shop_id decimal(9,0) NOT NULL default '0',
   npc_id varchar(9) default NULL,
   PRIMARY KEY  (shop_id)
-) ENGINE=MyISAM;
+);
 
 --
 -- Dumping data for table `merchant_shopids`
 --
 
 -- General Shops
-
-INSERT INTO merchant_shopids VALUES (1,'30001');
-INSERT INTO merchant_shopids VALUES (2,'30001');
-INSERT INTO merchant_shopids VALUES (3,'30087');
-INSERT INTO merchant_shopids VALUES (4,'30087');
-INSERT INTO merchant_shopids VALUES (5,'30088');
-INSERT INTO merchant_shopids VALUES (6,'30088');
-INSERT INTO merchant_shopids VALUES (7,'30090');
-INSERT INTO merchant_shopids VALUES (8,'30091');
-INSERT INTO merchant_shopids VALUES (9,'30093');
-INSERT INTO merchant_shopids VALUES (10,'30093');
-INSERT INTO merchant_shopids VALUES (11,'30002');
-INSERT INTO merchant_shopids VALUES (12,'30002');
-INSERT INTO merchant_shopids VALUES (13,'30003');
-INSERT INTO merchant_shopids VALUES (14,'30004');
-INSERT INTO merchant_shopids VALUES (15,'30060');
-INSERT INTO merchant_shopids VALUES (16,'30060');
-INSERT INTO merchant_shopids VALUES (17,'30061');
-INSERT INTO merchant_shopids VALUES (18,'30061');
-INSERT INTO merchant_shopids VALUES (19,'30062');
-INSERT INTO merchant_shopids VALUES (20,'30063');
-INSERT INTO merchant_shopids VALUES (21,'30165');
-INSERT INTO merchant_shopids VALUES (22,'30078');
-INSERT INTO merchant_shopids VALUES (23,'30081');
-INSERT INTO merchant_shopids VALUES (24,'30082');
-INSERT INTO merchant_shopids VALUES (25,'30084');
-INSERT INTO merchant_shopids VALUES (26,'30084');
-INSERT INTO merchant_shopids VALUES (27,'30085');
-INSERT INTO merchant_shopids VALUES (28,'30085');
-INSERT INTO merchant_shopids VALUES (29,'30094');
-INSERT INTO merchant_shopids VALUES (30,'30094');
-INSERT INTO merchant_shopids VALUES (31,'30135');
-INSERT INTO merchant_shopids VALUES (32,'30135');
-INSERT INTO merchant_shopids VALUES (33,'30136');
-INSERT INTO merchant_shopids VALUES (34,'30136');
-INSERT INTO merchant_shopids VALUES (35,'30137');
-INSERT INTO merchant_shopids VALUES (36,'30138');
-INSERT INTO merchant_shopids VALUES (37,'30147');
-INSERT INTO merchant_shopids VALUES (38,'30147');
-INSERT INTO merchant_shopids VALUES (39,'30148');
-INSERT INTO merchant_shopids VALUES (40,'30148');
-INSERT INTO merchant_shopids VALUES (41,'30149');
-INSERT INTO merchant_shopids VALUES (42,'30150');
-INSERT INTO merchant_shopids VALUES (43,'30163');
-INSERT INTO merchant_shopids VALUES (44,'30164');
-INSERT INTO merchant_shopids VALUES (45,'30165');
-INSERT INTO merchant_shopids VALUES (46,'30166');
-INSERT INTO merchant_shopids VALUES (47,'30178');
-INSERT INTO merchant_shopids VALUES (48,'30178');
-INSERT INTO merchant_shopids VALUES (49,'30179');
-INSERT INTO merchant_shopids VALUES (50,'30179');
-INSERT INTO merchant_shopids VALUES (51,'30180');
-INSERT INTO merchant_shopids VALUES (52,'30181');
-INSERT INTO merchant_shopids VALUES (53,'30207');
-INSERT INTO merchant_shopids VALUES (54,'30207');
-INSERT INTO merchant_shopids VALUES (55,'30208');
-INSERT INTO merchant_shopids VALUES (56,'30208');
-INSERT INTO merchant_shopids VALUES (57,'30209');
-INSERT INTO merchant_shopids VALUES (58,'30230');
-INSERT INTO merchant_shopids VALUES (59,'30230');
-INSERT INTO merchant_shopids VALUES (60,'30231');
-INSERT INTO merchant_shopids VALUES (61,'30253');
-INSERT INTO merchant_shopids VALUES (62,'30253');
-INSERT INTO merchant_shopids VALUES (63,'30254');
-INSERT INTO merchant_shopids VALUES (64,'30294');
-INSERT INTO merchant_shopids VALUES (65,'30301');
-INSERT INTO merchant_shopids VALUES (66,'30313');
-INSERT INTO merchant_shopids VALUES (67,'30314');
-INSERT INTO merchant_shopids VALUES (68,'30315');
-INSERT INTO merchant_shopids VALUES (69,'30321');
-INSERT INTO merchant_shopids VALUES (70,'30321');
-INSERT INTO merchant_shopids VALUES (71,'30420');
-INSERT INTO merchant_shopids VALUES (72,'30436');
-INSERT INTO merchant_shopids VALUES (73,'30834');
-INSERT INTO merchant_shopids VALUES (74,'30437');
-INSERT INTO merchant_shopids VALUES (75,'30516');
-INSERT INTO merchant_shopids VALUES (76,'30516');
-INSERT INTO merchant_shopids VALUES (77,'30517');
-INSERT INTO merchant_shopids VALUES (78,'30517');
-INSERT INTO merchant_shopids VALUES (79,'30518');
-INSERT INTO merchant_shopids VALUES (80,'30519');
-INSERT INTO merchant_shopids VALUES (81,'30558');
-INSERT INTO merchant_shopids VALUES (82,'30558');
-INSERT INTO merchant_shopids VALUES (83,'30559');
-INSERT INTO merchant_shopids VALUES (84,'30559');
-INSERT INTO merchant_shopids VALUES (85,'30560');
-INSERT INTO merchant_shopids VALUES (86,'30561');
-INSERT INTO merchant_shopids VALUES (87,'30684');
-INSERT INTO merchant_shopids VALUES (88,'30684');
-INSERT INTO merchant_shopids VALUES (89,'30731');
-INSERT INTO merchant_shopids VALUES (90,'30827');
-INSERT INTO merchant_shopids VALUES (91,'30828');
-INSERT INTO merchant_shopids VALUES (92,'30829');
-INSERT INTO merchant_shopids VALUES (93,'30830');
-INSERT INTO merchant_shopids VALUES (94,'30831');
-INSERT INTO merchant_shopids VALUES (95,'30834');
-INSERT INTO merchant_shopids VALUES (96,'30837');
-INSERT INTO merchant_shopids VALUES (97,'30837');
-INSERT INTO merchant_shopids VALUES (98,'30838');
-INSERT INTO merchant_shopids VALUES (99,'30838');
-INSERT INTO merchant_shopids VALUES (100,'30839');
-INSERT INTO merchant_shopids VALUES (101,'30840');
-INSERT INTO merchant_shopids VALUES (102,'30841');
-INSERT INTO merchant_shopids VALUES (103,'30842');
-INSERT INTO merchant_shopids VALUES (104,'30869');
-INSERT INTO merchant_shopids VALUES (105,'31256');
-INSERT INTO merchant_shopids VALUES (106,'31256');
-INSERT INTO merchant_shopids VALUES (107,'31257');
-INSERT INTO merchant_shopids VALUES (108,'31257');
-INSERT INTO merchant_shopids VALUES (109,'31258');
-INSERT INTO merchant_shopids VALUES (110,'31258');
-INSERT INTO merchant_shopids VALUES (111,'31259');
-INSERT INTO merchant_shopids VALUES (112,'31259');
-INSERT INTO merchant_shopids VALUES (113,'31260');
-INSERT INTO merchant_shopids VALUES (114,'31261');
-INSERT INTO merchant_shopids VALUES (115,'31262');
-INSERT INTO merchant_shopids VALUES (116,'31263');
-INSERT INTO merchant_shopids VALUES (117,'31263');
-INSERT INTO merchant_shopids VALUES (118,'31265');
-INSERT INTO merchant_shopids VALUES (119,'31273');
-INSERT INTO merchant_shopids VALUES (120,'31274');
-INSERT INTO merchant_shopids VALUES (121,'31284');
-INSERT INTO merchant_shopids VALUES (122,'31291');
-INSERT INTO merchant_shopids VALUES (123,'31300');
-INSERT INTO merchant_shopids VALUES (124,'31300');
-INSERT INTO merchant_shopids VALUES (125,'31301');
-INSERT INTO merchant_shopids VALUES (126,'31301');
-INSERT INTO merchant_shopids VALUES (127,'31302');
-INSERT INTO merchant_shopids VALUES (128,'31302');
-INSERT INTO merchant_shopids VALUES (129,'31303');
-INSERT INTO merchant_shopids VALUES (130,'31303');
-INSERT INTO merchant_shopids VALUES (131,'31304');
-INSERT INTO merchant_shopids VALUES (132,'31305');
-INSERT INTO merchant_shopids VALUES (133,'31306');
-INSERT INTO merchant_shopids VALUES (134,'31307');
-INSERT INTO merchant_shopids VALUES (135,'31307');
-INSERT INTO merchant_shopids VALUES (136,'31309');
-INSERT INTO merchant_shopids VALUES (137,'31318');
-INSERT INTO merchant_shopids VALUES (138,'31319');
-INSERT INTO merchant_shopids VALUES (139,'31338');
-INSERT INTO merchant_shopids VALUES (140,'31339');
-INSERT INTO merchant_shopids VALUES (141,'31366');
-INSERT INTO merchant_shopids VALUES (145,'31366');
-INSERT INTO merchant_shopids VALUES (146,'31445');
-INSERT INTO merchant_shopids VALUES (147,'31386');
-INSERT INTO merchant_shopids VALUES (148,'31438');
-INSERT INTO merchant_shopids VALUES (149,'31413');
-INSERT INTO merchant_shopids VALUES (150,'31419');
-INSERT INTO merchant_shopids VALUES (151,'31666');
-INSERT INTO merchant_shopids VALUES (152,'31431');
-INSERT INTO merchant_shopids VALUES (153,'31954');
-INSERT INTO merchant_shopids VALUES (154,'31441');
-INSERT INTO merchant_shopids VALUES (155,'31442');
-INSERT INTO merchant_shopids VALUES (156,'31444');
-INSERT INTO merchant_shopids VALUES (157,'31669');
-INSERT INTO merchant_shopids VALUES (158,'31963');
-INSERT INTO merchant_shopids VALUES (159,'31414');
-INSERT INTO merchant_shopids VALUES (160,'31418');
-INSERT INTO merchant_shopids VALUES (161,'31415');
-INSERT INTO merchant_shopids VALUES (162,'31423');
-INSERT INTO merchant_shopids VALUES (163,'31433');
-INSERT INTO merchant_shopids VALUES (164,'31440');
-INSERT INTO merchant_shopids VALUES (165,'31432');
-INSERT INTO merchant_shopids VALUES (166,'31425');
-INSERT INTO merchant_shopids VALUES (167,'31439');
-INSERT INTO merchant_shopids VALUES (168,'31954');
-INSERT INTO merchant_shopids VALUES (169,'31962');
-INSERT INTO merchant_shopids VALUES (170,'31416');
-INSERT INTO merchant_shopids VALUES (171,'31417');
-INSERT INTO merchant_shopids VALUES (172,'31435');
-INSERT INTO merchant_shopids VALUES (173,'31437');
-INSERT INTO merchant_shopids VALUES (174,'31422');
-INSERT INTO merchant_shopids VALUES (175,'31668'); 
-INSERT INTO merchant_shopids VALUES (176,'31434'); 
-INSERT INTO merchant_shopids VALUES (177,'31426'); 
-INSERT INTO merchant_shopids VALUES (178,'31428');
-INSERT INTO merchant_shopids VALUES (179,'31945');
-INSERT INTO merchant_shopids VALUES (180,'31945');
-INSERT INTO merchant_shopids VALUES (181,'31946');
-INSERT INTO merchant_shopids VALUES (182,'31946');
-INSERT INTO merchant_shopids VALUES (183,'31947');
-INSERT INTO merchant_shopids VALUES (184,'31947');
-INSERT INTO merchant_shopids VALUES (185,'31948');
-INSERT INTO merchant_shopids VALUES (186,'31948');
-INSERT INTO merchant_shopids VALUES (187,'31949');
-INSERT INTO merchant_shopids VALUES (188,'31950');
-INSERT INTO merchant_shopids VALUES (189,'31951');
-INSERT INTO merchant_shopids VALUES (190,'31952');
-INSERT INTO merchant_shopids VALUES (191,'31952');
-INSERT INTO merchant_shopids VALUES (192,'31962');
-INSERT INTO merchant_shopids VALUES (193,'31963');
-INSERT INTO merchant_shopids VALUES (194,'31973');
-INSERT INTO merchant_shopids VALUES (195,'31980');
-INSERT INTO merchant_shopids VALUES (196,'31670');
-INSERT INTO merchant_shopids VALUES (197,'31420');
-INSERT INTO merchant_shopids VALUES (198,'31427');
-INSERT INTO merchant_shopids VALUES (199,'31436');
-INSERT INTO merchant_shopids VALUES (200,'31443');
-INSERT INTO merchant_shopids VALUES (201,'31429');
-INSERT INTO merchant_shopids VALUES (202,'31421');
-INSERT INTO merchant_shopids VALUES (203,'31430');
-INSERT INTO merchant_shopids VALUES (204,'31667');
-INSERT INTO merchant_shopids VALUES (205,'30314');
-INSERT INTO merchant_shopids VALUES (351,'30047');
-INSERT INTO merchant_shopids VALUES (352,'30387');
-INSERT INTO merchant_shopids VALUES (353,'30879');
-INSERT INTO merchant_shopids VALUES (354,'31351');
-INSERT INTO merchant_shopids VALUES (355,'30003');
-INSERT INTO merchant_shopids VALUES (359,'31414');
-INSERT INTO merchant_shopids VALUES (360,'30149');
-INSERT INTO merchant_shopids VALUES (361,'31415');
-INSERT INTO merchant_shopids VALUES (362,'30138');
-INSERT INTO merchant_shopids VALUES (363,'30560');
-INSERT INTO merchant_shopids VALUES (364,'31424');
-INSERT INTO merchant_shopids VALUES (365,'32106');
-INSERT INTO merchant_shopids VALUES (366,'30062');
-INSERT INTO merchant_shopids VALUES (367,'30063');
-INSERT INTO merchant_shopids VALUES (368,'30081');
-INSERT INTO merchant_shopids VALUES (369,'30082');
-INSERT INTO merchant_shopids VALUES (370,'30180');
-INSERT INTO merchant_shopids VALUES (371,'30181');
-INSERT INTO merchant_shopids VALUES (372,'30254');
-INSERT INTO merchant_shopids VALUES (373,'30294');
-INSERT INTO merchant_shopids VALUES (374,'30301');
-INSERT INTO merchant_shopids VALUES (375,'30841');
-INSERT INTO merchant_shopids VALUES (376,'30842');
-INSERT INTO merchant_shopids VALUES (377,'30892');
-INSERT INTO merchant_shopids VALUES (378,'30893');
-INSERT INTO merchant_shopids VALUES (379,'30166');
-INSERT INTO merchant_shopids VALUES (380,'30231');
-INSERT INTO merchant_shopids VALUES (381,'32105');
-INSERT INTO merchant_shopids VALUES (382,'31380');
-INSERT INTO merchant_shopids VALUES (383,'31373'); 
-INSERT INTO merchant_shopids VALUES (5600,'30892');
-INSERT INTO merchant_shopids VALUES (5601,'30893');
-INSERT INTO merchant_shopids VALUES (5710,'31067');
-INSERT INTO merchant_shopids VALUES (5800,'30890');
-INSERT INTO merchant_shopids VALUES (5801,'30890');
-INSERT INTO merchant_shopids VALUES (5802,'30891');
-INSERT INTO merchant_shopids VALUES (5803,'30891');
-INSERT INTO merchant_shopids VALUES (5804,'31044');
-INSERT INTO merchant_shopids VALUES (5805,'31045');
-INSERT INTO merchant_shopids VALUES (350071,'35007');
+INSERT INTO merchant_shopids VALUES
+ (1,'30001'),
+ (2,'30001'),
+ (3,'30087'),
+ (4,'30087'),
+ (5,'30088'),
+ (6,'30088'),
+ (7,'30090'),
+ (8,'30091'),
+ (9,'30093'),
+ (10,'30093'),
+ (11,'30002'),
+ (12,'30002'),
+ (13,'30003'),
+ (14,'30004'),
+ (15,'30060'),
+ (16,'30060'),
+ (17,'30061'),
+ (18,'30061'),
+ (19,'30062'),
+ (20,'30063'),
+ (21,'30165'),
+ (22,'30078'),
+ (23,'30081'),
+ (24,'30082'),
+ (25,'30084'),
+ (26,'30084'),
+ (27,'30085'),
+ (28,'30085'),
+ (29,'30094'),
+ (30,'30094'),
+ (31,'30135'),
+ (32,'30135'),
+ (33,'30136'),
+ (34,'30136'),
+ (35,'30137'),
+ (36,'30138'),
+ (37,'30147'),
+ (38,'30147'),
+ (39,'30148'),
+ (40,'30148'),
+ (41,'30149'),
+ (42,'30150'),
+ (43,'30163'),
+ (44,'30164'),
+ (45,'30165'),
+ (46,'30166'),
+ (47,'30178'),
+ (48,'30178'),
+ (49,'30179'),
+ (50,'30179'),
+ (51,'30180'),
+ (52,'30181'),
+ (53,'30207'),
+ (54,'30207'),
+ (55,'30208'),
+ (56,'30208'),
+ (57,'30209'),
+ (58,'30230'),
+ (59,'30230'),
+ (60,'30231'),
+ (61,'30253'),
+ (62,'30253'),
+ (63,'30254'),
+ (64,'30294'),
+ (65,'30301'),
+ (66,'30313'),
+ (67,'30314'),
+ (68,'30315'),
+ (69,'30321'),
+ (70,'30321'),
+ (71,'30420'),
+ (72,'30436'),
+ (73,'30834'),
+ (74,'30437'),
+ (75,'30516'),
+ (76,'30516'),
+ (77,'30517'),
+ (78,'30517'),
+ (79,'30518'),
+ (80,'30519'),
+ (81,'30558'),
+ (82,'30558'),
+ (83,'30559'),
+ (84,'30559'),
+ (85,'30560'),
+ (86,'30561'),
+ (87,'30684'),
+ (88,'30684'),
+ (89,'30731'),
+ (90,'30827'),
+ (91,'30828'),
+ (92,'30829'),
+ (93,'30830'),
+ (94,'30831'),
+ (95,'30834'),
+ (96,'30837'),
+ (97,'30837'),
+ (98,'30838'),
+ (99,'30838'),
+ (100,'30839'),
+ (101,'30840'),
+ (102,'30841'),
+ (103,'30842'),
+ (104,'30869'),
+ (105,'31256'),
+ (106,'31256'),
+ (107,'31257'),
+ (108,'31257'),
+ (109,'31258'),
+ (110,'31258'),
+ (111,'31259'),
+ (112,'31259'),
+ (113,'31260'),
+ (114,'31261'),
+ (115,'31262'),
+ (116,'31263'),
+ (117,'31263'),
+ (118,'31265'),
+ (119,'31273'),
+ (120,'31274'),
+ (121,'31284'),
+ (122,'31291'),
+ (123,'31300'),
+ (124,'31300'),
+ (125,'31301'),
+ (126,'31301'),
+ (127,'31302'),
+ (128,'31302'),
+ (129,'31303'),
+ (130,'31303'),
+ (131,'31304'),
+ (132,'31305'),
+ (133,'31306'),
+ (134,'31307'),
+ (135,'31307'),
+ (136,'31309'),
+ (137,'31318'),
+ (138,'31319'),
+ (139,'31338'),
+ (140,'31339'),
+ (141,'31366'),
+ (145,'31366'),
+ (146,'31445'),
+ (147,'31386'),
+ (148,'31438'),
+ (149,'31413'),
+ (150,'31419'),
+ (151,'31666'),
+ (152,'31431'),
+ (153,'31954'),
+ (154,'31441'),
+ (155,'31442'),
+ (156,'31444'),
+ (157,'31669'),
+ (158,'31963'),
+ (159,'31414'),
+ (160,'31418'),
+ (161,'31415'),
+ (162,'31423'),
+ (163,'31433'),
+ (164,'31440'),
+ (165,'31432'),
+ (166,'31425'),
+ (167,'31439'),
+ (168,'31954'),
+ (169,'31962'),
+ (170,'31416'),
+ (171,'31417'),
+ (172,'31435'),
+ (173,'31437'),
+ (174,'31422'),
+ (175,'31668'), 
+ (176,'31434'), 
+ (177,'31426'), 
+ (178,'31428'),
+ (179,'31945'),
+ (180,'31945'),
+ (181,'31946'),
+ (182,'31946'),
+ (183,'31947'),
+ (184,'31947'),
+ (185,'31948'),
+ (186,'31948'),
+ (187,'31949'),
+ (188,'31950'),
+ (189,'31951'),
+ (190,'31952'),
+ (191,'31952'),
+ (192,'31962'),
+ (193,'31963'),
+ (194,'31973'),
+ (195,'31980'),
+ (196,'31670'),
+ (197,'31420'),
+ (198,'31427'),
+ (199,'31436'),
+ (200,'31443'),
+ (201,'31429'),
+ (202,'31421'),
+ (203,'31430'),
+ (204,'31667'),
+ (205,'30314'),
+ (351,'30047'),
+ (352,'30387'),
+ (353,'30879'),
+ (354,'31351'),
+ (355,'30003'),
+ (359,'31414'),
+ (360,'30149'),
+ (361,'31415'),
+ (362,'30138'),
+ (363,'30560'),
+ (364,'31424'),
+ (365,'32106'),
+ (366,'30062'),
+ (367,'30063'),
+ (368,'30081'),
+ (369,'30082'),
+ (370,'30180'),
+ (371,'30181'),
+ (372,'30254'),
+ (373,'30294'),
+ (374,'30301'),
+ (375,'30841'),
+ (376,'30842'),
+ (377,'30892'),
+ (378,'30893'),
+ (379,'30166'),
+ (380,'30231'),
+ (381,'32105'),
+ (382,'31380'),
+ (383,'31373'), 
+ (5600,'30892'),
+ (5601,'30893'),
+ (5710,'31067'),
+ (5800,'30890'),
+ (5801,'30890'),
+ (5802,'30891'),
+ (5803,'30891'),
+ (5804,'31044'),
+ (5805,'31045'),
+ (350071,'35007'),
 
 -- Mercenary Managers
 
-INSERT INTO merchant_shopids VALUES (351021,'35102');
-INSERT INTO merchant_shopids VALUES (351441,'35144');
-INSERT INTO merchant_shopids VALUES (351861,'35186');
-INSERT INTO merchant_shopids VALUES (352281,'35228');
-INSERT INTO merchant_shopids VALUES (352761,'35276');
-INSERT INTO merchant_shopids VALUES (353181,'35318');
-INSERT INTO merchant_shopids VALUES (353651,'35365');
+ (351021,'35102'),
+ (351441,'35144'),
+ (351861,'35186'),
+ (352281,'35228'),
+ (352761,'35276'),
+ (353181,'35318'),
+ (353651,'35365'),
 
 -- Fishermens
 
-INSERT INTO merchant_shopids VALUES (142,'31578');
-INSERT INTO merchant_shopids VALUES (143,'31579');
-INSERT INTO merchant_shopids VALUES (144,'31696');
-INSERT INTO merchant_shopids VALUES (400,'31562'); 
-INSERT INTO merchant_shopids VALUES (401,'31563'); 
-INSERT INTO merchant_shopids VALUES (402,'31564'); 
-INSERT INTO merchant_shopids VALUES (403,'31565'); 
-INSERT INTO merchant_shopids VALUES (404,'31566'); 
-INSERT INTO merchant_shopids VALUES (405,'31567'); 
-INSERT INTO merchant_shopids VALUES (406,'31568'); 
-INSERT INTO merchant_shopids VALUES (407,'31569'); 
-INSERT INTO merchant_shopids VALUES (408,'31570'); 
-INSERT INTO merchant_shopids VALUES (409,'31571'); 
-INSERT INTO merchant_shopids VALUES (410,'31572'); 
-INSERT INTO merchant_shopids VALUES (411,'31573'); 
-INSERT INTO merchant_shopids VALUES (412,'31574'); 
-INSERT INTO merchant_shopids VALUES (413,'31575'); 
-INSERT INTO merchant_shopids VALUES (414,'31576'); 
-INSERT INTO merchant_shopids VALUES (415,'31577'); 
-INSERT INTO merchant_shopids VALUES (416,'31578'); 
-INSERT INTO merchant_shopids VALUES (417,'31579'); 
-INSERT INTO merchant_shopids VALUES (418,'31616'); 
-INSERT INTO merchant_shopids VALUES (419,'31696'); 
-INSERT INTO merchant_shopids VALUES (420,'31697');
-INSERT INTO merchant_shopids VALUES (421,'31989');
-INSERT INTO merchant_shopids VALUES (423,'32105');
+ (142,'31578'),
+ (143,'31579'),
+ (144,'31696'),
+ (400,'31562'), 
+ (401,'31563'), 
+ (402,'31564'), 
+ (403,'31565'), 
+ (404,'31566'), 
+ (405,'31567'), 
+ (406,'31568'), 
+ (407,'31569'), 
+ (408,'31570'), 
+ (409,'31571'), 
+ (410,'31572'), 
+ (411,'31573'), 
+ (412,'31574'), 
+ (413,'31575'), 
+ (414,'31576'), 
+ (415,'31577'), 
+ (416,'31578'), 
+ (417,'31579'), 
+ (418,'31616'), 
+ (419,'31696'), 
+ (420,'31697'),
+ (421,'31989'),
+ (423,'32105'),
 
 -- GM Shops
 
-INSERT INTO merchant_shopids VALUES (1001,'gm');
-INSERT INTO merchant_shopids VALUES (1002,'gm');
-INSERT INTO merchant_shopids VALUES (1003,'gm');
-INSERT INTO merchant_shopids VALUES (1004,'gm');
-INSERT INTO merchant_shopids VALUES (1005,'gm');
-INSERT INTO merchant_shopids VALUES (1006,'gm');
-INSERT INTO merchant_shopids VALUES (1007,'gm');
-INSERT INTO merchant_shopids VALUES (1008,'gm');
-INSERT INTO merchant_shopids VALUES (1009,'gm');
-INSERT INTO merchant_shopids VALUES (1010,'gm');
-INSERT INTO merchant_shopids VALUES (1011,'gm');
-INSERT INTO merchant_shopids VALUES (1012,'gm');
-INSERT INTO merchant_shopids VALUES (1013,'gm');
-INSERT INTO merchant_shopids VALUES (1014,'gm');
-INSERT INTO merchant_shopids VALUES (1015,'gm');
-INSERT INTO merchant_shopids VALUES (1020,'gm');
-INSERT INTO merchant_shopids VALUES (2011,'gm');
-INSERT INTO merchant_shopids VALUES (2012,'gm');
-INSERT INTO merchant_shopids VALUES (2013,'gm');
-INSERT INTO merchant_shopids VALUES (2014,'gm');
-INSERT INTO merchant_shopids VALUES (2015,'gm');
-INSERT INTO merchant_shopids VALUES (3001,'gm');
-INSERT INTO merchant_shopids VALUES (3002,'gm');
-INSERT INTO merchant_shopids VALUES (3003,'gm');
-INSERT INTO merchant_shopids VALUES (9001,'gm');
-INSERT INTO merchant_shopids VALUES (9002,'gm');
-INSERT INTO merchant_shopids VALUES (9003,'gm');
-INSERT INTO merchant_shopids VALUES (9004,'gm');
-INSERT INTO merchant_shopids VALUES (9005,'gm');
-INSERT INTO merchant_shopids VALUES (9006,'gm');
-INSERT INTO merchant_shopids VALUES (9007,'gm');
-INSERT INTO merchant_shopids VALUES (9008,'gm');
-INSERT INTO merchant_shopids VALUES (9009,'gm');
-INSERT INTO merchant_shopids VALUES (9010,'gm');
-INSERT INTO merchant_shopids VALUES (9011,'gm');
-INSERT INTO merchant_shopids VALUES (9012,'gm');
-INSERT INTO merchant_shopids VALUES (9013,'gm');
-INSERT INTO merchant_shopids VALUES (9014,'gm');
-INSERT INTO merchant_shopids VALUES (9015,'gm');
-INSERT INTO merchant_shopids VALUES (9016,'gm');
-INSERT INTO merchant_shopids VALUES (9017,'gm');
-INSERT INTO merchant_shopids VALUES (9018,'gm');
-INSERT INTO merchant_shopids VALUES (9019,'gm');
-INSERT INTO merchant_shopids VALUES (9020,'gm');
-INSERT INTO merchant_shopids VALUES (9021,'gm');
-INSERT INTO merchant_shopids VALUES (9022,'gm');
-INSERT INTO merchant_shopids VALUES (9023,'gm');
-INSERT INTO merchant_shopids VALUES (9024,'gm');
-INSERT INTO merchant_shopids VALUES (9025,'gm');
-INSERT INTO merchant_shopids VALUES (9026,'gm');
-INSERT INTO merchant_shopids VALUES (9027,'gm');
-INSERT INTO merchant_shopids VALUES (9028,'gm');
-INSERT INTO merchant_shopids VALUES (9029,'gm');
-INSERT INTO merchant_shopids VALUES (9030,'gm');
-INSERT INTO merchant_shopids VALUES (9031,'gm');
-INSERT INTO merchant_shopids VALUES (9032,'gm');
-INSERT INTO merchant_shopids VALUES (9033,'gm');
-INSERT INTO merchant_shopids VALUES (9034,'gm');
-INSERT INTO merchant_shopids VALUES (9035,'gm');
-INSERT INTO merchant_shopids VALUES (9036,'gm');
-INSERT INTO merchant_shopids VALUES (9037,'gm');
-INSERT INTO merchant_shopids VALUES (9038,'gm');
-INSERT INTO merchant_shopids VALUES (9039,'gm');
-INSERT INTO merchant_shopids VALUES (9040,'gm');
-INSERT INTO merchant_shopids VALUES (9041,'gm');
-INSERT INTO merchant_shopids VALUES (9042,'gm');
-INSERT INTO merchant_shopids VALUES (9043,'gm');
-INSERT INTO merchant_shopids VALUES (9044,'gm');
-INSERT INTO merchant_shopids VALUES (9045,'gm');
-INSERT INTO merchant_shopids VALUES (9046,'gm');
-INSERT INTO merchant_shopids VALUES (9047,'gm');
-INSERT INTO merchant_shopids VALUES (9048,'gm');
-INSERT INTO merchant_shopids VALUES (9049,'gm');
-INSERT INTO merchant_shopids VALUES (9050,'gm');
-INSERT INTO merchant_shopids VALUES (9051,'gm');
-INSERT INTO merchant_shopids VALUES (9052,'gm');
-INSERT INTO merchant_shopids VALUES (9053,'gm');
-INSERT INTO merchant_shopids VALUES (9054,'gm');
-INSERT INTO merchant_shopids VALUES (9055,'gm');
-INSERT INTO merchant_shopids VALUES (9056,'gm');
-INSERT INTO merchant_shopids VALUES (9057,'gm');
-INSERT INTO merchant_shopids VALUES (9058,'gm');
-INSERT INTO merchant_shopids VALUES (9059,'gm');
-INSERT INTO merchant_shopids VALUES (9060,'gm');
-INSERT INTO merchant_shopids VALUES (9061,'gm');
-INSERT INTO merchant_shopids VALUES (9062,'gm');
-INSERT INTO merchant_shopids VALUES (9063,'gm');
-INSERT INTO merchant_shopids VALUES (9064,'gm');
-INSERT INTO merchant_shopids VALUES (9065,'gm');
-INSERT INTO merchant_shopids VALUES (9066,'gm');
-INSERT INTO merchant_shopids VALUES (9067,'gm');
-INSERT INTO merchant_shopids VALUES (9068,'gm');
-INSERT INTO merchant_shopids VALUES (9069,'gm');
-INSERT INTO merchant_shopids VALUES (9070,'gm');
-INSERT INTO merchant_shopids VALUES (9071,'gm');
-INSERT INTO merchant_shopids VALUES (9072,'gm');
-INSERT INTO merchant_shopids VALUES (9073,'gm');
-INSERT INTO merchant_shopids VALUES (9074,'gm');
-INSERT INTO merchant_shopids VALUES (9075,'gm');
-INSERT INTO merchant_shopids VALUES (9076,'gm');
-INSERT INTO merchant_shopids VALUES (9077,'gm');
-INSERT INTO merchant_shopids VALUES (9078,'gm');
-INSERT INTO merchant_shopids VALUES (9079,'gm');
-INSERT INTO merchant_shopids VALUES (9080,'gm');
-INSERT INTO merchant_shopids VALUES (9081,'gm');
-INSERT INTO merchant_shopids VALUES (9082,'gm');
-INSERT INTO merchant_shopids VALUES (9083,'gm');
-INSERT INTO merchant_shopids VALUES (9084,'gm');
-INSERT INTO merchant_shopids VALUES (9085,'gm');
-INSERT INTO merchant_shopids VALUES (9086,'gm');
-INSERT INTO merchant_shopids VALUES (9087,'gm');
-INSERT INTO merchant_shopids VALUES (9088,'gm');
-INSERT INTO merchant_shopids VALUES (9089,'gm');
-INSERT INTO merchant_shopids VALUES (9090,'gm');
-INSERT INTO merchant_shopids VALUES (9091,'gm');
-INSERT INTO merchant_shopids VALUES (9092,'gm');
-INSERT INTO merchant_shopids VALUES (9093,'gm');
-INSERT INTO merchant_shopids VALUES (9094,'gm');
-INSERT INTO merchant_shopids VALUES (9095,'gm');
-INSERT INTO merchant_shopids VALUES (9096,'gm');
-INSERT INTO merchant_shopids VALUES (9097,'gm');
-INSERT INTO merchant_shopids VALUES (9098,'gm');
-INSERT INTO merchant_shopids VALUES (9099,'gm');
-INSERT INTO merchant_shopids VALUES (9100,'gm');
-INSERT INTO merchant_shopids VALUES (9101,'gm');
-INSERT INTO merchant_shopids VALUES (9102,'gm');
-INSERT INTO merchant_shopids VALUES (9103,'gm');
-INSERT INTO merchant_shopids VALUES (9104,'gm');
-INSERT INTO merchant_shopids VALUES (9105,'gm');
-INSERT INTO merchant_shopids VALUES (9106,'gm');
-INSERT INTO merchant_shopids VALUES (9107,'gm');
-INSERT INTO merchant_shopids VALUES (9108,'gm');
-INSERT INTO merchant_shopids VALUES (9109,'gm');
-INSERT INTO merchant_shopids VALUES (9110,'gm');
-INSERT INTO merchant_shopids VALUES (9111,'gm');
-INSERT INTO merchant_shopids VALUES (9112,'gm');
-INSERT INTO merchant_shopids VALUES (9113,'gm');
-INSERT INTO merchant_shopids VALUES (9114,'gm');
-INSERT INTO merchant_shopids VALUES (9115,'gm');
-INSERT INTO merchant_shopids VALUES (9116,'gm');
-INSERT INTO merchant_shopids VALUES (9117,'gm');
-INSERT INTO merchant_shopids VALUES (9118,'gm');
-INSERT INTO merchant_shopids VALUES (9119,'gm');
-INSERT INTO merchant_shopids VALUES (9120,'gm');
-INSERT INTO merchant_shopids VALUES (9121,'gm');
-INSERT INTO merchant_shopids VALUES (9122,'gm');
-INSERT INTO merchant_shopids VALUES (9123,'gm');
-INSERT INTO merchant_shopids VALUES (9124,'gm');
-INSERT INTO merchant_shopids VALUES (9125,'gm');
-INSERT INTO merchant_shopids VALUES (9126,'gm');
-INSERT INTO merchant_shopids VALUES (9127,'gm');
-INSERT INTO merchant_shopids VALUES (9128,'gm');
-INSERT INTO merchant_shopids VALUES (9148,'gm');
-INSERT INTO merchant_shopids VALUES (9149,'gm');
-INSERT INTO merchant_shopids VALUES (9150,'gm');
-INSERT INTO merchant_shopids VALUES (30040,'gm');
-INSERT INTO merchant_shopids VALUES (30041,'gm');
-INSERT INTO merchant_shopids VALUES (30042,'gm');
-INSERT INTO merchant_shopids VALUES (30043,'gm');
-INSERT INTO merchant_shopids VALUES (30044,'gm');
-INSERT INTO merchant_shopids VALUES (30045,'gm');
-INSERT INTO merchant_shopids VALUES (30046,'gm');
-INSERT INTO merchant_shopids VALUES (30047,'gm');
-INSERT INTO merchant_shopids VALUES (30048,'gm');
-INSERT INTO merchant_shopids VALUES (30049,'gm');
-INSERT INTO merchant_shopids VALUES (30050,'gm');
-INSERT INTO merchant_shopids VALUES (30051,'gm');
-INSERT INTO merchant_shopids VALUES (30052,'gm');
-INSERT INTO merchant_shopids VALUES (30053,'gm');
-INSERT INTO merchant_shopids VALUES (30054,'gm');
-INSERT INTO merchant_shopids VALUES (30055,'gm');
-INSERT INTO merchant_shopids VALUES (30056,'gm');
-INSERT INTO merchant_shopids VALUES (30057,'gm');
-INSERT INTO merchant_shopids VALUES (30058,'gm');
-INSERT INTO merchant_shopids VALUES (30059,'gm');
-INSERT INTO merchant_shopids VALUES (71021,'gm');
-INSERT INTO merchant_shopids VALUES (71022,'gm');
-INSERT INTO merchant_shopids VALUES (71023,'gm');
-INSERT INTO merchant_shopids VALUES (71024,'gm');
-INSERT INTO merchant_shopids VALUES (71025,'gm');
-INSERT INTO merchant_shopids VALUES (71026,'gm');
-INSERT INTO merchant_shopids VALUES (71027,'gm');
-INSERT INTO merchant_shopids VALUES (71028,'gm');
-INSERT INTO merchant_shopids VALUES (71029,'gm');
-INSERT INTO merchant_shopids VALUES (71030,'gm');
-INSERT INTO merchant_shopids VALUES (300523,'gm');
-INSERT INTO merchant_shopids VALUES (300524,'gm');
-INSERT INTO merchant_shopids VALUES (300525,'gm');
-INSERT INTO merchant_shopids VALUES (300526,'gm');
-INSERT INTO merchant_shopids VALUES (300527,'gm');
-INSERT INTO merchant_shopids VALUES (300528,'gm');
-INSERT INTO merchant_shopids VALUES (300529,'gm');
-INSERT INTO merchant_shopids VALUES (300530,'gm');
-INSERT INTO merchant_shopids VALUES (300531,'gm');
-INSERT INTO merchant_shopids VALUES (300532,'gm');
-INSERT INTO merchant_shopids VALUES (300533,'gm');
-INSERT INTO merchant_shopids VALUES (300534,'gm');
-INSERT INTO merchant_shopids VALUES (300535,'gm');
-INSERT INTO merchant_shopids VALUES (300536,'gm');
-INSERT INTO merchant_shopids VALUES (300537,'gm');
-INSERT INTO merchant_shopids VALUES (300538,'gm');
-INSERT INTO merchant_shopids VALUES (300539,'gm');
-INSERT INTO merchant_shopids VALUES (300540,'gm');
-INSERT INTO merchant_shopids VALUES (300541,'gm');
-INSERT INTO merchant_shopids VALUES (300522,'gm');
-INSERT INTO merchant_shopids VALUES (300511,'gm');
-INSERT INTO merchant_shopids VALUES (300510,'gm');
-INSERT INTO merchant_shopids VALUES (300410,'gm');
-INSERT INTO merchant_shopids VALUES (300542,'gm');
-INSERT INTO merchant_shopids VALUES (71031, 'gm');
-INSERT INTO merchant_shopids VALUES (71032, 'gm');
+ (1001,'gm'),
+ (1002,'gm'),
+ (1003,'gm'),
+ (1004,'gm'),
+ (1005,'gm'),
+ (1006,'gm'),
+ (1007,'gm'),
+ (1008,'gm'),
+ (1009,'gm'),
+ (1010,'gm'),
+ (1011,'gm'),
+ (1012,'gm'),
+ (1013,'gm'),
+ (1014,'gm'),
+ (1015,'gm'),
+ (1020,'gm'),
+ (2011,'gm'),
+ (2012,'gm'),
+ (2013,'gm'),
+ (2014,'gm'),
+ (2015,'gm'),
+ (3001,'gm'),
+ (3002,'gm'),
+ (3003,'gm'),
+ (9001,'gm'),
+ (9002,'gm'),
+ (9003,'gm'),
+ (9004,'gm'),
+ (9005,'gm'),
+ (9006,'gm'),
+ (9007,'gm'),
+ (9008,'gm'),
+ (9009,'gm'),
+ (9010,'gm'),
+ (9011,'gm'),
+ (9012,'gm'),
+ (9013,'gm'),
+ (9014,'gm'),
+ (9015,'gm'),
+ (9016,'gm'),
+ (9017,'gm'),
+ (9018,'gm'),
+ (9019,'gm'),
+ (9020,'gm'),
+ (9021,'gm'),
+ (9022,'gm'),
+ (9023,'gm'),
+ (9024,'gm'),
+ (9025,'gm'),
+ (9026,'gm'),
+ (9027,'gm'),
+ (9028,'gm'),
+ (9029,'gm'),
+ (9030,'gm'),
+ (9031,'gm'),
+ (9032,'gm'),
+ (9033,'gm'),
+ (9034,'gm'),
+ (9035,'gm'),
+ (9036,'gm'),
+ (9037,'gm'),
+ (9038,'gm'),
+ (9039,'gm'),
+ (9040,'gm'),
+ (9041,'gm'),
+ (9042,'gm'),
+ (9043,'gm'),
+ (9044,'gm'),
+ (9045,'gm'),
+ (9046,'gm'),
+ (9047,'gm'),
+ (9048,'gm'),
+ (9049,'gm'),
+ (9050,'gm'),
+ (9051,'gm'),
+ (9052,'gm'),
+ (9053,'gm'),
+ (9054,'gm'),
+ (9055,'gm'),
+ (9056,'gm'),
+ (9057,'gm'),
+ (9058,'gm'),
+ (9059,'gm'),
+ (9060,'gm'),
+ (9061,'gm'),
+ (9062,'gm'),
+ (9063,'gm'),
+ (9064,'gm'),
+ (9065,'gm'),
+ (9066,'gm'),
+ (9067,'gm'),
+ (9068,'gm'),
+ (9069,'gm'),
+ (9070,'gm'),
+ (9071,'gm'),
+ (9072,'gm'),
+ (9073,'gm'),
+ (9074,'gm'),
+ (9075,'gm'),
+ (9076,'gm'),
+ (9077,'gm'),
+ (9078,'gm'),
+ (9079,'gm'),
+ (9080,'gm'),
+ (9081,'gm'),
+ (9082,'gm'),
+ (9083,'gm'),
+ (9084,'gm'),
+ (9085,'gm'),
+ (9086,'gm'),
+ (9087,'gm'),
+ (9088,'gm'),
+ (9089,'gm'),
+ (9090,'gm'),
+ (9091,'gm'),
+ (9092,'gm'),
+ (9093,'gm'),
+ (9094,'gm'),
+ (9095,'gm'),
+ (9096,'gm'),
+ (9097,'gm'),
+ (9098,'gm'),
+ (9099,'gm'),
+ (9100,'gm'),
+ (9101,'gm'),
+ (9102,'gm'),
+ (9103,'gm'),
+ (9104,'gm'),
+ (9105,'gm'),
+ (9106,'gm'),
+ (9107,'gm'),
+ (9108,'gm'),
+ (9109,'gm'),
+ (9110,'gm'),
+ (9111,'gm'),
+ (9112,'gm'),
+ (9113,'gm'),
+ (9114,'gm'),
+ (9115,'gm'),
+ (9116,'gm'),
+ (9117,'gm'),
+ (9118,'gm'),
+ (9119,'gm'),
+ (9120,'gm'),
+ (9121,'gm'),
+ (9122,'gm'),
+ (9123,'gm'),
+ (9124,'gm'),
+ (9125,'gm'),
+ (9126,'gm'),
+ (9127,'gm'),
+ (9128,'gm'),
+ (9148,'gm'),
+ (9149,'gm'),
+ (9150,'gm'),
+ (30040,'gm'),
+ (30041,'gm'),
+ (30042,'gm'),
+ (30043,'gm'),
+ (30044,'gm'),
+ (30045,'gm'),
+ (30046,'gm'),
+ (30047,'gm'),
+ (30048,'gm'),
+ (30049,'gm'),
+ (30050,'gm'),
+ (30051,'gm'),
+ (30052,'gm'),
+ (30053,'gm'),
+ (30054,'gm'),
+ (30055,'gm'),
+ (30056,'gm'),
+ (30057,'gm'),
+ (30058,'gm'),
+ (30059,'gm'),
+ (71021,'gm'),
+ (71022,'gm'),
+ (71023,'gm'),
+ (71024,'gm'),
+ (71025,'gm'),
+ (71026,'gm'),
+ (71027,'gm'),
+ (71028,'gm'),
+ (71029,'gm'),
+ (71030,'gm'),
+ (300523,'gm'),
+ (300524,'gm'),
+ (300525,'gm'),
+ (300526,'gm'),
+ (300527,'gm'),
+ (300528,'gm'),
+ (300529,'gm'),
+ (300530,'gm'),
+ (300531,'gm'),
+ (300532,'gm'),
+ (300533,'gm'),
+ (300534,'gm'),
+ (300535,'gm'),
+ (300536,'gm'),
+ (300537,'gm'),
+ (300538,'gm'),
+ (300539,'gm'),
+ (300540,'gm'),
+ (300541,'gm'),
+ (300522,'gm'),
+ (300511,'gm'),
+ (300510,'gm'),
+ (300410,'gm'),
+ (300542,'gm'),
+ (71031, 'gm'),
+ (71032, 'gm'),
 --
 -- Castle 
 --
-INSERT INTO `merchant_shopids` VALUES (335103, '35103');
-INSERT INTO `merchant_shopids` VALUES (335145, '35145');
-INSERT INTO `merchant_shopids` VALUES (335187, '35187');
-INSERT INTO `merchant_shopids` VALUES (335229, '35229');
-INSERT INTO `merchant_shopids` VALUES (335230, '35230');
-INSERT INTO `merchant_shopids` VALUES (335231, '35231');
-INSERT INTO `merchant_shopids` VALUES (335277, '35277');
-INSERT INTO `merchant_shopids` VALUES (335319, '35319');
-INSERT INTO `merchant_shopids` VALUES (335366, '35366');
-INSERT INTO `merchant_shopids` VALUES (335512, '35512');
-INSERT INTO `merchant_shopids` VALUES (335558, '35558');
-INSERT INTO `merchant_shopids` VALUES (335644, '35644');
-INSERT INTO `merchant_shopids` VALUES (335645, '35645');
+ (335103, '35103'),
+ (335145, '35145'),
+ (335187, '35187'),
+ (335229, '35229'),
+ (335230, '35230'),
+ (335231, '35231'),
+ (335277, '35277'),
+ (335319, '35319'),
+ (335366, '35366'),
+ (335512, '35512'),
+ (335558, '35558'),
+ (335644, '35644'),
+ (335645, '35645'),
 --
 -- Castles Item creation
 --
-INSERT INTO merchant_shopids VALUES (351001,'35100');
-INSERT INTO merchant_shopids VALUES (351002,'35100');
-INSERT INTO merchant_shopids VALUES (351421,'35142');
-INSERT INTO merchant_shopids VALUES (351422,'35142');
-INSERT INTO merchant_shopids VALUES (351841,'35184');
-INSERT INTO merchant_shopids VALUES (351842,'35184');
-INSERT INTO merchant_shopids VALUES (352261,'35226');
-INSERT INTO merchant_shopids VALUES (352262,'35226');
-INSERT INTO merchant_shopids VALUES (352741,'35274');
-INSERT INTO merchant_shopids VALUES (352742,'35274');
-INSERT INTO merchant_shopids VALUES (353161,'35316');
-INSERT INTO merchant_shopids VALUES (353162,'35316');
-INSERT INTO merchant_shopids VALUES (353631,'35363');
-INSERT INTO merchant_shopids VALUES (353632,'35363');
-INSERT INTO merchant_shopids VALUES (355091,'35509');
-INSERT INTO merchant_shopids VALUES (355092,'35509');
-INSERT INTO merchant_shopids VALUES (355551,'35555');
-INSERT INTO merchant_shopids VALUES (355552,'35555');
+ (351001,'35100'),
+ (351002,'35100'),
+ (351421,'35142'),
+ (351422,'35142'),
+ (351841,'35184'),
+ (351842,'35184'),
+ (352261,'35226'),
+ (352262,'35226'),
+ (352741,'35274'),
+ (352742,'35274'),
+ (353161,'35316'),
+ (353162,'35316'),
+ (353631,'35363'),
+ (353632,'35363'),
+ (355091,'35509'),
+ (355092,'35509'),
+ (355551,'35555'),
+ (355552,'35555'),
 --
 -- Clan Halls Item creation
 --
-INSERT INTO merchant_shopids VALUES (135445, '35445');
-INSERT INTO merchant_shopids VALUES (235445, '35445');
-INSERT INTO merchant_shopids VALUES (335445, '35445');
-INSERT INTO merchant_shopids VALUES (135453, '35453');
-INSERT INTO merchant_shopids VALUES (235453, '35453');
-INSERT INTO merchant_shopids VALUES (335453, '35453');
-INSERT INTO merchant_shopids VALUES (135455, '35455');
-INSERT INTO merchant_shopids VALUES (235455, '35455');
-INSERT INTO merchant_shopids VALUES (335455, '35455');
-INSERT INTO merchant_shopids VALUES (135451, '35451');
-INSERT INTO merchant_shopids VALUES (235451, '35451');
-INSERT INTO merchant_shopids VALUES (335451, '35451');
-INSERT INTO merchant_shopids VALUES (135457, '35457');
-INSERT INTO merchant_shopids VALUES (235457, '35457');
-INSERT INTO merchant_shopids VALUES (335457, '35457');
-INSERT INTO merchant_shopids VALUES (135459, '35459');
-INSERT INTO merchant_shopids VALUES (235459, '35459');
-INSERT INTO merchant_shopids VALUES (335459, '35459');
-INSERT INTO merchant_shopids VALUES (135383, '35383');
-INSERT INTO merchant_shopids VALUES (235383, '35383');
-INSERT INTO merchant_shopids VALUES (335383, '35383');
-INSERT INTO merchant_shopids VALUES (135398, '35398');
-INSERT INTO merchant_shopids VALUES (235398, '35398');
-INSERT INTO merchant_shopids VALUES (335398, '35398');
-INSERT INTO merchant_shopids VALUES (135400, '35400');
-INSERT INTO merchant_shopids VALUES (235400, '35400');
-INSERT INTO merchant_shopids VALUES (335400, '35400');
-INSERT INTO merchant_shopids VALUES (135392, '35392');
-INSERT INTO merchant_shopids VALUES (235392, '35392');
-INSERT INTO merchant_shopids VALUES (335392, '35392');
-INSERT INTO merchant_shopids VALUES (135394, '35394');
-INSERT INTO merchant_shopids VALUES (235394, '35394');
-INSERT INTO merchant_shopids VALUES (335394, '35394');
-INSERT INTO merchant_shopids VALUES (135396, '35396');
-INSERT INTO merchant_shopids VALUES (235396, '35396');
-INSERT INTO merchant_shopids VALUES (335396, '35396');
-INSERT INTO merchant_shopids VALUES (135384, '35384');
-INSERT INTO merchant_shopids VALUES (235384, '35384');
-INSERT INTO merchant_shopids VALUES (335384, '35384');
-INSERT INTO merchant_shopids VALUES (135390, '35390');
-INSERT INTO merchant_shopids VALUES (235390, '35390');
-INSERT INTO merchant_shopids VALUES (335390, '35390');
-INSERT INTO merchant_shopids VALUES (135386, '35386');
-INSERT INTO merchant_shopids VALUES (235386, '35386');
-INSERT INTO merchant_shopids VALUES (335386, '35386');
-INSERT INTO merchant_shopids VALUES (135388, '35388');
-INSERT INTO merchant_shopids VALUES (235388, '35388');
-INSERT INTO merchant_shopids VALUES (335388, '35388');
-INSERT INTO merchant_shopids VALUES (135407, '35407');
-INSERT INTO merchant_shopids VALUES (235407, '35407');
-INSERT INTO merchant_shopids VALUES (335407, '35407');
-INSERT INTO merchant_shopids VALUES (135403, '35403');
-INSERT INTO merchant_shopids VALUES (235403, '35403');
-INSERT INTO merchant_shopids VALUES (335403, '35403');
-INSERT INTO merchant_shopids VALUES (135405, '35405');
-INSERT INTO merchant_shopids VALUES (235405, '35405');
-INSERT INTO merchant_shopids VALUES (335405, '35405');
-INSERT INTO merchant_shopids VALUES (135421, '35421');
-INSERT INTO merchant_shopids VALUES (235421, '35421');
-INSERT INTO merchant_shopids VALUES (335421, '35421');
-INSERT INTO merchant_shopids VALUES (135439, '35439');
-INSERT INTO merchant_shopids VALUES (235439, '35439');
-INSERT INTO merchant_shopids VALUES (335439, '35439');
-INSERT INTO merchant_shopids VALUES (135441, '35441');
-INSERT INTO merchant_shopids VALUES (235441, '35441');
-INSERT INTO merchant_shopids VALUES (335441, '35441');
-INSERT INTO merchant_shopids VALUES (135443, '35443');
-INSERT INTO merchant_shopids VALUES (235443, '35443');
-INSERT INTO merchant_shopids VALUES (335443, '35443');
-INSERT INTO merchant_shopids VALUES (135447, '35447');
-INSERT INTO merchant_shopids VALUES (235447, '35447');
-INSERT INTO merchant_shopids VALUES (335447, '35447');
-INSERT INTO merchant_shopids VALUES (135449, '35449');
-INSERT INTO merchant_shopids VALUES (235449, '35449');
-INSERT INTO merchant_shopids VALUES (335449, '35449');
-INSERT INTO merchant_shopids VALUES (135467, '35467');
-INSERT INTO merchant_shopids VALUES (235467, '35467');
-INSERT INTO merchant_shopids VALUES (335467, '35467');
-INSERT INTO merchant_shopids VALUES (135465, '35465');
-INSERT INTO merchant_shopids VALUES (235465, '35465');
-INSERT INTO merchant_shopids VALUES (335465, '35465');
-INSERT INTO merchant_shopids VALUES (135463, '35463');
-INSERT INTO merchant_shopids VALUES (235463, '35463');
-INSERT INTO merchant_shopids VALUES (335463, '35463');
-INSERT INTO merchant_shopids VALUES (135461, '35461');
-INSERT INTO merchant_shopids VALUES (235461, '35461');
-INSERT INTO merchant_shopids VALUES (335461, '35461');
-INSERT INTO merchant_shopids VALUES (335566, '35566');
-INSERT INTO merchant_shopids VALUES (235566, '35566');
-INSERT INTO merchant_shopids VALUES (135566, '35566');
-INSERT INTO merchant_shopids VALUES (335568, '35568');
-INSERT INTO merchant_shopids VALUES (235568, '35568');
-INSERT INTO merchant_shopids VALUES (135568, '35568');
-INSERT INTO merchant_shopids VALUES (335570, '35570');
-INSERT INTO merchant_shopids VALUES (235570, '35570');
-INSERT INTO merchant_shopids VALUES (135570, '35570');
-INSERT INTO merchant_shopids VALUES (335572, '35572');
-INSERT INTO merchant_shopids VALUES (235572, '35572');
-INSERT INTO merchant_shopids VALUES (135572, '35572');
-INSERT INTO merchant_shopids VALUES (335574, '35574');
-INSERT INTO merchant_shopids VALUES (235574, '35574');
-INSERT INTO merchant_shopids VALUES (135574, '35574');
-INSERT INTO merchant_shopids VALUES (335576, '35576');
-INSERT INTO merchant_shopids VALUES (235576, '35576');
-INSERT INTO merchant_shopids VALUES (135576, '35576');
-INSERT INTO merchant_shopids VALUES (335578, '35578');
-INSERT INTO merchant_shopids VALUES (235578, '35578');
-INSERT INTO merchant_shopids VALUES (135578, '35578');
-INSERT INTO merchant_shopids VALUES (235580, '35580');
-INSERT INTO merchant_shopids VALUES (135580, '35580');
-INSERT INTO merchant_shopids VALUES (335580, '35580');
-INSERT INTO merchant_shopids VALUES (335582, '35582');
-INSERT INTO merchant_shopids VALUES (235582, '35582');
-INSERT INTO merchant_shopids VALUES (135582, '35582');
-INSERT INTO merchant_shopids VALUES (135584, '35584');
-INSERT INTO merchant_shopids VALUES (235584, '35584');
-INSERT INTO merchant_shopids VALUES (335584, '35584');
-INSERT INTO merchant_shopids VALUES (335586, '35586');
-INSERT INTO merchant_shopids VALUES (135586, '35586');
-INSERT INTO merchant_shopids VALUES (235586, '35586');
-INSERT INTO merchant_shopids VALUES (355111, '35511');
-INSERT INTO merchant_shopids VALUES (355571, '35557');
+ (135445, '35445'),
+ (235445, '35445'),
+ (335445, '35445'),
+ (135453, '35453'),
+ (235453, '35453'),
+ (335453, '35453'),
+ (135455, '35455'),
+ (235455, '35455'),
+ (335455, '35455'),
+ (135451, '35451'),
+ (235451, '35451'),
+ (335451, '35451'),
+ (135457, '35457'),
+ (235457, '35457'),
+ (335457, '35457'),
+ (135459, '35459'),
+ (235459, '35459'),
+ (335459, '35459'),
+ (135383, '35383'),
+ (235383, '35383'),
+ (335383, '35383'),
+ (135398, '35398'),
+ (235398, '35398'),
+ (335398, '35398'),
+ (135400, '35400'),
+ (235400, '35400'),
+ (335400, '35400'),
+ (135392, '35392'),
+ (235392, '35392'),
+ (335392, '35392'),
+ (135394, '35394'),
+ (235394, '35394'),
+ (335394, '35394'),
+ (135396, '35396'),
+ (235396, '35396'),
+ (335396, '35396'),
+ (135384, '35384'),
+ (235384, '35384'),
+ (335384, '35384'),
+ (135390, '35390'),
+ (235390, '35390'),
+ (335390, '35390'),
+ (135386, '35386'),
+ (235386, '35386'),
+ (335386, '35386'),
+ (135388, '35388'),
+ (235388, '35388'),
+ (335388, '35388'),
+ (135407, '35407'),
+ (235407, '35407'),
+ (335407, '35407'),
+ (135403, '35403'),
+ (235403, '35403'),
+ (335403, '35403'),
+ (135405, '35405'),
+ (235405, '35405'),
+ (335405, '35405'),
+ (135421, '35421'),
+ (235421, '35421'),
+ (335421, '35421'),
+ (135439, '35439'),
+ (235439, '35439'),
+ (335439, '35439'),
+ (135441, '35441'),
+ (235441, '35441'),
+ (335441, '35441'),
+ (135443, '35443'),
+ (235443, '35443'),
+ (335443, '35443'),
+ (135447, '35447'),
+ (235447, '35447'),
+ (335447, '35447'),
+ (135449, '35449'),
+ (235449, '35449'),
+ (335449, '35449'),
+ (135467, '35467'),
+ (235467, '35467'),
+ (335467, '35467'),
+ (135465, '35465'),
+ (235465, '35465'),
+ (335465, '35465'),
+ (135463, '35463'),
+ (235463, '35463'),
+ (335463, '35463'),
+ (135461, '35461'),
+ (235461, '35461'),
+ (335461, '35461'),
+ (335566, '35566'),
+ (235566, '35566'),
+ (135566, '35566'),
+ (335568, '35568'),
+ (235568, '35568'),
+ (135568, '35568'),
+ (335570, '35570'),
+ (235570, '35570'),
+ (135570, '35570'),
+ (335572, '35572'),
+ (235572, '35572'),
+ (135572, '35572'),
+ (335574, '35574'),
+ (235574, '35574'),
+ (135574, '35574'),
+ (335576, '35576'),
+ (235576, '35576'),
+ (135576, '35576'),
+ (335578, '35578'),
+ (235578, '35578'),
+ (135578, '35578'),
+ (235580, '35580'),
+ (135580, '35580'),
+ (335580, '35580'),
+ (335582, '35582'),
+ (235582, '35582'),
+ (135582, '35582'),
+ (135584, '35584'),
+ (235584, '35584'),
+ (335584, '35584'),
+ (335586, '35586'),
+ (135586, '35586'),
+ (235586, '35586'),
+ (355111, '35511'),
+ (355571, '35557');

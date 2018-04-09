@@ -12,7 +12,7 @@ CREATE TABLE `enchant_skill_trees` (
   `success_rate77` int(3) NOT NULL default '0',
   `success_rate78` int(3) NOT NULL default '0',
   PRIMARY KEY  (`skill_id`,`level`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+);
 
 
 INSERT INTO enchant_skill_trees VALUES 

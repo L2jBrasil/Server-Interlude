@@ -15,7 +15,7 @@ CREATE TABLE `fish` (
   `wait_time` INT(5) NOT NULL default '0',
   `combat_time` INT(5) NOT NULL default '0',
   PRIMARY KEY  (`id`,`level`)
-) ENGINE=MyISAM;
+);
 -- 
 --  Records for table fish
 -- 

@@ -13,7 +13,7 @@ CREATE TABLE `walker_routes` (
   `delay`  int(9) NOT NULL default '0',
   `running`  tinyint(1) NOT NULL default '0',
    PRIMARY KEY (`route_id`,`npc_id`,`move_point`)
-) DEFAULT CHARSET=utf8;
+);
 
 --
 -- Dumping data for table `walker_routes`

@@ -46,7 +46,7 @@ CREATE TABLE `npc`(
   `absorb_level` decimal(2,0) default 0,
   `absorb_type` enum('FULL_PARTY','LAST_HIT','PARTY_ONE_RANDOM') DEFAULT 'LAST_HIT' NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM;
+);
 -- 
 -- Dumping data for table `npc`
 -- 

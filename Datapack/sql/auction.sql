@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `auction` (
   endDate decimal(20,0) NOT NULL default '0',
   PRIMARY KEY  (`itemType`,`itemId`,`itemObjectId`),
   KEY `id` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+);
 
 -- 
 -- Dumping data for table `auction`

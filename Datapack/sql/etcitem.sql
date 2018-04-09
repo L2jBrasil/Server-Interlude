@@ -22,7 +22,7 @@ CREATE TABLE `etcitem` (
   `oldname` varchar(100) NOT NULL default '',
   `oldtype` varchar(100) NOT NULL default '',
   PRIMARY KEY  (`item_id`)
-) ENGINE=MyISAM;
+);
 
 --
 -- Dumping data for table `etcitem`

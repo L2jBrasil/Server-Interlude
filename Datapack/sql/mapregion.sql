@@ -15,7 +15,7 @@ CREATE TABLE `mapregion` (
 `sec8` int(2) NOT NULL default '0',
 `sec9` int(2) NOT NULL default '0',
 PRIMARY KEY (`region`)
-) ENGINE=MyISAM;
+);
 
 --
 -- Dumping data for table `mapregion`

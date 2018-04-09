@@ -19,7 +19,7 @@ CREATE TABLE `spawnlist` (
   `periodOfDay` decimal(2,0) default '0',
   PRIMARY KEY  (id),
   KEY `key_npc_templateid` (`npc_templateid`)
-) ENGINE=MyISAM;
+) ;
 
 --
 -- Dumping data for table `spawnlist`
