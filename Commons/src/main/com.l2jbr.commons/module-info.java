@@ -12,5 +12,6 @@ module com.l2jbr.commons {
     exports com.l2jbr.commons.lib;
     exports com.l2jbr.commons;
     exports com.l2jbr.commons.database;
+    exports com.l2jbr.commons.database.dao;
 
 }
