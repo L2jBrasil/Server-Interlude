@@ -3,7 +3,7 @@ title Login Server Console
 :start
 echo Starting L2J Login Server.
 echo.
-java -Xmx128m -cp './lib/*' com.l2jbr.loginserver.L2LoginServer
+java -Xmx256m -cp ./lib/* com.l2jbr.loginserver.L2LoginServer
 if ERRORLEVEL 2 goto restart
 if ERRORLEVEL 1 goto error
 goto end
