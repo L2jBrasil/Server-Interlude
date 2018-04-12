@@ -14,6 +14,10 @@ ext.moduleName = 'com.l2jbr'
 allprojects {
     repositories {
         mavenCentral()
+
+        maven {
+            url 'https://repo.spring.io/libs-snapshot'
+        }
     }
 
     sourceCompatibility = JavaVersion.VERSION_1_9
@@ -25,7 +29,7 @@ subprojects {
             inputs.property("moduleName", moduleName)
             doFirst {
                 options.compilerArgs = [
-                        '--module-path', classpath.asPath,
+                    '--module-path', classpath.asPath,
                 ]
                 classpath = files()
             }

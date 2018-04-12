@@ -7,6 +7,9 @@ module com.l2jbr.gameserver {
     requires org.slf4j;
     requires java.scripting;
     requires jython.standalone;
+    requires spring.data.commons;
+    requires spring.data.jdbc;
+    requires spring.context;
 
     exports com.l2jbr.gameserver;
 
