@@ -2,11 +2,13 @@ plugins {
     id "java"
     id "idea"
     id "eclipse"
+    id "application"
 }
 
 version '1.3.1'
 
 ext.moduleName = 'com.l2jbr.tools'
+mainClassName = "com.l2jbr.tools.accountmanager.SQLAccountManager"
 
 sourceSets {
     main {
@@ -19,19 +21,20 @@ sourceSets {
     }
 }
 
+configurations.all {
+    transitive = true
+}
+
 dependencies {
     compile project(':Commons')
     compile project(":Loginserver")
     compile project(":Gameserver")
 
-    runtime project(':Mmocore')
+    runtime ('org.springframework.data:spring-data-jdbc:1.0.0.BUILD-SNAPSHOT') { changing = true }
 
+    runtime project(':Mmocore')
     runtime 'com.zaxxer:HikariCP:3.0.0'
     runtime 'mysql:mysql-connector-java:8.0.9-rc'
-}
-
-configurations.all {
-    transitive = false
 }
 
 jar {

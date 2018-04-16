@@ -10,7 +10,7 @@ public class Account extends  Model<String> {
     @Id
     private String login;
     private String password;
-    private long lastActive;
+    private Long lastActive;
     @Column("access_level")
     private short accessLevel;
     private short lastServer;
@@ -54,5 +54,9 @@ public class Account extends  Model<String> {
 
     public void setLastIP(String lastIP) {
         this.lastIP = lastIP;
+    }
+
+    public void setAccessLevel(Short accessLevel) {
+        this.accessLevel = accessLevel;
     }
 }

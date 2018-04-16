@@ -28,11 +28,11 @@ DROP TABLE IF EXISTS `accounts` ;
 
 CREATE TABLE IF NOT EXISTS `accounts` (
   `login` VARCHAR(45) NOT NULL DEFAULT '',
-  `password` VARCHAR(45) NULL DEFAULT NULL,
-  `lastactive` DECIMAL(20,0) NULL DEFAULT NULL,
-  `access_level` INT(11) NULL DEFAULT NULL,
-  `lastIP` VARCHAR(20) NULL DEFAULT NULL,
-  `lastServer` INT(4) NULL DEFAULT '1',
+  `password` VARCHAR(45)  DEFAULT NULL,
+  `lastactive` DECIMAL(20,0)  DEFAULT NULL,
+  `access_level` INT(11)  DEFAULT NULL,
+  `lastIP` VARCHAR(20)  DEFAULT NULL,
+  `lastServer` INT(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`login`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
