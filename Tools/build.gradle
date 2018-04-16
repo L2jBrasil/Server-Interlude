@@ -19,7 +19,6 @@ sourceSets {
     }
 }
 
-
 dependencies {
     compile project(':Commons')
     compile project(":Loginserver")

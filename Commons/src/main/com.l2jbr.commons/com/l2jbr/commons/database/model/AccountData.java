@@ -1,22 +1,14 @@
-package com.l2jbr.gameserver.model.dao;
+package com.l2jbr.commons.database.model;
 
+import com.l2jbr.commons.database.annotation.Table;
 import org.springframework.data.annotation.Id;
 
-public class account_data {
+@Table("account_data")
+public class AccountData extends Model<String> {
 
-
-    @Id  String  account_name;
+    @Id
     private String  var;
     private String value;
-
-
-    public String getAccountName() {
-        return account_name;
-    }
-
-    public void setAccountName(String accountName) {
-        this.account_name = accountName;
-    }
 
     public String getVar() {
         return var;
@@ -33,4 +25,10 @@ public class account_data {
     public void setValue(String value) {
         this.value = value;
     }
+
+    @Override
+    public String getId() {
+        return  var;
+    }
+
 }

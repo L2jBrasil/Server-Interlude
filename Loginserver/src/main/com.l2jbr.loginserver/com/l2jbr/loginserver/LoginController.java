@@ -20,7 +20,10 @@ package com.l2jbr.loginserver;
 
 import com.l2jbr.commons.Base64;
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.database.AccountRepository;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.model.Account;
 import com.l2jbr.commons.lib.Log;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.loginserver.GameServerTable.GameServerInfo;
@@ -346,6 +349,7 @@ public class LoginController {
             boolean loginOk = ((gsi.getCurrentPlayerCount() < gsi.getMaxPlayers()) && (gsi.getStatus() != ServerStatus.STATUS_GM_ONLY)) || (access >= Config.GM_MIN);
 
             if (loginOk && (client.getLastServer() != serverId)) {
+
                 try (Connection con = L2DatabaseFactory.getInstance().getConnection();
                      PreparedStatement statement = con.prepareStatement("UPDATE accounts SET lastServer = ? WHERE login = ?")) {
                     statement.setInt(1, serverId);
@@ -421,81 +425,61 @@ public class LoginController {
             return false;
         }
 
-        try (Connection con = L2DatabaseFactory.getInstance().getConnection();
-             PreparedStatement ps1 = con.prepareStatement("SELECT password, access_level, lastServer FROM accounts WHERE login=?")) {
+        try {
             MessageDigest md = MessageDigest.getInstance("SHA");
             byte[] raw = password.getBytes("UTF-8");
             byte[] hash = md.digest(raw);
 
-            byte[] expected = null;
-            int access = 0;
-            int lastServer = 1;
+            AccountRepository repository = DatabaseAccess.getRepository(AccountRepository.class);
+            Optional<Account> optionalAccount = repository.findById(user);
 
-            ps1.setString(1, user);
-            try (ResultSet rset = ps1.executeQuery()) {
-                if (rset.next()) {
-                    expected = Base64.decode(rset.getString("password"));
-                    access = rset.getInt("access_level");
-                    lastServer = rset.getInt("lastServer");
-                    if (lastServer <= 0) {
-                        lastServer = 1; // minServerId is 1 in Interlude
-                    }
-                    if (Config.DEBUG) {
-                        _log.debug("account exists");
-                    }
-                }
-            }
+            if (optionalAccount.isPresent()) {
+                _log.debug("account exists");
+                Account account = optionalAccount.get();
 
-            // if account doesnt exists
-            if (expected == null) {
-                if (Config.AUTO_CREATE_ACCOUNTS) {
-                    if ((user.length() >= 2) && (user.length() <= 14)) {
-                        try (PreparedStatement ps2 = con.prepareStatement("INSERT INTO accounts (login,password,lastactive,access_level,lastIP) values(?,?,?,?,?)")) {
-                            ps2.setString(1, user);
-                            ps2.setString(2, Base64.encodeBytes(hash));
-                            ps2.setLong(3, System.currentTimeMillis());
-                            ps2.setInt(4, 0);
-                            ps2.setString(5, address.getHostAddress());
-                            ps2.execute();
-                        }
-
-                        _log.info("created new account for " + user);
-                        return true;
-
-                    }
-                    _log.warn("Invalid username creation/use attempt: " + user);
+                if (account.isBanned()) {
+                    client.setAccessLevel(account.getAccessLevel());
                     return false;
                 }
-                _log.warn("account missing for user " + user);
-                return false;
-            }
 
-            // is this account banned?
-            if (access < 0) {
-                client.setAccessLevel(access);
-                return false;
-            }
+                byte[] expected = Base64.decode(account.getPassword());
 
-            // check password hash
-            ok = true;
-            for (int i = 0; i < expected.length; i++) {
-                if (hash[i] != expected[i]) {
-                    ok = false;
-                    break;
+                // check password hash
+                ok = true;
+                for (int i = 0; i < expected.length; i++) {
+                    if (hash[i] != expected[i]) {
+                        ok = false;
+                        break;
+                    }
                 }
-            }
 
-            if (ok) {
-                client.setAccessLevel(access);
-                client.setLastServer(lastServer);
-                try (PreparedStatement ps3 = con.prepareStatement("UPDATE accounts SET lastactive=?, lastIP=? WHERE login=?")) {
-                    ps3.setLong(1, System.currentTimeMillis());
-                    ps3.setString(2, address.getHostAddress());
-                    ps3.setString(3, user);
-                    ps3.execute();
+                if (ok) {
+                    client.setAccessLevel(account.getAccessLevel());
+                    client.setLastServer(account.getLastServer());
+                    account.setLastActive(System.currentTimeMillis());
+                    account.setLastIP(address.getHostAddress());
+                    repository.save(account);
                 }
+
+
+            } else if (Config.AUTO_CREATE_ACCOUNTS) {
+                if ((user.length() >= 2) && (user.length() <= 14)) {
+                    String pwd = Base64.encodeBytes(hash);
+                    long lastActive = System.currentTimeMillis();
+                    Account account = new Account(user, pwd, lastActive, (short) 0, (short) 1, address.getHostAddress());
+
+                    if (repository.save(account).isPersisted()) {
+                        _log.debug("created new account for {}", user);
+                        return true;
+                    }
+                    _log.debug("Invalid username creation/use attempt: {}", user);
+                    return false;
+                }
+
             }
-        } catch (Exception e) {
+            _log.debug("account missing for user {}", user);
+            return false;
+        }catch (Exception e) {
             _log.warn("Could not check password:" + e);
             ok = false;
         }

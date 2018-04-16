@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class EtcItem implements DAO {
+
+public class EtcItem  {
     private int item_id;
     private String name;
     private String crystallizable;

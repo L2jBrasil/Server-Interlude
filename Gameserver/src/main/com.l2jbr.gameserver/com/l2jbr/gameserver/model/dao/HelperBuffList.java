@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class HelperBuffList implements DAO {
+
+public class HelperBuffList  {
     private int id;
     private int skill_id;
     private String name;

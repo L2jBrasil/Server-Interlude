@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class LevelUpGain implements DAO {
+
+public class LevelUpGain  {
     private int classid;
     private int defaulthpbase;
     private int defaulthpadd;

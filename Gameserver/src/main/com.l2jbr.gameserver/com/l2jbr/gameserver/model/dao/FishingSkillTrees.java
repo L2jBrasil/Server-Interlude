@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class FishingSkillTrees implements DAO {
+
+public class FishingSkillTrees  {
 
     private int skill_id;
     private int level;

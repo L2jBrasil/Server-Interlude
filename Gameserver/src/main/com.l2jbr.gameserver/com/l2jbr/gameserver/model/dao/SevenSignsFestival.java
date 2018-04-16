@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class SevenSignsFestival implements DAO {
+
+public class SevenSignsFestival  {
     private int festivalId;
     private String cabal;
     private int cycle;

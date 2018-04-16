@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class SevenSigns implements DAO {
+
+public class SevenSigns  {
     private int char_obj_id;
     private String cabal;
     private int seal;

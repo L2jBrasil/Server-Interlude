@@ -2,8 +2,10 @@ plugins {
     id "java"
     id "idea"
     id "eclipse"
+    id "application"
 }
 ext.moduleName = 'com.l2jbr.loginserver'
+mainClassName = "com.l2jbr.loginserver.L2LoginServer"
 
 version '1.3.1'
 
@@ -19,7 +21,7 @@ sourceSets {
 }
 
 configurations.all {
-    transitive = false
+    transitive = true
 }
 
 dependencies {
@@ -27,14 +29,13 @@ dependencies {
     compile project(':Mmocore')
 
     compile 'org.slf4j:slf4j-api:1.8.0-beta2'
+    compile ('org.springframework.data:spring-data-jdbc:1.0.0.BUILD-SNAPSHOT') { changing = true }
 
     runtime 'org.apache.logging.log4j:log4j-core:2.11.0'
     runtime 'org.apache.logging.log4j:log4j-api:2.11.0'
     runtime 'org.apache.logging.log4j:log4j-slf4j-impl:2.11.0'
     runtime 'com.zaxxer:HikariCP:3.0.0'
     runtime 'mysql:mysql-connector-java:8.0.9-rc'
-
-
 }
 
 

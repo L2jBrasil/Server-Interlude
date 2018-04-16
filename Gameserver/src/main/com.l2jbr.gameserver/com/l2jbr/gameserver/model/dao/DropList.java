@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class DropList implements DAO {
+
+public class DropList  {
     private int mobId;
     private int itemId;
     private int min;

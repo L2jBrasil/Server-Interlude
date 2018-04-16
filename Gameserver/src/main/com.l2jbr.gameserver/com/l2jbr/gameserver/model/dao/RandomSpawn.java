@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class RandomSpawn implements DAO {
+
+public class RandomSpawn  {
 
     private int groupId;
     private int npcId;

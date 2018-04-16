@@ -1,8 +1,6 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
-
-public class ClanSubpledges implements DAO {
+public class ClanSubpledges {
 
     private int clan_id;
     private int sub_pledge_id;

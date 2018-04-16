@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class Henna implements DAO {
+
+public class Henna  {
 
     private int symbol_id;
     private String symbol_name;

@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class Armor implements DAO {
+
+public class Armor  {
 
     private int itemId;
     private String name;

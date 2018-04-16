@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class Boxes implements DAO {
+
+public class Boxes  {
     private int id;
     private int spawn;
     private int npcId;

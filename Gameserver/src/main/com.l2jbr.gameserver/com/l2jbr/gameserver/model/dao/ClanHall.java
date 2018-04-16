@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class ClanHall implements DAO {
+
+public class ClanHall  {
 
     private int id;
     private String name;

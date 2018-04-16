@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class PetsStats implements DAO {
+
+public class PetsStats  {
 
     private String type;
     private int typeID;

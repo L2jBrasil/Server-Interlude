@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class GlobalTasks implements DAO {
+
+public class GlobalTasks  {
 
     private int id;
     private String task;

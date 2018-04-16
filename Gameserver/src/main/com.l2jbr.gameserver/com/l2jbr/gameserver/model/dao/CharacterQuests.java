@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class CharacterQuests implements DAO {
+
+public class CharacterQuests  {
     private int char_id;
     private String name;
     private String var;

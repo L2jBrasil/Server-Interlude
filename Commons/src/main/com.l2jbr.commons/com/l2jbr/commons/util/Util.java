@@ -93,12 +93,20 @@ public class Util {
         return number;
     }
 
-    /**
-     * @param raw
-     * @return
-     */
+
     public static String printData(byte[] raw) {
         return printData(raw, raw.length);
     }
 
+    public static boolean isNull(Object obj) {
+        return obj == null;
+    }
+
+    public static boolean isNotNull(Object obj) {
+        return obj != null;
+    }
+
+    public static boolean isNullOrEmpty(String value) {
+        return isNull(value) || value.isEmpty();
+    }
 }

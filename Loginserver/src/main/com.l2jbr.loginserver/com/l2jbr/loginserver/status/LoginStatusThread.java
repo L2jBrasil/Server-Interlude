@@ -245,17 +245,14 @@ public class LoginStatusThread extends Thread
 		return false;
 	}
 	
-	/**
-	 * @param login
-	 * @return
-	 */
+
 	private boolean validLogin(String login)
 	{
 		if (!LoginController.getInstance().isGM(login))
 		{
 			return false;
 		}
-		
+
 		try (Connection con = L2DatabaseFactory.getInstance().getConnection();
 			 PreparedStatement statement = con.prepareStatement("SELECT password FROM accounts WHERE login=?"))
 		{

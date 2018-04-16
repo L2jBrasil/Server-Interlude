@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class Fish implements DAO {
+
+public class Fish  {
     private int id;
     private int level;
     private String name;

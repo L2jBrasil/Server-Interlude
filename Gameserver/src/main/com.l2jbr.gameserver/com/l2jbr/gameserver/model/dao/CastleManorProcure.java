@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class CastleManorProcure implements DAO {
+
+public class CastleManorProcure  {
 
     private int castleId;
     private int cropId;

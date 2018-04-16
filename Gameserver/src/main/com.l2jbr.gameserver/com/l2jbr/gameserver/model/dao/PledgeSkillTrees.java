@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class PledgeSkillTrees implements DAO {
+
+public class PledgeSkillTrees  {
 
     private int skill_id;
     private int level;

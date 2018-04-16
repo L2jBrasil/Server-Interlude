@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class MapRegion implements DAO {
+
+public class MapRegion  {
     private int region;
     private int sec0;
     private int sec1;

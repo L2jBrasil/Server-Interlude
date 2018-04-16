@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class CharacterSkillsSave implements DAO {
+
+public class CharacterSkillsSave  {
 
     private int char_obj_id;
     private int skill_id;

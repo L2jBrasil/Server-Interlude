@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class CharTemplates implements DAO {
+
+public class CharTemplates  {
 
     private int classId;
     private String className;

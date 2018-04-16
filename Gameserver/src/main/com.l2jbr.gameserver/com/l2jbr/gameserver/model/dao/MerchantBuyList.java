@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class MerchantBuyList implements DAO {
+
+public class MerchantBuyList  {
 
     private int item_id;
     private int price;

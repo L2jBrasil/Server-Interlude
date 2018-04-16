@@ -1,8 +1,6 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
-
-public class Teleport implements DAO {
+public class Teleport  {
     private String Description;
     private int id;
     private int loc_x;

@@ -19,13 +19,15 @@
 package com.l2jbr.commons.database;
 
 import com.l2jbr.commons.Config;
-import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Optional;
 
 
 public class L2DatabaseFactory {
@@ -33,36 +35,12 @@ public class L2DatabaseFactory {
 
     private static L2DatabaseFactory _instance;
     private final HikariDataSource _dataSource;
+    private final ApplicationContext context;
 
     public L2DatabaseFactory() throws SQLException {
+        context = new AnnotationConfigApplicationContext(DatabaseContextConfiguration.class);
+        _dataSource = context.getBean(HikariDataSource.class);
 
-
-        HikariConfig config = new HikariConfig();
-        config.setJdbcUrl(Config.DATABASE_URL);
-        config.setUsername(Config.DATABASE_LOGIN);
-        config.setPassword(Config.DATABASE_PASSWORD);
-        config.addDataSourceProperty("cachePrepStmts", true);
-        config.addDataSourceProperty("prepStmtCacheSize", 250);
-        config.addDataSourceProperty("prepStmtCacheSqlLimit", 2048);
-        config.addDataSourceProperty("useServerPrepStmts", true);
-        config.addDataSourceProperty("useLocalSessionState", true);
-        config.addDataSourceProperty("useLocalTransactionState", true);
-        config.addDataSourceProperty("rewriteBatchedStatements", true);
-        config.addDataSourceProperty("cacheServerConfiguration", true);
-        config.addDataSourceProperty("cacheResultSetMetadata", true);
-        config.addDataSourceProperty("maintainTimeStats", true);
-        config.addDataSourceProperty("logger", "com.mysql.cj.core.log.Slf4JLogger");
-        config.addDataSourceProperty("autoCommit", true);
-        config.addDataSourceProperty("minimumIdle", 10);
-        config.addDataSourceProperty("validationTimeout", 500); // 500 milliseconds wait before try to acquire connection again
-        config.addDataSourceProperty("connectionTimeout", 0); // 0 = wait indefinitely for new connection if pool is exhausted
-        config.addDataSourceProperty("maximumPoolSize", Config.DATABASE_MAX_CONNECTIONS);
-        config.addDataSourceProperty("idleTimeout", Config.DATABASE_MAX_IDLE_TIME); // 0 = idle connections never expire
-        config.addDataSourceProperty("driverClassName", Config.DATABASE_DRIVER);
-        _dataSource = new HikariDataSource(config);
-
-
-        // Test DB connection
         try {
             _dataSource.getConnection().close();
         } catch (SQLException e) {
@@ -128,4 +106,14 @@ public class L2DatabaseFactory {
 
     public static void close(Connection conn) {
     }
+
+    public  <T> T getRepository(Class<T> repositoryClass) {
+        try {
+            return context.getBean(repositoryClass);
+        }catch (Exception e) {
+            _log.error("could.not.retrieve.repository", e);
+            throw  e;
+        }
+    }
+
 }

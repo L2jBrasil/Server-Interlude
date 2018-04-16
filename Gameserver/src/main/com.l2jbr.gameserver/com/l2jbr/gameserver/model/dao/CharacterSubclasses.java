@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class CharacterSubclasses implements DAO {
+
+public class CharacterSubclasses  {
 
     private int char_obj_id;
     private int class_id;

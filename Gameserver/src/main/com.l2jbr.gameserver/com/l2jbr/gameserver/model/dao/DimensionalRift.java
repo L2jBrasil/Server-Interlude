@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class DimensionalRift implements DAO {
+
+public class DimensionalRift  {
     private int type;
     private int room_id;
     private int xMin;

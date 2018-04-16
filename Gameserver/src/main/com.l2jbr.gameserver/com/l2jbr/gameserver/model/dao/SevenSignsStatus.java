@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class SevenSignsStatus implements DAO {
+
+public class SevenSignsStatus  {
 
     private int id;
     private int current_cycle;

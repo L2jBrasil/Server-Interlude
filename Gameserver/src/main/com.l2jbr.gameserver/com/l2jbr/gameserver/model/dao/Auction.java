@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class Auction implements DAO {
+
+public class Auction  {
 
     private int id;
     private int sellerId;

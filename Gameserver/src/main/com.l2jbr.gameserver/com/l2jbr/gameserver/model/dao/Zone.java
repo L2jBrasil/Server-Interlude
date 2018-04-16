@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class Zone implements DAO {
+
+public class Zone  {
     private int id;
     private String type;
     private String name;

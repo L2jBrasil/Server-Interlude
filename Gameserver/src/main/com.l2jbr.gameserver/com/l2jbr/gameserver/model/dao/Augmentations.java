@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class Augmentations implements DAO {
+
+public class Augmentations  {
 
     private int itemId;
     private int attributes;

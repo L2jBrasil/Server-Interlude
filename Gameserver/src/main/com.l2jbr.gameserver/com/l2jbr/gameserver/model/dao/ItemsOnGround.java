@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class ItemsOnGround implements DAO {
+
+public class ItemsOnGround  {
     private int object_id;
     private int item_id;
     private int count;

@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class ClanData implements DAO {
+
+public class ClanData  {
 
     private int clan_id;
     private String clan_name;

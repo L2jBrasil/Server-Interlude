@@ -70,8 +70,6 @@ task zip(type: Zip, group: "Archive", description: "Zip Gameserver") {
         exclude('gameserver-messages*properties')
     }
 
-
-
     destinationDir project.buildDir
 }
 

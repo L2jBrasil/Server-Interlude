@@ -1,8 +1,8 @@
 package com.l2jbr.gameserver.model.dao;
 
-import com.l2jbr.commons.database.dao.DAO;
 
-public class Topic implements DAO {
+
+public class Topic  {
 
     private int topic_id;
     private int topic_forum_id;
