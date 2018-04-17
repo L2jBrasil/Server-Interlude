@@ -6,7 +6,7 @@ import com.l2jbr.commons.database.annotation.Table;
 import org.springframework.data.annotation.Id;
 
 @Table("accounts")
-public class Account extends Model<String> {
+public class Account extends Entity<String> {
 
     @Id
     private String login;

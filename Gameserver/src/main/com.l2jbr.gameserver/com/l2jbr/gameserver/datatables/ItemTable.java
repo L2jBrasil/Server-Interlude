@@ -19,6 +19,7 @@
 package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.Item;
 import com.l2jbr.gameserver.ThreadPoolManager;
@@ -28,6 +29,8 @@ import com.l2jbr.gameserver.model.L2ItemInstance.ItemLocation;
 import com.l2jbr.gameserver.model.actor.instance.L2BossInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2RaidBossInstance;
+import com.l2jbr.gameserver.model.database.Armor;
+import com.l2jbr.gameserver.model.database.repository.ArmorRepository;
 import com.l2jbr.gameserver.skills.SkillsEngine;
 import com.l2jbr.gameserver.templates.*;
 import org.slf4j.Logger;
@@ -146,14 +149,12 @@ public class ItemTable {
     /**
      * Table of SQL request in order to obtain items from tables [etcitem], [armor], [weapon]
      */
-    private static final String[] SQL_ITEM_SELECTS =
-            {
-                    "SELECT item_id, name, crystallizable, item_type, weight, consume_type, material, crystal_type, duration, price, crystal_count, sellable, dropable, destroyable, tradeable FROM etcitem",
+    private static final String[] SQL_ITEM_SELECTS = {
+        "SELECT item_id, name, crystallizable, item_type, weight, consume_type, material, crystal_type, duration, price, crystal_count, sellable, dropable, destroyable, tradeable FROM etcitem",
 
-                    "SELECT item_id, name, bodypart, crystallizable, armor_type, weight," + " material, crystal_type, avoid_modify, duration, p_def, m_def, mp_bonus," + " price, crystal_count, sellable, dropable, destroyable, tradeable, item_skill_id, item_skill_lvl FROM armor",
+        "SELECT item_id, name, bodypart, crystallizable, weight, soulshots, spiritshots," + " material, crystal_type, p_dam, rnd_dam, weaponType, critical, hit_modify, avoid_modify," + " shield_def, shield_def_rate, atk_speed, mp_consume, m_dam, duration, price, crystal_count," + " sellable, dropable, destroyable, tradeable, item_skill_id, item_skill_lvl,enchant4_skill_id,enchant4_skill_lvl, onCast_skill_id, onCast_skill_lvl," + " onCast_skill_chance, onCrit_skill_id, onCrit_skill_lvl, onCrit_skill_chance FROM weapon"
+    };
 
-                    "SELECT item_id, name, bodypart, crystallizable, weight, soulshots, spiritshots," + " material, crystal_type, p_dam, rnd_dam, weaponType, critical, hit_modify, avoid_modify," + " shield_def, shield_def_rate, atk_speed, mp_consume, m_dam, duration, price, crystal_count," + " sellable, dropable, destroyable, tradeable, item_skill_id, item_skill_lvl,enchant4_skill_id,enchant4_skill_lvl, onCast_skill_id, onCast_skill_lvl," + " onCast_skill_chance, onCrit_skill_id, onCrit_skill_lvl, onCrit_skill_chance FROM weapon"
-            };
     /**
      * List of etcItem
      */
@@ -196,6 +197,12 @@ public class ItemTable {
         _armors = new LinkedHashMap<>();
         _weapons = new LinkedHashMap<>();
 
+        ArmorRepository repository = DatabaseAccess.getRepository(ArmorRepository.class);
+        repository.findAll().forEach( armor -> {
+            Item newItem = readArmor(armor);
+            armorData.put(newItem.id, newItem);
+        });
+
         java.sql.Connection con = null;
         try {
             con = L2DatabaseFactory.getInstance().getConnection();
@@ -208,9 +215,6 @@ public class ItemTable {
                     if (selectQuery.endsWith("etcitem")) {
                         Item newItem = readItem(rset);
                         itemData.put(newItem.id, newItem);
-                    } else if (selectQuery.endsWith("armor")) {
-                        Item newItem = readArmor(rset);
-                        armorData.put(newItem.id, newItem);
                     } else if (selectQuery.endsWith("weapon")) {
                         Item newItem = readWeapon(rset);
                         weaponData.put(newItem.id, newItem);
@@ -340,25 +344,25 @@ public class ItemTable {
      * @return Item : object created from the database record
      * @throws SQLException
      */
-    private Item readArmor(ResultSet rset) throws SQLException {
+    private Item readArmor(Armor rset) {
         Item item = new Item();
         item.set = new StatsSet();
-        item.type = _armorTypes.get(rset.getString("armor_type"));
-        item.id = rset.getInt("item_id");
-        item.name = rset.getString("name");
+        item.type = _armorTypes.get(rset.getArmorType());
+        item.id = rset.getId();
+        item.name = rset.getName();
 
         item.set.set("item_id", item.id);
         item.set.set("name", item.name);
-        int bodypart = _slots.get(rset.getString("bodypart"));
+        int bodypart = _slots.get(rset.getBodyPart());
         item.set.set("bodypart", bodypart);
-        item.set.set("crystallizable", Boolean.valueOf(rset.getString("crystallizable")));
-        item.set.set("crystal_count", rset.getInt("crystal_count"));
-        item.set.set("sellable", Boolean.valueOf(rset.getString("sellable")));
-        item.set.set("dropable", Boolean.valueOf(rset.getString("dropable")));
-        item.set.set("destroyable", Boolean.valueOf(rset.getString("destroyable")));
-        item.set.set("tradeable", Boolean.valueOf(rset.getString("tradeable")));
-        item.set.set("item_skill_id", rset.getInt("item_skill_id"));
-        item.set.set("item_skill_lvl", rset.getInt("item_skill_lvl"));
+        item.set.set("crystallizable", Boolean.valueOf(rset.getCrystallizable()));
+        item.set.set("crystal_count", rset.getCrystalCount());
+        item.set.set("sellable", Boolean.valueOf(rset.getSellable()));
+        item.set.set("dropable", Boolean.valueOf(rset.getDropable()));
+        item.set.set("destroyable", Boolean.valueOf(rset.getDestroyable()));
+        item.set.set("tradeable", Boolean.valueOf(rset.getTradeable()));
+        item.set.set("item_skill_id", rset.getItemSkillId());
+        item.set.set("item_skill_lvl", rset.getItemSkillLevel());
 
         if ((bodypart == L2Item.SLOT_NECK) || (bodypart == L2Item.SLOT_HAIR) || (bodypart == L2Item.SLOT_FACE) || (bodypart == L2Item.SLOT_DHAIR) || ((bodypart & L2Item.SLOT_L_EAR) != 0) || ((bodypart & L2Item.SLOT_L_FINGER) != 0)) {
             item.set.set("type1", L2Item.TYPE1_WEAPON_RING_EARRING_NECKLACE);
@@ -368,15 +372,15 @@ public class ItemTable {
             item.set.set("type2", L2Item.TYPE2_SHIELD_ARMOR);
         }
 
-        item.set.set("weight", rset.getInt("weight"));
-        item.set.set("material", _materials.get(rset.getString("material")));
-        item.set.set("crystal_type", _crystalTypes.get(rset.getString("crystal_type")));
-        item.set.set("avoid_modify", rset.getInt("avoid_modify"));
-        item.set.set("duration", rset.getInt("duration"));
-        item.set.set("p_def", rset.getInt("p_def"));
-        item.set.set("m_def", rset.getInt("m_def"));
-        item.set.set("mp_bonus", rset.getInt("mp_bonus"));
-        item.set.set("price", rset.getInt("price"));
+        item.set.set("weight", rset.getWeight());
+        item.set.set("material", _materials.get(rset.getMaterial()));
+        item.set.set("crystal_type", _crystalTypes.get(rset.getCrystalType()));
+        item.set.set("avoid_modify", rset.getAvoidModify());
+        item.set.set("duration", rset.getDuration());
+        item.set.set("p_def", rset.getPdef());
+        item.set.set("m_def", rset.getMdef());
+        item.set.set("mp_bonus", rset.getMpBonus());
+        item.set.set("price", rset.getPrice());
 
         if (item.type == L2ArmorType.PET) {
             item.set.set("type1", L2Item.TYPE1_SHIELD_ARMOR);

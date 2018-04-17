@@ -1,7 +1,7 @@
 package com.l2jbr.commons.database;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.database.model.Model;
+import com.l2jbr.commons.database.model.Entity;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.context.ApplicationListener;
@@ -62,14 +62,14 @@ public class DatabaseContextConfiguration {
     @Bean
     public ApplicationListener<BeforeSaveEvent> beforeSaveEventApplicationListener() {
         return event -> {
-            extractModel(event).ifPresent(Model::onSave);
+            extractModel(event).ifPresent(Entity::onSave);
         };
     }
 
-    private Optional<Model> extractModel(WithEntity event) {
+    private Optional<Entity> extractModel(WithEntity event) {
         Object entity = event.getEntity();
-        if (entity instanceof Model) {
-            return Optional.of((Model) entity);
+        if (entity instanceof Entity) {
+            return Optional.of((Entity) entity);
         }
         return  Optional.empty();
     }
@@ -77,7 +77,7 @@ public class DatabaseContextConfiguration {
     @Bean
     public ApplicationListener<AfterLoadEvent> afterLoadEventApplicationListener() {
         return event -> {
-            extractModel(event).ifPresent(Model::onLoad);
+            extractModel(event).ifPresent(Entity::onLoad);
         };
     }
 
