@@ -433,7 +433,7 @@ public class LoginController {
                 if ((user.length() >= 2) && (user.length() <= 14)) {
                     String pwd = Base64.encodeBytes(hash);
                     long lastActive = System.currentTimeMillis();
-                    Account account = new Account(user, pwd, lastActive, (short) 0, (short) 1, address.getHostAddress());
+                    Account account = new Account(user, pwd, lastActive, address.getHostAddress());
 
                     if (repository.save(account).isPersisted()) {
                         _log.debug("created new account for {}", user);

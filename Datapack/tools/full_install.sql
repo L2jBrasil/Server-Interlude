@@ -1,4 +1,3 @@
-DROP TABLE IF EXISTS account_data;
 DROP TABLE IF EXISTS armor;
 DROP TABLE IF EXISTS armorsets;
 DROP TABLE IF EXISTS auction;

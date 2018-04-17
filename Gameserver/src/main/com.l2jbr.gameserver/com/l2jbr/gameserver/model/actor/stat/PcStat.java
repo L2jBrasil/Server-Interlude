@@ -18,7 +18,8 @@
 package com.l2jbr.gameserver.model.actor.stat;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.AccountRepository;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PetInstance;
@@ -27,10 +28,6 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 
 public class PcStat extends PlayableStat
@@ -171,66 +168,38 @@ public class PcStat extends PlayableStat
 		
 		boolean levelIncreased = super.addLevel(value);
 		
-		if (levelIncreased)
-		{
+		if (levelIncreased) {
 			/**
-			 * If there are no characters on the server, the bonuses will be applied to the first character that becomes level 6 and end if this character reaches level 25 or above. If the first character that becomes level 6 is deleted, the rest of the characters may not receive the new character
-			 * bonus If the first character to become level 6 loses a level, and the player makes another character level 6, the bonus will be applied to only the first character to achieve level 6. If the character loses a level after reaching level 25, the character may not receive the bonus.
+			 * If there are no characters on the server, the bonuses will be applied to the first character that becomes level 6
+			 * and end if this character reaches level 25 or above;
+			 *
+			 * If the first character that becomes level 6 is deleted, the rest of the characters may not receive the new character bonus;
+			 *
+			 * If the first character to become level 6 loses a level, and the player makes another character level 6,
+			 * the bonus will be applied to only the first character to achieve level 6;
+			 *
+			 * If the character loses a level after reaching level 25, the character may not receive the bonus;
+             *
+             *
 			 */
-			if (!Config.ALT_GAME_NEW_CHAR_ALWAYS_IS_NEWBIE)
-			{
-				if ((getActiveChar().getLevel() >= Experience.MIN_NEWBIE_LEVEL) && (getActiveChar().getLevel() < Experience.MAX_NEWBIE_LEVEL) && !getActiveChar().isNewbie())
-				{
-					java.sql.Connection con = null;
-					try
-					{
-						con = L2DatabaseFactory.getInstance().getConnection();
-						PreparedStatement statement;
-						
-						statement = con.prepareStatement("SELECT value FROM account_data WHERE (account_name=?) AND (var='newbie_char')");
-						statement.setString(1, getActiveChar().getAccountName());
-						ResultSet rset = statement.executeQuery();
-						
-						if (!rset.next())
-						{
-							PreparedStatement statement1;
-							statement1 = con.prepareStatement("INSERT INTO account_data (account_name, var, value) VALUES (?, 'newbie_char', ?)");
-							statement1.setString(1, getActiveChar().getAccountName());
-							statement1.setInt(2, getActiveChar().getObjectId());
-							statement1.executeUpdate();
-							statement1.close();
-							
-							getActiveChar().setNewbie(true);
-							if (Config.DEBUG)
-							{
-								_log.info("New newbie character: " + getActiveChar().getCharId());
-							}
-						}
-						rset.close();
-						statement.close();
-					}
-					catch (SQLException e)
-					{
-						_log.warn("Could not check character for newbie: " + e);
-					}
-					finally
-					{
-						try
-						{
-							con.close();
-						}
-						catch (Exception e)
-						{
-						}
-					}
+			if (!Config.ALT_GAME_NEW_CHAR_ALWAYS_IS_NEWBIE) {
+                L2PcInstance activeChar = getActiveChar();
+				if ((activeChar.getLevel() >= Experience.MIN_NEWBIE_LEVEL) && (activeChar.getLevel() < Experience.MAX_NEWBIE_LEVEL)
+                        && !activeChar.isNewbie()) {
+
+                    AccountRepository repository = DatabaseAccess.getRepository(AccountRepository.class);
+                    repository.findById(activeChar.getAccountName()).ifPresent( account -> {
+                        if(account.getNewbieCharacterId() == 0) {
+                            account.setNewbieCharacterId(activeChar.getObjectId());
+                            repository.save(account);
+                        }
+                    });
 				}
-				
-				if ((getActiveChar().getLevel() >= 25) && getActiveChar().isNewbie())
-				{
-					getActiveChar().setNewbie(false);
-					if (Config.DEBUG)
-					{
-						_log.info("Newbie character ended: " + getActiveChar().getCharId());
+
+				if ((activeChar.getLevel() >= 25) && activeChar.isNewbie()) {
+					activeChar.setNewbie(false);
+					if (Config.DEBUG) {
+						_log.info("Newbie character ended: {}", getActiveChar().getObjectId());
 					}
 				}
 			}

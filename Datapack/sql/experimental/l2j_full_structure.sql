@@ -30,30 +30,13 @@ CREATE TABLE IF NOT EXISTS `accounts` (
   `login` VARCHAR(45) NOT NULL DEFAULT '',
   `password` VARCHAR(45)  DEFAULT NULL,
   `lastactive` DECIMAL(20,0)  DEFAULT NULL,
-  `access_level` INT(11)  DEFAULT NULL,
+  `access_level` INT  DEFAULT 0,
   `lastIP` VARCHAR(20)  DEFAULT NULL,
-  `lastServer` INT(4) NOT NULL DEFAULT '1',
+  `lastServer` INT NOT NULL DEFAULT 1,
+  `newbieCharacterId` DECIMAL(11,0) NULL,
   PRIMARY KEY (`login`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
--- Table `account_data`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `account_data` ;
-
-CREATE TABLE IF NOT EXISTS `account_data` (
-  `account_name` VARCHAR(45) NOT NULL DEFAULT '',
-  `var` VARCHAR(20) NOT NULL DEFAULT '',
-  `value` VARCHAR(255) NULL DEFAULT NULL,
-  PRIMARY KEY (`account_name`, `var`),
-  CONSTRAINT `FK_AccountName`
-    FOREIGN KEY (`account_name`)
-    REFERENCES `accounts` (`login`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
-
 
 -- -----------------------------------------------------
 -- Table `armor`

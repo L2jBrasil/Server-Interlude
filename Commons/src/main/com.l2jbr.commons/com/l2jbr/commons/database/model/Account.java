@@ -16,16 +16,15 @@ public class Account extends Model<String> {
     private Integer accessLevel;
     private Integer lastServer;
     private String lastIP;
+    private Integer newbieCharacterId;
 
     public Account() { }
 
-    public Account(String login, String password, long lastActive, int accessLevel, int lastServer, String lastIP) {
+    public Account(String login, String password, long lastActive, String lastIP) {
         this.login = login;
         this.password = password;
         this.lastActive = lastActive;
-        this.accessLevel = accessLevel;
         this.lastIP = lastIP;
-        this.lastServer = lastServer;
     }
 
     @Override
@@ -49,7 +48,9 @@ public class Account extends Model<String> {
         return accessLevel < 0;
     }
 
-    public void setLastActive(long lastActive) { this.lastActive = lastActive;  }
+    public void setLastActive(long lastActive) {
+        this.lastActive = lastActive;
+    }
 
     public void setLastIP(String lastIP) {
         this.lastIP = lastIP;
@@ -59,5 +60,15 @@ public class Account extends Model<String> {
         this.accessLevel = accessLevel;
     }
 
-    public boolean isGM() {  return accessLevel >= Config.GM_MIN;  }
+    public boolean isGM() {
+        return accessLevel >= Config.GM_MIN;
+    }
+
+    public int getNewbieCharacterId() {
+        return newbieCharacterId;
+    }
+
+    public void setNewbieCharacterId(int newbieCharacterId) {
+        this.newbieCharacterId = newbieCharacterId;
+    }
 }
