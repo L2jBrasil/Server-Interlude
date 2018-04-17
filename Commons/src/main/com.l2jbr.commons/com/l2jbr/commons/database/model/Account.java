@@ -6,20 +6,20 @@ import com.l2jbr.commons.database.annotation.Table;
 import org.springframework.data.annotation.Id;
 
 @Table("accounts")
-public class Account extends  Model<String> {
+public class Account extends Model<String> {
 
     @Id
     private String login;
     private String password;
     private Long lastActive;
     @Column("access_level")
-    private short accessLevel;
-    private short lastServer;
+    private Integer accessLevel;
+    private Integer lastServer;
     private String lastIP;
 
-    public  Account() { }
+    public Account() { }
 
-    public Account(String login, String password, long lastActive, short accessLevel, short lastServer, String lastIP) {
+    public Account(String login, String password, long lastActive, int accessLevel, int lastServer, String lastIP) {
         this.login = login;
         this.password = password;
         this.lastActive = lastActive;
@@ -33,7 +33,7 @@ public class Account extends  Model<String> {
         return login;
     }
 
-    public short getAccessLevel() {
+    public int getAccessLevel() {
         return accessLevel;
     }
 
@@ -41,7 +41,7 @@ public class Account extends  Model<String> {
         return password;
     }
 
-    public short getLastServer() {
+    public int getLastServer() {
         return lastServer;
     }
 
@@ -49,19 +49,15 @@ public class Account extends  Model<String> {
         return accessLevel < 0;
     }
 
-    public void setLastActive(long lastActive) {
-        this.lastActive = lastActive;
-    }
+    public void setLastActive(long lastActive) { this.lastActive = lastActive;  }
 
     public void setLastIP(String lastIP) {
         this.lastIP = lastIP;
     }
 
-    public void setAccessLevel(Short accessLevel) {
+    public void setAccessLevel(int accessLevel) {
         this.accessLevel = accessLevel;
     }
 
-    public boolean isGM() {
-        return accessLevel >= Config.GM_MIN;
-    }
+    public boolean isGM() {  return accessLevel >= Config.GM_MIN;  }
 }

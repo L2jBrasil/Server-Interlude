@@ -338,7 +338,7 @@ public class LoginController {
      * @param serverId
      * @return
      */
-    public boolean isLoginPossible(L2LoginClient client, short serverId) {
+    public boolean isLoginPossible(L2LoginClient client, int serverId) {
         GameServerInfo gsi = GameServerTable.getInstance().getRegisteredGameServerById(serverId);
         int access = client.getAccessLevel();
         if ((gsi != null) && gsi.isAuthed()) {

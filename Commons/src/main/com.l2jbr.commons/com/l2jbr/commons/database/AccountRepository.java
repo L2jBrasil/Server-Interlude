@@ -14,10 +14,10 @@ public interface AccountRepository extends CrudRepository<Account, String> {
 
     @Modifying
     @Query("UPDATE accounts SET access_level=:accessLevel WHERE login=:login")
-    int updateAcessLevel(@Param("login") String login, @Param("accessLevel") short acessLevel);
+    int updateAcessLevel(@Param("login") String login, @Param("accessLevel") int acessLevel);
 
     @Modifying
     @Query("UPDATE accounts SET lastServer=:server WHERE login=:login")
-    int updateLastServer(@Param("login") String login, @Param("server") short server);
+    int updateLastServer(@Param("login") String login, @Param("server") int server);
 }
 
