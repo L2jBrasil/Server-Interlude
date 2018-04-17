@@ -22,7 +22,6 @@ import com.l2jbr.commons.Base64;
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.AccountRepository;
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.database.model.Account;
 import com.l2jbr.commons.lib.Log;
 import com.l2jbr.commons.util.Rnd;
@@ -41,9 +40,6 @@ import java.security.KeyPairGenerator;
 import java.security.MessageDigest;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.spec.RSAKeyGenParameterSpec;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.*;
 
 
@@ -342,21 +338,16 @@ public class LoginController {
      * @param serverId
      * @return
      */
-    public boolean isLoginPossible(L2LoginClient client, int serverId) {
+    public boolean isLoginPossible(L2LoginClient client, short serverId) {
         GameServerInfo gsi = GameServerTable.getInstance().getRegisteredGameServerById(serverId);
         int access = client.getAccessLevel();
         if ((gsi != null) && gsi.isAuthed()) {
             boolean loginOk = ((gsi.getCurrentPlayerCount() < gsi.getMaxPlayers()) && (gsi.getStatus() != ServerStatus.STATUS_GM_ONLY)) || (access >= Config.GM_MIN);
 
             if (loginOk && (client.getLastServer() != serverId)) {
-
-                try (Connection con = L2DatabaseFactory.getInstance().getConnection();
-                     PreparedStatement statement = con.prepareStatement("UPDATE accounts SET lastServer = ? WHERE login = ?")) {
-                    statement.setInt(1, serverId);
-                    statement.setString(2, client.getAccount());
-                    statement.executeUpdate();
-                } catch (Exception e) {
-                    _log.warn("Could not set lastServer: " + e);
+                AccountRepository accountRepository = DatabaseAccess.getRepository(AccountRepository.class);
+                if(accountRepository.updateLastServer(client.getAccount(), serverId) < 1) {
+                    _log.warn("Could not set lastServer of account {} ", client.getAccount());
                 }
             }
             return loginOk;
@@ -364,35 +355,11 @@ public class LoginController {
         return false;
     }
 
-    public void setAccountAccessLevel(String account, int banLevel) {
-        try (Connection con = L2DatabaseFactory.getInstance().getConnection();
-             PreparedStatement statement = con.prepareStatement("UPDATE accounts SET access_level=? WHERE login=?")) {
-            statement.setInt(1, banLevel);
-            statement.setString(2, account);
-            statement.executeUpdate();
-        } catch (Exception e) {
-            _log.warn("Could not set accessLevel: " + e);
+    public void setAccountAccessLevel(String login, short acessLevel) {
+        AccountRepository repository = DatabaseAccess.getRepository(AccountRepository.class);
+        if(repository.updateAcessLevel(login, acessLevel) < 1) {
+            _log.warn("Could not set accessLevel of account {}", login);
         }
-    }
-
-    public boolean isGM(String user) {
-        boolean ok = false;
-        try (Connection con = L2DatabaseFactory.getInstance().getConnection();
-             PreparedStatement statement = con.prepareStatement("SELECT access_level FROM accounts WHERE login=?")) {
-            statement.setString(1, user);
-            try (ResultSet rset = statement.executeQuery()) {
-                if (rset.next()) {
-                    int accessLevel = rset.getInt(1);
-                    if (accessLevel >= Config.GM_MIN) {
-                        ok = true;
-                    }
-                }
-            }
-        } catch (Exception e) {
-            _log.warn("could not check gm state:" + e);
-            ok = false;
-        }
-        return ok;
     }
 
     /**
@@ -506,28 +473,6 @@ public class LoginController {
             Log.add("'" + user + "' " + address.getHostAddress(), "logins_ip");
         }
 
-        return ok;
-    }
-
-    public boolean loginBanned(String user) {
-        boolean ok = false;
-        try (Connection con = L2DatabaseFactory.getInstance().getConnection();
-             PreparedStatement statement = con.prepareStatement("SELECT access_level FROM accounts WHERE login=?")) {
-            statement.setString(1, user);
-            try (ResultSet rset = statement.executeQuery()) {
-                if (rset.next()) {
-                    int accessLevel = rset.getInt(1);
-                    if (accessLevel < 0) {
-                        ok = true;
-                    }
-                }
-            }
-        } catch (Exception e) {
-            // digest algo not found ??
-            // out of bounds should not be possible
-            _log.warn("could not check ban state:" + e);
-            ok = false;
-        }
         return ok;
     }
 

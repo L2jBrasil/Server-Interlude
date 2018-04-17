@@ -126,7 +126,7 @@ public class SQLAccountManager {
         newpass = md.digest(newpass);
 
         AccountRepository repository = DatabaseAccess.getRepository(AccountRepository.class);
-        repository.replaceAccount(login, Base64.encodeBytes(newpass), Short.valueOf(level));
+        repository.createOrUpdateAccount(login, Base64.encodeBytes(newpass), Short.valueOf(level));
     }
 
     private static void changeAccountLevel(String login, String level) {
@@ -143,7 +143,7 @@ public class SQLAccountManager {
 
     private static void deleteAccount(String login) throws SQLException {
         AccountRepository repository = DatabaseAccess.getRepository(AccountRepository.class);
-        Optional<Account> optionalAccount =  repository.findById(login);
+        Optional<Account> optionalAccount = repository.findById(login);
 
         if(optionalAccount.isPresent()) {
             java.sql.Connection con = null;
@@ -277,11 +277,7 @@ public class SQLAccountManager {
             }
 
             // Delete Account
-            statement.close();
-            statement = con.prepareStatement("DELETE FROM accounts WHERE login=?;");
-            statement.setEscapeProcessing(true);
-            statement.setString(1, login);
-            statement.executeUpdate();
+            repository.delete(optionalAccount.get());
 
             System.out.println("Account " + login + " has been deleted.");
             rset.close();

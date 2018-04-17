@@ -1,5 +1,6 @@
 package com.l2jbr.commons.database.model;
 
+import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.annotation.Column;
 import com.l2jbr.commons.database.annotation.Table;
 import org.springframework.data.annotation.Id;
@@ -58,5 +59,9 @@ public class Account extends  Model<String> {
 
     public void setAccessLevel(Short accessLevel) {
         this.accessLevel = accessLevel;
+    }
+
+    public boolean isGM() {
+        return accessLevel >= Config.GM_MIN;
     }
 }

@@ -233,7 +233,7 @@ public class GameServerThread extends Thread {
     private void onReceiveChangeAccessLevel(byte[] data) {
         if (isAuthed()) {
             ChangeAccessLevel cal = new ChangeAccessLevel(data);
-            LoginController.getInstance().setAccountAccessLevel(cal.getAccount(), cal.getLevel());
+            LoginController.getInstance().setAccountAccessLevel(cal.getAccount(), (short) cal.getLevel());
             _log.info("Changed " + cal.getAccount() + " access level to " + cal.getLevel());
         } else {
             forceClose(LoginServerFail.NOT_AUTHED);

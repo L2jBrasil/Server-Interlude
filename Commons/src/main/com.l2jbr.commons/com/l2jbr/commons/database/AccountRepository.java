@@ -10,5 +10,14 @@ public interface AccountRepository extends CrudRepository<Account, String> {
 
     @Modifying
     @Query("REPLACE accounts (login, password, access_level) values (:login, :password, :accessLevel)")
-    int replaceAccount(@Param("login") String login, @Param("password") String password, @Param("accessLevel") short accessLevel);
+    int createOrUpdateAccount(@Param("login") String login, @Param("password") String password, @Param("accessLevel") short accessLevel);
+
+    @Modifying
+    @Query("UPDATE accounts SET access_level=:accessLevel WHERE login=:login")
+    int updateAcessLevel(@Param("login") String login, @Param("accessLevel") short acessLevel);
+
+    @Modifying
+    @Query("UPDATE accounts SET lastServer=:server WHERE login=:login")
+    int updateLastServer(@Param("login") String login, @Param("server") short server);
 }
+
