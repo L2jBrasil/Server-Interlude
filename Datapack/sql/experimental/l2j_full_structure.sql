@@ -184,7 +184,9 @@ DROP TABLE IF EXISTS `char_templates` ;
 CREATE TABLE IF NOT EXISTS `char_templates` (
   `ClassId` INT(11) NOT NULL DEFAULT '0',
   `ClassName` VARCHAR(20) NOT NULL DEFAULT '',
+  `class_lvl` INT(3) NOT NULL DEFAULT '0',
   `RaceId` INT(1) NOT NULL DEFAULT '0',
+  `parent_id` INT(11) NOT NULL DEFAULT '0',
   `STR` INT(2) NOT NULL DEFAULT '0',
   `CON` INT(2) NOT NULL DEFAULT '0',
   `DEX` INT(2) NOT NULL DEFAULT '0',
@@ -202,6 +204,15 @@ CREATE TABLE IF NOT EXISTS `char_templates` (
   `EVASION` INT(3) NOT NULL DEFAULT '0',
   `MOVE_SPD` INT(3) NOT NULL DEFAULT '0',
   `_LOAD` INT(11) NOT NULL DEFAULT '0',
+  `defaulthpbase` DECIMAL(5,1) NOT NULL DEFAULT '0.0',
+  `defaulthpadd` DECIMAL(4,2) NOT NULL DEFAULT '0.00',
+  `defaulthpmod` DECIMAL(4,2) NOT NULL DEFAULT '0.00',
+  `defaultcpbase` DECIMAL(5,1) NOT NULL DEFAULT '0.0',
+  `defaultcpadd` DECIMAL(4,2) NOT NULL DEFAULT '0.00',
+  `defaultcpmod` DECIMAL(4,2) NOT NULL DEFAULT '0.00',
+  `defaultmpbase` DECIMAL(5,1) NOT NULL DEFAULT '0.0',
+  `defaultmpadd` DECIMAL(4,2) NOT NULL DEFAULT '0.00',
+  `defaultmpmod` DECIMAL(4,2) NOT NULL DEFAULT '0.00',
   `x` INT(9) NOT NULL DEFAULT '0',
   `y` INT(9) NOT NULL DEFAULT '0',
   `z` INT(9) NOT NULL DEFAULT '0',
@@ -220,6 +231,9 @@ CREATE TABLE IF NOT EXISTS `char_templates` (
   `items4` INT(4) NOT NULL DEFAULT '0',
   `items5` INT(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ClassId`))
+  CONSTRAINT `fk_char_template_parent_id`
+    FOREIGN KEY (`parent_id`)
+    REFERENCES `char_template` (`ClassId`)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
@@ -1161,24 +1175,6 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
 
--- -----------------------------------------------------
--- Table `class_list`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `class_list` ;
-
-CREATE TABLE IF NOT EXISTS `class_list` (
-  `class_name` VARCHAR(19) NOT NULL DEFAULT '',
-  `id` INT(10) UNSIGNED NOT NULL DEFAULT '0',
-  `parent_id` INT(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  CONSTRAINT `fk_class_list_char_templates1`
-    FOREIGN KEY (`id`)
-    REFERENCES `char_templates` (`ClassId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
-
 
 -- -----------------------------------------------------
 -- Table `cursed_weapons`
@@ -1523,31 +1519,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
 
--- -----------------------------------------------------
--- Table `lvlupgain`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `lvlupgain` ;
 
-CREATE TABLE IF NOT EXISTS `lvlupgain` (
-  `classid` INT(3) NOT NULL DEFAULT '0',
-  `defaulthpbase` DECIMAL(5,1) NOT NULL DEFAULT '0.0',
-  `defaulthpadd` DECIMAL(4,2) NOT NULL DEFAULT '0.00',
-  `defaulthpmod` DECIMAL(4,2) NOT NULL DEFAULT '0.00',
-  `defaultcpbase` DECIMAL(5,1) NOT NULL DEFAULT '0.0',
-  `defaultcpadd` DECIMAL(4,2) NOT NULL DEFAULT '0.00',
-  `defaultcpmod` DECIMAL(4,2) NOT NULL DEFAULT '0.00',
-  `defaultmpbase` DECIMAL(5,1) NOT NULL DEFAULT '0.0',
-  `defaultmpadd` DECIMAL(4,2) NOT NULL DEFAULT '0.00',
-  `defaultmpmod` DECIMAL(4,2) NOT NULL DEFAULT '0.00',
-  `class_lvl` INT(3) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`classid`),
-  CONSTRAINT `fk_lvlupgain_char_templates1`
-    FOREIGN KEY (`classid`)
-    REFERENCES `char_templates` (`ClassId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------

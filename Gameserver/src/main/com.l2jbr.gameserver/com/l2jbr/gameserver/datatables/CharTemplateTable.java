@@ -18,16 +18,14 @@
  */
 package com.l2jbr.gameserver.datatables;
 
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.model.base.ClassId;
+import com.l2jbr.gameserver.model.database.repository.CharTemplateRepository;
 import com.l2jbr.gameserver.templates.L2PcTemplate;
 import com.l2jbr.gameserver.templates.StatsSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -42,128 +40,127 @@ public class CharTemplateTable {
 
     private static CharTemplateTable _instance;
 
-    private static final String[] CHAR_CLASSES =
-            {
-                    "Human Fighter",
-                    "Warrior",
-                    "Gladiator",
-                    "Warlord",
-                    "Human Knight",
-                    "Paladin",
-                    "Dark Avenger",
-                    "Rogue",
-                    "Treasure Hunter",
-                    "Hawkeye",
-                    "Human Mystic",
-                    "Human Wizard",
-                    "Sorceror",
-                    "Necromancer",
-                    "Warlock",
-                    "Cleric",
-                    "Bishop",
-                    "Prophet",
-                    "Elven Fighter",
-                    "Elven Knight",
-                    "Temple Knight",
-                    "Swordsinger",
-                    "Elven Scout",
-                    "Plainswalker",
-                    "Silver Ranger",
-                    "Elven Mystic",
-                    "Elven Wizard",
-                    "Spellsinger",
-                    "Elemental Summoner",
-                    "Elven Oracle",
-                    "Elven Elder",
-                    "Dark Fighter",
-                    "Palus Knight",
-                    "Shillien Knight",
-                    "Bladedancer",
-                    "Assassin",
-                    "Abyss Walker",
-                    "Phantom Ranger",
-                    "Dark Elven Mystic",
-                    "Dark Elven Wizard",
-                    "Spellhowler",
-                    "Phantom Summoner",
-                    "Shillien Oracle",
-                    "Shillien Elder",
-                    "Orc Fighter",
-                    "Orc Raider",
-                    "Destroyer",
-                    "Orc Monk",
-                    "Tyrant",
-                    "Orc Mystic",
-                    "Orc Shaman",
-                    "Overlord",
-                    "Warcryer",
-                    "Dwarven Fighter",
-                    "Dwarven Scavenger",
-                    "Bounty Hunter",
-                    "Dwarven Artisan",
-                    "Warsmith",
-                    "dummyEntry1",
-                    "dummyEntry2",
-                    "dummyEntry3",
-                    "dummyEntry4",
-                    "dummyEntry5",
-                    "dummyEntry6",
-                    "dummyEntry7",
-                    "dummyEntry8",
-                    "dummyEntry9",
-                    "dummyEntry10",
-                    "dummyEntry11",
-                    "dummyEntry12",
-                    "dummyEntry13",
-                    "dummyEntry14",
-                    "dummyEntry15",
-                    "dummyEntry16",
-                    "dummyEntry17",
-                    "dummyEntry18",
-                    "dummyEntry19",
-                    "dummyEntry20",
-                    "dummyEntry21",
-                    "dummyEntry22",
-                    "dummyEntry23",
-                    "dummyEntry24",
-                    "dummyEntry25",
-                    "dummyEntry26",
-                    "dummyEntry27",
-                    "dummyEntry28",
-                    "dummyEntry29",
-                    "dummyEntry30",
-                    "Duelist",
-                    "DreadNought",
-                    "Phoenix Knight",
-                    "Hell Knight",
-                    "Sagittarius",
-                    "Adventurer",
-                    "Archmage",
-                    "Soultaker",
-                    "Arcana Lord",
-                    "Cardinal",
-                    "Hierophant",
-                    "Eva Templar",
-                    "Sword Muse",
-                    "Wind Rider",
-                    "Moonlight Sentinel",
-                    "Mystic Muse",
-                    "Elemental Master",
-                    "Eva's Saint",
-                    "Shillien Templar",
-                    "Spectral Dancer",
-                    "Ghost Hunter",
-                    "Ghost Sentinel",
-                    "Storm Screamer",
-                    "Spectral Master",
-                    "Shillien Saint",
-                    "Titan",
-                    "Grand Khauatari",
-                    "Dominator",
-                    "Doomcryer",
-                    "Fortune Seeker",
-                    "Maestro"
-            };
+    private static final String[] CHAR_CLASSES = {
+        "Human Fighter",
+        "Warrior",
+        "Gladiator",
+        "Warlord",
+        "Human Knight",
+        "Paladin",
+        "Dark Avenger",
+        "Rogue",
+        "Treasure Hunter",
+        "Hawkeye",
+        "Human Mystic",
+        "Human Wizard",
+        "Sorceror",
+        "Necromancer",
+        "Warlock",
+        "Cleric",
+        "Bishop",
+        "Prophet",
+        "Elven Fighter",
+        "Elven Knight",
+        "Temple Knight",
+        "Swordsinger",
+        "Elven Scout",
+        "Plainswalker",
+        "Silver Ranger",
+        "Elven Mystic",
+        "Elven Wizard",
+        "Spellsinger",
+        "Elemental Summoner",
+        "Elven Oracle",
+        "Elven Elder",
+        "Dark Fighter",
+        "Palus Knight",
+        "Shillien Knight",
+        "Bladedancer",
+        "Assassin",
+        "Abyss Walker",
+        "Phantom Ranger",
+        "Dark Elven Mystic",
+        "Dark Elven Wizard",
+        "Spellhowler",
+        "Phantom Summoner",
+        "Shillien Oracle",
+        "Shillien Elder",
+        "Orc Fighter",
+        "Orc Raider",
+        "Destroyer",
+        "Orc Monk",
+        "Tyrant",
+        "Orc Mystic",
+        "Orc Shaman",
+        "Overlord",
+        "Warcryer",
+        "Dwarven Fighter",
+        "Dwarven Scavenger",
+        "Bounty Hunter",
+        "Dwarven Artisan",
+        "Warsmith",
+        "dummyEntry1",
+        "dummyEntry2",
+        "dummyEntry3",
+        "dummyEntry4",
+        "dummyEntry5",
+        "dummyEntry6",
+        "dummyEntry7",
+        "dummyEntry8",
+        "dummyEntry9",
+        "dummyEntry10",
+        "dummyEntry11",
+        "dummyEntry12",
+        "dummyEntry13",
+        "dummyEntry14",
+        "dummyEntry15",
+        "dummyEntry16",
+        "dummyEntry17",
+        "dummyEntry18",
+        "dummyEntry19",
+        "dummyEntry20",
+        "dummyEntry21",
+        "dummyEntry22",
+        "dummyEntry23",
+        "dummyEntry24",
+        "dummyEntry25",
+        "dummyEntry26",
+        "dummyEntry27",
+        "dummyEntry28",
+        "dummyEntry29",
+        "dummyEntry30",
+        "Duelist",
+        "DreadNought",
+        "Phoenix Knight",
+        "Hell Knight",
+        "Sagittarius",
+        "Adventurer",
+        "Archmage",
+        "Soultaker",
+        "Arcana Lord",
+        "Cardinal",
+        "Hierophant",
+        "Eva Templar",
+        "Sword Muse",
+        "Wind Rider",
+        "Moonlight Sentinel",
+        "Mystic Muse",
+        "Elemental Master",
+        "Eva's Saint",
+        "Shillien Templar",
+        "Spectral Dancer",
+        "Ghost Hunter",
+        "Ghost Sentinel",
+        "Storm Screamer",
+        "Spectral Master",
+        "Shillien Saint",
+        "Titan",
+        "Grand Khauatari",
+        "Dominator",
+        "Doomcryer",
+        "Fortune Seeker",
+        "Maestro"
+    };
 
     private final Map<Integer, L2PcTemplate> _templates;
 
@@ -178,76 +175,60 @@ public class CharTemplateTable {
         _templates = new LinkedHashMap<>();
         java.sql.Connection con = null;
 
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("SELECT * FROM class_list, char_templates, lvlupgain" + " WHERE class_list.id = char_templates.classId" + " AND class_list.id = lvlupgain.classId" + " ORDER BY class_list.id");
-            ResultSet rset = statement.executeQuery();
+        CharTemplateRepository repository = DatabaseAccess.getRepository(CharTemplateRepository.class);
+        repository.findAll().forEach(charTemplate -> {
+            StatsSet set = new StatsSet();
+            set.set("classId", charTemplate.getId());
+            set.set("className", charTemplate.getClassName());
+            set.set("raceId", charTemplate.getRaceId());
+            set.set("baseSTR", charTemplate.getSTR());
+            set.set("baseCON", charTemplate.getCON());
+            set.set("baseDEX", charTemplate.getDEX());
+            set.set("baseINT", charTemplate.getINT());
+            set.set("baseWIT", charTemplate.getWIT());
+            set.set("baseMEN", charTemplate.getMEN());
+            set.set("baseHpMax", charTemplate.getDefaultHpBase());
+            set.set("lvlHpAdd", charTemplate.getDefaultHpAdd());
+            set.set("lvlHpMod", charTemplate.getDefaultHpMod());
+            set.set("baseMpMax", charTemplate.getDefaultMpBase());
+            set.set("baseCpMax", charTemplate.getDefaultCpBase());
+            set.set("lvlCpAdd", charTemplate.getDefaultCpAdd());
+            set.set("lvlCpMod", charTemplate.getDefaultCpMod());
+            set.set("lvlMpAdd", charTemplate.getDefaultMpAdd());
+            set.set("lvlMpMod", charTemplate.getDefaultMpMod());
+            set.set("baseHpReg", 1.5);
+            set.set("baseMpReg", 0.9);
+            set.set("basePAtk", charTemplate.getpAtk());
+            set.set("basePDef", charTemplate.getpDef());
+            set.set("baseMAtk", charTemplate.getmAtk());
+            set.set("baseMDef", charTemplate.getmDef());
+            set.set("classBaseLevel", charTemplate.getClassLevel());
+            set.set("basePAtkSpd", charTemplate.getpSpd());
+            set.set("baseMAtkSpd", charTemplate.getmSpd());
+            set.set("baseCritRate", charTemplate.getCritical() / 10);
+            set.set("baseRunSpd", charTemplate.getMoveSpeed());
+            set.set("baseWalkSpd", 0);
+            set.set("baseShldDef", 0);
+            set.set("baseShldRate", 0);
+            set.set("baseAtkRange", 40);
 
-            while (rset.next()) {
-                StatsSet set = new StatsSet();
-                // ClassId classId = ClassId.values()[rset.getInt("id")];
-                set.set("classId", rset.getInt("id"));
-                set.set("className", rset.getString("className"));
-                set.set("raceId", rset.getInt("raceId"));
-                set.set("baseSTR", rset.getInt("STR"));
-                set.set("baseCON", rset.getInt("CON"));
-                set.set("baseDEX", rset.getInt("DEX"));
-                set.set("baseINT", rset.getInt("_INT"));
-                set.set("baseWIT", rset.getInt("WIT"));
-                set.set("baseMEN", rset.getInt("MEN"));
-                set.set("baseHpMax", rset.getFloat("defaultHpBase"));
-                set.set("lvlHpAdd", rset.getFloat("defaultHpAdd"));
-                set.set("lvlHpMod", rset.getFloat("defaultHpMod"));
-                set.set("baseMpMax", rset.getFloat("defaultMpBase"));
-                set.set("baseCpMax", rset.getFloat("defaultCpBase"));
-                set.set("lvlCpAdd", rset.getFloat("defaultCpAdd"));
-                set.set("lvlCpMod", rset.getFloat("defaultCpMod"));
-                set.set("lvlMpAdd", rset.getFloat("defaultMpAdd"));
-                set.set("lvlMpMod", rset.getFloat("defaultMpMod"));
-                set.set("baseHpReg", 1.5);
-                set.set("baseMpReg", 0.9);
-                set.set("basePAtk", rset.getInt("p_atk"));
-                set.set("basePDef", /* classId.isMage()? 77 : 129 */rset.getInt("p_def"));
-                set.set("baseMAtk", rset.getInt("m_atk"));
-                set.set("baseMDef", rset.getInt("char_templates.m_def"));
-                set.set("classBaseLevel", rset.getInt("class_lvl"));
-                set.set("basePAtkSpd", rset.getInt("p_spd"));
-                set.set("baseMAtkSpd", /* classId.isMage()? 166 : 333 */rset.getInt("char_templates.m_spd"));
-                set.set("baseCritRate", rset.getInt("char_templates.critical") / 10);
-                set.set("baseRunSpd", rset.getInt("move_spd"));
-                set.set("baseWalkSpd", 0);
-                set.set("baseShldDef", 0);
-                set.set("baseShldRate", 0);
-                set.set("baseAtkRange", 40);
+            set.set("spawnX", charTemplate.getX());
+            set.set("spawnY", charTemplate.getY());
+            set.set("spawnZ", charTemplate.getZ());
 
-                set.set("spawnX", rset.getInt("x"));
-                set.set("spawnY", rset.getInt("y"));
-                set.set("spawnZ", rset.getInt("z"));
 
-                L2PcTemplate ct;
+            set.set("collision_radius", charTemplate.getM_COL_R());
+            set.set("collision_height", charTemplate.getM_COL_H());
 
-                set.set("collision_radius", rset.getDouble("m_col_r"));
-                set.set("collision_height", rset.getDouble("m_col_h"));
-                ct = new L2PcTemplate(set);
-                // 5items must go here
-                for (int x = 1; x < 6; x++) {
-                    if (rset.getInt("items" + x) != 0) {
-                        ct.addItem(rset.getInt("items" + x));
-                    }
-                }
-                _templates.put(ct.classId.getId(), ct);
-            }
+            L2PcTemplate ct = new L2PcTemplate(set);
 
-            rset.close();
-            statement.close();
-        } catch (SQLException e) {
-            _log.warn("error while loading char templates " + e.getMessage());
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+            ct.addItem(charTemplate.getItems1());
+            ct.addItem(charTemplate.getItems2());
+            ct.addItem(charTemplate.getItems3());
+            ct.addItem(charTemplate.getItems4());
+            ct.addItem(charTemplate.getItems5());
+            _templates.put(ct.classId.getId(), ct);
+        });
 
         _log.info("CharTemplateTable: Loaded " + _templates.size() + " Character Templates.");
     }

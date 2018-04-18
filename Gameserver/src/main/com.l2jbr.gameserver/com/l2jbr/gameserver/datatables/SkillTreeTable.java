@@ -18,6 +18,7 @@
  */
 package com.l2jbr.gameserver.datatables;
 
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.L2EnchantSkillLearn;
 import com.l2jbr.gameserver.model.L2PledgeSkillLearn;
@@ -25,9 +26,12 @@ import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.L2SkillLearn;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.base.ClassId;
+import com.l2jbr.gameserver.model.database.CharTemplate;
+import com.l2jbr.gameserver.model.database.repository.CharTemplateRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.*;
@@ -111,25 +115,20 @@ public class SkillTreeTable {
     }
 
     private SkillTreeTable() {
-        int classId = 0;
         int count = 0;
+        CharTemplateRepository repository = DatabaseAccess.getRepository(CharTemplateRepository.class);
+        Map<Integer, L2SkillLearn> map;
+        int parentClassId;
+        int classId;
+        L2SkillLearn skillLearn;
+        for (CharTemplate charTemplate : repository.findAll()) {
+            map = new LinkedHashMap<>();
+            parentClassId = charTemplate.getParentId();
+            classId = charTemplate.getId();
 
-        java.sql.Connection con = null;
+            try(Connection con = L2DatabaseFactory.getInstance().getConnection();
+                PreparedStatement statement2 = con.prepareStatement("SELECT class_id, skill_id, level, name, sp, min_level FROM skill_trees where class_id=? ORDER BY skill_id, level")) {
 
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("SELECT * FROM class_list ORDER BY id");
-            ResultSet classlist = statement.executeQuery();
-
-            Map<Integer, L2SkillLearn> map;
-            int parentClassId;
-            L2SkillLearn skillLearn;
-
-            while (classlist.next()) {
-                map = new LinkedHashMap<>();
-                parentClassId = classlist.getInt("parent_id");
-                classId = classlist.getInt("id");
-                PreparedStatement statement2 = con.prepareStatement("SELECT class_id, skill_id, level, name, sp, min_level FROM skill_trees where class_id=? ORDER BY skill_id, level");
                 statement2.setInt(1, classId);
                 ResultSet skilltree = statement2.executeQuery();
 
@@ -156,17 +155,12 @@ public class SkillTreeTable {
                 }
 
                 getSkillTrees().put(ClassId.values()[classId], map);
-                skilltree.close();
-                statement2.close();
-
                 count += map.size();
-                _log.debug("SkillTreeTable: skill tree for class " + classId + " has " + map.size() + " skills");
-            }
 
-            classlist.close();
-            statement.close();
-        } catch (Exception e) {
-            _log.error("Error while creating skill tree (Class ID " + classId + "):" + e);
+                _log.debug("SkillTreeTable: skill tree for class " + classId + " has " + map.size() + " skills");
+            } catch (Exception e) {
+                _log.error("Error while creating skill tree (Class ID " + classId + "):" + e);
+            }
         }
 
         _log.info("SkillTreeTable: Loaded " + count + " skills.");
@@ -174,13 +168,11 @@ public class SkillTreeTable {
         // Skill tree for fishing skill (from Fisherman)
         int count2 = 0;
         int count3 = 0;
-
-        try {
+        try(Connection con = L2DatabaseFactory.getInstance().getConnection();
+            PreparedStatement statement = con.prepareStatement("SELECT skill_id, level, name, sp, min_level, costid, cost, isfordwarf FROM fishing_skill_trees ORDER BY skill_id, level");
+            ResultSet skilltree2 = statement.executeQuery();) {
             _fishingSkillTrees = new LinkedList<>();
             _expandDwarfCraftSkillTrees = new LinkedList<>();
-
-            PreparedStatement statement = con.prepareStatement("SELECT skill_id, level, name, sp, min_level, costid, cost, isfordwarf FROM fishing_skill_trees ORDER BY skill_id, level");
-            ResultSet skilltree2 = statement.executeQuery();
 
             int prevSkillId = -1;
 
@@ -207,9 +199,6 @@ public class SkillTreeTable {
                 }
             }
 
-            skilltree2.close();
-            statement.close();
-
             count2 = _fishingSkillTrees.size();
             count3 = _expandDwarfCraftSkillTrees.size();
         } catch (Exception e) {
@@ -217,11 +206,10 @@ public class SkillTreeTable {
         }
 
         int count4 = 0;
-        try {
-            _enchantSkillTrees = new LinkedList<>();
-
+        try(Connection con = L2DatabaseFactory.getInstance().getConnection();
             PreparedStatement statement = con.prepareStatement("SELECT skill_id, level, name, base_lvl, sp, min_skill_lvl, exp, success_rate76, success_rate77, success_rate78 FROM enchant_skill_trees ORDER BY skill_id, level");
-            ResultSet skilltree3 = statement.executeQuery();
+            ResultSet skilltree3 = statement.executeQuery();) {
+            _enchantSkillTrees = new LinkedList<>();
 
             int prevSkillId = -1;
 
@@ -246,8 +234,6 @@ public class SkillTreeTable {
                 _enchantSkillTrees.add(skill);
             }
 
-            skilltree3.close();
-            statement.close();
 
             count4 = _enchantSkillTrees.size();
         } catch (Exception e) {
@@ -255,11 +241,10 @@ public class SkillTreeTable {
         }
 
         int count5 = 0;
-        try {
-            _pledgeSkillTrees = new LinkedList<>();
-
+        try(Connection con = L2DatabaseFactory.getInstance().getConnection();
             PreparedStatement statement = con.prepareStatement("SELECT skill_id, level, name, clan_lvl, repCost, itemId FROM pledge_skill_trees ORDER BY skill_id, level");
-            ResultSet skilltree4 = statement.executeQuery();
+            ResultSet skilltree4 = statement.executeQuery();) {
+            _pledgeSkillTrees = new LinkedList<>();
 
             int prevSkillId = -1;
 
@@ -280,17 +265,10 @@ public class SkillTreeTable {
                 _pledgeSkillTrees.add(skill);
             }
 
-            skilltree4.close();
-            statement.close();
 
             count5 = _pledgeSkillTrees.size();
         } catch (Exception e) {
             _log.error("Error while creating fishing skill table: " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
         }
 
         _log.info("FishingSkillTreeTable: Loaded " + count2 + " general skills.");
