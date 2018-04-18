@@ -30,7 +30,9 @@ import com.l2jbr.gameserver.model.actor.instance.L2BossInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2RaidBossInstance;
 import com.l2jbr.gameserver.model.database.Armor;
+import com.l2jbr.gameserver.model.database.Weapon;
 import com.l2jbr.gameserver.model.database.repository.ArmorRepository;
+import com.l2jbr.gameserver.model.database.repository.WeaponRepository;
 import com.l2jbr.gameserver.skills.SkillsEngine;
 import com.l2jbr.gameserver.templates.*;
 import org.slf4j.Logger;
@@ -151,8 +153,6 @@ public class ItemTable {
      */
     private static final String[] SQL_ITEM_SELECTS = {
         "SELECT item_id, name, crystallizable, item_type, weight, consume_type, material, crystal_type, duration, price, crystal_count, sellable, dropable, destroyable, tradeable FROM etcitem",
-
-        "SELECT item_id, name, bodypart, crystallizable, weight, soulshots, spiritshots," + " material, crystal_type, p_dam, rnd_dam, weaponType, critical, hit_modify, avoid_modify," + " shield_def, shield_def_rate, atk_speed, mp_consume, m_dam, duration, price, crystal_count," + " sellable, dropable, destroyable, tradeable, item_skill_id, item_skill_lvl,enchant4_skill_id,enchant4_skill_lvl, onCast_skill_id, onCast_skill_lvl," + " onCast_skill_chance, onCrit_skill_id, onCrit_skill_lvl, onCrit_skill_chance FROM weapon"
     };
 
     /**
@@ -197,10 +197,16 @@ public class ItemTable {
         _armors = new LinkedHashMap<>();
         _weapons = new LinkedHashMap<>();
 
-        ArmorRepository repository = DatabaseAccess.getRepository(ArmorRepository.class);
-        repository.findAll().forEach( armor -> {
+        ArmorRepository armorRepository = DatabaseAccess.getRepository(ArmorRepository.class);
+        armorRepository.findAll().forEach( armor -> {
             Item newItem = readArmor(armor);
             armorData.put(newItem.id, newItem);
+        });
+
+        WeaponRepository weaponRepository = DatabaseAccess.getRepository(WeaponRepository.class);
+        weaponRepository.findAll().forEach(weapon -> {
+            Item newItem = readWeapon(weapon);
+            weaponData.put(newItem.id, newItem);
         });
 
         java.sql.Connection con = null;
@@ -215,9 +221,6 @@ public class ItemTable {
                     if (selectQuery.endsWith("etcitem")) {
                         Item newItem = readItem(rset);
                         itemData.put(newItem.id, newItem);
-                    } else if (selectQuery.endsWith("weapon")) {
-                        Item newItem = readWeapon(rset);
-                        weaponData.put(newItem.id, newItem);
                     }
                 }
 
@@ -257,16 +260,16 @@ public class ItemTable {
     /**
      * Returns object Item from the record of the database
      *
-     * @param rset : ResultSet designating a record of the [weapon] table of database
+     * @param weapon : ResultSet designating a record of the [weapon] table of database
      * @return Item : object created from the database record
      * @throws SQLException
      */
-    private Item readWeapon(ResultSet rset) throws SQLException {
+    private Item readWeapon(Weapon weapon) {
         Item item = new Item();
         item.set = new StatsSet();
-        item.type = _weaponTypes.get(rset.getString("weaponType"));
-        item.id = rset.getInt("item_id");
-        item.name = rset.getString("name");
+        item.type = _weaponTypes.get(weapon.getType());
+        item.id = weapon.getId();
+        item.name = weapon.getName();
 
         item.set.set("item_id", item.id);
         item.set.set("name", item.name);
@@ -280,44 +283,44 @@ public class ItemTable {
             item.set.set("type2", L2Item.TYPE2_WEAPON);
         }
 
-        item.set.set("bodypart", _slots.get(rset.getString("bodypart")));
-        item.set.set("material", _materials.get(rset.getString("material")));
-        item.set.set("crystal_type", _crystalTypes.get(rset.getString("crystal_type")));
-        item.set.set("crystallizable", Boolean.valueOf(rset.getString("crystallizable")).booleanValue());
-        item.set.set("weight", rset.getInt("weight"));
-        item.set.set("soulshots", rset.getInt("soulshots"));
-        item.set.set("spiritshots", rset.getInt("spiritshots"));
-        item.set.set("p_dam", rset.getInt("p_dam"));
-        item.set.set("rnd_dam", rset.getInt("rnd_dam"));
-        item.set.set("critical", rset.getInt("critical"));
-        item.set.set("hit_modify", rset.getDouble("hit_modify"));
-        item.set.set("avoid_modify", rset.getInt("avoid_modify"));
-        item.set.set("shield_def", rset.getInt("shield_def"));
-        item.set.set("shield_def_rate", rset.getInt("shield_def_rate"));
-        item.set.set("atk_speed", rset.getInt("atk_speed"));
-        item.set.set("mp_consume", rset.getInt("mp_consume"));
-        item.set.set("m_dam", rset.getInt("m_dam"));
-        item.set.set("duration", rset.getInt("duration"));
-        item.set.set("price", rset.getInt("price"));
-        item.set.set("crystal_count", rset.getInt("crystal_count"));
-        item.set.set("sellable", Boolean.valueOf(rset.getString("sellable")));
-        item.set.set("dropable", Boolean.valueOf(rset.getString("dropable")));
-        item.set.set("destroyable", Boolean.valueOf(rset.getString("destroyable")));
-        item.set.set("tradeable", Boolean.valueOf(rset.getString("tradeable")));
+        item.set.set("bodypart", _slots.get(weapon.getBodyPart()));
+        item.set.set("material", _materials.get(weapon.getMaterial()));
+        item.set.set("crystal_type", _crystalTypes.get(weapon.getCrystalType()));
+        item.set.set("crystallizable", Boolean.valueOf(weapon.getCrystallizable()));
+        item.set.set("weight", weapon.getWeight());
+        item.set.set("soulshots", weapon.getSoulshots());
+        item.set.set("spiritshots", weapon.getSpiritshots());
+        item.set.set("p_dam", weapon.getPDam());
+        item.set.set("rnd_dam", weapon.getRndDam());
+        item.set.set("critical", weapon.getCritical());
+        item.set.set("hit_modify", weapon.getHitModify());
+        item.set.set("avoid_modify", weapon.getAvoidModify());
+        item.set.set("shield_def", weapon.getShieldDef());
+        item.set.set("shield_def_rate", weapon.getShieldDefRate());
+        item.set.set("atk_speed", weapon.getAtkSpeed());
+        item.set.set("mp_consume", weapon.getMpConsume());
+        item.set.set("m_dam", weapon.getMDam());
+        item.set.set("duration", weapon.getDuration());
+        item.set.set("price", weapon.getPrice());
+        item.set.set("crystal_count", weapon.getCrystalCount());
+        item.set.set("sellable", Boolean.valueOf(weapon.getSellable()));
+        item.set.set("dropable", Boolean.valueOf(weapon.getDropable()));
+        item.set.set("destroyable", Boolean.valueOf(weapon.getDestroyable()));
+        item.set.set("tradeable", Boolean.valueOf(weapon.getTradeable()));
 
-        item.set.set("item_skill_id", rset.getInt("item_skill_id"));
-        item.set.set("item_skill_lvl", rset.getInt("item_skill_lvl"));
+        item.set.set("item_skill_id", weapon.getItemSkillId());
+        item.set.set("item_skill_lvl", weapon.getItemSkillLevel());
 
-        item.set.set("enchant4_skill_id", rset.getInt("enchant4_skill_id"));
-        item.set.set("enchant4_skill_lvl", rset.getInt("enchant4_skill_lvl"));
+        item.set.set("enchant4_skill_id", weapon.getEnchant4SkillId());
+        item.set.set("enchant4_skill_lvl", weapon.getEnchant4SkillLevel());
 
-        item.set.set("onCast_skill_id", rset.getInt("onCast_skill_id"));
-        item.set.set("onCast_skill_lvl", rset.getInt("onCast_skill_lvl"));
-        item.set.set("onCast_skill_chance", rset.getInt("onCast_skill_chance"));
+        item.set.set("onCast_skill_id", weapon.getOnCastSkillId());
+        item.set.set("onCast_skill_lvl", weapon.getOnCastSkillLevel());
+        item.set.set("onCast_skill_chance", weapon.getOnCastSkillChance());
 
-        item.set.set("onCrit_skill_id", rset.getInt("onCrit_skill_id"));
-        item.set.set("onCrit_skill_lvl", rset.getInt("onCrit_skill_lvl"));
-        item.set.set("onCrit_skill_chance", rset.getInt("onCrit_skill_chance"));
+        item.set.set("onCrit_skill_id", weapon.getOnCritSkillId());
+        item.set.set("onCrit_skill_lvl", weapon.getOnCritSkillLevel());
+        item.set.set("onCrit_skill_chance", weapon.getOnCritSkillChance());
 
         if (item.type == L2WeaponType.PET) {
             item.set.set("type1", L2Item.TYPE1_WEAPON_RING_EARRING_NECKLACE);
