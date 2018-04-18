@@ -1,10 +1,12 @@
 package com.l2jbr.gameserver.model.database;
 
+import com.l2jbr.commons.database.model.Entity;
+import org.springframework.data.annotation.Id;
 
-
-public class Characters  {
+public class Characters extends Entity<Integer> {
 
     private String account_name;
+    @Id
     private int obj_Id;
     private String char_name;
     private int level;
@@ -81,4 +83,9 @@ public class Characters  {
     private long clan_join_expiry_time;
     private long clan_create_expiry_time;
     private int death_penalty_level;
+
+    @Override
+    public Integer getId() {
+        return obj_Id;
+    }
 }

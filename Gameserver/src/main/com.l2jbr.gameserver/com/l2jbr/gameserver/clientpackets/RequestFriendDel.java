@@ -84,7 +84,7 @@ public final class RequestFriendDel extends L2GameClientPacket
 			}
 			else
 			{
-				statement = con.prepareStatement("SELECT friend_id FROM character_friends, characters WHERE char_id=? AND friend_id=obj_id AND char_name=?");
+				statement = con.prepareStatement("SELECT friend_id FROM character_friends WHERE char_id=? AND friend_name=?");
 				statement.setInt(1, activeChar.getObjectId());
 				statement.setString(2, _name);
 				rset = statement.executeQuery();

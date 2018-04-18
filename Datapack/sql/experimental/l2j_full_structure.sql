@@ -175,7 +175,6 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 52
 DEFAULT CHARACTER SET = latin1;
 
-
 -- -----------------------------------------------------
 -- Table `char_templates`
 -- -----------------------------------------------------
@@ -246,7 +245,7 @@ DROP TABLE IF EXISTS `characters` ;
 CREATE TABLE IF NOT EXISTS `characters` (
   `account_name` VARCHAR(45) NULL DEFAULT NULL,
   `obj_Id` DECIMAL(11,0) NOT NULL DEFAULT '0',
-  `char_name` VARCHAR(35) NOT NULL,
+  `char_name` VARCHAR(35) NOT NULL, -- must be unique
   `level` DECIMAL(11,0) NULL DEFAULT NULL,
   `maxHp` DECIMAL(11,0) NULL DEFAULT NULL,
   `curHp` DECIMAL(18,0) NULL DEFAULT NULL,
