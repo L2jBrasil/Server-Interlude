@@ -19,17 +19,14 @@
 package com.l2jbr.gameserver.handler.admincommandhandlers;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.handler.IAdminCommandHandler;
 import com.l2jbr.gameserver.model.GMAudit;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 
 /**
@@ -110,45 +107,13 @@ public class AdminChangeAccessLevel implements IAdminCommandHandler
 			{
 				onLineChange(activeChar, player, lvl);
 			}
-			else
-			{
-				Connection con = null;
-				try
-				{
-					con = L2DatabaseFactory.getInstance().getConnection();
-					PreparedStatement statement = con.prepareStatement("UPDATE characters SET accesslevel=? WHERE char_name=?");
-					statement.setInt(1, lvl);
-					statement.setString(2, name);
-					statement.execute();
-					int count = statement.getUpdateCount();
-					statement.close();
-					if (count == 0)
-					{
-						activeChar.sendMessage("Character not found or access level unaltered.");
-					}
-					else
-					{
-						activeChar.sendMessage("Character's access level is now set to " + lvl);
-					}
-				}
-				catch (SQLException se)
-				{
-					activeChar.sendMessage("SQLException while changing character's access level");
-					if (Config.DEBUG)
-					{
-						se.printStackTrace();
-					}
-				}
-				finally
-				{
-					try
-					{
-						con.close();
-					}
-					catch (Exception e)
-					{
-					}
-				}
+			else {
+                CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
+                if(repository.updateAccessLevelByCharName(name, lvl) == 0) {
+                    activeChar.sendMessage("Character not found or access level unaltered.");
+                } else {
+                    activeChar.sendMessage("Character's access level is now set to " + lvl);
+                }
 			}
 		}
 	}

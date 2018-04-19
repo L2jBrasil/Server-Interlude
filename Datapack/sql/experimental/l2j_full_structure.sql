@@ -308,7 +308,7 @@ CREATE TABLE IF NOT EXISTS `characters` (
   `wantspeace` DECIMAL(1,0) NULL DEFAULT '0',
   `isin7sdungeon` DECIMAL(1,0) NOT NULL DEFAULT '0',
   `in_jail` DECIMAL(1,0) NULL DEFAULT '0',
-  `jail_timer` DECIMAL(20,0) NULL DEFAULT '0',
+  `jailTimer` DECIMAL(20,0) NULL DEFAULT '0',
   `power_grade` DECIMAL(11,0) NULL DEFAULT NULL,
   `nobless` DECIMAL(1,0) NOT NULL DEFAULT '0',
   `subpledge` INT(1) NOT NULL DEFAULT '0',

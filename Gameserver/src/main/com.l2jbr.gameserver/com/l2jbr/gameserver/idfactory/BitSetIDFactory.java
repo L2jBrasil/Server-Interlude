@@ -77,7 +77,7 @@ public class BitSetIDFactory extends IdFactory
 					_log.warn("Object ID " + usedObjectId + " in DB is less than minimum ID of " + FIRST_OID);
 					continue;
 				}
-				_freeIds.set(usedObjectId - FIRST_OID);
+				_freeIds.set(objectID);
 				_freeIdCount.decrementAndGet();
 			}
 			

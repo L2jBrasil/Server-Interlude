@@ -18,6 +18,7 @@
 package com.l2jbr.gameserver.network;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.LoginServerThread;
 import com.l2jbr.gameserver.LoginServerThread.SessionKey;
@@ -27,6 +28,7 @@ import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.CharSelectInfoPackage;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.model.entity.L2Event;
 import com.l2jbr.gameserver.serverpackets.L2GameServerPacket;
 import com.l2jbr.gameserver.serverpackets.ServerClose;
@@ -174,32 +176,19 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> {
          * if (getActiveChar() != null) { saveCharToDisk(getActiveChar()); if (Config.DEBUG) { _log.debug("active Char saved"); } this.setActiveChar(null); }
          */
 
-        int objid = getObjectIdForSlot(charslot);
-        if (objid < 0) {
+        int objectId = getObjectIdForSlot(charslot);
+        if (objectId < 0) {
             return null;
         }
 
-        L2PcInstance character = L2PcInstance.load(objid);
+        L2PcInstance character = L2PcInstance.load(objectId);
         if (character.getClanId() != 0) {
             return character;
         }
 
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("UPDATE characters SET deletetime=? WHERE obj_id=?");
-            statement.setLong(1, System.currentTimeMillis() + (Config.DELETE_DAYS * 86400000L)); // 24*60*60*1000 = 86400000
-            statement.setInt(2, objid);
-            statement.execute();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("Data error on update delete time of char: " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        long deleteTime = System.currentTimeMillis() + (Config.DELETE_DAYS * 86400000L);
+        CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
+        repository.updateDeleteTime(objectId, deleteTime);
         return null;
     }
 
@@ -236,35 +225,18 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> {
         }
     }
 
-    public void markRestoredChar(int charslot) {
-        // have to make sure active character must be nulled
-        /*
-         * if (getActiveChar() != null) { saveCharToDisk (getActiveChar()); if (Config.DEBUG) _log.debug("active Char saved"); this.setActiveChar(null); }
-         */
-
-        int objid = getObjectIdForSlot(charslot);
-        if (objid < 0) {
+    public void markRestoredChar(int charSlot) {
+        int objId = getObjectIdForSlot(charSlot);
+        if (objId < 0) {
             return;
         }
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("UPDATE characters SET deletetime=0 WHERE obj_id=?");
-            statement.setInt(1, objid);
-            statement.execute();
-            statement.close();
-        } catch (Exception e) {
-            _log.error("Data error on restoring char: " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+
+        CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
+        repository.updateDeleteTime(objId, 0);
     }
 
-    public static void deleteCharByObjId(int objid) {
-        if (objid < 0) {
+    public static void deleteCharByObjId(int objId) {
+        if (objId < 0) {
             return;
         }
 
@@ -275,90 +247,88 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> {
             PreparedStatement statement;
 
             statement = con.prepareStatement("DELETE FROM character_friends WHERE char_id=? OR friend_id=?");
-            statement.setInt(1, objid);
-            statement.setInt(2, objid);
+            statement.setInt(1, objId);
+            statement.setInt(2, objId);
             statement.execute();
             statement.close();
 
             statement = con.prepareStatement("DELETE FROM character_hennas WHERE char_obj_id=?");
-            statement.setInt(1, objid);
+            statement.setInt(1, objId);
             statement.execute();
             statement.close();
 
             statement = con.prepareStatement("DELETE FROM character_macroses WHERE char_obj_id=?");
-            statement.setInt(1, objid);
+            statement.setInt(1, objId);
             statement.execute();
             statement.close();
 
             statement = con.prepareStatement("DELETE FROM character_quests WHERE char_id=?");
-            statement.setInt(1, objid);
+            statement.setInt(1, objId);
             statement.execute();
             statement.close();
 
             statement = con.prepareStatement("DELETE FROM character_recipebook WHERE char_id=?");
-            statement.setInt(1, objid);
+            statement.setInt(1, objId);
             statement.execute();
             statement.close();
 
             statement = con.prepareStatement("DELETE FROM character_shortcuts WHERE char_obj_id=?");
-            statement.setInt(1, objid);
+            statement.setInt(1, objId);
             statement.execute();
             statement.close();
 
             statement = con.prepareStatement("DELETE FROM character_skills WHERE char_obj_id=?");
-            statement.setInt(1, objid);
+            statement.setInt(1, objId);
             statement.execute();
             statement.close();
 
             statement = con.prepareStatement("DELETE FROM character_skills_save WHERE char_obj_id=?");
-            statement.setInt(1, objid);
+            statement.setInt(1, objId);
             statement.execute();
             statement.close();
 
             statement = con.prepareStatement("DELETE FROM character_subclasses WHERE char_obj_id=?");
-            statement.setInt(1, objid);
+            statement.setInt(1, objId);
             statement.execute();
             statement.close();
 
             statement = con.prepareStatement("DELETE FROM heroes WHERE char_id=?");
-            statement.setInt(1, objid);
+            statement.setInt(1, objId);
             statement.execute();
             statement.close();
 
             statement = con.prepareStatement("DELETE FROM olympiad_nobles WHERE char_id=?");
-            statement.setInt(1, objid);
+            statement.setInt(1, objId);
             statement.execute();
             statement.close();
 
             statement = con.prepareStatement("DELETE FROM seven_signs WHERE char_obj_id=?");
-            statement.setInt(1, objid);
+            statement.setInt(1, objId);
             statement.execute();
             statement.close();
 
             statement = con.prepareStatement("DELETE FROM pets WHERE item_obj_id IN (SELECT object_id FROM items WHERE items.owner_id=?)");
-            statement.setInt(1, objid);
+            statement.setInt(1, objId);
             statement.execute();
             statement.close();
 
             statement = con.prepareStatement("DELETE FROM augmentations WHERE item_id IN (SELECT object_id FROM items WHERE items.owner_id=?)");
-            statement.setInt(1, objid);
+            statement.setInt(1, objId);
             statement.execute();
             statement.close();
 
             statement = con.prepareStatement("DELETE FROM items WHERE owner_id=?");
-            statement.setInt(1, objid);
+            statement.setInt(1, objId);
             statement.execute();
             statement.close();
 
             statement = con.prepareStatement("DELETE FROM merchant_lease WHERE player_id=?");
-            statement.setInt(1, objid);
+            statement.setInt(1, objId);
             statement.execute();
             statement.close();
 
-            statement = con.prepareStatement("DELETE FROM characters WHERE obj_Id=?");
-            statement.setInt(1, objid);
-            statement.execute();
-            statement.close();
+            CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
+            repository.deleteById(objId);
         } catch (Exception e) {
             _log.warn("Data error on deleting char: " + e);
         } finally {

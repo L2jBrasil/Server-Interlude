@@ -18,11 +18,14 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.CharSelectInfoPackage;
 import com.l2jbr.gameserver.model.Inventory;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.Character;
+import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.network.L2GameClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -199,39 +202,18 @@ public class CharSelectInfo extends L2GameServerPacket {
     }
 
     private CharSelectInfoPackage[] loadCharacterSelectInfo() {
-        CharSelectInfoPackage charInfopackage;
         List<CharSelectInfoPackage> characterList = new LinkedList<>();
 
-        java.sql.Connection con = null;
-
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("SELECT account_name, obj_Id, char_name, level, maxHp, curHp, maxMp, curMp, acc, crit, evasion, mAtk, mDef, mSpd, pAtk, pDef, pSpd, runSpd, walkSpd, str, con, dex, _int, men, wit, face, hairStyle, hairColor, sex, heading, x, y, z, movement_multiplier, attack_speed_multiplier, colRad, colHeight, exp, sp, karma, pvpkills, pkkills, clanid, maxload, race, classid, deletetime, cancraft, title, rec_have, rec_left, accesslevel, online, char_slot, lastAccess, base_class FROM characters WHERE account_name=?");
-            statement.setString(1, _loginName);
-            ResultSet charList = statement.executeQuery();
-
-            while (charList.next())// fills the package
-            {
-                charInfopackage = restoreChar(charList);
-                if (charInfopackage != null) {
-                    characterList.add(charInfopackage);
-                }
+        CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
+        repository.findAllByAccountName(_loginName).forEach(character -> {
+            CharSelectInfoPackage charInfoPackage = restoreChar(character);
+            if (charInfoPackage != null) {
+                characterList.add(charInfoPackage);
             }
+        });
 
-            charList.close();
-            statement.close();
+        return characterList.toArray(new CharSelectInfoPackage[characterList.size()]);
 
-            return characterList.toArray(new CharSelectInfoPackage[characterList.size()]);
-        } catch (Exception e) {
-            _log.warn("Could not restore char info: " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
-
-        return new CharSelectInfoPackage[0];
     }
 
     private void loadCharacterSubclassInfo(CharSelectInfoPackage charInfopackage, int ObjectId, int activeClassId) {
@@ -264,13 +246,13 @@ public class CharSelectInfo extends L2GameServerPacket {
 
     }
 
-    private CharSelectInfoPackage restoreChar(ResultSet chardata) throws Exception {
-        int objectId = chardata.getInt("obj_id");
+    private CharSelectInfoPackage restoreChar(Character character) {
+        int objectId = character.getObjectId();
 
         // See if the char must be deleted
-        long deletetime = chardata.getLong("deletetime");
-        if (deletetime > 0) {
-            if (System.currentTimeMillis() > deletetime) {
+        long deleteTime = character.getDeleteTime();
+        if (deleteTime > 0) {
+            if (System.currentTimeMillis() > deleteTime) {
                 L2PcInstance cha = L2PcInstance.load(objectId);
                 L2Clan clan = cha.getClan();
                 if (clan != null) {
@@ -282,29 +264,29 @@ public class CharSelectInfo extends L2GameServerPacket {
             }
         }
 
-        String name = chardata.getString("char_name");
+        String name = character.getCharName();
 
         CharSelectInfoPackage charInfopackage = new CharSelectInfoPackage(objectId, name);
-        charInfopackage.setLevel(chardata.getInt("level"));
-        charInfopackage.setMaxHp(chardata.getInt("maxhp"));
-        charInfopackage.setCurrentHp(chardata.getDouble("curhp"));
-        charInfopackage.setMaxMp(chardata.getInt("maxmp"));
-        charInfopackage.setCurrentMp(chardata.getDouble("curmp"));
-        charInfopackage.setKarma(chardata.getInt("karma"));
+        charInfopackage.setLevel(character.getLevel());
+        charInfopackage.setMaxHp(character.getMaxHp());
+        charInfopackage.setCurrentHp(character.getCurrentHp());
+        charInfopackage.setMaxMp(character.getMaxMp());
+        charInfopackage.setCurrentMp(character.getCurrentMp());
+        charInfopackage.setKarma(character.getKarma());
 
-        charInfopackage.setFace(chardata.getInt("face"));
-        charInfopackage.setHairStyle(chardata.getInt("hairstyle"));
-        charInfopackage.setHairColor(chardata.getInt("haircolor"));
-        charInfopackage.setSex(chardata.getInt("sex"));
+        charInfopackage.setFace(character.getFace());
+        charInfopackage.setHairStyle(character.getHairStyle());
+        charInfopackage.setHairColor(character.getHairColor());
+        charInfopackage.setSex(character.getSex());
 
-        charInfopackage.setExp(chardata.getLong("exp"));
-        charInfopackage.setSp(chardata.getInt("sp"));
-        charInfopackage.setClanId(chardata.getInt("clanid"));
+        charInfopackage.setExp(character.getExperience());
+        charInfopackage.setSp(character.getSp());
+        charInfopackage.setClanId(character.getClanId());
 
-        charInfopackage.setRace(chardata.getInt("race"));
+        charInfopackage.setRace(character.getRace());
 
-        final int baseClassId = chardata.getInt("base_class");
-        final int activeClassId = chardata.getInt("classid");
+        final int baseClassId = character.getBaseClass();
+        final int activeClassId = character.getClassId();
 
         // if is in subclass, load subclass exp, sp, lvl info
         if (baseClassId != activeClassId) {
@@ -352,8 +334,8 @@ public class CharSelectInfo extends L2GameServerPacket {
             charInfopackage.setBaseClassId(baseClassId);
         }
 
-        charInfopackage.setDeleteTimer(deletetime);
-        charInfopackage.setLastAccess(chardata.getLong("lastAccess"));
+        charInfopackage.setDeleteTimer(deleteTime);
+        charInfopackage.setLastAccess(character.getLastAccess());
 
         return charInfopackage;
     }

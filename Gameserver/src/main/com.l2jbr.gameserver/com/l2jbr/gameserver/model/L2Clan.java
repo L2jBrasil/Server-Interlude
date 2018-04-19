@@ -19,6 +19,7 @@
 package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.communitybbs.BB.Forum;
 import com.l2jbr.gameserver.communitybbs.Manager.ForumsBBSManager;
@@ -27,6 +28,7 @@ import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.instancemanager.CastleManager;
 import com.l2jbr.gameserver.instancemanager.SiegeManager;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.util.Util;
@@ -700,8 +702,6 @@ public class L2Clan {
         // restorewars();
         java.sql.Connection con = null;
         try {
-            L2ClanMember member;
-
             con = L2DatabaseFactory.getInstance().getConnection();
             PreparedStatement statement = con.prepareStatement("SELECT clan_name,clan_level,hasCastle,ally_id,ally_name,leader_id,crest_id,crest_large_id,ally_crest_id,reputation_score,auction_bid_at,ally_penalty_expiry_time,ally_penalty_type,char_penalty_expiry_time,dissolving_expiry_time FROM clan_data where clan_id=?");
             statement.setInt(1, getClanId());
@@ -740,21 +740,19 @@ public class L2Clan {
 
                 int leaderId = (clanData.getInt("leader_id"));
 
-                PreparedStatement statement2 = con.prepareStatement("SELECT char_name,level,classid,obj_Id,title,power_grade,subpledge,apprentice,sponsor FROM characters WHERE clanid=?");
-                statement2.setInt(1, getClanId());
-                ResultSet clanMembers = statement2.executeQuery();
+                CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
+                repository.findAllByClanId(getClanId()).forEach( character -> {
 
-                while (clanMembers.next()) {
-                    member = new L2ClanMember(this, clanMembers.getString("char_name"), clanMembers.getInt("level"), clanMembers.getInt("classid"), clanMembers.getInt("obj_id"), clanMembers.getInt("subpledge"), clanMembers.getInt("power_grade"), clanMembers.getString("title"));
+                    L2ClanMember member = new L2ClanMember(this, character.getCharName(), character.getLevel(), character.getClassId(),
+                            character.getObjectId(), character.getSubpledge(), character.getPowerGrade(), character.getTitle());
+
                     if (member.getObjectId() == leaderId) {
                         setLeader(member);
                     } else {
                         addClanMember(member);
                     }
-                    member.initApprenticeAndSponsor(clanMembers.getInt("apprentice"), clanMembers.getInt("sponsor"));
-                }
-                clanMembers.close();
-                statement2.close();
+                    member.initApprenticeAndSponsor(character.getApprentice(), character.getSponsor());
+                });
             }
 
             clanData.close();

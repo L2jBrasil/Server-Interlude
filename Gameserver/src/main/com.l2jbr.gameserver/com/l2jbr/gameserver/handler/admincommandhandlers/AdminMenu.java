@@ -19,18 +19,18 @@
 package com.l2jbr.gameserver.handler.admincommandhandlers;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
+import com.l2jbr.commons.util.Util;
 import com.l2jbr.gameserver.LoginServerThread;
 import com.l2jbr.gameserver.handler.IAdminCommandHandler;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.StringTokenizer;
 
 
@@ -320,54 +320,17 @@ public class AdminMenu implements IAdminCommandHandler
 		AdminHelpPage.showHelpPage(activeChar, "charmanage.htm");
 	}
 	
-	private void setAccountAccessLevel(String player, L2PcInstance activeChar, int banLevel)
-	{
-		java.sql.Connection con = null;
-		try
-		{
-			con = L2DatabaseFactory.getInstance().getConnection();
-			String stmt = "SELECT account_name FROM characters WHERE char_name = ?";
-			PreparedStatement statement = con.prepareStatement(stmt);
-			statement.setString(1, player);
-			ResultSet result = statement.executeQuery();
-			if (result.next())
-			{
-				String acc_name = result.getString(1);
-				SystemMessage sm = new SystemMessage(SystemMessageId.S1_S2);
-				if (acc_name.length() > 0)
-				{
-					LoginServerThread.getInstance().sendAccessLevel(acc_name, banLevel);
-					sm.addString("Account Access Level for " + player + " set to " + banLevel + ".");
-				}
-				else
-				{
-					sm.addString("Couldn't find player: " + player + ".");
-				}
-				activeChar.sendPacket(sm);
-			}
-			else
-			{
-				activeChar.sendMessage("Specified player name didn't lead to a valid account.");
-			}
-			statement.close();
-		}
-		catch (Exception e)
-		{
-			_log.warn("Could not set accessLevel:" + e);
-			if (Config.DEBUG)
-			{
-				e.printStackTrace();
-			}
-		}
-		finally
-		{
-			try
-			{
-				con.close();
-			}
-			catch (Exception e)
-			{
-			}
-		}
+	private void setAccountAccessLevel(String player, L2PcInstance activeChar, int banLevel) {
+        CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
+        String acc_name = repository.findAccountByName(player);
+        if(Util.isNullOrEmpty(acc_name)) {
+            activeChar.sendMessage("Specified player name didn't lead to a valid account.");
+        }
+        else {
+            SystemMessage sm = new SystemMessage(SystemMessageId.S1_S2);
+            LoginServerThread.getInstance().sendAccessLevel(acc_name, banLevel);
+            sm.addString("Account Access Level for " + player + " set to " + banLevel + ".");
+            activeChar.sendPacket(sm);
+        }
 	}
 }

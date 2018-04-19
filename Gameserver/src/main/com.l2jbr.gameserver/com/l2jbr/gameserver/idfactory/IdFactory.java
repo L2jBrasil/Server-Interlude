@@ -236,14 +236,15 @@ public abstract class IdFactory
 			catch (SQLException e)
 			{
 			}
+			// TODO verify if we must delete itemsonground here.
 			s.executeUpdate("delete from itemsonground where object_id in (select object_id from items)");
-			s.executeUpdate("create table temporaryObjectTable" + " (object_id int NOT NULL PRIMARY KEY)");
+			s.executeUpdate("create table temporaryObjectTable (object_id int NOT NULL PRIMARY KEY)");
 			
-			s.executeUpdate("insert into temporaryObjectTable (object_id)" + " select obj_id from characters");
-			s.executeUpdate("insert into temporaryObjectTable (object_id)" + " select object_id from items");
-			s.executeUpdate("insert into temporaryObjectTable (object_id)" + " select clan_id from clan_data");
+			s.executeUpdate("insert into temporaryObjectTable (object_id) select obj_id from characters");
+			s.executeUpdate("insert into temporaryObjectTable (object_id) select object_id from items");
+			s.executeUpdate("insert into temporaryObjectTable (object_id) select clan_id from clan_data");
 			// s.executeUpdate("insert into temporaryObjectTable (object_id)" + " select crest_id from clan_data where crest_id > 0");
-			s.executeUpdate("insert into temporaryObjectTable (object_id)" + " select object_id from itemsonground");
+			s.executeUpdate("insert into temporaryObjectTable (object_id) select object_id from itemsonground");
 			
 			ResultSet result = s.executeQuery("select count(object_id) from temporaryObjectTable");
 			

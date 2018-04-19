@@ -12,5 +12,7 @@ module com.l2jbr.gameserver {
     requires spring.context;
 
     exports com.l2jbr.gameserver;
+    exports com.l2jbr.gameserver.model.database.repository;
+    exports com.l2jbr.gameserver.model.database;
 
 }

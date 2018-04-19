@@ -25,12 +25,14 @@ import com.l2jbr.commons.database.AccountRepository;
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.database.model.Account;
+import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -146,143 +148,130 @@ public class SQLAccountManager {
         Optional<Account> optionalAccount = repository.findById(login);
 
         if(optionalAccount.isPresent()) {
-            java.sql.Connection con = null;
-            con = L2DatabaseFactory.getInstance().getConnection();
+            final Connection con = L2DatabaseFactory.getInstance().getConnection();
 
-            // Get Accounts ID
-            ResultSet rcln;
-            PreparedStatement statement = con.prepareStatement("SELECT obj_Id, char_name, clanid FROM characters WHERE account_name=?;");
-            statement.setEscapeProcessing(true);
-            statement.setString(1, login);
-            ResultSet rset = statement.executeQuery();
+            CharacterRepository characterRepository = DatabaseAccess.getRepository(CharacterRepository.class);
+            characterRepository.findAllByAccountName(login).forEach(character -> {
 
-            while (rset.next()) {
-                System.out.println("Deleting character " + rset.getString("char_name") + ".");
-
-                // Check If clan leader Remove Clan and remove all from it
-                statement.close();
-                statement = con.prepareStatement("SELECT COUNT(*) FROM clan_data WHERE leader_id=?;");
-                statement.setString(1, rset.getString("clanid"));
-                rcln = statement.executeQuery();
-                rcln.next();
-                if (rcln.getInt(1) > 0) {
-                    rcln.close();
-                    // Clan Leader
-
-                    // Get Clan Name
-                    statement.close();
+                System.out.println("Deleting character " + character.getCharName());
+                PreparedStatement statement = null;
+                ResultSet rcln = null;
+                try {
                     statement = con.prepareStatement("SELECT clan_name FROM clan_data WHERE leader_id=?;");
-                    statement.setString(1, rset.getString("clanid"));
+                    statement.setInt(1, character.getObjectId());
                     rcln = statement.executeQuery();
-                    rcln.next();
+                    if (rcln.next()) {
+                        // Clan Leader
+                        System.out.println("Deleting clan " + rcln.getString("clan_name") + ".");
 
-                    System.out.println("Deleting clan " + rcln.getString("clan_name") + ".");
+                        // Delete Clan Wars
+                        statement.close();
+                        statement = con.prepareStatement("DELETE FROM clan_wars WHERE clan1=? OR clan2=?;");
+                        statement.setEscapeProcessing(true);
+                        statement.setString(1, rcln.getString("clan_name"));
+                        statement.setString(2, rcln.getString("clan_name"));
+                        statement.executeUpdate();
 
-                    // Delete Clan Wars
-                    statement.close();
-                    statement = con.prepareStatement("DELETE FROM clan_wars WHERE clan1=? OR clan2=?;");
-                    statement.setEscapeProcessing(true);
-                    statement.setString(1, rcln.getString("clan_name"));
-                    statement.setString(2, rcln.getString("clan_name"));
-                    statement.executeUpdate();
+                        final int clanId = character.getClanId();
+                        // Remove All From clan
 
+                        characterRepository.removeClanId(clanId);
+
+                        // Delete Clan
+                        statement.close();
+                        statement = con.prepareStatement("DELETE FROM clan_data WHERE clan_id=?;");
+                        statement.setInt(1, clanId);
+                        statement.executeUpdate();
+
+                        statement.close();
+                        statement = con.prepareStatement("DELETE FROM clan_privs WHERE clan_id=?;");
+                        statement.setInt(1, clanId);
+                        statement.executeUpdate();
+
+                        statement.close();
+                        statement = con.prepareStatement("DELETE FROM clan_subpledges WHERE clan_id=?;");
+                        statement.setInt(1, clanId);
+                        statement.executeUpdate();
+
+                    }
                     rcln.close();
 
-                    // Remove All From clan
+                    // skills
                     statement.close();
-                    statement = con.prepareStatement("UPDATE characters SET clanid=0 WHERE clanid=?;");
-                    statement.setString(1, rset.getString("clanid"));
+                    statement = con.prepareStatement("DELETE FROM character_skills WHERE char_obj_id=?;");
+                    statement.setInt(1, character.getObjectId());
                     statement.executeUpdate();
 
-                    // Delete Clan
+                    // shortcuts
                     statement.close();
-                    statement = con.prepareStatement("DELETE FROM clan_data WHERE clan_id=?;");
-                    statement.setString(1, rset.getString("clanid"));
+                    statement = con.prepareStatement("DELETE FROM character_shortcuts WHERE char_obj_id=?;");
+                    statement.setInt(1, character.getObjectId());
                     statement.executeUpdate();
 
+                    // items
                     statement.close();
-                    statement = con.prepareStatement("DELETE FROM clan_privs WHERE clan_id=?;");
-                    statement.setString(1, rset.getString("clanid"));
+                    statement = con.prepareStatement("DELETE FROM items WHERE owner_id=?;");
+                    statement.setInt(1, character.getObjectId());
                     statement.executeUpdate();
 
+                    // recipebook
                     statement.close();
-                    statement = con.prepareStatement("DELETE FROM clan_subpledges WHERE clan_id=?;");
-                    statement.setString(1, rset.getString("clanid"));
+                    statement = con.prepareStatement("DELETE FROM character_recipebook WHERE char_id=?;");
+                    statement.setInt(1, character.getObjectId());
                     statement.executeUpdate();
 
-                } else {
-                    rcln.close();
+                    // quests
+                    statement.close();
+                    statement = con.prepareStatement("DELETE FROM character_quests WHERE char_id=?;");
+                    statement.setInt(1, character.getObjectId());
+                    statement.executeUpdate();
+
+                    // macroses
+                    statement.close();
+                    statement = con.prepareStatement("DELETE FROM character_macroses WHERE char_obj_id=?;");
+                    statement.setInt(1, character.getObjectId());
+                    statement.executeUpdate();
+
+                    // friends
+                    statement.close();
+                    statement = con.prepareStatement("DELETE FROM character_friends WHERE char_id=?;");
+                    statement.setInt(1, character.getObjectId());
+                    statement.executeUpdate();
+
+                    // merchant_lease
+                    statement.close();
+                    statement = con.prepareStatement("DELETE FROM merchant_lease WHERE player_id=?;");
+                    statement.setInt(1, character.getObjectId());
+                    statement.executeUpdate();
+
+                    // boxaccess
+                    statement.close();
+                    statement = con.prepareStatement("DELETE FROM boxaccess WHERE charname=?;");
+                    statement.setString(1, character.getCharName());
+                    statement.executeUpdate();
+
+                    // characters
+                    characterRepository.delete(character);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    try {
+                        rcln.close();
+                        statement.close();
+                        con.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 }
 
-                // skills
-                statement.close();
-                statement = con.prepareStatement("DELETE FROM character_skills WHERE char_obj_id=?;");
-                statement.setString(1, rset.getString("obj_Id"));
-                statement.executeUpdate();
-
-                // shortcuts
-                statement.close();
-                statement = con.prepareStatement("DELETE FROM character_shortcuts WHERE char_obj_id=?;");
-                statement.setString(1, rset.getString("obj_Id"));
-                statement.executeUpdate();
-
-                // items
-                statement.close();
-                statement = con.prepareStatement("DELETE FROM items WHERE owner_id=?;");
-                statement.setString(1, rset.getString("obj_Id"));
-                statement.executeUpdate();
-
-                // recipebook
-                statement.close();
-                statement = con.prepareStatement("DELETE FROM character_recipebook WHERE char_id=?;");
-                statement.setString(1, rset.getString("obj_Id"));
-                statement.executeUpdate();
-
-                // quests
-                statement.close();
-                statement = con.prepareStatement("DELETE FROM character_quests WHERE char_id=?;");
-                statement.setString(1, rset.getString("obj_Id"));
-                statement.executeUpdate();
-
-                // macroses
-                statement.close();
-                statement = con.prepareStatement("DELETE FROM character_macroses WHERE char_obj_id=?;");
-                statement.setString(1, rset.getString("obj_Id"));
-                statement.executeUpdate();
-
-                // friends
-                statement.close();
-                statement = con.prepareStatement("DELETE FROM character_friends WHERE char_id=?;");
-                statement.setString(1, rset.getString("obj_Id"));
-                statement.executeUpdate();
-
-                // merchant_lease
-                statement.close();
-                statement = con.prepareStatement("DELETE FROM merchant_lease WHERE player_id=?;");
-                statement.setString(1, rset.getString("obj_Id"));
-                statement.executeUpdate();
-
-                // boxaccess
-                statement.close();
-                statement = con.prepareStatement("DELETE FROM boxaccess WHERE charname=?;");
-                statement.setString(1, rset.getString("char_name"));
-                statement.executeUpdate();
-
-                // characters
-                statement.close();
-                statement = con.prepareStatement("DELETE FROM characters WHERE obj_Id=?;");
-                statement.setString(1, rset.getString("obj_Id"));
-                statement.executeUpdate();
-
-            }
+            });
+            // Get Accounts ID
 
             // Delete Account
             repository.delete(optionalAccount.get());
 
             System.out.println("Account " + login + " has been deleted.");
-            rset.close();
-            statement.close();
-            con.close();
+
 
         } else {
             System.out.println("Account " + login + " does not exist.");

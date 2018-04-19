@@ -357,7 +357,7 @@ public class LoginController {
 
     public void setAccountAccessLevel(String login, short acessLevel) {
         AccountRepository repository = DatabaseAccess.getRepository(AccountRepository.class);
-        if(repository.updateAcessLevel(login, acessLevel) < 1) {
+        if(repository.updateAccessLevel(login, acessLevel) < 1) {
             _log.warn("Could not set accessLevel of account {}", login);
         }
     }
