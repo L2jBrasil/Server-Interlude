@@ -665,41 +665,18 @@ public class L2Clan {
     }
 
     private void removeMemberInDatabase(L2ClanMember member, long clanJoinExpiryTime, long clanCreateExpiryTime) {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("UPDATE characters SET clanid=0, title=?, clan_join_expiry_time=?, clan_create_expiry_time=?, clan_privs=0, wantspeace=0, subpledge=0, lvl_joined_academy=0, apprentice=0, sponsor=0 WHERE obj_Id=?");
-            statement.setString(1, "");
-            statement.setLong(2, clanJoinExpiryTime);
-            statement.setLong(3, clanCreateExpiryTime);
-            statement.setInt(4, member.getObjectId());
-            statement.execute();
-            statement.close();
-            if (Config.DEBUG) {
-                _log.debug("clan member removed in db: " + getClanId());
-            }
+        //TODO verify if we really need to update like this. can't we only remove on runtime when player is online?
+        CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
+        repository.findById(member.getObjectId()).ifPresent( character -> {
+            character.clearClanData(clanJoinExpiryTime, clanCreateExpiryTime);
+            repository.save(character);
+        });
 
-            statement = con.prepareStatement("UPDATE characters SET apprentice=0 WHERE apprentice=?");
-            statement.setInt(1, member.getObjectId());
-            statement.execute();
-            statement.close();
-
-            statement = con.prepareStatement("UPDATE characters SET sponsor=0 WHERE sponsor=?");
-            statement.setInt(1, member.getObjectId());
-            statement.execute();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("error while removing clan member in db " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        repository.removeApprentice(member.getObjectId());
+        repository.removeSponsor(member.getObjectId());
     }
 
     private void restore() {
-        // restorewars();
         java.sql.Connection con = null;
         try {
             con = L2DatabaseFactory.getInstance().getConnection();

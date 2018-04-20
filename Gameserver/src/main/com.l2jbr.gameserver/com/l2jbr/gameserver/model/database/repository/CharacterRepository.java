@@ -42,4 +42,40 @@ public interface CharacterRepository extends CrudRepository<Character, Integer> 
 
     @Query("SELECT COUNT(1) FROM characters WHERE account_name=:account")
     int countByAccount(@Param("account") String account);
+
+    @Query("SELECT clanid FROM characters WHERE characters.obj_Id =:objectId")
+    int findClanIdById(@Param("objectId") int charId);
+
+    @Modifying
+    @Query("UPDATE characters SET x=:x, y=:y, z=:z, in_jail=:inJail, jail_timer=:jailTime WHERE char_name=:name")
+    int updateJailStatusByName(@Param("name") String charName, @Param("x") int x, @Param("y") int y, @Param("z") int z,
+                                @Param("inJail") int inJail, @Param("jailTime") long jailTime);
+
+    @Modifying
+    @Query("UPDATE characters SET apprentice=0 WHERE apprentice=:apprenticeId")
+    int removeApprentice(@Param("apprenticeId") int apprenticeId);
+
+    @Modifying
+    @Query("UPDATE characters SET sponsor=0 WHERE sponsor=:sponsorId")
+    int removeSponsor(@Param("sponsorId") int sponsorId);
+
+    @Modifying
+    @Query("UPDATE characters SET karma=:karma, pkkills=:pkKills WHERE obj_id=:objectId")
+    int updatePKAndKarma(@Param("objectId") int objectId, @Param("pkKills") int playerPkKills, @Param("karma") int playerKarma);
+
+    @Modifying
+    @Query("UPDATE characters SET subpledge=:subpledge WHERE obj_id=:objectId")
+    void updateSubpledge(@Param("objectId") int objectId, @Param("subpledge") int subpledge);
+
+    @Modifying
+    @Query("UPDATE characters SET online=:online, lastAccess=:lastAccess WHERE obj_id=:objectId")
+    int updateOnlineStatus(@Param("objectId") int objectId, @Param("online") int online, @Param("lastAccess") long lastAccess);
+
+    @Modifying
+    @Query("UPDATE characters SET isIn7sDungeon=? WHERE obj_id=?")
+    int updateSevenSignsDungeonStatus(@Param("objectId") int objectId, @Param("inDungeon") int isInDungeon);
+
+    @Modifying
+    @Query("UPDATE characters SET power_grade=:powerGrade WHERE obj_id=:objectId")
+    int updatePowerGrade(@Param("objectId") int objectId, @Param("powerGrade") int powerGrade);
 }

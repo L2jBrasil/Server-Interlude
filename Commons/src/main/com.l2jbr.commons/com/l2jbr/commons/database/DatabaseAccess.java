@@ -11,18 +11,13 @@ public class DatabaseAccess {
     private static Map<Object, Object> objects = new WeakHashMap<>();
 
     public static <T extends CrudRepository> T getRepository(Class<T> repositoryClass) {
-
-        for (Map.Entry entry : objects.entrySet()) {
-            if (repositoryClass.equals(entry.getValue())) {
-                if(entry.getKey().getClass().isAssignableFrom(repositoryClass)) {
-                    return repositoryClass.cast(entry.getKey());
-                }
-            }
+        if(objects.containsKey(repositoryClass)) {
+            return repositoryClass.cast(objects.get(repositoryClass));
         }
         T repository = null;
         try {
             repository = L2DatabaseFactory.getInstance().getRepository(repositoryClass);
-            objects.put(repository, repositoryClass);
+            objects.put(repositoryClass, repository);
         } catch (SQLException e) {
 
         }

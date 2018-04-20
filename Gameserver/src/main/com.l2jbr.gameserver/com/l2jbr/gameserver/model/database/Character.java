@@ -15,7 +15,7 @@ public class Character extends Entity<Integer> {
     private Byte level;
     private int maxHp;
     private long curHp;
-    private int maxCp;
+    private long maxCp;
     private long curCp;
     private int maxMp;
     private long curMp;
@@ -154,15 +154,15 @@ public class Character extends Entity<Integer> {
         return curHp;
     }
 
-    public void setCurHp(long curHp) {
+    public void setCurrentHp(long curHp) {
         this.curHp = curHp;
     }
 
-    public int getMaxCp() {
+    public long getMaxCp() {
         return maxCp;
     }
 
-    public void setMaxCp(int maxCp) {
+    public void setMaxCp(long maxCp) {
         this.maxCp = maxCp;
     }
 
@@ -170,7 +170,7 @@ public class Character extends Entity<Integer> {
         return curCp;
     }
 
-    public void setCurCp(long curCp) {
+    public void setCurrentCp(long curCp) {
         this.curCp = curCp;
     }
 
@@ -186,7 +186,7 @@ public class Character extends Entity<Integer> {
         return curMp;
     }
 
-    public void setCurMp(long curMp) {
+    public void setCurrentMp(long curMp) {
         this.curMp = curMp;
     }
 
@@ -194,7 +194,7 @@ public class Character extends Entity<Integer> {
         return acc;
     }
 
-    public void setAcc(int acc) {
+    public void setAccuracy(int acc) {
         this.acc = acc;
     }
 
@@ -202,7 +202,7 @@ public class Character extends Entity<Integer> {
         return crit;
     }
 
-    public void setCrit(int crit) {
+    public void setCritical(int crit) {
         this.crit = crit;
     }
 
@@ -218,7 +218,7 @@ public class Character extends Entity<Integer> {
         return mAtk;
     }
 
-    public void setmAtk(int mAtk) {
+    public void setMagicalAttack(int mAtk) {
         this.mAtk = mAtk;
     }
 
@@ -226,7 +226,7 @@ public class Character extends Entity<Integer> {
         return mDef;
     }
 
-    public void setmDef(int mDef) {
+    public void setMagicalDefense(int mDef) {
         this.mDef = mDef;
     }
 
@@ -234,7 +234,7 @@ public class Character extends Entity<Integer> {
         return mSpd;
     }
 
-    public void setmSpd(int mSpd) {
+    public void setMagicalSpeed(int mSpd) {
         this.mSpd = mSpd;
     }
 
@@ -242,7 +242,7 @@ public class Character extends Entity<Integer> {
         return pAtk;
     }
 
-    public void setpAtk(int pAtk) {
+    public void setPhysicalAttack(int pAtk) {
         this.pAtk = pAtk;
     }
 
@@ -250,7 +250,7 @@ public class Character extends Entity<Integer> {
         return pDef;
     }
 
-    public void setpDef(int pDef) {
+    public void setPhysicalDefense(int pDef) {
         this.pDef = pDef;
     }
 
@@ -258,7 +258,7 @@ public class Character extends Entity<Integer> {
         return pSpd;
     }
 
-    public void setpSpd(int pSpd) {
+    public void setPhysicalSpeed(int pSpd) {
         this.pSpd = pSpd;
     }
 
@@ -266,7 +266,7 @@ public class Character extends Entity<Integer> {
         return runSpd;
     }
 
-    public void setRunSpd(int runSpd) {
+    public void setRunSpeed(int runSpd) {
         this.runSpd = runSpd;
     }
 
@@ -274,7 +274,7 @@ public class Character extends Entity<Integer> {
         return walkSpd;
     }
 
-    public void setWalkSpd(int walkSpd) {
+    public void setWalkSpeed(int walkSpd) {
         this.walkSpd = walkSpd;
     }
 
@@ -282,7 +282,7 @@ public class Character extends Entity<Integer> {
         return str;
     }
 
-    public void setStr(int str) {
+    public void setStrength(int str) {
         this.str = str;
     }
 
@@ -290,7 +290,7 @@ public class Character extends Entity<Integer> {
         return con;
     }
 
-    public void setCon(int con) {
+    public void setConstitution(int con) {
         this.con = con;
     }
 
@@ -298,7 +298,7 @@ public class Character extends Entity<Integer> {
         return dex;
     }
 
-    public void setDex(int dex) {
+    public void setDexterity(int dex) {
         this.dex = dex;
     }
 
@@ -314,7 +314,7 @@ public class Character extends Entity<Integer> {
         return men;
     }
 
-    public void setMen(int men) {
+    public void setMentality(int men) {
         this.men = men;
     }
 
@@ -322,7 +322,7 @@ public class Character extends Entity<Integer> {
         return wit;
     }
 
-    public void setWit(int wit) {
+    public void setWitness(int wit) {
         this.wit = wit;
     }
 
@@ -398,7 +398,7 @@ public class Character extends Entity<Integer> {
         return colRad;
     }
 
-    public void setColRad(int colRad) {
+    public void setCollisionRadius(int colRad) {
         this.colRad = colRad;
     }
 
@@ -406,7 +406,7 @@ public class Character extends Entity<Integer> {
         return colHeight;
     }
 
-    public void setColHeight(int colHeight) {
+    public void setCollisionHeight(int colHeight) {
         this.colHeight = colHeight;
     }
 
@@ -414,7 +414,7 @@ public class Character extends Entity<Integer> {
         return exp;
     }
 
-    public void setExp(long exp) {
+    public void setExperience(long exp) {
         this.exp = exp;
     }
 
@@ -430,7 +430,7 @@ public class Character extends Entity<Integer> {
         return sp;
     }
 
-    public void setSp(int sp) {
+    public void setSkillPoint(int sp) {
         this.sp = sp;
     }
 
@@ -526,7 +526,7 @@ public class Character extends Entity<Integer> {
         return recHave;
     }
 
-    public void setRecHave(int recHave) {
+    public void setRecommendHave(int recHave) {
         this.recHave = recHave;
     }
 
@@ -534,7 +534,7 @@ public class Character extends Entity<Integer> {
         return recLeft;
     }
 
-    public void setRecLeft(int recLeft) {
+    public void setRecommendLeft(int recLeft) {
         this.recLeft = recLeft;
     }
 
@@ -590,7 +590,7 @@ public class Character extends Entity<Integer> {
         return clanPrivs;
     }
 
-    public void setClanPrivs(int clanPrivs) {
+    public void setClanPrivileges(int clanPrivs) {
         this.clanPrivs = clanPrivs;
     }
 
@@ -654,7 +654,7 @@ public class Character extends Entity<Integer> {
         return lastRecomDate;
     }
 
-    public void setLastRecomDate(long lastRecomDate) {
+    public void setLastRecommendDate(long lastRecomDate) {
         this.lastRecomDate = lastRecomDate;
     }
 
@@ -730,5 +730,18 @@ public class Character extends Entity<Integer> {
 
     public void setZ(int z) {
         this.z = z;
+    }
+
+    public void clearClanData(long clanJoinExpiryTime, long clanCreateExpiryTime) {
+        clanid = 0;
+        title = "";
+        this.clanJoinExpiryTime = clanJoinExpiryTime;
+        this.clanCreateExpiryTime = clanCreateExpiryTime;
+        clanPrivs = 0;
+        wantspeace = 0;
+        subpledge = 0;
+        lvlJoinedAcademy = 0;
+        apprentice = 0;
+        sponsor = 0;
     }
 }

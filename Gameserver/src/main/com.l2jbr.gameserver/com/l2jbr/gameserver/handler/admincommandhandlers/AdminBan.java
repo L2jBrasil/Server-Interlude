@@ -19,7 +19,7 @@
 package com.l2jbr.gameserver.handler.admincommandhandlers;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.LoginServerThread;
 import com.l2jbr.gameserver.communitybbs.Manager.RegionBBSManager;
 import com.l2jbr.gameserver.handler.IAdminCommandHandler;
@@ -27,12 +27,10 @@ import com.l2jbr.gameserver.model.GMAudit;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
@@ -196,105 +194,22 @@ public class AdminBan implements IAdminCommandHandler
 		return true;
 	}
 	
-	private void jailOfflinePlayer(L2PcInstance activeChar, String name, int delay)
-	{
-		Connection con = null;
-		try
-		{
-			con = L2DatabaseFactory.getInstance().getConnection();
-			
-			PreparedStatement statement = con.prepareStatement("UPDATE characters SET x=?, y=?, z=?, in_jail=?, jail_timer=? WHERE char_name=?");
-			statement.setInt(1, -114356);
-			statement.setInt(2, -249645);
-			statement.setInt(3, -2984);
-			statement.setInt(4, 1);
-			statement.setLong(5, delay * 60000L);
-			statement.setString(6, name);
-			
-			statement.execute();
-			int count = statement.getUpdateCount();
-			statement.close();
-			
-			if (count == 0)
-			{
-				activeChar.sendMessage("Character not found!");
-			}
-			else
-			{
-				activeChar.sendMessage("Character " + name + " jailed for " + (delay > 0 ? delay + " minutes." : "ever!"));
-			}
-		}
-		catch (SQLException se)
-		{
-			activeChar.sendMessage("SQLException while jailing player");
-			if (Config.DEBUG)
-			{
-				se.printStackTrace();
-			}
-		}
-		finally
-		{
-			try
-			{
-				con.close();
-			}
-			catch (Exception e)
-			{
-				if (Config.DEBUG)
-				{
-					e.printStackTrace();
-				}
-			}
+	private void jailOfflinePlayer(L2PcInstance activeChar, String name, int delay) {
+		CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
+		if(repository.updateJailStatusByName(name, -114356, -249645, -2984, 1, delay * 60000L) > 0) {
+			activeChar.sendMessage("Character " + name + " jailed for " + (delay > 0 ? delay + " minutes." : "ever!"));
+		} else {
+			activeChar.sendMessage("Character not found!");
 		}
 	}
 	
-	private void unjailOfflinePlayer(L2PcInstance activeChar, String name)
-	{
-		Connection con = null;
-		try
-		{
-			con = L2DatabaseFactory.getInstance().getConnection();
-			PreparedStatement statement = con.prepareStatement("UPDATE characters SET x=?, y=?, z=?, in_jail=?, jail_timer=? WHERE char_name=?");
-			statement.setInt(1, 17836);
-			statement.setInt(2, 170178);
-			statement.setInt(3, -3507);
-			statement.setInt(4, 0);
-			statement.setLong(5, 0);
-			statement.setString(6, name);
-			statement.execute();
-			int count = statement.getUpdateCount();
-			statement.close();
-			if (count == 0)
-			{
-				activeChar.sendMessage("Character not found!");
-			}
-			else
-			{
-				activeChar.sendMessage("Character " + name + " removed from jail");
-			}
-		}
-		catch (SQLException se)
-		{
-			activeChar.sendMessage("SQLException while jailing player");
-			if (Config.DEBUG)
-			{
-				se.printStackTrace();
-			}
-		}
-		finally
-		{
-			try
-			{
-				con.close();
-			}
-			catch (Exception e)
-			{
-				if (Config.DEBUG)
-				{
-					e.printStackTrace();
-				}
-			}
-		}
+	private void unjailOfflinePlayer(L2PcInstance activeChar, String name) {
+        CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
+        if(repository.updateJailStatusByName(name, 17836, 170178, -3507, 0, 0) > 0) {
+            activeChar.sendMessage("Character " + name + " removed from jail");
+        } else {
+            activeChar.sendMessage("Character not found!");
+        }
 	}
 	
 	@Override

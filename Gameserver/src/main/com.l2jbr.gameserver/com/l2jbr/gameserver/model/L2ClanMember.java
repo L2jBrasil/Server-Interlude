@@ -18,9 +18,11 @@
  */
 package com.l2jbr.gameserver.model;
 
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.instancemanager.SiegeManager;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -211,33 +213,9 @@ public class L2ClanMember
 		}
 	}
 	
-	public void updatePledgeType()
-	{
-		java.sql.Connection con = null;
-		
-		try
-		{
-			con = L2DatabaseFactory.getInstance().getConnection();
-			PreparedStatement statement = con.prepareStatement("UPDATE characters SET subpledge=? WHERE obj_id=?");
-			statement.setLong(1, _pledgeType);
-			statement.setInt(2, getObjectId());
-			statement.execute();
-			statement.close();
-		}
-		catch (Exception e)
-		{
-			// _log.warn("could not set char power_grade:"+e);
-		}
-		finally
-		{
-			try
-			{
-				con.close();
-			}
-			catch (Exception e)
-			{
-			}
-		}
+	public void updatePledgeType()  {
+        CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
+        repository.updateSubpledge(getObjectId(), _pledgeType);
 	}
 	
 	public int getPowerGrade()
@@ -270,33 +248,9 @@ public class L2ClanMember
 	 * Update the characters table of the database with power grade.<BR>
 	 * <BR>
 	 */
-	public void updatePowerGrade()
-	{
-		java.sql.Connection con = null;
-		
-		try
-		{
-			con = L2DatabaseFactory.getInstance().getConnection();
-			PreparedStatement statement = con.prepareStatement("UPDATE characters SET power_grade=? WHERE obj_id=?");
-			statement.setLong(1, _powerGrade);
-			statement.setInt(2, getObjectId());
-			statement.execute();
-			statement.close();
-		}
-		catch (Exception e)
-		{
-			// _log.warn("could not set char power_grade:"+e);
-		}
-		finally
-		{
-			try
-			{
-				con.close();
-			}
-			catch (Exception e)
-			{
-			}
-		}
+	public void updatePowerGrade() {
+	    CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
+	    repository.updatePowerGrade(getObjectId(), _powerGrade);
 	}
 	
 	public void initApprenticeAndSponsor(int apprenticeID, int sponsorID)

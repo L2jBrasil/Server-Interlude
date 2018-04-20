@@ -18,12 +18,14 @@
 package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.instancemanager.CursedWeaponsManager;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.templates.L2Item;
@@ -119,54 +121,24 @@ public class CursedWeapon
 				
 				_player.broadcastUserInfo();
 			}
-			else
-			{
+			else {
 				// Remove from Db
 				_log.info(_name + " being removed offline.");
-				
-				Connection con = null;
-				try
-				{
-					con = L2DatabaseFactory.getInstance().getConnection();
-					
-					// Delete the item
-					PreparedStatement statement = con.prepareStatement("DELETE FROM items WHERE owner_id=? AND item_id=?");
+                CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
+                if(repository.updatePKAndKarma(_playerId, _playerPkKills, _playerKarma) < 1) {
+                    _log.warn("Error while updating karma & pkkills for userId {}",  _playerId);
+                }
+
+				try(Connection con = L2DatabaseFactory.getInstance().getConnection();
+                    PreparedStatement statement = con.prepareStatement("DELETE FROM items WHERE owner_id=? AND item_id=?")) {
 					statement.setInt(1, _playerId);
 					statement.setInt(2, _itemId);
-					if (statement.executeUpdate() != 1)
-					{
+					if (statement.executeUpdate() != 1) {
 						_log.warn("Error while deleting itemId " + _itemId + " from userId " + _playerId);
 					}
-					statement.close();
-					/*
-					 * Yesod: Skill is not stored into database any more. // Delete the skill statement = con.prepareStatement("DELETE FROM character_skills WHERE char_obj_id=? AND skill_id=?"); statement.setInt(1, _playerId); statement.setInt(2, _skillId); if (statement.executeUpdate() != 1) {
-					 * _log.warn("Error while deleting skillId "+ _skillId +" from userId "+_playerId); }
-					 */
-					// Restore the karma
-					statement = con.prepareStatement("UPDATE characters SET karma=?, pkkills=? WHERE obj_id=?");
-					statement.setInt(1, _playerKarma);
-					statement.setInt(2, _playerPkKills);
-					statement.setInt(3, _playerId);
-					if (statement.executeUpdate() != 1)
-					{
-						_log.warn("Error while updating karma & pkkills for userId " + _playerId);
-					}
-					
-					statement.close();
 				}
-				catch (Exception e)
-				{
+				catch (Exception e) {
 					_log.warn("Could not delete : " + e);
-				}
-				finally
-				{
-					try
-					{
-						con.close();
-					}
-					catch (Exception e)
-					{
-					}
 				}
 			}
 		}

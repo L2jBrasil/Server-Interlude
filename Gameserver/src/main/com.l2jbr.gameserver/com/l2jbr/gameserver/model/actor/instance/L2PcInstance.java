@@ -85,8 +85,6 @@ public final class L2PcInstance extends L2PlayableInstance {
     private static final String ADD_SKILL_SAVE = "INSERT INTO character_skills_save (char_obj_id,skill_id,skill_level,effect_count,effect_cur_time,reuse_delay,restore_type,class_index,buff_index) VALUES (?,?,?,?,?,?,?,?,?)";
     private static final String RESTORE_SKILL_SAVE = "SELECT skill_id,skill_level,effect_count,effect_cur_time, reuse_delay FROM character_skills_save WHERE char_obj_id=? AND class_index=? AND restore_type=? ORDER BY buff_index ASC";
     private static final String DELETE_SKILL_SAVE = "DELETE FROM character_skills_save WHERE char_obj_id=? AND class_index=?";
-    private static final String UPDATE_CHARACTER = "UPDATE characters SET level=?,maxHp=?,curHp=?,maxCp=?,curCp=?,maxMp=?,curMp=?,str=?,con=?,dex=?,_int=?,men=?,wit=?,face=?,hairStyle=?,hairColor=?,heading=?,x=?,y=?,z=?,exp=?,expBeforeDeath=?,sp=?,karma=?,pvpkills=?,pkkills=?,rec_have=?,rec_left=?,clanid=?,maxload=?,race=?,classid=?,deletetime=?,title=?,accesslevel=?,online=?,isin7sdungeon=?,clan_privs=?,wantspeace=?,base_class=?,onlinetime=?,in_jail=?,jail_timer=?,newbie=?,nobless=?,power_grade=?,subpledge=?,last_recom_date=?,lvl_joined_academy=?,apprentice=?,sponsor=?,varka_ketra_ally=?,clan_join_expiry_time=?,clan_create_expiry_time=?,char_name=?,death_penalty_level=? WHERE obj_id=?";
-    private static final String RESTORE_CHARACTER = "SELECT account_name, obj_Id, char_name, level, maxHp, curHp, maxCp, curCp, maxMp, curMp, acc, crit, evasion, mAtk, mDef, mSpd, pAtk, pDef, pSpd, runSpd, walkSpd, str, con, dex, _int, men, wit, face, hairStyle, hairColor, sex, heading, x, y, z, movement_multiplier, attack_speed_multiplier, colRad, colHeight, exp, expBeforeDeath, sp, karma, pvpkills, pkkills, clanid, maxload, race, classid, deletetime, cancraft, title, rec_have, rec_left, accesslevel, online, char_slot, lastAccess, clan_privs, wantspeace, base_class, onlinetime, isin7sdungeon, in_jail, jail_timer, newbie, nobless, power_grade, subpledge, last_recom_date, lvl_joined_academy, apprentice, sponsor, varka_ketra_ally,clan_join_expiry_time,clan_create_expiry_time,death_penalty_level FROM characters WHERE obj_id=?";
     private static final String RESTORE_CHAR_SUBCLASSES = "SELECT class_id,exp,sp,level,class_index FROM character_subclasses WHERE char_obj_id=? ORDER BY class_index ASC";
     private static final String ADD_CHAR_SUBCLASS = "INSERT INTO character_subclasses (char_obj_id,class_id,exp,sp,level,class_index) VALUES (?,?,?,?,?,?)";
     private static final String UPDATE_CHAR_SUBCLASS = "UPDATE character_subclasses SET exp=?,sp=?,level=?,class_id=? WHERE char_obj_id=? AND class_index =?";
@@ -6180,48 +6178,16 @@ public final class L2PcInstance extends L2PlayableInstance {
      * Update the characters table of the database with online status and lastAccess of this L2PcInstance (called when login and logout).
      */
     public void updateOnlineStatus() {
-        java.sql.Connection con = null;
-
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("UPDATE characters SET online=?, lastAccess=? WHERE obj_id=?");
-            statement.setInt(1, isOnline());
-            statement.setLong(2, System.currentTimeMillis());
-            statement.setInt(3, getObjectId());
-            statement.execute();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("could not set char online status:" + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
+        repository.updateOnlineStatus(getObjectId(), isOnline(), System.currentTimeMillis());
     }
 
     /**
      * Update is in7s dungeon status.
      */
     public void updateIsIn7sDungeonStatus() {
-        java.sql.Connection con = null;
-
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("UPDATE characters SET isIn7sDungeon=?, lastAccess=? WHERE obj_id=?");
-            statement.setInt(1, isIn7sDungeon() ? 1 : 0);
-            statement.setLong(2, System.currentTimeMillis());
-            statement.setInt(3, getObjectId());
-            statement.execute();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("could not set char isIn7sDungeon status:" + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
+        repository.updateSevenSignsDungeonStatus(getObjectId(), isIn7sDungeon() ? 1 : 0);
     }
 
     /**
@@ -6230,80 +6196,113 @@ public final class L2PcInstance extends L2PlayableInstance {
      * @return true, if successful
      */
     private boolean createDb() {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
-            statement = con.prepareStatement("INSERT INTO characters " + "(account_name,obj_Id,char_name,level,maxHp,curHp,maxCp,curCp,maxMp,curMp," + "acc,crit,evasion,mAtk,mDef,mSpd,pAtk,pDef,pSpd,runSpd,walkSpd," + "str,con,dex,_int,men,wit,face,hairStyle,hairColor,sex," + "movement_multiplier,attack_speed_multiplier,colRad,colHeight," + "exp,sp,karma,pvpkills,pkkills,clanid,maxload,race,classid,deletetime," + "cancraft,title,accesslevel,online,isin7sdungeon,clan_privs,wantspeace," + "base_class,newbie,nobless,power_grade,last_recom_date) " + "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-            statement.setString(1, _accountName);
-            statement.setInt(2, getObjectId());
-            statement.setString(3, getName());
-            statement.setInt(4, getLevel());
-            statement.setInt(5, getMaxHp());
-            statement.setDouble(6, getCurrentHp());
-            statement.setInt(7, getMaxCp());
-            statement.setDouble(8, getCurrentCp());
-            statement.setInt(9, getMaxMp());
-            statement.setDouble(10, getCurrentMp());
-            statement.setInt(11, getAccuracy());
-            statement.setInt(12, getCriticalHit(null, null));
-            statement.setInt(13, getEvasionRate(null));
-            statement.setInt(14, getMAtk(null, null));
-            statement.setInt(15, getMDef(null, null));
-            statement.setInt(16, getMAtkSpd());
-            statement.setInt(17, getPAtk(null));
-            statement.setInt(18, getPDef(null));
-            statement.setInt(19, getPAtkSpd());
-            statement.setInt(20, getRunSpeed());
-            statement.setInt(21, getWalkSpeed());
-            statement.setInt(22, getSTR());
-            statement.setInt(23, getCON());
-            statement.setInt(24, getDEX());
-            statement.setInt(25, getINT());
-            statement.setInt(26, getMEN());
-            statement.setInt(27, getWIT());
-            statement.setInt(28, getAppearance().getFace());
-            statement.setInt(29, getAppearance().getHairStyle());
-            statement.setInt(30, getAppearance().getHairColor());
-            statement.setInt(31, getAppearance().getSex() ? 1 : 0);
-            statement.setDouble(32, 1/* getMovementMultiplier() */);
-            statement.setDouble(33, 1/* getAttackSpeedMultiplier() */);
-            statement.setDouble(34, getTemplate().collisionRadius/* getCollisionRadius() */);
-            statement.setDouble(35, getTemplate().collisionHeight/* getCollisionHeight() */);
-            statement.setLong(36, getExp());
-            statement.setInt(37, getSp());
-            statement.setInt(38, getKarma());
-            statement.setInt(39, getPvpKills());
-            statement.setInt(40, getPkKills());
-            statement.setInt(41, getClanId());
-            statement.setInt(42, getMaxLoad());
-            statement.setInt(43, getRace().ordinal());
-            statement.setInt(44, getClassId().getId());
-            statement.setLong(45, getDeleteTimer());
-            statement.setInt(46, hasDwarvenCraft() ? 1 : 0);
-            statement.setString(47, getTitle());
-            statement.setInt(48, getAccessLevel());
-            statement.setInt(49, isOnline());
-            statement.setInt(50, isIn7sDungeon() ? 1 : 0);
-            statement.setInt(51, getClanPrivileges());
-            statement.setInt(52, getWantsPeace());
-            statement.setInt(53, getBaseClass());
-            statement.setInt(54, isNewbie() ? 1 : 0);
-            statement.setInt(55, isNoble() ? 1 : 0);
-            statement.setLong(56, 0);
-            statement.setLong(57, System.currentTimeMillis());
-            statement.executeUpdate();
-            statement.close();
-        } catch (Exception e) {
-            _log.error("Could not insert char data: " + e);
-            return false;
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
+        Character character = new Character();
+
+        character.setObjId(getObjectId());
+        character.setAccountName(_accountName);
+
+        character.setLevel((byte) getLevel());
+        character.setExperience(getExp());
+        character.setExpBeforeDeath(_expBeforeDeath);
+        character.setSkillPoint(getSp());
+
+        character.setMaxHp(getMaxHp());
+        character.setCurrentHp((long) getCurrentHp());
+        character.setMaxCp(getMaxCp());
+        character.setCurrentCp((long) getCurrentCp());
+        character.setMaxMp(getMaxMp());
+        character.setCurrentMp((long) getCurrentMp());
+
+        character.setAccuracy(getAccuracy());
+        character.setCritical(getCriticalHit(null, null));
+        character.setEvasion(getEvasionRate(null));
+        character.setMagicalAttack(getMAtk(null, null));
+        character.setMagicalDefense(getMDef(null, null));
+        character.setMagicalSpeed(getMAtkSpd());
+        character.setPhysicalAttack(getPAtk(null));
+        character.setPhysicalDefense(getPDef(null));
+        character.setPhysicalSpeed(getPAtkSpd());
+        character.setRunSpeed(getRunSpeed());
+        character.setWalkSpeed(getWalkSpeed());
+        character.setMovementMultiplier(1);
+        character.setAttackSpeedMultiplier(1);
+        character.setMaxload(getMaxLoad());
+
+        character.setStrength(getSTR());
+        character.setConstitution(getCON());
+        character.setDexterity(getDEX());
+        character.setIntelligence(getINT());
+        character.setMentality(getMEN());
+        character.setWitness(getWIT());
+
+        PcAppearance appearance = getAppearance();
+
+        character.setFace(appearance.getFace());
+        character.setHairStyle(appearance.getHairStyle());
+        character.setHairColor(appearance.getHairColor());
+        character.setSex(appearance.getSex() ? 1 : 0);
+        character.setTitle(getTitle());
+        character.setCharName(getName());
+
+        character.setCollisionRadius(getTemplate().collisionRadius);
+        character.setCollisionHeight(getTemplate().collisionHeight);
+
+        character.setHeading(getHeading());
+        setCharacterPosition(character);
+
+        character.setKarma(_karma);
+        character.setPvpkills(_pvpKills);
+        character.setPkkills(_pkKills);
+
+        character.setRecommendHave(_recomHave);
+        character.setRecommendLeft(_recomLeft);
+        character.setLastRecommendDate(System.currentTimeMillis());
+        character.setAccesslevel(getAccessLevel());
+
+        character.setClanid(_clanId);
+        character.setClanPrivileges(getClanPrivileges());
+        character.setWantspeace(_wantsPeace);
+        character.setLvlJoinedAcademy(getLvlJoinedAcademy());
+        character.setApprentice(getApprentice());
+        character.setSponsor(getSponsor());
+        character.setClanJoinExpiryTime(getClanJoinExpiryTime());
+        character.setClanCreateExpiryTime(getClanCreateExpiryTime());
+        character.setPowerGrade(0);
+        character.setSubpledge(getPledgeType());
+
+        character.setRace(getRace().ordinal());
+        character.setClassid(getClassId().getId());
+        character.setBaseClass(getBaseClass());
+
+        character.setDeletetime(getDeleteTimer());
+        character.setOnline(isOnline());
+        character.setIsin7sdungeon(isIn7sDungeon() ? 1 : 0);
+
+        character.setOnlinetime(0);
+        character.setInJail(isInJail() ? 1 : 0);
+        character.setJailTimer(getJailTimer());
+        character.setNewbie(isNewbie() ? 1 : 0);
+        character.setNobless(isNoble() ? 1 : 0);
+        character.setVarkaKetraAlly(getAllianceWithVarkaKetra());
+        character.setDeathPenaltyLevel(getDeathPenaltyBuffLevel());
+        character.setCancraft(hasDwarvenCraft() ? 1 : 0);
+
+        CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
+        repository.save(character);
+
+        return character.isPersisted();
+    }
+
+    private void setCharacterPosition(Character character) {
+        if(_observerMode) {
+            character.setX( _obsX );
+            character.setY( _obsY );
+            character.setZ( _obsZ );
+        } else {
+            character.setX( getX() );
+            character.setY( getY() );
+            character.setZ( getZ() );
         }
-        return true;
     }
 
     /**
@@ -6680,103 +6679,95 @@ public final class L2PcInstance extends L2PlayableInstance {
      * Store char base.
      */
     private void storeCharBase() {
-        java.sql.Connection con = null;
+        // Get the exp, level, and sp of base class to store in base table
+        int currentClassIndex = getClassIndex();
+        _classIndex = 0;
+        long exp = getStat().getExp();
+        byte level = getStat().getLevel();
+        int sp = getStat().getSp();
+        _classIndex = currentClassIndex;
 
-        try {
-            // Get the exp, level, and sp of base class to store in base table
-            int currentClassIndex = getClassIndex();
-            _classIndex = 0;
-            long exp = getStat().getExp();
-            int level = getStat().getLevel();
-            int sp = getStat().getSp();
-            _classIndex = currentClassIndex;
+        Character character = new Character();
 
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
+        character.setObjId(getObjectId());
 
-            // Update base class
-            statement = con.prepareStatement(UPDATE_CHARACTER);
-            statement.setInt(1, level);
-            statement.setInt(2, getMaxHp());
-            statement.setDouble(3, getCurrentHp());
-            statement.setInt(4, getMaxCp());
-            statement.setDouble(5, getCurrentCp());
-            statement.setInt(6, getMaxMp());
-            statement.setDouble(7, getCurrentMp());
-            statement.setInt(8, getSTR());
-            statement.setInt(9, getCON());
-            statement.setInt(10, getDEX());
-            statement.setInt(11, getINT());
-            statement.setInt(12, getMEN());
-            statement.setInt(13, getWIT());
-            statement.setInt(14, getAppearance().getFace());
-            statement.setInt(15, getAppearance().getHairStyle());
-            statement.setInt(16, getAppearance().getHairColor());
-            statement.setInt(17, getHeading());
-            statement.setInt(18, _observerMode ? _obsX : getX());
-            statement.setInt(19, _observerMode ? _obsY : getY());
-            statement.setInt(20, _observerMode ? _obsZ : getZ());
-            statement.setLong(21, exp);
-            statement.setLong(22, getExpBeforeDeath());
-            statement.setInt(23, sp);
-            statement.setInt(24, getKarma());
-            statement.setInt(25, getPvpKills());
-            statement.setInt(26, getPkKills());
-            statement.setInt(27, getRecomHave());
-            statement.setInt(28, getRecomLeft());
-            statement.setInt(29, getClanId());
-            statement.setInt(30, getMaxLoad());
-            statement.setInt(31, getRace().ordinal());
+        character.setLevel(level);
+        character.setExperience(exp);
+        character.setExpBeforeDeath(_expBeforeDeath);
+        character.setSkillPoint(sp);
 
-            // if (!isSubClassActive())
+        character.setMaxHp(getMaxHp());
+        character.setCurrentHp((long) getCurrentHp());
+        character.setMaxCp(getMaxCp());
+        character.setCurrentCp((long) getCurrentCp());
+        character.setMaxMp(getMaxMp());
+        character.setCurrentMp((long) getCurrentMp());
 
-            // else
-            // statement.setInt(30, getBaseTemplate().race.ordinal());
+        character.setStrength(getSTR());
+        character.setConstitution(getCON());
+        character.setDexterity(getDEX());
+        character.setIntelligence(getINT());
+        character.setMentality(getMEN());
+        character.setWitness(getWIT());
+        character.setMaxload(getMaxLoad());
 
-            statement.setInt(32, getClassId().getId());
-            statement.setLong(33, getDeleteTimer());
-            statement.setString(34, getTitle());
-            statement.setInt(35, getAccessLevel());
-            statement.setInt(36, isOnline());
-            statement.setInt(37, isIn7sDungeon() ? 1 : 0);
-            statement.setInt(38, getClanPrivileges());
-            statement.setInt(39, getWantsPeace());
-            statement.setInt(40, getBaseClass());
+        PcAppearance appearance = getAppearance();
 
-            long totalOnlineTime = _onlineTime;
+        character.setFace(appearance.getFace());
+        character.setHairStyle(appearance.getHairStyle());
+        character.setHairColor(appearance.getHairColor());
+        character.setTitle(getTitle());
+        character.setCharName(getName());
 
-            if (_onlineBeginTime > 0) {
-                totalOnlineTime += (System.currentTimeMillis() - _onlineBeginTime) / 1000;
-            }
+        character.setHeading(getHeading());
+        setCharacterPosition(character);
 
-            statement.setLong(41, totalOnlineTime);
-            statement.setInt(42, isInJail() ? 1 : 0);
-            statement.setLong(43, getJailTimer());
-            statement.setInt(44, isNewbie() ? 1 : 0);
-            statement.setInt(45, isNoble() ? 1 : 0);
-            statement.setLong(46, getPowerGrade());
-            statement.setInt(47, getPledgeType());
-            statement.setLong(48, getLastRecomUpdate());
-            statement.setInt(49, getLvlJoinedAcademy());
-            statement.setLong(50, getApprentice());
-            statement.setLong(51, getSponsor());
-            statement.setInt(52, getAllianceWithVarkaKetra());
-            statement.setLong(53, getClanJoinExpiryTime());
-            statement.setLong(54, getClanCreateExpiryTime());
-            statement.setString(55, getName());
-            statement.setLong(56, getDeathPenaltyBuffLevel());
-            statement.setInt(57, getObjectId());
+        character.setKarma(_karma);
+        character.setPvpkills(_pvpKills);
+        character.setPkkills(_pkKills);
 
-            statement.execute();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("Could not store char base data: " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
+        character.setRecommendHave(_recomHave);
+        character.setRecommendLeft(_recomLeft);
+        character.setLastRecommendDate(getLastRecomUpdate());
+        character.setAccesslevel(getAccessLevel());
+
+        character.setClanid(_clanId);
+        character.setClanPrivileges(getClanPrivileges());
+        character.setWantspeace(_wantsPeace);
+        character.setLvlJoinedAcademy(getLvlJoinedAcademy());
+        character.setApprentice(getApprentice());
+        character.setSponsor(getSponsor());
+        character.setClanJoinExpiryTime(getClanJoinExpiryTime());
+        character.setClanCreateExpiryTime(getClanCreateExpiryTime());
+        character.setPowerGrade(getPowerGrade());
+        character.setSubpledge(getPledgeType());
+
+        character.setRace(getRace().ordinal());
+        character.setClassid(getClassId().getId());
+        character.setBaseClass(getBaseClass());
+
+        character.setDeletetime(getDeleteTimer());
+        character.setOnline(isOnline());
+        character.setIsin7sdungeon(isIn7sDungeon() ? 1 : 0);
+
+        long totalOnlineTime = _onlineTime;
+
+        if (_onlineBeginTime > 0) {
+            totalOnlineTime += (System.currentTimeMillis() - _onlineBeginTime) / 1000;
         }
+
+        character.setOnlinetime(totalOnlineTime);
+        character.setInJail(isInJail() ? 1 : 0);
+        character.setJailTimer(getJailTimer());
+        character.setNewbie(isNewbie() ? 1 : 0);
+        character.setNobless(isNoble() ? 1 : 0);
+        character.setVarkaKetraAlly(getAllianceWithVarkaKetra());
+        character.setDeathPenaltyLevel(getDeathPenaltyBuffLevel());
+
+        character.setPersisted();
+
+        CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
+        repository.save(character);
     }
 
     /**

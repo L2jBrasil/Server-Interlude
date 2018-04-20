@@ -18,12 +18,14 @@
 package com.l2jbr.gameserver.instancemanager;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.L2FestivalMonsterInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2RiftInvaderInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2SiegeGuardInstance;
+import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import org.slf4j.Logger;
@@ -223,6 +225,8 @@ public class CursedWeaponsManager {
             PreparedStatement statement = null;
             ResultSet rset = null;
 
+
+            CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
             // TODO: See comments below...
             // This entire for loop should NOT be necessary, since it is already handled by
             // CursedWeapon.endOfLife(). However, if we indeed *need* to duplicate it for safety,
@@ -255,19 +259,10 @@ public class CursedWeaponsManager {
                         }
                         statement.close();
 
-                        // Delete the skill
-                        /*
-                         * statement = con.prepareStatement("DELETE FROM character_skills WHERE char_obj_id=? AND skill_id="); statement.setInt(1, playerId); statement.setInt(2, cw.getSkillId()); if (statement.executeUpdate() != 1) {
-                         * _log.warn("Error while deleting cursed weapon "+itemId+" skill from userId "+playerId); }
-                         */
-                        // Restore the player's old karma and pk count
-                        statement = con.prepareStatement("UPDATE characters SET karma=?, pkkills=? WHERE obj_id=?");
-                        statement.setInt(1, cw.getPlayerKarma());
-                        statement.setInt(2, cw.getPlayerPkKills());
-                        statement.setInt(3, playerId);
-                        if (statement.executeUpdate() != 1) {
-                            _log.warn("Error while updating karma & pkkills for userId " + cw.getPlayerId());
+                        if(repository.updatePKAndKarma(playerId, cw.getPlayerPkKills(), cw.getPlayerKarma()) < 1){
+                            _log.warn("Error while updating karma & pkkills for userId {}", cw.getPlayerId());
                         }
+
                         // clean up the cursedweapons table.
                         removeFromDb(itemId);
                     }
