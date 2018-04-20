@@ -18,6 +18,7 @@
 package com.l2jbr.gameserver;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.ai.CtrlIntention;
@@ -30,6 +31,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2FestivalMonsterInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.base.Experience;
+import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.CreatureSay;
 import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
@@ -60,8 +62,6 @@ import java.util.concurrent.ScheduledFuture;
 public class SevenSignsFestival implements SpawnListener {
     protected static final Logger _log = LoggerFactory.getLogger(SevenSignsFestival.class.getName());
     private static SevenSignsFestival _instance;
-
-    private static final String GET_CLAN_NAME = "SELECT clan_name FROM clan_data WHERE clan_id = (SELECT clanid FROM characters WHERE char_name = ?)";
 
     /**
      * These length settings are important! :) All times are relative to the ELAPSED time (in ms) since a festival begins. Festival manager start is the time after the server starts to begin the first festival cycle. The cycle length should ideally be at least 2x longer than the festival length.
@@ -3489,27 +3489,18 @@ public class SevenSignsFestival implements SpawnListener {
                 player.getClan().broadcastToOnlineMembers(sm);
             }
         } else {
-            try (Connection con = L2DatabaseFactory.getInstance().getConnection();
-                 PreparedStatement statement = con.prepareStatement(GET_CLAN_NAME)) {
-                statement.setString(1, partyMemberName);
-                try (ResultSet rset = statement.executeQuery()) {
-                    if (rset.next()) {
-                        String clanName = rset.getString("clan_name");
-                        if (clanName != null) {
-                            L2Clan clan = ClanTable.getInstance().getClanByName(clanName);
-                            if (clan != null) {
-                                clan.setReputationScore(clan.getReputationScore() + 100, true);
-                                clan.broadcastToOnlineMembers(new PledgeShowInfoUpdate(clan));
-                                SystemMessage sm = new SystemMessage(SystemMessageId.CLAN_MEMBER_S1_WAS_IN_HIGHEST_RANKED_PARTY_IN_FESTIVAL_OF_DARKNESS_AND_GAINED_S2_REPUTATION);
-                                sm.addString(partyMemberName);
-                                sm.addNumber(100);
-                                clan.broadcastToOnlineMembers(sm);
-                            }
-                        }
-                    }
+            CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
+            int clanId = repository.findClanIdByName(partyMemberName);
+            if(clanId > 0) {
+                L2Clan clan = ClanTable.getInstance().getClan(clanId);
+                if (clan != null) {
+                    clan.setReputationScore(clan.getReputationScore() + 100, true);
+                    clan.broadcastToOnlineMembers(new PledgeShowInfoUpdate(clan));
+                    SystemMessage sm = new SystemMessage(SystemMessageId.CLAN_MEMBER_S1_WAS_IN_HIGHEST_RANKED_PARTY_IN_FESTIVAL_OF_DARKNESS_AND_GAINED_S2_REPUTATION);
+                    sm.addString(partyMemberName);
+                    sm.addNumber(100);
+                    clan.broadcastToOnlineMembers(sm);
                 }
-            } catch (Exception e) {
-                _log.warn("could not get clan name of " + partyMemberName + ": " + e);
             }
         }
     }

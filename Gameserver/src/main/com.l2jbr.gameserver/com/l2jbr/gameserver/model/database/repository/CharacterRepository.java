@@ -43,7 +43,7 @@ public interface CharacterRepository extends CrudRepository<Character, Integer> 
     @Query("SELECT COUNT(1) FROM characters WHERE account_name=:account")
     int countByAccount(@Param("account") String account);
 
-    @Query("SELECT clanid FROM characters WHERE characters.obj_Id =:objectId")
+    @Query("SELECT clanid FROM characters WHERE obj_Id =:objectId")
     int findClanIdById(@Param("objectId") int charId);
 
     @Modifying
@@ -78,4 +78,7 @@ public interface CharacterRepository extends CrudRepository<Character, Integer> 
     @Modifying
     @Query("UPDATE characters SET power_grade=:powerGrade WHERE obj_id=:objectId")
     int updatePowerGrade(@Param("objectId") int objectId, @Param("powerGrade") int powerGrade);
+
+    @Query("SELECT clanid FROM characters WHERE char_name=:name")
+    int findClanIdByName(@Param("name") String name);
 }

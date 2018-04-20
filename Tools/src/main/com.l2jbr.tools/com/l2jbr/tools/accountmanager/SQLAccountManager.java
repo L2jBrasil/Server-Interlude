@@ -26,6 +26,7 @@ import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.database.model.Account;
 import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
+import com.l2jbr.gameserver.model.database.repository.ClanRepository;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -151,37 +152,25 @@ public class SQLAccountManager {
             final Connection con = L2DatabaseFactory.getInstance().getConnection();
 
             CharacterRepository characterRepository = DatabaseAccess.getRepository(CharacterRepository.class);
+            ClanRepository clanRepository = DatabaseAccess.getRepository(ClanRepository.class);
+
             characterRepository.findAllByAccountName(login).forEach(character -> {
+                final int clanId = character.getClanId();
+                clanRepository.findById(clanId).ifPresent(clanData -> {
 
-                System.out.println("Deleting character " + character.getCharName());
-                PreparedStatement statement = null;
-                ResultSet rcln = null;
-                try {
-                    statement = con.prepareStatement("SELECT clan_name FROM clan_data WHERE leader_id=?;");
-                    statement.setInt(1, character.getObjectId());
-                    rcln = statement.executeQuery();
-                    if (rcln.next()) {
-                        // Clan Leader
-                        System.out.println("Deleting clan " + rcln.getString("clan_name") + ".");
-
-                        // Delete Clan Wars
-                        statement.close();
-                        statement = con.prepareStatement("DELETE FROM clan_wars WHERE clan1=? OR clan2=?;");
+                    // Clan Leader
+                    System.out.println("Deleting clan " + clanData.getClanName() +  ".");
+                    try {
+                        PreparedStatement statement = con.prepareStatement("DELETE FROM clan_wars WHERE clan1=? OR clan2=?;");
                         statement.setEscapeProcessing(true);
-                        statement.setString(1, rcln.getString("clan_name"));
-                        statement.setString(2, rcln.getString("clan_name"));
+                        statement.setString(1, clanData.getClanName());
+                        statement.setString(2, clanData.getClanName());
                         statement.executeUpdate();
 
-                        final int clanId = character.getClanId();
+
                         // Remove All From clan
 
                         characterRepository.removeClanId(clanId);
-
-                        // Delete Clan
-                        statement.close();
-                        statement = con.prepareStatement("DELETE FROM clan_data WHERE clan_id=?;");
-                        statement.setInt(1, clanId);
-                        statement.executeUpdate();
 
                         statement.close();
                         statement = con.prepareStatement("DELETE FROM clan_privs WHERE clan_id=?;");
@@ -193,11 +182,17 @@ public class SQLAccountManager {
                         statement.setInt(1, clanId);
                         statement.executeUpdate();
 
+                        clanRepository.delete(clanData);
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                    rcln.close();
+                });
 
-                    // skills
-                    statement.close();
+                System.out.println("Deleting character " + character.getCharName());
+                PreparedStatement statement = null;
+                ResultSet rcln = null;
+                try {
+
                     statement = con.prepareStatement("DELETE FROM character_skills WHERE char_obj_id=?;");
                     statement.setInt(1, character.getObjectId());
                     statement.executeUpdate();

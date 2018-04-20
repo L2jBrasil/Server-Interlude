@@ -19,17 +19,15 @@
 package com.l2jbr.gameserver.cache;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.datatables.ClanTable;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.L2Clan;
+import com.l2jbr.gameserver.model.database.repository.ClanRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -130,15 +128,8 @@ public class CrestCache {
                 file.renameTo(new File(Config.DATAPACK_ROOT, "data/crests/Crest_" + newId + ".bmp"));
                 _log.info("Renamed Clan crest to new format: Crest_" + newId + ".bmp");
 
-                try (Connection con = L2DatabaseFactory.getInstance().getConnection();
-                     PreparedStatement statement = con.prepareStatement("UPDATE clan_data SET crest_id = ? WHERE clan_id = ?")) {
-                    statement.setInt(1, newId);
-                    statement.setInt(2, clan.getClanId());
-                    statement.executeUpdate();
-                } catch (SQLException e) {
-                    _log.warn("could not update the crest id:" + e.getMessage());
-                }
-
+                ClanRepository repository = DatabaseAccess.getRepository(ClanRepository.class);
+                repository.updateClanCrestById(clan.getClanId(), newId);
                 clan.setCrestId(newId);
                 clan.setHasCrest(true);
             } else {

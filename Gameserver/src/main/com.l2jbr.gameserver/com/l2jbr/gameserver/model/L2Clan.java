@@ -28,7 +28,9 @@ import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.instancemanager.CastleManager;
 import com.l2jbr.gameserver.instancemanager.SiegeManager;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.ClanData;
 import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
+import com.l2jbr.gameserver.model.database.repository.ClanRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.util.Util;
@@ -605,63 +607,42 @@ public class L2Clan {
     }
 
     public void updateClanInDB() {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("UPDATE clan_data SET leader_id=?,ally_id=?,ally_name=?,reputation_score=?,ally_penalty_expiry_time=?,ally_penalty_type=?,char_penalty_expiry_time=?,dissolving_expiry_time=? WHERE clan_id=?");
-            statement.setInt(1, getLeaderId());
-            statement.setInt(2, getAllyId());
-            statement.setString(3, getAllyName());
-            statement.setInt(4, getReputationScore());
-            statement.setLong(5, getAllyPenaltyExpiryTime());
-            statement.setInt(6, getAllyPenaltyType());
-            statement.setLong(7, getCharPenaltyExpiryTime());
-            statement.setLong(8, getDissolvingExpiryTime());
-            statement.setInt(9, getClanId());
-            statement.execute();
-            statement.close();
-            if (Config.DEBUG) {
-                _log.debug("New clan leader saved in db: " + getClanId());
-            }
-        } catch (Exception e) {
-            _log.warn("error while saving new clan leader to db " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        ClanData clanData = new ClanData();
+        clanData.setLeaderId(getLeaderId());
+        clanData.setAllyId(getAllyId());
+        clanData.setAllyName(getAllyName());
+        clanData.setReputationScore(getReputationScore());
+        clanData.setAllyPenaltyExpiryTime(getAllyPenaltyExpiryTime());
+        clanData.setAllyPenaltyType(getAllyPenaltyType());
+        clanData.setCharPenaltyExpiryTime(getCharPenaltyExpiryTime());
+        clanData.setDissolvingExpiryTime(getDissolvingExpiryTime());
+        clanData.setClanId(getClanId());
+        clanData.setPersisted();
+
+        ClanRepository repository = DatabaseAccess.getRepository(ClanRepository.class);
+        repository.save(clanData);
     }
 
     public void store() {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("INSERT INTO clan_data (clan_id,clan_name,clan_level,hasCastle,ally_id,ally_name,leader_id,crest_id,crest_large_id,ally_crest_id) values (?,?,?,?,?,?,?,?,?,?)");
-            statement.setInt(1, getClanId());
-            statement.setString(2, getName());
-            statement.setInt(3, getLevel());
-            statement.setInt(4, getHasCastle());
-            statement.setInt(5, getAllyId());
-            statement.setString(6, getAllyName());
-            statement.setInt(7, getLeaderId());
-            statement.setInt(8, getCrestId());
-            statement.setInt(9, getCrestLargeId());
-            statement.setInt(10, getAllyCrestId());
-            statement.execute();
-            statement.close();
+        ClanData clanData = new ClanData();
+        clanData.setLeaderId(getLeaderId());
+        clanData.setAllyId(getAllyId());
+        clanData.setAllyName(getAllyName());
+        clanData.setReputationScore(getReputationScore());
+        clanData.setAllyPenaltyExpiryTime(getAllyPenaltyExpiryTime());
+        clanData.setAllyPenaltyType(getAllyPenaltyType());
+        clanData.setCharPenaltyExpiryTime(getCharPenaltyExpiryTime());
+        clanData.setDissolvingExpiryTime(getDissolvingExpiryTime());
+        clanData.setClanId(getClanId());
+        clanData.setClanName(getName());
+        clanData.setClanLevel(getLevel());
+        clanData.setHasCastle(getHasCastle());
+        clanData.setCrestId(getCrestId());
+        clanData.setCrestLargeId(getCrestLargeId());
+        clanData.setAllyCrestId(getAllyCrestId());
 
-            if (Config.DEBUG) {
-                _log.debug("New clan saved in db: " + getClanId());
-            }
-        } catch (Exception e) {
-            _log.warn("error while saving new clan to db " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        ClanRepository repository = DatabaseAccess.getRepository(ClanRepository.class);
+        repository.save(clanData);
     }
 
     private void removeMemberInDatabase(L2ClanMember member, long clanJoinExpiryTime, long clanCreateExpiryTime) {
@@ -677,78 +658,66 @@ public class L2Clan {
     }
 
     private void restore() {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("SELECT clan_name,clan_level,hasCastle,ally_id,ally_name,leader_id,crest_id,crest_large_id,ally_crest_id,reputation_score,auction_bid_at,ally_penalty_expiry_time,ally_penalty_type,char_penalty_expiry_time,dissolving_expiry_time FROM clan_data where clan_id=?");
-            statement.setInt(1, getClanId());
-            ResultSet clanData = statement.executeQuery();
+        ClanRepository clanRepository = DatabaseAccess.getRepository(ClanRepository.class);
+        clanRepository.findById(getClanId()).ifPresent(clanData -> {
 
-            if (clanData.next()) {
-                setName(clanData.getString("clan_name"));
-                setLevel(clanData.getInt("clan_level"));
-                setHasCastle(clanData.getInt("hasCastle"));
-                setAllyId(clanData.getInt("ally_id"));
-                setAllyName(clanData.getString("ally_name"));
-                setAllyPenaltyExpiryTime(clanData.getLong("ally_penalty_expiry_time"), clanData.getInt("ally_penalty_type"));
-                if (getAllyPenaltyExpiryTime() < System.currentTimeMillis()) {
-                    setAllyPenaltyExpiryTime(0, 0);
-                }
-                setCharPenaltyExpiryTime(clanData.getLong("char_penalty_expiry_time"));
-                if ((getCharPenaltyExpiryTime() + (Config.ALT_CLAN_JOIN_DAYS * 86400000L)) < System.currentTimeMillis()) // 24*60*60*1000 = 86400000
-                {
-                    setCharPenaltyExpiryTime(0);
-                }
-                setDissolvingExpiryTime(clanData.getLong("dissolving_expiry_time"));
+            setName(clanData.getClanName());
+            setLevel(clanData.getClanLevel());
+            setHasCastle(clanData.getHasCastle());
 
-                setCrestId(clanData.getInt("crest_id"));
-                if (getCrestId() != 0) {
-                    setHasCrest(true);
-                }
+            setAllyId(clanData.getAllyId());
+            setAllyName(clanData.getAllyName());
 
-                setCrestLargeId(clanData.getInt("crest_large_id"));
-                if (getCrestLargeId() != 0) {
-                    setHasCrestLarge(true);
-                }
-
-                setAllyCrestId(clanData.getInt("ally_crest_id"));
-                setReputationScore(clanData.getInt("reputation_score"), false);
-                setAuctionBiddedAt(clanData.getInt("auction_bid_at"), false);
-
-                int leaderId = (clanData.getInt("leader_id"));
-
-                CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
-                repository.findAllByClanId(getClanId()).forEach( character -> {
-
-                    L2ClanMember member = new L2ClanMember(this, character.getCharName(), character.getLevel(), character.getClassId(),
-                            character.getObjectId(), character.getSubpledge(), character.getPowerGrade(), character.getTitle());
-
-                    if (member.getObjectId() == leaderId) {
-                        setLeader(member);
-                    } else {
-                        addClanMember(member);
-                    }
-                    member.initApprenticeAndSponsor(character.getApprentice(), character.getSponsor());
-                });
+            if(clanData.getAllyPenaltyExpiryTime() < System.currentTimeMillis()) {
+                setAllyPenaltyExpiryTime(0, 0);
+            } else {
+                setAllyPenaltyExpiryTime(clanData.getAllyPenaltyExpiryTime(), getAllyPenaltyType());
             }
 
-            clanData.close();
-            statement.close();
+            if((clanData.getCharPenaltyExpiryTime() + (Config.ALT_CLAN_JOIN_DAYS * 86400000L)) < System.currentTimeMillis()) {
+                setCharPenaltyExpiryTime(0);
+            } else {
+                setCharPenaltyExpiryTime(clanData.getCharPenaltyExpiryTime());
+            }
 
-            if (Config.DEBUG && (getName() != null)) {
-                _log.info("Restored clan data for \"" + getName() + "\" from database.");
+            setDissolvingExpiryTime(clanData.getDissolvingExpiryTime());
+
+            setCrestId(clanData.getCrestId());
+            if(getCrestId() != 0) {
+                setHasCrest(true);
             }
-            restoreSubPledges();
-            restoreRankPrivs();
-            restoreSkills();
-        } catch (Exception e) {
-            _log.warn("error while restoring clan " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
+
+            setCrestLargeId(clanData.getCrestLargeId());
+            if(getCrestLargeId() != 0) {
+                setHasCrestLarge(true);
             }
-        }
+
+            setAllyCrestId(clanData.getAllyCrestId());
+            setReputationScore(clanData.getReputationScore(), false);
+            setAuctionBiddedAt(clanData.getAuctionBidAt(), false);
+
+            CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
+            repository.findAllByClanId(getClanId()).forEach( character -> {
+
+                L2ClanMember member = new L2ClanMember(this, character.getCharName(), character.getLevel(), character.getClassId(),
+                        character.getObjectId(), character.getSubpledge(), character.getPowerGrade(), character.getTitle());
+
+                if (member.getObjectId() == clanData.getLeaderId()) {
+                    setLeader(member);
+                } else {
+                    addClanMember(member);
+                }
+                member.initApprenticeAndSponsor(character.getApprentice(), character.getSponsor());
+            });
+
+            if (getName() != null) {
+                _log.debug("Restored clan data for {} from database.", getName());
+            }
+        });
+
+        restoreSubPledges();
+        restoreRankPrivs();
+        restoreSkills();
     }
 
     private void restoreSkills() {
