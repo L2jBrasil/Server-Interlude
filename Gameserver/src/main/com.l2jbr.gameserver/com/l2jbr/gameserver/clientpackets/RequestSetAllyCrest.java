@@ -18,17 +18,15 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.cache.CrestCache;
 import com.l2jbr.gameserver.datatables.ClanTable;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.ClanRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 
 /**
@@ -99,32 +97,9 @@ public final class RequestSetAllyCrest extends L2GameClientPacket
 			{
 				crestCache.removeAllyCrest(leaderclan.getAllyCrestId());
 			}
-			
-			java.sql.Connection con = null;
-			
-			try
-			{
-				con = L2DatabaseFactory.getInstance().getConnection();
-				PreparedStatement statement = con.prepareStatement("UPDATE clan_data SET ally_crest_id = ? WHERE ally_id = ?");
-				statement.setInt(1, newId);
-				statement.setInt(2, leaderclan.getAllyId());
-				statement.executeUpdate();
-				statement.close();
-			}
-			catch (SQLException e)
-			{
-				_log.warn("could not update the ally crest id:" + e.getMessage());
-			}
-			finally
-			{
-				try
-				{
-					con.close();
-				}
-				catch (Exception e)
-				{
-				}
-			}
+
+            ClanRepository repository = DatabaseAccess.getRepository(ClanRepository.class);
+            repository.updateAllyCrest(leaderclan.getAllyId(), newId);
 			
 			for (L2Clan clan : ClanTable.getInstance().getClans())
 			{

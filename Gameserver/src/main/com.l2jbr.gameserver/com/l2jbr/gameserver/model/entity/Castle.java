@@ -19,6 +19,7 @@
 package com.l2jbr.gameserver.model.entity;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.Announcements;
 import com.l2jbr.gameserver.CastleUpdater;
@@ -35,6 +36,7 @@ import com.l2jbr.gameserver.model.L2Manor;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.actor.instance.L2DoorInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.ClanRepository;
 import com.l2jbr.gameserver.model.zone.type.L2CastleZone;
 import com.l2jbr.gameserver.serverpackets.PledgeShowInfoUpdate;
 import org.slf4j.Logger;
@@ -438,15 +440,10 @@ public class Castle {
 
             _taxRate = _taxPercent / 100.0;
 
-            statement = con.prepareStatement("Select clan_id from clan_data where hasCastle = ?");
-            statement.setInt(1, getCastleId());
-            rs = statement.executeQuery();
-
-            while (rs.next()) {
-                _ownerId = rs.getInt("clan_id");
-            }
-
-            if (getOwnerId() > 0) {
+            ClanRepository repository = DatabaseAccess.getRepository(ClanRepository.class);
+            int castleId = repository.findClanIdByCastle(getCastleId());
+            if(castleId != 0) {
+                _ownerId = castleId;
                 L2Clan clan = ClanTable.getInstance().getClan(getOwnerId()); // Try to find clan instance
                 ThreadPoolManager.getInstance().scheduleGeneral(new CastleUpdater(clan, 1), 3600000); // Schedule owner tasks to start running
             }
@@ -567,42 +564,17 @@ public class Castle {
             _ownerId = 0; // Remove owner
         }
 
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
+        ClanRepository repository = DatabaseAccess.getRepository(ClanRepository.class);
+        repository.removeClastle(getCastleId());
+        repository.updateCastleById(getOwnerId(), getCastleId());
 
-            // ============================================================================
-            // NEED TO REMOVE HAS CASTLE FLAG FROM CLAN_DATA
-            // SHOULD BE CHECKED FROM CASTLE TABLE
-            statement = con.prepareStatement("UPDATE clan_data SET hasCastle=0 WHERE hasCastle=?");
-            statement.setInt(1, getCastleId());
-            statement.execute();
-            statement.close();
+        // Announce to clan memebers
+        if (clan != null) {
+            clan.setHasCastle(getCastleId()); // Set has castle flag for new owner
+            new Announcements().announceToAll(clan.getName() + " has taken " + getName() + " castle!");
+            clan.broadcastToOnlineMembers(new PledgeShowInfoUpdate(clan));
 
-            statement = con.prepareStatement("UPDATE clan_data SET hasCastle=? WHERE clan_id=?");
-            statement.setInt(1, getCastleId());
-            statement.setInt(2, getOwnerId());
-            statement.execute();
-            statement.close();
-            // ============================================================================
-
-            // Announce to clan memebers
-            if (clan != null) {
-                clan.setHasCastle(getCastleId()); // Set has castle flag for new owner
-                new Announcements().announceToAll(clan.getName() + " has taken " + getName() + " castle!");
-                clan.broadcastToOnlineMembers(new PledgeShowInfoUpdate(clan));
-
-                ThreadPoolManager.getInstance().scheduleGeneral(new CastleUpdater(clan, 1), 3600000); // Schedule owner tasks to start running
-            }
-        } catch (Exception e) {
-            System.out.println("Exception: updateOwnerInDB(L2Clan clan): " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
+            ThreadPoolManager.getInstance().scheduleGeneral(new CastleUpdater(clan, 1), 3600000); // Schedule owner tasks to start running
         }
     }
 

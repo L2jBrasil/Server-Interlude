@@ -19,6 +19,7 @@
 package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.idfactory.IdFactory;
@@ -26,6 +27,7 @@ import com.l2jbr.gameserver.instancemanager.SiegeManager;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.L2ClanMember;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.ClanRepository;
 import com.l2jbr.gameserver.model.entity.Siege;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
@@ -37,6 +39,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import static com.l2jbr.gameserver.util.GameserverMessages.getMessage;
 
 
 /**
@@ -64,42 +68,18 @@ public class ClanTable {
 
     private ClanTable() {
         _clans = new LinkedHashMap<>();
-        L2Clan clan;
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("SELECT clan_id FROM clan_data");
-            ResultSet result = statement.executeQuery();
-
-            // Count the clans
-            int clanCount = 0;
-
-            while (result.next()) {
-                _clans.put(Integer.parseInt(result.getString("clan_id")), new L2Clan(Integer.parseInt(result.getString("clan_id"))));
-                clan = getClan(Integer.parseInt(result.getString("clan_id")));
-                if (clan.getDissolvingExpiryTime() != 0) {
-                    if (clan.getDissolvingExpiryTime() < System.currentTimeMillis()) {
-                        destroyClan(clan.getClanId());
-                    } else {
-                        scheduleRemoveClan(clan.getClanId());
-                    }
+        ClanRepository repository = DatabaseAccess.getRepository(ClanRepository.class);
+        repository.findAll().forEach(clanData -> {
+            _clans.put(clanData.getId(), new L2Clan(clanData));
+            if(clanData.getDissolvingExpiryTime() !=0) {
+                if(clanData.getDissolvingExpiryTime() <= System.currentTimeMillis()) {
+                    destroyClan(clanData.getId());
+                } else {
+                    scheduleRemoveClan(clanData.getId());
                 }
-                clanCount++;
             }
-            result.close();
-            statement.close();
-
-            _log.info("Restored " + clanCount + " clans from the database.");
-        } catch (Exception e) {
-            _log.warn("data error on ClanTable: " + e);
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
-
+        });
+        _log.info(getMessage("info.restored.clans"), _clans.size());
         restorewars();
     }
 
@@ -224,13 +204,12 @@ public class ClanTable {
 
         java.sql.Connection con = null;
         try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("DELETE FROM clan_data WHERE clan_id=?");
-            statement.setInt(1, clanId);
-            statement.execute();
-            statement.close();
+            ClanRepository repository = DatabaseAccess.getRepository(ClanRepository.class);
+            repository.deleteById(clanId);
 
-            statement = con.prepareStatement("DELETE FROM clan_privs WHERE clan_id=?");
+            con = L2DatabaseFactory.getInstance().getConnection();
+
+            PreparedStatement statement = con.prepareStatement("DELETE FROM clan_privs WHERE clan_id=?");
             statement.setInt(1, clanId);
             statement.execute();
             statement.close();
@@ -253,16 +232,14 @@ public class ClanTable {
 
             if (castleId != 0) {
                 statement = con.prepareStatement("UPDATE castle SET taxPercent = 0 WHERE id = ?");
-                statement.setInt(2, castleId);
+                statement.setInt(1, castleId);
                 statement.execute();
                 statement.close();
             }
 
-            if (Config.DEBUG) {
-                _log.debug("clan removed in db: " + clanId);
-            }
+            _log.debug(getMessage("debug.clan.removed"), clanId);
         } catch (Exception e) {
-            _log.warn("error while removing clan in db " + e);
+            _log.warn(getMessage("error.clan.remove"),  e);
         } finally {
             try {
                 con.close();

@@ -192,7 +192,10 @@ public class L2Clan {
      * Called if a clan is referenced only by id. In this case all other data needs to be fetched from db
      *
      * @param clanId A valid clan Id to create and restore
+     *
+     *  XXX Fetching database on constructors can lead to many issues.
      */
+    @Deprecated(forRemoval = true)
     public L2Clan(int clanId) {
         _clanId = clanId;
         initializePrivs();
@@ -210,6 +213,12 @@ public class L2Clan {
         _clanId = clanId;
         _name = clanName;
         initializePrivs();
+    }
+
+    public L2Clan(ClanData clanData) {
+        restore(clanData);
+        initializePrivs();
+        getWarehouse().restore();
     }
 
     /**
@@ -658,62 +667,65 @@ public class L2Clan {
     }
 
     private void restore() {
-        ClanRepository clanRepository = DatabaseAccess.getRepository(ClanRepository.class);
-        clanRepository.findById(getClanId()).ifPresent(clanData -> {
+        ClanRepository repository = DatabaseAccess.getRepository(ClanRepository.class);
+        repository.findById(_clanId).ifPresent(this::restore);
+    }
 
-            setName(clanData.getClanName());
-            setLevel(clanData.getClanLevel());
-            setHasCastle(clanData.getHasCastle());
+    private void restore(ClanData clanData) {
+        setClanId(clanData.getId());
+        setName(clanData.getClanName());
+        setLevel(clanData.getClanLevel());
+        setHasCastle(clanData.getHasCastle());
 
-            setAllyId(clanData.getAllyId());
-            setAllyName(clanData.getAllyName());
+        setAllyId(clanData.getAllyId());
+        setAllyName(clanData.getAllyName());
 
-            if(clanData.getAllyPenaltyExpiryTime() < System.currentTimeMillis()) {
-                setAllyPenaltyExpiryTime(0, 0);
+        if(clanData.getAllyPenaltyExpiryTime() < System.currentTimeMillis()) {
+            setAllyPenaltyExpiryTime(0, 0);
+        } else {
+            setAllyPenaltyExpiryTime(clanData.getAllyPenaltyExpiryTime(), getAllyPenaltyType());
+        }
+
+        if((clanData.getCharPenaltyExpiryTime() + (Config.ALT_CLAN_JOIN_DAYS * 86400000L)) < System.currentTimeMillis()) {
+            setCharPenaltyExpiryTime(0);
+        } else {
+            setCharPenaltyExpiryTime(clanData.getCharPenaltyExpiryTime());
+        }
+
+        setDissolvingExpiryTime(clanData.getDissolvingExpiryTime());
+
+        setCrestId(clanData.getCrestId());
+        if(getCrestId() != 0) {
+            setHasCrest(true);
+        }
+
+        setCrestLargeId(clanData.getCrestLargeId());
+        if(getCrestLargeId() != 0) {
+            setHasCrestLarge(true);
+        }
+
+        setAllyCrestId(clanData.getAllyCrestId());
+        setReputationScore(clanData.getReputationScore(), false);
+        setAuctionBiddedAt(clanData.getAuctionBidAt(), false);
+
+        CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
+        repository.findAllByClanId(getClanId()).forEach( character -> {
+
+            L2ClanMember member = new L2ClanMember(this, character.getCharName(), character.getLevel(), character.getClassId(),
+                    character.getObjectId(), character.getSubpledge(), character.getPowerGrade(), character.getTitle());
+
+            if (member.getObjectId() == clanData.getLeaderId()) {
+                setLeader(member);
             } else {
-                setAllyPenaltyExpiryTime(clanData.getAllyPenaltyExpiryTime(), getAllyPenaltyType());
+                addClanMember(member);
             }
-
-            if((clanData.getCharPenaltyExpiryTime() + (Config.ALT_CLAN_JOIN_DAYS * 86400000L)) < System.currentTimeMillis()) {
-                setCharPenaltyExpiryTime(0);
-            } else {
-                setCharPenaltyExpiryTime(clanData.getCharPenaltyExpiryTime());
-            }
-
-            setDissolvingExpiryTime(clanData.getDissolvingExpiryTime());
-
-            setCrestId(clanData.getCrestId());
-            if(getCrestId() != 0) {
-                setHasCrest(true);
-            }
-
-            setCrestLargeId(clanData.getCrestLargeId());
-            if(getCrestLargeId() != 0) {
-                setHasCrestLarge(true);
-            }
-
-            setAllyCrestId(clanData.getAllyCrestId());
-            setReputationScore(clanData.getReputationScore(), false);
-            setAuctionBiddedAt(clanData.getAuctionBidAt(), false);
-
-            CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
-            repository.findAllByClanId(getClanId()).forEach( character -> {
-
-                L2ClanMember member = new L2ClanMember(this, character.getCharName(), character.getLevel(), character.getClassId(),
-                        character.getObjectId(), character.getSubpledge(), character.getPowerGrade(), character.getTitle());
-
-                if (member.getObjectId() == clanData.getLeaderId()) {
-                    setLeader(member);
-                } else {
-                    addClanMember(member);
-                }
-                member.initApprenticeAndSponsor(character.getApprentice(), character.getSponsor());
-            });
-
-            if (getName() != null) {
-                _log.debug("Restored clan data for {} from database.", getName());
-            }
+            member.initApprenticeAndSponsor(character.getApprentice(), character.getSponsor());
         });
+
+        if (getName() != null) {
+            _log.debug("Restored clan data for {} from database.", getName());
+        }
+
 
         restoreSubPledges();
         restoreRankPrivs();
@@ -1471,22 +1483,8 @@ public class L2Clan {
         _auctionBiddedAt = id;
 
         if (storeInDb) {
-            java.sql.Connection con = null;
-            try {
-                con = L2DatabaseFactory.getInstance().getConnection();
-                PreparedStatement statement = con.prepareStatement("UPDATE clan_data SET auction_bid_at=? WHERE clan_id=?");
-                statement.setInt(1, id);
-                statement.setInt(2, getClanId());
-                statement.execute();
-                statement.close();
-            } catch (Exception e) {
-                _log.warn("Could not store auction for clan: " + e);
-            } finally {
-                try {
-                    con.close();
-                } catch (Exception e) {
-                }
-            }
+            ClanRepository repository = DatabaseAccess.getRepository(ClanRepository.class);
+            repository.updateAuctionBidById(getClanId(), id);
         }
     }
 
@@ -1924,24 +1922,8 @@ public class L2Clan {
     }
 
     public void changeLevel(int level) {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("UPDATE clan_data SET clan_level = ? WHERE clan_id = ?");
-            statement.setInt(1, level);
-            statement.setInt(2, getClanId());
-            statement.execute();
-            statement.close();
-
-            con.close();
-        } catch (Exception e) {
-            _log.warn("could not increase clan level:" + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        ClanRepository repository = DatabaseAccess.getRepository(ClanRepository.class);
+        repository.updateLevelById(getClanId(), level);
 
         setLevel(level);
 
@@ -1957,13 +1939,7 @@ public class L2Clan {
             }
         }
 
-        // notify all the members about it
         broadcastToOnlineMembers(new SystemMessage(SystemMessageId.CLAN_LEVEL_INCREASED));
         broadcastToOnlineMembers(new PledgeShowInfoUpdate(this));
-        /*
-         * Micht : - use PledgeShowInfoUpdate instead of PledgeStatusChanged to update clan level ingame - remove broadcastClanStatus() to avoid members duplication
-         */
-        // clan.broadcastToOnlineMembers(new PledgeStatusChanged(clan));
-        // clan.broadcastClanStatus();
     }
 }
