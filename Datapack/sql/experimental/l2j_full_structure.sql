@@ -449,11 +449,6 @@ CREATE TABLE IF NOT EXISTS `auction_bid` (
     REFERENCES `auction` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_auction_bid_clan_data1`
-    FOREIGN KEY (`bidderId`)
-    REFERENCES `clan_data` (`clan_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 

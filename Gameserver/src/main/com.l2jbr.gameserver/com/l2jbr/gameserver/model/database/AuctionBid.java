@@ -1,13 +1,75 @@
 package com.l2jbr.gameserver.model.database;
 
+import com.l2jbr.commons.database.annotation.Table;
+import com.l2jbr.commons.database.model.Entity;
+import org.springframework.data.annotation.Id;
 
+@Table("auction_bid")
+public class AuctionBid extends Entity<Integer> {
 
-public class AuctionBid  {
-    private int id;
-    private int auctionId;
-    private int bidderId;
+    @Id
+    private Integer id;
+    private Integer auctionId;
+    private Integer bidderId;
     private String bidderName;
     private String clanName;
-    private int maxBid;
-    private long timeBid;
+    private Integer maxBid;
+    private Long timeBid;
+
+    @Override
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getAuctionId() {
+        return auctionId;
+    }
+
+    public void setAuctionId(Integer auctionId) {
+        this.auctionId = auctionId;
+    }
+
+    public Integer getBidderId() {
+        return bidderId;
+    }
+
+    public void setBidderId(Integer bidderId) {
+        this.bidderId = bidderId;
+    }
+
+    public String getBidderName() {
+        return bidderName;
+    }
+
+    public void setBidderName(String bidderName) {
+        this.bidderName = bidderName;
+    }
+
+    public String getClanName() {
+        return clanName;
+    }
+
+    public void setClanName(String clanName) {
+        this.clanName = clanName;
+    }
+
+    public Integer getMaxBid() {
+        return maxBid;
+    }
+
+    public void setMaxBid(Integer maxBid) {
+        this.maxBid = maxBid;
+    }
+
+    public Long getTimeBid() {
+        return timeBid;
+    }
+
+    public void setTimeBid(Long timeBid) {
+        this.timeBid = timeBid;
+    }
 }

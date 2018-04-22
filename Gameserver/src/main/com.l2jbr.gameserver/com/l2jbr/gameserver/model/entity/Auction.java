@@ -19,7 +19,6 @@
 package com.l2jbr.gameserver.model.entity;
 
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.GameServer;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.datatables.ClanTable;
@@ -29,13 +28,13 @@ import com.l2jbr.gameserver.instancemanager.ClanHallManager;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.AuctionBid;
 import com.l2jbr.gameserver.model.database.AuctionData;
+import com.l2jbr.gameserver.model.database.repository.AuctionBidRepository;
 import com.l2jbr.gameserver.model.database.repository.AuctionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.Calendar;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -172,40 +171,19 @@ public class Auction {
         loadBid();
     }
 
-    /**
-     * Load bidders
-     **/
+
     private void loadBid() {
-        java.sql.Connection con = null;
-        try {
-            PreparedStatement statement;
-            ResultSet rs;
-
-            con = L2DatabaseFactory.getInstance().getConnection();
-
-            statement = con.prepareStatement("SELECT bidderId, bidderName, maxBid, clan_name, time_bid FROM auction_bid WHERE auctionId = ? ORDER BY maxBid DESC");
-            statement.setInt(1, getId());
-            rs = statement.executeQuery();
-
-            while (rs.next()) {
-                if (rs.isFirst()) {
-                    _highestBidderId = rs.getInt("bidderId");
-                    _highestBidderName = rs.getString("bidderName");
-                    _highestBidderMaxBid = rs.getInt("maxBid");
-                }
-                _bidders.put(rs.getInt("bidderId"), new Bidder(rs.getString("bidderName"), rs.getString("clan_name"), rs.getInt("maxBid"), rs.getLong("time_bid")));
+        AuctionBidRepository repository = DatabaseAccess.getRepository(AuctionBidRepository.class);
+        repository.findByAuctionId(getId()).forEach(auctionBid -> {
+            if(_highestBidderId == 0) {
+                _highestBidderId = auctionBid.getBidderId();
+                _highestBidderName = auctionBid.getBidderName();
+                _highestBidderMaxBid = auctionBid.getMaxBid();
             }
+            Bidder bidder = new Bidder(auctionBid.getBidderName(), auctionBid.getClanName(), auctionBid.getMaxBid(), auctionBid.getTimeBid());
+            _bidders.put(auctionBid.getBidderId(), bidder);
 
-            statement.close();
-        } catch (Exception e) {
-            System.out.println("Exception: Auction.loadBid(): " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        });
     }
 
     /**
@@ -292,88 +270,50 @@ public class Auction {
      * @param bid
      */
     private void updateInDB(L2PcInstance bidder, int bid) {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
+        AuctionBidRepository repository = DatabaseAccess.getRepository(AuctionBidRepository.class);
+        if (getBidders().get(bidder.getClanId()) != null) {
+            repository.updateByAuctionAndBidder(getId(), bidder.getClanId(), bidder.getClan().getLeaderName(), bid, System.currentTimeMillis());
+        } else {
+            AuctionBid auctionBid = new AuctionBid();
+            auctionBid.setId(IdFactory.getInstance().getNextId());
+            auctionBid.setAuctionId(getId());
+            auctionBid.setBidderId(bidder.getClanId());
+            auctionBid.setBidderName(bidder.getName());
+            auctionBid.setMaxBid(bid);
+            auctionBid.setClanName(bidder.getClan().getName());
+            auctionBid.setTimeBid(System.currentTimeMillis());
+            repository.save(auctionBid);
 
-            if (getBidders().get(bidder.getClanId()) != null) {
-                statement = con.prepareStatement("UPDATE auction_bid SET bidderId=?, bidderName=?, maxBid=?, time_bid=? WHERE auctionId=? AND bidderId=?");
-                statement.setInt(1, bidder.getClanId());
-                statement.setString(2, bidder.getClan().getLeaderName());
-                statement.setInt(3, bid);
-                statement.setLong(4, System.currentTimeMillis());
-                statement.setInt(5, getId());
-                statement.setInt(6, bidder.getClanId());
-                statement.execute();
-                statement.close();
-            } else {
-                statement = con.prepareStatement("INSERT INTO auction_bid (id, auctionId, bidderId, bidderName, maxBid, clan_name, time_bid) VALUES (?, ?, ?, ?, ?, ?, ?)");
-                statement.setInt(1, IdFactory.getInstance().getNextId());
-                statement.setInt(2, getId());
-                statement.setInt(3, bidder.getClanId());
-                statement.setString(4, bidder.getName());
-                statement.setInt(5, bid);
-                statement.setString(6, bidder.getClan().getName());
-                statement.setLong(7, System.currentTimeMillis());
-                statement.execute();
-                statement.close();
-                if (L2World.getInstance().getPlayer(_highestBidderName) != null) {
-                    L2World.getInstance().getPlayer(_highestBidderName).sendMessage("You have been out bidded");
-                }
-            }
-            _highestBidderId = bidder.getClanId();
-            _highestBidderMaxBid = bid;
-            _highestBidderName = bidder.getClan().getLeaderName();
-            if (_bidders.get(_highestBidderId) == null) {
-                _bidders.put(_highestBidderId, new Bidder(_highestBidderName, bidder.getClan().getName(), bid, Calendar.getInstance().getTimeInMillis()));
-            } else {
-                _bidders.get(_highestBidderId).setBid(bid);
-                _bidders.get(_highestBidderId).setTimeBid(Calendar.getInstance().getTimeInMillis());
-            }
-            bidder.sendMessage("You have bidded successfully");
-        } catch (Exception e) {
-            _log.error( "Exception: Auction.updateInDB(L2PcInstance bidder, int bid): " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
+            if (L2World.getInstance().getPlayer(_highestBidderName) != null) {
+                L2World.getInstance().getPlayer(_highestBidderName).sendMessage("You have been out bidded");
             }
         }
+        _highestBidderId = bidder.getClanId();
+        _highestBidderMaxBid = bid;
+        _highestBidderName = bidder.getClan().getLeaderName();
+        if (_bidders.get(_highestBidderId) == null) {
+            _bidders.put(_highestBidderId, new Bidder(_highestBidderName, bidder.getClan().getName(), bid, Calendar.getInstance().getTimeInMillis()));
+        } else {
+            _bidders.get(_highestBidderId).setBid(bid);
+            _bidders.get(_highestBidderId).setTimeBid(Calendar.getInstance().getTimeInMillis());
+        }
+        bidder.sendMessage("You have bidded successfully");
     }
 
-    /**
-     * Remove bids
-     */
     private void removeBids() {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
-
-            statement = con.prepareStatement("DELETE FROM auction_bid WHERE auctionId=?");
-            statement.setInt(1, getId());
-            statement.execute();
-
-            statement.close();
-        } catch (Exception e) {
-            _log.error( "Exception: Auction.deleteFromDB(): " + e.getMessage(), e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        AuctionBidRepository repository = DatabaseAccess.getRepository(AuctionBidRepository.class);
+        repository.deleteByAuction(getId());
         for (Bidder b : _bidders.values()) {
-            if (ClanTable.getInstance().getClanByName(b.getClanName()).getHasHideout() == 0) {
+            L2Clan clan = ClanTable.getInstance().getClanByName(b.getClanName());
+            if (clan.getHasHideout() == 0) {
                 returnItem(b.getClanName(), 57, (9 * b.getBid()) / 10, false); // 10 % tax
             } else {
-                if (L2World.getInstance().getPlayer(b.getName()) != null) {
-                    L2World.getInstance().getPlayer(b.getName()).sendMessage("Congratulation you have won ClanHall!");
+                L2PcInstance player = L2World.getInstance().getPlayer(b.getName());
+                if (player != null) {
+                    player.sendMessage("Congratulation you have won ClanHall!");
                 }
             }
-            ClanTable.getInstance().getClanByName(b.getClanName()).setAuctionBiddedAt(0, true);
+            clan.setAuctionBiddedAt(0, true);
         }
         _bidders.clear();
     }
@@ -420,31 +360,10 @@ public class Auction {
         }
     }
 
-    /**
-     * Cancel bid
-     *
-     * @param bidder
-     */
     public void cancelBid(int bidder) {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
+        AuctionBidRepository repository = DatabaseAccess.getRepository(AuctionBidRepository.class);
+        repository.deleteByAuctionAndBidder(getId(), bidder);
 
-            statement = con.prepareStatement("DELETE FROM auction_bid WHERE auctionId=? AND bidderId=?");
-            statement.setInt(1, getId());
-            statement.setInt(2, bidder);
-            statement.execute();
-
-            statement.close();
-        } catch (Exception e) {
-            _log.error( "Exception: Auction.cancelBid(String bidder): " + e.getMessage(), e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
         returnItem(_bidders.get(bidder).getClanName(), 57, _bidders.get(bidder).getBid(), true);
         ClanTable.getInstance().getClanByName(_bidders.get(bidder).getClanName()).setAuctionBiddedAt(0, true);
         _bidders.clear();
