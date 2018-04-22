@@ -19,6 +19,7 @@
 package com.l2jbr.gameserver.model.entity;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.GameServer;
 import com.l2jbr.gameserver.ThreadPoolManager;
@@ -29,6 +30,7 @@ import com.l2jbr.gameserver.instancemanager.ClanHallManager;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.actor.instance.L2DoorInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.ClanHallRepository;
 import com.l2jbr.gameserver.model.zone.type.L2ClanHallZone;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.PledgeShowInfoUpdate;
@@ -585,31 +587,10 @@ public class ClanHall {
         return true;
     }
 
-    /**
-     * Update DB
-     */
-    public void updateDb() {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
 
-            statement = con.prepareStatement("UPDATE clanhall SET ownerId=?, paidUntil=?, paid=? WHERE id=?");
-            statement.setInt(1, _ownerId);
-            statement.setLong(2, _paidUntil);
-            statement.setInt(3, (_paid) ? 1 : 0);
-            statement.setInt(4, _clanHallId);
-            statement.execute();
-            statement.close();
-        } catch (Exception e) {
-            System.out.println("Exception: updateOwnerInDB(L2Clan clan): " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+    public void updateDb() {
+        ClanHallRepository repository = DatabaseAccess.getRepository(ClanHallRepository.class);
+        repository.updateOwner(_clanHallId, _ownerId, _paidUntil, _paid ? 1 : 0);
     }
 
     /**
