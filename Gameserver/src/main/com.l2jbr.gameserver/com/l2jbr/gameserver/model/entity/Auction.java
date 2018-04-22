@@ -18,6 +18,7 @@
  */
 package com.l2jbr.gameserver.model.entity;
 
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.GameServer;
 import com.l2jbr.gameserver.ThreadPoolManager;
@@ -28,6 +29,8 @@ import com.l2jbr.gameserver.instancemanager.ClanHallManager;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.AuctionData;
+import com.l2jbr.gameserver.model.database.repository.AuctionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -63,14 +66,43 @@ public class Auction {
                     "ClanHall"
             };
 
-    public static enum ItemTypeEnum {
-        ClanHall
+    /**
+     * Constructor
+     *
+     * @param auctionId
+     */
+    @Deprecated(forRemoval = true)
+    public Auction(int auctionId) {
+        _id = auctionId;
+        load();
+        startAutoTask();
     }
 
+    public Auction(int itemId, L2Clan Clan, long delay, int bid, String name) {
+        _id = itemId;
+        _endDate = System.currentTimeMillis() + delay;
+        _itemId = itemId;
+        _itemName = name;
+        _itemType = "ClanHall";
+        _sellerId = Clan.getLeaderId();
+        _sellerName = Clan.getLeaderName();
+        _sellerClanName = Clan.getName();
+        _startingBid = bid;
+    }
+
+    public Auction(AuctionData auctionData) {
+        load(auctionData);
+        startAutoTask();
+    }
+    public static enum ItemTypeEnum {
+        ClanHall
+
+    }
     public class Bidder {
         private final String _name;
         private final String _clanName;
         private int _bid;
+
         private final Calendar _timeBid;
 
         public Bidder(String name, String clanName, int bid, long timeBid) {
@@ -100,19 +132,18 @@ public class Auction {
         public void setTimeBid(long timeBid) {
             _timeBid.setTimeInMillis(timeBid);
         }
-
         public void setBid(int bid) {
             _bid = bid;
         }
-    }
 
+    }
     /**
      * Task Sheduler for endAuction
      */
     public class AutoEndTask implements Runnable {
+
         public AutoEndTask() {
         }
-
         @Override
         public void run() {
             try {
@@ -122,67 +153,23 @@ public class Auction {
         }
     }
 
-    /**
-     * Constructor
-     *
-     * @param auctionId
-     */
-    public Auction(int auctionId) {
-        _id = auctionId;
-        load();
-        startAutoTask();
-    }
-
-    public Auction(int itemId, L2Clan Clan, long delay, int bid, String name) {
-        _id = itemId;
-        _endDate = System.currentTimeMillis() + delay;
-        _itemId = itemId;
-        _itemName = name;
-        _itemType = "ClanHall";
-        _sellerId = Clan.getLeaderId();
-        _sellerName = Clan.getLeaderName();
-        _sellerClanName = Clan.getName();
-        _startingBid = bid;
-    }
-
-    /**
-     * Load auctions
-     */
     private void load() {
-        java.sql.Connection con = null;
-        try {
-            PreparedStatement statement;
-            ResultSet rs;
+        AuctionRepository repository = DatabaseAccess.getRepository(AuctionRepository.class);
+        repository.findById(getId()).ifPresent(this::load);
+    }
 
-            con = L2DatabaseFactory.getInstance().getConnection();
-
-            statement = con.prepareStatement("Select * from auction where id = ?");
-            statement.setInt(1, getId());
-            rs = statement.executeQuery();
-
-            while (rs.next()) {
-                _currentBid = rs.getInt("currentBid");
-                _endDate = rs.getLong("endDate");
-                _itemId = rs.getInt("itemId");
-                _itemName = rs.getString("itemName");
-                _itemObjectId = rs.getInt("itemObjectId");
-                _itemType = rs.getString("itemType");
-                _sellerId = rs.getInt("sellerId");
-                _sellerClanName = rs.getString("sellerClanName");
-                _sellerName = rs.getString("sellerName");
-                _startingBid = rs.getInt("startingBid");
-            }
-            statement.close();
-            loadBid();
-        } catch (Exception e) {
-            System.out.println("Exception: Auction.load(): " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+    private void load(AuctionData auctionData) {
+        _currentBid = auctionData.getCurrentBid();
+        _endDate = auctionData.getEndDate();
+        _itemId = auctionData.getItemId();
+        _itemName = auctionData.getItemName();
+        _itemObjectId = auctionData.getItemObjectId();
+        _itemType = auctionData.getItemType();
+        _sellerId = auctionData.getSellerId();
+        _sellerClanName = auctionData.getSellerClanName();
+        _sellerName = auctionData.getSellerName();
+        _startingBid = auctionData.getStartingBid();
+        loadBid();
     }
 
     /**
@@ -240,27 +227,9 @@ public class Auction {
         return ItemTypeName[value.ordinal()];
     }
 
-    /**
-     * Save Auction Data End
-     */
     private void saveAuctionDate() {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("Update auction set endDate = ? where id = ?");
-            statement.setLong(1, _endDate);
-            statement.setInt(2, _id);
-            statement.execute();
-
-            statement.close();
-        } catch (Exception e) {
-            _log.error( "Exception: saveAuctionDate(): " + e.getMessage(), e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        AuctionRepository repository = DatabaseAccess.getRepository(AuctionRepository.class);
+        repository.updateEndDateById(_id, _endDate);
     }
 
     /**
@@ -414,22 +383,8 @@ public class Auction {
      */
     public void deleteAuctionFromDB() {
         AuctionManager.getInstance().getAuctions().remove(this);
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
-            statement = con.prepareStatement("DELETE FROM auction WHERE itemId=?");
-            statement.setInt(1, _itemId);
-            statement.execute();
-            statement.close();
-        } catch (Exception e) {
-            _log.error( "Exception: Auction.deleteFromDB(): " + e.getMessage(), e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        AuctionRepository repository = DatabaseAccess.getRepository(AuctionRepository.class);
+        repository.deleteByItemId(_itemId);
     }
 
     /**
@@ -504,40 +459,25 @@ public class Auction {
         removeBids();
     }
 
-    /**
-     * Confirm an auction
-     */
     public void confirmAuction() {
         AuctionManager.getInstance().getAuctions().add(this);
-        java.sql.Connection con = null;
-        try {
-            PreparedStatement statement;
-            con = L2DatabaseFactory.getInstance().getConnection();
+        AuctionData auctionData = new AuctionData();
+        auctionData.setId(getId());
+        auctionData.setSellerId(_sellerId);
+        auctionData.setSellerName(_sellerName);
+        auctionData.setSellerClanName(_sellerClanName);
+        auctionData.setItemType(_itemType);
+        auctionData.setItemId(_itemId);
+        auctionData.setItemObjectId(_itemObjectId);
+        auctionData.setItemName(_itemName);
+        auctionData.setItemQuantity(_itemQuantity);
+        auctionData.setStartingBid(_startingBid);
+        auctionData.setCurrentBid(_currentBid);
+        auctionData.setEndDate(_endDate);
 
-            statement = con.prepareStatement("INSERT INTO auction (id, sellerId, sellerName, sellerClanName, itemType, itemId, itemObjectId, itemName, itemQuantity, startingBid, currentBid, endDate) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
-            statement.setInt(1, getId());
-            statement.setInt(2, _sellerId);
-            statement.setString(3, _sellerName);
-            statement.setString(4, _sellerClanName);
-            statement.setString(5, _itemType);
-            statement.setInt(6, _itemId);
-            statement.setInt(7, _itemObjectId);
-            statement.setString(8, _itemName);
-            statement.setInt(9, _itemQuantity);
-            statement.setInt(10, _startingBid);
-            statement.setInt(11, _currentBid);
-            statement.setLong(12, _endDate);
-            statement.execute();
-            statement.close();
-            loadBid();
-        } catch (Exception e) {
-            _log.error( "Exception: Auction.load(): " + e.getMessage(), e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        AuctionRepository repository = DatabaseAccess.getRepository(AuctionRepository.class);
+        repository.save(auctionData);
+        loadBid();
     }
 
     public final int getId() {

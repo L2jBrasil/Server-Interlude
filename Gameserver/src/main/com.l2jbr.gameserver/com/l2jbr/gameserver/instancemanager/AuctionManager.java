@@ -17,7 +17,9 @@
  */
 package com.l2jbr.gameserver.instancemanager;
 
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.gameserver.model.database.repository.AuctionRepository;
 import com.l2jbr.gameserver.model.entity.Auction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +34,7 @@ public class AuctionManager {
     protected static final Logger _log = LoggerFactory.getLogger(AuctionManager.class.getName());
     private static AuctionManager _instance;
     private final List<Auction> _auctions;
+
     private static final String[] ITEM_INIT_DATA = {
         "(23, 0, 'NPC', 'NPC Clan', 'ClanHall', 23, 0, 'Onyx Hall', 1, 20000000, 0, 1164841200000)",
         "(24, 0, 'NPC', 'NPC Clan', 'ClanHall', 24, 0, 'Topaz Hall', 1, 20000000, 0, 1164841200000)",
@@ -119,7 +122,7 @@ public class AuctionManager {
         return _instance;
     }
 
-    public AuctionManager() {
+    private AuctionManager() {
         _auctions = new LinkedList<>();
         load();
     }
@@ -130,27 +133,10 @@ public class AuctionManager {
     }
 
     private final void load() {
-        java.sql.Connection con = null;
-        try {
-            PreparedStatement statement;
-            ResultSet rs;
-            con = L2DatabaseFactory.getInstance().getConnection();
-            statement = con.prepareStatement("SELECT id FROM auction ORDER BY id");
-            rs = statement.executeQuery();
-            while (rs.next()) {
-                _auctions.add(new Auction(rs.getInt("id")));
-            }
-            statement.close();
-            System.out.println("Loaded: " + getAuctions().size() + " auction(s)");
-        } catch (Exception e) {
-            System.out.println("Exception: AuctionManager.load(): " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        AuctionRepository repository = DatabaseAccess.getRepository(AuctionRepository.class);
+        repository.findAll().forEach(auctionData -> {
+            _auctions.add(new Auction(auctionData));
+        });
     }
 
     public final Auction getAuction(int auctionId) {
@@ -180,7 +166,10 @@ public class AuctionManager {
      * Init Clan NPC auction
      *
      * @param id
+     *
+     * XXX This doesn't make any sense, since we have these data on Database and all of it is loaded on Constructor.
      */
+    @Deprecated(forRemoval = true)
     public void initNPC(int id) {
         java.sql.Connection con = null;
         int i = 0;
