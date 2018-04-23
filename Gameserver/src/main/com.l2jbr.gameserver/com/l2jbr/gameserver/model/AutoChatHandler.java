@@ -19,6 +19,7 @@
 package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.SevenSigns;
@@ -26,6 +27,8 @@ import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2SiegeGuardInstance;
+import com.l2jbr.gameserver.model.database.AutoChat;
+import com.l2jbr.gameserver.model.database.repository.AutoChatRepository;
 import com.l2jbr.gameserver.serverpackets.CreatureSay;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,22 +64,18 @@ public class AutoChatHandler implements SpawnListener {
     private void restoreChatData() {
         int numLoaded = 0;
         java.sql.Connection con = null;
-        PreparedStatement statement = null;
         PreparedStatement statement2 = null;
-        ResultSet rs = null;
         ResultSet rs2 = null;
 
         try {
             con = L2DatabaseFactory.getInstance().getConnection();
 
-            statement = con.prepareStatement("SELECT * FROM auto_chat ORDER BY groupId ASC");
-            rs = statement.executeQuery();
-
-            while (rs.next()) {
+            AutoChatRepository repository = DatabaseAccess.getRepository(AutoChatRepository.class);
+            for (AutoChat autoChat: repository.findAll()) {
                 numLoaded++;
 
                 statement2 = con.prepareStatement("SELECT * FROM auto_chat_text WHERE groupId=?");
-                statement2.setInt(1, rs.getInt("groupId"));
+                statement2.setInt(1, autoChat.getGroupId());
                 rs2 = statement2.executeQuery();
 
                 rs2.last();
@@ -89,12 +88,10 @@ public class AutoChatHandler implements SpawnListener {
                     i++;
                 }
 
-                registerGlobalChat(rs.getInt("npcId"), chatTexts, rs.getLong("chatDelay"));
+                registerGlobalChat(autoChat.getNpcId(), chatTexts, autoChat.getChatDelay());
 
                 statement2.close();
             }
-
-            statement.close();
 
             if (Config.DEBUG) {
                 _log.info("AutoChatHandler: Loaded " + numLoaded + " chat group(s) from the database.");
