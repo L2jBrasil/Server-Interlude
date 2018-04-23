@@ -454,30 +454,6 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `auction_watch`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `auction_watch` ;
-
-CREATE TABLE IF NOT EXISTS `auction_watch` (
-  `charObjId` INT(11) NOT NULL DEFAULT '0',
-  `auctionId` INT(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`charObjId`, `auctionId`),
-  INDEX `fk_auction_watch_auction1_idx` (`auctionId` ASC),
-  CONSTRAINT `fk_auction_watch_auction1`
-    FOREIGN KEY (`auctionId`)
-    REFERENCES `auction` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_auction_watch_characters1`
-    FOREIGN KEY (`charObjId`)
-    REFERENCES `characters` (`obj_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
 -- Table `augmentations`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `augmentations` ;

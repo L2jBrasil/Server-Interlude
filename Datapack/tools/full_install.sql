@@ -2,7 +2,6 @@ DROP TABLE IF EXISTS armor;
 DROP TABLE IF EXISTS armorsets;
 DROP TABLE IF EXISTS auction;
 DROP TABLE IF EXISTS auction_bid;
-DROP TABLE IF EXISTS auction_watch;
 DROP TABLE IF EXISTS augmentations;
 DROP TABLE IF EXISTS auto_chat;
 DROP TABLE IF EXISTS auto_chat_text;
