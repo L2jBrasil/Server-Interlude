@@ -1,7 +1,10 @@
 package com.l2jbr.gameserver.model.database;
 
+import com.l2jbr.commons.database.annotation.Column;
 import com.l2jbr.commons.database.annotation.Table;
 import org.springframework.data.annotation.Id;
+
+import java.util.Set;
 
 @Table("auto_chat")
 public class AutoChat  {
@@ -10,6 +13,8 @@ public class AutoChat  {
     private Integer groupId;
     private Integer npcId;
     private Long chatDelay;
+    @Column("groupId")
+    private Set<AutoChatText> texts;
 
     public Integer getGroupId() {
         return groupId;
@@ -21,5 +26,9 @@ public class AutoChat  {
 
     public Long getChatDelay() {
         return chatDelay;
+    }
+
+    public Set<AutoChatText> getTexts() {
+        return texts;
     }
 }

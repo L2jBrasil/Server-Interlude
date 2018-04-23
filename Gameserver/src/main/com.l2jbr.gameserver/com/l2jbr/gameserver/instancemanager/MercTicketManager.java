@@ -33,6 +33,7 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -868,7 +869,7 @@ public class MercTicketManager {
             npc.spawnMe(x, y, (z + 20));
 
             if ((messages != null) && (messages.length > 0)) {
-                AutoChatHandler.getInstance().registerChat(npc, messages, chatDelay);
+                AutoChatHandler.getInstance().registerChat(npc, Arrays.asList(messages), chatDelay);
             }
 
             if (despawnDelay > 0) {

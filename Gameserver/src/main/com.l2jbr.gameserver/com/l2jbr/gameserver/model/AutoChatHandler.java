@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.SevenSigns;
 import com.l2jbr.gameserver.ThreadPoolManager;
@@ -33,13 +32,12 @@ import com.l2jbr.gameserver.serverpackets.CreatureSay;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ScheduledFuture;
+import java.util.stream.Collectors;
 
 
 /**
@@ -63,47 +61,17 @@ public class AutoChatHandler implements SpawnListener {
 
     private void restoreChatData() {
         int numLoaded = 0;
-        java.sql.Connection con = null;
-        PreparedStatement statement2 = null;
-        ResultSet rs2 = null;
+        AutoChatRepository repository = DatabaseAccess.getRepository(AutoChatRepository.class);
 
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
+        for (AutoChat autoChat: repository.findAll()) {
+            numLoaded++;
+            List<String> chatTexts = autoChat.getTexts().stream().map(autoChatText ->
+                    autoChatText.getChatText()).collect(Collectors.toList());
 
-            AutoChatRepository repository = DatabaseAccess.getRepository(AutoChatRepository.class);
-            for (AutoChat autoChat: repository.findAll()) {
-                numLoaded++;
-
-                statement2 = con.prepareStatement("SELECT * FROM auto_chat_text WHERE groupId=?");
-                statement2.setInt(1, autoChat.getGroupId());
-                rs2 = statement2.executeQuery();
-
-                rs2.last();
-                String[] chatTexts = new String[rs2.getRow()];
-                int i = 0;
-                rs2.first();
-
-                while (rs2.next()) {
-                    chatTexts[i] = rs2.getString("chatText");
-                    i++;
-                }
-
-                registerGlobalChat(autoChat.getNpcId(), chatTexts, autoChat.getChatDelay());
-
-                statement2.close();
-            }
-
-            if (Config.DEBUG) {
-                _log.info("AutoChatHandler: Loaded " + numLoaded + " chat group(s) from the database.");
-            }
-        } catch (Exception e) {
-            _log.warn("AutoSpawnHandler: Could not restore chat data: " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
+            registerGlobalChat(autoChat.getNpcId(), chatTexts , autoChat.getChatDelay());
         }
+
+        _log.info("info.auto.chat.loaded", numLoaded);
     }
 
     public static AutoChatHandler getInstance() {
@@ -127,7 +95,7 @@ public class AutoChatHandler implements SpawnListener {
      * @param chatDelay (-1 = default delay)
      * @return AutoChatInstance chatInst
      */
-    public AutoChatInstance registerGlobalChat(int npcId, String[] chatTexts, long chatDelay) {
+    public AutoChatInstance registerGlobalChat(int npcId, List<String> chatTexts, long chatDelay) {
         return registerChat(npcId, null, chatTexts, chatDelay);
     }
 
@@ -139,11 +107,11 @@ public class AutoChatHandler implements SpawnListener {
      * @param chatDelay (-1 = default delay)
      * @return AutoChatInstance chatInst
      */
-    public AutoChatInstance registerChat(L2NpcInstance npcInst, String[] chatTexts, long chatDelay) {
+    public AutoChatInstance registerChat(L2NpcInstance npcInst, List<String> chatTexts, long chatDelay) {
         return registerChat(npcInst.getNpcId(), npcInst, chatTexts, chatDelay);
     }
 
-    private final AutoChatInstance registerChat(int npcId, L2NpcInstance npcInst, String[] chatTexts, long chatDelay) {
+    private final AutoChatInstance registerChat(int npcId, L2NpcInstance npcInst, List<String> chatTexts, long chatDelay) {
         AutoChatInstance chatInst = null;
 
         if (chatDelay < 0) {
@@ -259,7 +227,7 @@ public class AutoChatHandler implements SpawnListener {
     public class AutoChatInstance {
         protected int _npcId;
         private long _defaultDelay = DEFAULT_CHAT_DELAY;
-        private String[] _defaultTexts;
+        private List<String> _defaultTexts;
         private boolean _defaultRandom = false;
 
         private boolean _globalChat = false;
@@ -268,7 +236,7 @@ public class AutoChatHandler implements SpawnListener {
         private final Map<Integer, AutoChatDefinition> _chatDefinitions = new LinkedHashMap<>();
         protected ScheduledFuture<?> _chatTask;
 
-        protected AutoChatInstance(int npcId, String[] chatTexts, long chatDelay, boolean isGlobal) {
+        protected AutoChatInstance(int npcId, List<String> chatTexts, long chatDelay, boolean isGlobal) {
             _defaultTexts = chatTexts;
             _npcId = npcId;
             _defaultDelay = chatDelay;
@@ -310,7 +278,7 @@ public class AutoChatHandler implements SpawnListener {
          * @param chatDelay
          * @return int objectId
          */
-        public int addChatDefinition(L2NpcInstance npcInst, String[] chatTexts, long chatDelay) {
+        public int addChatDefinition(L2NpcInstance npcInst, List<String> chatTexts, long chatDelay) {
             int objectId = npcInst.getObjectId();
             AutoChatDefinition chatDef = new AutoChatDefinition(this, npcInst, chatTexts, chatDelay);
             if (npcInst instanceof L2SiegeGuardInstance) {
@@ -422,7 +390,7 @@ public class AutoChatHandler implements SpawnListener {
             return _defaultDelay;
         }
 
-        public String[] getDefaultTexts() {
+        public List<String> getDefaultTexts() {
             return _defaultTexts;
         }
 
@@ -430,7 +398,7 @@ public class AutoChatHandler implements SpawnListener {
             _defaultDelay = delayValue;
         }
 
-        public void setDefaultChatTexts(String[] textsValue) {
+        public void setDefaultChatTexts(List<String> textsValue) {
             _defaultTexts = textsValue;
         }
 
@@ -458,7 +426,7 @@ public class AutoChatHandler implements SpawnListener {
          * @param objectId
          * @param textsValue
          */
-        public void setChatTexts(int objectId, String[] textsValue) {
+        public void setChatTexts(int objectId, List<String> textsValue) {
             AutoChatDefinition chatDef = getChatDefinition(objectId);
 
             if (chatDef != null) {
@@ -523,11 +491,11 @@ public class AutoChatHandler implements SpawnListener {
             protected AutoChatInstance _chatInstance;
 
             private long _chatDelay = 0;
-            private String[] _chatTexts = null;
+            private List<String> _chatTexts = null;
             private boolean _isActiveDefinition;
             private boolean _randomChat;
 
-            protected AutoChatDefinition(AutoChatInstance chatInst, L2NpcInstance npcInst, String[] chatTexts, long chatDelay) {
+            protected AutoChatDefinition(AutoChatInstance chatInst, L2NpcInstance npcInst, List<String> chatTexts, long chatDelay) {
                 _npcInstance = npcInst;
 
                 _chatInstance = chatInst;
@@ -547,7 +515,7 @@ public class AutoChatHandler implements SpawnListener {
                 }
             }
 
-            protected String[] getChatTexts() {
+            protected List<String> getChatTexts() {
                 if (_chatTexts != null) {
                     return _chatTexts;
                 }
@@ -577,7 +545,7 @@ public class AutoChatHandler implements SpawnListener {
                 _chatDelay = delayValue;
             }
 
-            void setChatTexts(String[] textsValue) {
+            void setChatTexts(List<String> textsValue) {
                 _chatTexts = textsValue;
             }
 
@@ -662,7 +630,7 @@ public class AutoChatHandler implements SpawnListener {
                             }
                         }
 
-                        int maxIndex = chatDef.getChatTexts().length;
+                        int maxIndex = chatDef.getChatTexts().size();
                         int lastIndex = Rnd.nextInt(maxIndex);
 
                         String creatureName = chatNpc.getName();
@@ -679,7 +647,7 @@ public class AutoChatHandler implements SpawnListener {
                             chatDef._chatIndex = lastIndex;
                         }
 
-                        text = chatDef.getChatTexts()[lastIndex];
+                        text = chatDef.getChatTexts().get(lastIndex);
 
                         if (text == null) {
                             return;
