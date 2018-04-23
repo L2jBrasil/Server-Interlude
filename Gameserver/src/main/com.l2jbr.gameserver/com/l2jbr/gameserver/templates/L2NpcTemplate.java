@@ -68,6 +68,44 @@ public final class L2NpcTemplate extends L2CharTemplate {
     public final AbsorbCrystalType absorbType;
     public Race race;
 
+
+    /**
+     * Constructor of L2Character.<BR>
+     * <BR>
+     *
+     * @param set The StatsSet object to transfert data to the method
+     */
+    public L2NpcTemplate(StatsSet set) {
+        super(set);
+        npcId = set.getInteger("npcId");
+        idTemplate = set.getInteger("idTemplate");
+        type = set.getString("type");
+        name = set.getString("name");
+        serverSideName = set.getBool("serverSideName");
+        title = set.getString("title");
+        serverSideTitle = set.getBool("serverSideTitle");
+        sex = set.getString("sex");
+        level = set.getByte("level");
+        rewardExp = set.getInteger("rewardExp");
+        rewardSp = set.getInteger("rewardSp");
+        aggroRange = set.getInteger("aggroRange");
+        rhand = set.getInteger("rhand");
+        lhand = set.getInteger("lhand");
+        armor = set.getInteger("armor");
+        String f = set.getString("factionId", null);
+        if (f == null) {
+            factionId = null;
+        } else {
+            factionId = f.intern();
+        }
+        factionRange = set.getInteger("factionRange");
+        absorbLevel = set.getInteger("absorb_level", 0);
+        absorbType = AbsorbCrystalType.valueOf(set.getString("absorb_type"));
+        race = null;
+        _npcStatsSet = set;
+        _teachInfo = null;
+    }
+
     public static enum AbsorbCrystalType {
         LAST_HIT,
         FULL_PARTY,
@@ -119,42 +157,7 @@ public final class L2NpcTemplate extends L2CharTemplate {
     // contains a list of quests for each event type (questStart, questAttack, questKill, etc)
     private Map<Quest.QuestEventType, Quest[]> _questEvents;
 
-    /**
-     * Constructor of L2Character.<BR>
-     * <BR>
-     *
-     * @param set The StatsSet object to transfert data to the method
-     */
-    public L2NpcTemplate(StatsSet set) {
-        super(set);
-        npcId = set.getInteger("npcId");
-        idTemplate = set.getInteger("idTemplate");
-        type = set.getString("type");
-        name = set.getString("name");
-        serverSideName = set.getBool("serverSideName");
-        title = set.getString("title");
-        serverSideTitle = set.getBool("serverSideTitle");
-        sex = set.getString("sex");
-        level = set.getByte("level");
-        rewardExp = set.getInteger("rewardExp");
-        rewardSp = set.getInteger("rewardSp");
-        aggroRange = set.getInteger("aggroRange");
-        rhand = set.getInteger("rhand");
-        lhand = set.getInteger("lhand");
-        armor = set.getInteger("armor");
-        String f = set.getString("factionId", null);
-        if (f == null) {
-            factionId = null;
-        } else {
-            factionId = f.intern();
-        }
-        factionRange = set.getInteger("factionRange");
-        absorbLevel = set.getInteger("absorb_level", 0);
-        absorbType = AbsorbCrystalType.valueOf(set.getString("absorb_type"));
-        race = null;
-        _npcStatsSet = set;
-        _teachInfo = null;
-    }
+
 
     public void addTeachInfo(ClassId classId) {
         if (_teachInfo == null) {
