@@ -25,6 +25,7 @@ import com.l2jbr.gameserver.model.Inventory;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.database.Character;
+import com.l2jbr.gameserver.model.database.repository.AugmentationsRepository;
 import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.network.L2GameClient;
 import org.slf4j.Logger;
@@ -302,27 +303,10 @@ public class CharSelectInfo extends L2GameServerPacket {
         }
 
         if (weaponObjId > 0) {
-            java.sql.Connection con = null;
-            try {
-                con = L2DatabaseFactory.getInstance().getConnection();
-                PreparedStatement statement = con.prepareStatement("SELECT attributes FROM augmentations WHERE item_id=?");
-                statement.setInt(1, weaponObjId);
-                ResultSet result = statement.executeQuery();
-
-                if (result.next()) {
-                    charInfopackage.setAugmentationId(result.getInt("attributes"));
-                }
-
-                result.close();
-                statement.close();
-            } catch (Exception e) {
-                _log.warn("Could not restore augmentation info: " + e);
-            } finally {
-                try {
-                    con.close();
-                } catch (Exception e) {
-                }
-            }
+            AugmentationsRepository repository = DatabaseAccess.getRepository(AugmentationsRepository.class);
+            repository.findById(weaponObjId).ifPresent(augmentation -> {
+                charInfopackage.setAugmentationId(augmentation.getAttributes());
+            });
         }
 
         /*

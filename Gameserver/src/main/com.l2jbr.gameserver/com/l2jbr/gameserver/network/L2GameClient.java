@@ -28,6 +28,7 @@ import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.CharSelectInfoPackage;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.AugmentationsRepository;
 import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.model.entity.L2Event;
 import com.l2jbr.gameserver.serverpackets.L2GameServerPacket;
@@ -312,10 +313,8 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> {
             statement.execute();
             statement.close();
 
-            statement = con.prepareStatement("DELETE FROM augmentations WHERE item_id IN (SELECT object_id FROM items WHERE items.owner_id=?)");
-            statement.setInt(1, objId);
-            statement.execute();
-            statement.close();
+            AugmentationsRepository augmentationsRepository = DatabaseAccess.getRepository(AugmentationsRepository.class);
+            augmentationsRepository.deleteByItemOwner(objId);
 
             statement = con.prepareStatement("DELETE FROM items WHERE owner_id=?");
             statement.setInt(1, objId);
@@ -327,8 +326,8 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> {
             statement.execute();
             statement.close();
 
-            CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
-            repository.deleteById(objId);
+            CharacterRepository characterRepository = DatabaseAccess.getRepository(CharacterRepository.class);
+            characterRepository.deleteById(objId);
         } catch (Exception e) {
             _log.warn("Data error on deleting char: " + e);
         } finally {

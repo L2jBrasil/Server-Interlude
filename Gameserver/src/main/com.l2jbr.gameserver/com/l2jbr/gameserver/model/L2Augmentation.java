@@ -18,17 +18,18 @@
 
 package com.l2jbr.gameserver.model;
 
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.datatables.AugmentationData;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.Augmentation;
+import com.l2jbr.gameserver.model.database.repository.AugmentationsRepository;
 import com.l2jbr.gameserver.skills.Stats;
 import com.l2jbr.gameserver.skills.funcs.FuncAdd;
 import com.l2jbr.gameserver.skills.funcs.LambdaConst;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
 import java.util.List;
 
 
@@ -110,31 +111,9 @@ public final class L2Augmentation {
     }
 
     private void saveAugmentationData() {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-
-            PreparedStatement statement = con.prepareStatement("INSERT INTO augmentations (item_id,attributes,skill,level) VALUES (?,?,?,?)");
-            statement.setInt(1, _item.getObjectId());
-            statement.setInt(2, _effectsId);
-            if (_skill != null) {
-                statement.setInt(3, _skill.getId());
-                statement.setInt(4, _skill.getLevel());
-            } else {
-                statement.setInt(3, 0);
-                statement.setInt(4, 0);
-            }
-
-            statement.executeUpdate();
-            statement.close();
-        } catch (Exception e) {
-            _log.error( "Could not save augmentation for item: " + _item.getObjectId() + " from DB:", e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        Augmentation augmentation = new Augmentation(_item.getObjectId(), _effectsId, _skill);
+        AugmentationsRepository repository = DatabaseAccess.getRepository(AugmentationsRepository.class);
+        repository.save(augmentation);
     }
 
     public void deleteAugmentationData() {
@@ -142,22 +121,8 @@ public final class L2Augmentation {
             return;
         }
 
-        // delete the augmentation from the database
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("DELETE FROM augmentations WHERE item_id=?");
-            statement.setInt(1, _item.getObjectId());
-            statement.executeUpdate();
-            statement.close();
-        } catch (Exception e) {
-            _log.error( "Could not delete augmentation for item: " + _item.getObjectId() + " from DB:", e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        AugmentationsRepository repository = DatabaseAccess.getRepository(AugmentationsRepository.class);
+        repository.deleteById(_item.getObjectId());
     }
 
     /**

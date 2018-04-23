@@ -19,6 +19,7 @@
 package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.ai.CtrlIntention;
@@ -26,6 +27,8 @@ import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.instancemanager.ItemsOnGroundManager;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.knownlist.NullKnownList;
+import com.l2jbr.gameserver.model.database.Augmentation;
+import com.l2jbr.gameserver.model.database.repository.AugmentationsRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
@@ -40,6 +43,7 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Optional;
 import java.util.concurrent.ScheduledFuture;
 
 
@@ -1054,18 +1058,13 @@ public final class L2ItemInstance extends L2Object
 			}
 			rs.close();
 			statement.close();
-			
-			// load augmentation
-			statement = con.prepareStatement("SELECT attributes,skill,level FROM augmentations WHERE item_id=?");
-			statement.setInt(1, objectId);
-			rs = statement.executeQuery();
-			if (rs.next())
-			{
-				inst._augmentation = new L2Augmentation(inst, rs.getInt("attributes"), rs.getInt("skill"), rs.getInt("level"), false);
-			}
-			
-			rs.close();
-			statement.close();
+
+			AugmentationsRepository repository = DatabaseAccess.getRepository(AugmentationsRepository.class);
+			Optional<Augmentation> optionalAugmentation =  repository.findById(objectId);
+			if(optionalAugmentation.isPresent()) {
+                Augmentation augmentation = optionalAugmentation.get();
+			    inst._augmentation = new L2Augmentation(inst, augmentation.getAttributes(), augmentation.getSkill(), augmentation.getLevel(), false );
+            }
 			
 		}
 		catch (Exception e)
