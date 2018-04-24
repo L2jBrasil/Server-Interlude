@@ -346,7 +346,6 @@ public class Siege {
                 teleportPlayer(TeleportWhoType.Spectator, MapRegionTable.TeleportWhereType.Town); // Teleport to the second closest town
 
                 removeDefenderFlags(); // Removes defenders' flags
-                getCastle().removeUpgrade(); // Remove all castle upgrade
                 getCastle().spawnDoor(true); // Respawn door to castle but make them weaker (50% hp)
                 updatePlayerSiegeStateFlags(false);
             }

@@ -37,6 +37,7 @@ import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.actor.instance.L2DoorInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.database.CastleData;
+import com.l2jbr.gameserver.model.database.CastleDoor;
 import com.l2jbr.gameserver.model.database.repository.CastleRepository;
 import com.l2jbr.gameserver.model.database.repository.ClanRepository;
 import com.l2jbr.gameserver.model.zone.type.L2CastleZone;
@@ -45,7 +46,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.*;
 
 
@@ -68,7 +68,7 @@ public class Castle {
     // Data Field
     private int _castleId = 0;
     private final List<L2DoorInstance> _doors = new LinkedList<>();
-    private final List<String> _doorDefault = new LinkedList<>();
+    private final List<CastleDoor> _doorDefault = new LinkedList<CastleDoor>();
     private String _name = "";
     private int _ownerId = 0;
     private Siege _siege = null;
@@ -239,11 +239,6 @@ public class Castle {
         }
     }
 
-    // This method is used to begin removing all castle upgrades
-    public void removeUpgrade() {
-        removeDoorUpgrade();
-    }
-
     // This method updates the castle tax rate
     public void setOwner(L2Clan clan) {
         // Remove old owner
@@ -338,7 +333,7 @@ public class Castle {
             L2DoorInstance door = getDoors().get(i);
             if (door.getCurrentHp() <= 0) {
                 door.decayMe(); // Kill current if not killed already
-                door = DoorTable.parseList(_doorDefault.get(i));
+                door = DoorTable.parseDoor(_doorDefault.get(i));
                 if (isDoorWeak) {
                     door.setCurrentHp(door.getMaxHp() / 2);
                 }
@@ -383,56 +378,14 @@ public class Castle {
             ThreadPoolManager.getInstance().scheduleGeneral(new CastleUpdater(clan, 1), 3600000); // Schedule owner tasks to start running
         }
 
-        loadDoor();
-    }
+        for (CastleDoor castleDoor : castleData.getDoors()) {
 
-    // This method loads castle door data from database
-    private void loadDoor() {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("Select * from castle_door where castleId = ?");
-            statement.setInt(1, getCastleId());
-            ResultSet rs = statement.executeQuery();
+            _doorDefault.add(castleDoor);
 
-            while (rs.next()) {
-                // Create list of the door default for use when respawning dead doors
-                _doorDefault.add(rs.getString("name") + ";" + rs.getInt("id") + ";" + rs.getInt("x") + ";" + rs.getInt("y") + ";" + rs.getInt("z") + ";" + rs.getInt("range_xmin") + ";" + rs.getInt("range_ymin") + ";" + rs.getInt("range_zmin") + ";" + rs.getInt("range_xmax") + ";" + rs.getInt("range_ymax") + ";" + rs.getInt("range_zmax") + ";" + rs.getInt("hp") + ";" + rs.getInt("pDef") + ";" + rs.getInt("mDef"));
-
-                L2DoorInstance door = DoorTable.parseList(_doorDefault.get(_doorDefault.size() - 1));
-                door.spawnMe(door.getX(), door.getY(), door.getZ());
-                _doors.add(door);
-                DoorTable.getInstance().putDoor(door);
-            }
-
-            statement.close();
-        } catch (Exception e) {
-            System.out.println("Exception: loadCastleDoor(): " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
-    }
-
-    private void removeDoorUpgrade() {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("delete from castle_doorupgrade where doorId in (select id from castle_door where castleId=?)");
-            statement.setInt(1, getCastleId());
-            statement.execute();
-            statement.close();
-        } catch (Exception e) {
-            System.out.println("Exception: removeDoorUpgrade(): " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
+            L2DoorInstance door = DoorTable.parseDoor(castleDoor);
+            door.spawnMe(door.getX(), door.getY(), door.getZ());
+            _doors.add(door);
+            DoorTable.getInstance().putDoor(door);
         }
     }
 

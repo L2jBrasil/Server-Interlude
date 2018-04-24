@@ -22,6 +22,7 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.instancemanager.ClanHallManager;
 import com.l2jbr.gameserver.model.actor.instance.L2DoorInstance;
+import com.l2jbr.gameserver.model.database.CastleDoor;
 import com.l2jbr.gameserver.model.entity.ClanHall;
 import com.l2jbr.gameserver.pathfinding.AbstractNodeLoc;
 import com.l2jbr.gameserver.templates.L2CharTemplate;
@@ -54,6 +55,8 @@ public class DoorTable {
         _staticItems = new LinkedHashMap<>();
         // parseData();
     }
+
+
 
     public void reloadAll() {
         respawn();
@@ -108,6 +111,95 @@ public class DoorTable {
         }
     }
 
+    public static L2DoorInstance parseDoor(CastleDoor castleDoor) {
+        int rangeXMin = castleDoor.getRangeXmin();
+        int rangeXMax = castleDoor.getRangeXmax();
+        int rangeYMin = castleDoor.getRangeYmin();
+        int rangeYMax = castleDoor.getRangeYmax();
+        int rangeZMin = castleDoor.getRangeZmin();
+        int rangeZMax = castleDoor.getRangeXmax();
+
+        if (rangeXMin > rangeXMax) {
+            _log.error("Error in door data, ID: {}", castleDoor.getId() );
+        }
+        if (rangeYMin > rangeYMax) {
+            _log.error("Error in door data, ID: {}", castleDoor.getId());
+        }
+        if (rangeZMin > rangeZMax) {
+            _log.error("Error in door data, ID: {}", castleDoor.getId());
+        }
+
+        int collisionRadius; // (max) radius for movement checks
+        if ((rangeXMax - rangeXMin) > (rangeYMax - rangeYMin)) {
+            collisionRadius = rangeYMax - rangeYMin;
+        } else {
+            collisionRadius = rangeXMax - rangeXMin;
+        }
+
+        StatsSet npcDat = new StatsSet();
+        int id = castleDoor.getId();
+        npcDat.set("npcId", id);
+        npcDat.set("level", 0);
+        npcDat.set("jClass", "door");
+
+        npcDat.set("baseSTR", 0);
+        npcDat.set("baseCON", 0);
+        npcDat.set("baseDEX", 0);
+        npcDat.set("baseINT", 0);
+        npcDat.set("baseWIT", 0);
+        npcDat.set("baseMEN", 0);
+
+        npcDat.set("baseShldDef", 0);
+        npcDat.set("baseShldRate", 0);
+        npcDat.set("baseAccCombat", 38);
+        npcDat.set("baseEvasRate", 38);
+        npcDat.set("baseCritRate", 38);
+
+        // npcDat.set("name", "");
+        npcDat.set("collision_radius", collisionRadius);
+        npcDat.set("collision_height", rangeZMax - rangeZMin);
+        npcDat.set("sex", "male");
+        npcDat.set("type", "");
+        npcDat.set("baseAtkRange", 0);
+        npcDat.set("baseMpMax", 0);
+        npcDat.set("baseCpMax", 0);
+        npcDat.set("rewardExp", 0);
+        npcDat.set("rewardSp", 0);
+        npcDat.set("basePAtk", 0);
+        npcDat.set("baseMAtk", 0);
+        npcDat.set("basePAtkSpd", 0);
+        npcDat.set("aggroRange", 0);
+        npcDat.set("baseMAtkSpd", 0);
+        npcDat.set("rhand", 0);
+        npcDat.set("lhand", 0);
+        npcDat.set("armor", 0);
+        npcDat.set("baseWalkSpd", 0);
+        npcDat.set("baseRunSpd", 0);
+
+        String name = castleDoor.getName();
+        npcDat.set("name", name);
+        npcDat.set("baseHpMax", castleDoor.getHp());
+        npcDat.set("baseHpReg", 3.e-3f);
+        npcDat.set("baseMpReg", 3.e-3f);
+        npcDat.set("basePDef", castleDoor.getpDef());
+        npcDat.set("baseMDef", castleDoor.getmDef());
+
+        L2CharTemplate template = new L2CharTemplate(npcDat);
+        L2DoorInstance door = new L2DoorInstance(IdFactory.getInstance().getNextId(), template, id, name, false);
+        door.setRange(rangeXMin, rangeYMin, rangeZMin, rangeXMax, rangeYMax, rangeZMax);
+        try {
+            door.setMapRegion(MapRegionTable.getInstance().getMapRegion(castleDoor.getX(), castleDoor.getY()));
+        } catch (Exception e) {
+            _log.error("Error in door data, ID:" + id);
+        }
+        door.setCurrentHpMp(door.getMaxHp(), door.getMaxMp());
+        door.setOpen(1);
+        door.setXYZInvisible(castleDoor.getX(), castleDoor.getY(), castleDoor.getZ());
+
+        return door;
+    }
+
+    @Deprecated(forRemoval =  true)
     public static L2DoorInstance parseList(String line) {
         StringTokenizer st = new StringTokenizer(line, ";");
 

@@ -1,7 +1,12 @@
 package com.l2jbr.gameserver.model.database;
 
+import com.l2jbr.commons.database.annotation.Column;
+import com.l2jbr.commons.database.annotation.Table;
 import org.springframework.data.annotation.Id;
 
+import java.util.Set;
+
+@Table("castle")
 public class CastleData {
 
     @Id
@@ -12,6 +17,8 @@ public class CastleData {
     private long siegeDate;
     private int siegeDayOfWeek;
     private int siegeHourOfDay;
+    @Column("castleId")
+    private Set<CastleDoor> doors;
 
     public int getId() {
         return id;
@@ -39,5 +46,9 @@ public class CastleData {
 
     public int getSiegeHourOfDay() {
         return siegeHourOfDay;
+    }
+
+    public Set<CastleDoor> getDoors() {
+        return doors;
     }
 }
