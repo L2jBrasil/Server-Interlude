@@ -265,7 +265,6 @@ $MYG < ../sql/boxaccess.sql &> /dev/null
 $MYG < ../sql/boxes.sql &> /dev/null
 $MYG < ../sql/castle.sql &> /dev/null
 $MYG < ../sql/castle_door.sql &> /dev/null
-$MYG < ../sql/castle_doorupgrade.sql &> /dev/null
 $MYG < ../sql/castle_siege_guards.sql &> /dev/null
 $MYG < ../sql/char_templates.sql &> /dev/null
 $MYG < ../sql/character_friends.sql &> /dev/null

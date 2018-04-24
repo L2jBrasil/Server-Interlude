@@ -9,7 +9,6 @@ DROP TABLE IF EXISTS boxaccess;
 DROP TABLE IF EXISTS boxes;
 DROP TABLE IF EXISTS castle;
 DROP TABLE IF EXISTS castle_door;
-DROP TABLE IF EXISTS castle_doorupgrade;
 DROP TABLE IF EXISTS castle_siege_guards;
 DROP TABLE IF EXISTS char_templates;
 DROP TABLE IF EXISTS character_friends;

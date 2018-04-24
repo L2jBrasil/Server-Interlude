@@ -525,7 +525,6 @@ boxaccess.sql
 boxes.sql
 castle.sql
 castle_door.sql
-castle_doorupgrade.sql
 castle_siege_guards.sql
 char_templates.sql
 character_friends.sql

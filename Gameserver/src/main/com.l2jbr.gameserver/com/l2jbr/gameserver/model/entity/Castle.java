@@ -348,22 +348,6 @@ public class Castle {
                 door.closeMe();
             }
         }
-        loadDoorUpgrade(); // Check for any upgrade the doors may have
-    }
-
-    // This method upgrade door
-    public void upgradeDoor(int doorId, int hp, int pDef, int mDef) {
-        L2DoorInstance door = getDoor(doorId);
-        if (door == null) {
-            return;
-        }
-
-        if (door.getDoorId() == doorId) {
-            door.setCurrentHp(door.getMaxHp() + hp);
-
-            saveDoorUpgrade(doorId, hp, pDef, mDef);
-            return;
-        }
     }
 
     private void load(CastleData castleData) {
@@ -433,31 +417,6 @@ public class Castle {
         }
     }
 
-    // This method loads castle door upgrade data from database
-    private void loadDoorUpgrade() {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("Select * from castle_doorupgrade where doorId in (Select Id from castle_door where castleId = ?)");
-            statement.setInt(1, getCastleId());
-            ResultSet rs = statement.executeQuery();
-
-            while (rs.next()) {
-                upgradeDoor(rs.getInt("id"), rs.getInt("hp"), rs.getInt("pDef"), rs.getInt("mDef"));
-            }
-
-            statement.close();
-        } catch (Exception e) {
-            System.out.println("Exception: loadCastleDoorUpgrade(): " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
-    }
-
     private void removeDoorUpgrade() {
         java.sql.Connection con = null;
         try {
@@ -468,28 +427,6 @@ public class Castle {
             statement.close();
         } catch (Exception e) {
             System.out.println("Exception: removeDoorUpgrade(): " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
-    }
-
-    private void saveDoorUpgrade(int doorId, int hp, int pDef, int mDef) {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("INSERT INTO castle_doorupgrade (doorId, hp, pDef, mDef) values (?,?,?,?)");
-            statement.setInt(1, doorId);
-            statement.setInt(2, hp);
-            statement.setInt(3, pDef);
-            statement.setInt(4, mDef);
-            statement.execute();
-            statement.close();
-        } catch (Exception e) {
-            System.out.println("Exception: saveDoorUpgrade(int doorId, int hp, int pDef, int mDef): " + e.getMessage());
             e.printStackTrace();
         } finally {
             try {

@@ -646,25 +646,6 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
 
--- -----------------------------------------------------
--- Table `castle_doorupgrade`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `castle_doorupgrade` ;
-
-CREATE TABLE IF NOT EXISTS `castle_doorupgrade` (
-  `doorId` INT(11) NOT NULL DEFAULT '0',
-  `hp` INT(11) NOT NULL DEFAULT '0',
-  `pDef` INT(11) NOT NULL DEFAULT '0',
-  `mDef` INT(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`doorId`),
-  CONSTRAINT `fk_castle_doorupgrade_castle_door1`
-    FOREIGN KEY (`doorId`)
-    REFERENCES `castle_door` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
-
 
 -- -----------------------------------------------------
 -- Table `castle_manor_procure`
