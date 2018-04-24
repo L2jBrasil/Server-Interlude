@@ -18,12 +18,14 @@
 package com.l2jbr.gameserver.instancemanager;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.datatables.ClanTable;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.CastleManorProcureRepository;
 import com.l2jbr.gameserver.model.entity.Castle;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
@@ -51,7 +53,6 @@ public class CastleManorManager {
     public static final int PERIOD_CURRENT = 0;
     public static final int PERIOD_NEXT = 1;
 
-    private static final String CASTLE_MANOR_LOAD_PROCURE = "SELECT * FROM castle_manor_procure WHERE castle_id=?";
     private static final String CASTLE_MANOR_LOAD_PRODUCTION = "SELECT * FROM castle_manor_production WHERE castle_id=?";
 
     private static final int NEXT_PERIOD_APPROVE = Config.ALT_MANOR_APPROVE_TIME; // 6:00
@@ -213,25 +214,20 @@ public class CastleManorManager {
                 castle.setSeedProduction(production, PERIOD_CURRENT);
                 castle.setSeedProduction(productionNext, PERIOD_NEXT);
 
-                // restore procure info
-                statement = con.prepareStatement(CASTLE_MANOR_LOAD_PROCURE);
-                statement.setInt(1, castle.getCastleId());
-                rs = statement.executeQuery();
-                while (rs.next()) {
-                    int cropId = rs.getInt("crop_id");
-                    int canBuy = rs.getInt("can_buy");
-                    int startBuy = rs.getInt("start_buy");
-                    int rewardType = rs.getInt("reward_type");
-                    int price = rs.getInt("price");
-                    int period = rs.getInt("period");
+                CastleManorProcureRepository repository = DatabaseAccess.getRepository(CastleManorProcureRepository.class);
+                repository.findAllByCastleId(castle.getCastleId()).forEach(manorProcure -> {
+                    int cropId = manorProcure.getCropId();
+                    int canBuy = manorProcure.getCanBuy();
+                    int startBuy = manorProcure.getStartBuy();
+                    int rewardType = manorProcure.getRewardType();
+                    int price = manorProcure.getPrice();
+                    int period = manorProcure.getPeriod();
                     if (period == PERIOD_CURRENT) {
                         procure.add(new CropProcure(cropId, canBuy, rewardType, startBuy, price));
                     } else {
                         procureNext.add(new CropProcure(cropId, canBuy, rewardType, startBuy, price));
                     }
-                }
-                statement.close();
-                rs.close();
+                });
 
                 castle.setCropProcure(procure, PERIOD_CURRENT);
                 castle.setCropProcure(procureNext, PERIOD_NEXT);

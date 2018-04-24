@@ -21,6 +21,7 @@ package com.l2jbr.gameserver.model.entity;
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.util.Util;
 import com.l2jbr.gameserver.Announcements;
 import com.l2jbr.gameserver.CastleUpdater;
 import com.l2jbr.gameserver.SevenSigns;
@@ -38,6 +39,8 @@ import com.l2jbr.gameserver.model.actor.instance.L2DoorInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.database.CastleData;
 import com.l2jbr.gameserver.model.database.CastleDoor;
+import com.l2jbr.gameserver.model.database.CastleManorProcure;
+import com.l2jbr.gameserver.model.database.repository.CastleManorProcureRepository;
 import com.l2jbr.gameserver.model.database.repository.CastleRepository;
 import com.l2jbr.gameserver.model.database.repository.ClanRepository;
 import com.l2jbr.gameserver.model.zone.type.L2CastleZone;
@@ -60,9 +63,6 @@ public class Castle {
 
     private static final String CASTLE_MANOR_DELETE_PRODUCTION = "DELETE FROM castle_manor_production WHERE castle_id=?;";
     private static final String CASTLE_MANOR_DELETE_PRODUCTION_PERIOD = "DELETE FROM castle_manor_production WHERE castle_id=? AND period=?;";
-    private static final String CASTLE_MANOR_DELETE_PROCURE = "DELETE FROM castle_manor_procure WHERE castle_id=?;";
-    private static final String CASTLE_MANOR_DELETE_PROCURE_PERIOD = "DELETE FROM castle_manor_procure WHERE castle_id=? AND period=?;";
-    private static final String CASTLE_UPDATE_CROP = "UPDATE castle_manor_procure SET can_buy=? WHERE crop_id=? AND castle_id=? AND period=?";
     private static final String CASTLE_UPDATE_SEED = "UPDATE castle_manor_production SET can_produce=? WHERE seed_id=? AND castle_id=? AND period=?";
     // =========================================================
     // Data Field
@@ -649,129 +649,37 @@ public class Castle {
         }
     }
 
-    // save crop procure data
     public void saveCropData() {
-        java.sql.Connection con = null;
-        PreparedStatement statement;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
+        CastleManorProcureRepository repository = DatabaseAccess.getRepository(CastleManorProcureRepository.class);
+        repository.deleteById(getCastleId());
 
-            statement = con.prepareStatement(CASTLE_MANOR_DELETE_PROCURE);
-            statement.setInt(1, getCastleId());
-            statement.execute();
-            statement.close();
-            if (_procure != null) {
-                int count = 0;
-                String query = "INSERT INTO castle_manor_procure VALUES ";
-                String values[] = new String[_procure.size()];
-                for (CropProcure cp : _procure) {
-                    values[count] = "(" + getCastleId() + "," + cp.getId() + "," + cp.getAmount() + "," + cp.getStartAmount() + "," + cp.getPrice() + "," + cp.getReward() + "," + CastleManorManager.PERIOD_CURRENT + ")";
-                    count++;
-                }
-                if (values.length > 0) {
-                    query += values[0];
-                    for (int i = 1; i < values.length; i++) {
-                        query += "," + values[i];
-                    }
-                    statement = con.prepareStatement(query);
-                    statement.execute();
-                    statement.close();
-                }
-            }
-            if (_procureNext != null) {
-                int count = 0;
-                String query = "INSERT INTO castle_manor_procure VALUES ";
-                String values[] = new String[_procureNext.size()];
-                for (CropProcure cp : _procureNext) {
-                    values[count] = "(" + getCastleId() + "," + cp.getId() + "," + cp.getAmount() + "," + cp.getStartAmount() + "," + cp.getPrice() + "," + cp.getReward() + "," + CastleManorManager.PERIOD_NEXT + ")";
-                    count++;
-                }
-                if (values.length > 0) {
-                    query += values[0];
-                    for (int i = 1; i < values.length; i++) {
-                        query += "," + values[i];
-                    }
-                    statement = con.prepareStatement(query);
-                    statement.execute();
-                    statement.close();
-                }
-            }
-        } catch (Exception e) {
-            _log.info("Error adding crop data for castle " + getName() + ": " + e.getMessage());
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        saveProcure(_procure, CastleManorManager.PERIOD_CURRENT, repository);
+
+        saveProcure(_procureNext, CastleManorManager.PERIOD_NEXT, repository);
     }
 
-    // save crop procure data for specified period
     public void saveCropData(int period) {
-        java.sql.Connection con = null;
-        PreparedStatement statement;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
+        CastleManorProcureRepository repository = DatabaseAccess.getRepository(CastleManorProcureRepository.class);
+        repository.deleteByIdAndPeriod(getCastleId(), period);
 
-            statement = con.prepareStatement(CASTLE_MANOR_DELETE_PROCURE_PERIOD);
-            statement.setInt(1, getCastleId());
-            statement.setInt(2, period);
-            statement.execute();
-            statement.close();
+        List<CropProcure> proc = getCropProcure(period);
 
-            List<CropProcure> proc = null;
-            proc = getCropProcure(period);
+        saveProcure(proc, period, repository);
+    }
 
-            if (proc != null) {
-                int count = 0;
-                String query = "INSERT INTO castle_manor_procure VALUES ";
-                String values[] = new String[proc.size()];
-
-                for (CropProcure cp : proc) {
-                    values[count] = "(" + getCastleId() + "," + cp.getId() + "," + cp.getAmount() + "," + cp.getStartAmount() + "," + cp.getPrice() + "," + cp.getReward() + "," + period + ")";
-                    count++;
-                }
-                if (values.length > 0) {
-                    query += values[0];
-                    for (int i = 1; i < values.length; i++) {
-                        query += "," + values[i];
-                    }
-                    statement = con.prepareStatement(query);
-                    statement.execute();
-                    statement.close();
-                }
-            }
-        } catch (Exception e) {
-            _log.info("Error adding crop data for castle " + getName() + ": " + e.getMessage());
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
+    private void saveProcure(List<CropProcure> procures, int period, CastleManorProcureRepository repository) {
+        if (!Util.isNullOrEmpty(procures)) {
+            for (CropProcure cp : procures) {
+                CastleManorProcure procure = new CastleManorProcure(getCastleId(), cp.getId(), cp.getAmount(),
+                        cp.getStartAmount(), cp.getPrice(), cp.getReward(), period);
+                repository.save(procure);
             }
         }
     }
 
     public void updateCrop(int cropId, int amount, int period) {
-        java.sql.Connection con = null;
-        PreparedStatement statement;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-
-            statement = con.prepareStatement(CASTLE_UPDATE_CROP);
-            statement.setInt(1, amount);
-            statement.setInt(2, cropId);
-            statement.setInt(3, getCastleId());
-            statement.setInt(4, period);
-            statement.execute();
-            statement.close();
-        } catch (Exception e) {
-            _log.info("Error adding crop data for castle " + getName() + ": " + e.getMessage());
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        CastleManorProcureRepository repository = DatabaseAccess.getRepository(CastleManorProcureRepository.class);
+        repository.updateCanBuyCrop(getCastleId(), cropId, period, amount);
     }
 
     public void updateSeed(int seedId, int amount, int period) {

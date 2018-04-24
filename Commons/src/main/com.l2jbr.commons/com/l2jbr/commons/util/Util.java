@@ -15,6 +15,8 @@
 package com.l2jbr.commons.util;
 
 
+import java.util.Collection;
+
 /**
  * This class ...
  *
@@ -108,5 +110,9 @@ public class Util {
 
     public static boolean isNullOrEmpty(String value) {
         return isNull(value) || value.isEmpty();
+    }
+
+    public static boolean isNullOrEmpty(Collection<?> collection) {
+        return collection == null || collection.isEmpty();
     }
 }
