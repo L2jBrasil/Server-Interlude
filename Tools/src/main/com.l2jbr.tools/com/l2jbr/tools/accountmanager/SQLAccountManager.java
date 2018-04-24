@@ -239,6 +239,8 @@ public class SQLAccountManager {
                     statement.setInt(1, character.getObjectId());
                     statement.executeUpdate();
 
+
+
                     // boxaccess
                     statement.close();
                     statement = con.prepareStatement("DELETE FROM boxaccess WHERE charname=?;");

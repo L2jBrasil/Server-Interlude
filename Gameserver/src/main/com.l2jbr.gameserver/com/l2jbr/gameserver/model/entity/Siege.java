@@ -18,6 +18,7 @@
  */
 package com.l2jbr.gameserver.model.entity;
 
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.Announcements;
 import com.l2jbr.gameserver.ThreadPoolManager;
@@ -35,6 +36,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2ArtefactInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2ControlTowerInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.CastleRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.RelationChanged;
 import com.l2jbr.gameserver.serverpackets.SiegeInfo;
@@ -1073,28 +1075,10 @@ public class Siege {
         startAutoTask(); // Prepare auto start siege and end registration
     }
 
-    /**
-     * Save siege date to database.
-     */
-    private void saveSiegeDate() {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("Update castle set siegeDate = ? where id = ?");
-            statement.setLong(1, getSiegeDate().getTimeInMillis());
-            statement.setInt(2, getCastle().getCastleId());
-            statement.execute();
 
-            statement.close();
-        } catch (Exception e) {
-            System.out.println("Exception: saveSiegeDate(): " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+    private void saveSiegeDate() {
+        CastleRepository repository = DatabaseAccess.getRepository(CastleRepository.class);
+        repository.updateSiegeDateById(getCastle().getCastleId(), getSiegeDate().getTimeInMillis());
     }
 
     /**

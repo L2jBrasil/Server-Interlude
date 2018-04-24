@@ -36,6 +36,8 @@ import com.l2jbr.gameserver.model.L2Manor;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.actor.instance.L2DoorInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.CastleData;
+import com.l2jbr.gameserver.model.database.repository.CastleRepository;
 import com.l2jbr.gameserver.model.database.repository.ClanRepository;
 import com.l2jbr.gameserver.model.zone.type.L2CastleZone;
 import com.l2jbr.gameserver.serverpackets.PledgeShowInfoUpdate;
@@ -81,19 +83,9 @@ public class Castle {
     private int _nbArtifact = 1;
     private final Map<Integer, Integer> _engrave = new LinkedHashMap<>();
 
-    // =========================================================
-    // Constructor
-    public Castle(int castleId) {
-        _castleId = castleId;
-        if ((_castleId == 7) || (castleId == 9)) {
-            _nbArtifact = 2;
-        }
-        load();
-        loadDoor();
+    public Castle(CastleData castleData) {
+        load(castleData);
     }
-
-    // =========================================================
-    // Method - Public
 
     public void Engrave(L2Clan clan, int objId) {
         _engrave.put(objId, clan.getClanId());
@@ -178,21 +170,8 @@ public class Castle {
             }
         }
 
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("Update castle set treasury = ? where id = ?");
-            statement.setInt(1, getTreasury());
-            statement.setInt(2, getCastleId());
-            statement.execute();
-            statement.close();
-        } catch (Exception e) {
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        CastleRepository repository = DatabaseAccess.getRepository(CastleRepository.class);
+        repository.updateTreasuryById(getCastleId(), getTreasury());
         return true;
     }
 
@@ -337,21 +316,8 @@ public class Castle {
         _taxPercent = taxPercent;
         _taxRate = _taxPercent / 100.0;
 
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("Update castle set taxPercent = ? where id = ?");
-            statement.setInt(1, taxPercent);
-            statement.setInt(2, getCastleId());
-            statement.execute();
-            statement.close();
-        } catch (Exception e) {
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        CastleRepository repository = DatabaseAccess.getRepository(CastleRepository.class);
+        repository.updateTaxById(getCastleId(), taxPercent);
     }
 
     /**
@@ -400,64 +366,40 @@ public class Castle {
         }
     }
 
-    // =========================================================
-    // Method - Private
-    // This method loads castle
-    private void load() {
-        java.sql.Connection con = null;
-        try {
-            PreparedStatement statement;
-            ResultSet rs;
-
-            con = L2DatabaseFactory.getInstance().getConnection();
-
-            statement = con.prepareStatement("Select * from castle where id = ?");
-            statement.setInt(1, getCastleId());
-            rs = statement.executeQuery();
-
-            while (rs.next()) {
-                _name = rs.getString("name");
-                // _OwnerId = rs.getInt("ownerId");
-
-                _siegeDate = Calendar.getInstance();
-                _siegeDate.setTimeInMillis(rs.getLong("siegeDate"));
-
-                _siegeDayOfWeek = rs.getInt("siegeDayOfWeek");
-                if ((_siegeDayOfWeek < 1) || (_siegeDayOfWeek > 7)) {
-                    _siegeDayOfWeek = 7;
-                }
-
-                _siegeHourOfDay = rs.getInt("siegeHourOfDay");
-                if ((_siegeHourOfDay < 0) || (_siegeHourOfDay > 23)) {
-                    _siegeHourOfDay = 20;
-                }
-
-                _taxPercent = rs.getInt("taxPercent");
-                _treasury = rs.getInt("treasury");
-            }
-
-            statement.close();
-
-            _taxRate = _taxPercent / 100.0;
-
-            ClanRepository repository = DatabaseAccess.getRepository(ClanRepository.class);
-            int castleId = repository.findClanIdByCastle(getCastleId());
-            if(castleId != 0) {
-                _ownerId = castleId;
-                L2Clan clan = ClanTable.getInstance().getClan(getOwnerId()); // Try to find clan instance
-                ThreadPoolManager.getInstance().scheduleGeneral(new CastleUpdater(clan, 1), 3600000); // Schedule owner tasks to start running
-            }
-
-            statement.close();
-        } catch (Exception e) {
-            System.out.println("Exception: loadCastleData(): " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
+    private void load(CastleData castleData) {
+        _castleId = castleData.getId();
+        if ((_castleId == 7) || (_castleId == 9)) {
+            _nbArtifact = 2;
         }
+        _name = castleData.getName();
+        _siegeDate = Calendar.getInstance();
+        _siegeDate.setTimeInMillis(castleData.getSiegeDate());
+
+        _siegeDayOfWeek = castleData.getSiegeDayOfWeek();
+        if(_siegeDayOfWeek < 1 || _siegeDayOfWeek > 7) {
+            _siegeDayOfWeek = 7;
+        }
+
+        _siegeHourOfDay = castleData.getSiegeHourOfDay();
+        if(_siegeHourOfDay < 0 || _siegeHourOfDay > 23) {
+            _siegeHourOfDay = 20;
+        }
+
+        _taxPercent = castleData.getTaxPercent();
+        _treasury = castleData.getTreasury();
+
+
+        _taxRate = _taxPercent / 100.0;
+
+        ClanRepository clanRepository = DatabaseAccess.getRepository(ClanRepository.class);
+        int clanId = clanRepository.findClanIdByCastle(getCastleId());
+        if(clanId != 0) {
+            _ownerId = clanId;
+            L2Clan clan = ClanTable.getInstance().getClan(getOwnerId()); // Try to find clan instance
+            ThreadPoolManager.getInstance().scheduleGeneral(new CastleUpdater(clan, 1), 3600000); // Schedule owner tasks to start running
+        }
+
+        loadDoor();
     }
 
     // This method loads castle door data from database

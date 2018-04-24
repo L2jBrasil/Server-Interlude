@@ -27,6 +27,7 @@ import com.l2jbr.gameserver.instancemanager.SiegeManager;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.L2ClanMember;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.CastleRepository;
 import com.l2jbr.gameserver.model.database.repository.ClanRepository;
 import com.l2jbr.gameserver.model.entity.Siege;
 import com.l2jbr.gameserver.network.SystemMessageId;
@@ -204,8 +205,8 @@ public class ClanTable {
 
         java.sql.Connection con = null;
         try {
-            ClanRepository repository = DatabaseAccess.getRepository(ClanRepository.class);
-            repository.deleteById(clanId);
+            ClanRepository clanRepository = DatabaseAccess.getRepository(ClanRepository.class);
+            clanRepository.deleteById(clanId);
 
             con = L2DatabaseFactory.getInstance().getConnection();
 
@@ -231,10 +232,8 @@ public class ClanTable {
             statement.close();
 
             if (castleId != 0) {
-                statement = con.prepareStatement("UPDATE castle SET taxPercent = 0 WHERE id = ?");
-                statement.setInt(1, castleId);
-                statement.execute();
-                statement.close();
+                CastleRepository castleRepository = DatabaseAccess.getRepository(CastleRepository.class);
+                castleRepository.updateTaxById(castleId, 0);
             }
 
             _log.debug(getMessage("debug.clan.removed"), clanId);
