@@ -2,7 +2,7 @@
 package com.l2jbr.gameserver.handler.voicedcommandhandlers;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.GameTimeController;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.ai.CtrlIntention;
@@ -13,15 +13,13 @@ import com.l2jbr.gameserver.instancemanager.CoupleManager;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.CharacterFriendRepository;
 import com.l2jbr.gameserver.model.entity.TvTEvent;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.util.Broadcast;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 
 /**
@@ -199,40 +197,9 @@ public class Wedding implements IVoicedCommandHandler
 		}
 		
 		// check if target has player on friendlist
-		boolean FoundOnFriendList = false;
-		int objectId;
-		java.sql.Connection con = null;
-		try
-		{
-			con = L2DatabaseFactory.getInstance().getConnection();
-			PreparedStatement statement;
-			statement = con.prepareStatement("SELECT friend_id FROM character_friends WHERE char_id=?");
-			statement.setInt(1, ptarget.getObjectId());
-			ResultSet rset = statement.executeQuery();
-			
-			while (rset.next())
-			{
-				objectId = rset.getInt("friend_id");
-				if (objectId == activeChar.getObjectId())
-				{
-					FoundOnFriendList = true;
-				}
-			}
-		}
-		catch (Exception e)
-		{
-			_log.warn("could not read friend data:" + e);
-		}
-		finally
-		{
-			try
-			{
-				con.close();
-			}
-			catch (Exception e)
-			{
-			}
-		}
+        CharacterFriendRepository repository = DatabaseAccess.getRepository(CharacterFriendRepository.class);
+        boolean	FoundOnFriendList = repository.existsFriends(activeChar.getObjectId(), ptarget.getObjectId());
+
 		
 		if (!FoundOnFriendList)
 		{

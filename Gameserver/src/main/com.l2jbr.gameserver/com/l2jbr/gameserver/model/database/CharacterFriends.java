@@ -1,10 +1,31 @@
 package com.l2jbr.gameserver.model.database;
 
+import com.l2jbr.commons.database.annotation.Column;
+import com.l2jbr.commons.database.annotation.Table;
+import com.l2jbr.commons.database.model.Entity;
+import org.springframework.data.annotation.Id;
 
+@Table("character_friends")
+public class CharacterFriends extends Entity<Integer> {
 
-public class CharacterFriends  {
+    @Id
+    @Column("char_id")
+    private int charId;
+    @Column("friend_id")
+    private int friendId;
+    @Column("friend_name")
+    private String friendName;
 
-      private int char_id;
-      private int friend_id;
-      private String friend_name;
+    @Override
+    public Integer getId() {
+        return charId;
+    }
+
+    public int getFriendId() {
+        return friendId;
+    }
+
+    public String getFriendName() {
+        return friendName;
+    }
 }

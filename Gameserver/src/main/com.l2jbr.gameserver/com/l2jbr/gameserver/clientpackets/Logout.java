@@ -19,7 +19,8 @@
 package com.l2jbr.gameserver.clientpackets;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
+import com.l2jbr.commons.util.Util;
 import com.l2jbr.gameserver.Olympiad;
 import com.l2jbr.gameserver.SevenSignsFestival;
 import com.l2jbr.gameserver.communitybbs.Manager.RegionBBSManager;
@@ -27,6 +28,7 @@ import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.L2Party;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.CharacterFriendRepository;
 import com.l2jbr.gameserver.model.entity.TvTEvent;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
@@ -35,10 +37,6 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.taskmanager.AttackStanceTaskManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 
 /**
@@ -122,30 +120,14 @@ public final class Logout extends L2GameClientPacket
 		notifyFriends(player);
 	}
 	
-	private void notifyFriends(L2PcInstance cha)
-	{
-		try (Connection con = L2DatabaseFactory.getInstance().getConnection();
-			 PreparedStatement statement = con.prepareStatement("SELECT friend_name FROM character_friends WHERE char_id=?"))
-		{
-			statement.setInt(1, cha.getObjectId());
-			try (ResultSet rset = statement.executeQuery())
-			{
-				while (rset.next())
-				{
-					String friendName = rset.getString("friend_name");
-					L2PcInstance friend = L2World.getInstance().getPlayer(friendName);
-					
-					if (friend != null) // friend logged in.
-					{
-						friend.sendPacket(new FriendList(friend));
-					}
-				}
-			}
-		}
-		catch (Exception e)
-		{
-			_log.warn("could not restore friend data:" + e);
-		}
+	private void notifyFriends(L2PcInstance cha) {
+        CharacterFriendRepository repository = DatabaseAccess.getRepository(CharacterFriendRepository.class);
+        repository.findAllByCharacterId(cha.getObjectId()).forEach(characterFriends -> {
+            L2PcInstance friend = L2World.getInstance().getPlayer(characterFriends.getFriendName());
+            if(Util.isNotNull(friend)) {
+                friend.sendPacket(new FriendList(friend));
+            }
+        });
 	}
 	
 	@Override

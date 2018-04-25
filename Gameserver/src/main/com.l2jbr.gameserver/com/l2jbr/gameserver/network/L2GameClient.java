@@ -29,6 +29,7 @@ import com.l2jbr.gameserver.model.CharSelectInfoPackage;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.database.repository.AugmentationsRepository;
+import com.l2jbr.gameserver.model.database.repository.CharacterFriendRepository;
 import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.model.entity.L2Event;
 import com.l2jbr.gameserver.serverpackets.L2GameServerPacket;
@@ -247,11 +248,8 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> {
             con = L2DatabaseFactory.getInstance().getConnection();
             PreparedStatement statement;
 
-            statement = con.prepareStatement("DELETE FROM character_friends WHERE char_id=? OR friend_id=?");
-            statement.setInt(1, objId);
-            statement.setInt(2, objId);
-            statement.execute();
-            statement.close();
+            CharacterFriendRepository characterFriendRepository = DatabaseAccess.getRepository(CharacterFriendRepository.class);
+            characterFriendRepository.deleteFriend(objId);
 
             statement = con.prepareStatement("DELETE FROM character_hennas WHERE char_obj_id=?");
             statement.setInt(1, objId);

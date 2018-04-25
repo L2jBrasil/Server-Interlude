@@ -25,6 +25,7 @@ import com.l2jbr.commons.database.AccountRepository;
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.database.model.Account;
+import com.l2jbr.gameserver.model.database.repository.CharacterFriendRepository;
 import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.model.database.repository.ClanRepository;
 
@@ -227,19 +228,14 @@ public class SQLAccountManager {
                     statement.setInt(1, character.getObjectId());
                     statement.executeUpdate();
 
-                    // friends
-                    statement.close();
-                    statement = con.prepareStatement("DELETE FROM character_friends WHERE char_id=?;");
-                    statement.setInt(1, character.getObjectId());
-                    statement.executeUpdate();
+                    CharacterFriendRepository characterFriendRepository = DatabaseAccess.getRepository(CharacterFriendRepository.class);
+                    characterFriendRepository.deleteById(character.getObjectId());
 
                     // merchant_lease
                     statement.close();
                     statement = con.prepareStatement("DELETE FROM merchant_lease WHERE player_id=?;");
                     statement.setInt(1, character.getObjectId());
                     statement.executeUpdate();
-
-
 
                     // boxaccess
                     statement.close();
