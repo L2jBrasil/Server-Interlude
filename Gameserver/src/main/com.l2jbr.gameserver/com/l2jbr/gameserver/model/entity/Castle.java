@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.model.entity;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.util.Util;
 import com.l2jbr.gameserver.Announcements;
 import com.l2jbr.gameserver.CastleUpdater;
@@ -40,7 +39,9 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.database.CastleData;
 import com.l2jbr.gameserver.model.database.CastleDoor;
 import com.l2jbr.gameserver.model.database.CastleManorProcure;
+import com.l2jbr.gameserver.model.database.CastleManorProduction;
 import com.l2jbr.gameserver.model.database.repository.CastleManorProcureRepository;
+import com.l2jbr.gameserver.model.database.repository.CastleManorProductionRepository;
 import com.l2jbr.gameserver.model.database.repository.CastleRepository;
 import com.l2jbr.gameserver.model.database.repository.ClanRepository;
 import com.l2jbr.gameserver.model.zone.type.L2CastleZone;
@@ -48,9 +49,7 @@ import com.l2jbr.gameserver.serverpackets.PledgeShowInfoUpdate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
 import java.util.*;
-
 
 public class Castle {
     protected static Logger _log = LoggerFactory.getLogger(Castle.class.getName());
@@ -61,11 +60,6 @@ public class Castle {
     private List<SeedProduction> _productionNext = new LinkedList<>();
     private boolean _isNextPeriodApproved = false;
 
-    private static final String CASTLE_MANOR_DELETE_PRODUCTION = "DELETE FROM castle_manor_production WHERE castle_id=?;";
-    private static final String CASTLE_MANOR_DELETE_PRODUCTION_PERIOD = "DELETE FROM castle_manor_production WHERE castle_id=? AND period=?;";
-    private static final String CASTLE_UPDATE_SEED = "UPDATE castle_manor_production SET can_produce=? WHERE seed_id=? AND castle_id=? AND period=?";
-    // =========================================================
-    // Data Field
     private int _castleId = 0;
     private final List<L2DoorInstance> _doors = new LinkedList<>();
     private final List<CastleDoor> _doorDefault = new LinkedList<CastleDoor>();
@@ -544,130 +538,36 @@ public class Castle {
         return total;
     }
 
-    // save manor production data
     public void saveSeedData() {
-        java.sql.Connection con = null;
-        PreparedStatement statement;
-
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-
-            statement = con.prepareStatement(CASTLE_MANOR_DELETE_PRODUCTION);
-            statement.setInt(1, getCastleId());
-
-            statement.execute();
-            statement.close();
-
-            if (_production != null) {
-                int count = 0;
-                String query = "INSERT INTO castle_manor_production VALUES ";
-                String values[] = new String[_production.size()];
-                for (SeedProduction s : _production) {
-                    values[count] = "(" + getCastleId() + "," + s.getId() + "," + s.getCanProduce() + "," + s.getStartProduce() + "," + s.getPrice() + "," + CastleManorManager.PERIOD_CURRENT + ")";
-                    count++;
-                }
-                if (values.length > 0) {
-                    query += values[0];
-                    for (int i = 1; i < values.length; i++) {
-                        query += "," + values[i];
-                    }
-                    statement = con.prepareStatement(query);
-                    statement.execute();
-                    statement.close();
-                }
-            }
-
-            if (_productionNext != null) {
-                int count = 0;
-                String query = "INSERT INTO castle_manor_production VALUES ";
-                String values[] = new String[_productionNext.size()];
-                for (SeedProduction s : _productionNext) {
-                    values[count] = "(" + getCastleId() + "," + s.getId() + "," + s.getCanProduce() + "," + s.getStartProduce() + "," + s.getPrice() + "," + CastleManorManager.PERIOD_NEXT + ")";
-                    count++;
-                }
-                if (values.length > 0) {
-                    query += values[0];
-                    for (int i = 1; i < values.length; i++) {
-                        query += "," + values[i];
-                    }
-                    statement = con.prepareStatement(query);
-                    statement.execute();
-                    statement.close();
-                }
-            }
-        } catch (Exception e) {
-            _log.info("Error adding seed production data for castle " + getName() + ": " + e.getMessage());
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        saveSeedData(CastleManorManager.PERIOD_CURRENT);
+        saveSeedData(CastleManorManager.PERIOD_NEXT);
     }
 
-    // save manor production data for specified period
     public void saveSeedData(int period) {
-        java.sql.Connection con = null;
-        PreparedStatement statement;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
+        CastleManorProductionRepository repository = DatabaseAccess.getRepository(CastleManorProductionRepository.class);
+        repository.deleteByIdAndPeriod(getCastleId(), period);
 
-            statement = con.prepareStatement(CASTLE_MANOR_DELETE_PRODUCTION_PERIOD);
-            statement.setInt(1, getCastleId());
-            statement.setInt(2, period);
-            statement.execute();
-            statement.close();
+        List<SeedProduction> seedProductions = getSeedProduction(period);
 
-            List<SeedProduction> prod = null;
-            prod = getSeedProduction(period);
-
-            if (prod != null) {
-                int count = 0;
-                String query = "INSERT INTO castle_manor_production VALUES ";
-                String values[] = new String[prod.size()];
-                for (SeedProduction s : prod) {
-                    values[count] = "(" + getCastleId() + "," + s.getId() + "," + s.getCanProduce() + "," + s.getStartProduce() + "," + s.getPrice() + "," + period + ")";
-                    count++;
-                }
-                if (values.length > 0) {
-                    query += values[0];
-                    for (int i = 1; i < values.length; i++) {
-                        query += "," + values[i];
-                    }
-                    statement = con.prepareStatement(query);
-                    statement.execute();
-                    statement.close();
-                }
-            }
-        } catch (Exception e) {
-            _log.info("Error adding seed production data for castle " + getName() + ": " + e.getMessage());
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
+        if (!Util.isNullOrEmpty(seedProductions)) {
+            for (SeedProduction s : seedProductions) {
+                CastleManorProduction production = new CastleManorProduction(getCastleId(), s.getId(), s.getCanProduce(), s.getStartProduce(), s.getPrice(), period);
+                repository.save(production);
             }
         }
     }
 
     public void saveCropData() {
-        CastleManorProcureRepository repository = DatabaseAccess.getRepository(CastleManorProcureRepository.class);
-        repository.deleteById(getCastleId());
-
-        saveProcure(_procure, CastleManorManager.PERIOD_CURRENT, repository);
-
-        saveProcure(_procureNext, CastleManorManager.PERIOD_NEXT, repository);
+        saveCropData(CastleManorManager.PERIOD_CURRENT);
+        saveCropData(CastleManorManager.PERIOD_NEXT);
     }
 
     public void saveCropData(int period) {
         CastleManorProcureRepository repository = DatabaseAccess.getRepository(CastleManorProcureRepository.class);
         repository.deleteByIdAndPeriod(getCastleId(), period);
 
-        List<CropProcure> proc = getCropProcure(period);
+        List<CropProcure> procures = getCropProcure(period);
 
-        saveProcure(proc, period, repository);
-    }
-
-    private void saveProcure(List<CropProcure> procures, int period, CastleManorProcureRepository repository) {
         if (!Util.isNullOrEmpty(procures)) {
             for (CropProcure cp : procures) {
                 CastleManorProcure procure = new CastleManorProcure(getCastleId(), cp.getId(), cp.getAmount(),
@@ -683,26 +583,8 @@ public class Castle {
     }
 
     public void updateSeed(int seedId, int amount, int period) {
-        java.sql.Connection con = null;
-        PreparedStatement statement;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-
-            statement = con.prepareStatement(CASTLE_UPDATE_SEED);
-            statement.setInt(1, amount);
-            statement.setInt(2, seedId);
-            statement.setInt(3, getCastleId());
-            statement.setInt(4, period);
-            statement.execute();
-            statement.close();
-        } catch (Exception e) {
-            _log.info("Error adding seed production data for castle " + getName() + ": " + e.getMessage());
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        CastleManorProductionRepository repository = DatabaseAccess.getRepository(CastleManorProductionRepository.class);
+        repository.updateSeedAmountInPeriod(getCastleId(), seedId, amount, period);
     }
 
     public boolean isNextPeriodApproved() {
