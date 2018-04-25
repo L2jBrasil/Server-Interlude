@@ -17,7 +17,7 @@
  */
 package com.l2jbr.gameserver.instancemanager;
 
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.datatables.NpcTable;
 import com.l2jbr.gameserver.idfactory.IdFactory;
@@ -26,13 +26,12 @@ import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2SiegeGuardInstance;
+import com.l2jbr.gameserver.model.database.repository.CastleSiegeGuardRepository;
 import com.l2jbr.gameserver.model.entity.Castle;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -682,70 +681,49 @@ public class MercTicketManager {
         load();
     }
 
-    // =========================================================
-    // Method - Private
-    private final void load() {
-        java.sql.Connection con = null;
-        // load merc tickets into the world
-        try {
-            PreparedStatement statement;
-            ResultSet rs;
-
-            con = L2DatabaseFactory.getInstance().getConnection();
-            statement = con.prepareStatement("SELECT * FROM castle_siege_guards Where isHired = 1");
-            rs = statement.executeQuery();
-
-            int npcId;
+    private void load() {
+        CastleSiegeGuardRepository repository = DatabaseAccess.getRepository(CastleSiegeGuardRepository.class);
+        repository.findAllMercenary().forEach(castleSiegeGuard -> {
+            int npcId = castleSiegeGuard.getNpcId();
+            int x = castleSiegeGuard.getX();
+            int y = castleSiegeGuard.getY();
+            int z = castleSiegeGuard.getZ();
             int itemId;
-            int x, y, z;
+
             // start index to begin the search for the itemId corresponding to this NPC
             // this will help with:
             // a) skip unnecessary iterations in the search loop
             // b) avoid finding the wrong itemId whenever tickets of different spawn the same npc!
-            int startindex = 0;
+            int startIndex = 0;
 
-            while (rs.next()) {
-                npcId = rs.getInt("npcId");
-                x = rs.getInt("x");
-                y = rs.getInt("y");
-                z = rs.getInt("z");
-                Castle castle = CastleManager.getInstance().getCastle(x, y, z);
-                if (castle != null) {
-                    startindex = 10 * (castle.getCastleId() - 1);
-                }
+            Castle castle = CastleManager.getInstance().getCastle(x, y, z);
+            if (castle != null) {
+                startIndex = 10 * (castle.getCastleId() - 1);
+            }
 
-                // find the FIRST ticket itemId with spawns the saved NPC in the saved location
-                for (int i = startindex; i < NPC_IDS.length; i++) {
-                    if (NPC_IDS[i] == npcId) // Find the index of the item used
-                    {
-                        // only handle tickets if a siege is not ongoing in this npc's castle
+            // find the FIRST ticket itemId with spawns the saved NPC in the saved location
+            for (int i = startIndex; i < NPC_IDS.length; i++) {
+                if (NPC_IDS[i] == npcId) // Find the index of the item used
+                {
+                    // only handle tickets if a siege is not ongoing in this npc's castle
 
-                        if ((castle != null) && !(castle.getSiege().getIsInProgress())) {
-                            itemId = ITEM_IDS[i];
-                            // create the ticket in the gameworld
-                            L2ItemInstance dropticket = new L2ItemInstance(IdFactory.getInstance().getNextId(), itemId);
-                            dropticket.setLocation(L2ItemInstance.ItemLocation.INVENTORY);
-                            dropticket.dropMe(null, x, y, z);
-                            dropticket.setDropTime(0); // avoids it from beeing removed by the auto item destroyer
-                            L2World.getInstance().storeObject(dropticket);
-                            getDroppedTickets().add(dropticket);
-                        }
-                        break;
+                    if ((castle != null) && !(castle.getSiege().getIsInProgress())) {
+                        itemId = ITEM_IDS[i];
+                        // create the ticket in the gameworld
+                        L2ItemInstance dropticket = new L2ItemInstance(IdFactory.getInstance().getNextId(), itemId);
+                        dropticket.setLocation(L2ItemInstance.ItemLocation.INVENTORY);
+                        dropticket.dropMe(null, x, y, z);
+                        dropticket.setDropTime(0); // avoids it from beeing removed by the auto item destroyer
+                        L2World.getInstance().storeObject(dropticket);
+                        getDroppedTickets().add(dropticket);
                     }
+                    break;
                 }
             }
-            statement.close();
 
-            System.out.println("Loaded: " + getDroppedTickets().size() + " Mercenary Tickets");
-        } catch (Exception e) {
-            System.out.println("Exception: loadMercenaryData(): " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        });
+
+        _log.info("Loaded: {} Mercenary Tickets", getDroppedTickets().size());
     }
 
     // =========================================================
