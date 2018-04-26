@@ -18,23 +18,17 @@
  */
 package com.l2jbr.gameserver.datatables;
 
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
+import com.l2jbr.gameserver.model.database.Henna;
+import com.l2jbr.gameserver.model.database.repository.HennaRepository;
 import com.l2jbr.gameserver.templates.L2Henna;
 import com.l2jbr.gameserver.templates.StatsSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-
-/**
- * This class ...
- *
- * @version $Revision$ $Date$
- */
 public class HennaTable {
     private static Logger _log = LoggerFactory.getLogger(HennaTable.class.getName());
 
@@ -53,58 +47,31 @@ public class HennaTable {
     private HennaTable() {
         _henna = new LinkedHashMap<>();
         restoreHennaData();
-
     }
 
-    /**
-     *
-     */
     private void restoreHennaData() {
-        java.sql.Connection con = null;
-        try {
-            try {
-                con = L2DatabaseFactory.getInstance().getConnection();
-                PreparedStatement statement = con.prepareStatement("SELECT symbol_id, symbol_name, dye_id, dye_amount, price, stat_INT, stat_STR, stat_CON, stat_MEM, stat_DEX, stat_WIT FROM henna");
-                ResultSet hennadata = statement.executeQuery();
-
-                fillHennaTable(hennadata);
-                hennadata.close();
-                statement.close();
-            } catch (Exception e) {
-                _log.error("error while creating henna table " + e);
-                e.printStackTrace();
-            }
-
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        HennaRepository repository = DatabaseAccess.getRepository(HennaRepository.class);
+        repository.findAll().forEach(this::fillHennaTable);
+        _log.info("info.henna.loaded", + _henna.size());
     }
 
-    private void fillHennaTable(ResultSet HennaData) throws Exception {
-        while (HennaData.next()) {
+    private void fillHennaTable(Henna henna) {
             StatsSet hennaDat = new StatsSet();
-            int id = HennaData.getInt("symbol_id");
+            int id = henna.getSymbolId();
 
             hennaDat.set("symbol_id", id);
-            // hennaDat.set("symbol_name", HennaData.getString("symbol_name"));
-            hennaDat.set("dye", HennaData.getInt("dye_id"));
-            hennaDat.set("price", HennaData.getInt("price"));
-            // amount of dye required
-            hennaDat.set("amount", HennaData.getInt("dye_amount"));
-            hennaDat.set("stat_INT", HennaData.getInt("stat_INT"));
-            hennaDat.set("stat_STR", HennaData.getInt("stat_STR"));
-            hennaDat.set("stat_CON", HennaData.getInt("stat_CON"));
-            hennaDat.set("stat_MEM", HennaData.getInt("stat_MEM"));
-            hennaDat.set("stat_DEX", HennaData.getInt("stat_DEX"));
-            hennaDat.set("stat_WIT", HennaData.getInt("stat_WIT"));
+            hennaDat.set("dye", henna.getDyeId());
+            hennaDat.set("price", henna.getPrice());
+            hennaDat.set("amount", henna.getDyeAmount());
+            hennaDat.set("stat_INT", henna.getStat_INT());
+            hennaDat.set("stat_STR", henna.getStat_STR());
+            hennaDat.set("stat_CON", henna.getStat_CON());
+            hennaDat.set("stat_MEM", henna.getStat_MEM());
+            hennaDat.set("stat_DEX", henna.getStat_DEX());
+            hennaDat.set("stat_WIT", henna.getStat_WIT());
 
             L2Henna template = new L2Henna(hennaDat);
             _henna.put(id, template);
-        }
-        _log.info("HennaTable: Loaded " + _henna.size() + " Templates.");
     }
 
     public boolean isInitialized() {
