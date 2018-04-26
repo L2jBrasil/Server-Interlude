@@ -30,8 +30,10 @@ import com.l2jbr.gameserver.model.actor.instance.L2BossInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2RaidBossInstance;
 import com.l2jbr.gameserver.model.database.Armor;
+import com.l2jbr.gameserver.model.database.EtcItem;
 import com.l2jbr.gameserver.model.database.Weapon;
 import com.l2jbr.gameserver.model.database.repository.ArmorRepository;
+import com.l2jbr.gameserver.model.database.repository.EtcItemRepository;
 import com.l2jbr.gameserver.model.database.repository.WeaponRepository;
 import com.l2jbr.gameserver.skills.SkillsEngine;
 import com.l2jbr.gameserver.templates.*;
@@ -39,7 +41,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -149,13 +150,6 @@ public class ItemTable {
     private static ItemTable _instance;
 
     /**
-     * Table of SQL request in order to obtain items from tables [etcitem], [armor], [weapon]
-     */
-    private static final String[] SQL_ITEM_SELECTS = {
-        "SELECT item_id, name, crystallizable, item_type, weight, consume_type, material, crystal_type, duration, price, crystal_count, sellable, dropable, destroyable, tradeable FROM etcitem",
-    };
-
-    /**
      * List of etcItem
      */
     private static final Map<Integer, Item> itemData = new LinkedHashMap<>();
@@ -197,6 +191,12 @@ public class ItemTable {
         _armors = new LinkedHashMap<>();
         _weapons = new LinkedHashMap<>();
 
+        EtcItemRepository etcItemRepository = DatabaseAccess.getRepository(EtcItemRepository.class);
+        etcItemRepository.findAll().forEach(item -> {
+            Item newItem = readItem(item);
+            itemData.put(newItem.id, newItem);
+        });
+
         ArmorRepository armorRepository = DatabaseAccess.getRepository(ArmorRepository.class);
         armorRepository.findAll().forEach( armor -> {
             Item newItem = readArmor(armor);
@@ -209,32 +209,6 @@ public class ItemTable {
             weaponData.put(newItem.id, newItem);
         });
 
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            for (String selectQuery : SQL_ITEM_SELECTS) {
-                PreparedStatement statement = con.prepareStatement(selectQuery);
-                ResultSet rset = statement.executeQuery();
-
-                // Add item in correct FastMap
-                while (rset.next()) {
-                    if (selectQuery.endsWith("etcitem")) {
-                        Item newItem = readItem(rset);
-                        itemData.put(newItem.id, newItem);
-                    }
-                }
-
-                rset.close();
-                statement.close();
-            }
-        } catch (Exception e) {
-            _log.warn( "data error on item: ", e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
 
         for (L2Armor armor : SkillsEngine.getInstance().loadArmors(armorData)) {
             _armors.put(armor.getItemId(), armor);
@@ -251,9 +225,6 @@ public class ItemTable {
         }
         _log.info("ItemTable: Loaded " + _weapons.size() + " Weapons.");
 
-        // fillEtcItemsTable();
-        // fillArmorsTable();
-        // FillWeaponsTable();
         buildFastLookupTable();
     }
 
@@ -403,29 +374,22 @@ public class ItemTable {
         return item;
     }
 
-    /**
-     * Returns object Item from the record of the database
-     *
-     * @param rset : ResultSet designating a record of the [etcitem] table of database
-     * @return Item : object created from the database record
-     * @throws SQLException
-     */
-    private Item readItem(ResultSet rset) throws SQLException {
+    private Item readItem(EtcItem etcItem) {
         Item item = new Item();
         item.set = new StatsSet();
-        item.id = rset.getInt("item_id");
+        item.id = etcItem.getItemId();
 
         item.set.set("item_id", item.id);
-        item.set.set("crystallizable", Boolean.valueOf(rset.getString("crystallizable")));
+        item.set.set("crystallizable", Boolean.valueOf(etcItem.getCrystallizable()));
         item.set.set("type1", L2Item.TYPE1_ITEM_QUESTITEM_ADENA);
         item.set.set("type2", L2Item.TYPE2_OTHER);
         item.set.set("bodypart", 0);
-        item.set.set("crystal_count", rset.getInt("crystal_count"));
-        item.set.set("sellable", Boolean.valueOf(rset.getString("sellable")));
-        item.set.set("dropable", Boolean.valueOf(rset.getString("dropable")));
-        item.set.set("destroyable", Boolean.valueOf(rset.getString("destroyable")));
-        item.set.set("tradeable", Boolean.valueOf(rset.getString("tradeable")));
-        String itemType = rset.getString("item_type");
+        item.set.set("crystal_count", etcItem.getCrystalCount());
+        item.set.set("sellable", Boolean.valueOf(etcItem.getSellable()));
+        item.set.set("dropable", Boolean.valueOf(etcItem.getDropable()));
+        item.set.set("destroyable", Boolean.valueOf(etcItem.getDestroyable()));
+        item.set.set("tradeable", Boolean.valueOf(etcItem.getTradeable()));
+        String itemType = etcItem.getItemType();
         if (itemType.equals("none")) {
             item.type = L2EtcItemType.OTHER; // only for default
         } else if (itemType.equals("castle_guard")) {
@@ -462,7 +426,7 @@ public class ItemTable {
             item.type = L2EtcItemType.OTHER;
         }
 
-        String consume = rset.getString("consume_type");
+        String consume = etcItem.getConsumeType();
         if (consume.equals("asset")) {
             item.type = L2EtcItemType.MONEY;
             item.set.set("stackable", true);
@@ -473,19 +437,19 @@ public class ItemTable {
             item.set.set("stackable", false);
         }
 
-        int material = _materials.get(rset.getString("material"));
+        int material = _materials.get(etcItem.getMaterial());
         item.set.set("material", material);
 
-        int crystal = _crystalTypes.get(rset.getString("crystal_type"));
+        int crystal = _crystalTypes.get(etcItem.getCrystalType());
         item.set.set("crystal_type", crystal);
 
-        int weight = rset.getInt("weight");
+        int weight = etcItem.getWeight();
         item.set.set("weight", weight);
-        item.name = rset.getString("name");
+        item.name = etcItem.getName();
         item.set.set("name", item.name);
 
-        item.set.set("duration", rset.getInt("duration"));
-        item.set.set("price", rset.getInt("price"));
+        item.set.set("duration", etcItem.getDuration());
+        item.set.set("price", etcItem.getPrice());
 
         return item;
     }

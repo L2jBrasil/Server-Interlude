@@ -1,7 +1,5 @@
 package com.l2jbr.gameserver.model.database;
 
-
-
 public class Items  {
 
     private int owner_id;
