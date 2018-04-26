@@ -81,4 +81,7 @@ public interface CharacterRepository extends CrudRepository<Character, Integer> 
 
     @Query("SELECT clanid FROM characters WHERE char_name=:name")
     int findClanIdByName(@Param("name") String name);
+
+    @Query("SELECT obj_Id FROM characters WHERE char_name=:name")
+    int findIdByName(@Param("name") String name);
 }

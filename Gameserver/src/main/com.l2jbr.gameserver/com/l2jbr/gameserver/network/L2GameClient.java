@@ -249,7 +249,7 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> {
             PreparedStatement statement;
 
             CharacterFriendRepository characterFriendRepository = DatabaseAccess.getRepository(CharacterFriendRepository.class);
-            characterFriendRepository.deleteFriend(objId);
+            characterFriendRepository.deleteFriends(objId);
 
             statement = con.prepareStatement("DELETE FROM character_hennas WHERE char_obj_id=?");
             statement.setInt(1, objId);

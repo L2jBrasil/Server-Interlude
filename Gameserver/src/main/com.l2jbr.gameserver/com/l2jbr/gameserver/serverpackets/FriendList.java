@@ -18,114 +18,55 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
+import com.l2jbr.commons.util.Util;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.l2jbr.gameserver.model.database.CharacterFriends;
+import com.l2jbr.gameserver.model.database.repository.CharacterFriendRepository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-
+import java.util.List;
 
 /**
- * Support for "Chat with Friends" dialog. Format: ch (hdSdh) h: Total Friend Count h: Unknown d: Player Object ID S: Friend Name d: Online/Offline h: Unknown
+ * Support for "Chat with Friends" dialog.
+ *
+ * Format: ch (hdSdh) h: Total Friend Count h: Unknown d: Player Object ID S: Friend Name d: Online/Offline h: Unknown
  * @author Tempy
  */
-public class FriendList extends L2GameServerPacket
-{
-	private static Logger _log = LoggerFactory.getLogger(FriendList.class.getName());
+public class FriendList extends L2GameServerPacket {
 	private static final String _S__FA_FRIENDLIST = "[S] FA FriendList";
 	
 	private final L2PcInstance _activeChar;
 	
-	public FriendList(L2PcInstance character)
-	{
+	public FriendList(L2PcInstance character)  {
 		_activeChar = character;
 	}
 	
 	@Override
-	protected final void writeImpl()
-	{
-		if (_activeChar == null)
-		{
+	protected final void writeImpl() {
+		if (_activeChar == null) {
 			return;
 		}
 		
-		Connection con = null;
-		
-		try
-		{
-			String sqlQuery = "SELECT friend_id, friend_name FROM character_friends WHERE " + "char_id=" + _activeChar.getObjectId() + " ORDER BY friend_name ASC";
-			
-			con = L2DatabaseFactory.getInstance().getConnection();
-			PreparedStatement statement = con.prepareStatement(sqlQuery);
-			ResultSet rset = statement.executeQuery(sqlQuery);
-			
-			// Obtain the total number of friend entries for this player.
-			rset.last();
-			
-			if (rset.getRow() > 0)
-			{
-				
-				writeC(0xfa);
-				writeH(rset.getRow());
-				
-				rset.beforeFirst();
-				
-				while (rset.next())
-				{
-					int friendId = rset.getInt("friend_id");
-					String friendName = rset.getString("friend_name");
-					
-					if (friendId == _activeChar.getObjectId())
-					{
-						continue;
-					}
-					
-					L2PcInstance friend = L2World.getInstance().getPlayer(friendName);
-					
-					writeH(0); // ??
-					writeD(friendId);
-					writeS(friendName);
-					
-					if (friend == null)
-					{
-						writeD(0); // offline
-					}
-					else
-					{
-						writeD(1); // online
-					}
-					
-					writeH(0); // ??
-				}
-			}
-			
-			rset.close();
-			statement.close();
-		}
-		catch (Exception e)
-		{
-			_log.warn("Error found in " + _activeChar.getName() + "'s FriendList: " + e);
-		}
-		finally
-		{
-			try
-			{
-				con.close();
-			}
-			catch (Exception e)
-			{
-			}
-		}
+        CharacterFriendRepository repository = DatabaseAccess.getRepository(CharacterFriendRepository.class);
+        List<CharacterFriends> friendList = repository.findAllByCharacterId(_activeChar.getObjectId());
+
+        if(!Util.isNullOrEmpty(friendList)) {
+            writeC(0xfa);
+            writeH(friendList.size());
+            friendList.forEach(characterFriends -> {
+                L2PcInstance friend = L2World.getInstance().getPlayer(characterFriends.getFriendName());
+
+                writeH(0); // ??
+                writeD(characterFriends.getFriendId());
+                writeS(characterFriends.getFriendName());
+                writeD(friend == null ? 0 : 1);  // offline : online
+                writeH(0); // ??
+
+            });
+        }
 	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.l2jbr.gameserver.serverpackets.ServerBasePacket#getType()
-	 */
+
 	@Override
 	public String getType()
 	{

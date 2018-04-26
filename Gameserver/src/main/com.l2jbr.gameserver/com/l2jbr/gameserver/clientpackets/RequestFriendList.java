@@ -18,16 +18,14 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.CharacterFriendRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 
 /**
@@ -40,8 +38,7 @@ public final class RequestFriendList extends L2GameClientPacket
 	private static final String _C__60_REQUESTFRIENDLIST = "[C] 60 RequestFriendList";
 	
 	@Override
-	protected void readImpl()
-	{
+	protected void readImpl() {
 		// trigger
 	}
 	
@@ -50,68 +47,34 @@ public final class RequestFriendList extends L2GameClientPacket
 	{
 		L2PcInstance activeChar = getClient().getActiveChar();
 		
-		if (activeChar == null)
-		{
+		if (activeChar == null) {
 			return;
 		}
-		
-		SystemMessage sm;
-		java.sql.Connection con = null;
-		
-		try
-		{
-			con = L2DatabaseFactory.getInstance().getConnection();
-			PreparedStatement statement = con.prepareStatement("SELECT friend_id, friend_name FROM character_friends WHERE char_id=?");
-			statement.setInt(1, activeChar.getObjectId());
-			
-			ResultSet rset = statement.executeQuery();
-			
-			// ======<Friend List>======
-			activeChar.sendPacket(new SystemMessage(SystemMessageId.FRIEND_LIST_HEAD));
-			
-			L2PcInstance friend = null;
-			while (rset.next())
-			{
-				// int friendId = rset.getInt("friend_id");
-				String friendName = rset.getString("friend_name");
-				friend = L2World.getInstance().getPlayer(friendName);
-				
-				if (friend == null)
-				{
-					// (Currently: Offline)
-					sm = new SystemMessage(SystemMessageId.S1_OFFLINE);
-					sm.addString(friendName);
-				}
-				else
-				{
-					// (Currently: Online)
-					sm = new SystemMessage(SystemMessageId.S1_ONLINE);
-					sm.addString(friendName);
-				}
-				
-				activeChar.sendPacket(sm);
-			}
-			
-			// =========================
-			activeChar.sendPacket(new SystemMessage(SystemMessageId.FRIEND_LIST_FOOT));
-			sm = null;
-			rset.close();
-			statement.close();
-		}
-		catch (Exception e)
-		{
-			_log.warn("Error in /friendlist for " + activeChar + ": " + e);
-		}
-		finally
-		{
-			try
-			{
-				con.close();
-			}
-			catch (Exception e)
-			{
-			}
-		}
+
+        CharacterFriendRepository repository = DatabaseAccess.getRepository(CharacterFriendRepository.class);
+
+        // ======<Friend List>======
+        activeChar.sendPacket(new SystemMessage(SystemMessageId.FRIEND_LIST_HEAD));
+
+        repository.findAllByCharacterId(activeChar.getObjectId()).forEach(characterFriends -> {
+            String friendName = characterFriends.getFriendName();
+            L2PcInstance friend = L2World.getInstance().getPlayer(friendName);
+
+            SystemMessage  sm;
+            if (friend == null) {
+                sm = new SystemMessage(SystemMessageId.S1_OFFLINE);
+                sm.addString(friendName);
+            } else {
+                // (Currently: Online)
+                sm = new SystemMessage(SystemMessageId.S1_ONLINE);
+                sm.addString(friendName);
+            }
+
+            activeChar.sendPacket(sm);
+        });
+        // =========================
+        activeChar.sendPacket(new SystemMessage(SystemMessageId.FRIEND_LIST_FOOT));
+
 	}
 	
 	@Override
