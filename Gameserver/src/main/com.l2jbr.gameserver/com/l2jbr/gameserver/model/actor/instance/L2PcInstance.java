@@ -48,6 +48,8 @@ import com.l2jbr.gameserver.model.actor.stat.PcStat;
 import com.l2jbr.gameserver.model.actor.status.PcStatus;
 import com.l2jbr.gameserver.model.base.*;
 import com.l2jbr.gameserver.model.database.Character;
+import com.l2jbr.gameserver.model.database.CharacterHennas;
+import com.l2jbr.gameserver.model.database.repository.CharacterHennasRepository;
 import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.model.entity.*;
 import com.l2jbr.gameserver.model.quest.Quest;
@@ -89,10 +91,6 @@ public final class L2PcInstance extends L2PlayableInstance {
     private static final String ADD_CHAR_SUBCLASS = "INSERT INTO character_subclasses (char_obj_id,class_id,exp,sp,level,class_index) VALUES (?,?,?,?,?,?)";
     private static final String UPDATE_CHAR_SUBCLASS = "UPDATE character_subclasses SET exp=?,sp=?,level=?,class_id=? WHERE char_obj_id=? AND class_index =?";
     private static final String DELETE_CHAR_SUBCLASS = "DELETE FROM character_subclasses WHERE char_obj_id=? AND class_index=?";
-    private static final String RESTORE_CHAR_HENNAS = "SELECT slot,symbol_id FROM character_hennas WHERE char_obj_id=? AND class_index=?";
-    private static final String ADD_CHAR_HENNA = "INSERT INTO character_hennas (char_obj_id,symbol_id,slot,class_index) VALUES (?,?,?,?)";
-    private static final String DELETE_CHAR_HENNA = "DELETE FROM character_hennas WHERE char_obj_id=? AND slot=? AND class_index=?";
-    private static final String DELETE_CHAR_HENNAS = "DELETE FROM character_hennas WHERE char_obj_id=? AND class_index=?";
     private static final String DELETE_CHAR_SHORTCUTS = "DELETE FROM character_shortcuts WHERE char_obj_id=? AND class_index=?";
     private static final String RESTORE_CHAR_RECOMS = "SELECT char_id,target_id FROM character_recommends WHERE char_id=?";
     private static final String ADD_CHAR_RECOM = "INSERT INTO character_recommends (char_id,target_id) VALUES (?,?)";
@@ -7188,52 +7186,30 @@ public final class L2PcInstance extends L2PlayableInstance {
      * Retrieve from the database all Henna of this L2PcInstance, add them to _henna and calculate stats of the L2PcInstance.
      */
     private void restoreHenna() {
-        java.sql.Connection con = null;
-
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement(RESTORE_CHAR_HENNAS);
-            statement.setInt(1, getObjectId());
-            statement.setInt(2, getClassIndex());
-            ResultSet rset = statement.executeQuery();
-
-            for (int i = 0; i < 3; i++) {
-                _henna[i] = null;
-            }
-
-            while (rset.next()) {
-                int slot = rset.getInt("slot");
-
-                if ((slot < 1) || (slot > 3)) {
-                    continue;
-                }
-
-                int symbol_id = rset.getInt("symbol_id");
-
-                L2HennaInstance sym = null;
-
-                if (symbol_id != 0) {
-                    L2Henna tpl = HennaTable.getInstance().getTemplate(symbol_id);
-
-                    if (tpl != null) {
-                        sym = new L2HennaInstance(tpl);
-                        _henna[slot - 1] = sym;
-                    }
-                }
-            }
-
-            rset.close();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("could not restore henna: " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
+        for (int i = 0; i < 3; i++) {
+            _henna[i] = null;
         }
 
-        // Calculate Henna modifiers of this L2PcInstance
+        CharacterHennasRepository repository = DatabaseAccess.getRepository(CharacterHennasRepository.class);
+        repository.findAllByClassIndex(getObjectId(), getClassIndex()).forEach(characterHenna -> {
+            int slot = characterHenna.getSlot();
+
+            if ((slot < 1) || (slot > 3)) {
+                _log.warn("Invalid Henna Slot to character {} on classIndex {}", getName(), getClassIndex());
+                return;
+            }
+
+            int symbol_id = characterHenna.getSymbolId();
+
+            if (symbol_id != 0) {
+                L2Henna tpl = HennaTable.getInstance().getTemplate(symbol_id);
+
+                if (tpl != null) {
+                    _henna[slot - 1] = new L2HennaInstance(tpl);
+                }
+            }
+        });
+
         recalcHennaStats();
     }
 
@@ -7307,22 +7283,8 @@ public final class L2PcInstance extends L2PlayableInstance {
 
         java.sql.Connection con = null;
 
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement(DELETE_CHAR_HENNA);
-            statement.setInt(1, getObjectId());
-            statement.setInt(2, slot + 1);
-            statement.setInt(3, getClassIndex());
-            statement.execute();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("could not remove char henna: " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        CharacterHennasRepository repository = DatabaseAccess.getRepository(CharacterHennasRepository.class);
+        repository.deleteByClassindexAndSlot(getObjectId(), getClassIndex(), slot+1);
 
         // Calculate Henna modifiers of this L2PcInstance
         recalcHennaStats();
@@ -7345,7 +7307,8 @@ public final class L2PcInstance extends L2PlayableInstance {
     }
 
     /**
-     * Add a Henna to the L2PcInstance, save update in the character_hennas table of the database and send Server->Client HennaInfo/UserInfo packet to this L2PcInstance.
+     * Add a Henna to the L2PcInstance, save update in the character_hennas table of the database and
+     * send Server->Client HennaInfo/UserInfo packet to this L2PcInstance.
      *
      * @param henna the henna
      * @return true, if successful
@@ -7364,25 +7327,9 @@ public final class L2PcInstance extends L2PlayableInstance {
                 // Calculate Henna modifiers of this L2PcInstance
                 recalcHennaStats();
 
-                java.sql.Connection con = null;
-
-                try {
-                    con = L2DatabaseFactory.getInstance().getConnection();
-                    PreparedStatement statement = con.prepareStatement(ADD_CHAR_HENNA);
-                    statement.setInt(1, getObjectId());
-                    statement.setInt(2, henna.getSymbolId());
-                    statement.setInt(3, i + 1);
-                    statement.setInt(4, getClassIndex());
-                    statement.execute();
-                    statement.close();
-                } catch (Exception e) {
-                    _log.warn("could not save char henna: " + e);
-                } finally {
-                    try {
-                        con.close();
-                    } catch (Exception e) {
-                    }
-                }
+                CharacterHennas characterHenna = new CharacterHennas(getObjectId(), henna.getSymbolId(), getClassIndex(), i+1);
+                CharacterHennasRepository repository = DatabaseAccess.getRepository(CharacterHennasRepository.class);
+                repository.save(characterHenna);
 
                 // Send Server->Client HennaInfo packet to this L2PcInstance
                 HennaInfo hi = new HennaInfo(this);
@@ -9405,12 +9352,8 @@ public final class L2PcInstance extends L2PlayableInstance {
             con = L2DatabaseFactory.getInstance().getConnection();
             PreparedStatement statement;
 
-            // Remove all henna info stored for this sub-class.
-            statement = con.prepareStatement(DELETE_CHAR_HENNAS);
-            statement.setInt(1, getObjectId());
-            statement.setInt(2, classIndex);
-            statement.execute();
-            statement.close();
+            CharacterHennasRepository repository = DatabaseAccess.getRepository(CharacterHennasRepository.class);
+            repository.deleteByClassIndex(getObjectId(), classIndex);
 
             // Remove all shortcuts info stored for this sub-class.
             statement = con.prepareStatement(DELETE_CHAR_SHORTCUTS);
