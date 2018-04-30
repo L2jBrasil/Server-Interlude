@@ -2,13 +2,16 @@
 # questdevs Team
 
 import sys
-from java.util                                import Iterator
-from com.l2jbr.commons.util                   import Rnd
-from com.l2jbr.gameserver.serverpackets       import CreatureSay
-from com.l2jbr.gameserver.model.quest         import State
-from com.l2jbr.gameserver.model.quest         import QuestState
-from com.l2jbr.gameserver.model.quest.jython  import QuestJython as JQuest
-from com.l2jbr.commons.database               import L2DatabaseFactory
+from java.util                                      import Iterator
+from com.l2jbr.commons.util                         import Rnd
+from com.l2jbr.gameserver.serverpackets             import CreatureSay
+from com.l2jbr.gameserver.model.quest               import State
+from com.l2jbr.gameserver.model.quest               import QuestState
+from com.l2jbr.gameserver.model.quest.jython        import QuestJython as JQuest
+from com.l2jbr.commons.database                     import L2DatabaseFactory
+from com.l2jbr.commons.database                     import DatabaseAccess
+from com.l2jbr.gameserver.model.database.repository import CharacterQuestsRepository
+from com.l2jbr.gameserver.model.database            import CharacterQuests
 
 qn = "503_PursuitClanAmbition"
 qd = "Pursuit Clan Ambition"
@@ -64,21 +67,13 @@ def suscribe_members(st) :
   clan=st.getPlayer().getClan().getClanId()
   con=L2DatabaseFactory.getInstance().getConnection()
   offline=con.prepareStatement("SELECT obj_Id FROM characters WHERE clanid=? AND online=0")
+  repository = DatabaseAccess.getRepository(CharacterQuestsRepository)
   offline.setInt(1, clan)
   rs=offline.executeQuery()
   while (rs.next()) :
     char_id=rs.getInt("obj_Id")
-    try :
-      insertion = con.prepareStatement("INSERT INTO character_quests (char_id,name,var,value) VALUES (?,?,?,?)")
-      insertion.setInt(1, char_id)
-      insertion.setString(2, qn)
-      insertion.setString(3, "<state>")
-      insertion.setString(4, "Progress")
-      insertion.executeUpdate()
-      insertion.close();
-    except :
-      try : insertion.close()
-      except : pass
+    characterQuest = CharacterQuests(char_id, qn, "<state>", "Progress")
+    repository.save(characterQuest)
   try :
     con.close()
   except :
@@ -86,17 +81,8 @@ def suscribe_members(st) :
 
 def offlineMemberExit(st) :
   clan=st.getPlayer().getClan().getClanId()
-  con=L2DatabaseFactory.getInstance().getConnection()
-  offline=con.prepareStatement("DELETE FROM character_quests WHERE name = ? and char_id IN (SELECT obj_id FROM characters WHERE clanId =? AND online=0")
-  offline.setString(1, qn)
-  offline.setInt(2, clan)
-  try :
-    offline.executeUpdate()
-    offline.close()
-    con.close()
-  except :
-    try : con.close()
-    except : pass
+  repository = DatabaseAccess.getRepository(CharacterQuestsRepository)
+  repository.deleteAllByOfflineClanMembers(qn, clan)
 
 # returns leaders quest cond, if he is offline will read out of database :)
 def getLeaderVar(st, var) :
@@ -110,23 +96,11 @@ def getLeaderVar(st, var) :
   except :
     pass
   leaderId=st.getPlayer().getClan().getLeaderId()
-  con=L2DatabaseFactory.getInstance().getConnection()
-  offline=con.prepareStatement("SELECT value FROM character_quests WHERE char_id=? AND var=? AND name=?")
-  offline.setInt(1, leaderId)
-  offline.setString(2, var)
-  offline.setString(3, qn)
-  rs=offline.executeQuery()
-  if rs :
-    rs.next()
-    try :
-      val=rs.getInt("value")
-      con.close()
-    except :
-      val=-1
-      try : con.close()
-      except : pass
-  else :
-    val=-1
+  repository = DatabaseAccess.getRepository(CharacterQuestsRepository)
+  characterQuests = repository.findByNameAndVar(leaderId, qn, var);
+  val = -1
+  for characterQuest in characterQuests:
+    val = characterQuest.getValue()
   return int(val)
 
 # set's leaders quest cond, if he is offline will read out of database :)
@@ -140,19 +114,8 @@ def setLeaderVar(st, var, value) :
     leader.getQuestState(qn).set(var,value)
   else :
     leaderId=st.getPlayer().getClan().getLeaderId()
-    con=L2DatabaseFactory.getInstance().getConnection()
-    offline=con.prepareStatement("UPDATE character_quests SET value=? WHERE char_id=? AND var=? AND name=?")
-    offline.setString(1, value)
-    offline.setInt(2, leaderId)
-    offline.setString(3, var)
-    offline.setString(4, qn)
-    try :
-      offline.executeUpdate()
-      offline.close()
-      con.close()
-    except :
-      try : con.close()
-      except : pass 
+    repository = DatabaseAccess.getRepository(CharacterQuestsRepository)
+    repository.updateQuestVar(leaderId, qn, var, value)
   return
 
 def checkEggs(st):
@@ -224,7 +187,7 @@ class Quest (JQuest) :
     elif event == "30645-03.htm":
       st.takeItems(G_Let_Martien,-1)
       st.set("cond","2")
-      suscribe_members(st) 
+      suscribe_members(st)
       try:
         members = st.getPlayer().getClan().getOnlineMembers("")[0]
         for i in members:

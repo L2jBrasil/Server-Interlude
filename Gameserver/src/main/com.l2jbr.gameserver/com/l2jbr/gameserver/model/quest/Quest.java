@@ -19,6 +19,7 @@
 package com.l2jbr.gameserver.model.quest;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.ThreadPoolManager;
@@ -28,10 +29,13 @@ import com.l2jbr.gameserver.instancemanager.QuestManager;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.CharacterQuests;
+import com.l2jbr.gameserver.model.database.repository.CharacterQuestsRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
+import org.python.bouncycastle.asn1.dvcs.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -461,99 +465,62 @@ public abstract class Quest {
      * @param player : Player who is entering the world
      */
     public final static void playerEnter(L2PcInstance player) {
+        // Get list of quests owned by the player from database
 
-        java.sql.Connection con = null;
-        try {
-            // Get list of quests owned by the player from database
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
+        CharacterQuestsRepository repository = DatabaseAccess.getRepository(CharacterQuestsRepository.class);
+        repository.findAllByState(player.getObjectId()).forEach(characterQuest -> {
 
-            PreparedStatement invalidQuestData = con.prepareStatement("DELETE FROM character_quests WHERE char_id=? and name=?");
-            PreparedStatement invalidQuestDataVar = con.prepareStatement("delete FROM character_quests WHERE char_id=? and name=? and var=?");
+            // Get ID of the quest and ID of its state
+            String questId = characterQuest.getName();
+            String stateId = characterQuest.getValue();
 
-            statement = con.prepareStatement("SELECT name,value FROM character_quests WHERE char_id=? AND var=?");
-            statement.setInt(1, player.getObjectId());
-            statement.setString(2, "<state>");
-            ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-
-                // Get ID of the quest and ID of its state
-                String questId = rs.getString("name");
-                String stateId = rs.getString("value");
-
-                // Search quest associated with the ID
-                Quest q = QuestManager.getInstance().getQuest(questId);
-                if (q == null) {
-                    _log.debug("Unknown quest " + questId + " for player " + player.getName());
-                    if (Config.AUTODELETE_INVALID_QUEST_DATA) {
-                        invalidQuestData.setInt(1, player.getObjectId());
-                        invalidQuestData.setString(2, questId);
-                        invalidQuestData.executeUpdate();
-                    }
-                    continue;
+            // Search quest associated with the ID
+            Quest q = QuestManager.getInstance().getQuest(questId);
+            if (q == null) {
+                _log.warn("Unknown quest {} for player {}", questId, player.getName());
+                if (Config.AUTODELETE_INVALID_QUEST_DATA) {
+                    repository.deleteByName(player.getObjectId(), questId);
                 }
-
-                // Identify the state of the quest for the player
-                boolean completed = false;
-                if (stateId.equals("Completed")) {
-                    completed = true;
-                }
-
-                // Create an object State containing the state of the quest
-                State state = q._states.get(stateId);
-                if (state == null) {
-                    _log.debug("Unknown state in quest " + questId + " for player " + player.getName());
-                    if (Config.AUTODELETE_INVALID_QUEST_DATA) {
-                        invalidQuestData.setInt(1, player.getObjectId());
-                        invalidQuestData.setString(2, questId);
-                        invalidQuestData.executeUpdate();
-                    }
-                    continue;
-                }
-                // Create a new QuestState for the player that will be added to the player's list of quests
-                new QuestState(q, player, state, completed);
+                return;
             }
-            rs.close();
-            invalidQuestData.close();
-            statement.close();
 
-            // Get list of quests owned by the player from the DB in order to add variables used in the quest.
-            statement = con.prepareStatement("SELECT name,var,value FROM character_quests WHERE char_id=?");
-            statement.setInt(1, player.getObjectId());
-            rs = statement.executeQuery();
-            while (rs.next()) {
-                String questId = rs.getString("name");
-                String var = rs.getString("var");
-                String value = rs.getString("value");
-                // Get the QuestState saved in the loop before
-                QuestState qs = player.getQuestState(questId);
-                if (qs == null) {
-                    _log.debug("Lost variable " + var + " in quest " + questId + " for player " + player.getName());
-                    if (Config.AUTODELETE_INVALID_QUEST_DATA) {
-                        invalidQuestDataVar.setInt(1, player.getObjectId());
-                        invalidQuestDataVar.setString(2, questId);
-                        invalidQuestDataVar.setString(3, var);
-                        invalidQuestDataVar.executeUpdate();
-                    }
-                    continue;
+            // Identify the state of the quest for the player
+            boolean completed = false;
+            if (stateId.equals("Completed")) {
+                completed = true;
+            }
+
+            // Create an object State containing the state of the quest
+            State state = q._states.get(stateId);
+            if (state == null) {
+                _log.warn("Unknown state in quest {} for player {}", questId,  player.getName());
+                if (Config.AUTODELETE_INVALID_QUEST_DATA) {
+                    repository.deleteByName(player.getObjectId(), questId);
                 }
-                // Add parameter to the quest
-                qs.setInternal(var, value);
+                return;
             }
-            rs.close();
-            invalidQuestDataVar.close();
-            statement.close();
+            // Create a new QuestState for the player that will be added to the player's list of quests
+            new QuestState(q, player, state, completed);
 
-        } catch (Exception e) {
-            _log.warn( "could not insert char quest:", e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
+        });
+
+
+        repository.findAllByCharacter(player.getObjectId()).forEach(characterQuest -> {
+            String questId = characterQuest.getName();
+            String var = characterQuest.getVar();
+            String value = characterQuest.getValue();
+            // Get the QuestState saved in the loop before
+            QuestState qs = player.getQuestState(questId);
+            if (qs == null) {
+                _log.warn("Lost variable {} in quest {} for player {}", var, questId, player.getName());
+                if (Config.AUTODELETE_INVALID_QUEST_DATA) {
+                    repository.deleteByNameAndVar(player.getObjectId(), questId, var);
+                }
+                return;
             }
-        }
+            qs.setInternal(var, value);
+        });
 
-        // events
         for (String name : _allEventsS.keySet()) {
             player.processQuestEvent(name, "enter");
         }
@@ -667,119 +634,25 @@ public abstract class Quest {
         }
     }
 
-    /**
-     * Insert in the database the quest for the player.
-     *
-     * @param qs    : QuestState pointing out the state of the quest
-     * @param var   : String designating the name of the variable for the quest
-     * @param value : String designating the value of the variable for the quest
-     */
     public static void createQuestVarInDb(QuestState qs, String var, String value) {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
-            statement = con.prepareStatement("INSERT INTO character_quests (char_id,name,var,value) VALUES (?,?,?,?)");
-            statement.setInt(1, qs.getPlayer().getObjectId());
-            statement.setString(2, qs.getQuestName());
-            statement.setString(3, var);
-            statement.setString(4, value);
-            statement.executeUpdate();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn( "could not insert char quest:", e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        CharacterQuests characterQuests = new CharacterQuests(qs.getPlayer().getObjectId(), qs.getQuestName(), var, value);
+        CharacterQuestsRepository repository = DatabaseAccess.getRepository(CharacterQuestsRepository.class);
+        repository.save(characterQuests);
     }
 
-    /**
-     * Update the value of the variable "var" for the quest.<BR>
-     * <BR>
-     * <U><I>Actions :</I></U><BR>
-     * The selection of the right record is made with : <LI>char_id = qs.getPlayer().getObjectID()</LI> <LI>name = qs.getQuest().getName()</LI> <LI>var = var</LI> <BR>
-     * <BR>
-     * The modification made is : <LI>value = parameter value</LI>
-     *
-     * @param qs    : Quest State
-     * @param var   : String designating the name of the variable for quest
-     * @param value : String designating the value of the variable for quest
-     */
     public static void updateQuestVarInDb(QuestState qs, String var, String value) {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
-            statement = con.prepareStatement("UPDATE character_quests SET value=? WHERE char_id=? AND name=? AND var = ?");
-            statement.setString(1, value);
-            statement.setInt(2, qs.getPlayer().getObjectId());
-            statement.setString(3, qs.getQuestName());
-            statement.setString(4, var);
-            statement.executeUpdate();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn( "could not update char quest:", e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        CharacterQuestsRepository repository = DatabaseAccess.getRepository(CharacterQuestsRepository.class);
+        repository.updateQuestVar(qs.getPlayer().getObjectId(), qs.getQuestName(), var, value);
     }
 
-    /**
-     * Delete a variable of player's quest from the database.
-     *
-     * @param qs  : object QuestState pointing out the player's quest
-     * @param var : String designating the variable characterizing the quest
-     */
     public static void deleteQuestVarInDb(QuestState qs, String var) {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
-            statement = con.prepareStatement("DELETE FROM character_quests WHERE char_id=? AND name=? AND var=?");
-            statement.setInt(1, qs.getPlayer().getObjectId());
-            statement.setString(2, qs.getQuestName());
-            statement.setString(3, var);
-            statement.executeUpdate();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn( "could not delete char quest:", e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        CharacterQuestsRepository repository = DatabaseAccess.getRepository(CharacterQuestsRepository.class);
+        repository.deleteByNameAndVar(qs.getPlayer().getObjectId(), qs.getQuestName(), var);
     }
 
-    /**
-     * Delete the player's quest from database.
-     *
-     * @param qs : QuestState pointing out the player's quest
-     */
     public static void deleteQuestInDb(QuestState qs) {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
-            statement = con.prepareStatement("DELETE FROM character_quests WHERE char_id=? AND name=?");
-            statement.setInt(1, qs.getPlayer().getObjectId());
-            statement.setString(2, qs.getQuestName());
-            statement.executeUpdate();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn( "could not delete char quest:", e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        CharacterQuestsRepository repository = DatabaseAccess.getRepository(CharacterQuestsRepository.class);
+        repository.deleteByName(qs.getPlayer().getObjectId(), qs.getQuestName());
     }
 
     /**

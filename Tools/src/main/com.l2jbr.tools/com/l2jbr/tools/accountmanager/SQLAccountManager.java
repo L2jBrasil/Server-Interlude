@@ -25,10 +25,8 @@ import com.l2jbr.commons.database.AccountRepository;
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.database.model.Account;
-import com.l2jbr.gameserver.model.database.repository.CharacterFriendRepository;
-import com.l2jbr.gameserver.model.database.repository.CharacterMacrosesRepository;
-import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
-import com.l2jbr.gameserver.model.database.repository.ClanRepository;
+import com.l2jbr.gameserver.model.database.CharacterQuests;
+import com.l2jbr.gameserver.model.database.repository.*;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -219,9 +217,9 @@ public class SQLAccountManager {
 
                     // quests
                     statement.close();
-                    statement = con.prepareStatement("DELETE FROM character_quests WHERE char_id=?;");
-                    statement.setInt(1, character.getObjectId());
-                    statement.executeUpdate();
+
+                    CharacterQuestsRepository characterQuestsRepository = DatabaseAccess.getRepository(CharacterQuestsRepository.class);
+                    characterQuestsRepository.deleteById(character.getObjectId());
 
                     CharacterMacrosesRepository characterMacrosesRepository = DatabaseAccess.getRepository(CharacterMacrosesRepository.class);
                     characterMacrosesRepository.deleteById(character.getObjectId());

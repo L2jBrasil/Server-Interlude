@@ -45,7 +45,7 @@ public class CharacterMacroses extends Entity<Integer> {
 
     @Override
     public Integer getId() {
-        return id;
+        return charObjId;
     }
 
     public int getIcon() {

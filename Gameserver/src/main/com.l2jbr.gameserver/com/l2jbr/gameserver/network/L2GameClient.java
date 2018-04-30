@@ -28,6 +28,8 @@ import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.CharSelectInfoPackage;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.Character;
+import com.l2jbr.gameserver.model.database.CharacterQuests;
 import com.l2jbr.gameserver.model.database.repository.*;
 import com.l2jbr.gameserver.model.entity.L2Event;
 import com.l2jbr.gameserver.serverpackets.L2GameServerPacket;
@@ -255,10 +257,8 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> {
             CharacterMacrosesRepository characterMacrosesRepository = DatabaseAccess.getRepository(CharacterMacrosesRepository.class);
             characterMacrosesRepository.deleteById(objId);
 
-            statement = con.prepareStatement("DELETE FROM character_quests WHERE char_id=?");
-            statement.setInt(1, objId);
-            statement.execute();
-            statement.close();
+            CharacterQuestsRepository characterQuestsRepository = DatabaseAccess.getRepository(CharacterQuestsRepository.class);
+            characterQuestsRepository.deleteById(objId);
 
             statement = con.prepareStatement("DELETE FROM character_recipebook WHERE char_id=?");
             statement.setInt(1, objId);
