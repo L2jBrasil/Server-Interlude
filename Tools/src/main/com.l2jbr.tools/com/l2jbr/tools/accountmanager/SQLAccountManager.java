@@ -26,6 +26,7 @@ import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.database.model.Account;
 import com.l2jbr.gameserver.model.database.repository.CharacterFriendRepository;
+import com.l2jbr.gameserver.model.database.repository.CharacterMacrosesRepository;
 import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.model.database.repository.ClanRepository;
 
@@ -222,11 +223,9 @@ public class SQLAccountManager {
                     statement.setInt(1, character.getObjectId());
                     statement.executeUpdate();
 
-                    // macroses
-                    statement.close();
-                    statement = con.prepareStatement("DELETE FROM character_macroses WHERE char_obj_id=?;");
-                    statement.setInt(1, character.getObjectId());
-                    statement.executeUpdate();
+                    CharacterMacrosesRepository characterMacrosesRepository = DatabaseAccess.getRepository(CharacterMacrosesRepository.class);
+                    characterMacrosesRepository.deleteById(character.getObjectId());
+
 
                     CharacterFriendRepository characterFriendRepository = DatabaseAccess.getRepository(CharacterFriendRepository.class);
                     characterFriendRepository.deleteById(character.getObjectId());

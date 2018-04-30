@@ -28,10 +28,7 @@ import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.CharSelectInfoPackage;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.repository.AugmentationsRepository;
-import com.l2jbr.gameserver.model.database.repository.CharacterFriendRepository;
-import com.l2jbr.gameserver.model.database.repository.CharacterHennasRepository;
-import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
+import com.l2jbr.gameserver.model.database.repository.*;
 import com.l2jbr.gameserver.model.entity.L2Event;
 import com.l2jbr.gameserver.serverpackets.L2GameServerPacket;
 import com.l2jbr.gameserver.serverpackets.ServerClose;
@@ -255,10 +252,8 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> {
             CharacterHennasRepository characterHennasRepository = DatabaseAccess.getRepository(CharacterHennasRepository.class);
             characterHennasRepository.deleteById(objId);
 
-            statement = con.prepareStatement("DELETE FROM character_macroses WHERE char_obj_id=?");
-            statement.setInt(1, objId);
-            statement.execute();
-            statement.close();
+            CharacterMacrosesRepository characterMacrosesRepository = DatabaseAccess.getRepository(CharacterMacrosesRepository.class);
+            characterMacrosesRepository.deleteById(objId);
 
             statement = con.prepareStatement("DELETE FROM character_quests WHERE char_id=?");
             statement.setInt(1, objId);
