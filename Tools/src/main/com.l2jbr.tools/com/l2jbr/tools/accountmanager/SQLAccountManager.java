@@ -209,21 +209,14 @@ public class SQLAccountManager {
                     statement.setInt(1, character.getObjectId());
                     statement.executeUpdate();
 
-                    // recipebook
-                    statement.close();
-                    statement = con.prepareStatement("DELETE FROM character_recipebook WHERE char_id=?;");
-                    statement.setInt(1, character.getObjectId());
-                    statement.executeUpdate();
-
-                    // quests
-                    statement.close();
+                    CharacterRecipebookRepository recipebookRepository = DatabaseAccess.getRepository(CharacterRecipebookRepository.class);
+                    recipebookRepository.deleteAllByCharacter(character.getObjectId());
 
                     CharacterQuestsRepository characterQuestsRepository = DatabaseAccess.getRepository(CharacterQuestsRepository.class);
                     characterQuestsRepository.deleteById(character.getObjectId());
 
                     CharacterMacrosesRepository characterMacrosesRepository = DatabaseAccess.getRepository(CharacterMacrosesRepository.class);
                     characterMacrosesRepository.deleteById(character.getObjectId());
-
 
                     CharacterFriendRepository characterFriendRepository = DatabaseAccess.getRepository(CharacterFriendRepository.class);
                     characterFriendRepository.deleteById(character.getObjectId());

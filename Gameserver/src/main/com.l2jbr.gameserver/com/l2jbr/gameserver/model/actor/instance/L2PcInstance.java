@@ -49,7 +49,9 @@ import com.l2jbr.gameserver.model.actor.status.PcStatus;
 import com.l2jbr.gameserver.model.base.*;
 import com.l2jbr.gameserver.model.database.Character;
 import com.l2jbr.gameserver.model.database.CharacterHennas;
+import com.l2jbr.gameserver.model.database.CharacterRecipeBook;
 import com.l2jbr.gameserver.model.database.repository.CharacterHennasRepository;
+import com.l2jbr.gameserver.model.database.repository.CharacterRecipebookRepository;
 import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.model.entity.*;
 import com.l2jbr.gameserver.model.quest.Quest;
@@ -63,6 +65,7 @@ import com.l2jbr.gameserver.templates.*;
 import com.l2jbr.gameserver.util.Broadcast;
 import com.l2jbr.gameserver.util.FloodProtector;
 import com.l2jbr.gameserver.util.Point3D;
+import org.python.bouncycastle.asn1.dvcs.Data;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6586,76 +6589,34 @@ public final class L2PcInstance extends L2PlayableInstance {
             return;
         }
 
-        java.sql.Connection con = null;
+        CharacterRecipebookRepository repository = DatabaseAccess.getRepository(CharacterRecipebookRepository.class);
+        repository.deleteAllByCharacter(getObjectId());
 
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("DELETE FROM character_recipebook WHERE char_id=?");
-            statement.setInt(1, getObjectId());
-            statement.execute();
-            statement.close();
+        L2RecipeList[] recipes = getCommonRecipeBook();
 
-            L2RecipeList[] recipes = getCommonRecipeBook();
-
-            for (L2RecipeList recipe : recipes) {
-                statement = con.prepareStatement("INSERT INTO character_recipebook (char_id, id, type) values(?,?,0)");
-                statement.setInt(1, getObjectId());
-                statement.setInt(2, recipe.getId());
-                statement.execute();
-                statement.close();
-            }
-
-            recipes = getDwarvenRecipeBook();
-            for (L2RecipeList recipe : recipes) {
-                statement = con.prepareStatement("INSERT INTO character_recipebook (char_id, id, type) values(?,?,1)");
-                statement.setInt(1, getObjectId());
-                statement.setInt(2, recipe.getId());
-                statement.execute();
-                statement.close();
-            }
-        } catch (Exception e) {
-            _log.warn("Could not store recipe book data: " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
+        for (L2RecipeList recipe : recipes) {
+            CharacterRecipeBook recipeBook = new CharacterRecipeBook(getObjectId(), recipe.getId(), 0);
+            repository.save(recipeBook);
         }
+
+        recipes = getDwarvenRecipeBook();
+        for (L2RecipeList recipe : recipes) {
+            CharacterRecipeBook recipeBook = new CharacterRecipeBook(getObjectId(), recipe.getId(), 1);
+        }
+
     }
 
-    /**
-     * Restore recipe book data for this L2PcInstance.
-     */
     private void restoreRecipeBook() {
-        java.sql.Connection con = null;
+        CharacterRecipebookRepository repository = DatabaseAccess.getRepository(CharacterRecipebookRepository.class);
+        repository.findAllByCharacter(getObjectId()).forEach(recipeBook -> {
+            L2RecipeList recipe = RecipeController.getInstance().getRecipeList(recipeBook.getId() - 1);
 
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("SELECT id, type FROM character_recipebook WHERE char_id=?");
-            statement.setInt(1, getObjectId());
-            ResultSet rset = statement.executeQuery();
-
-            L2RecipeList recipe;
-            while (rset.next()) {
-                recipe = RecipeController.getInstance().getRecipeList(rset.getInt("id") - 1);
-
-                if (rset.getInt("type") == 1) {
-                    registerDwarvenRecipeList(recipe);
-                } else {
-                    registerCommonRecipeList(recipe);
-                }
+            if (recipeBook.getType() == 1) {
+                registerDwarvenRecipeList(recipe);
+            } else {
+                registerCommonRecipeList(recipe);
             }
-
-            rset.close();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("Could not restore recipe book data:" + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        });
     }
 
     /**
