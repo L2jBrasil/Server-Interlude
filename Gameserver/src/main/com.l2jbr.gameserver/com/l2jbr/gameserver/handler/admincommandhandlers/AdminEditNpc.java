@@ -19,6 +19,7 @@
 package com.l2jbr.gameserver.handler.admincommandhandlers;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.TradeController;
 import com.l2jbr.gameserver.cache.HtmCache;
@@ -28,6 +29,7 @@ import com.l2jbr.gameserver.handler.IAdminCommandHandler;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.L2BoxInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.DropListRepository;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
@@ -778,49 +780,32 @@ public class AdminEditNpc implements IAdminCommandHandler {
     }
 
     private void showEditDropData(L2PcInstance activeChar, int npcId, int itemId, int category) {
-        java.sql.Connection con = null;
+        NpcHtmlMessage adminReply = new NpcHtmlMessage(5);
 
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
+        StringBuilder replyMSG = new StringBuilder("<html><title>the detail of dropdata: (" + npcId + " " + itemId + " " + category + ")</title>");
+        replyMSG.append("<body>");
 
-            PreparedStatement statement = con.prepareStatement("SELECT mobId, itemId, min, max, category, chance FROM droplist WHERE mobId=" + npcId + " AND itemId=" + itemId + " AND category=" + category);
-            ResultSet dropData = statement.executeQuery();
+        DropListRepository repository = DatabaseAccess.getRepository(DropListRepository.class);
+        repository.findByNpcItemAndCategory(npcId, itemId, category).ifPresent(dropList -> {
+            replyMSG.append("<table>");
+            replyMSG.append("<tr><td>Appertain of NPC</td><td>" + NpcTable.getInstance().getTemplate(npcId).name + "</td></tr>");
+            replyMSG.append("<tr><td>ItemName</td><td>" + ItemTable.getInstance().getTemplate(itemId).getName() + "(" + itemId + ")</td></tr>");
+            replyMSG.append("<tr><td>Category</td><td>" + ((category == -1) ? "sweep" : Integer.toString(category)) + "</td></tr>");
+            replyMSG.append("<tr><td>MIN(" + dropList.getMin() + ")</td><td><edit var=\"min\" width=80></td></tr>");
+            replyMSG.append("<tr><td>MAX(" + dropList.getMax() + ")</td><td><edit var=\"max\" width=80></td></tr>");
+            replyMSG.append("<tr><td>CHANCE(" +  dropList.getChance() + ")</td><td><edit var=\"chance\" width=80></td></tr>");
+            replyMSG.append("</table>");
 
-            NpcHtmlMessage adminReply = new NpcHtmlMessage(5);
+            replyMSG.append("<center>");
+            replyMSG.append("<button value=\"Save Modify\" action=\"bypass -h admin_edit_drop " + npcId + " " + itemId + " " + category + " $min $max $chance\"  width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\">");
+            replyMSG.append("<br><button value=\"DropList\" action=\"bypass -h admin_show_droplist " + npcId + "\"  width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\">");
+            replyMSG.append("</center>");
+        });
 
-            StringBuilder replyMSG = new StringBuilder("<html><title>the detail of dropdata: (" + npcId + " " + itemId + " " + category + ")</title>");
-            replyMSG.append("<body>");
+        replyMSG.append("</body></html>");
+        adminReply.setHtml(replyMSG.toString());
 
-            if (dropData.next()) {
-                replyMSG.append("<table>");
-                replyMSG.append("<tr><td>Appertain of NPC</td><td>" + NpcTable.getInstance().getTemplate(dropData.getInt("mobId")).name + "</td></tr>");
-                replyMSG.append("<tr><td>ItemName</td><td>" + ItemTable.getInstance().getTemplate(dropData.getInt("itemId")).getName() + "(" + dropData.getInt("itemId") + ")</td></tr>");
-                replyMSG.append("<tr><td>Category</td><td>" + ((category == -1) ? "sweep" : Integer.toString(category)) + "</td></tr>");
-                replyMSG.append("<tr><td>MIN(" + dropData.getInt("min") + ")</td><td><edit var=\"min\" width=80></td></tr>");
-                replyMSG.append("<tr><td>MAX(" + dropData.getInt("max") + ")</td><td><edit var=\"max\" width=80></td></tr>");
-                replyMSG.append("<tr><td>CHANCE(" + dropData.getInt("chance") + ")</td><td><edit var=\"chance\" width=80></td></tr>");
-                replyMSG.append("</table>");
-
-                replyMSG.append("<center>");
-                replyMSG.append("<button value=\"Save Modify\" action=\"bypass -h admin_edit_drop " + npcId + " " + itemId + " " + category + " $min $max $chance\"  width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\">");
-                replyMSG.append("<br><button value=\"DropList\" action=\"bypass -h admin_show_droplist " + dropData.getInt("mobId") + "\"  width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\">");
-                replyMSG.append("</center>");
-            }
-
-            dropData.close();
-            statement.close();
-
-            replyMSG.append("</body></html>");
-            adminReply.setHtml(replyMSG.toString());
-
-            activeChar.sendPacket(adminReply);
-        } catch (Exception e) {
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        activeChar.sendPacket(adminReply);
     }
 
     private void showAddDropData(L2PcInstance activeChar, L2NpcTemplate npcData) {
@@ -847,55 +832,20 @@ public class AdminEditNpc implements IAdminCommandHandler {
     }
 
     private void updateDropData(L2PcInstance activeChar, int npcId, int itemId, int min, int max, int category, int chance) {
-        java.sql.Connection con = null;
+        if(npcId > 0) {
+            DropListRepository repository = DatabaseAccess.getRepository(DropListRepository.class);
+            repository.updateDrop(npcId, itemId, category, min, max, chance);
 
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
+            reLoadNpcDropList(npcId);
 
-            PreparedStatement statement = con.prepareStatement("UPDATE droplist SET min=?, max=?, chance=? WHERE mobId=? AND itemId=? AND category=?");
-            statement.setInt(1, min);
-            statement.setInt(2, max);
-            statement.setInt(3, chance);
-            statement.setInt(4, npcId);
-            statement.setInt(5, itemId);
-            statement.setInt(6, category);
+            NpcHtmlMessage adminReply = new NpcHtmlMessage(5);
+            StringBuilder replyMSG = new StringBuilder("<html><title>Drop data modify complete!</title>");
+            replyMSG.append("<body>");
+            replyMSG.append("<center><button value=\"DropList\" action=\"bypass -h admin_show_droplist " + npcId + "\" width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\"></center>");
+            replyMSG.append("</body></html>");
 
-            statement.execute();
-            statement.close();
-
-            PreparedStatement statement2 = con.prepareStatement("SELECT mobId FROM droplist WHERE mobId=? AND itemId=? AND category=?");
-            statement2.setInt(1, npcId);
-            statement2.setInt(2, itemId);
-            statement2.setInt(3, category);
-
-            ResultSet npcIdRs = statement2.executeQuery();
-            if (npcIdRs.next()) {
-                npcId = npcIdRs.getInt("mobId");
-            }
-            npcIdRs.close();
-            statement2.close();
-
-            if (npcId > 0) {
-                reLoadNpcDropList(npcId);
-
-                NpcHtmlMessage adminReply = new NpcHtmlMessage(5);
-                StringBuilder replyMSG = new StringBuilder("<html><title>Drop data modify complete!</title>");
-                replyMSG.append("<body>");
-                replyMSG.append("<center><button value=\"DropList\" action=\"bypass -h admin_show_droplist " + npcId + "\" width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\"></center>");
-                replyMSG.append("</body></html>");
-
-                adminReply.setHtml(replyMSG.toString());
-                activeChar.sendPacket(adminReply);
-            } else {
-                activeChar.sendMessage("unknown error!");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
+            adminReply.setHtml(replyMSG.toString());
+            activeChar.sendPacket(adminReply);
         }
     }
 
@@ -936,38 +886,21 @@ public class AdminEditNpc implements IAdminCommandHandler {
     }
 
     private void deleteDropData(L2PcInstance activeChar, int npcId, int itemId, int category) {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
+        if (npcId > 0) {
+            DropListRepository repository = DatabaseAccess.getRepository(DropListRepository.class);
+            repository.deleteByNpcItemAndCategory(npcId, itemId, category);
 
-            if (npcId > 0) {
-                PreparedStatement statement2 = con.prepareStatement("DELETE FROM droplist WHERE mobId=? AND itemId=? AND category=?");
-                statement2.setInt(1, npcId);
-                statement2.setInt(2, itemId);
-                statement2.setInt(3, category);
-                statement2.execute();
-                statement2.close();
+            reLoadNpcDropList(npcId);
 
-                reLoadNpcDropList(npcId);
+            NpcHtmlMessage adminReply = new NpcHtmlMessage(5);
+            StringBuilder replyMSG = new StringBuilder("<html><title>Delete drop data(" + npcId + ", " + itemId + ", " + category + ")complete</title>");
+            replyMSG.append("<body>");
+            replyMSG.append("<center><button value=\"DropList\" action=\"bypass -h admin_show_droplist " + npcId + "\" width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\"></center>");
+            replyMSG.append("</body></html>");
 
-                NpcHtmlMessage adminReply = new NpcHtmlMessage(5);
-                StringBuilder replyMSG = new StringBuilder("<html><title>Delete drop data(" + npcId + ", " + itemId + ", " + category + ")complete</title>");
-                replyMSG.append("<body>");
-                replyMSG.append("<center><button value=\"DropList\" action=\"bypass -h admin_show_droplist " + npcId + "\" width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\"></center>");
-                replyMSG.append("</body></html>");
-
-                adminReply.setHtml(replyMSG.toString());
-                activeChar.sendPacket(adminReply);
-
-            }
-        } catch (Exception e) {
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
+            adminReply.setHtml(replyMSG.toString());
+            activeChar.sendPacket(adminReply);
         }
-
     }
 
     private void reLoadNpcDropList(int npcId) {
