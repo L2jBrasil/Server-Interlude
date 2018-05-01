@@ -18,13 +18,12 @@
  */
 package com.l2jbr.gameserver.datatables;
 
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.model.FishData;
+import com.l2jbr.gameserver.model.database.repository.FishRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -45,54 +44,38 @@ public class FishTable {
     }
 
     private FishTable() {
-        // Create table that contains all fish datas
-        int count = 0;
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            _fishsEasy = new LinkedList<>();
-            _fishsNormal = new LinkedList<>();
-            _fishsHard = new LinkedList<>();
-            FishData fish;
-            PreparedStatement statement = con.prepareStatement("SELECT id, level, name, hp, hpregen, fish_type, fish_group, fish_guts, guts_check_time, wait_time, combat_time FROM fish ORDER BY id");
-            ResultSet Fishes = statement.executeQuery();
+        _fishsEasy = new LinkedList<>();
+        _fishsNormal = new LinkedList<>();
+        _fishsHard = new LinkedList<>();
 
-            while (Fishes.next()) {
-                int id = Fishes.getInt("id");
-                int lvl = Fishes.getInt("level");
-                String name = Fishes.getString("name");
-                int hp = Fishes.getInt("hp");
-                int hpreg = Fishes.getInt("hpregen");
-                int type = Fishes.getInt("fish_type");
-                int group = Fishes.getInt("fish_group");
-                int fish_guts = Fishes.getInt("fish_guts");
-                int guts_check_time = Fishes.getInt("guts_check_time");
-                int wait_time = Fishes.getInt("wait_time");
-                int combat_time = Fishes.getInt("combat_time");
-                fish = new FishData(id, lvl, name, hp, hpreg, type, group, fish_guts, guts_check_time, wait_time, combat_time);
-                switch (fish.getGroup()) {
-                    case 0:
-                        _fishsEasy.add(fish);
-                        break;
-                    case 1:
-                        _fishsNormal.add(fish);
-                        break;
-                    case 2:
-                        _fishsHard.add(fish);
-                }
+        FishRepository repository = DatabaseAccess.getRepository(FishRepository.class);
+        repository.findAll().forEach(fish ->{
+            int id = fish.getId();
+            int lvl = fish.getLevel();
+            String name = fish.getName();
+            int hp = fish.getHp();
+            int hpreg = fish.getHpregen();
+            int type = fish.getFishType();
+            int group = fish.getFishGroup();
+            int fish_guts = fish.getFishGuts();
+            int guts_check_time = fish.getGutsCheckTime();
+            int wait_time = fish.getWaitTime();
+            int combat_time = fish.getCombatTime();
+            FishData fishData = new FishData(id, lvl, name, hp, hpreg, type, group, fish_guts, guts_check_time, wait_time, combat_time);
+            switch (fishData.getGroup()) {
+                case 0:
+                    _fishsEasy.add(fishData);
+                    break;
+                case 1:
+                    _fishsNormal.add(fishData);
+                    break;
+                case 2:
+                    _fishsHard.add(fishData);
             }
-            Fishes.close();
-            statement.close();
-            count = _fishsEasy.size() + _fishsNormal.size() + _fishsHard.size();
-        } catch (Exception e) {
-            _log.error( "error while creating fishes table" + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
-        _log.info("FishTable: Loaded " + count + " Fishes.");
+        });
+
+        int count = _fishsEasy.size() + _fishsNormal.size() + _fishsHard.size();
+        _log.info("FishTable: Loaded {} Fishes.", count);
     }
 
     /**
