@@ -26,6 +26,7 @@ import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.database.model.Account;
 import com.l2jbr.gameserver.model.database.CharacterQuests;
+import com.l2jbr.gameserver.model.database.ClanPrivs;
 import com.l2jbr.gameserver.model.database.repository.*;
 
 import java.io.IOException;
@@ -153,6 +154,7 @@ public class SQLAccountManager {
 
             CharacterRepository characterRepository = DatabaseAccess.getRepository(CharacterRepository.class);
             ClanRepository clanRepository = DatabaseAccess.getRepository(ClanRepository.class);
+            ClanPrivsRepository clanPrivsRepository = DatabaseAccess.getRepository(ClanPrivsRepository.class);
 
             characterRepository.findAllByAccountName(login).forEach(character -> {
                 final int clanId = character.getClanId();
@@ -166,16 +168,11 @@ public class SQLAccountManager {
                         statement.setString(1, clanData.getClanName());
                         statement.setString(2, clanData.getClanName());
                         statement.executeUpdate();
-
-
+                        
                         // Remove All From clan
-
                         characterRepository.removeClanId(clanId);
+                        clanPrivsRepository.deleteById(clanId);
 
-                        statement.close();
-                        statement = con.prepareStatement("DELETE FROM clan_privs WHERE clan_id=?;");
-                        statement.setInt(1, clanId);
-                        statement.executeUpdate();
 
                         statement.close();
                         statement = con.prepareStatement("DELETE FROM clan_subpledges WHERE clan_id=?;");

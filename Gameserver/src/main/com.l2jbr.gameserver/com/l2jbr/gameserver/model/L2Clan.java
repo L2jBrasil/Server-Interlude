@@ -30,6 +30,7 @@ import com.l2jbr.gameserver.instancemanager.SiegeManager;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.database.ClanData;
 import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
+import com.l2jbr.gameserver.model.database.repository.ClanPrivsRepository;
 import com.l2jbr.gameserver.model.database.repository.ClanRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
@@ -1286,37 +1287,12 @@ public class L2Clan {
     }
 
     private void restoreRankPrivs() {
-        java.sql.Connection con = null;
-
-        try {
-            // Retrieve all skills of this L2PcInstance from the database
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("SELECT privs,rank,party FROM clan_privs WHERE clan_id=?");
-            statement.setInt(1, getClanId());
-            // _log.warn("clanPrivs restore for ClanId : "+getClanId());
-            ResultSet rset = statement.executeQuery();
-
-            // Go though the recordset of this SQL query
-            while (rset.next()) {
-                int rank = rset.getInt("rank");
-                // int party = rset.getInt("party");
-                int privileges = rset.getInt("privs");
-                // Create a SubPledge object for each record
-                // RankPrivs privs = new RankPrivs(rank, party, privileges);
-                // _Privs.put(rank, privs);
-                _privs.get(rank).setPrivs(privileges);
-            }
-
-            rset.close();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("Could not restore clan privs by rank: " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        ClanPrivsRepository repository = DatabaseAccess.getRepository(ClanPrivsRepository.class);
+        repository.findAllByClan(getClanId()).forEach(clanPrivs -> {
+            int rank = clanPrivs.getRank();
+            int privileges = clanPrivs.getPrivs();
+            _privs.get(rank).setPrivs(privileges);
+        });
     }
 
     public void initializePrivs() {
@@ -1339,29 +1315,9 @@ public class L2Clan {
         if (_privs.get(rank) != null) {
             _privs.get(rank).setPrivs(privs);
 
-            java.sql.Connection con = null;
+            ClanPrivsRepository repository = DatabaseAccess.getRepository(ClanPrivsRepository.class);
+            repository.saveOrUpdate(getClanId(), rank, 0, privs);
 
-            try {
-                // _log.warn("requested store clan privs in db for rank: "+rank+", privs: "+privs);
-                // Retrieve all skills of this L2PcInstance from the database
-                con = L2DatabaseFactory.getInstance().getConnection();
-                PreparedStatement statement = con.prepareStatement("INSERT INTO clan_privs (clan_id,rank,party,privs) VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE privs = ?");
-                statement.setInt(1, getClanId());
-                statement.setInt(2, rank);
-                statement.setInt(3, 0);
-                statement.setInt(4, privs);
-                statement.setInt(5, privs);
-
-                statement.execute();
-                statement.close();
-            } catch (Exception e) {
-                _log.warn("Could not store clan privs for rank: " + e);
-            } finally {
-                try {
-                    con.close();
-                } catch (Exception e) {
-                }
-            }
             for (L2ClanMember cm : getMembers()) {
                 if (cm.isOnline()) {
                     if (cm.getPowerGrade() == rank) {
@@ -1375,28 +1331,8 @@ public class L2Clan {
             broadcastClanStatus();
         } else {
             _privs.put(rank, new RankPrivs(rank, 0, privs));
-
-            java.sql.Connection con = null;
-
-            try {
-                // _log.warn("requested store clan new privs in db for rank: "+rank);
-                // Retrieve all skills of this L2PcInstance from the database
-                con = L2DatabaseFactory.getInstance().getConnection();
-                PreparedStatement statement = con.prepareStatement("INSERT INTO clan_privs (clan_id,rank,party,privs) VALUES (?,?,?,?)");
-                statement.setInt(1, getClanId());
-                statement.setInt(2, rank);
-                statement.setInt(3, 0);
-                statement.setInt(4, privs);
-                statement.execute();
-                statement.close();
-            } catch (Exception e) {
-                _log.warn("Could not create new rank and store clan privs for rank: " + e);
-            } finally {
-                try {
-                    con.close();
-                } catch (Exception e) {
-                }
-            }
+            ClanPrivsRepository repository = DatabaseAccess.getRepository(ClanPrivsRepository.class);
+            repository.saveOrUpdate(getClanId(), rank, 0, privs);
         }
     }
 
