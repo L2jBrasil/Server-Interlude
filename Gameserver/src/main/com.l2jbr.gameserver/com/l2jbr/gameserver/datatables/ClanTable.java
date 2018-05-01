@@ -30,6 +30,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.database.repository.CastleRepository;
 import com.l2jbr.gameserver.model.database.repository.ClanPrivsRepository;
 import com.l2jbr.gameserver.model.database.repository.ClanRepository;
+import com.l2jbr.gameserver.model.database.repository.ClanSkillRepository;
 import com.l2jbr.gameserver.model.entity.Siege;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
@@ -212,14 +213,12 @@ public class ClanTable {
             ClanPrivsRepository clanPrivsRepository = DatabaseAccess.getRepository(ClanPrivsRepository.class);
             clanPrivsRepository.deleteById(clanId);
 
+            ClanSkillRepository skillRepository = DatabaseAccess.getRepository(ClanSkillRepository.class);
+            skillRepository.deleteById(clanId);
+
             con = L2DatabaseFactory.getInstance().getConnection();
 
-            PreparedStatement statement = con.prepareStatement("DELETE FROM clan_skills WHERE clan_id=?");
-            statement.setInt(1, clanId);
-            statement.execute();
-            statement.close();
-
-            statement = con.prepareStatement("DELETE FROM clan_subpledges WHERE clan_id=?");
+            PreparedStatement statement = con.prepareStatement("DELETE FROM clan_subpledges WHERE clan_id=?");
             statement.setInt(1, clanId);
             statement.execute();
             statement.close();

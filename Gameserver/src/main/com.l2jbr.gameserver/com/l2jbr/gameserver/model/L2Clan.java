@@ -29,9 +29,11 @@ import com.l2jbr.gameserver.instancemanager.CastleManager;
 import com.l2jbr.gameserver.instancemanager.SiegeManager;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.database.ClanData;
+import com.l2jbr.gameserver.model.database.ClanSkills;
 import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.model.database.repository.ClanPrivsRepository;
 import com.l2jbr.gameserver.model.database.repository.ClanRepository;
+import com.l2jbr.gameserver.model.database.repository.ClanSkillRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.util.Util;
@@ -734,36 +736,13 @@ public class L2Clan {
     }
 
     private void restoreSkills() {
-        java.sql.Connection con = null;
-
-        try {
-            // Retrieve all skills of this L2PcInstance from the database
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("SELECT skill_id,skill_level FROM clan_skills WHERE clan_id=?");
-            statement.setInt(1, getClanId());
-
-            ResultSet rset = statement.executeQuery();
-
-            // Go though the recordset of this SQL query
-            while (rset.next()) {
-                int id = rset.getInt("skill_id");
-                int level = rset.getInt("skill_level");
-                // Create a L2Skill object for each record
-                L2Skill skill = SkillTable.getInstance().getInfo(id, level);
-                // Add the L2Skill object to the L2Clan _skills
-                _skills.put(skill.getId(), skill);
-            }
-
-            rset.close();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("Could not restore clan skills: " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        ClanSkillRepository repository = DatabaseAccess.getRepository(ClanSkillRepository.class);
+        repository.findAllByClan(getClanId()).forEach( clanSkill -> {
+            int id = clanSkill.getSkillId();
+            int level = clanSkill.getSkillLevel();
+            L2Skill skill = SkillTable.getInstance().getInfo(id, level);
+            _skills.put(skill.getId(), skill);
+        });
     }
 
     /**
@@ -804,40 +783,17 @@ public class L2Clan {
      */
     public L2Skill addNewSkill(L2Skill newSkill) {
         L2Skill oldSkill = null;
-        java.sql.Connection con = null;
 
         if (newSkill != null) {
-
             // Replace oldSkill by newSkill or Add the newSkill
             oldSkill = _skills.put(newSkill.getId(), newSkill);
 
-            try {
-                con = L2DatabaseFactory.getInstance().getConnection();
-                PreparedStatement statement;
-
-                if (oldSkill != null) {
-                    statement = con.prepareStatement("UPDATE clan_skills SET skill_level=? WHERE skill_id=? AND clan_id=?");
-                    statement.setInt(1, newSkill.getLevel());
-                    statement.setInt(2, oldSkill.getId());
-                    statement.setInt(3, getClanId());
-                    statement.execute();
-                    statement.close();
-                } else {
-                    statement = con.prepareStatement("INSERT INTO clan_skills (clan_id,skill_id,skill_level,skill_name) VALUES (?,?,?,?)");
-                    statement.setInt(1, getClanId());
-                    statement.setInt(2, newSkill.getId());
-                    statement.setInt(3, newSkill.getLevel());
-                    statement.setString(4, newSkill.getName());
-                    statement.execute();
-                    statement.close();
-                }
-            } catch (Exception e) {
-                _log.warn("Error could not store char skills: " + e);
-            } finally {
-                try {
-                    con.close();
-                } catch (Exception e) {
-                }
+            ClanSkillRepository repository = DatabaseAccess.getRepository(ClanSkillRepository.class);
+            if (oldSkill != null) {
+                repository.updateSkillLevel(getClanId(), oldSkill.getId(), newSkill.getLevel());
+            } else {
+                ClanSkills clanSkill = new ClanSkills(getClanId(), newSkill);
+                repository.save(clanSkill);
             }
 
             for (L2ClanMember temp : _members.values()) {
