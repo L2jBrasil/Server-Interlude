@@ -30,10 +30,8 @@ import com.l2jbr.gameserver.instancemanager.SiegeManager;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.database.ClanData;
 import com.l2jbr.gameserver.model.database.ClanSkills;
-import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
-import com.l2jbr.gameserver.model.database.repository.ClanPrivsRepository;
-import com.l2jbr.gameserver.model.database.repository.ClanRepository;
-import com.l2jbr.gameserver.model.database.repository.ClanSkillRepository;
+import com.l2jbr.gameserver.model.database.ClanSubpledges;
+import com.l2jbr.gameserver.model.database.repository.*;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.util.Util;
@@ -1055,34 +1053,14 @@ public class L2Clan {
     }
 
     private void restoreSubPledges() {
-        java.sql.Connection con = null;
-
-        try {
-            // Retrieve all subpledges of this clan from the database
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("SELECT sub_pledge_id,name,leader_name FROM clan_subpledges WHERE clan_id=?");
-            statement.setInt(1, getClanId());
-            ResultSet rset = statement.executeQuery();
-
-            while (rset.next()) {
-                int id = rset.getInt("sub_pledge_id");
-                String name = rset.getString("name");
-                String leaderName = rset.getString("leader_name");
-                // Create a SubPledge object for each record
-                SubPledge pledge = new SubPledge(id, name, leaderName);
-                _subPledges.put(id, pledge);
-            }
-
-            rset.close();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("Could not restore clan sub-units: " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        ClanSubpledgesRepository repository = DatabaseAccess.getRepository(ClanSubpledgesRepository.class);
+        repository.findAllByClan(getClanId()).forEach(clanSubpledges -> {
+            int id = clanSubpledges.getSubPledgeId();
+            String name = clanSubpledges.getName();
+            String leaderName = clanSubpledges.getLeaderName();
+            SubPledge pledge = new SubPledge(id, name, leaderName);
+            _subPledges.put(id, pledge);
+        });
     }
 
     /**
@@ -1154,39 +1132,21 @@ public class L2Clan {
             player.sendPacket(sp);
             return null;
         }
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("INSERT INTO clan_subpledges (clan_id,sub_pledge_id,name,leader_name) values (?,?,?,?)");
-            statement.setInt(1, getClanId());
-            statement.setInt(2, pledgeType);
-            statement.setString(3, subPledgeName);
-            if (pledgeType != -1) {
-                statement.setString(4, leaderName);
-            } else {
-                statement.setString(4, "");
-            }
-            statement.execute();
-            statement.close();
 
-            subPledge = new SubPledge(pledgeType, subPledgeName, leaderName);
-            _subPledges.put(pledgeType, subPledge);
+        String leader = pledgeType == -1 ? "" : leaderName;
+        ClanSubpledges subpledge = new ClanSubpledges(getClanId(), pledgeType, subPledgeName, leader);
+        ClanSubpledgesRepository repository = DatabaseAccess.getRepository(ClanSubpledgesRepository.class);
+        repository.save(subpledge);
 
-            if (pledgeType != -1) {
-                setReputationScore(getReputationScore() - 2500, true);
-            }
+        subPledge = new SubPledge(pledgeType, subPledgeName, leaderName);
+        _subPledges.put(pledgeType, subPledge);
 
-            if (Config.DEBUG) {
-                _log.debug("New sub_clan saved in db: " + getClanId() + "; " + pledgeType);
-            }
-        } catch (Exception e) {
-            _log.warn("error while saving new sub_clan to db " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
+        if (pledgeType != -1) {
+            setReputationScore(getReputationScore() - 2500, true);
         }
+
+        _log.debug("New sub_clan saved in db: {} - {} ",  getClanId(), pledgeType);
+
         broadcastToOnlineMembers(new PledgeShowInfoUpdate(_leader.getClan()));
         broadcastToOnlineMembers(new PledgeReceiveSubPledgeCreated(subPledge));
         return subPledge;
@@ -1220,26 +1180,9 @@ public class L2Clan {
     }
 
     public void updateSubPledgeInDB(int pledgeType) {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("UPDATE clan_subpledges SET leader_name=? WHERE clan_id=? AND sub_pledge_id=?");
-            statement.setString(1, getSubPledge(pledgeType).getLeaderName());
-            statement.setInt(2, getClanId());
-            statement.setInt(3, pledgeType);
-            statement.execute();
-            statement.close();
-            if (Config.DEBUG) {
-                _log.debug("New subpledge leader saved in db: " + getClanId());
-            }
-        } catch (Exception e) {
-            _log.warn("error while saving new clan leader to db " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        ClanSubpledgesRepository repository = DatabaseAccess.getRepository(ClanSubpledgesRepository.class);
+        repository.updateLeader(getClanId(), pledgeType, getSubPledge(pledgeType).getLeaderName());
+        _log.debug("New subpledge leader saved in db: {} ", getClanId());
     }
 
     private void restoreRankPrivs() {

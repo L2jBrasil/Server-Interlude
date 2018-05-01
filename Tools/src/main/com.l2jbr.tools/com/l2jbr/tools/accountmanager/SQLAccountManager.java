@@ -155,6 +155,7 @@ public class SQLAccountManager {
             CharacterRepository characterRepository = DatabaseAccess.getRepository(CharacterRepository.class);
             ClanRepository clanRepository = DatabaseAccess.getRepository(ClanRepository.class);
             ClanPrivsRepository clanPrivsRepository = DatabaseAccess.getRepository(ClanPrivsRepository.class);
+            ClanSubpledgesRepository subpledgesRepository = DatabaseAccess.getRepository(ClanSubpledgesRepository.class);
 
             characterRepository.findAllByAccountName(login).forEach(character -> {
                 final int clanId = character.getClanId();
@@ -172,13 +173,7 @@ public class SQLAccountManager {
                         // Remove All From clan
                         characterRepository.removeClanId(clanId);
                         clanPrivsRepository.deleteById(clanId);
-
-
-                        statement.close();
-                        statement = con.prepareStatement("DELETE FROM clan_subpledges WHERE clan_id=?;");
-                        statement.setInt(1, clanId);
-                        statement.executeUpdate();
-
+                        subpledgesRepository.deleteById(clanId);
                         clanRepository.delete(clanData);
                     } catch (Exception e) {
                         e.printStackTrace();

@@ -27,10 +27,7 @@ import com.l2jbr.gameserver.instancemanager.SiegeManager;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.L2ClanMember;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.repository.CastleRepository;
-import com.l2jbr.gameserver.model.database.repository.ClanPrivsRepository;
-import com.l2jbr.gameserver.model.database.repository.ClanRepository;
-import com.l2jbr.gameserver.model.database.repository.ClanSkillRepository;
+import com.l2jbr.gameserver.model.database.repository.*;
 import com.l2jbr.gameserver.model.entity.Siege;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
@@ -216,14 +213,12 @@ public class ClanTable {
             ClanSkillRepository skillRepository = DatabaseAccess.getRepository(ClanSkillRepository.class);
             skillRepository.deleteById(clanId);
 
+            ClanSubpledgesRepository subpledgesRepository = DatabaseAccess.getRepository(ClanSubpledgesRepository.class);
+            subpledgesRepository.deleteById(clanId);
+
             con = L2DatabaseFactory.getInstance().getConnection();
 
-            PreparedStatement statement = con.prepareStatement("DELETE FROM clan_subpledges WHERE clan_id=?");
-            statement.setInt(1, clanId);
-            statement.execute();
-            statement.close();
-
-            statement = con.prepareStatement("DELETE FROM clan_wars WHERE clan1=? OR clan2=?");
+            PreparedStatement statement = con.prepareStatement("DELETE FROM clan_wars WHERE clan1=? OR clan2=?");
             statement.setInt(1, clanId);
             statement.setInt(2, clanId);
             statement.execute();
