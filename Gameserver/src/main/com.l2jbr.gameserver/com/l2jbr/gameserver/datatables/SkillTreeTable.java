@@ -27,7 +27,9 @@ import com.l2jbr.gameserver.model.L2SkillLearn;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.base.ClassId;
 import com.l2jbr.gameserver.model.database.CharTemplate;
+import com.l2jbr.gameserver.model.database.EnchantSkillTrees;
 import com.l2jbr.gameserver.model.database.repository.CharTemplateRepository;
+import com.l2jbr.gameserver.model.database.repository.EnchantSkillTreesRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -116,12 +118,12 @@ public class SkillTreeTable {
 
     private SkillTreeTable() {
         int count = 0;
-        CharTemplateRepository repository = DatabaseAccess.getRepository(CharTemplateRepository.class);
+        CharTemplateRepository charTemplateRepository = DatabaseAccess.getRepository(CharTemplateRepository.class);
         Map<Integer, L2SkillLearn> map;
         int parentClassId;
         int classId;
         L2SkillLearn skillLearn;
-        for (CharTemplate charTemplate : repository.findAll()) {
+        for (CharTemplate charTemplate : charTemplateRepository.findAll()) {
             map = new LinkedHashMap<>();
             parentClassId = charTemplate.getParentId();
             classId = charTemplate.getId();
@@ -205,40 +207,28 @@ public class SkillTreeTable {
             _log.error("Error while creating fishing skill table: " + e);
         }
 
-        int count4 = 0;
-        try(Connection con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("SELECT skill_id, level, name, base_lvl, sp, min_skill_lvl, exp, success_rate76, success_rate77, success_rate78 FROM enchant_skill_trees ORDER BY skill_id, level");
-            ResultSet skilltree3 = statement.executeQuery();) {
-            _enchantSkillTrees = new LinkedList<>();
+        _enchantSkillTrees = new LinkedList<>();
 
-            int prevSkillId = -1;
+        EnchantSkillTreesRepository enchantSkillTreesRepository = DatabaseAccess.getRepository(EnchantSkillTreesRepository.class);
+        enchantSkillTreesRepository.findAllOrderBySkillAndLevel().forEach(enchantSkillTrees -> {
+            int id = enchantSkillTrees.getSkillId();
+            int lvl = enchantSkillTrees.getLevel();
+            String name = enchantSkillTrees.getName();
+            int baseLvl = enchantSkillTrees.getBaseLvl();
+            int minSkillLvl = enchantSkillTrees.getMinSkillLvl();
+            int sp = enchantSkillTrees.getSp();
+            int exp = enchantSkillTrees.getExp();
+            byte rate76 = enchantSkillTrees.getSuccessRate76();
+            byte rate77 = enchantSkillTrees.getSuccessRate77();
+            byte rate78 = enchantSkillTrees.getSuccessRate78();
 
-            while (skilltree3.next()) {
-                int id = skilltree3.getInt("skill_id");
-                int lvl = skilltree3.getInt("level");
-                String name = skilltree3.getString("name");
-                int baseLvl = skilltree3.getInt("base_lvl");
-                int minSkillLvl = skilltree3.getInt("min_skill_lvl");
-                int sp = skilltree3.getInt("sp");
-                int exp = skilltree3.getInt("exp");
-                byte rate76 = skilltree3.getByte("success_rate76");
-                byte rate77 = skilltree3.getByte("success_rate77");
-                byte rate78 = skilltree3.getByte("success_rate78");
+            L2EnchantSkillLearn skill = new L2EnchantSkillLearn(id, lvl, minSkillLvl, baseLvl, name, sp, exp, rate76, rate77, rate78);
 
-                if (prevSkillId != id) {
-                    prevSkillId = id;
-                }
+            _enchantSkillTrees.add(skill);
+        });
 
-                L2EnchantSkillLearn skill = new L2EnchantSkillLearn(id, lvl, minSkillLvl, baseLvl, name, sp, exp, rate76, rate77, rate78);
+        int count4 = _enchantSkillTrees.size();
 
-                _enchantSkillTrees.add(skill);
-            }
-
-
-            count4 = _enchantSkillTrees.size();
-        } catch (Exception e) {
-            _log.error("Error while creating enchant skill table: " + e);
-        }
 
         int count5 = 0;
         try(Connection con = L2DatabaseFactory.getInstance().getConnection();
