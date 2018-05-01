@@ -27,6 +27,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.database.Character;
 import com.l2jbr.gameserver.model.database.repository.AugmentationsRepository;
 import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
+import com.l2jbr.gameserver.model.database.repository.CharacterSubclassesRepository;
 import com.l2jbr.gameserver.network.L2GameClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -218,33 +219,12 @@ public class CharSelectInfo extends L2GameServerPacket {
     }
 
     private void loadCharacterSubclassInfo(CharSelectInfoPackage charInfopackage, int ObjectId, int activeClassId) {
-        java.sql.Connection con = null;
-
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("SELECT exp, sp, level FROM character_subclasses WHERE char_obj_id=? && class_id=? ORDER BY char_obj_id");
-            statement.setInt(1, ObjectId);
-            statement.setInt(2, activeClassId);
-            ResultSet charList = statement.executeQuery();
-
-            if (charList.next()) {
-                charInfopackage.setExp(charList.getLong("exp"));
-                charInfopackage.setSp(charList.getInt("sp"));
-                charInfopackage.setLevel(charList.getInt("level"));
-            }
-
-            charList.close();
-            statement.close();
-
-        } catch (Exception e) {
-            _log.warn("Could not restore char subclass info: " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
-
+        CharacterSubclassesRepository repository = DatabaseAccess.getRepository(CharacterSubclassesRepository.class);
+        repository.findByClassId(ObjectId, activeClassId).ifPresent(characterSubclasse -> {
+            charInfopackage.setExp(characterSubclasse.getExp());
+            charInfopackage.setSp(characterSubclasse.getSp());
+            charInfopackage.setLevel(characterSubclasse.getLevel());
+        });
     }
 
     private CharSelectInfoPackage restoreChar(Character character) {

@@ -270,12 +270,10 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> {
             skillsRepository.deleteById(objId);
 
             CharacterSkillsSaveRepository skillsSaveRepository = DatabaseAccess.getRepository(CharacterSkillsSaveRepository.class);
-            skillsRepository.deleteById(objId);
+            skillsSaveRepository.deleteById(objId);
 
-            statement = con.prepareStatement("DELETE FROM character_subclasses WHERE char_obj_id=?");
-            statement.setInt(1, objId);
-            statement.execute();
-            statement.close();
+            CharacterSubclassesRepository subclassesRepository = DatabaseAccess.getRepository(CharacterSubclassesRepository.class);
+            subclassesRepository.deleteById(objId);
 
             statement = con.prepareStatement("DELETE FROM heroes WHERE char_id=?");
             statement.setInt(1, objId);

@@ -81,10 +81,6 @@ import java.util.concurrent.locks.ReentrantLock;
  * @version $Revision: 1.66.2.41.2.33 $ $Date: 2005/04/11 10:06:09 $
  */
 public final class L2PcInstance extends L2PlayableInstance {
-    private static final String RESTORE_CHAR_SUBCLASSES = "SELECT class_id,exp,sp,level,class_index FROM character_subclasses WHERE char_obj_id=? ORDER BY class_index ASC";
-    private static final String ADD_CHAR_SUBCLASS = "INSERT INTO character_subclasses (char_obj_id,class_id,exp,sp,level,class_index) VALUES (?,?,?,?,?,?)";
-    private static final String UPDATE_CHAR_SUBCLASS = "UPDATE character_subclasses SET exp=?,sp=?,level=?,class_id=? WHERE char_obj_id=? AND class_index =?";
-    private static final String DELETE_CHAR_SUBCLASS = "DELETE FROM character_subclasses WHERE char_obj_id=? AND class_index=?";
 
     public static final int REQUEST_TIMEOUT = 15;
     public static final int STORE_PRIVATE_NONE = 0;
@@ -6477,45 +6473,18 @@ public final class L2PcInstance extends L2PlayableInstance {
         _forumMemo = forum;
     }
 
-    /**
-     * Restores sub-class data for the L2PcInstance, used to check the current class index for the character.
-     *
-     * @param player the player
-     * @return true, if successful
-     */
     private static boolean restoreSubClassData(L2PcInstance player) {
-        java.sql.Connection con = null;
+        CharacterSubclassesRepository repository = DatabaseAccess.getRepository(CharacterSubclassesRepository.class);
+        repository.findAllByCharacter(player.getObjectId()).forEach(characterSubclasse -> {
+            SubClass subClass = new SubClass();
+            subClass.setClassId(characterSubclasse.getClassId());
+            subClass.setLevel(characterSubclasse.getLevel());
+            subClass.setExp(characterSubclasse.getExp());
+            subClass.setSp(characterSubclasse.getSp());
+            subClass.setClassIndex(characterSubclasse.getClassIndex());
 
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement(RESTORE_CHAR_SUBCLASSES);
-            statement.setInt(1, player.getObjectId());
-
-            ResultSet rset = statement.executeQuery();
-
-            while (rset.next()) {
-                SubClass subClass = new SubClass();
-                subClass.setClassId(rset.getInt("class_id"));
-                subClass.setLevel(rset.getByte("level"));
-                subClass.setExp(rset.getLong("exp"));
-                subClass.setSp(rset.getInt("sp"));
-                subClass.setClassIndex(rset.getInt("class_index"));
-
-                // Enforce the correct indexing of _subClasses against their class indexes.
-                player.getSubClasses().put(subClass.getClassIndex(), subClass);
-            }
-
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("Could not restore classes for " + player.getName() + ": " + e);
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
-
+            player.getSubClasses().put(subClass.getClassIndex(), subClass);
+        });
         return true;
     }
 
@@ -6698,36 +6667,13 @@ public final class L2PcInstance extends L2PlayableInstance {
         repository.save(character);
     }
 
-    /**
-     * Store char sub.
-     */
     private void storeCharSub() {
-        java.sql.Connection con = null;
+        if (getTotalSubClasses() > 0) {
+            CharacterSubclassesRepository repository = DatabaseAccess.getRepository(CharacterSubclassesRepository.class);
 
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
-
-            if (getTotalSubClasses() > 0) {
-                for (SubClass subClass : getSubClasses().values()) {
-                    statement = con.prepareStatement(UPDATE_CHAR_SUBCLASS);
-                    statement.setLong(1, subClass.getExp());
-                    statement.setInt(2, subClass.getSp());
-                    statement.setInt(3, subClass.getLevel());
-                    statement.setInt(4, subClass.getClassId());
-                    statement.setInt(5, getObjectId());
-                    statement.setInt(6, subClass.getClassIndex());
-
-                    statement.execute();
-                    statement.close();
-                }
-            }
-        } catch (Exception e) {
-            _log.warn("Could not store sub class data for " + getName() + ": " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
+            for (SubClass subClass : getSubClasses().values()) {
+                repository.updateByClassIndex(getObjectId(), subClass.getClassIndex(), subClass.getExp(), subClass.getSp(), subClass.getLevel(),
+                    subClass.getClassId());
             }
         }
     }
@@ -9042,29 +8988,9 @@ public final class L2PcInstance extends L2PlayableInstance {
         newClass.setClassId(classId);
         newClass.setClassIndex(classIndex);
 
-        java.sql.Connection con = null;
-
-        try {
-            // Store the basic info about this new sub-class.
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement(ADD_CHAR_SUBCLASS);
-            statement.setInt(1, getObjectId());
-            statement.setInt(2, newClass.getClassId());
-            statement.setLong(3, newClass.getExp());
-            statement.setInt(4, newClass.getSp());
-            statement.setInt(5, newClass.getLevel());
-            statement.setInt(6, newClass.getClassIndex()); // <-- Added
-            statement.execute();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("WARNING: Could not add character sub class for " + getName() + ": " + e);
-            return false;
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        CharacterSubclasses subclasse = new CharacterSubclasses(getObjectId(), newClass);
+        CharacterSubclassesRepository repository = DatabaseAccess.getRepository(CharacterSubclassesRepository.class);
+        repository.save(subclasse);
 
         // Commit after database INSERT incase exception is thrown.
         getSubClasses().put(newClass.getClassIndex(), newClass);
@@ -9115,47 +9041,22 @@ public final class L2PcInstance extends L2PlayableInstance {
     public boolean modifySubClass(int classIndex, int newClassId) {
         int oldClassId = getSubClasses().get(classIndex).getClassId();
 
-        if (Config.DEBUG) {
-            _log.info(getName() + " has requested to modify sub class index " + classIndex + " from class ID " + oldClassId + " to " + newClassId + ".");
-        }
+        _log.debug("{} has requested to modify sub class index {} from {} class ID to {}.", getName(),  classIndex, oldClassId, newClassId);
 
-        java.sql.Connection con = null;
+        CharacterHennasRepository hennasRepository = DatabaseAccess.getRepository(CharacterHennasRepository.class);
+        hennasRepository.deleteAllByClassIndex(getObjectId(), classIndex);
 
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
+        CharacterShortcutsRepository shortcutsRepository = DatabaseAccess.getRepository(CharacterShortcutsRepository.class);
+        shortcutsRepository.deleteAllByClassIndex(getObjectId(), classIndex);
 
-            CharacterHennasRepository hennasRepository = DatabaseAccess.getRepository(CharacterHennasRepository.class);
-            hennasRepository.deleteAllByClassIndex(getObjectId(), classIndex);
+        CharacterSkillsSaveRepository skillsSaveRepository = DatabaseAccess.getRepository(CharacterSkillsSaveRepository.class);
+        skillsSaveRepository.deleteAllByClassIndex(getObjectId(), getClassIndex());
 
-            CharacterShortcutsRepository shortcutsRepository = DatabaseAccess.getRepository(CharacterShortcutsRepository.class);
-            shortcutsRepository.deleteAllByClassIndex(getObjectId(), classIndex);
+        CharacterSkillsRepository skillsRepository = DatabaseAccess.getRepository(CharacterSkillsRepository.class);
+        skillsRepository.deleteAllByClassIndex(getObjectId(), classIndex);
 
-
-            CharacterSkillsSaveRepository skillsSaveRepository = DatabaseAccess.getRepository(CharacterSkillsSaveRepository.class);
-            skillsSaveRepository.deleteAllByClassIndex(getObjectId(), getClassIndex());
-
-            CharacterSkillsRepository skillsRepository = DatabaseAccess.getRepository(CharacterSkillsRepository.class);
-            skillsRepository.deleteAllByClassIndex(getObjectId(), classIndex);
-
-            // Remove all basic info stored about this sub-class.
-            statement = con.prepareStatement(DELETE_CHAR_SUBCLASS);
-            statement.setInt(1, getObjectId());
-            statement.setInt(2, classIndex);
-            statement.execute();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("Could not modify sub class for " + getName() + " to class index " + classIndex + ": " + e);
-
-            // This must be done in order to maintain data consistency.
-            getSubClasses().remove(classIndex);
-            return false;
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        CharacterSubclassesRepository subclassesRepository = DatabaseAccess.getRepository(CharacterSubclassesRepository.class);
+        subclassesRepository.deleteByClassIndex(getObjectId(), classIndex);
 
         getSubClasses().remove(classIndex);
         return addSubClass(newClassId, classIndex);
