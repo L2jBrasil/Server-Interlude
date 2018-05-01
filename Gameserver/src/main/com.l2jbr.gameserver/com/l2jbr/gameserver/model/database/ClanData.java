@@ -8,8 +8,8 @@ import org.springframework.data.annotation.Id;
 @Table("clan_data")
 public class ClanData extends Entity<Integer> {
 
-    @Column("clan_id")
     @Id
+    @Column("clan_id")
     private Integer clanId;
     @Column("clan_name")
     private String clanName;

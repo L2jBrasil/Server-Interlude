@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.instancemanager.SiegeManager;
@@ -35,8 +34,6 @@ import com.l2jbr.gameserver.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -80,7 +77,7 @@ public class ClanTable {
             }
         });
         _log.info(getMessage("info.restored.clans"), _clans.size());
-        restorewars();
+        restoreWars();
     }
 
     /**
@@ -202,42 +199,28 @@ public class ClanTable {
         _clans.remove(clanId);
         IdFactory.getInstance().releaseId(clanId);
 
-        java.sql.Connection con = null;
-        try {
-            ClanRepository clanRepository = DatabaseAccess.getRepository(ClanRepository.class);
-            clanRepository.deleteById(clanId);
+        ClanRepository clanRepository = DatabaseAccess.getRepository(ClanRepository.class);
+        clanRepository.deleteById(clanId);
 
-            ClanPrivsRepository clanPrivsRepository = DatabaseAccess.getRepository(ClanPrivsRepository.class);
-            clanPrivsRepository.deleteById(clanId);
+        ClanPrivsRepository clanPrivsRepository = DatabaseAccess.getRepository(ClanPrivsRepository.class);
+        clanPrivsRepository.deleteById(clanId);
 
-            ClanSkillRepository skillRepository = DatabaseAccess.getRepository(ClanSkillRepository.class);
-            skillRepository.deleteById(clanId);
+        ClanSkillRepository skillRepository = DatabaseAccess.getRepository(ClanSkillRepository.class);
+        skillRepository.deleteById(clanId);
 
-            ClanSubpledgesRepository subpledgesRepository = DatabaseAccess.getRepository(ClanSubpledgesRepository.class);
-            subpledgesRepository.deleteById(clanId);
+        ClanSubpledgesRepository subpledgesRepository = DatabaseAccess.getRepository(ClanSubpledgesRepository.class);
+        subpledgesRepository.deleteById(clanId);
 
-            con = L2DatabaseFactory.getInstance().getConnection();
+        ClanWarsRepository warsRepository = DatabaseAccess.getRepository(ClanWarsRepository.class);
+        warsRepository.deleteByClan(clanId);
 
-            PreparedStatement statement = con.prepareStatement("DELETE FROM clan_wars WHERE clan1=? OR clan2=?");
-            statement.setInt(1, clanId);
-            statement.setInt(2, clanId);
-            statement.execute();
-            statement.close();
 
-            if (castleId != 0) {
-                CastleRepository castleRepository = DatabaseAccess.getRepository(CastleRepository.class);
-                castleRepository.updateTaxById(castleId, 0);
-            }
-
-            _log.debug(getMessage("debug.clan.removed"), clanId);
-        } catch (Exception e) {
-            _log.warn(getMessage("error.clan.remove"),  e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
+        if (castleId != 0) {
+            CastleRepository castleRepository = DatabaseAccess.getRepository(CastleRepository.class);
+            castleRepository.updateTaxById(castleId, 0);
         }
+
+        _log.debug(getMessage("debug.clan.removed"), clanId);
     }
 
     public void scheduleRemoveClan(final int clanId) {
@@ -268,27 +251,10 @@ public class ClanTable {
         clan2.setAttackerClan(clan1);
         clan1.broadcastClanStatus();
         clan2.broadcastClanStatus();
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
-            statement = con.prepareStatement("REPLACE INTO clan_wars (clan1, clan2, wantspeace1, wantspeace2) VALUES(?,?,?,?)");
-            statement.setInt(1, clanId1);
-            statement.setInt(2, clanId2);
-            statement.setInt(3, 0);
-            statement.setInt(4, 0);
-            statement.execute();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("could not store clans wars data:" + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
-        // SystemMessage msg = new SystemMessage(SystemMessageId.WAR_WITH_THE_S1_CLAN_HAS_BEGUN);
-        //
+
+        ClanWarsRepository repository = DatabaseAccess.getRepository(ClanWarsRepository.class);
+        repository.saveOrUpdate(clanId1, clanId2, 0, 0);
+
         SystemMessage msg = new SystemMessage(SystemMessageId.CLAN_WAR_DECLARED_AGAINST_S1_IF_KILLED_LOSE_LOW_EXP);
         msg.addString(clan2.getName());
         clan1.broadcastToOnlineMembers(msg);
@@ -308,38 +274,10 @@ public class ClanTable {
         clan2.deleteAttackerClan(clan1);
         clan1.broadcastClanStatus();
         clan2.broadcastClanStatus();
-        // for(L2ClanMember player: clan1.getMembers())
-        // {
-        // if(player.getPlayerInstance()!=null)
-        // player.getPlayerInstance().setWantsPeace(0);
-        // }
-        // for(L2ClanMember player: clan2.getMembers())
-        // {
-        // if(player.getPlayerInstance()!=null)
-        // player.getPlayerInstance().setWantsPeace(0);
-        // }
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
-            statement = con.prepareStatement("DELETE FROM clan_wars WHERE clan1=? AND clan2=?");
-            statement.setInt(1, clanId1);
-            statement.setInt(2, clanId2);
-            statement.execute();
-            // statement = con.prepareStatement("DELETE FROM clan_wars WHERE clan1=? AND clan2=?");
-            // statement.setInt(1,clanId2);
-            // statement.setInt(2,clanId1);
-            // statement.execute();
 
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("could not restore clans wars data:" + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        ClanWarsRepository repository = DatabaseAccess.getRepository(ClanWarsRepository.class);
+        repository.deleteWar(clanId1, clanId2);
+
         // SystemMessage msg = new SystemMessage(SystemMessageId.WAR_WITH_THE_S1_CLAN_HAS_ENDED);
         SystemMessage msg = new SystemMessage(SystemMessageId.WAR_AGAINST_S1_HAS_STOPPED);
         msg.addString(clan2.getName());
@@ -366,25 +304,11 @@ public class ClanTable {
         }
     }
 
-    private void restorewars() {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
-            statement = con.prepareStatement("SELECT clan1, clan2, wantspeace1, wantspeace2 FROM clan_wars");
-            ResultSet rset = statement.executeQuery();
-            while (rset.next()) {
-                getClan(rset.getInt("clan1")).setEnemyClan(rset.getInt("clan2"));
-                getClan(rset.getInt("clan2")).setAttackerClan(rset.getInt("clan1"));
-            }
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("could not restore clan wars data:" + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+    private void restoreWars() {
+        ClanWarsRepository repository = DatabaseAccess.getRepository(ClanWarsRepository.class);
+        repository.findAll().forEach(clanWars -> {
+            getClan(clanWars.getClan1()).setEnemyClan(clanWars.getClan2());
+            getClan(clanWars.getClan2()).setAttackerClan(clanWars.getClan1());
+        });
     }
 }

@@ -156,28 +156,20 @@ public class SQLAccountManager {
             ClanRepository clanRepository = DatabaseAccess.getRepository(ClanRepository.class);
             ClanPrivsRepository clanPrivsRepository = DatabaseAccess.getRepository(ClanPrivsRepository.class);
             ClanSubpledgesRepository subpledgesRepository = DatabaseAccess.getRepository(ClanSubpledgesRepository.class);
+            ClanWarsRepository warsRepository = DatabaseAccess.getRepository(ClanWarsRepository.class);
 
             characterRepository.findAllByAccountName(login).forEach(character -> {
-                final int clanId = character.getClanId();
-                clanRepository.findById(clanId).ifPresent(clanData -> {
-
+                clanRepository.findByLeaderId(character.getObjectId()).ifPresent(clanData -> {
+                    int clanId = clanData.getClanId();
                     // Clan Leader
                     System.out.println("Deleting clan " + clanData.getClanName() +  ".");
-                    try {
-                        PreparedStatement statement = con.prepareStatement("DELETE FROM clan_wars WHERE clan1=? OR clan2=?;");
-                        statement.setEscapeProcessing(true);
-                        statement.setString(1, clanData.getClanName());
-                        statement.setString(2, clanData.getClanName());
-                        statement.executeUpdate();
-                        
-                        // Remove All From clan
-                        characterRepository.removeClanId(clanId);
-                        clanPrivsRepository.deleteById(clanId);
-                        subpledgesRepository.deleteById(clanId);
-                        clanRepository.delete(clanData);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+
+                    // Remove All From clan
+                    warsRepository.deleteByClan(clanId);
+                    characterRepository.removeClanId(clanId);
+                    clanPrivsRepository.deleteById(clanId);
+                    subpledgesRepository.deleteById(clanId);
+                    clanRepository.delete(clanData);
                 });
 
                 System.out.println("Deleting character " + character.getCharName());

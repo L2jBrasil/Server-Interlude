@@ -6,6 +6,8 @@ import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Optional;
+
 public interface ClanRepository extends CrudRepository<ClanData, Integer> {
 
     @Modifying
@@ -38,4 +40,24 @@ public interface ClanRepository extends CrudRepository<ClanData, Integer> {
     @Modifying
     @Query("UPDATE clan_data SET crest_large_id=:crest WHERE clan_id=:objectId")
     int updateLargeClanCrestById(@Param("objectId") int objectId, @Param("crest") int crestId);
+
+    @Query("SELECT * FROM clan_data WHERE leader_id=:leader")
+    Optional<ClanData> findByLeaderId(@Param("leader") int charObjectId);
+
+    @Query("SELECT c.* FROM clan_data c " +
+           "LEFT JOIN clan_wars w ON c.clan_id=w.clan2 " +
+           "WHERE w.clan1=:clan AND NOT EXISTS (SELECT 1 FROM clan_wars WHERE clan2=:clan AND clan1=c.clan_id)")
+    Iterable<ClanData> findAllByOnlyAttacker(@Param("clan") int clanId);
+
+    @Query("SELECT c.* FROM clan_data c " +
+           "LEFT JOIN clan_wars w ON c.clan_id=w.clan1 " +
+           "WHERE w.clan2=:clan AND NOT EXISTS (SELECT 1 FROM clan_wars WHERE clan1=:clan AND clan2=c.clan_id)")
+    Iterable<ClanData> findAllByOnlyUnderAttack(@Param("clan") int clanId);
+
+    @Query("SELECT c.* FROM clan_data c " +
+           "LEFT JOIN clan_wars w ON c.clan_id=w.clan2 " +
+           "WHERE w.clan1=:clan AND EXISTS (SELECT 1 FROM clan_wars WHERE clan2=:clan AND clan1=c.clan_id)")
+    Iterable<ClanData> findAllInWar(@Param("clan") int clanId);
+
+
 }
