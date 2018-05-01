@@ -51,10 +51,7 @@ import com.l2jbr.gameserver.model.database.Character;
 import com.l2jbr.gameserver.model.database.CharacterHennas;
 import com.l2jbr.gameserver.model.database.CharacterRecipeBook;
 import com.l2jbr.gameserver.model.database.CharacterRecommends;
-import com.l2jbr.gameserver.model.database.repository.CharacterHennasRepository;
-import com.l2jbr.gameserver.model.database.repository.CharacterRecipebookRepository;
-import com.l2jbr.gameserver.model.database.repository.CharacterRecommendsRepository;
-import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
+import com.l2jbr.gameserver.model.database.repository.*;
 import com.l2jbr.gameserver.model.entity.*;
 import com.l2jbr.gameserver.model.quest.Quest;
 import com.l2jbr.gameserver.model.quest.QuestState;
@@ -96,8 +93,6 @@ public final class L2PcInstance extends L2PlayableInstance {
     private static final String ADD_CHAR_SUBCLASS = "INSERT INTO character_subclasses (char_obj_id,class_id,exp,sp,level,class_index) VALUES (?,?,?,?,?,?)";
     private static final String UPDATE_CHAR_SUBCLASS = "UPDATE character_subclasses SET exp=?,sp=?,level=?,class_id=? WHERE char_obj_id=? AND class_index =?";
     private static final String DELETE_CHAR_SUBCLASS = "DELETE FROM character_subclasses WHERE char_obj_id=? AND class_index=?";
-    private static final String DELETE_CHAR_SHORTCUTS = "DELETE FROM character_shortcuts WHERE char_obj_id=? AND class_index=?";
-
 
     public static final int REQUEST_TIMEOUT = 15;
     public static final int STORE_PRIVATE_NONE = 0;
@@ -9280,15 +9275,12 @@ public final class L2PcInstance extends L2PlayableInstance {
             con = L2DatabaseFactory.getInstance().getConnection();
             PreparedStatement statement;
 
-            CharacterHennasRepository repository = DatabaseAccess.getRepository(CharacterHennasRepository.class);
-            repository.deleteByClassIndex(getObjectId(), classIndex);
+            CharacterHennasRepository hennasRepository = DatabaseAccess.getRepository(CharacterHennasRepository.class);
+            hennasRepository.deleteByClassIndex(getObjectId(), classIndex);
 
-            // Remove all shortcuts info stored for this sub-class.
-            statement = con.prepareStatement(DELETE_CHAR_SHORTCUTS);
-            statement.setInt(1, getObjectId());
-            statement.setInt(2, classIndex);
-            statement.execute();
-            statement.close();
+            CharacterShortcutsRepository shortcutsRepository = DatabaseAccess.getRepository(CharacterShortcutsRepository.class);
+            shortcutsRepository.deleteByClassIndex(getObjectId(), classIndex);
+
 
             // Remove all effects info stored for this sub-class.
             statement = con.prepareStatement(DELETE_SKILL_SAVE);

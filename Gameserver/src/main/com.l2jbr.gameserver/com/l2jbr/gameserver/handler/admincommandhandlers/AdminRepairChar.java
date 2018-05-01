@@ -26,6 +26,7 @@ import com.l2jbr.gameserver.model.GMAudit;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.database.Character;
 import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
+import com.l2jbr.gameserver.model.database.repository.CharacterShortcutsRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -86,18 +87,17 @@ public class AdminRepairChar implements IAdminCommandHandler
 			return;
 		}
 
-        CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
-        Optional<Character> optionalCharacter = repository.findByCharName(parts[1]);
+        CharacterRepository characterRepository = DatabaseAccess.getRepository(CharacterRepository.class);
+        Optional<Character> optionalCharacter = characterRepository.findByCharName(parts[1]);
 
         optionalCharacter.ifPresent(character -> {
             character.updateLocation(-84318, 244579, -3730);
             PreparedStatement statement = null;
-            try(Connection connection = L2DatabaseFactory.getInstance().getConnection();){
-                statement = connection.prepareStatement("DELETE FROM character_shortcuts WHERE char_obj_id=?");
-                statement.setInt(1, character.getId());
-                statement.execute();
-                statement.close();
 
+            CharacterShortcutsRepository shortcutsRepository = DatabaseAccess.getRepository(CharacterShortcutsRepository.class);
+            shortcutsRepository.deleteById(character.getObjectId());
+
+            try(Connection connection = L2DatabaseFactory.getInstance().getConnection();){
                 statement = connection.prepareStatement("UPDATE items SET loc=\"INVENTORY\" WHERE owner_id=?");
                 statement.setInt(1, character.getId());
                 statement.execute();
@@ -111,7 +111,7 @@ public class AdminRepairChar implements IAdminCommandHandler
                 } catch (SQLException e) {
                 }
             }
-            repository.save(character);
+            characterRepository.save(character);
         });
 
 	}

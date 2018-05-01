@@ -263,10 +263,8 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> {
             CharacterRecipebookRepository recipebookRepository = DatabaseAccess.getRepository(CharacterRecipebookRepository.class);
             recipebookRepository.deleteAllByCharacter(objId);
 
-            statement = con.prepareStatement("DELETE FROM character_shortcuts WHERE char_obj_id=?");
-            statement.setInt(1, objId);
-            statement.execute();
-            statement.close();
+            CharacterShortcutsRepository shortcutsRepository = DatabaseAccess.getRepository(CharacterShortcutsRepository.class);
+            shortcutsRepository.deleteById(objId);
 
             statement = con.prepareStatement("DELETE FROM character_skills WHERE char_obj_id=?");
             statement.setInt(1, objId);

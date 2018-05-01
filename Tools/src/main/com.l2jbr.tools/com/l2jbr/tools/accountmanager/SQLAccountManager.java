@@ -197,11 +197,8 @@ public class SQLAccountManager {
                     statement.setInt(1, character.getObjectId());
                     statement.executeUpdate();
 
-                    // shortcuts
-                    statement.close();
-                    statement = con.prepareStatement("DELETE FROM character_shortcuts WHERE char_obj_id=?;");
-                    statement.setInt(1, character.getObjectId());
-                    statement.executeUpdate();
+                    CharacterShortcutsRepository shortcutsRepository = DatabaseAccess.getRepository(CharacterShortcutsRepository.class);
+                    shortcutsRepository.deleteById(character.getObjectId());
 
                     // items
                     statement.close();
