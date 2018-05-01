@@ -50,8 +50,10 @@ import com.l2jbr.gameserver.model.base.*;
 import com.l2jbr.gameserver.model.database.Character;
 import com.l2jbr.gameserver.model.database.CharacterHennas;
 import com.l2jbr.gameserver.model.database.CharacterRecipeBook;
+import com.l2jbr.gameserver.model.database.CharacterRecommends;
 import com.l2jbr.gameserver.model.database.repository.CharacterHennasRepository;
 import com.l2jbr.gameserver.model.database.repository.CharacterRecipebookRepository;
+import com.l2jbr.gameserver.model.database.repository.CharacterRecommendsRepository;
 import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.model.entity.*;
 import com.l2jbr.gameserver.model.quest.Quest;
@@ -95,9 +97,7 @@ public final class L2PcInstance extends L2PlayableInstance {
     private static final String UPDATE_CHAR_SUBCLASS = "UPDATE character_subclasses SET exp=?,sp=?,level=?,class_id=? WHERE char_obj_id=? AND class_index =?";
     private static final String DELETE_CHAR_SUBCLASS = "DELETE FROM character_subclasses WHERE char_obj_id=? AND class_index=?";
     private static final String DELETE_CHAR_SHORTCUTS = "DELETE FROM character_shortcuts WHERE char_obj_id=? AND class_index=?";
-    private static final String RESTORE_CHAR_RECOMS = "SELECT char_id,target_id FROM character_recommends WHERE char_id=?";
-    private static final String ADD_CHAR_RECOM = "INSERT INTO character_recommends (char_id,target_id) VALUES (?,?)";
-    private static final String DELETE_CHAR_RECOMS = "DELETE FROM character_recommends WHERE char_id=?";
+
 
     public static final int REQUEST_TIMEOUT = 15;
     public static final int STORE_PRIVATE_NONE = 0;
@@ -2245,29 +2245,11 @@ public final class L2PcInstance extends L2PlayableInstance {
         }
     }
 
-    /**
-     * Give recom.
-     *
-     * @param target the target
-     */
     public void giveRecom(L2PcInstance target) {
         if (Config.ALT_RECOMMEND) {
-            java.sql.Connection con = null;
-            try {
-                con = L2DatabaseFactory.getInstance().getConnection();
-                PreparedStatement statement = con.prepareStatement(ADD_CHAR_RECOM);
-                statement.setInt(1, getObjectId());
-                statement.setInt(2, target.getObjectId());
-                statement.execute();
-                statement.close();
-            } catch (Exception e) {
-                _log.warn("could not update char recommendations:" + e);
-            } finally {
-                try {
-                    con.close();
-                } catch (Exception e) {
-                }
-            }
+            CharacterRecommends recommend = new CharacterRecommends(getObjectId(), target.getObjectId());
+            CharacterRecommendsRepository repository = DatabaseAccess.getRepository(CharacterRecommendsRepository.class);
+            repository.save(recommend);
         }
         target.incRecomHave();
         decRecomLeft();
@@ -7175,30 +7157,15 @@ public final class L2PcInstance extends L2PlayableInstance {
     }
 
     /**
-     * Retrieve from the database all Recommendation data of this L2PcInstance, add to _recomChars and calculate stats of the L2PcInstance.
+     * Retrieve from the database all Recommendation data of this L2PcInstance,
+     * add to _recomChars and calculate stats of the L2PcInstance.
      */
     private void restoreRecom() {
         java.sql.Connection con = null;
-
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement(RESTORE_CHAR_RECOMS);
-            statement.setInt(1, getObjectId());
-            ResultSet rset = statement.executeQuery();
-            while (rset.next()) {
-                _recomChars.add(rset.getInt("target_id"));
-            }
-
-            rset.close();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("could not restore recommendations: " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        CharacterRecommendsRepository repository = DatabaseAccess.getRepository(CharacterRecommendsRepository.class);
+        repository.findAllByCharacter(getObjectId()).forEach(recommend -> {
+            _recomChars.add(recommend.getTargetId());
+        });
     }
 
     /**
@@ -9739,28 +9706,11 @@ public final class L2PcInstance extends L2PlayableInstance {
         restartRecom();
     }
 
-    /**
-     * Restart recom.
-     */
+
     public void restartRecom() {
         if (Config.ALT_RECOMMEND) {
-            java.sql.Connection con = null;
-            try {
-                con = L2DatabaseFactory.getInstance().getConnection();
-                PreparedStatement statement = con.prepareStatement(DELETE_CHAR_RECOMS);
-                statement.setInt(1, getObjectId());
-                statement.execute();
-                statement.close();
-
-                _recomChars.clear();
-            } catch (Exception e) {
-                _log.warn("could not clear char recommendations: " + e);
-            } finally {
-                try {
-                    con.close();
-                } catch (Exception e) {
-                }
-            }
+            CharacterRecommendsRepository repository = DatabaseAccess.getRepository(CharacterRecommendsRepository.class);
+            repository.deleteById(getObjectId());
         }
 
         if (getStat().getLevel() < 20) {
