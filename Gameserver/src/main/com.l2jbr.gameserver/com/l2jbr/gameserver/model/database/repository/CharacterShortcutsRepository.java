@@ -10,7 +10,7 @@ public interface CharacterShortcutsRepository extends CrudRepository<CharacterSh
 
     @Modifying
     @Query("DELETE FROM character_shortcuts WHERE char_obj_id=:char AND class_index=:classIndex")
-    int deleteByClassIndex(@Param("char") int characterObjectId, @Param("classIndex") int classIndex);
+    int deleteAllByClassIndex(@Param("char") int characterObjectId, @Param("classIndex") int classIndex);
 
     @Modifying
     @Query("REPLACE INTO character_shortcuts (char_obj_id,slot,page,type,shortcut_id,level,class_index) " +

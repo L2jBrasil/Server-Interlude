@@ -13,7 +13,7 @@ public interface CharacterHennasRepository extends CrudRepository<CharacterHenna
 
     @Modifying
     @Query("DELETE FROM character_hennas WHERE char_obj_id=:objectId AND class_index=:classIndex")
-    int deleteByClassIndex(@Param("objectId") int objectId, @Param("classIndex") int classIndex);
+    int deleteAllByClassIndex(@Param("objectId") int objectId, @Param("classIndex") int classIndex);
 
     @Modifying
     @Query("DELETE FROM character_hennas WHERE char_obj_id=:objectId AND slot=:slot AND class_index=:classIndex")

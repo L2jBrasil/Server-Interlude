@@ -3,10 +3,12 @@ package com.l2jbr.gameserver.model.database;
 import com.l2jbr.commons.database.annotation.Column;
 import com.l2jbr.commons.database.annotation.Table;
 import com.l2jbr.commons.database.model.Entity;
+import org.springframework.data.annotation.Id;
 
 @Table("character_skills")
 public class CharacterSkills extends Entity<Integer> {
 
+    @Id
     @Column("char_obj_id")
     private int charObjId;
     @Column("skill_id")

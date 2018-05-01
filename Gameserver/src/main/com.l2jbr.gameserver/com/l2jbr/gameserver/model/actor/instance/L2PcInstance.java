@@ -64,8 +64,8 @@ import com.l2jbr.gameserver.templates.*;
 import com.l2jbr.gameserver.util.Broadcast;
 import com.l2jbr.gameserver.util.FloodProtector;
 import com.l2jbr.gameserver.util.Point3D;
-import org.python.bouncycastle.asn1.dvcs.Data;
 
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.*;
@@ -81,9 +81,6 @@ import java.util.concurrent.locks.ReentrantLock;
  * @version $Revision: 1.66.2.41.2.33 $ $Date: 2005/04/11 10:06:09 $
  */
 public final class L2PcInstance extends L2PlayableInstance {
-    private static final String ADD_SKILL_SAVE = "INSERT INTO character_skills_save (char_obj_id,skill_id,skill_level,effect_count,effect_cur_time,reuse_delay,restore_type,class_index,buff_index) VALUES (?,?,?,?,?,?,?,?,?)";
-    private static final String RESTORE_SKILL_SAVE = "SELECT skill_id,skill_level,effect_count,effect_cur_time, reuse_delay FROM character_skills_save WHERE char_obj_id=? AND class_index=? AND restore_type=? ORDER BY buff_index ASC";
-    private static final String DELETE_SKILL_SAVE = "DELETE FROM character_skills_save WHERE char_obj_id=? AND class_index=?";
     private static final String RESTORE_CHAR_SUBCLASSES = "SELECT class_id,exp,sp,level,class_index FROM character_subclasses WHERE char_obj_id=? ORDER BY class_index ASC";
     private static final String ADD_CHAR_SUBCLASS = "INSERT INTO character_subclasses (char_obj_id,class_id,exp,sp,level,class_index) VALUES (?,?,?,?,?,?)";
     private static final String UPDATE_CHAR_SUBCLASS = "UPDATE character_subclasses SET exp=?,sp=?,level=?,class_id=? WHERE char_obj_id=? AND class_index =?";
@@ -6743,77 +6740,40 @@ public final class L2PcInstance extends L2PlayableInstance {
             return;
         }
 
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
+        CharacterSkillsSaveRepository repository = DatabaseAccess.getRepository(CharacterSkillsSaveRepository.class);
+        repository.deleteAllByClassIndex(getObjectId(), getClassIndex());
 
-            // Delete all current stored effects for char to avoid dupe
-            statement = con.prepareStatement(DELETE_SKILL_SAVE);
-            statement.setInt(1, getObjectId());
-            statement.setInt(2, getClassIndex());
-            statement.execute();
-            statement.close();
+        int buff_index = 0;
 
-            int buff_index = 0;
-
-            // Store all effect data along with calulated remaining
-            // reuse delays for matching skills. 'restore_type'= 0.
-            for (L2Effect effect : getAllEffects()) {
-                if ((effect != null) && effect.getInUse() && !effect.getSkill().isToggle()) {
-                    int skillId = effect.getSkill().getId();
-                    buff_index++;
-
-                    statement = con.prepareStatement(ADD_SKILL_SAVE);
-                    statement.setInt(1, getObjectId());
-                    statement.setInt(2, skillId);
-                    statement.setInt(3, effect.getSkill().getLevel());
-                    statement.setInt(4, effect.getCount());
-                    statement.setInt(5, effect.getTime());
-
-                    if (ReuseTimeStamps.containsKey(skillId)) {
-                        TimeStamp t = ReuseTimeStamps.remove(skillId);
-                        statement.setLong(6, t.hasNotPassed() ? t.getReuse() : 0);
-                    } else {
-                        statement.setLong(6, 0);
-                    }
-
-                    statement.setInt(7, 0);
-                    statement.setInt(8, getClassIndex());
-                    statement.setInt(9, buff_index);
-                    statement.execute();
-                    statement.close();
+        // Store all effect data along with calulated remaining
+        // reuse delays for matching skills. 'restore_type'= 0.
+        for (L2Effect effect : getAllEffects()) {
+            if ((effect != null) && effect.getInUse() && !effect.getSkill().isToggle()) {
+                int skillId = effect.getSkill().getId();
+                buff_index++;
+                long reuseDelay = 0;
+                if (ReuseTimeStamps.containsKey(skillId)) {
+                    TimeStamp t = ReuseTimeStamps.remove(skillId);
+                    reuseDelay = t.hasNotPassed() ? t.getReuse() : 0;
                 }
-            }
 
-            // Store the reuse delays of remaining skills which
-            // lost effect but still under reuse delay. 'restore_type' 1.
-            for (TimeStamp t : ReuseTimeStamps.values()) {
-                if (t.hasNotPassed()) {
-                    buff_index++;
-                    statement = con.prepareStatement(ADD_SKILL_SAVE);
-                    statement.setInt(1, getObjectId());
-                    statement.setInt(2, t.getSkill());
-                    statement.setInt(3, -1);
-                    statement.setInt(4, -1);
-                    statement.setInt(5, -1);
-                    statement.setLong(6, t.getReuse());
-                    statement.setInt(7, 1);
-                    statement.setInt(8, getClassIndex());
-                    statement.setInt(9, buff_index);
-                    statement.execute();
-                    statement.close();
-                }
-            }
-            ReuseTimeStamps.clear();
-        } catch (Exception e) {
-            _log.warn("Could not store char effect data: " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
+                CharacterSkillsSave skillsSave = new CharacterSkillsSave(getObjectId(), skillId, effect.getSkill().getLevel(),
+                    effect.getCount(), effect.getTime(), reuseDelay, 0, getClassIndex(), buff_index );
+                repository.save(skillsSave);
             }
         }
+
+        // Store the reuse delays of remaining skills which
+        // lost effect but still under reuse delay. 'restore_type' 1.
+        for (TimeStamp t : ReuseTimeStamps.values()) {
+            if (t.hasNotPassed()) {
+                buff_index++;
+                CharacterSkillsSave skillsSave = new CharacterSkillsSave(getObjectId(), t.getSkill(), -1, -1, -1,
+                    t.getReuse(), 1, getClassIndex(), buff_index );
+                repository.save(skillsSave);
+            }
+        }
+        ReuseTimeStamps.clear();
     }
 
     /**
@@ -6947,101 +6907,65 @@ public final class L2PcInstance extends L2PlayableInstance {
         });
     }
 
-    /**
-     * Retrieve from the database all skill effects of this L2PcInstance and add them to the player.
-     */
     public void restoreEffects() {
-        L2Object[] targets = new L2Character[]
-                {
-                        this
-                };
-        java.sql.Connection con = null;
+        L2Object[] targets = new L2Character[] { this };
 
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
-            ResultSet rset;
+        /**
+         * Restore Type 0 These skill were still in effect on the character upon logout.
+         * Some of which were self casted and might still have had a long reuse delay which also is restored.
+         */
+        CharacterSkillsSaveRepository repository = DatabaseAccess.getRepository(CharacterSkillsSaveRepository.class);
+        repository.findAllByClassIndexAndRestoreType(getObjectId(), getClassIndex(), 0).forEach( skillSave -> {
+            int skillId = skillSave.getSkillId();
+            int skillLvl = skillSave.getSkillLevel();
+            int effectCount = skillSave.getEffectCount();
+            int effectCurTime = skillSave.getEffectCurTime();
+            long reuseDelay = skillSave.getReuseDelay();
 
-            /**
-             * Restore Type 0 These skill were still in effect on the character upon logout. Some of which were self casted and might still have had a long reuse delay which also is restored.
-             */
-            statement = con.prepareStatement(RESTORE_SKILL_SAVE);
-            statement.setInt(1, getObjectId());
-            statement.setInt(2, getClassIndex());
-            statement.setInt(3, 0);
-            rset = statement.executeQuery();
-
-            while (rset.next()) {
-                int skillId = rset.getInt("skill_id");
-                int skillLvl = rset.getInt("skill_level");
-                int effectCount = rset.getInt("effect_count");
-                int effectCurTime = rset.getInt("effect_cur_time");
-                long reuseDelay = rset.getLong("reuse_delay");
-
-                // Just incase the admin minipulated this table incorrectly :x
-                if ((skillId == -1) || (effectCount == -1) || (effectCurTime == -1) || (reuseDelay < 0)) {
-                    continue;
-                }
-
-                L2Skill skill = SkillTable.getInstance().getInfo(skillId, skillLvl);
-                ISkillHandler IHand = SkillHandler.getInstance().getSkillHandler(skill.getSkillType());
-                if (IHand != null) {
-                    IHand.useSkill(this, skill, targets);
-                } else {
-                    skill.useSkill(this, targets);
-                }
-
-                if (reuseDelay > 10) {
-                    disableSkill(skillId, reuseDelay);
-                    addTimeStamp(new TimeStamp(skillId, reuseDelay));
-                }
-
-                for (L2Effect effect : getAllEffects()) {
-                    if (effect.getSkill().getId() == skillId) {
-                        effect.setCount(effectCount);
-                        effect.setFirstTime(effectCurTime);
-                    }
-                }
+            // Just in case the admin minipulated this table incorrectly :x
+            if ((skillId == -1) || (effectCount == -1) || (effectCurTime == -1) || (reuseDelay < 0)) {
+                return;
             }
-            rset.close();
-            statement.close();
 
-            /**
-             * Restore Type 1 The remaning skills lost effect upon logout but were still under a high reuse delay.
-             */
-            statement = con.prepareStatement(RESTORE_SKILL_SAVE);
-            statement.setInt(1, getObjectId());
-            statement.setInt(2, getClassIndex());
-            statement.setInt(3, 1);
-            rset = statement.executeQuery();
-
-            while (rset.next()) {
-                int skillId = rset.getInt("skill_id");
-                long reuseDelay = rset.getLong("reuse_delay");
-
-                if (reuseDelay <= 0) {
-                    continue;
+            L2Skill skill = SkillTable.getInstance().getInfo(skillId, skillLvl);
+            ISkillHandler IHand = SkillHandler.getInstance().getSkillHandler(skill.getSkillType());
+            if (IHand != null) {
+                try {
+                    IHand.useSkill(this, skill, targets);
+                } catch (IOException e) {
+                    _log.error(e.getLocalizedMessage(), e);
                 }
+            } else {
+                skill.useSkill(this, targets);
+            }
 
+            if (reuseDelay > 10) {
                 disableSkill(skillId, reuseDelay);
                 addTimeStamp(new TimeStamp(skillId, reuseDelay));
             }
-            rset.close();
-            statement.close();
 
-            statement = con.prepareStatement(DELETE_SKILL_SAVE);
-            statement.setInt(1, getObjectId());
-            statement.setInt(2, getClassIndex());
-            statement.executeUpdate();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("Could not restore active effect data: " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
+            for (L2Effect effect : getAllEffects()) {
+                if (effect.getSkill().getId() == skillId) {
+                    effect.setCount(effectCount);
+                    effect.setFirstTime(effectCurTime);
+                }
             }
-        }
+        });
+
+        repository.findAllByClassIndexAndRestoreType(getObjectId(), getClassIndex(), 0).forEach( skillSave -> {
+            int skillId = skillSave.getSkillId();
+            long reuseDelay = skillSave.getReuseDelay();
+
+            if (reuseDelay <= 0) {
+                return;
+            }
+
+            disableSkill(skillId, reuseDelay);
+            addTimeStamp(new TimeStamp(skillId, reuseDelay));
+        });
+
+
+        repository.deleteAllByClassIndex(getObjectId(), getClassIndex());
 
         updateEffectIcons();
     }
@@ -9202,18 +9126,14 @@ public final class L2PcInstance extends L2PlayableInstance {
             PreparedStatement statement;
 
             CharacterHennasRepository hennasRepository = DatabaseAccess.getRepository(CharacterHennasRepository.class);
-            hennasRepository.deleteByClassIndex(getObjectId(), classIndex);
+            hennasRepository.deleteAllByClassIndex(getObjectId(), classIndex);
 
             CharacterShortcutsRepository shortcutsRepository = DatabaseAccess.getRepository(CharacterShortcutsRepository.class);
-            shortcutsRepository.deleteByClassIndex(getObjectId(), classIndex);
+            shortcutsRepository.deleteAllByClassIndex(getObjectId(), classIndex);
 
 
-            // Remove all effects info stored for this sub-class.
-            statement = con.prepareStatement(DELETE_SKILL_SAVE);
-            statement.setInt(1, getObjectId());
-            statement.setInt(2, classIndex);
-            statement.execute();
-            statement.close();
+            CharacterSkillsSaveRepository skillsSaveRepository = DatabaseAccess.getRepository(CharacterSkillsSaveRepository.class);
+            skillsSaveRepository.deleteAllByClassIndex(getObjectId(), getClassIndex());
 
             CharacterSkillsRepository skillsRepository = DatabaseAccess.getRepository(CharacterSkillsRepository.class);
             skillsRepository.deleteAllByClassIndex(getObjectId(), classIndex);
