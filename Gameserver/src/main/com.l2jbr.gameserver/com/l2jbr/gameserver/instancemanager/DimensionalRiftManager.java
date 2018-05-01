@@ -19,6 +19,7 @@
 package com.l2jbr.gameserver.instancemanager;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.datatables.NpcTable;
@@ -27,6 +28,7 @@ import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Spawn;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.DimensionalRiftRepository;
 import com.l2jbr.gameserver.model.entity.DimensionalRift;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
@@ -77,47 +79,18 @@ public class DimensionalRiftManager {
     }
 
     private void loadRooms() {
-        Connection con = null;
+        DimensionalRiftRepository repository = DatabaseAccess.getRepository(DimensionalRiftRepository.class);
+        repository.findAll().forEach(dimensionalRift -> {
+            // 0 waiting room, 1 recruit, 2 soldier, 3 officer, 4 captain , 5 commander, 6 hero
+            byte type = dimensionalRift.getType();
+            byte room_id = dimensionalRift.getRoomId();
 
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement s = con.prepareStatement("SELECT * FROM dimensional_rift");
-            ResultSet rs = s.executeQuery();
-
-            while (rs.next()) {
-                // 0 waiting room, 1 recruit, 2 soldier, 3 officer, 4 captain , 5 commander, 6 hero
-                byte type = rs.getByte("type");
-                byte room_id = rs.getByte("room_id");
-
-                // coords related
-                int xMin = rs.getInt("xMin");
-                int xMax = rs.getInt("xMax");
-                int yMin = rs.getInt("yMin");
-                int yMax = rs.getInt("yMax");
-                int z1 = rs.getInt("zMin");
-                int z2 = rs.getInt("zMax");
-                int xT = rs.getInt("xT");
-                int yT = rs.getInt("yT");
-                int zT = rs.getInt("zT");
-                boolean isBossRoom = rs.getByte("boss") > 0;
-
-                if (!_rooms.containsKey(type)) {
-                    _rooms.put(type, new LinkedHashMap<Byte, DimensionalRiftRoom>());
-                }
-
-                _rooms.get(type).put(room_id, new DimensionalRiftRoom(type, room_id, xMin, xMax, yMin, yMax, z1, z2, xT, yT, zT, isBossRoom));
+            if (!_rooms.containsKey(type)) {
+                _rooms.put(type, new LinkedHashMap<>());
             }
+            _rooms.get(type).put(room_id, new DimensionalRiftRoom(dimensionalRift));
 
-            s.close();
-            con.close();
-        } catch (Exception e) {
-            _log.warn("Can't load Dimension Rift zones. " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) { /* do nothing */
-            }
-        }
+        });
 
         int typeSize = _rooms.keySet().size();
         int roomSize = 0;
@@ -348,37 +321,32 @@ public class DimensionalRiftManager {
         private final List<L2Spawn> _roomSpawns;
         protected final List<L2NpcInstance> _roomMobs;
 
-        public DimensionalRiftRoom(byte type, byte room, int xMin, int xMax, int yMin, int yMax, int zMin, int zMax, int xT, int yT, int zT, boolean isBossRoom) {
-            _type = type;
-            _room = room;
-            _xMin = (xMin + 128);
-            _xMax = (xMax - 128);
-            _yMin = (yMin + 128);
-            _yMax = (yMax - 128);
-            _zMin = zMin;
-            _zMax = zMax;
-            _teleportCoords = new int[]
-                    {
-                            xT,
-                            yT,
-                            zT
-                    };
-            _isBossRoom = isBossRoom;
+        public DimensionalRiftRoom(com.l2jbr.gameserver.model.database.DimensionalRift dimensionalRift) {
+
+            _type = dimensionalRift.getType();
+            _room = dimensionalRift.getRoomId();
+            _xMin = (dimensionalRift.getxMin() + 128);
+            _xMax = (dimensionalRift.getxMax() - 128);
+            _yMin = (dimensionalRift.getyMin() + 128);
+            _yMax = (dimensionalRift.getyMax() - 128);
+            _zMin = dimensionalRift.getzMin();
+            _zMax = dimensionalRift.getzMax();
+            _teleportCoords = new int[] { dimensionalRift.getxT(), dimensionalRift.getyT(), dimensionalRift.getzT() };
+            _isBossRoom = dimensionalRift.getBoss() > 0;
             _roomSpawns = new LinkedList<>();
             _roomMobs = new LinkedList<>();
-            _s = new Polygon(new int[]
-                    {
-                            xMin,
-                            xMax,
-                            xMax,
-                            xMin
-                    }, new int[]
-                    {
-                            yMin,
-                            yMin,
-                            yMax,
-                            yMax
-                    }, 4);
+            _s = new Polygon(new int[] {
+                 dimensionalRift.getxMin(),
+                 dimensionalRift.getxMax(),
+                 dimensionalRift.getxMax(),
+                 dimensionalRift.getxMin()
+            }, new int[] {
+                dimensionalRift.getyMin(),
+                dimensionalRift.getyMin(),
+                dimensionalRift.getyMax(),
+                dimensionalRift.getyMax()
+            }, 4);
+
         }
 
         public int getRandomX() {
