@@ -30,6 +30,8 @@ import com.l2jbr.gameserver.instancemanager.ClanHallManager;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.actor.instance.L2DoorInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.ClanHallFunctions;
+import com.l2jbr.gameserver.model.database.repository.ClanHallFunctionRepository;
 import com.l2jbr.gameserver.model.database.repository.ClanHallRepository;
 import com.l2jbr.gameserver.model.zone.type.L2ClanHallZone;
 import com.l2jbr.gameserver.network.SystemMessageId;
@@ -177,36 +179,12 @@ public class ClanHall {
         }
 
         public void dbSave(boolean newFunction) {
-            java.sql.Connection con = null;
-            try {
-                PreparedStatement statement;
-
-                con = L2DatabaseFactory.getInstance().getConnection();
-                if (newFunction) {
-                    statement = con.prepareStatement("INSERT INTO clanhall_functions (hall_id, type, lvl, lease, rate, endTime) VALUES (?,?,?,?,?,?)");
-                    statement.setInt(1, getId());
-                    statement.setInt(2, getType());
-                    statement.setInt(3, getLvl());
-                    statement.setInt(4, getLease());
-                    statement.setLong(5, getRate());
-                    statement.setLong(6, getEndTime());
-                } else {
-                    statement = con.prepareStatement("UPDATE clanhall_functions SET lvl=?, lease=?, endTime=? WHERE hall_id=? AND type=?");
-                    statement.setInt(1, getLvl());
-                    statement.setInt(2, getLease());
-                    statement.setLong(3, getEndTime());
-                    statement.setInt(4, getId());
-                    statement.setInt(5, getType());
-                }
-                statement.execute();
-                statement.close();
-            } catch (Exception e) {
-                _log.error( "Exception: ClanHall.updateFunctions(int type, int lvl, int lease, long rate, long time, boolean addNew): " + e.getMessage(), e);
-            } finally {
-                try {
-                    con.close();
-                } catch (Exception e) {
-                }
+            ClanHallFunctionRepository repository = DatabaseAccess.getRepository(ClanHallFunctionRepository.class);
+            if (newFunction) {
+                ClanHallFunctions function = new ClanHallFunctions(getId(), getType(), getLvl(), getLease(), getRate(), getEndTime());
+                repository.save(function);
+            } else {
+                repository.updateByType(getId(), getType(), getLvl(), getLease(), getEndTime());
             }
         }
     }
@@ -492,56 +470,20 @@ public class ClanHall {
         _zone.banishForeigners(getOwnerId());
     }
 
-    /**
-     * Load All Functions
-     */
     private void loadFunctions() {
-        java.sql.Connection con = null;
-        try {
-            PreparedStatement statement;
-            ResultSet rs;
-            con = L2DatabaseFactory.getInstance().getConnection();
-            statement = con.prepareStatement("Select * from clanhall_functions where hall_id = ?");
-            statement.setInt(1, getId());
-            rs = statement.executeQuery();
-            while (rs.next()) {
-                _functions.put(rs.getInt("type"), new ClanHallFunction(rs.getInt("type"), rs.getInt("lvl"), rs.getInt("lease"), 0, rs.getLong("rate"), rs.getLong("endTime")));
-            }
-            statement.close();
-        } catch (Exception e) {
-            _log.error( "Exception: ClanHall.loadFunctions(): " + e.getMessage(), e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        ClanHallFunctionRepository repository = DatabaseAccess.getRepository(ClanHallFunctionRepository.class);
+        repository.findAllByHall(getId()).forEach( function -> {
+            ClanHallFunction clanHallFunction = new ClanHallFunction(function.getType(), function.getLvl(), function.getLease(),
+                0, function.getRate(), function.getEndTime());
+            _functions.put(function.getType(), clanHallFunction);
+        });
     }
 
-    /**
-     * Remove function In List and in DB
-     *
-     * @param functionType
-     */
+
     public void removeFunction(int functionType) {
         _functions.remove(functionType);
-        java.sql.Connection con = null;
-        try {
-            PreparedStatement statement;
-            con = L2DatabaseFactory.getInstance().getConnection();
-            statement = con.prepareStatement("DELETE FROM clanhall_functions WHERE hall_id=? AND type=?");
-            statement.setInt(1, getId());
-            statement.setInt(2, functionType);
-            statement.execute();
-            statement.close();
-        } catch (Exception e) {
-            _log.error( "Exception: ClanHall.removeFunctions(int functionType): " + e.getMessage(), e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        ClanHallFunctionRepository repository = DatabaseAccess.getRepository(ClanHallFunctionRepository.class);
+        repository.deleteByType(getId(), functionType);
     }
 
     /**
