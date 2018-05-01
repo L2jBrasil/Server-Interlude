@@ -193,9 +193,8 @@ public class SQLAccountManager {
                 ResultSet rcln = null;
                 try {
 
-                    statement = con.prepareStatement("DELETE FROM character_skills WHERE char_obj_id=?;");
-                    statement.setInt(1, character.getObjectId());
-                    statement.executeUpdate();
+                    CharacterSkillsRepository skillsRepository = DatabaseAccess.getRepository(CharacterSkillsRepository.class);
+                    skillsRepository.deleteById(character.getObjectId());
 
                     CharacterShortcutsRepository shortcutsRepository = DatabaseAccess.getRepository(CharacterShortcutsRepository.class);
                     shortcutsRepository.deleteById(character.getObjectId());

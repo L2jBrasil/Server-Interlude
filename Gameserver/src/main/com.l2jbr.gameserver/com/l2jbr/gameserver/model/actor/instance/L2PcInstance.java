@@ -23,6 +23,8 @@ import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.*;
+import com.l2jbr.gameserver.SevenSigns;
+import com.l2jbr.gameserver.SevenSignsFestival;
 import com.l2jbr.gameserver.ai.CtrlIntention;
 import com.l2jbr.gameserver.ai.L2CharacterAI;
 import com.l2jbr.gameserver.ai.L2PlayerAI;
@@ -47,10 +49,8 @@ import com.l2jbr.gameserver.model.actor.knownlist.PcKnownList;
 import com.l2jbr.gameserver.model.actor.stat.PcStat;
 import com.l2jbr.gameserver.model.actor.status.PcStatus;
 import com.l2jbr.gameserver.model.base.*;
+import com.l2jbr.gameserver.model.database.*;
 import com.l2jbr.gameserver.model.database.Character;
-import com.l2jbr.gameserver.model.database.CharacterHennas;
-import com.l2jbr.gameserver.model.database.CharacterRecipeBook;
-import com.l2jbr.gameserver.model.database.CharacterRecommends;
 import com.l2jbr.gameserver.model.database.repository.*;
 import com.l2jbr.gameserver.model.entity.*;
 import com.l2jbr.gameserver.model.quest.Quest;
@@ -81,11 +81,6 @@ import java.util.concurrent.locks.ReentrantLock;
  * @version $Revision: 1.66.2.41.2.33 $ $Date: 2005/04/11 10:06:09 $
  */
 public final class L2PcInstance extends L2PlayableInstance {
-    private static final String RESTORE_SKILLS_FOR_CHAR = "SELECT skill_id,skill_level FROM character_skills WHERE char_obj_id=? AND class_index=?";
-    private static final String ADD_NEW_SKILL = "INSERT INTO character_skills (char_obj_id,skill_id,skill_level,skill_name,class_index) VALUES (?,?,?,?,?)";
-    private static final String UPDATE_CHARACTER_SKILL_LEVEL = "UPDATE character_skills SET skill_level=? WHERE skill_id=? AND char_obj_id=? AND class_index=?";
-    private static final String DELETE_SKILL_FROM_CHAR = "DELETE FROM character_skills WHERE skill_id=? AND char_obj_id=? AND class_index=?";
-    private static final String DELETE_CHAR_SKILLS = "DELETE FROM character_skills WHERE char_obj_id=? AND class_index=?";
     private static final String ADD_SKILL_SAVE = "INSERT INTO character_skills_save (char_obj_id,skill_id,skill_level,effect_count,effect_cur_time,reuse_delay,restore_type,class_index,buff_index) VALUES (?,?,?,?,?,?,?,?,?)";
     private static final String RESTORE_SKILL_SAVE = "SELECT skill_id,skill_level,effect_count,effect_cur_time, reuse_delay FROM character_skills_save WHERE char_obj_id=? AND class_index=? AND restore_type=? ORDER BY buff_index ASC";
     private static final String DELETE_SKILL_SAVE = "DELETE FROM character_skills_save WHERE char_obj_id=? AND class_index=?";
@@ -6890,31 +6885,11 @@ public final class L2PcInstance extends L2PlayableInstance {
      */
     @Override
     public L2Skill removeSkill(L2Skill skill) {
-        // Remove a skill from the L2Character and its Func objects from calculator set of the L2Character
         L2Skill oldSkill = super.removeSkill(skill);
 
-        java.sql.Connection con = null;
-
-        try {
-            // Remove or update a L2PcInstance skill from the character_skills table of the database
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
-
-            if (oldSkill != null) {
-                statement = con.prepareStatement(DELETE_SKILL_FROM_CHAR);
-                statement.setInt(1, oldSkill.getId());
-                statement.setInt(2, getObjectId());
-                statement.setInt(3, getClassIndex());
-                statement.execute();
-                statement.close();
-            }
-        } catch (Exception e) {
-            _log.warn("Error could not delete skill: " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
+        if (oldSkill != null) {
+            CharacterSkillsRepository repository = DatabaseAccess.getRepository(CharacterSkillsRepository.class);
+            repository.deleteSkillByClassIndex(getObjectId(), oldSkill.getId(), getClassIndex());
         }
 
         L2ShortCut[] allShortCuts = getAllShortCuts();
@@ -6924,7 +6899,6 @@ public final class L2PcInstance extends L2PlayableInstance {
                 deleteShortCut(sc.getSlot(), sc.getPage());
             }
         }
-
         return oldSkill;
     }
 
@@ -6943,82 +6917,34 @@ public final class L2PcInstance extends L2PlayableInstance {
             classIndex = newClassIndex;
         }
 
-        java.sql.Connection con = null;
-
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
-
-            if ((oldSkill != null) && (newSkill != null)) {
-                statement = con.prepareStatement(UPDATE_CHARACTER_SKILL_LEVEL);
-                statement.setInt(1, newSkill.getLevel());
-                statement.setInt(2, oldSkill.getId());
-                statement.setInt(3, getObjectId());
-                statement.setInt(4, classIndex);
-                statement.execute();
-                statement.close();
-            } else if (newSkill != null) {
-                statement = con.prepareStatement(ADD_NEW_SKILL);
-                statement.setInt(1, getObjectId());
-                statement.setInt(2, newSkill.getId());
-                statement.setInt(3, newSkill.getLevel());
-                statement.setString(4, newSkill.getName());
-                statement.setInt(5, classIndex);
-                statement.execute();
-                statement.close();
-            } else {
-                _log.warn("could not store new skill. its NULL");
-            }
-        } catch (Exception e) {
-            _log.warn("Error could not store char skills: " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
+        if ((oldSkill != null) && (newSkill != null)) {
+            CharacterSkillsRepository repository = DatabaseAccess.getRepository(CharacterSkillsRepository.class);
+            repository.updateSkillLevelByClassIndex(getObjectId(), oldSkill.getId(), newSkill.getLevel(), classIndex);
+        } else if (newSkill != null) {
+            CharacterSkills characterSkill = new CharacterSkills(getObjectId(), newSkill.getId(), newSkill.getLevel(),
+                newSkill.getName(), classIndex);
+            CharacterSkillsRepository repository = DatabaseAccess.getRepository(CharacterSkillsRepository.class);
+            repository.save(characterSkill);
+        } else {
+            _log.warn("could not store new skill. its NULL");
         }
     }
 
-    /**
-     * Retrieve from the database all skills of this L2PcInstance and add them to _skills.
-     */
     private void restoreSkills() {
-        java.sql.Connection con = null;
+        CharacterSkillsRepository repository = DatabaseAccess.getRepository(CharacterSkillsRepository.class);
+        repository.findAllByClassIndex(getObjectId(), getClassIndex()).forEach(characterSkill -> {
+            int id = characterSkill.getSkillId();
+            int level = characterSkill.getSkillLevel();
 
-        try {
-            // Retrieve all skills of this L2PcInstance from the database
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement(RESTORE_SKILLS_FOR_CHAR);
-            statement.setInt(1, getObjectId());
-            statement.setInt(2, getClassIndex());
-            ResultSet rset = statement.executeQuery();
-
-            // Go though the recordset of this SQL query
-            while (rset.next()) {
-                int id = rset.getInt("skill_id");
-                int level = rset.getInt("skill_level");
-
-                if (id > 9000) {
-                    continue; // fake skills for base stats
-                }
-
-                // Create a L2Skill object for each record
-                L2Skill skill = SkillTable.getInstance().getInfo(id, level);
-
-                // Add the L2Skill object to the L2Character _skills and its Func objects to the calculator set of the L2Character
-                super.addSkill(skill);
+            if (id > 9000) {
+                return; // fake skills for base stats
             }
 
-            rset.close();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("Could not restore character skills: " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+            L2Skill skill = SkillTable.getInstance().getInfo(id, level);
+
+            // Add the L2Skill object to the L2Character _skills and its Func objects to the calculator set of the L2Character
+            super.addSkill(skill);
+        });
     }
 
     /**
@@ -9289,12 +9215,8 @@ public final class L2PcInstance extends L2PlayableInstance {
             statement.execute();
             statement.close();
 
-            // Remove all skill info stored for this sub-class.
-            statement = con.prepareStatement(DELETE_CHAR_SKILLS);
-            statement.setInt(1, getObjectId());
-            statement.setInt(2, classIndex);
-            statement.execute();
-            statement.close();
+            CharacterSkillsRepository skillsRepository = DatabaseAccess.getRepository(CharacterSkillsRepository.class);
+            skillsRepository.deleteAllByClassIndex(getObjectId(), classIndex);
 
             // Remove all basic info stored about this sub-class.
             statement = con.prepareStatement(DELETE_CHAR_SUBCLASS);
