@@ -1,15 +1,53 @@
 package com.l2jbr.gameserver.model.database;
 
+import com.l2jbr.commons.database.annotation.Column;
+import com.l2jbr.commons.database.annotation.Table;
+import org.springframework.data.annotation.Id;
 
-
+@Table("fishing_skill_trees")
 public class FishingSkillTrees  {
 
-    private int skill_id;
+    @Id
+    @Column("skill_id")
+    private int skillId;
     private int level;
     private String name;
     private int sp;
-    private int min_level;
-    private int costid;
+    @Column("min_level")
+    private int minLevel;
+    private int costId;
     private int cost;
-    private int isfordwarf;
+    private int isForDwarf;
+
+    public int getSkillId() {
+        return skillId;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getSp() {
+        return sp;
+    }
+
+    public int getMinLevel() {
+        return minLevel;
+    }
+
+    public int getCostId() {
+        return costId;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public int getIsForDwarf() {
+        return isForDwarf;
+    }
 }

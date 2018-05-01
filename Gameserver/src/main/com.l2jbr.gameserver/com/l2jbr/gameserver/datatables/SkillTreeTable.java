@@ -30,6 +30,7 @@ import com.l2jbr.gameserver.model.database.CharTemplate;
 import com.l2jbr.gameserver.model.database.EnchantSkillTrees;
 import com.l2jbr.gameserver.model.database.repository.CharTemplateRepository;
 import com.l2jbr.gameserver.model.database.repository.EnchantSkillTreesRepository;
+import com.l2jbr.gameserver.model.database.repository.FishingSkillTreeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -168,44 +169,32 @@ public class SkillTreeTable {
         _log.info("SkillTreeTable: Loaded " + count + " skills.");
 
         // Skill tree for fishing skill (from Fisherman)
-        int count2 = 0;
-        int count3 = 0;
-        try(Connection con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("SELECT skill_id, level, name, sp, min_level, costid, cost, isfordwarf FROM fishing_skill_trees ORDER BY skill_id, level");
-            ResultSet skilltree2 = statement.executeQuery();) {
-            _fishingSkillTrees = new LinkedList<>();
-            _expandDwarfCraftSkillTrees = new LinkedList<>();
 
-            int prevSkillId = -1;
+        _fishingSkillTrees = new LinkedList<>();
+        _expandDwarfCraftSkillTrees = new LinkedList<>();
+        FishingSkillTreeRepository fishingSkillTreeRepository = DatabaseAccess.getRepository(FishingSkillTreeRepository.class);
+        fishingSkillTreeRepository.findAllOrderBySkillAndLevel().forEach(fishingSkillTree -> {
+            int id = fishingSkillTree.getSkillId();
+            int lvl = fishingSkillTree.getLevel();
+            String name = fishingSkillTree.getName();
+            int minLvl = fishingSkillTree.getMinLevel();
+            int cost = fishingSkillTree.getSp();
+            int costId = fishingSkillTree.getCostId();
+            int costCount = fishingSkillTree.getCost();
+            int isDwarven = fishingSkillTree.getIsForDwarf();
 
-            while (skilltree2.next()) {
-                int id = skilltree2.getInt("skill_id");
-                int lvl = skilltree2.getInt("level");
-                String name = skilltree2.getString("name");
-                int minLvl = skilltree2.getInt("min_level");
-                int cost = skilltree2.getInt("sp");
-                int costId = skilltree2.getInt("costid");
-                int costCount = skilltree2.getInt("cost");
-                int isDwarven = skilltree2.getInt("isfordwarf");
+            L2SkillLearn skill = new L2SkillLearn(id, lvl, minLvl, name, cost, costId, costCount);
 
-                if (prevSkillId != id) {
-                    prevSkillId = id;
-                }
-
-                L2SkillLearn skill = new L2SkillLearn(id, lvl, minLvl, name, cost, costId, costCount);
-
-                if (isDwarven == 0) {
-                    _fishingSkillTrees.add(skill);
-                } else {
-                    _expandDwarfCraftSkillTrees.add(skill);
-                }
+            if (isDwarven == 0) {
+                _fishingSkillTrees.add(skill);
+            } else {
+                _expandDwarfCraftSkillTrees.add(skill);
             }
+        });
 
-            count2 = _fishingSkillTrees.size();
-            count3 = _expandDwarfCraftSkillTrees.size();
-        } catch (Exception e) {
-            _log.error("Error while creating fishing skill table: " + e);
-        }
+
+        int count2 = _fishingSkillTrees.size();
+        int count3 = _expandDwarfCraftSkillTrees.size();
 
         _enchantSkillTrees = new LinkedList<>();
 
