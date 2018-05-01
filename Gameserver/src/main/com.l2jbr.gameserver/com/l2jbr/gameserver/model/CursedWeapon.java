@@ -25,7 +25,9 @@ import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.instancemanager.CursedWeaponsManager;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.CursedWeapons;
 import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
+import com.l2jbr.gameserver.model.database.repository.CursedWeaponRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.templates.L2Item;
@@ -429,37 +431,14 @@ public class CursedWeapon
 		CursedWeaponsManager.announce(sm);
 	}
 	
-	public void saveData()
-	{
-		if (Config.DEBUG)
-		{
-			System.out.println("CursedWeapon: Saving data to disk.");
-		}
-		
-		try (Connection con = L2DatabaseFactory.getInstance().getConnection();
-			PreparedStatement ps1 = con.prepareStatement("DELETE FROM cursed_weapons WHERE itemId = ?");)
-		{
-			ps1.setInt(1, _itemId);
-			ps1.executeUpdate();
-			
-			if (_isActivated)
-			{
-				try (PreparedStatement ps2 = con.prepareStatement("INSERT INTO cursed_weapons (itemId, playerId, playerKarma, playerPkKills, nbKills, endTime) VALUES (?, ?, ?, ?, ?, ?)"))
-				{
-					ps2.setInt(1, _itemId);
-					ps2.setInt(2, _playerId);
-					ps2.setInt(3, _playerKarma);
-					ps2.setInt(4, _playerPkKills);
-					ps2.setInt(5, _nbKills);
-					ps2.setLong(6, _endTime);
-					ps2.executeUpdate();
-				}
-			}
-		}
-		catch (SQLException e)
-		{
-			_log.error("CursedWeapon: Failed to save data: " + e);
-		}
+	public void saveData() {
+        CursedWeaponRepository repository = DatabaseAccess.getRepository(CursedWeaponRepository.class);
+        repository.deleteById(_itemId);
+
+        if (_isActivated) {
+            CursedWeapons weapon = new CursedWeapons(_itemId, _playerId, _playerKarma, _playerPkKills, _nbKills, _endTime);
+            repository.save(weapon);
+        }
 	}
 	
 	public void dropIt(L2Character killer)

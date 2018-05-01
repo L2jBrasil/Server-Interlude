@@ -26,6 +26,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2RiftInvaderInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2SiegeGuardInstance;
 import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
+import com.l2jbr.gameserver.model.database.repository.CursedWeaponRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import org.slf4j.Logger;
@@ -163,57 +164,20 @@ public class CursedWeaponsManager {
         }
     }
 
-    private final void restore() {
-        if (Config.DEBUG) {
-            System.out.print("  Restoring ... ");
-        }
-        Connection con = null;
-        try {
-            // Retrieve the L2PcInstance from the characters table of the database
-            con = L2DatabaseFactory.getInstance().getConnection();
-
-            PreparedStatement statement = con.prepareStatement("SELECT itemId, playerId, playerKarma, playerPkKills, nbKills, endTime FROM cursed_weapons");
-            ResultSet rset = statement.executeQuery();
-
-            if (rset.next()) {
-                int itemId = rset.getInt("itemId");
-                int playerId = rset.getInt("playerId");
-                int playerKarma = rset.getInt("playerKarma");
-                int playerPkKills = rset.getInt("playerPkKills");
-                int nbKills = rset.getInt("nbKills");
-                long endTime = rset.getLong("endTime");
-
-                CursedWeapon cw = _cursedWeapons.get(itemId);
-                cw.setPlayerId(playerId);
-                cw.setPlayerKarma(playerKarma);
-                cw.setPlayerPkKills(playerPkKills);
-                cw.setNbKills(nbKills);
-                cw.setEndTime(endTime);
-                cw.reActivate();
-            }
-
-            rset.close();
-            statement.close();
-
-            if (Config.DEBUG) {
-                System.out.println("OK");
-            }
-        } catch (Exception e) {
-            _log.warn("Could not restore CursedWeapons data: " + e);
-
-            if (Config.DEBUG) {
-                System.out.println("ERROR");
-            }
-            return;
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+    private void restore() {
+        CursedWeaponRepository repository = DatabaseAccess.getRepository(CursedWeaponRepository.class);
+        repository.findAll().forEach(cursedWeapon -> {
+            CursedWeapon cw = _cursedWeapons.get(cursedWeapon.getId());
+            cw.setPlayerId(cursedWeapon.getPlayerId());
+            cw.setPlayerKarma(cursedWeapon.getPlayerKarma());
+            cw.setPlayerPkKills(cursedWeapon.getPlayerPkKills());
+            cw.setNbKills(cursedWeapon.getNbKills());
+            cw.setEndTime(cursedWeapon.getEndTime());
+            cw.reActivate();
+        });
     }
 
-    private final void controlPlayers() {
+    private void controlPlayers() {
         if (Config.DEBUG) {
             System.out.print("  Checking players ... ");
         }
@@ -390,25 +354,8 @@ public class CursedWeaponsManager {
     }
 
     public static void removeFromDb(int itemId) {
-        Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-
-            // Delete datas
-            PreparedStatement statement = con.prepareStatement("DELETE FROM cursed_weapons WHERE itemId = ?");
-            statement.setInt(1, itemId);
-            statement.executeUpdate();
-
-            statement.close();
-            con.close();
-        } catch (SQLException e) {
-            _log.error("CursedWeaponsManager: Failed to remove data: " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        CursedWeaponRepository repository = DatabaseAccess.getRepository(CursedWeaponRepository.class);
+        repository.deleteById(itemId);
     }
 
     public void saveData() {
