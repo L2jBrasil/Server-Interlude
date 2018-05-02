@@ -18,14 +18,14 @@
  */
 package com.l2jbr.gameserver.datatables;
 
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
+import com.l2jbr.gameserver.model.database.HelperBuffList;
+import com.l2jbr.gameserver.model.database.repository.HelperBuffRepository;
 import com.l2jbr.gameserver.templates.L2HelperBuff;
 import com.l2jbr.gameserver.templates.StatsSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -78,78 +78,45 @@ public class HelperBuffTable {
 
     }
 
-    /**
-     * Read and Load the Newbie Helper Buff list from SQL Table helper_buff_list
-     */
     private void restoreHelperBuffData() {
-        java.sql.Connection con = null;
-        try {
-            try {
-                con = L2DatabaseFactory.getInstance().getConnection();
-                PreparedStatement statement = con.prepareStatement("SELECT * FROM helper_buff_list");
-                ResultSet helperbuffdata = statement.executeQuery();
-
-                fillHelperBuffTable(helperbuffdata);
-                helperbuffdata.close();
-                statement.close();
-            } catch (Exception e) {
-                _log.error("Table helper_buff_list not found : Update your DataPack" + e);
-                e.printStackTrace();
-            }
-
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        HelperBuffRepository repository = DatabaseAccess.getRepository(HelperBuffRepository.class);
+        repository.findAll().forEach(helperBuffList -> {
+            fillHelperBuffTable(helperBuffList);
+        });
     }
 
-    /**
-     * Load the Newbie Helper Buff list from SQL Table helper_buff_list
-     *
-     * @param HelperBuffData
-     * @throws Exception
-     */
-    private void fillHelperBuffTable(ResultSet HelperBuffData) throws Exception {
+    private void fillHelperBuffTable(HelperBuffList helperBuffList) {
+        StatsSet helperBuffDat = new StatsSet();
+        int id = helperBuffList.getId();
 
-        while (HelperBuffData.next()) {
-            StatsSet helperBuffDat = new StatsSet();
-            int id = HelperBuffData.getInt("id");
+        helperBuffDat.set("id", id);
+        helperBuffDat.set("skillID", helperBuffList.getSkillId());
+        helperBuffDat.set("skillLevel", helperBuffList.getSkillLevel());
+        helperBuffDat.set("lowerLevel", helperBuffList.getLowerLevel());
+        helperBuffDat.set("upperLevel", helperBuffList.getUpperLevel());
+        helperBuffDat.set("isMagicClass", helperBuffList.getIsMagicClass());
 
-            helperBuffDat.set("id", id);
-            helperBuffDat.set("skillID", HelperBuffData.getInt("skill_id"));
-            helperBuffDat.set("skillLevel", HelperBuffData.getInt("skill_level"));
-            helperBuffDat.set("lowerLevel", HelperBuffData.getInt("lower_level"));
-            helperBuffDat.set("upperLevel", HelperBuffData.getInt("upper_level"));
-            helperBuffDat.set("isMagicClass", HelperBuffData.getString("is_magic_class"));
-
-            // Calulate the range level in wich player must be to obtain buff from Newbie Helper
-            if ("false".equals(HelperBuffData.getString("is_magic_class"))) {
-                if (HelperBuffData.getInt("lower_level") < _physicClassLowestLevel) {
-                    _physicClassLowestLevel = HelperBuffData.getInt("lower_level");
-                }
-
-                if (HelperBuffData.getInt("upper_level") > _physicClassHighestLevel) {
-                    _physicClassHighestLevel = HelperBuffData.getInt("upper_level");
-                }
-            } else {
-                if (HelperBuffData.getInt("lower_level") < _magicClassLowestLevel) {
-                    _magicClassLowestLevel = HelperBuffData.getInt("lower_level");
-                }
-
-                if (HelperBuffData.getInt("upper_level") > _magicClassHighestLevel) {
-                    _magicClassHighestLevel = HelperBuffData.getInt("upper_level");
-                }
+        // Calulate the range level in wich player must be to obtain buff from Newbie Helper
+        if ("false".equals(helperBuffList.getIsMagicClass())) {
+            if (helperBuffList.getLowerLevel() < _physicClassLowestLevel) {
+                _physicClassLowestLevel = helperBuffList.getLowerLevel();
             }
 
-            // Add this Helper Buff to the Helper Buff List
-            L2HelperBuff template = new L2HelperBuff(helperBuffDat);
-            _helperBuff.add(template);
+            if (helperBuffList.getUpperLevel() > _physicClassHighestLevel) {
+                _physicClassHighestLevel = helperBuffList.getUpperLevel();
+            }
+        } else {
+            if (helperBuffList.getLowerLevel() < _magicClassLowestLevel) {
+                _magicClassLowestLevel = helperBuffList.getLowerLevel();
+            }
+
+            if (helperBuffList.getUpperLevel() > _magicClassHighestLevel) {
+                _magicClassHighestLevel = helperBuffList.getUpperLevel();
+            }
         }
 
-        _log.info("Helper Buff Table: Loaded " + _helperBuff.size() + " Templates.");
-
+        L2HelperBuff template = new L2HelperBuff(helperBuffDat);
+        _helperBuff.add(template);
     }
 
     public boolean isInitialized() {
