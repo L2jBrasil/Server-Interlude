@@ -19,7 +19,6 @@ package com.l2jbr.gameserver.instancemanager;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.L2FestivalMonsterInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
@@ -27,6 +26,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2RiftInvaderInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2SiegeGuardInstance;
 import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.model.database.repository.CursedWeaponRepository;
+import com.l2jbr.gameserver.model.database.repository.ItemRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import org.slf4j.Logger;
@@ -37,10 +37,6 @@ import org.w3c.dom.Node;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -178,84 +174,34 @@ public class CursedWeaponsManager {
     }
 
     private void controlPlayers() {
-        if (Config.DEBUG) {
-            System.out.print("  Checking players ... ");
-        }
+        CharacterRepository characterRepository = DatabaseAccess.getRepository(CharacterRepository.class);
+        ItemRepository itemRepository = DatabaseAccess.getRepository(ItemRepository.class);
+        // TODO: See comments below...
+        // This entire for loop should NOT be necessary, since it is already handled by
+        // CursedWeapon.endOfLife(). However, if we indeed *need* to duplicate it for safety,
+        // then we'd better make sure that it FULLY cleans up inactive cursed weapons!
+        // Undesired effects result otherwise, such as player with no zariche but with karma
+        // or a lost-child entry in the cursedweapons table, without a corresponding one in items...
+        for (CursedWeapon cw : _cursedWeapons.values()) {
+            if (cw.isActivated()) {
+                continue;
+            }
 
-        Connection con = null;
-        try {
-            // Retrieve the L2PcInstance from the characters table of the database
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = null;
-            ResultSet rset = null;
+            // Do an item check to be sure that the cursed weapon isn't hold by someone
+            int itemId = cw.getItemId();
+            itemRepository.findOwnerIdByItem(itemId).ifPresent(owner -> {
+                _log.warn("PROBLEM : Player {} owns the cursed weapon {} but he shouldn't.", owner, itemId);
 
-
-            CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
-            // TODO: See comments below...
-            // This entire for loop should NOT be necessary, since it is already handled by
-            // CursedWeapon.endOfLife(). However, if we indeed *need* to duplicate it for safety,
-            // then we'd better make sure that it FULLY cleans up inactive cursed weapons!
-            // Undesired effects result otherwise, such as player with no zariche but with karma
-            // or a lost-child entry in the cursedweapons table, without a corresponding one in items...
-            for (CursedWeapon cw : _cursedWeapons.values()) {
-                if (cw.isActivated()) {
-                    continue;
+                if(itemRepository.deleteByOwnerAndItem(owner, itemId) == 0) {
+                    _log.warn("Error while deleting cursed weapon {} from userId {}", itemId, owner);
                 }
 
-                // Do an item check to be sure that the cursed weapon isn't hold by someone
-                int itemId = cw.getItemId();
-                try {
-                    statement = con.prepareStatement("SELECT owner_id FROM items WHERE item_id=?");
-                    statement.setInt(1, itemId);
-                    rset = statement.executeQuery();
-
-                    if (rset.next()) {
-                        // A player has the cursed weapon in his inventory ...
-                        int playerId = rset.getInt("owner_id");
-                        _log.info("PROBLEM : Player " + playerId + " owns the cursed weapon " + itemId + " but he shouldn't.");
-
-                        // Delete the item
-                        statement = con.prepareStatement("DELETE FROM items WHERE owner_id=? AND item_id=?");
-                        statement.setInt(1, playerId);
-                        statement.setInt(2, itemId);
-                        if (statement.executeUpdate() != 1) {
-                            _log.warn("Error while deleting cursed weapon " + itemId + " from userId " + playerId);
-                        }
-                        statement.close();
-
-                        if(repository.updatePKAndKarma(playerId, cw.getPlayerPkKills(), cw.getPlayerKarma()) < 1){
-                            _log.warn("Error while updating karma & pkkills for userId {}", cw.getPlayerId());
-                        }
-
-                        // clean up the cursedweapons table.
-                        removeFromDb(itemId);
-                    }
-                    rset.close();
-                    statement.close();
-                } catch (SQLException sqlE) {
+                if(characterRepository.updatePKAndKarma(owner, cw.getPlayerPkKills(), cw.getPlayerKarma()) < 1){
+                    _log.warn("Error while updating karma & pkkills for userId {}", cw.getPlayerId());
                 }
-                // close the statement to avoid multiply prepared statement errors in following iterations.
-                try {
-                    con.close();
-                } catch (Exception e) {
-                }
-            }
-        } catch (Exception e) {
-            _log.warn("Could not check CursedWeapons data: " + e);
 
-            if (Config.DEBUG) {
-                System.out.println("ERROR");
-            }
-            return;
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
-
-        if (Config.DEBUG) {
-            System.out.println("DONE");
+                removeFromDb(itemId);
+            });
         }
     }
 

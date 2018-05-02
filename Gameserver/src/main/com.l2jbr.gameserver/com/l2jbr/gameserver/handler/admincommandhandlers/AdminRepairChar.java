@@ -20,19 +20,16 @@ package com.l2jbr.gameserver.handler.admincommandhandlers;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.handler.IAdminCommandHandler;
 import com.l2jbr.gameserver.model.GMAudit;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.database.Character;
 import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.model.database.repository.CharacterShortcutsRepository;
+import com.l2jbr.gameserver.model.database.repository.ItemRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.Optional;
 
 
@@ -92,25 +89,13 @@ public class AdminRepairChar implements IAdminCommandHandler
 
         optionalCharacter.ifPresent(character -> {
             character.updateLocation(-84318, 244579, -3730);
-            PreparedStatement statement = null;
 
             CharacterShortcutsRepository shortcutsRepository = DatabaseAccess.getRepository(CharacterShortcutsRepository.class);
             shortcutsRepository.deleteById(character.getObjectId());
 
-            try(Connection connection = L2DatabaseFactory.getInstance().getConnection();){
-                statement = connection.prepareStatement("UPDATE items SET loc=\"INVENTORY\" WHERE owner_id=?");
-                statement.setInt(1, character.getId());
-                statement.execute();
-                statement.close();
+            ItemRepository itemRepository = DatabaseAccess.getRepository(ItemRepository.class);
+            itemRepository.updateLocationByOwner(character.getId(), "INVENTORY");
 
-            } catch (SQLException e) {
-                _log.warn( "could not repair char:", e);
-            } finally {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                }
-            }
             characterRepository.save(character);
         });
 

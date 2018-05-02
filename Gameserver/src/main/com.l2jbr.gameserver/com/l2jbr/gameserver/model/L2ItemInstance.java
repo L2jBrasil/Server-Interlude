@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.ai.CtrlIntention;
 import com.l2jbr.gameserver.datatables.ItemTable;
@@ -28,7 +27,9 @@ import com.l2jbr.gameserver.instancemanager.ItemsOnGroundManager;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.knownlist.NullKnownList;
 import com.l2jbr.gameserver.model.database.Augmentation;
+import com.l2jbr.gameserver.model.database.Items;
 import com.l2jbr.gameserver.model.database.repository.AugmentationsRepository;
+import com.l2jbr.gameserver.model.database.repository.ItemRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
@@ -41,8 +42,6 @@ import com.l2jbr.gameserver.templates.L2Item;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.Optional;
 import java.util.concurrent.ScheduledFuture;
 
@@ -55,7 +54,7 @@ public final class L2ItemInstance extends L2Object
 {
 	private static final Logger _log = LoggerFactory.getLogger(L2ItemInstance.class.getName());
 	private static final Logger _logItems = LoggerFactory.getLogger("item");
-	
+
 	/** Enumeration of locations for item */
 	public static enum ItemLocation
 	{
@@ -977,111 +976,66 @@ public final class L2ItemInstance extends L2Object
 			insertIntoDb();
 		}
 	}
-	
-	/**
-	 * Returns a L2ItemInstance stored in database from its objectID
-	 * @param objectId : int designating the objectID of the item
-	 * @return L2ItemInstance
-	 */
-	public static L2ItemInstance restoreFromDb(int objectId)
-	{
-		L2ItemInstance inst = null;
-		java.sql.Connection con = null;
-		try
-		{
-			con = L2DatabaseFactory.getInstance().getConnection();
-			PreparedStatement statement = con.prepareStatement("SELECT owner_id, object_id, item_id, count, enchant_level, loc, loc_data, price_sell, price_buy, custom_type1, custom_type2, mana_left FROM items WHERE object_id = ?");
-			statement.setInt(1, objectId);
-			ResultSet rs = statement.executeQuery();
-			if (rs.next())
-			{
-				int owner_id = rs.getInt("owner_id");
-				int item_id = rs.getInt("item_id");
-				int count = rs.getInt("count");
-				ItemLocation loc = ItemLocation.valueOf(rs.getString("loc"));
-				int loc_data = rs.getInt("loc_data");
-				int enchant_level = rs.getInt("enchant_level");
-				int custom_type1 = rs.getInt("custom_type1");
-				int custom_type2 = rs.getInt("custom_type2");
-				int price_sell = rs.getInt("price_sell");
-				int price_buy = rs.getInt("price_buy");
-				int manaLeft = rs.getInt("mana_left");
-				L2Item item = ItemTable.getInstance().getTemplate(item_id);
-				if (item == null)
-				{
-					_log.error("Item item_id=" + item_id + " not known, object_id=" + objectId);
-					rs.close();
-					statement.close();
-					return null;
-				}
-				inst = new L2ItemInstance(objectId, item);
-				inst._existsInDb = true;
-				inst._storedInDb = true;
-				inst._ownerId = owner_id;
-				inst._count = count;
-				inst._enchantLevel = enchant_level;
-				inst._type1 = custom_type1;
-				inst._type2 = custom_type2;
-				inst._loc = loc;
-				inst._locData = loc_data;
-				inst._priceSell = price_sell;
-				inst._priceBuy = price_buy;
-				
-				// Setup life time for shadow weapons
-				inst._mana = manaLeft;
-				
-				// consume 1 mana
-				if ((inst._mana > 0) && (inst.getLocation() == ItemLocation.PAPERDOLL))
-				{
-					inst.decreaseMana(false);
-				}
-				
-				// if mana left is 0 delete this item
-				if (inst._mana == 0)
-				{
-					inst.removeFromDb();
-					rs.close();
-					statement.close();
-					return null;
-				}
-				else if ((inst._mana > 0) && (inst.getLocation() == ItemLocation.PAPERDOLL))
-				{
-					inst.scheduleConsumeManaTask();
-				}
-			}
-			else
-			{
-				_log.error("Item object_id=" + objectId + " not found");
-				rs.close();
-				statement.close();
-				return null;
-			}
-			rs.close();
-			statement.close();
 
-			AugmentationsRepository repository = DatabaseAccess.getRepository(AugmentationsRepository.class);
-			Optional<Augmentation> optionalAugmentation =  repository.findById(objectId);
-			if(optionalAugmentation.isPresent()) {
-                Augmentation augmentation = optionalAugmentation.get();
-			    inst._augmentation = new L2Augmentation(inst, augmentation.getAttributes(), augmentation.getSkill(), augmentation.getLevel(), false );
-            }
-			
-		}
-		catch (Exception e)
-		{
-			_log.error( "Could not restore item " + objectId + " from DB:", e);
-		}
-		finally
-		{
-			try
-			{
-				con.close();
-			}
-			catch (Exception e)
-			{
-			}
-		}
-		return inst;
+	public static L2ItemInstance restoreFromDb(Items items) {
+        int owner_id = items.getOwnerId();
+        int item_id = items.getItemId();
+        int objectId = items.getId();
+        int count = items.getCount();
+        ItemLocation loc = ItemLocation.valueOf(items.getLoc());
+        int loc_data = items.getLocData();
+        int enchant_level = items.getEnchantLevel();
+        int custom_type1 = items.getCustomType1();
+        int custom_type2 = items.getCustomType2();
+        int price_sell = items.getPriceSell();
+        int price_buy = items.getPriceBuy();
+        int manaLeft = items.getManaLeft();
+
+        L2Item item = ItemTable.getInstance().getTemplate(item_id);
+        if (item == null) {
+            _log.error("Item item_id={} not known, object_id={}", item_id, objectId);
+            return null;
+        }
+
+        L2ItemInstance inst = new L2ItemInstance(objectId, item);
+        inst._existsInDb = true;
+        inst._storedInDb = true;
+        inst._ownerId = owner_id;
+        inst._count = count;
+        inst._enchantLevel = enchant_level;
+        inst._type1 = custom_type1;
+        inst._type2 = custom_type2;
+        inst._loc = loc;
+        inst._locData = loc_data;
+        inst._priceSell = price_sell;
+        inst._priceBuy = price_buy;
+
+        // Setup life time for shadow weapons
+        inst._mana = manaLeft;
+
+        // consume 1 mana
+        if ((inst._mana > 0) && (inst.getLocation() == ItemLocation.PAPERDOLL))
+        {
+            inst.decreaseMana(false);
+        }
+
+        // if mana left is 0 delete this item
+        if (inst._mana == 0) {
+            inst.removeFromDb();
+            return null;
+        }
+        else if ((inst._mana > 0) && (inst.getLocation() == ItemLocation.PAPERDOLL)) {
+            inst.scheduleConsumeManaTask();
+        }
+
+        AugmentationsRepository repository = DatabaseAccess.getRepository(AugmentationsRepository.class);
+        Optional<Augmentation> optionalAugmentation =  repository.findById(objectId);
+        if(optionalAugmentation.isPresent()) {
+            Augmentation augmentation = optionalAugmentation.get();
+            inst._augmentation = new L2Augmentation(inst, augmentation.getAttributes(), augmentation.getSkill(), augmentation.getLevel(), false );
+        }
+
+        return inst;
 	}
 	
 	/**
@@ -1152,41 +1106,13 @@ public final class L2ItemInstance extends L2Object
 			return;
 		}
 		
-		java.sql.Connection con = null;
-		try
-		{
-			con = L2DatabaseFactory.getInstance().getConnection();
-			PreparedStatement statement = con.prepareStatement("UPDATE items SET owner_id=?,count=?,loc=?,loc_data=?,enchant_level=?,price_sell=?,price_buy=?,custom_type1=?,custom_type2=?,mana_left=? " + "WHERE object_id = ?");
-			statement.setInt(1, _ownerId);
-			statement.setInt(2, getCount());
-			statement.setString(3, _loc.name());
-			statement.setInt(4, _locData);
-			statement.setInt(5, getEnchantLevel());
-			statement.setInt(6, _priceSell);
-			statement.setInt(7, _priceBuy);
-			statement.setInt(8, getCustomType1());
-			statement.setInt(9, getCustomType2());
-			statement.setInt(10, getMana());
-			statement.setInt(11, getObjectId());
-			statement.executeUpdate();
-			_existsInDb = true;
-			_storedInDb = true;
-			statement.close();
-		}
-		catch (Exception e)
-		{
-			_log.error( "Could not update item " + getObjectId() + " in DB: Reason: " + "Duplicate itemId");
-		}
-		finally
-		{
-			try
-			{
-				con.close();
-			}
-			catch (Exception e)
-			{
-			}
-		}
+        ItemRepository repository = DatabaseAccess.getRepository(ItemRepository.class);
+        repository.updateById(getObjectId(), _ownerId, getCount(), _loc.name(), _locData, getEnchantLevel(), _priceSell,
+                _priceBuy, getCustomType1(), getCustomType2(), getMana());
+
+        _existsInDb = true;
+        _storedInDb = true;
+
 	}
 	
 	/**
@@ -1202,43 +1128,14 @@ public final class L2ItemInstance extends L2Object
 		{
 			assert !_existsInDb && (getObjectId() != 0);
 		}
-		java.sql.Connection con = null;
-		try
-		{
-			con = L2DatabaseFactory.getInstance().getConnection();
-			PreparedStatement statement = con.prepareStatement("INSERT INTO items (owner_id,item_id,count,loc,loc_data,enchant_level,price_sell,price_buy,object_id,custom_type1,custom_type2,mana_left) " + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
-			statement.setInt(1, _ownerId);
-			statement.setInt(2, _itemId);
-			statement.setInt(3, getCount());
-			statement.setString(4, _loc.name());
-			statement.setInt(5, _locData);
-			statement.setInt(6, getEnchantLevel());
-			statement.setInt(7, _priceSell);
-			statement.setInt(8, _priceBuy);
-			statement.setInt(9, getObjectId());
-			statement.setInt(10, _type1);
-			statement.setInt(11, _type2);
-			statement.setInt(12, getMana());
-			
-			statement.executeUpdate();
-			_existsInDb = true;
-			_storedInDb = true;
-			statement.close();
-		}
-		catch (Exception e)
-		{
-			_log.error( "Could not insert item " + getObjectId() + " into DB: Reason: " + "Duplicate itemId");
-		}
-		finally
-		{
-			try
-			{
-				con.close();
-			}
-			catch (Exception e)
-			{
-			}
-		}
+
+        Items item = new Items(getObjectId(), _ownerId, _itemId, getCount(), _loc.name(), _locData, getEnchantLevel(),
+                _priceSell, _priceBuy, _type1, _type2, _mana);
+        ItemRepository repository = DatabaseAccess.getRepository(ItemRepository.class);
+        repository.save(item);
+        _existsInDb = true;
+        _storedInDb = true;
+
 	}
 	
 	/**
@@ -1256,36 +1153,14 @@ public final class L2ItemInstance extends L2Object
 		}
 		
 		// delete augmentation data
-		if (isAugmented())
-		{
+		if (isAugmented()) {
 			_augmentation.deleteAugmentationData();
 		}
-		
-		java.sql.Connection con = null;
-		try
-		{
-			con = L2DatabaseFactory.getInstance().getConnection();
-			PreparedStatement statement = con.prepareStatement("DELETE FROM items WHERE object_id=?");
-			statement.setInt(1, getObjectId());
-			statement.executeUpdate();
-			_existsInDb = false;
-			_storedInDb = false;
-			statement.close();
-		}
-		catch (Exception e)
-		{
-			_log.error( "Could not delete item " + getObjectId() + " in DB:", e);
-		}
-		finally
-		{
-			try
-			{
-				con.close();
-			}
-			catch (Exception e)
-			{
-			}
-		}
+
+        ItemRepository repository = DatabaseAccess.getRepository(ItemRepository.class);
+        repository.deleteById(getObjectId());
+        _existsInDb = false;
+        _storedInDb = false;
 	}
 	
 	/**

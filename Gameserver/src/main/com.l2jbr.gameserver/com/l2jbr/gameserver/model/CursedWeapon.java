@@ -19,7 +19,6 @@ package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.datatables.SkillTable;
@@ -28,6 +27,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.database.CursedWeapons;
 import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.model.database.repository.CursedWeaponRepository;
+import com.l2jbr.gameserver.model.database.repository.ItemRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.templates.L2Item;
@@ -35,9 +35,6 @@ import com.l2jbr.gameserver.util.Point3D;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.concurrent.ScheduledFuture;
 
 
@@ -125,23 +122,16 @@ public class CursedWeapon
 			}
 			else {
 				// Remove from Db
-				_log.info(_name + " being removed offline.");
-                CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
-                if(repository.updatePKAndKarma(_playerId, _playerPkKills, _playerKarma) < 1) {
+				_log.info("{} being removed offline.", _name);
+                CharacterRepository characterRepository = DatabaseAccess.getRepository(CharacterRepository.class);
+                if(characterRepository.updatePKAndKarma(_playerId, _playerPkKills, _playerKarma) < 1) {
                     _log.warn("Error while updating karma & pkkills for userId {}",  _playerId);
                 }
 
-				try(Connection con = L2DatabaseFactory.getInstance().getConnection();
-                    PreparedStatement statement = con.prepareStatement("DELETE FROM items WHERE owner_id=? AND item_id=?")) {
-					statement.setInt(1, _playerId);
-					statement.setInt(2, _itemId);
-					if (statement.executeUpdate() != 1) {
-						_log.warn("Error while deleting itemId " + _itemId + " from userId " + _playerId);
-					}
-				}
-				catch (Exception e) {
-					_log.warn("Could not delete : " + e);
-				}
+                ItemRepository itemRepository = DatabaseAccess.getRepository(ItemRepository.class);
+                if(itemRepository.deleteByOwnerAndItem(_playerId, _itemId) < 1) {
+                    _log.warn("Error while deleting itemId {} from userId {}", _itemId, _playerId);
+                }
 			}
 		}
 		else

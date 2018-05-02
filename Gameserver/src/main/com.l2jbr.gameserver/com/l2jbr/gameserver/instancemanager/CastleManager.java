@@ -18,7 +18,6 @@
 package com.l2jbr.gameserver.instancemanager;
 
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.SevenSigns;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.L2ClanMember;
@@ -26,9 +25,9 @@ import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.database.repository.CastleRepository;
+import com.l2jbr.gameserver.model.database.repository.ItemRepository;
 import com.l2jbr.gameserver.model.entity.Castle;
 
-import java.sql.PreparedStatement;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -239,24 +238,9 @@ public class CastleManager {
                     // continue removing offline
                 }
             }
-            // else offline-player circlet removal
-            java.sql.Connection con = null;
-            try {
-                con = L2DatabaseFactory.getInstance().getConnection();
-                PreparedStatement statement = con.prepareStatement("DELETE FROM items WHERE owner_id = ? and item_id = ?");
-                statement.setInt(1, member.getObjectId());
-                statement.setInt(2, circletId);
-                statement.execute();
-                statement.close();
-            } catch (Exception e) {
-                System.out.println("Failed to remove castle circlets offline for player " + member.getName());
-                e.printStackTrace();
-            } finally {
-                try {
-                    con.close();
-                } catch (Exception e) {
-                }
-            }
+
+            ItemRepository repository = DatabaseAccess.getRepository(ItemRepository.class);
+            repository.deleteByOwnerAndItem(member.getObjectId(), circletId);
         }
     }
 }

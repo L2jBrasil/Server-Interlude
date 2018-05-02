@@ -19,16 +19,15 @@
 package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.datatables.ArmorSetsTable;
 import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.L2ItemInstance.ItemLocation;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.ItemRepository;
 import com.l2jbr.gameserver.templates.*;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -1161,62 +1160,37 @@ public abstract class Inventory extends ItemContainer {
         return getItemByItemId(arrowsId);
     }
 
-    /**
-     * Get back items in inventory from database
-     */
     @Override
     public void restore() {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("SELECT object_id FROM items WHERE owner_id=? AND (loc=? OR loc=?) " + "ORDER BY object_id DESC");
-            statement.setInt(1, getOwner().getObjectId());
-            statement.setString(2, getBaseLocation().name());
-            statement.setString(3, getEquipLocation().name());
-            ResultSet inv = statement.executeQuery();
+        ItemRepository repository = DatabaseAccess.getRepository(ItemRepository.class);
+        repository.findAllByOwnerAndLocations(getOwner().getObjectId(), getBaseLocation().name(), getEquipLocation().name()).forEach(items -> {
+            L2ItemInstance item = L2ItemInstance.restoreFromDb(items);
+            if (item == null) {
+                return;
+            }
 
-            L2ItemInstance item;
-            while (inv.next()) {
-                int objectId = inv.getInt(1);
-                item = L2ItemInstance.restoreFromDb(objectId);
-                if (item == null) {
-                    continue;
-                }
+            if (getOwner() instanceof L2PcInstance) {
+                L2PcInstance player = (L2PcInstance) getOwner();
 
-                if (getOwner() instanceof L2PcInstance) {
-                    L2PcInstance player = (L2PcInstance) getOwner();
-
-                    if (!player.isGM()) {
-                        if (!player.isHero()) {
-                            int itemId = item.getItemId();
-                            if (((itemId >= 6611) && (itemId <= 6621)) || (itemId == 6842)) {
-                                item.setLocation(ItemLocation.INVENTORY);
-                            }
+                if (!player.isGM()) {
+                    if (!player.isHero()) {
+                        int itemId = item.getItemId();
+                        if (((itemId >= 6611) && (itemId <= 6621)) || (itemId == 6842)) {
+                            item.setLocation(ItemLocation.INVENTORY);
                         }
                     }
                 }
-
-                L2World.getInstance().storeObject(item);
-
-                // If stackable item is found in inventory just add to current quantity
-                if (item.isStackable() && (getItemByItemId(item.getItemId()) != null)) {
-                    addItem("Restore", item, null, getOwner());
-                } else {
-                    addItem(item);
-                }
             }
 
-            inv.close();
-            statement.close();
-            refreshWeight();
-        } catch (Exception e) {
-            _log.warn("Could not restore inventory : " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
+            L2World.getInstance().storeObject(item);
+
+            // If stackable item is found in inventory just add to current quantity
+            if (item.isStackable() && (getItemByItemId(item.getItemId()) != null)) {
+                addItem("Restore", item, null, getOwner());
+            } else {
+                addItem(item);
             }
-        }
+        });
     }
 
     /**

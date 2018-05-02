@@ -24,7 +24,6 @@
 package com.l2jbr.gameserver.model.entity;
 
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.util.Util;
 import com.l2jbr.gameserver.Olympiad;
 import com.l2jbr.gameserver.datatables.ClanTable;
@@ -35,6 +34,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.database.Heroes;
 import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.model.database.repository.HeroesRepository;
+import com.l2jbr.gameserver.model.database.repository.ItemRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.PledgeShowInfoUpdate;
@@ -45,9 +45,6 @@ import com.l2jbr.gameserver.templates.StatsSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -55,11 +52,9 @@ import java.util.Map;
 
 
 public class Hero {
-	private static Logger _log = LoggerFactory.getLogger(Hero.class.getName());
-	
-	private static Hero _instance;
 
-	private static final String DELETE_ITEMS = "DELETE FROM items WHERE item_id IN " + "(6842, 6611, 6612, 6613, 6614, 6615, 6616, 6617, 6618, 6619, 6620, 6621) " + "AND owner_id NOT IN (SELECT obj_id FROM characters WHERE accesslevel > 0)";
+	private static Logger _log = LoggerFactory.getLogger(Hero.class.getName());
+	private static Hero _instance;
 	
 	private static final List<Integer> _heroItems = new ArrayList<>();
 	
@@ -325,7 +320,6 @@ public class Hero {
         }
     }
 
-	
 	public void updateHeroes(boolean setDefault) {
         HeroesRepository heroesRepository = DatabaseAccess.getRepository(HeroesRepository.class);
         if (setDefault) {
@@ -359,31 +353,8 @@ public class Hero {
 		return _heroItems;
 	}
 	
-	private void deleteItemsInDb()
-	{
-		Connection con = null;
-		
-		try
-		{
-			con = L2DatabaseFactory.getInstance().getConnection();
-			PreparedStatement statement = con.prepareStatement(DELETE_ITEMS);
-			statement.execute();
-			statement.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			try
-			{
-				con.close();
-			}
-			catch (SQLException e)
-			{
-				e.printStackTrace();
-			}
-		}
+	private void deleteItemsInDb() {
+        ItemRepository repository = DatabaseAccess.getRepository(ItemRepository.class);
+        repository.deleteItemsFromBannedOwners(_heroItems);
 	}
 }

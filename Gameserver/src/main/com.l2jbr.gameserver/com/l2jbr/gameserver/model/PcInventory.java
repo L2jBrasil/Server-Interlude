@@ -17,14 +17,13 @@
  */
 package com.l2jbr.gameserver.model;
 
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.model.L2ItemInstance.ItemLocation;
 import com.l2jbr.gameserver.model.TradeList.TradeItem;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.ItemRepository;
 import com.l2jbr.gameserver.templates.L2EtcItemType;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -552,32 +551,14 @@ public class PcInventory extends Inventory {
 
     public static int[][] restoreVisibleInventory(int objectId) {
         int[][] paperdoll = new int[0x12][3];
-        java.sql.Connection con = null;
 
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement2 = con.prepareStatement("SELECT object_id,item_id,loc_data,enchant_level FROM items WHERE owner_id=? AND loc='PAPERDOLL'");
-            statement2.setInt(1, objectId);
-            ResultSet invdata = statement2.executeQuery();
-
-            while (invdata.next()) {
-                int slot = invdata.getInt("loc_data");
-                paperdoll[slot][0] = invdata.getInt("object_id");
-                paperdoll[slot][1] = invdata.getInt("item_id");
-                paperdoll[slot][2] = invdata.getInt("enchant_level");
-            }
-
-            invdata.close();
-            statement2.close();
-        } catch (Exception e) {
-            _log.warn( "could not restore inventory:", e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-                _log.warn("");
-            }
-        }
+        ItemRepository repository = DatabaseAccess.getRepository(ItemRepository.class);
+        repository.findAllByOwnerAndLocation(objectId, "PAPERDOLL").forEach(items -> {
+            int slot = items.getLocData();
+            paperdoll[slot][0] = items.getId();
+            paperdoll[slot][1] = items.getItemId();
+            paperdoll[slot][2] = items.getEnchantLevel();
+        });
         return paperdoll;
     }
 

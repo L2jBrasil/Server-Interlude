@@ -25,8 +25,6 @@ import com.l2jbr.commons.database.AccountRepository;
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.database.model.Account;
-import com.l2jbr.gameserver.model.database.CharacterQuests;
-import com.l2jbr.gameserver.model.database.ClanPrivs;
 import com.l2jbr.gameserver.model.database.repository.*;
 
 import java.io.IOException;
@@ -183,11 +181,8 @@ public class SQLAccountManager {
                     CharacterShortcutsRepository shortcutsRepository = DatabaseAccess.getRepository(CharacterShortcutsRepository.class);
                     shortcutsRepository.deleteById(character.getObjectId());
 
-                    // items
-                    statement.close();
-                    statement = con.prepareStatement("DELETE FROM items WHERE owner_id=?;");
-                    statement.setInt(1, character.getObjectId());
-                    statement.executeUpdate();
+                    ItemRepository itemRepository = DatabaseAccess.getRepository(ItemRepository.class);
+                    itemRepository.deleteByOwner(character.getObjectId());
 
                     CharacterRecipebookRepository recipebookRepository = DatabaseAccess.getRepository(CharacterRecipebookRepository.class);
                     recipebookRepository.deleteAllByCharacter(character.getObjectId());

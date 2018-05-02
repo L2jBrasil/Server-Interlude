@@ -20,21 +20,19 @@ package com.l2jbr.gameserver.instancemanager.games;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.Announcements;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.database.Games;
+import com.l2jbr.gameserver.model.database.Items;
 import com.l2jbr.gameserver.model.database.repository.GameRepository;
+import com.l2jbr.gameserver.model.database.repository.ItemRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Optional;
 
@@ -44,8 +42,6 @@ public class Lottery {
 	
 	private static Lottery _instance;
 	protected static final Logger _log = LoggerFactory.getLogger(Lottery.class.getName());
-
-	private static final String SELECT_LOTTERY_ITEM = "SELECT enchant_level, custom_type2 FROM items WHERE item_id = 4442 AND custom_type1 = ?";
 
 	protected int _number;
 	protected int _prize;
@@ -268,83 +264,50 @@ public class Lottery {
 			int count2 = 0;
 			int count3 = 0;
 			int count4 = 0;
-			
-			java.sql.Connection con = null;
-			PreparedStatement statement;
-			try
-			{
-				con = L2DatabaseFactory.getInstance().getConnection();
-				statement = con.prepareStatement(SELECT_LOTTERY_ITEM);
-				statement.setInt(1, getId());
-				ResultSet rset = statement.executeQuery();
-				
-				while (rset.next())
-				{
-					int curenchant = rset.getInt("enchant_level") & enchant;
-					int curtype2 = rset.getInt("custom_type2") & type2;
-					
-					if ((curenchant == 0) && (curtype2 == 0))
-					{
-						continue;
-					}
-					
-					int count = 0;
-					
-					for (int i = 1; i <= 16; i++)
-					{
-						int val = curenchant / 2;
-						
-						if (val != ((double) curenchant / 2))
-						{
-							count++;
-						}
-						
-						int val2 = curtype2 / 2;
-						
-						if (val2 != ((double) curtype2 / 2))
-						{
-							count++;
-						}
-						
-						curenchant = val;
-						curtype2 = val2;
-					}
-					
-					if (count == 5)
-					{
-						count1++;
-					}
-					else if (count == 4)
-					{
-						count2++;
-					}
-					else if (count == 3)
-					{
-						count3++;
-					}
-					else if (count > 0)
-					{
-						count4++;
-					}
-				}
-				rset.close();
-				statement.close();
-			}
-			catch (SQLException e)
-			{
-				_log.warn("Lottery: Could restore lottery data: " + e);
-			}
-			finally
-			{
-				try
-				{
-					con.close();
-				}
-				catch (Exception e)
-				{
-				}
-			}
-			
+
+
+            ItemRepository itemRepository = DatabaseAccess.getRepository(ItemRepository.class);
+            for (Items items : itemRepository.findByItemAndCustomType(4442, getId())) {
+                int curenchant = items.getEnchantLevel() & enchant;
+                int curtype2 = items.getCustomType2() & type2;
+
+                if ((curenchant == 0) && (curtype2 == 0))  {
+                    continue;
+                }
+
+                int count = 0;
+
+                for (int i = 1; i <= 16; i++) {
+                    int val = curenchant / 2;
+
+                    if (val != ((double) curenchant / 2))  {
+                        count++;
+                    }
+
+                    int val2 = curtype2 / 2;
+
+                    if (val2 != ((double) curtype2 / 2))  {
+                        count++;
+                    }
+
+                    curenchant = val;
+                    curtype2 = val2;
+                }
+
+                if (count == 5) {
+                    count1++;
+                }
+                else if (count == 4) {
+                    count2++;
+                }
+                else if (count == 3) {
+                    count3++;
+                }
+                else if (count > 0) {
+                    count4++;
+                }
+            }
+
 			int prize4 = count4 * Config.ALT_LOTTERY_2_AND_1_NUMBER_PRIZE;
 			int prize1 = 0;
 			int prize2 = 0;
@@ -398,8 +361,8 @@ public class Lottery {
 				Announcements.getInstance().announceToAll(sm);
 			}
 
-            GameRepository repository = DatabaseAccess.getRepository(GameRepository.class);
-            repository.updateByIdNr(1, getId(), getPrize(), newprize, enchant, type2, prize1, prize2, prize3);
+            GameRepository gameRepository = DatabaseAccess.getRepository(GameRepository.class);
+            gameRepository.updateByIdNr(1, getId(), getPrize(), newprize, enchant, type2, prize1, prize2, prize3);
 
 			ThreadPoolManager.getInstance().scheduleGeneral(new startLottery(), MINUTE);
 			_number++;

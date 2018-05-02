@@ -294,10 +294,8 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> {
             AugmentationsRepository augmentationsRepository = DatabaseAccess.getRepository(AugmentationsRepository.class);
             augmentationsRepository.deleteByItemOwner(objId);
 
-            statement = con.prepareStatement("DELETE FROM items WHERE owner_id=?");
-            statement.setInt(1, objId);
-            statement.execute();
-            statement.close();
+            ItemRepository itemRepository = DatabaseAccess.getRepository(ItemRepository.class);
+            itemRepository.deleteByOwner(objId);
 
             statement = con.prepareStatement("DELETE FROM merchant_lease WHERE player_id=?");
             statement.setInt(1, objId);
