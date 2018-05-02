@@ -23,7 +23,6 @@
 
 package com.l2jbr.gameserver.model.entity;
 
-import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.util.Util;
@@ -33,7 +32,9 @@ import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.Heroes;
 import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
+import com.l2jbr.gameserver.model.database.repository.HeroesRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.PledgeShowInfoUpdate;
@@ -46,7 +47,6 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -54,15 +54,11 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Hero
-{
+public class Hero {
 	private static Logger _log = LoggerFactory.getLogger(Hero.class.getName());
 	
 	private static Hero _instance;
-	private static final String GET_ALL_HEROES = "SELECT * FROM heroes";
-	private static final String UPDATE_ALL = "UPDATE heroes SET played = 0";
-	private static final String INSERT_HERO = "INSERT INTO heroes VALUES (?,?,?,?,?)";
-	private static final String UPDATE_HERO = "UPDATE heroes SET count = ?, played = ?" + " WHERE char_id = ?";
+
 	private static final String DELETE_ITEMS = "DELETE FROM items WHERE item_id IN " + "(6842, 6611, 6612, 6613, 6614, 6615, 6616, 6617, 6618, 6619, 6620, 6621) " + "AND owner_id NOT IN (SELECT obj_id FROM characters WHERE accesslevel > 0)";
 	
 	private static final List<Integer> _heroItems = new ArrayList<>();
@@ -111,37 +107,26 @@ public class Hero
 		_heroes = new LinkedHashMap<>();
 		_completeHeroes = new LinkedHashMap<>();
 
+		CharacterRepository characterRepository = DatabaseAccess.getRepository(CharacterRepository.class);
 
-		try(Connection con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement(GET_ALL_HEROES);
-            ResultSet rset = statement.executeQuery() ) {
+		HeroesRepository heroesRepository = DatabaseAccess.getRepository(HeroesRepository.class);
+		heroesRepository.findAll().forEach(heroes -> {
+			StatsSet hero = new StatsSet();
+			int charId = heroes.getId();
+			hero.set(Olympiad.CHAR_NAME, heroes.getCharName());
+			hero.set(Olympiad.CLASS_ID, heroes.getClassId());
+			hero.set(COUNT, heroes.getCount());
+			int played = heroes.getPlayed();
+			hero.set(PLAYED, played);
 
-		    CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
+			loadClanData(characterRepository, hero, charId);
 
-		    while (rset.next()) {
-                StatsSet hero = new StatsSet();
-                int charId = rset.getInt(Olympiad.CHAR_ID);
-                hero.set(Olympiad.CHAR_NAME, rset.getString(Olympiad.CHAR_NAME));
-                hero.set(Olympiad.CLASS_ID, rset.getInt(Olympiad.CLASS_ID));
-                hero.set(COUNT, rset.getInt(COUNT));
-                int played = rset.getInt(PLAYED);
-                hero.set(PLAYED, played);
-
-                loadClanData(repository, hero, charId);
-
-                if(played > 0) {
-                    _heroes.put(charId, hero);
-                }
-                _completeHeroes.put(charId, hero);
-
-            }
-		}
-		catch (SQLException e) {
-			_log.warn("Hero System: Couldnt load Heroes");
-			if (Config.DEBUG) {
-				_log.error(e.getMessage(), e);
+			if(played > 0) {
+				_heroes.put(charId, hero);
 			}
-		}
+			_completeHeroes.put(charId, hero);
+		});
+
 		_log.info("Hero System: Loaded " + _heroes.size() + " Heroes.");
 		_log.info("Hero System: Loaded " + _completeHeroes.size() + " all time Heroes.");
 	}
@@ -342,50 +327,31 @@ public class Hero
 
 	
 	public void updateHeroes(boolean setDefault) {
-		try(Connection con = L2DatabaseFactory.getInstance().getConnection();) {
+        HeroesRepository heroesRepository = DatabaseAccess.getRepository(HeroesRepository.class);
+        if (setDefault) {
+            heroesRepository.updateAllResetPlayed();
+        } else {
 
-			if (setDefault) {
-				PreparedStatement statement = con.prepareStatement(UPDATE_ALL);
-				statement.execute();
-				statement.close();
-			} else {
-				PreparedStatement statement;
+            CharacterRepository characterRepository = DatabaseAccess.getRepository(CharacterRepository.class);
+            for (Integer heroId : _heroes.keySet()) {
+                StatsSet hero = _heroes.get(heroId);
 
-				CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
-				for (Integer heroId : _heroes.keySet()) {
-					StatsSet hero = _heroes.get(heroId);
-					
-					if ((_completeHeroes == null) || !_completeHeroes.containsKey(heroId)) {
-						statement = con.prepareStatement(INSERT_HERO);
-						statement.setInt(1, heroId);
-						statement.setString(2, hero.getString(Olympiad.CHAR_NAME));
-						statement.setInt(3, hero.getInteger(Olympiad.CLASS_ID));
-						statement.setInt(4, hero.getInteger(COUNT));
-						statement.setInt(5, hero.getInteger(PLAYED));
-						statement.execute();
+                if ((_completeHeroes == null) || !_completeHeroes.containsKey(heroId)) {
+                    Heroes heroes = new Heroes(heroId, hero.getString(Olympiad.CHAR_NAME), hero.getInteger(Olympiad.CLASS_ID),
+                            hero.getInteger(COUNT), hero.getInteger(PLAYED));
 
-						loadClanData(repository, hero, heroId);
+                    heroesRepository.save(heroes);
 
-						_heroes.remove(heroId);
-						_heroes.put(heroId, hero);
-						_completeHeroes.put(heroId, hero);
-					} else {
-						statement = con.prepareStatement(UPDATE_HERO);
-						statement.setInt(1, hero.getInteger(COUNT));
-						statement.setInt(2, hero.getInteger(PLAYED));
-						statement.setInt(3, heroId);
-						statement.execute();
-					}
-					statement.close();
-				}
-			}
-		}
-		catch (SQLException e) {
-			_log.warn("Hero System: Couldnt update Heroes");
-			if (Config.DEBUG) {
-				_log.error(e.getMessage(), e);
-			}
-		}
+                    loadClanData(characterRepository, hero, heroId);
+
+                    _heroes.remove(heroId);
+                    _heroes.put(heroId, hero);
+                    _completeHeroes.put(heroId, hero);
+                } else {
+                    heroesRepository.updateCountPlayed(heroId, hero.getInteger(COUNT), hero.getInteger(PLAYED));
+                }
+            }
+        }
 	}
 	
 	public List<Integer> getHeroItems()
