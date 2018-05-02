@@ -18,16 +18,15 @@
  */
 package com.l2jbr.gameserver.datatables;
 
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.model.L2HennaInstance;
 import com.l2jbr.gameserver.model.base.ClassId;
+import com.l2jbr.gameserver.model.database.HennaTrees;
+import com.l2jbr.gameserver.model.database.repository.HennaTreeRepository;
 import com.l2jbr.gameserver.templates.L2Henna;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -53,26 +52,20 @@ public class HennaTreeTable {
         _hennaTrees = new LinkedHashMap<>();
 
         int count = 0;
-        try(Connection con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement2 = con.prepareStatement("SELECT class_id, symbol_id FROM henna_trees ORDER BY symbol_id");
-            ResultSet hennatree = statement2.executeQuery()){
-            List<L2HennaInstance> list;
-            while (hennatree.next()) {
-                int id = hennatree.getInt("symbol_id");
-                int classId = hennatree.getInt("class_id");
+        List<L2HennaInstance> list;
+        HennaTreeRepository repository = DatabaseAccess.getRepository(HennaTreeRepository.class);
+        for (HennaTrees hennaTrees : repository.findAll()) {
+            int id = hennaTrees.getSymbolId();
+            int classId = hennaTrees.getClassId();
 
-                L2Henna template = HennaTable.getInstance().getTemplate(id);
-                if (template == null) {
-                    continue;
-                }
-                list = _hennaTrees.getOrDefault(ClassId.values()[classId], new LinkedList<>());
-                list.add(new L2HennaInstance(template));
-                count++;
+            L2Henna template = HennaTable.getInstance().getTemplate(id);
+            if (template == null) {
+                continue;
             }
-        }catch (Exception e){
-           _log.error("error while creating henna tree",  e);
+            list = _hennaTrees.getOrDefault(ClassId.values()[classId], new LinkedList<>());
+            list.add(new L2HennaInstance(template));
+            count++;
         }
-
         _log.info("HennaTreeTable: Loaded " + count + " Henna Tree Templates.");
 
     }

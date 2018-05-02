@@ -75,7 +75,6 @@ public class HelperBuffTable {
     private HelperBuffTable() {
         _helperBuff = new LinkedList<>();
         restoreHelperBuffData();
-
     }
 
     private void restoreHelperBuffData() {
