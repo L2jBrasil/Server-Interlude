@@ -17,6 +17,8 @@ public class CastleSiegeGuard {
     private int respawnDelay;
     private int isHired;
 
+    public CastleSiegeGuard() {}
+
     public CastleSiegeGuard(int castleId, int npcId, int x, int y, int z, int heading, int respawnDelay, int isHire) {
         this.castleId = castleId;
         this.npcId = npcId;

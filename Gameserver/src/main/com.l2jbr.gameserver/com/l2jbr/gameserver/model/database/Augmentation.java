@@ -15,6 +15,8 @@ public class Augmentation extends Entity<Integer> {
     private Integer skill;
     private Integer level;
 
+    public  Augmentation() {}
+
     public Augmentation(int objectId, int effectsId, L2Skill skill) {
         this.itemId = objectId;
         this.attributes = effectsId;

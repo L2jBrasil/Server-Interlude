@@ -17,6 +17,8 @@ public class Games extends Entity<Integer> {
     private long endDate;
     private int finished;
 
+    public  Games() {}
+
     public Games(int id, int idnr, long endDate, int prize) {
         this.id = id;
         this.idnr = idnr;

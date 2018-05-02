@@ -20,6 +20,8 @@ public class CharacterSkills extends Entity<Integer> {
     @Column("class_index")
     private int classIndex;
 
+    public CharacterSkills() {}
+
     public CharacterSkills(int charObjectId, int skillId, int skillLevel, String skillName, int classIndex) {
         this.charObjId = charObjectId;
         this.skillId = skillId;

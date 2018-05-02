@@ -20,6 +20,8 @@ public class CharacterSubclasses extends Entity<Integer> {
     @Column("class_index")
     private int classIndex;
 
+    public CharacterSubclasses() {}
+
     public CharacterSubclasses(int charObjectId, SubClass newClass) {
         this.charObjId = charObjectId;
         this.classId = newClass.getClassId();

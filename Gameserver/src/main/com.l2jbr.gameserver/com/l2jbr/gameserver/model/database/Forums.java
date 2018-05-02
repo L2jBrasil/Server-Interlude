@@ -21,6 +21,8 @@ public class Forums extends Entity<Integer> {
     @Column("forum_owner_id")
     private int forumOwnerId;
 
+    public Forums() {}
+
     public Forums(int forumId, String forumName, int parentId, int forumPost, int forumType, int forumPerm, int ownerId) {
         this.forumId = forumId;
         this.forumName = forumName;

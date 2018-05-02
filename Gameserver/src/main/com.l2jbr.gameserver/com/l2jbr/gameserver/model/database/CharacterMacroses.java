@@ -19,6 +19,8 @@ public class CharacterMacroses extends Entity<Integer> {
     private String acronym;
     private String commands;
 
+    public CharacterMacroses() {}
+
     public CharacterMacroses(int objectId, L2Macro macro) {
         this.charObjId = objectId;
         this.id = macro.id;

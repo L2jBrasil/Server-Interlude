@@ -18,6 +18,8 @@ public class ClanSkills extends Entity<Integer> {
     @Column("skill_name")
     private String skillName;
 
+    public  ClanSkills() {}
+
     public ClanSkills(int clanId, L2Skill newSkill) {
         this.clanId = clanId;
         this.skillId = newSkill.getId();

@@ -21,6 +21,8 @@ public class CastleManorProduction  extends Entity<Integer> {
     private int seedPrice;
     private int period;
 
+    public CastleManorProduction() {}
+
     public CastleManorProduction(int castleId, int seedId, int canProduce, int startProduce, int price, int period) {
         this.castleId = castleId;
         this.seedId = seedId;

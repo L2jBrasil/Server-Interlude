@@ -17,6 +17,8 @@ public class ClanHallFunctions extends Entity<Integer> {
     private long rate;
     private long endTime;
 
+    public  ClanHallFunctions() {}
+
     public ClanHallFunctions(int id, int type, int lvl, int lease, long rate, long endTime) {
         this.hallId = id;
         this.type = type;

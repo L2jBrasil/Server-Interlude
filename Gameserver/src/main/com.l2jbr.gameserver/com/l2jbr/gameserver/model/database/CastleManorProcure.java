@@ -22,7 +22,7 @@ public class CastleManorProcure extends Entity<Integer> {
     private int rewardType;
     private int period;
 
-    CastleManorProcure(){}
+    public CastleManorProcure(){}
 
     public CastleManorProcure(int castleId, int id, int amount, int startAmount, int price, int reward, int period) {
         this.castleId = castleId;

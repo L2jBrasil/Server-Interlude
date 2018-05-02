@@ -17,6 +17,8 @@ public class CharacterHennas extends Entity<Integer> {
     @Column("class_index")
     private int classIndex;
 
+    public  CharacterHennas() {}
+
     public CharacterHennas(int objectId, int symbolId, int classIndex, int slot) {
         this.charObjId = objectId;
         this.symbolId = symbolId;

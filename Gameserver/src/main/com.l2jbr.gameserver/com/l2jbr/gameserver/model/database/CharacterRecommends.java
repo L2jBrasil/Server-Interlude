@@ -14,6 +14,8 @@ public class CharacterRecommends extends Entity<Integer> {
     @Column("target_id")
     private int targetId;
 
+    public CharacterRecommends() {}
+
     public CharacterRecommends(int charId, int targetId) {
         this.charId = charId;
         this.targetId = targetId;

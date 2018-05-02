@@ -17,6 +17,8 @@ public class CharacterQuests extends Entity<Integer> {
     @Column("class_index")
     private int classIndex;
 
+    public CharacterQuests() {}
+
     public CharacterQuests(int objectId, String questName, String var, String value) {
         this.charId = objectId;
         this.name  = questName;

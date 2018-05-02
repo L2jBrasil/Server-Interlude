@@ -17,6 +17,8 @@ public class ClanSubpledges extends Entity<Integer> {
     @Column("leader_name")
     private String leaderName;
 
+    public ClanSubpledges() {}
+
     public ClanSubpledges(int clanId, int subPledgeId, String subPledgeName, String leader) {
         this.clanId = clanId;
         this.subPledgeId = subPledgeId;

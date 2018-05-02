@@ -15,6 +15,8 @@ public class CursedWeapons extends Entity<Integer> {
     private int nbKills;
     private long endTime;
 
+    public CursedWeapons() {}
+
     public CursedWeapons(int itemId, int playerId, int playerKarma, int playerPkKills, int nbKills, long endTime) {
         this.itemId = itemId;
         this.playerId =playerId;

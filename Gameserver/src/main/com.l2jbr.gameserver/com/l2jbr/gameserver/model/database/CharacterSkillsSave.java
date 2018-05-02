@@ -29,6 +29,8 @@ public class CharacterSkillsSave extends Entity<Integer> {
     @Column("buff_index")
     private int buffIndex;
 
+    public  CharacterSkillsSave() {}
+
     public CharacterSkillsSave(int objectId, int skillId, int skillLevel, int effectCount, int effectCurTime, long reuseDelay, int restoreType, int classIndex, int buffIndex) {
         this.charObjId = objectId;
         this.skillId = skillId;

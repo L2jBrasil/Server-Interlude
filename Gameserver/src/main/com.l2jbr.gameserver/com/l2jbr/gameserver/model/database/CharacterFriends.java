@@ -16,6 +16,8 @@ public class CharacterFriends extends Entity<Integer> {
     @Column("friend_name")
     private String friendName;
 
+    public CharacterFriends() {}
+
     public CharacterFriends(int objectId, int friendId, String name) {
         this.charId = objectId;
         this.friendId = friendId;

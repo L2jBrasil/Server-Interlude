@@ -12,6 +12,8 @@ public class CharacterRecipeBook extends Entity<Integer> {
     private int id;
     private int type;
 
+    public CharacterRecipeBook() {}
+
     public CharacterRecipeBook(int objectId, int id, int type) {
         this.charId = objectId;
         this.id = id;
