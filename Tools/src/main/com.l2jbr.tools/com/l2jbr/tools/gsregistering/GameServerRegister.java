@@ -19,9 +19,12 @@
 package com.l2jbr.tools.gsregistering;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.database.DatabaseAccess;
+import com.l2jbr.commons.database.GameserverRepository;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.Server;
 import com.l2jbr.gameserver.LoginServerThread;
+import com.l2jbr.gameserver.model.database.Games;
 import com.l2jbr.loginserver.GameServerTable;
 
 import java.io.IOException;
@@ -128,37 +131,8 @@ public class GameServerRegister
 		}
 	}
 	
-	public static void cleanRegisteredGameServersFromDB()
-	{
-		java.sql.Connection con = null;
-		PreparedStatement statement = null;
-		try
-		{
-			con = L2DatabaseFactory.getInstance().getConnection();
-			statement = con.prepareStatement("DELETE FROM gameservers");
-			statement.executeUpdate();
-			statement.close();
-		}
-		catch (SQLException e)
-		{
-			System.out.println("SQL error while cleaning registered servers: " + e);
-		}
-		finally
-		{
-			try
-			{
-				statement.close();
-			}
-			catch (Exception e)
-			{
-			}
-			try
-			{
-				con.close();
-			}
-			catch (Exception e)
-			{
-			}
-		}
+	public static void cleanRegisteredGameServersFromDB() {
+        GameserverRepository repository = DatabaseAccess.getRepository(GameserverRepository.class);
+        repository.deleteAll();
 	}
 }
