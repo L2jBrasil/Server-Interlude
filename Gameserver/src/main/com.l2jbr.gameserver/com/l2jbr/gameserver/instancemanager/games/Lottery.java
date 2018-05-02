@@ -19,11 +19,14 @@
 package com.l2jbr.gameserver.instancemanager.games;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.Announcements;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.model.L2ItemInstance;
+import com.l2jbr.gameserver.model.database.Games;
+import com.l2jbr.gameserver.model.database.repository.GameRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import org.slf4j.Logger;
@@ -33,23 +36,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.Optional;
 
 
-public class Lottery
-{
-	public static final long SECOND = 1000;
+public class Lottery {
 	public static final long MINUTE = 60000;
 	
 	private static Lottery _instance;
 	protected static final Logger _log = LoggerFactory.getLogger(Lottery.class.getName());
-	
-	private static final String INSERT_LOTTERY = "INSERT INTO games(id, idnr, enddate, prize, newprize) VALUES (?, ?, ?, ?, ?)";
-	private static final String UPDATE_PRICE = "UPDATE games SET prize=?, newprize=? WHERE id = 1 AND idnr = ?";
-	private static final String UPDATE_LOTTERY = "UPDATE games SET finished=1, prize=?, newprize=?, number1=?, number2=?, prize1=?, prize2=?, prize3=? WHERE id=1 AND idnr=?";
-	private static final String SELECT_LAST_LOTTERY = "SELECT idnr, prize, newprize, enddate, finished FROM games WHERE id = 1 ORDER BY idnr DESC LIMIT 1";
+
 	private static final String SELECT_LOTTERY_ITEM = "SELECT enchant_level, custom_type2 FROM items WHERE item_id = 4442 AND custom_type1 = ?";
-	private static final String SELECT_LOTTERY_TICKET = "SELECT number1, number2, prize1, prize2, prize3 FROM games WHERE id = 1 and idnr = ?";
-	
+
 	protected int _number;
 	protected int _prize;
 	protected boolean _isSellingTickets;
@@ -95,35 +92,10 @@ public class Lottery
 		return _enddate;
 	}
 	
-	public void increasePrize(int count)
-	{
+	public void increasePrize(int count) {
 		_prize += count;
-		java.sql.Connection con = null;
-		try
-		{
-			con = L2DatabaseFactory.getInstance().getConnection();
-			PreparedStatement statement;
-			statement = con.prepareStatement(UPDATE_PRICE);
-			statement.setInt(1, getPrize());
-			statement.setInt(2, getPrize());
-			statement.setInt(3, getId());
-			statement.execute();
-			statement.close();
-		}
-		catch (SQLException e)
-		{
-			_log.warn("Lottery: Could not increase current lottery prize: " + e);
-		}
-		finally
-		{
-			try
-			{
-				con.close();
-			}
-			catch (Exception e)
-			{
-			}
-		}
+        GameRepository repository = DatabaseAccess.getRepository(GameRepository.class);
+        repository.updatePrizeByIdNr(1, getId(), getPrize());
 	}
 	
 	public boolean isSellableTickets()
@@ -144,76 +116,40 @@ public class Lottery
 		}
 		
 		@Override
-		public void run()
-		{
-			java.sql.Connection con = null;
-			PreparedStatement statement;
-			try
-			{
-				con = L2DatabaseFactory.getInstance().getConnection();
-				statement = con.prepareStatement(SELECT_LAST_LOTTERY);
-				ResultSet rset = statement.executeQuery();
-				
-				if (rset.next())
-				{
-					_number = rset.getInt("idnr");
-					
-					if (rset.getInt("finished") == 1)
-					{
-						_number++;
-						_prize = rset.getInt("newprize");
-					}
-					else
-					{
-						_prize = rset.getInt("prize");
-						_enddate = rset.getLong("enddate");
-						
-						if (_enddate <= (System.currentTimeMillis() + (2 * MINUTE)))
-						{
-							(new finishLottery()).run();
-							rset.close();
-							statement.close();
-							return;
-						}
-						
-						if (_enddate > System.currentTimeMillis())
-						{
-							_isStarted = true;
-							ThreadPoolManager.getInstance().scheduleGeneral(new finishLottery(), _enddate - System.currentTimeMillis());
-							
-							if (_enddate > (System.currentTimeMillis() + (12 * MINUTE)))
-							{
-								_isSellingTickets = true;
-								ThreadPoolManager.getInstance().scheduleGeneral(new stopSellingTickets(), _enddate - System.currentTimeMillis() - (10 * MINUTE));
-							}
-							rset.close();
-							statement.close();
-							return;
-						}
-					}
-				}
-				rset.close();
-				statement.close();
-			}
-			catch (SQLException e)
-			{
-				_log.warn("Lottery: Could not restore lottery data: " + e);
-			}
-			finally
-			{
-				try
-				{
-					con.close();
-				}
-				catch (Exception e)
-				{
-				}
-			}
-			
-			if (Config.DEBUG)
-			{
-				_log.info("Lottery: Starting ticket sell for lottery #" + getId() + ".");
-			}
+		public void run() {
+
+            GameRepository repository = DatabaseAccess.getRepository(GameRepository.class);
+            repository.findLastIdnrById(1).ifPresent(game -> {
+                _number = game.getIdnr();
+
+                if (game.getFinished() == 1)   {
+                    _number++;
+                    _prize = game.getNewPrize();
+                }
+                else  {
+                    _prize = game.getPrize();
+                    _enddate = game.getEndDate();
+
+                    if (_enddate <= (System.currentTimeMillis() + (2 * MINUTE))) {
+                        (new finishLottery()).run();
+                        return;
+                    }
+
+                    if (_enddate > System.currentTimeMillis()) {
+                        _isStarted = true;
+                        ThreadPoolManager.getInstance().scheduleGeneral(new finishLottery(), _enddate - System.currentTimeMillis());
+
+                        if (_enddate > (System.currentTimeMillis() + (12 * MINUTE))) {
+                            _isSellingTickets = true;
+                            ThreadPoolManager.getInstance().scheduleGeneral(new stopSellingTickets(), _enddate - System.currentTimeMillis() - (10 * MINUTE));
+                        }
+                        return;
+                    }
+                }
+            });
+
+            _log.debug("Lottery: Starting ticket sell for lottery #{}.",  getId());
+
 			_isSellingTickets = true;
 			_isStarted = true;
 			
@@ -238,33 +174,9 @@ public class Lottery
 			
 			ThreadPoolManager.getInstance().scheduleGeneral(new stopSellingTickets(), _enddate - System.currentTimeMillis() - (10 * MINUTE));
 			ThreadPoolManager.getInstance().scheduleGeneral(new finishLottery(), _enddate - System.currentTimeMillis());
-			
-			try
-			{
-				con = L2DatabaseFactory.getInstance().getConnection();
-				statement = con.prepareStatement(INSERT_LOTTERY);
-				statement.setInt(1, 1);
-				statement.setInt(2, getId());
-				statement.setLong(3, getEndDate());
-				statement.setInt(4, getPrize());
-				statement.setInt(5, getPrize());
-				statement.execute();
-				statement.close();
-			}
-			catch (SQLException e)
-			{
-				_log.warn("Lottery: Could not store new lottery data: " + e);
-			}
-			finally
-			{
-				try
-				{
-					con.close();
-				}
-				catch (Exception e)
-				{
-				}
-			}
+
+            Games game = new Games(1, getId(), getEndDate(), getPrize());
+            repository.save(game);
 		}
 	}
 	
@@ -485,37 +397,10 @@ public class Lottery
 				sm.addNumber(getPrize());
 				Announcements.getInstance().announceToAll(sm);
 			}
-			
-			try
-			{
-				con = L2DatabaseFactory.getInstance().getConnection();
-				statement = con.prepareStatement(UPDATE_LOTTERY);
-				statement.setInt(1, getPrize());
-				statement.setInt(2, newprize);
-				statement.setInt(3, enchant);
-				statement.setInt(4, type2);
-				statement.setInt(5, prize1);
-				statement.setInt(6, prize2);
-				statement.setInt(7, prize3);
-				statement.setInt(8, getId());
-				statement.execute();
-				statement.close();
-			}
-			catch (SQLException e)
-			{
-				_log.warn("Lottery: Could not store finished lottery data: " + e);
-			}
-			finally
-			{
-				try
-				{
-					con.close();
-				}
-				catch (Exception e)
-				{
-				}
-			}
-			
+
+            GameRepository repository = DatabaseAccess.getRepository(GameRepository.class);
+            repository.updateByIdNr(1, getId(), getPrize(), newprize, enchant, type2, prize1, prize2, prize3);
+
 			ThreadPoolManager.getInstance().scheduleGeneral(new startLottery(), MINUTE);
 			_number++;
 			
@@ -563,99 +448,62 @@ public class Lottery
 		return checkTicket(item.getCustomType1(), item.getEnchantLevel(), item.getCustomType2());
 	}
 	
-	public int[] checkTicket(int id, int enchant, int type2)
-	{
-		int res[] =
-		{
-			0,
-			0
-		};
-		
-		java.sql.Connection con = null;
-		PreparedStatement statement;
-		
-		try
-		{
-			con = L2DatabaseFactory.getInstance().getConnection();
-			statement = con.prepareStatement(SELECT_LOTTERY_TICKET);
-			statement.setInt(1, id);
-			ResultSet rset = statement.executeQuery();
-			
-			if (rset.next())
-			{
-				int curenchant = rset.getInt("number1") & enchant;
-				int curtype2 = rset.getInt("number2") & type2;
-				
-				if ((curenchant == 0) && (curtype2 == 0))
-				{
-					rset.close();
-					statement.close();
-					return res;
-				}
-				
-				int count = 0;
-				
-				for (int i = 1; i <= 16; i++)
-				{
-					int val = curenchant / 2;
-					if (val != ((double) curenchant / 2))
-					{
-						count++;
-					}
-					int val2 = curtype2 / 2;
-					if (val2 != ((double) curtype2 / 2))
-					{
-						count++;
-					}
-					curenchant = val;
-					curtype2 = val2;
-				}
-				
-				switch (count)
-				{
-					case 0:
-						break;
-					case 5:
-						res[0] = 1;
-						res[1] = rset.getInt("prize1");
-						break;
-					case 4:
-						res[0] = 2;
-						res[1] = rset.getInt("prize2");
-						break;
-					case 3:
-						res[0] = 3;
-						res[1] = rset.getInt("prize3");
-						break;
-					default:
-						res[0] = 4;
-						res[1] = 200;
-				}
-				
-				if (Config.DEBUG)
-				{
-					_log.warn("count: " + count + ", id: " + id + ", enchant: " + enchant + ", type2: " + type2);
-				}
-			}
-			
-			rset.close();
-			statement.close();
-		}
-		catch (SQLException e)
-		{
-			_log.warn("Lottery: Could not check lottery ticket #" + id + ": " + e);
-		}
-		finally
-		{
-			try
-			{
-				con.close();
-			}
-			catch (Exception e)
-			{
-			}
-		}
-		
+	public int[] checkTicket(int id, int enchant, int type2) {
+		int res[] = { 0, 0 };
+
+        GameRepository repository = DatabaseAccess.getRepository(GameRepository.class);
+        Optional<Games> optionalGame = repository.findById(id);
+        if(optionalGame.isPresent()) {
+            Games game = optionalGame.get();
+
+            int curenchant = game.getNumber1() & enchant;
+            int curtype2 = game.getNumber2() & type2;
+
+            if ((curenchant == 0) && (curtype2 == 0))   {
+                return res;
+            }
+
+            int count = 0;
+
+            for (int i = 1; i <= 16; i++)
+            {
+                int val = curenchant / 2;
+                if (val != ((double) curenchant / 2))
+                {
+                    count++;
+                }
+                int val2 = curtype2 / 2;
+                if (val2 != ((double) curtype2 / 2))
+                {
+                    count++;
+                }
+                curenchant = val;
+                curtype2 = val2;
+            }
+
+            switch (count)
+            {
+                case 0:
+                    break;
+                case 5:
+                    res[0] = 1;
+                    res[1] = game.getPrize1();
+                    break;
+                case 4:
+                    res[0] = 2;
+                    res[1] = game.getPrize2();
+                    break;
+                case 3:
+                    res[0] = 3;
+                    res[1] = game.getPrize3();
+                    break;
+                default:
+                    res[0] = 4;
+                    res[1] = 200;
+            }
+
+            _log.warn("count: " + count + ", id: " + id + ", enchant: " + enchant + ", type2: " + type2);
+        }
 		return res;
 	}
 }
