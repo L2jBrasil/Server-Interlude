@@ -18,14 +18,13 @@
  */
 package com.l2jbr.gameserver.communitybbs.Manager;
 
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.communitybbs.BB.Forum;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.ForumRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -63,31 +62,13 @@ public class ForumsBBSManager extends BaseBBSManager {
         }
     }
 
-    /**
-     *
-     */
-    private void load() {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("SELECT forum_id FROM forums WHERE forum_type=0");
-            ResultSet result = statement.executeQuery();
-            while (result.next()) {
 
-                Forum f = new Forum(Integer.parseInt(result.getString("forum_id")), null);
-                _root.put(Integer.parseInt(result.getString("forum_id")), f);
-            }
-            result.close();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("data error on Forum (root): " + e);
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+    private void load() {
+        ForumRepository repository = DatabaseAccess.getRepository(ForumRepository.class);
+        repository.findAllIdsByType(0).forEach(forumId -> {
+            Forum f = new Forum(forumId, null);
+            _root.put(forumId, f);
+        });
     }
 
     /*
@@ -124,7 +105,7 @@ public class ForumsBBSManager extends BaseBBSManager {
     public Forum createNewForum(String name, Forum parent, int type, int perm, int oid) {
         Forum forum;
         forum = new Forum(name, parent, type, perm, oid);
-        forum.insertindb();
+        forum.insertInDb();
         return forum;
     }
 
