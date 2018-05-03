@@ -29,7 +29,9 @@ import com.l2jbr.gameserver.handler.IAdminCommandHandler;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.L2BoxInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.MerchantBuyList;
 import com.l2jbr.gameserver.model.database.repository.DropListRepository;
+import com.l2jbr.gameserver.model.database.repository.MerchantBuyListRepository;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
@@ -39,7 +41,6 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -464,82 +465,24 @@ public class AdminEditNpc implements IAdminCommandHandler {
     }
 
     private void storeTradeList(int itemID, int price, int tradeListID, int order) {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement stmt = con.prepareStatement("INSERT INTO merchant_buylists (`item_id`,`price`,`shop_id`,`order`) values (" + itemID + "," + price + "," + tradeListID + "," + order + ")");
-            stmt.execute();
-            stmt.close();
-        } catch (SQLException esql) {
-            esql.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+        MerchantBuyListRepository repository = DatabaseAccess.getRepository(MerchantBuyListRepository.class);
+        MerchantBuyList buyList = new MerchantBuyList(itemID, price, tradeListID, order);
+        repository.save(buyList);
     }
 
     private void updateTradeList(int itemID, int price, int tradeListID, int order) {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement stmt = con.prepareStatement("UPDATE merchant_buylists SET `price`='" + price + "' WHERE `shop_id`='" + tradeListID + "' AND `order`='" + order + "'");
-            stmt.execute();
-            stmt.close();
-        } catch (SQLException esql) {
-            esql.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+        MerchantBuyListRepository repository = DatabaseAccess.getRepository(MerchantBuyListRepository.class);
+        repository.updatePriceByItem(tradeListID, itemID, order, price);
     }
 
     private void deleteTradeList(int tradeListID, int order) {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement stmt = con.prepareStatement("DELETE FROM merchant_buylists WHERE `shop_id`='" + tradeListID + "' AND `order`='" + order + "'");
-            stmt.execute();
-            stmt.close();
-        } catch (SQLException esql) {
-            esql.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+        MerchantBuyListRepository repository = DatabaseAccess.getRepository(MerchantBuyListRepository.class);
+        repository.deleteByOrder(tradeListID, order);
     }
 
     private int findOrderTradeList(int itemID, int price, int tradeListID) {
-        java.sql.Connection con = null;
-        int order = 0;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement stmt = con.prepareStatement("SELECT * FROM merchant_buylists WHERE `shop_id`='" + tradeListID + "' AND `item_id` ='" + itemID + "' AND `price` = '" + price + "'");
-            ResultSet rs = stmt.executeQuery();
-            rs.first();
-
-            order = rs.getInt("order");
-
-            stmt.close();
-            rs.close();
-        } catch (SQLException esql) {
-            esql.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return order;
+        MerchantBuyListRepository repository = DatabaseAccess.getRepository(MerchantBuyListRepository.class);
+        return repository.findOrderByItemAndPrice(tradeListID, itemID, price).orElse(0);
     }
 
     private List<L2TradeList> getTradeLists(int merchantID) {
