@@ -18,8 +18,7 @@
  */
 package com.l2jbr.gameserver.datatables;
 
-import com.l2jbr.commons.Config;
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.instancemanager.ArenaManager;
 import com.l2jbr.gameserver.instancemanager.CastleManager;
 import com.l2jbr.gameserver.instancemanager.ClanHallManager;
@@ -28,6 +27,7 @@ import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.Location;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.MapRegionRepository;
 import com.l2jbr.gameserver.model.entity.Castle;
 import com.l2jbr.gameserver.model.entity.ClanHall;
 import com.l2jbr.gameserver.model.zone.type.L2ArenaZone;
@@ -35,8 +35,6 @@ import com.l2jbr.gameserver.model.zone.type.L2ClanHallZone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.List;
 
 
@@ -53,7 +51,7 @@ public class MapRegionTable
 	
 	private final int[][] _pointsWithKarmas;
 	
-	public static enum TeleportWhereType
+	public enum TeleportWhereType
 	{
 		Castle,
 		ClanHall,
@@ -70,52 +68,22 @@ public class MapRegionTable
 		return _instance;
 	}
 	
-	private MapRegionTable()
-	{
-		int count2 = 0;
-		
-		// LineNumberReader lnr = null;
-		java.sql.Connection con = null;
-		try
-		{
-			con = L2DatabaseFactory.getInstance().getConnection();
-			PreparedStatement statement = con.prepareStatement("SELECT region, sec0, sec1, sec2, sec3, sec4, sec5, sec6, sec7, sec8, sec9 FROM mapregion");
-			ResultSet rset = statement.executeQuery();
-			int region;
-			while (rset.next())
-			{
-				region = rset.getInt(1);
-				
-				for (int j = 0; j < 10; j++)
-				{
-					_regions[j][region] = rset.getInt(j + 2);
-					count2++;
-					// _log.debug(j+","+region+" -> "+rset.getInt(j+2));
-				}
-			}
-			
-			rset.close();
-			statement.close();
-			if (Config.DEBUG)
-			{
-				_log.debug(count2 + " mapregion loaded");
-			}
-		}
-		catch (Exception e)
-		{
-			_log.warn("error while creating map region data: " + e);
-		}
-		finally
-		{
-			try
-			{
-				con.close();
-			}
-			catch (Exception e)
-			{
-			}
-		}
-		
+	private MapRegionTable() {
+        MapRegionRepository repository = DatabaseAccess.getRepository(MapRegionRepository.class);
+        repository.findAll().forEach(mapRegion -> {
+            _regions[0][mapRegion.getRegion()] = mapRegion.getSec0();
+            _regions[1][mapRegion.getRegion()] = mapRegion.getSec1();
+            _regions[2][mapRegion.getRegion()] = mapRegion.getSec2();
+            _regions[3][mapRegion.getRegion()] = mapRegion.getSec3();
+            _regions[4][mapRegion.getRegion()] = mapRegion.getSec4();
+            _regions[5][mapRegion.getRegion()] = mapRegion.getSec5();
+            _regions[6][mapRegion.getRegion()] = mapRegion.getSec6();
+            _regions[7][mapRegion.getRegion()] = mapRegion.getSec7();
+            _regions[8][mapRegion.getRegion()] = mapRegion.getSec8();
+            _regions[9][mapRegion.getRegion()] = mapRegion.getSec9();
+
+        });
+
 		_pointsWithKarmas = new int[19][3];
 		// Talking Island
 		_pointsWithKarmas[0][0] = -79077;
