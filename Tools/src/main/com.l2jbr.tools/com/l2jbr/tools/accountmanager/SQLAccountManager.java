@@ -196,11 +196,8 @@ public class SQLAccountManager {
                     CharacterFriendRepository characterFriendRepository = DatabaseAccess.getRepository(CharacterFriendRepository.class);
                     characterFriendRepository.deleteById(character.getObjectId());
 
-                    // merchant_lease
-                    statement.close();
-                    statement = con.prepareStatement("DELETE FROM merchant_lease WHERE player_id=?;");
-                    statement.setInt(1, character.getObjectId());
-                    statement.executeUpdate();
+                    MerchantLeaseRepository leaseRepository = DatabaseAccess.getRepository(MerchantLeaseRepository.class);
+                    leaseRepository.deleteByPlayer(character.getObjectId());
 
                     // boxaccess
                     statement.close();
