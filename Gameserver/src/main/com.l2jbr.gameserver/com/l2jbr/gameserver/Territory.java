@@ -27,8 +27,9 @@
 
 package com.l2jbr.gameserver;
 
-import com.l2jbr.commons.lib.SqlUtils;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.model.L2Territory;
+import com.l2jbr.gameserver.model.database.repository.LocationRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,7 +47,6 @@ public class Territory {
     }
 
     private Territory() {
-        // load all data at server start
         reload_data();
     }
 
@@ -60,28 +60,13 @@ public class Territory {
 
     public void reload_data() {
         _territory.clear();
-        Integer[][] point = SqlUtils.get2DIntArray(new String[]
-                {
-                        "loc_id",
-                        "loc_x",
-                        "loc_y",
-                        "loc_zmin",
-                        "loc_zmax",
-                        "proc"
-                }, "locations", "loc_id > 0");
-        for (Integer[] row : point) {
-            // _log.info("row = "+row[0]);
-            Integer terr = row[0];
-            if (terr == null) {
-                _log.warn("Null territory!");
-                continue;
+        LocationRepository repository = DatabaseAccess.getRepository(LocationRepository.class);
+        repository.findAll().forEach(location -> {
+            if(_territory.get(location.getLocId()) == null) {
+                L2Territory territory = new L2Territory(location.getLocId());
+                _territory.put(location.getLocId(), territory);
             }
-
-            if (_territory.get(terr) == null) {
-                L2Territory t = new L2Territory(terr);
-                _territory.put(terr, t);
-            }
-            _territory.get(terr).add(row[1], row[2], row[3], row[4], row[5]);
-        }
+            _territory.get(location.getLocId()).add(location);
+        });
     }
 }
