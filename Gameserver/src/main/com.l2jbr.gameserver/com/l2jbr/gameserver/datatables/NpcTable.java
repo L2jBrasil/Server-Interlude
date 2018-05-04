@@ -21,6 +21,7 @@ package com.l2jbr.gameserver.datatables;
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.util.Util;
 import com.l2jbr.gameserver.model.L2DropCategory;
 import com.l2jbr.gameserver.model.L2DropData;
 import com.l2jbr.gameserver.model.L2MinionData;
@@ -30,6 +31,7 @@ import com.l2jbr.gameserver.model.database.Minions;
 import com.l2jbr.gameserver.model.database.Npc;
 import com.l2jbr.gameserver.model.database.repository.MinionRepository;
 import com.l2jbr.gameserver.model.database.repository.NpcRepository;
+import com.l2jbr.gameserver.model.database.repository.NpcSkillRepository;
 import com.l2jbr.gameserver.skills.Stats;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.templates.StatsSet;
@@ -76,43 +78,32 @@ public class NpcTable {
 
         _log.info("info.loaded.npc", _npcs.size());
 
-        try (Connection con = L2DatabaseFactory.getInstance().getConnection();) {
-            try {
-                PreparedStatement statement = con.prepareStatement("SELECT npcid, skillid, level FROM npcskills");
-                ResultSet npcskills = statement.executeQuery();
-                L2NpcTemplate npcDat = null;
-                L2Skill npcSkill = null;
+        try (Connection con = L2DatabaseFactory.getInstance().getConnection()) {
+            NpcSkillRepository npcSkillRepository = DatabaseAccess.getRepository(NpcSkillRepository.class);
+            npcSkillRepository.findAll().forEach(npcSkill -> {
+                int mobId = npcSkill.getNpcid();
+                L2NpcTemplate npcDat = _npcs.get(mobId);
 
-                while (npcskills.next()) {
-                    int mobId = npcskills.getInt("npcid");
-                    npcDat = _npcs.get(mobId);
-
-                    if (npcDat == null) {
-                        continue;
-                    }
-
-                    int skillId = npcskills.getInt("skillid");
-                    int level = npcskills.getInt("level");
-
-                    if ((npcDat.race == null) && (skillId == 4416)) {
-                        npcDat.setRace(level);
-                        continue;
-                    }
-
-                    npcSkill = SkillTable.getInstance().getInfo(skillId, level);
-
-                    if (npcSkill == null) {
-                        continue;
-                    }
-
-                    npcDat.addSkill(npcSkill);
+                if (Util.isNull(npcDat)) {
+                    return;
                 }
 
-                npcskills.close();
-                statement.close();
-            } catch (Exception e) {
-                _log.error("NPCTable: Error reading NPC skills table: " + e);
-            }
+                int skillId = npcSkill.getSkillid();
+                int level = npcSkill.getLevel();
+
+                if (Util.isNull(npcDat.race) && (skillId == 4416)) {
+                    npcDat.setRace(level);
+                    return;
+                }
+
+                L2Skill skill = SkillTable.getInstance().getInfo(skillId, level);
+
+                if (Util.isNull(skill)) {
+                    return;
+                }
+
+                npcDat.addSkill(skill);
+            });
 
             try {
                 PreparedStatement statement2 = con.prepareStatement("SELECT " + L2DatabaseFactory.getInstance().safetyString(new String[]
