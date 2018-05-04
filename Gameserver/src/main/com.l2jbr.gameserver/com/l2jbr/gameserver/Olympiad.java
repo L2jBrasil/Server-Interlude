@@ -24,6 +24,7 @@
 package com.l2jbr.gameserver;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.datatables.HeroSkillTable;
@@ -32,6 +33,8 @@ import com.l2jbr.gameserver.instancemanager.OlympiadStadiaManager;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PetInstance;
+import com.l2jbr.gameserver.model.database.OlympiadNobles;
+import com.l2jbr.gameserver.model.database.repository.OlympiadNoblesRepository;
 import com.l2jbr.gameserver.model.entity.Hero;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ExOlympiadUserInfoSpectator;
@@ -50,7 +53,6 @@ import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.ScheduledFuture;
 
-
 public class Olympiad {
     protected static final Logger _log = LoggerFactory.getLogger(Olympiad.class.getName());
 
@@ -63,12 +65,6 @@ public class Olympiad {
 
     private static final String OLYMPIAD_CONFIG_FILE_PATH = "config/olympiad.properties";
     public static final String OLYMPIAD_HTML_FILE = "data/html/olympiad/";
-    private static final String OLYMPIAD_LOAD_NOBLES = "SELECT * from olympiad_nobles";
-    private static final String OLYMPIAD_SAVE_NOBLES = "INSERT INTO olympiad_nobles " + "values (?,?,?,?,?)";
-    private static final String OLYMPIAD_UPDATE_NOBLES = "UPDATE olympiad_nobles set " + "olympiad_points = ?, competitions_done = ? where char_id = ?";
-    private static final String OLYMPIAD_GET_HEROS = "SELECT char_id, char_name from " + "olympiad_nobles where class_id = ? and competitions_done >= 9 order by " + "olympiad_points desc, competitions_done desc";
-    private static final String GET_EACH_CLASS_LEADER = "SELECT char_name from " + "olympiad_nobles where class_id = ? order by olympiad_points desc, " + "competitions_done desc";
-    private static final String OLYMPIAD_DELETE_ALL = "DELETE from olympiad_nobles";
 
     private static final int COMP_START = Config.ALT_OLY_START_TIME; // 6PM
     private static final int COMP_MIN = Config.ALT_OLY_MIN; // 00 mins
@@ -298,29 +294,18 @@ public class Olympiad {
                 return;
         }
 
-        try {
-            Connection con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement(OLYMPIAD_LOAD_NOBLES);
-            ResultSet rset = statement.executeQuery();
+        OlympiadNoblesRepository repository = DatabaseAccess.getRepository(OlympiadNoblesRepository.class);
+        repository.findAll().forEach(nobles -> {
+            StatsSet statDat = new StatsSet();
+            int charId = nobles.getId();
+            statDat.set(CLASS_ID, nobles.getClassId());
+            statDat.set(CHAR_NAME, nobles.getCharName());
+            statDat.set(POINTS, nobles.getOlympiadPoints());
+            statDat.set(COMP_DONE, nobles.getCompetitionsDone());
+            statDat.set("to_save", false);
+            _nobles.put(charId, statDat);
+        });
 
-            while (rset.next()) {
-                StatsSet statDat = new StatsSet();
-                int charId = rset.getInt(CHAR_ID);
-                statDat.set(CLASS_ID, rset.getInt(CLASS_ID));
-                statDat.set(CHAR_NAME, rset.getString(CHAR_NAME));
-                statDat.set(POINTS, rset.getInt(POINTS));
-                statDat.set(COMP_DONE, rset.getInt(COMP_DONE));
-                statDat.set("to_save", false);
-
-                _nobles.put(charId, statDat);
-            }
-
-            rset.close();
-            statement.close();
-            con.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         synchronized (this) {
             _log.info("Olympiad System: Loading Olympiad System....");
@@ -879,28 +864,17 @@ public class Olympiad {
                 int compDone = nobleInfo.getInteger(COMP_DONE);
                 boolean toSave = nobleInfo.getBool("to_save");
 
+                OlympiadNoblesRepository repository = DatabaseAccess.getRepository(OlympiadNoblesRepository.class);
                 if (toSave) {
-                    statement = con.prepareStatement(OLYMPIAD_SAVE_NOBLES);
-                    statement.setInt(1, charId);
-                    statement.setInt(2, classId);
-                    statement.setString(3, charName);
-                    statement.setInt(4, points);
-                    statement.setInt(5, compDone);
-                    statement.execute();
-
-                    statement.close();
+                    OlympiadNobles nobles = new OlympiadNobles(charId, classId, charName, points, compDone);
+                    repository.save(nobles);
 
                     nobleInfo.set("to_save", false);
 
                     _nobles.remove(nobleId);
                     _nobles.put(nobleId, nobleInfo);
                 } else {
-                    statement = con.prepareStatement(OLYMPIAD_UPDATE_NOBLES);
-                    statement.setInt(1, points);
-                    statement.setInt(2, compDone);
-                    statement.setInt(3, charId);
-                    statement.execute();
-                    statement.close();
+                    repository.updateCompetitions(charId, points, compDone);
                 }
             }
         } catch (SQLException e) {
@@ -915,50 +889,27 @@ public class Olympiad {
 
         _heroesToBe = new LinkedList<>();
 
-        try (Connection con = L2DatabaseFactory.getInstance().getConnection()) {
-            PreparedStatement statement;
-            ResultSet rset;
-            StatsSet hero;
+        OlympiadNoblesRepository repository = DatabaseAccess.getRepository(OlympiadNoblesRepository.class);
 
-            for (int i = 88; i < 119; i++) {
-                statement = con.prepareStatement(OLYMPIAD_GET_HEROS);
-                statement.setInt(1, i);
-                rset = statement.executeQuery();
+        for (int classId = 88; classId < 119; classId++) {
+            repository.findWinnerByClassId(classId).ifPresent(nobles -> {
+                StatsSet hero = new StatsSet();
+                hero.set(CLASS_ID, nobles.getClassId());
+                hero.set(CHAR_ID, nobles.getId());
+                hero.set(CHAR_NAME, nobles.getCharName());
 
-                if (rset.next()) {
-                    hero = new StatsSet();
-                    hero.set(CLASS_ID, i);
-                    hero.set(CHAR_ID, rset.getInt(CHAR_ID));
-                    hero.set(CHAR_NAME, rset.getString(CHAR_NAME));
-
-                    _heroesToBe.add(hero);
-                }
-
-                statement.close();
-                rset.close();
-            }
-        } catch (SQLException e) {
-            _log.warn("Olympiad System: Couldnt heros from db");
+                _heroesToBe.add(hero);
+            });
         }
     }
 
     public List<String> getClassLeaderBoard(int classId) {
         List<String> names = new LinkedList<>();
-        try (Connection con = L2DatabaseFactory.getInstance().getConnection();
-             PreparedStatement statement = con.prepareStatement(GET_EACH_CLASS_LEADER);) {
-            statement.setInt(1, classId);
-            try (ResultSet rset = statement.executeQuery()) {
-                while (rset.next()) {
-                    names.add(rset.getString(CHAR_NAME));
-                }
-            }
-            return names;
-        } catch (SQLException e) {
-            _log.warn("Olympiad System: Couldnt heros from db");
-        }
-
+        OlympiadNoblesRepository repository = DatabaseAccess.getRepository(OlympiadNoblesRepository.class);
+        repository.findAllNoblesByClassId(classId).forEach(nobles -> {
+            names.add(nobles.getCharName());
+        });
         return names;
-
     }
 
     protected void giveHeroBonus() {
@@ -1046,13 +997,8 @@ public class Olympiad {
     }
 
     protected void deleteNobles() {
-        try (Connection con = L2DatabaseFactory.getInstance().getConnection();
-             PreparedStatement statement = con.prepareStatement(OLYMPIAD_DELETE_ALL)) {
-            statement.execute();
-        } catch (SQLException e) {
-            _log.warn("Olympiad System: Couldnt delete nobles from db");
-        }
-
+        OlympiadNoblesRepository repository = DatabaseAccess.getRepository(OlympiadNoblesRepository.class);
+        repository.deleteAll();
         _nobles.clear();
     }
 
