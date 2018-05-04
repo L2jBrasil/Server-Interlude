@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.Item;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.idfactory.IdFactory;
@@ -34,13 +33,13 @@ import com.l2jbr.gameserver.model.database.EtcItem;
 import com.l2jbr.gameserver.model.database.Weapon;
 import com.l2jbr.gameserver.model.database.repository.ArmorRepository;
 import com.l2jbr.gameserver.model.database.repository.EtcItemRepository;
+import com.l2jbr.gameserver.model.database.repository.PetsRepository;
 import com.l2jbr.gameserver.model.database.repository.WeaponRepository;
 import com.l2jbr.gameserver.skills.SkillsEngine;
 import com.l2jbr.gameserver.templates.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -657,22 +656,8 @@ public class ItemTable {
 
             // if it's a pet control item, delete the pet as well
             if (L2PetDataTable.isPetItem(item.getItemId())) {
-                java.sql.Connection con = null;
-                try {
-                    // Delete the pet in db
-                    con = L2DatabaseFactory.getInstance().getConnection();
-                    PreparedStatement statement = con.prepareStatement("DELETE FROM pets WHERE item_obj_id=?");
-                    statement.setInt(1, item.getObjectId());
-                    statement.execute();
-                    statement.close();
-                } catch (Exception e) {
-                    _log.warn( "could not delete pet objectid:", e);
-                } finally {
-                    try {
-                        con.close();
-                    } catch (Exception e) {
-                    }
-                }
+                PetsRepository repository = DatabaseAccess.getRepository(PetsRepository.class);
+                repository.deleteById(item.getObjectId());
             }
         }
     }

@@ -18,9 +18,10 @@
  */
 package com.l2jbr.gameserver.model;
 
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.PetsRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.StatusUpdate;
@@ -28,7 +29,6 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -306,22 +306,8 @@ public class L2TradeList {
     }
 
     private void changePetItemObjectId(int oldObjectId, int newObjectId) {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("UPDATE pets SET item_obj_id = ? WHERE item_obj_id = ?");
-            statement.setInt(1, newObjectId);
-            statement.setInt(2, oldObjectId);
-            statement.executeUpdate();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("could not change pet item object id: " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        PetsRepository repository = DatabaseAccess.getRepository(PetsRepository.class);
+        repository.updateId(oldObjectId, newObjectId);
     }
 
     public void updateBuyList(L2PcInstance player, List<TradeItem> list) {

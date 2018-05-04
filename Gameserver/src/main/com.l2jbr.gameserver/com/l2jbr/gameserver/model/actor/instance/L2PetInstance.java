@@ -19,6 +19,7 @@
 package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.ai.CtrlIntention;
@@ -27,6 +28,8 @@ import com.l2jbr.gameserver.instancemanager.CursedWeaponsManager;
 import com.l2jbr.gameserver.instancemanager.ItemsOnGroundManager;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.stat.PetStat;
+import com.l2jbr.gameserver.model.database.Pets;
+import com.l2jbr.gameserver.model.database.repository.PetsRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.taskmanager.DecayTaskManager;
@@ -712,31 +715,9 @@ public class L2PetInstance extends L2Summon
 		{
 			_logPet.warn("Error while destroying control item: " + e);
 		}
-		
-		// pet control item no longer exists, delete the pet from the db
-		java.sql.Connection con = null;
-		try
-		{
-			con = L2DatabaseFactory.getInstance().getConnection();
-			PreparedStatement statement = con.prepareStatement("DELETE FROM pets WHERE item_obj_id=?");
-			statement.setInt(1, getControlItemId());
-			statement.execute();
-			statement.close();
-		}
-		catch (Exception e)
-		{
-			_logPet.warn("could not delete pet:" + e);
-		}
-		finally
-		{
-			try
-			{
-				con.close();
-			}
-			catch (Exception e)
-			{
-			}
-		}
+
+        PetsRepository repository = DatabaseAccess.getRepository(PetsRepository.class);
+		repository.deleteById(getControlItemId());
 	}
 	
 	public void dropAllItems()
@@ -868,46 +849,15 @@ public class L2PetInstance extends L2Summon
 		}
 		
 		String req;
-		if (!isRespawned())
-		{
-			req = "INSERT INTO pets (name,level,curHp,curMp,exp,sp,karma,pkkills,fed,item_obj_id) " + "VALUES (?,?,?,?,?,?,?,?,?,?)";
+        PetsRepository repository = DatabaseAccess.getRepository(PetsRepository.class);
+		if (!isRespawned()) {
+		    Pets pet = new Pets(getControlItemId(), getName(), getStat().getLevel(), getStatus().getCurrentHp(), getStatus().getCurrentMp(), getStat().getExp(),
+                    getStat().getSp(), getKarma(), getPkKills(), getCurrentFed());
+		    repository.save(pet);
 		}
-		else
-		{
-			req = "UPDATE pets SET name=?,level=?,curHp=?,curMp=?,exp=?,sp=?,karma=?,pkkills=?,fed=? " + "WHERE item_obj_id = ?";
-		}
-		java.sql.Connection con = null;
-		try
-		{
-			con = L2DatabaseFactory.getInstance().getConnection();
-			PreparedStatement statement = con.prepareStatement(req);
-			statement.setString(1, getName());
-			statement.setInt(2, getStat().getLevel());
-			statement.setDouble(3, getStatus().getCurrentHp());
-			statement.setDouble(4, getStatus().getCurrentMp());
-			statement.setLong(5, getStat().getExp());
-			statement.setInt(6, getStat().getSp());
-			statement.setInt(7, getKarma());
-			statement.setInt(8, getPkKills());
-			statement.setInt(9, getCurrentFed());
-			statement.setInt(10, getControlItemId());
-			statement.executeUpdate();
-			statement.close();
-			_respawned = true;
-		}
-		catch (Exception e)
-		{
-			_logPet.warn("could not store pet data: " + e);
-		}
-		finally
-		{
-			try
-			{
-				con.close();
-			}
-			catch (Exception e)
-			{
-			}
+		else {
+		    repository.updateById(getControlItemId(), getName(), getStat().getLevel(), getStatus().getCurrentHp(), getStatus().getCurrentMp(),
+                    getStat().getExp(), getStat().getSp(), getKarma(), getPkKills(), getCurrentFed());
 		}
 		
 		L2ItemInstance itemInst = getControlItem();

@@ -19,12 +19,13 @@
 package com.l2jbr.gameserver.clientpackets;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.instancemanager.CursedWeaponsManager;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2PetDataTable;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.PetsRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.ItemList;
@@ -33,8 +34,6 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.sql.PreparedStatement;
 
 
 /**
@@ -117,8 +116,7 @@ public final class RequestDestroyItem extends L2GameClientPacket
 			count = itemToRemove.getCount();
 		}
 		
-		if (itemToRemove.isEquipped())
-		{
+		if (itemToRemove.isEquipped()) {
 			L2ItemInstance[] unequiped = activeChar.getInventory().unEquipItemInSlotAndRecord(itemToRemove.getEquipSlot());
 			InventoryUpdate iu = new InventoryUpdate();
 			for (L2ItemInstance element : unequiped)
@@ -131,37 +129,13 @@ public final class RequestDestroyItem extends L2GameClientPacket
 			activeChar.broadcastUserInfo();
 		}
 		
-		if (L2PetDataTable.isPetItem(itemId))
-		{
-			java.sql.Connection con = null;
-			try
-			{
-				if ((activeChar.getPet() != null) && (activeChar.getPet().getControlItemId() == _objectId))
-				{
-					activeChar.getPet().unSummon(activeChar);
-				}
-				
-				// if it's a pet control item, delete the pet
-				con = L2DatabaseFactory.getInstance().getConnection();
-				PreparedStatement statement = con.prepareStatement("DELETE FROM pets WHERE item_obj_id=?");
-				statement.setInt(1, _objectId);
-				statement.execute();
-				statement.close();
-			}
-			catch (Exception e)
-			{
-				_log.warn( "could not delete pet objectid: ", e);
-			}
-			finally
-			{
-				try
-				{
-					con.close();
-				}
-				catch (Exception e)
-				{
-				}
-			}
+		if (L2PetDataTable.isPetItem(itemId))  {
+            if ((activeChar.getPet() != null) && (activeChar.getPet().getControlItemId() == _objectId)) {
+                activeChar.getPet().unSummon(activeChar);
+            }
+
+            PetsRepository repository = DatabaseAccess.getRepository(PetsRepository.class);
+            repository.deleteById(_objectId);
 		}
 		
 		L2ItemInstance removedItem = activeChar.getInventory().destroyItem("Destroy", _objectId, count, activeChar, null);
