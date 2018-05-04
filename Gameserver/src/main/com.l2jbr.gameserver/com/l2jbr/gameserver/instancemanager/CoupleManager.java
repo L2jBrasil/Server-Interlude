@@ -18,9 +18,11 @@
  */
 package com.l2jbr.gameserver.instancemanager;
 
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.ModsWeddingRepository;
 import com.l2jbr.gameserver.model.entity.Couple;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,38 +64,16 @@ public class CoupleManager {
         load();
     }
 
-    // =========================================================
-    // Method - Private
-    private final void load() {
-        java.sql.Connection con = null;
-        try {
-            PreparedStatement statement;
-            ResultSet rs;
 
-            con = L2DatabaseFactory.getInstance().getConnection();
-
-            statement = con.prepareStatement("Select id from mods_wedding order by id");
-            rs = statement.executeQuery();
-
-            while (rs.next()) {
-                getCouples().add(new Couple(rs.getInt("id")));
-            }
-
-            statement.close();
-
-            _log.info("Loaded: " + getCouples().size() + " couples(s)");
-        } catch (Exception e) {
-            _log.error("Exception: CoupleManager.load(): " + e.getMessage(), e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+    private void load() {
+        ModsWeddingRepository repository = DatabaseAccess.getRepository(ModsWeddingRepository.class);
+        repository.findAll().forEach(wedding -> {
+            getCouples().add(new Couple(wedding));
+        });
+        _log.info("Loaded: " + getCouples().size() + " couples(s)");
     }
 
-    // =========================================================
-    // Property - Public
+
     public final Couple getCouple(int coupleId) {
         int index = getCoupleIndex(coupleId);
         if (index >= 0) {

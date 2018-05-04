@@ -18,9 +18,12 @@
  */
 package com.l2jbr.gameserver.model.entity;
 
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.ModsWedding;
+import com.l2jbr.gameserver.model.database.repository.ModsWeddingRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,63 +38,13 @@ import java.util.Calendar;
 public class Couple
 {
 	private static final Logger _log = LoggerFactory.getLogger(Couple.class.getName());
-	
-	// =========================================================
-	// Data Field
+
 	private int _Id = 0;
 	private int _player1Id = 0;
 	private int _player2Id = 0;
 	private boolean _maried = false;
 	private Calendar _affiancedDate;
 	private Calendar _weddingDate;
-	
-	// =========================================================
-	// Constructor
-	public Couple(int coupleId)
-	{
-		_Id = coupleId;
-		
-		java.sql.Connection con = null;
-		try
-		{
-			PreparedStatement statement;
-			ResultSet rs;
-			
-			con = L2DatabaseFactory.getInstance().getConnection();
-			
-			statement = con.prepareStatement("Select * from mods_wedding where id = ?");
-			statement.setInt(1, _Id);
-			rs = statement.executeQuery();
-			
-			while (rs.next())
-			{
-				_player1Id = rs.getInt("player1Id");
-				_player2Id = rs.getInt("player2Id");
-				_maried = rs.getBoolean("married");
-				
-				_affiancedDate = Calendar.getInstance();
-				_affiancedDate.setTimeInMillis(rs.getLong("affianceDate"));
-				
-				_weddingDate = Calendar.getInstance();
-				_weddingDate.setTimeInMillis(rs.getLong("weddingDate"));
-			}
-			statement.close();
-		}
-		catch (Exception e)
-		{
-			_log.error("Exception: Couple.load(): " + e.getMessage(), e);
-		}
-		finally
-		{
-			try
-			{
-				con.close();
-			}
-			catch (Exception e)
-			{
-			}
-		}
-	}
 	
 	public Couple(L2PcInstance player1, L2PcInstance player2)
 	{
@@ -106,98 +59,35 @@ public class Couple
 		
 		_weddingDate = Calendar.getInstance();
 		_weddingDate.setTimeInMillis(Calendar.getInstance().getTimeInMillis());
-		
-		java.sql.Connection con = null;
-		try
-		{
-			con = L2DatabaseFactory.getInstance().getConnection();
-			PreparedStatement statement;
-			_Id = IdFactory.getInstance().getNextId();
-			statement = con.prepareStatement("INSERT INTO mods_wedding (id, player1Id, player2Id, married, affianceDate, weddingDate) VALUES (?, ?, ?, ?, ?, ?)");
-			statement.setInt(1, _Id);
-			statement.setInt(2, _player1Id);
-			statement.setInt(3, _player2Id);
-			statement.setBoolean(4, false);
-			statement.setLong(5, _affiancedDate.getTimeInMillis());
-			statement.setLong(6, _weddingDate.getTimeInMillis());
-			statement.execute();
-			statement.close();
-		}
-		catch (Exception e)
-		{
-			_log.error("", e);
-		}
-		finally
-		{
-			try
-			{
-				con.close();
-			}
-			catch (Exception e)
-			{
-			}
-		}
+
+        _Id = IdFactory.getInstance().getNextId();
+        ModsWedding wedding = new ModsWedding(_Id, _player1Id, _player2Id, false, _affiancedDate.getTimeInMillis(), _weddingDate.getTimeInMillis());
+        ModsWeddingRepository repository = DatabaseAccess.getRepository(ModsWeddingRepository.class);
+        repository.save(wedding);
+	}
+
+	public Couple(ModsWedding wedding) {
+        _player1Id = wedding.getPlayer1Id();
+        _player2Id = wedding.getPlayer2Id();
+        _maried = Boolean.valueOf(wedding.getMarried());
+
+        _affiancedDate = Calendar.getInstance();
+        _affiancedDate.setTimeInMillis(wedding.getAffianceDate());
+
+        _weddingDate = Calendar.getInstance();
+        _weddingDate.setTimeInMillis(wedding.getWeddingDate());
+	}
+
+	public void marry() {
+        _weddingDate = Calendar.getInstance();
+        ModsWeddingRepository repository = DatabaseAccess.getRepository(ModsWeddingRepository.class);
+        repository.updateMarried(_Id, true, _weddingDate.getTimeInMillis());
+        _maried = true;
 	}
 	
-	public void marry()
-	{
-		java.sql.Connection con = null;
-		try
-		{
-			con = L2DatabaseFactory.getInstance().getConnection();
-			PreparedStatement statement;
-			
-			statement = con.prepareStatement("UPDATE mods_wedding set married = ?, weddingDate = ? where id = ?");
-			statement.setBoolean(1, true);
-			_weddingDate = Calendar.getInstance();
-			statement.setLong(2, _weddingDate.getTimeInMillis());
-			statement.setInt(3, _Id);
-			statement.execute();
-			statement.close();
-			_maried = true;
-		}
-		catch (Exception e)
-		{
-			_log.error("", e);
-		}
-		finally
-		{
-			try
-			{
-				con.close();
-			}
-			catch (Exception e)
-			{
-			}
-		}
-	}
-	
-	public void divorce()
-	{
-		java.sql.Connection con = null;
-		try
-		{
-			con = L2DatabaseFactory.getInstance().getConnection();
-			PreparedStatement statement;
-			
-			statement = con.prepareStatement("DELETE FROM mods_wedding WHERE id=?");
-			statement.setInt(1, _Id);
-			statement.execute();
-		}
-		catch (Exception e)
-		{
-			_log.error("Exception: Couple.divorce(): " + e.getMessage(), e);
-		}
-		finally
-		{
-			try
-			{
-				con.close();
-			}
-			catch (Exception e)
-			{
-			}
-		}
+	public void divorce()  {
+	    ModsWeddingRepository repository = DatabaseAccess.getRepository(ModsWeddingRepository.class);
+	    repository.deleteById(_Id);
 	}
 	
 	public final int getId()
