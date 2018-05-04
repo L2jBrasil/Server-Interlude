@@ -26,7 +26,9 @@ import com.l2jbr.gameserver.model.L2DropData;
 import com.l2jbr.gameserver.model.L2MinionData;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.base.ClassId;
+import com.l2jbr.gameserver.model.database.Minions;
 import com.l2jbr.gameserver.model.database.Npc;
+import com.l2jbr.gameserver.model.database.repository.MinionRepository;
 import com.l2jbr.gameserver.model.database.repository.NpcRepository;
 import com.l2jbr.gameserver.skills.Stats;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
@@ -69,8 +71,8 @@ public class NpcTable {
     }
 
     private void restoreNpcData() {
-        NpcRepository repository = DatabaseAccess.getRepository(NpcRepository.class);
-        repository.findAll().forEach(this::addToNpcMap);
+        NpcRepository npcRepository = DatabaseAccess.getRepository(NpcRepository.class);
+        npcRepository.findAll().forEach(this::addToNpcMap);
 
         _log.info("info.loaded.npc", _npcs.size());
 
@@ -178,36 +180,22 @@ public class NpcTable {
                 _log.error("NPCTable: Error reading NPC trainer data: " + e);
             }
 
-            try {
-                PreparedStatement statement4 = con.prepareStatement("SELECT " + L2DatabaseFactory.getInstance().safetyString(new String[]
-                        {
-                                "boss_id",
-                                "minion_id",
-                                "amount_min",
-                                "amount_max"
-                        }) + " FROM minions");
-                ResultSet minionData = statement4.executeQuery();
-                L2MinionData minionDat = null;
-                L2NpcTemplate npcDat = null;
-                int cnt = 0;
 
-                while (minionData.next()) {
-                    int raidId = minionData.getInt("boss_id");
-                    npcDat = _npcs.get(raidId);
-                    minionDat = new L2MinionData();
-                    minionDat.setMinionId(minionData.getInt("minion_id"));
-                    minionDat.setAmountMin(minionData.getInt("amount_min"));
-                    minionDat.setAmountMax(minionData.getInt("amount_max"));
-                    npcDat.addRaidData(minionDat);
-                    cnt++;
-                }
-
-                minionData.close();
-                statement4.close();
-                _log.info("NpcTable: Loaded " + cnt + " Minions.");
-            } catch (Exception e) {
-                _log.error("Error loading minion data: " + e);
+            MinionRepository minionRepository = DatabaseAccess.getRepository(MinionRepository.class);
+            int cnt = 0;
+            L2NpcTemplate npcDat = null;
+            L2MinionData minionDat = null;
+            for (Minions minion : minionRepository.findAll()) {
+                int raidId = minion.getBossId();
+                npcDat = _npcs.get(raidId);
+                minionDat = new L2MinionData();
+                minionDat.setMinionId(minion.getMinionId());
+                minionDat.setAmountMin(minion.getAmountMin());
+                minionDat.setAmountMax(minion.getAmountMin());
+                npcDat.addRaidData(minionDat);
+                cnt++;
             }
+            _log.info("NpcTable: Loaded {} Minions", cnt);
         } catch (SQLException e1) {
             // TODO Auto-generated catch block
             e1.printStackTrace();
