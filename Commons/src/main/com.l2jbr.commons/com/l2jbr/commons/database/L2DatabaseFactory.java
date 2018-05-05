@@ -18,7 +18,6 @@
  */
 package com.l2jbr.commons.database;
 
-import com.l2jbr.commons.Config;
 import com.zaxxer.hikari.HikariDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +26,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Optional;
 
 
 public class L2DatabaseFactory {
@@ -44,9 +42,6 @@ public class L2DatabaseFactory {
         try {
             _dataSource.getConnection().close();
         } catch (SQLException e) {
-            if (Config.DEBUG) {
-                _log.error("Database Connection FAILED");
-            }
             _log.error(e.getMessage(), e);
         }
     }

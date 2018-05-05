@@ -279,10 +279,8 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> {
             OlympiadNoblesRepository noblesRepository = DatabaseAccess.getRepository(OlympiadNoblesRepository.class);
             noblesRepository.deleteById(objId);
 
-            statement = con.prepareStatement("DELETE FROM seven_signs WHERE char_obj_id=?");
-            statement.setInt(1, objId);
-            statement.execute();
-            statement.close();
+            SevenSignsRepository sevenSignsRepository = DatabaseAccess.getRepository(SevenSignsRepository.class);
+            sevenSignsRepository.deleteById(objId);
 
             statement = con.prepareStatement("DELETE FROM pets WHERE item_obj_id IN (SELECT object_id FROM items WHERE items.owner_id=?)");
             statement.setInt(1, objId);

@@ -18,6 +18,7 @@
 package com.l2jbr.gameserver;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.datatables.MapRegionTable;
 import com.l2jbr.gameserver.instancemanager.CastleManager;
@@ -26,6 +27,7 @@ import com.l2jbr.gameserver.model.AutoSpawnHandler;
 import com.l2jbr.gameserver.model.AutoSpawnHandler.AutoSpawnInstance;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.SevenSignsRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SignsSky;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
@@ -616,32 +618,26 @@ public class SevenSigns {
         }
     }
 
-    /**
-     * Restores all Seven Signs data and settings, usually called at server startup.
-     */
     protected void restoreSevenSignsData() {
-        try (Connection con = L2DatabaseFactory.getInstance().getConnection();
-             PreparedStatement ps1 = con.prepareStatement("SELECT char_obj_id, cabal, seal, red_stones, green_stones, blue_stones, " + "ancient_adena_amount, contribution_score FROM seven_signs");
-             ResultSet rs1 = ps1.executeQuery()) {
-            while (rs1.next()) {
-                int charObjId = rs1.getInt("char_obj_id");
+        SevenSignsRepository repository = DatabaseAccess.getRepository(SevenSignsRepository.class);
+        repository.findAll().forEach(sevenSigns -> {
+            int charObjId = sevenSigns.getId();
 
-                StatsSet sevenDat = new StatsSet();
-                sevenDat.set("char_obj_id", charObjId);
-                sevenDat.set("cabal", rs1.getString("cabal"));
-                sevenDat.set("seal", rs1.getInt("seal"));
-                sevenDat.set("red_stones", rs1.getInt("red_stones"));
-                sevenDat.set("green_stones", rs1.getInt("green_stones"));
-                sevenDat.set("blue_stones", rs1.getInt("blue_stones"));
-                sevenDat.set("ancient_adena_amount", rs1.getDouble("ancient_adena_amount"));
-                sevenDat.set("contribution_score", rs1.getDouble("contribution_score"));
+            StatsSet sevenDat = new StatsSet();
+            sevenDat.set("char_obj_id", charObjId);
+            sevenDat.set("cabal", sevenSigns.getCabal());
+            sevenDat.set("seal", sevenSigns.getSeal());
+            sevenDat.set("red_stones", sevenSigns.getRedStones());
+            sevenDat.set("green_stones", sevenSigns.getGreenStones());
+            sevenDat.set("blue_stones", sevenSigns.getBlueStones());
+            sevenDat.set("ancient_adena_amount", sevenSigns.getAncientAdenaAmount());
+            sevenDat.set("contribution_score", sevenSigns.getContributionScore());
 
-                if (Config.DEBUG) {
-                    _log.info("SevenSigns: Loaded data from DB for char ID " + charObjId + " (" + sevenDat.getString("cabal") + ")");
-                }
+            _log.info("SevenSigns: Loaded data from DB for char ID {} ({})", charObjId, sevenDat.getString("cabal"));
 
-                _signsPlayerData.put(charObjId, sevenDat);
-            }
+            _signsPlayerData.put(charObjId, sevenDat);
+        });
+        try (Connection con = L2DatabaseFactory.getInstance().getConnection()) {
 
             try (PreparedStatement ps2 = con.prepareStatement("SELECT * FROM seven_signs_status WHERE id=0");
                  ResultSet rs2 = ps2.executeQuery()) {
@@ -694,7 +690,7 @@ public class SevenSigns {
         }
 
         try {
-            con = L2DatabaseFactory.getInstance().getConnection();
+            SevenSignsRepository repository = DatabaseAccess.getRepository(SevenSignsRepository.class);
 
             for (StatsSet sevenDat : _signsPlayerData.values()) {
                 if (player != null) {
@@ -703,22 +699,11 @@ public class SevenSigns {
                     }
                 }
 
-                statement = con.prepareStatement("UPDATE seven_signs SET cabal=?, seal=?, red_stones=?, " + "green_stones=?, blue_stones=?, " + "ancient_adena_amount=?, contribution_score=? " + "WHERE char_obj_id=?");
-                statement.setString(1, sevenDat.getString("cabal"));
-                statement.setInt(2, sevenDat.getInteger("seal"));
-                statement.setInt(3, sevenDat.getInteger("red_stones"));
-                statement.setInt(4, sevenDat.getInteger("green_stones"));
-                statement.setInt(5, sevenDat.getInteger("blue_stones"));
-                statement.setDouble(6, sevenDat.getDouble("ancient_adena_amount"));
-                statement.setDouble(7, sevenDat.getDouble("contribution_score"));
-                statement.setInt(8, sevenDat.getInteger("char_obj_id"));
-                statement.execute();
+                repository.updateContribution(sevenDat.getInteger("char_obj_id"), sevenDat.getString("cabal"), sevenDat.getInteger("seal"),
+                    sevenDat.getInteger("red_stones"), sevenDat.getInteger("green_stones"), sevenDat.getInteger("blue_stones"),
+                    sevenDat.getDouble("ancient_adena_amount"), sevenDat.getDouble("contribution_score"));
 
-                statement.close();
-
-                if (Config.DEBUG) {
-                    _log.info("SevenSigns: Updated data in database for char ID " + sevenDat.getInteger("char_obj_id") + " (" + sevenDat.getString("cabal") + ")");
-                }
+                _log.debug("SevenSigns: Updated data in database for char ID {} ()", sevenDat.getInteger("char_obj_id"), sevenDat.getString("cabal"));
             }
 
             if (updateSettings) {
@@ -729,6 +714,8 @@ public class SevenSigns {
                 }
 
                 sqlQuery += "date=? WHERE id=0";
+
+                con = L2DatabaseFactory.getInstance().getConnection();
 
                 statement = con.prepareStatement(sqlQuery);
                 statement.setInt(1, _currentCycle);
@@ -842,30 +829,11 @@ public class SevenSigns {
 
             _signsPlayerData.put(charObjId, currPlayerData);
 
-            // Update data in database, as we have a new player signing up.
-            try {
-                con = L2DatabaseFactory.getInstance().getConnection();
-                statement = con.prepareStatement("INSERT INTO seven_signs (char_obj_id, cabal, seal) VALUES (?,?,?)");
-                statement.setInt(1, charObjId);
-                statement.setString(2, getCabalShortName(chosenCabal));
-                statement.setInt(3, chosenSeal);
-                statement.execute();
+            com.l2jbr.gameserver.model.database.SevenSigns sevenSigns = new com.l2jbr.gameserver.model.database.SevenSigns(charObjId, getCabalShortName(chosenCabal), chosenSeal);
+            SevenSignsRepository repository = DatabaseAccess.getRepository(SevenSignsRepository.class);
+            repository.save(sevenSigns);
 
-                statement.close();
-                con.close();
-
-                if (Config.DEBUG) {
-                    _log.info("SevenSigns: Inserted data in DB for char ID " + currPlayerData.getInteger("char_obj_id") + " (" + currPlayerData.getString("cabal") + ")");
-                }
-            } catch (SQLException e) {
-                _log.error("SevenSigns: Failed to save data: " + e);
-            } finally {
-                try {
-                    statement.close();
-                    con.close();
-                } catch (Exception e) {
-                }
-            }
+            _log.debug("SevenSigns: Inserted data in DB for char ID {} ()", currPlayerData.getInteger("char_obj_id"), currPlayerData.getString("cabal"));
         }
 
         // Increasing Seal total score for the player chosen Seal.
