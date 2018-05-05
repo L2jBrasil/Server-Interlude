@@ -18,8 +18,10 @@
  */
 package com.l2jbr.gameserver.model;
 
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.actor.instance.L2PetInstance;
+import com.l2jbr.gameserver.model.database.repository.PetStatsRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,63 +51,44 @@ public class L2PetDataTable {
     }
 
     public void loadPetsData() {
-        java.sql.Connection con = null;
 
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("SELECT typeID, level, expMax, hpMax, mpMax, patk, pdef, matk, mdef, acc, evasion, crit, speed, atk_speed, cast_speed, feedMax, feedbattle, feednormal, loadMax, hpregen, mpregen, owner_exp_taken FROM pets_stats");
-            ResultSet rset = statement.executeQuery();
+        PetStatsRepository repository = DatabaseAccess.getRepository(PetStatsRepository.class);
+        repository.findAll().forEach(petsStats -> {
+            int petId = petsStats.getTypeID();
+            int petLevel = petsStats.getLevel();
 
-            int petId, petLevel;
+            L2PetData petData = new L2PetData();
+            petData.setPetID(petId);
+            petData.setPetLevel(petLevel);
+            petData.setPetMaxExp(petsStats.getExpMax());
+            petData.setPetMaxHP(petsStats.getHpMax());
+            petData.setPetMaxMP(petsStats.getMpMax());
+            petData.setPetPAtk(petsStats.getPatk());
+            petData.setPetPDef(petsStats.getPdef());
+            petData.setPetMAtk(petsStats.getMatk());
+            petData.setPetMDef(petsStats.getMdef());
+            petData.setPetAccuracy(petsStats.getAcc());
+            petData.setPetEvasion(petsStats.getEvasion());
+            petData.setPetCritical(petsStats.getCrit());
+            petData.setPetSpeed(petsStats.getSpeed());
+            petData.setPetAtkSpeed(petsStats.getAtkSpeed());
+            petData.setPetCastSpeed(petsStats.getCastSpeed());
+            petData.setPetMaxFeed(petsStats.getFeedMax());
+            petData.setPetFeedNormal(petsStats.getFeednormal());
+            petData.setPetFeedBattle(petsStats.getFeedbattle());
+            petData.setPetMaxLoad(petsStats.getLoadMax());
+            petData.setPetRegenHP(petsStats.getHpregen());
+            petData.setPetRegenMP(petsStats.getMpregen());
+            petData.setPetRegenMP(petsStats.getMpregen());
+            petData.setOwnerExpTaken(petsStats.getOwnerExpTaken());
 
-            while (rset.next()) {
-                petId = rset.getInt("typeID");
-                petLevel = rset.getInt("level");
-
-                // build the petdata for this level
-                L2PetData petData = new L2PetData();
-                petData.setPetID(petId);
-                petData.setPetLevel(petLevel);
-                petData.setPetMaxExp(rset.getInt("expMax"));
-                petData.setPetMaxHP(rset.getInt("hpMax"));
-                petData.setPetMaxMP(rset.getInt("mpMax"));
-                petData.setPetPAtk(rset.getInt("patk"));
-                petData.setPetPDef(rset.getInt("pdef"));
-                petData.setPetMAtk(rset.getInt("matk"));
-                petData.setPetMDef(rset.getInt("mdef"));
-                petData.setPetAccuracy(rset.getInt("acc"));
-                petData.setPetEvasion(rset.getInt("evasion"));
-                petData.setPetCritical(rset.getInt("crit"));
-                petData.setPetSpeed(rset.getInt("speed"));
-                petData.setPetAtkSpeed(rset.getInt("atk_speed"));
-                petData.setPetCastSpeed(rset.getInt("cast_speed"));
-                petData.setPetMaxFeed(rset.getInt("feedMax"));
-                petData.setPetFeedNormal(rset.getInt("feednormal"));
-                petData.setPetFeedBattle(rset.getInt("feedbattle"));
-                petData.setPetMaxLoad(rset.getInt("loadMax"));
-                petData.setPetRegenHP(rset.getInt("hpregen"));
-                petData.setPetRegenMP(rset.getInt("mpregen"));
-                petData.setPetRegenMP(rset.getInt("mpregen"));
-                petData.setOwnerExpTaken(rset.getFloat("owner_exp_taken"));
-
-                // if its the first data for this petid, we initialize its level FastMap
-                if (!_petTable.containsKey(petId)) {
-                    _petTable.put(petId, new LinkedHashMap<Integer, L2PetData>());
-                }
-
-                _petTable.get(petId).put(petLevel, petData);
+            if (!_petTable.containsKey(petId)) {
+                _petTable.put(petId, new LinkedHashMap<>());
             }
 
-            rset.close();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("Could not load pets stats: " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+            _petTable.get(petId).put(petLevel, petData);
+
+        });
     }
 
     public void addPetData(L2PetData petData) {
