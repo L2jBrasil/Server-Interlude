@@ -18,7 +18,7 @@
 package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.Announcements;
 import com.l2jbr.gameserver.ThreadPoolManager;
@@ -27,12 +27,12 @@ import com.l2jbr.gameserver.datatables.NpcTable;
 import com.l2jbr.gameserver.datatables.SpawnTable;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
+import com.l2jbr.gameserver.model.database.RandomSpawn;
+import com.l2jbr.gameserver.model.database.repository.RandomSpawnRepository;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -83,58 +83,21 @@ public class AutoSpawnHandler {
     }
 
     private void restoreSpawnData() {
-        int numLoaded = 0;
-        java.sql.Connection con = null;
+       RandomSpawnRepository repository = DatabaseAccess.getRepository(RandomSpawnRepository.class);
+       repository.findAll().forEach(spawn -> {
+           AutoSpawnInstance spawnInst = registerSpawn(spawn);
 
-        try {
-            PreparedStatement statement = null;
-            PreparedStatement statement2 = null;
-            ResultSet rs = null;
-            ResultSet rs2 = null;
+           spawnInst.setSpawnCount(spawn.getCount());
+           spawnInst.setBroadcast(Boolean.valueOf(spawn.getBroadcastSpawn()));
+           spawnInst.setRandomSpawn(Boolean.valueOf(spawn.getRandomSpawn()));
 
-            con = L2DatabaseFactory.getInstance().getConnection();
-
-            // Restore spawn group data, then the location data.
-            statement = con.prepareStatement("SELECT * FROM random_spawn ORDER BY groupId ASC");
-            rs = statement.executeQuery();
-
-            while (rs.next()) {
-                // Register random spawn group, set various options on the
-                // created spawn instance.
-                AutoSpawnInstance spawnInst = registerSpawn(rs.getInt("npcId"), rs.getInt("initialDelay"), rs.getInt("respawnDelay"), rs.getInt("despawnDelay"));
-
-                spawnInst.setSpawnCount(rs.getInt("count"));
-                spawnInst.setBroadcast(rs.getBoolean("broadcastSpawn"));
-                spawnInst.setRandomSpawn(rs.getBoolean("randomSpawn"));
-                numLoaded++;
-
-                // Restore the spawn locations for this spawn group/instance.
-                statement2 = con.prepareStatement("SELECT * FROM random_spawn_loc WHERE groupId=?");
-                statement2.setInt(1, rs.getInt("groupId"));
-                rs2 = statement2.executeQuery();
-
-                while (rs2.next()) {
-                    // Add each location to the spawn group/instance.
-                    spawnInst.addSpawnLocation(rs2.getInt("x"), rs2.getInt("y"), rs2.getInt("z"), rs2.getInt("heading"));
-                }
-
-                statement2.close();
-            }
-
-            statement.close();
-
-            if (Config.DEBUG) {
-                _log.info("AutoSpawnHandler: Loaded " + numLoaded + " spawn group(s) from the database.");
-            }
-        } catch (Exception e) {
-            _log.warn("AutoSpawnHandler: Could not restore spawn data: " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+           spawn.getLocs().forEach(loc -> {
+               spawnInst.addSpawnLocation(loc.getX(), loc.getY(), loc.getZ(), loc.getHeading());
+           });
+       });
+        _log.info("AutoSpawnHandler: Loaded {} spawn group(s) from the database.", size());
     }
+
 
     /**
      * Registers a spawn with the given parameters with the spawner, and marks it as active. Returns a AutoSpawnInstance containing info about the spawn.
@@ -180,18 +143,8 @@ public class AutoSpawnHandler {
         return newSpawn;
     }
 
-    /**
-     * Registers a spawn with the given parameters with the spawner, and marks it as active. Returns a AutoSpawnInstance containing info about the spawn.<br>
-     * <B>Warning:</B> Spawn locations must be specified separately using addSpawnLocation().
-     *
-     * @param npcId
-     * @param initialDelay If < 0 = default value
-     * @param respawnDelay If < 0 = default value
-     * @param despawnDelay If < 0 = default value
-     * @return AutoSpawnInstance spawnInst
-     */
-    public AutoSpawnInstance registerSpawn(int npcId, int initialDelay, int respawnDelay, int despawnDelay) {
-        return registerSpawn(npcId, null, initialDelay, respawnDelay, despawnDelay);
+    private AutoSpawnInstance registerSpawn(RandomSpawn spawn) {
+        return registerSpawn(spawn.getNpcId(), null, spawn.getInitialDelay(), spawn.getRespawnDelay(), spawn.getDespawnDelay());
     }
 
     /**
