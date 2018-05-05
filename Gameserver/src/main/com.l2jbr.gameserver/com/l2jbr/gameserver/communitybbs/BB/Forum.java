@@ -107,7 +107,7 @@ public class Forum {
             _forumPerm = forum.getForumPerm();
             _ownerID = forum.getForumOwnerId();
             forum.getTopics().forEach(topic -> {
-                Topic t = new Topic(Topic.ConstructorType.RESTORE, topic.getTopicId(), topic.getTopicForumId(), topic.getTopicName(),
+                Topic t = new Topic(Topic.ConstructorType.RESTORE, topic.getId(), topic.getTopicForumId(), topic.getTopicName(),
                     topic.getTopicDate(), topic.getTopicOwnerName(), topic.getTopicOwnerId(), topic.getTopicType(), topic.getTopicReply());
                 _topic.put(t.getID(), t);
                 if (t.getID() > TopicBBSManager.getInstance().getMaxID(this)) {

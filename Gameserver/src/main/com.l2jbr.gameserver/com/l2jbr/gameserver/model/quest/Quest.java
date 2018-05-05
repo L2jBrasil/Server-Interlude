@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.model.quest;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.cache.HtmCache;
@@ -31,18 +30,16 @@ import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.database.CharacterQuests;
 import com.l2jbr.gameserver.model.database.repository.CharacterQuestsRepository;
+import com.l2jbr.gameserver.model.database.repository.QuestGlobalDataRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
-import org.python.bouncycastle.asn1.dvcs.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.*;
 
 
@@ -534,24 +531,8 @@ public abstract class Quest {
      * @param value : String designating the value of the variable for the quest
      */
     public final void saveGlobalQuestVar(String var, String value) {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
-            statement = con.prepareStatement("REPLACE INTO quest_global_data (quest_name,var,value) VALUES (?,?,?)");
-            statement.setString(1, getName());
-            statement.setString(2, var);
-            statement.setString(3, value);
-            statement.executeUpdate();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn( "could not insert global quest variable:", e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        QuestGlobalDataRepository repository = DatabaseAccess.getRepository(QuestGlobalDataRepository.class);
+        repository.saveOrUpdate(getName(), var, value);
     }
 
     /**
@@ -562,29 +543,8 @@ public abstract class Quest {
      * @return String : String representing the loaded value for the passed var, or an empty string if the var was invalid
      */
     public final String loadGlobalQuestVar(String var) {
-        String result = "";
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
-            statement = con.prepareStatement("SELECT value FROM quest_global_data WHERE quest_name = ? AND var = ?");
-            statement.setString(1, getName());
-            statement.setString(2, var);
-            ResultSet rs = statement.executeQuery();
-            if (rs.first()) {
-                result = rs.getString(1);
-            }
-            rs.close();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn( "could not load global quest variable:", e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
-        return result;
+        QuestGlobalDataRepository repository = DatabaseAccess.getRepository(QuestGlobalDataRepository.class);
+        return repository.findValueByVar(getName(), var).orElse("");
     }
 
     /**
@@ -593,45 +553,16 @@ public abstract class Quest {
      * @param var : String designating the name of the variable for the quest
      */
     public final void deleteGlobalQuestVar(String var) {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
-            statement = con.prepareStatement("DELETE FROM quest_global_data WHERE quest_name = ? AND var = ?");
-            statement.setString(1, getName());
-            statement.setString(2, var);
-            statement.executeUpdate();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn( "could not delete global quest variable:", e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        QuestGlobalDataRepository repository = DatabaseAccess.getRepository(QuestGlobalDataRepository.class);
+        repository.deleteByVar(getName(), var);
     }
 
     /**
      * Permanently delete from the database all global quest variables that was previously saved for this quest.
      */
     public final void deleteAllGlobalQuestVars() {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
-            statement = con.prepareStatement("DELETE FROM quest_global_data WHERE quest_name = ?");
-            statement.setString(1, getName());
-            statement.executeUpdate();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn( "could not delete global quest variables:", e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        QuestGlobalDataRepository repository = DatabaseAccess.getRepository(QuestGlobalDataRepository.class);
+        repository.deleteById(getName());
     }
 
     public static void createQuestVarInDb(QuestState qs, String var, String value) {
