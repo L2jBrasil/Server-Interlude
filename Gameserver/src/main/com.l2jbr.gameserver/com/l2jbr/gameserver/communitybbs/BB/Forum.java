@@ -19,7 +19,6 @@
 package com.l2jbr.gameserver.communitybbs.BB;
 
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.communitybbs.Manager.ForumsBBSManager;
 import com.l2jbr.gameserver.communitybbs.Manager.TopicBBSManager;
 import com.l2jbr.gameserver.model.database.Forums;
@@ -27,8 +26,6 @@ import com.l2jbr.gameserver.model.database.repository.ForumRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -109,34 +106,15 @@ public class Forum {
             _forumType = forum.getForumType();
             _forumPerm = forum.getForumPerm();
             _ownerID = forum.getForumOwnerId();
-        });
-
-        java.sql.Connection con = null;
-
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("SELECT * FROM topic WHERE topic_forum_id=? ORDER BY topic_id DESC");
-            statement.setInt(1, _forumId);
-            ResultSet result = statement.executeQuery();
-
-            while (result.next()) {
-                Topic t = new Topic(Topic.ConstructorType.RESTORE, Integer.parseInt(result.getString("topic_id")), Integer.parseInt(result.getString("topic_forum_id")), result.getString("topic_name"), Long.parseLong(result.getString("topic_date")), result.getString("topic_ownername"), Integer.parseInt(result.getString("topic_ownerid")), Integer.parseInt(result.getString("topic_type")), Integer.parseInt(result.getString("topic_reply")));
+            forum.getTopics().forEach(topic -> {
+                Topic t = new Topic(Topic.ConstructorType.RESTORE, topic.getTopicId(), topic.getTopicForumId(), topic.getTopicName(),
+                    topic.getTopicDate(), topic.getTopicOwnerName(), topic.getTopicOwnerId(), topic.getTopicType(), topic.getTopicReply());
                 _topic.put(t.getID(), t);
                 if (t.getID() > TopicBBSManager.getInstance().getMaxID(this)) {
                     TopicBBSManager.getInstance().setMaxID(t.getID(), this);
                 }
-            }
-            result.close();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("data error on Forum " + _forumId + " : " + e);
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+            });
+        });
     }
 
     private void getChildren() {

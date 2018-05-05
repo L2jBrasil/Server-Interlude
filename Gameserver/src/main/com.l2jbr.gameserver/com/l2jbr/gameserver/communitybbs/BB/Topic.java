@@ -18,12 +18,11 @@
  */
 package com.l2jbr.gameserver.communitybbs.BB;
 
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.communitybbs.Manager.TopicBBSManager;
+import com.l2jbr.gameserver.model.database.repository.TopicRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.sql.PreparedStatement;
 
 
 public class Topic
@@ -71,44 +70,12 @@ public class Topic
 			insertindb();
 		}
 	}
-	
-	/**
-	 *
-	 */
-	public void insertindb()
-	{
-		java.sql.Connection con = null;
-		try
-		{
-			con = L2DatabaseFactory.getInstance().getConnection();
-			PreparedStatement statement = con.prepareStatement("INSERT INTO topic (topic_id,topic_forum_id,topic_name,topic_date,topic_ownername,topic_ownerid,topic_type,topic_reply) values (?,?,?,?,?,?,?,?)");
-			statement.setInt(1, _id);
-			statement.setInt(2, _forumId);
-			statement.setString(3, _topicName);
-			statement.setLong(4, _date);
-			statement.setString(5, _ownerName);
-			statement.setInt(6, _ownerId);
-			statement.setInt(7, _type);
-			statement.setInt(8, _cReply);
-			statement.execute();
-			statement.close();
-			
-		}
-		catch (Exception e)
-		{
-			_log.warn("error while saving new Topic to db " + e);
-		}
-		finally
-		{
-			try
-			{
-				con.close();
-			}
-			catch (Exception e)
-			{
-			}
-		}
-		
+
+	public void insertindb() {
+        com.l2jbr.gameserver.model.database.Topic topic = new com.l2jbr.gameserver.model.database.Topic(_id, _forumId, _topicName, _date,
+            _ownerName, _ownerId, _type, _cReply);
+        TopicRepository repository = DatabaseAccess.getRepository(TopicRepository.class);
+        repository.save(topic);
 	}
 	
 	public enum ConstructorType
@@ -116,10 +83,7 @@ public class Topic
 		RESTORE,
 		CREATE
 	}
-	
-	/**
-	 * @return
-	 */
+
 	public int getID()
 	{
 		return _id;
@@ -129,58 +93,22 @@ public class Topic
 	{
 		return _forumId;
 	}
-	
-	/**
-	 * @return
-	 */
-	public String getName()
-	{
-		// TODO Auto-generated method stub
+
+	public String getName() {
 		return _topicName;
 	}
 	
-	public String getOwnerName()
-	{
-		// TODO Auto-generated method stub
+	public String getOwnerName() {
 		return _ownerName;
 	}
-	
-	/**
-	 * @param f
-	 */
-	public void deleteme(Forum f)
-	{
+
+	public void deleteme(Forum f) {
 		TopicBBSManager.getInstance().delTopic(this);
 		f.rmTopicByID(getID());
-		java.sql.Connection con = null;
-		try
-		{
-			con = L2DatabaseFactory.getInstance().getConnection();
-			PreparedStatement statement = con.prepareStatement("DELETE FROM topic WHERE topic_id=? AND topic_forum_id=?");
-			statement.setInt(1, getID());
-			statement.setInt(2, f.getID());
-			statement.execute();
-			statement.close();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			try
-			{
-				con.close();
-			}
-			catch (Exception e)
-			{
-			}
-		}
+        TopicRepository repository = DatabaseAccess.getRepository(TopicRepository.class);
+        repository.deleteByForum(getID(), f.getID());
 	}
-	
-	/**
-	 * @return
-	 */
+
 	public long getDate()
 	{
 		return _date;

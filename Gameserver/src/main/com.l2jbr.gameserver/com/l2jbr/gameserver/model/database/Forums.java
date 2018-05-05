@@ -4,6 +4,8 @@ import com.l2jbr.commons.database.annotation.Column;
 import com.l2jbr.commons.database.model.Entity;
 import org.springframework.data.annotation.Id;
 
+import java.util.Set;
+
 public class Forums extends Entity<Integer> {
     @Id
     @Column("forum_id")
@@ -20,6 +22,8 @@ public class Forums extends Entity<Integer> {
     private int forumPerm;
     @Column("forum_owner_id")
     private int forumOwnerId;
+    @Column("topic_forum_id")
+    private Set<Topic> topics;
 
     public Forums() {}
 
@@ -60,5 +64,9 @@ public class Forums extends Entity<Integer> {
 
     public int getForumOwnerId() {
         return forumOwnerId;
+    }
+
+    public Set<Topic> getTopics() {
+        return topics;
     }
 }

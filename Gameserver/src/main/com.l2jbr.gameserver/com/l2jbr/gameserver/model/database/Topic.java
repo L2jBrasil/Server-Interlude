@@ -1,15 +1,70 @@
 package com.l2jbr.gameserver.model.database;
 
-
+import com.l2jbr.commons.database.annotation.Column;
+import org.springframework.data.annotation.Id;
 
 public class Topic  {
 
-    private int topic_id;
-    private int topic_forum_id;
-    private String topic_name;
-    private long topic_date;
-    private String topic_ownername;
-    private int topic_ownerid;
-    private int topic_type;
-    private int topic_reply;
+    @Id
+    @Column("topic_id")
+    private int topicId;
+    @Column("topic_forum_id")
+    private int topicForumId;
+    @Column("topic_name")
+    private String topicName;
+    @Column("topic_date")
+    private long topicDate;
+    @Column("topic_ownername")
+    private String topicOwnerName;
+    @Column("topic_ownerid")
+    private int topicOwnerId;
+    @Column("topicType")
+    private int topicType;
+    @Column("topic_reply")
+    private int topicReply;
+
+    public Topic() {}
+
+    public Topic(int id, int forumId, String topicName, long date, String ownerName, int ownerId, int type, int cReply) {
+        this.topicId = id;
+        this.topicForumId = forumId;
+        this.topicName = topicName;
+        this.topicDate = date;
+        this.topicOwnerName = ownerName;
+        this.topicOwnerId = ownerId;
+        this.topicType = type;
+        this.topicReply = cReply;
+    }
+
+    public int getTopicId() {
+        return topicId;
+    }
+
+    public int getTopicForumId() {
+        return topicForumId;
+    }
+
+    public String getTopicName() {
+        return topicName;
+    }
+
+    public long getTopicDate() {
+        return topicDate;
+    }
+
+    public String getTopicOwnerName() {
+        return topicOwnerName;
+    }
+
+    public int getTopicOwnerId() {
+        return topicOwnerId;
+    }
+
+    public int getTopicType() {
+        return topicType;
+    }
+
+    public int getTopicReply() {
+        return topicReply;
+    }
 }
