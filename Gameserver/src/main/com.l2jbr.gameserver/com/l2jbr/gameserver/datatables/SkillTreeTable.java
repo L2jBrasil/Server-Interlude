@@ -31,6 +31,7 @@ import com.l2jbr.gameserver.model.database.EnchantSkillTrees;
 import com.l2jbr.gameserver.model.database.repository.CharTemplateRepository;
 import com.l2jbr.gameserver.model.database.repository.EnchantSkillTreesRepository;
 import com.l2jbr.gameserver.model.database.repository.FishingSkillTreeRepository;
+import com.l2jbr.gameserver.model.database.repository.PledgeSkillTreesRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -218,37 +219,23 @@ public class SkillTreeTable {
 
         int count4 = _enchantSkillTrees.size();
 
-
-        int count5 = 0;
-        try(Connection con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("SELECT skill_id, level, name, clan_lvl, repCost, itemId FROM pledge_skill_trees ORDER BY skill_id, level");
-            ResultSet skilltree4 = statement.executeQuery();) {
-            _pledgeSkillTrees = new LinkedList<>();
-
-            int prevSkillId = -1;
-
-            while (skilltree4.next()) {
-                int id = skilltree4.getInt("skill_id");
-                int lvl = skilltree4.getInt("level");
-                String name = skilltree4.getString("name");
-                int baseLvl = skilltree4.getInt("clan_lvl");
-                int sp = skilltree4.getInt("repCost");
-                int itemId = skilltree4.getInt("itemId");
-
-                if (prevSkillId != id) {
-                    prevSkillId = id;
-                }
-
-                L2PledgeSkillLearn skill = new L2PledgeSkillLearn(id, lvl, baseLvl, name, sp, itemId);
-
-                _pledgeSkillTrees.add(skill);
-            }
+        _pledgeSkillTrees = new LinkedList<>();
+        PledgeSkillTreesRepository pledgeSkillTreesRepository = DatabaseAccess.getRepository(PledgeSkillTreesRepository.class);
+        pledgeSkillTreesRepository.findAllOrderBySkillAndLevel().forEach(pledgeSkill -> {
+            int id = pledgeSkill.getSkillId();
+            int lvl = pledgeSkill.getLevel();
+            String name = pledgeSkill.getName();
+            int baseLvl = pledgeSkill.getClanLvl();
+            int sp = pledgeSkill.getRepCost();
+            int itemId = pledgeSkill.getItemId();
 
 
-            count5 = _pledgeSkillTrees.size();
-        } catch (Exception e) {
-            _log.error("Error while creating fishing skill table: " + e);
-        }
+            L2PledgeSkillLearn skill = new L2PledgeSkillLearn(id, lvl, baseLvl, name, sp, itemId);
+
+            _pledgeSkillTrees.add(skill);
+        });
+
+        int count5 = _pledgeSkillTrees.size();
 
         _log.info("FishingSkillTreeTable: Loaded " + count2 + " general skills.");
         _log.info("FishingSkillTreeTable: Loaded " + count3 + " dwarven skills.");
