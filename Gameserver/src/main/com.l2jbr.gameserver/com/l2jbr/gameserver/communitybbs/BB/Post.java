@@ -18,13 +18,13 @@
  */
 package com.l2jbr.gameserver.communitybbs.BB;
 
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.communitybbs.Manager.PostBBSManager;
+import com.l2jbr.gameserver.model.database.Posts;
+import com.l2jbr.gameserver.model.database.repository.PostRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -71,28 +71,9 @@ public class Post {
     }
 
     public void insertindb(CPost cp) {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("INSERT INTO posts (post_id,post_owner_name,post_ownerid,post_date,post_topic_id,post_forum_id,post_txt) values (?,?,?,?,?,?,?)");
-            statement.setInt(1, cp.postId);
-            statement.setString(2, cp.postOwner);
-            statement.setInt(3, cp.postOwnerId);
-            statement.setLong(4, cp.postDate);
-            statement.setInt(5, cp.postTopicId);
-            statement.setInt(6, cp.postForumId);
-            statement.setString(7, cp.postTxt);
-            statement.execute();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("error while saving new Post to db " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
-
+        Posts post = new Posts(cp.postId, cp.postOwner, cp.postOwnerId, cp.postDate, cp.postTopicId, cp.postForumId, cp.postTxt);
+        PostRepository repository = DatabaseAccess.getRepository(PostRepository.class);
+        repository.save(post);
     }
 
     public Post(Topic t) {
@@ -113,86 +94,18 @@ public class Post {
 
     public void deleteme(Topic t) {
         PostBBSManager.getInstance().delPostByTopic(t);
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("DELETE FROM posts WHERE post_forum_id=? AND post_topic_id=?");
-            statement.setInt(1, t.getForumID());
-            statement.setInt(2, t.getID());
-            statement.execute();
-            statement.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        PostRepository repository = DatabaseAccess.getRepository(PostRepository.class);
+        repository.deleteByForumAndTopic(t.getForumID(), t.getID());
     }
 
-    /**
-     * @param t
-     */
     private void load(Topic t) {
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("SELECT * FROM posts WHERE post_forum_id=? AND post_topic_id=? ORDER BY post_id ASC");
-            statement.setInt(1, t.getForumID());
-            statement.setInt(2, t.getID());
-            ResultSet result = statement.executeQuery();
-            while (result.next()) {
-                CPost cp = new CPost();
-                cp.postId = Integer.parseInt(result.getString("post_id"));
-                cp.postOwner = result.getString("post_owner_name");
-                cp.postOwnerId = Integer.parseInt(result.getString("post_ownerid"));
-                cp.postDate = Long.parseLong(result.getString("post_date"));
-                cp.postTopicId = Integer.parseInt(result.getString("post_topic_id"));
-                cp.postForumId = Integer.parseInt(result.getString("post_forum_id"));
-                cp.postTxt = result.getString("post_txt");
-                _post.add(cp);
-            }
-            result.close();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("data error on Post " + t.getForumID() + "/" + t.getID() + " : " + e);
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        PostRepository repository = DatabaseAccess.getRepository(PostRepository.class);
+        repository.findAllByForumAndTopic(t.getForumID(), t.getID());
     }
 
-    /**
-     * @param i
-     */
     public void updatetxt(int i) {
-        java.sql.Connection con = null;
-        try {
-            CPost cp = getCPost(i);
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("UPDATE posts SET post_txt=? WHERE post_id=? AND post_topic_id=? AND post_forum_id=?");
-            statement.setString(1, cp.postTxt);
-            statement.setInt(2, cp.postId);
-            statement.setInt(3, cp.postTopicId);
-            statement.setInt(4, cp.postForumId);
-            statement.execute();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("error while saving new Post to db " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
-
+        PostRepository repository = DatabaseAccess.getRepository(PostRepository.class);
+        CPost cp = getCPost(i);
+        repository.updateText(cp.postId, cp.postTopicId, cp.postForumId, cp.postTxt);
     }
-    /**
-     *
-     */
-
 }

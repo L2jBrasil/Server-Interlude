@@ -1,9 +1,10 @@
 package com.l2jbr.gameserver.model.database;
 
 import com.l2jbr.commons.database.annotation.Column;
+import com.l2jbr.commons.database.model.Entity;
 import org.springframework.data.annotation.Id;
 
-public class Topic  {
+public class Topic extends Entity<Integer> {
 
     @Id
     @Column("topic_id")
@@ -36,7 +37,8 @@ public class Topic  {
         this.topicReply = cReply;
     }
 
-    public int getTopicId() {
+    @Override
+    public Integer getId() {
         return topicId;
     }
 
