@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.model;
 
-import com.l2jbr.gameserver.templates.StatsSet;
+import com.l2jbr.gameserver.model.database.WalkerRoutes;
 
 
 /**
@@ -29,7 +29,7 @@ public class L2NpcWalkerNode
 {
 	private int _routeId;
 	private int _npcId;
-	private String _movePoint;
+	private int _movePoint;
 	private String _chatText;
 	private int _moveX;
 	private int _moveY;
@@ -37,7 +37,19 @@ public class L2NpcWalkerNode
 	private int _delay;
 	
 	private boolean _running;
-	
+
+	public L2NpcWalkerNode(WalkerRoutes walkerRoutes) {
+		this._routeId = walkerRoutes.getRouteId();
+		this._npcId = walkerRoutes.getNpcId();
+		this._movePoint = walkerRoutes.getMovePoint();
+		this._chatText = walkerRoutes.getChatText();
+		this._moveX = walkerRoutes.getMoveX();
+		this._moveY = walkerRoutes.getMoveY();
+		this._moveZ = walkerRoutes.getMoveZ();
+		this._delay = walkerRoutes.getDelay();
+		this._running = walkerRoutes.getRunning() == 1;
+	}
+
 	public void setRunning(boolean val)
 	{
 		_running = val;
@@ -53,7 +65,7 @@ public class L2NpcWalkerNode
 		_npcId = id;
 	}
 	
-	public void setMovePoint(String val)
+	public void setMovePoint(int val)
 	{
 		_movePoint = val;
 	}
@@ -93,7 +105,7 @@ public class L2NpcWalkerNode
 		return _npcId;
 	}
 	
-	public String getMovePoint()
+	public int getMovePoint()
 	{
 		return _movePoint;
 	}
@@ -126,25 +138,5 @@ public class L2NpcWalkerNode
 	public boolean getRunning()
 	{
 		return _running;
-	}
-	
-	public L2NpcWalkerNode()
-	{
-		
-	}
-	
-	/**
-	 * Constructor of L2NpcWalker.
-	 * @param set The StatsSet object to transfer data to the method
-	 */
-	public L2NpcWalkerNode(StatsSet set)
-	{
-		_npcId = set.getInteger("npc_id");
-		_movePoint = set.getString("move_point");
-		_chatText = set.getString("chatText");
-		_moveX = set.getInteger("move_x");
-		_moveX = set.getInteger("move_y");
-		_moveX = set.getInteger("move_z");
-		_delay = set.getInteger("delay");
 	}
 }
