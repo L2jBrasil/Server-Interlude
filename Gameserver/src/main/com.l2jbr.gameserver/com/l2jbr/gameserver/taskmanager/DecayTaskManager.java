@@ -23,9 +23,9 @@ import com.l2jbr.gameserver.model.actor.instance.L2RaidBossInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
@@ -33,7 +33,7 @@ import java.util.NoSuchElementException;
  */
 public class DecayTaskManager {
     protected static final Logger _log = LoggerFactory.getLogger(DecayTaskManager.class.getName());
-    protected Map<L2Character, Long> _decayTasks = new LinkedHashMap<L2Character, Long>();
+    protected Map<L2Character, Long> _decayTasks = new ConcurrentHashMap<>();
 
     private static DecayTaskManager _instance;
 
@@ -73,23 +73,18 @@ public class DecayTaskManager {
         public void run() {
             Long current = System.currentTimeMillis();
             int delay;
-            try {
-                if (_decayTasks != null) {
-                    for (L2Character actor : _decayTasks.keySet()) {
-                        if (actor instanceof L2RaidBossInstance) {
-                            delay = 30000;
-                        } else {
-                            delay = 8500;
-                        }
-                        if ((current - _decayTasks.get(actor)) > delay) {
-                            actor.onDecay();
-                            _decayTasks.remove(actor);
-                        }
+            if (_decayTasks != null) {
+                for (L2Character actor : _decayTasks.keySet()) {
+                    if (actor instanceof L2RaidBossInstance) {
+                        delay = 30000;
+                    } else {
+                        delay = 8500;
+                    }
+                    if ((current - _decayTasks.get(actor)) > delay) {
+                        actor.onDecay();
+                        _decayTasks.remove(actor);
                     }
                 }
-            } catch (Throwable e) {
-                // TODO: Find out the reason for exception. Unless caught here, mob decay would stop.
-                _log.warn(e.toString());
             }
         }
     }

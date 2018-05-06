@@ -31,8 +31,8 @@ import com.l2jbr.gameserver.serverpackets.AutoAttackStop;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
@@ -44,7 +44,7 @@ import java.util.Map;
 public class AttackStanceTaskManager {
     protected static final Logger _log = LoggerFactory.getLogger(AttackStanceTaskManager.class.getName());
 
-    protected Map<L2Character, Long> _attackStanceTasks = new LinkedHashMap<>();
+    protected Map<L2Character, Long> _attackStanceTasks = new ConcurrentHashMap<>();
 
     private static AttackStanceTaskManager _instance;
 
@@ -80,21 +80,14 @@ public class AttackStanceTaskManager {
         @Override
         public void run() {
             Long current = System.currentTimeMillis();
-            try {
-                if (_attackStanceTasks != null) {
-                    synchronized (this) {
-                        for (L2Character actor : _attackStanceTasks.keySet()) {
-                            if ((current - _attackStanceTasks.get(actor)) > 15000) {
-                                actor.broadcastPacket(new AutoAttackStop(actor.getObjectId()));
-                                actor.getAI().setAutoAttacking(false);
-                                _attackStanceTasks.remove(actor);
-                            }
-                        }
+            if (_attackStanceTasks != null) {
+                for (L2Character actor : _attackStanceTasks.keySet()) {
+                    if ((current - _attackStanceTasks.get(actor)) > 15000) {
+                        actor.broadcastPacket(new AutoAttackStop(actor.getObjectId()));
+                        actor.getAI().setAutoAttacking(false);
+                        _attackStanceTasks.remove(actor);
                     }
                 }
-            } catch (Throwable e) {
-                // TODO: Find out the reason for exception. Unless caught here, players remain in attack positions.
-                _log.warn(e.toString());
             }
         }
     }
