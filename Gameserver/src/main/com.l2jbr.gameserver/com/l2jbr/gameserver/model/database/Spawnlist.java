@@ -1,10 +1,12 @@
 package com.l2jbr.gameserver.model.database;
 
 import com.l2jbr.commons.database.annotation.Column;
+import com.l2jbr.commons.database.annotation.Table;
 import com.l2jbr.commons.database.model.Entity;
 import com.l2jbr.gameserver.model.L2Spawn;
 import org.springframework.data.annotation.Id;
 
+@Table("spawnlist")
 public class Spawnlist extends Entity<Integer> {
 
     @Id

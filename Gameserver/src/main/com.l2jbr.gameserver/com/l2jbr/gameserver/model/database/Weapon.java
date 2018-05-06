@@ -1,8 +1,10 @@
 package com.l2jbr.gameserver.model.database;
 
 import com.l2jbr.commons.database.annotation.Column;
+import com.l2jbr.commons.database.annotation.Table;
 import com.l2jbr.commons.database.model.Entity;
 
+@Table("weapon")
 public class Weapon extends Entity<Integer> {
 
     @Column("item_id")

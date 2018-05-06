@@ -1,11 +1,13 @@
 package com.l2jbr.gameserver.model.database;
 
 import com.l2jbr.commons.database.annotation.Column;
+import com.l2jbr.commons.database.annotation.Table;
 import com.l2jbr.commons.database.model.Entity;
 import org.springframework.data.annotation.Id;
 
 import java.util.Set;
 
+@Table("forums")
 public class Forums extends Entity<Integer> {
     @Id
     @Column("forum_id")

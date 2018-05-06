@@ -1,8 +1,10 @@
 package com.l2jbr.commons.database.model;
 
 import com.l2jbr.commons.database.annotation.Column;
+import com.l2jbr.commons.database.annotation.Table;
 import org.springframework.data.annotation.Id;
 
+@Table("gameservers")
 public class GameServers extends Entity<Integer> {
     @Id
     @Column("server_id")

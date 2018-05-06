@@ -41,7 +41,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.util.List;
 
-
 /**
  * This class manages the augmentation data and can also create new augmentations.
  *
@@ -193,7 +192,6 @@ public class ZoneData {
                                     }
                                 }
                             }
-
 
                             if (temp instanceof L2ArenaZone) {
                                 ArenaManager.getInstance().addArena((L2ArenaZone) temp);

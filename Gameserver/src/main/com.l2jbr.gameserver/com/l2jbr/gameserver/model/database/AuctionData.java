@@ -1,9 +1,11 @@
 package com.l2jbr.gameserver.model.database;
 
 
+import com.l2jbr.commons.database.annotation.Table;
 import com.l2jbr.commons.database.model.Entity;
 import org.springframework.data.annotation.Id;
 
+@Table("auction")
 public class AuctionData extends Entity<Integer> {
 
     @Id

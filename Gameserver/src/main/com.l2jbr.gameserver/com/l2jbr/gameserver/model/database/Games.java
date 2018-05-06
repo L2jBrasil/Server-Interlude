@@ -1,8 +1,10 @@
 package com.l2jbr.gameserver.model.database;
 
+import com.l2jbr.commons.database.annotation.Table;
 import com.l2jbr.commons.database.model.Entity;
 import org.springframework.data.annotation.Id;
 
+@Table("games")
 public class Games extends Entity<Integer> {
     @Id
     private int idnr;

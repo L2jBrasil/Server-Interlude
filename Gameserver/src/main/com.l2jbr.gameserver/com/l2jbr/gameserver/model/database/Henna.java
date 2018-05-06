@@ -1,14 +1,21 @@
 package com.l2jbr.gameserver.model.database;
 
+import com.l2jbr.commons.database.annotation.Column;
+import com.l2jbr.commons.database.annotation.Table;
 import org.springframework.data.annotation.Id;
 
+@Table("henna")
 public class Henna  {
 
     @Id
-    private int symbol_id;
-    private String symbol_name;
-    private int dye_id;
-    private int dye_amount;
+    @Column("simbol_id")
+    private int symbolId;
+    @Column("symbol_name")
+    private String symbolName;
+    @Column("dye_id")
+    private int dyeId;
+    @Column("dye_amount")
+    private int dyeAmount;
     private int price;
     private int stat_INT;
     private int stat_STR;
@@ -18,19 +25,19 @@ public class Henna  {
     private int stat_WIT;
 
     public int getSymbolId() {
-        return symbol_id;
+        return symbolId;
     }
 
-    public String getSymbol_name() {
-        return symbol_name;
+    public String getSymbolName() {
+        return symbolName;
     }
 
     public int getDyeId() {
-        return dye_id;
+        return dyeId;
     }
 
     public int getDyeAmount() {
-        return dye_amount;
+        return dyeAmount;
     }
 
     public int getPrice() {

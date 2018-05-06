@@ -1,5 +1,8 @@
 package com.l2jbr.gameserver.model.database;
 
+import com.l2jbr.commons.database.annotation.Table;
+
+@Table("mapregion")
 public class MapRegion  {
     private int region;
     private int sec0;

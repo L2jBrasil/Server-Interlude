@@ -1,8 +1,10 @@
 package com.l2jbr.gameserver.model.database;
 
 import com.l2jbr.commons.database.annotation.Column;
+import com.l2jbr.commons.database.annotation.Table;
 import org.springframework.data.annotation.Id;
 
+@Table("npc")
 public class Npc  {
 
     @Id
