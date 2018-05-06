@@ -2169,27 +2169,6 @@ CREATE TABLE IF NOT EXISTS `walker_routes` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
-
--- -----------------------------------------------------
--- Table `zone`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `zone` ;
-
-CREATE TABLE IF NOT EXISTS `zone` (
-  `id` INT(11) NOT NULL DEFAULT '0',
-  `type` VARCHAR(25) NOT NULL,
-  `name` VARCHAR(40) NOT NULL,
-  `x1` INT(11) NOT NULL DEFAULT '0',
-  `y1` INT(11) NOT NULL DEFAULT '0',
-  `x2` INT(11) NOT NULL DEFAULT '0',
-  `y2` INT(11) NOT NULL DEFAULT '0',
-  `z` INT(11) NOT NULL DEFAULT '0',
-  `z2` INT(11) NOT NULL DEFAULT '0',
-  `taxById` INT(11) NOT NULL DEFAULT '0')
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
-
-
 -- -----------------------------------------------------
 -- Table `zone_vertices`
 -- -----------------------------------------------------

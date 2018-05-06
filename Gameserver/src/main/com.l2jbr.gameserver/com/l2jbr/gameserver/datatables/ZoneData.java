@@ -18,13 +18,15 @@
 package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.instancemanager.ArenaManager;
 import com.l2jbr.gameserver.instancemanager.FishingZoneManager;
 import com.l2jbr.gameserver.instancemanager.OlympiadStadiaManager;
 import com.l2jbr.gameserver.instancemanager.TownManager;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.L2WorldRegion;
+import com.l2jbr.gameserver.model.database.ZoneVertices;
+import com.l2jbr.gameserver.model.database.repository.ZoneVerticesRepository;
 import com.l2jbr.gameserver.model.zone.L2ZoneType;
 import com.l2jbr.gameserver.model.zone.form.ZoneCuboid;
 import com.l2jbr.gameserver.model.zone.form.ZoneNPoly;
@@ -37,9 +39,6 @@ import org.w3c.dom.Node;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.LinkedList;
 import java.util.List;
 
 
@@ -51,55 +50,38 @@ import java.util.List;
 public class ZoneData {
     private static final Logger _log = LoggerFactory.getLogger(ZoneData.class.getName());
 
-    // =========================================================
     private static ZoneData _instance;
 
-    public static final ZoneData getInstance() {
+    public static ZoneData getInstance() {
         if (_instance == null) {
             _instance = new ZoneData();
         }
         return _instance;
     }
 
-    // =========================================================
-    // Data Field
-
-    // =========================================================
-    // Constructor
-    public ZoneData() {
+    private ZoneData() {
         _log.info("Loading zones...");
-
         load();
     }
 
-    // =========================================================
-    // Method - Private
-
-    private final void load() {
-        java.sql.Connection con = null;
+    private void load() {
         int zoneCount = 0;
 
-        // Get the world regions
         L2WorldRegion[][] worldRegions = L2World.getInstance().getAllWorldRegions();
 
-        // Load the zone xml
         try {
-            // Get a sql connection here
-            con = L2DatabaseFactory.getInstance().getConnection();
-
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             factory.setValidating(false);
             factory.setIgnoringComments(true);
 
             File file = new File(Config.DATAPACK_ROOT + "/data/zones/zone.xml");
             if (!file.exists()) {
-                if (Config.DEBUG) {
-                    _log.info("The zone.xml file is missing.");
-                }
+                _log.warn("The {} file is missing.", file.getAbsolutePath());
                 return;
             }
 
             Document doc = factory.newDocumentBuilder().parse(file);
+            ZoneVerticesRepository repository = DatabaseAccess.getRepository(ZoneVerticesRepository.class);
 
             for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling()) {
                 if ("list".equalsIgnoreCase(n.getNodeName())) {
@@ -112,7 +94,6 @@ public class ZoneData {
                             String zoneType = attrs.getNamedItem("type").getNodeValue();
                             String zoneShape = attrs.getNamedItem("shape").getNodeValue();
 
-                            // Create the zone
                             L2ZoneType temp = null;
 
                             if (zoneType.equals("FishingZone")) {
@@ -143,95 +124,40 @@ public class ZoneData {
                                 temp = new L2DerbyTrackZone();
                             }
 
-                            // Check for unknown type
                             if (temp == null) {
-                                _log.warn("ZoneData: No such zone type: " + zoneType);
+                                _log.warn("ZoneData: No such zone type: {}", zoneType);
                                 continue;
                             }
 
-                            // Get the zone shape from sql
-                            try {
-                                PreparedStatement statement = null;
+                            List<ZoneVertices> vertices = repository.findAllOrderedById(zoneId);
 
-                                // Set the correct query
-                                statement = con.prepareStatement("SELECT x,y FROM zone_vertices WHERE id=? ORDER BY 'order' ASC ");
+                            // Create this zone. Parsing for cuboids is a bit different than for other polygons
+                            // cuboids need exactly 2 points to be defined. Other polygons need at least 3 (one per vertex)
+                            if (zoneShape.equals("Cuboid")) {
 
-                                statement.setInt(1, zoneId);
-                                ResultSet rset = statement.executeQuery();
-
-                                // Create this zone. Parsing for cuboids is a bit different than for other polygons
-                                // cuboids need exactly 2 points to be defined. Other polygons need at least 3 (one per vertex)
-                                if (zoneShape.equals("Cuboid")) {
-                                    int[] x =
-                                            {
-                                                    0,
-                                                    0
-                                            };
-                                    int[] y =
-                                            {
-                                                    0,
-                                                    0
-                                            };
-                                    boolean successfulLoad = true;
-
-                                    for (int i = 0; i < 2; i++) {
-                                        if (rset.next()) {
-                                            x[i] = rset.getInt("x");
-                                            y[i] = rset.getInt("y");
-                                        } else {
-                                            _log.warn("ZoneData: Missing cuboid vertex in sql data for zone: " + zoneId);
-                                            rset.close();
-                                            statement.close();
-                                            successfulLoad = false;
-                                            break;
-                                        }
-                                    }
-
-                                    if (successfulLoad) {
-                                        temp.setZone(new ZoneCuboid(x[0], x[1], y[0], y[1], minZ, maxZ));
-                                    } else {
-                                        continue;
-                                    }
-                                } else if (zoneShape.equals("NPoly")) {
-                                    List<Integer> fl_x = new LinkedList<>(), fl_y = new LinkedList<>();
-
-                                    // Load the rest
-                                    while (rset.next()) {
-                                        fl_x.add(rset.getInt("x"));
-                                        fl_y.add(rset.getInt("y"));
-                                    }
-
-                                    // An nPoly needs to have at least 3 vertices
-                                    if ((fl_x.size() == fl_y.size()) && (fl_x.size() > 2)) {
-                                        // Create arrays
-                                        int[] aX = new int[fl_x.size()];
-                                        int[] aY = new int[fl_y.size()];
-
-                                        // This runs only at server startup so dont complain :>
-                                        for (int i = 0; i < fl_x.size(); i++) {
-                                            aX[i] = fl_x.get(i);
-                                            aY[i] = fl_y.get(i);
-                                        }
-
-                                        // Create the zone
-                                        temp.setZone(new ZoneNPoly(aX, aY, minZ, maxZ));
-                                    } else {
-                                        _log.warn("ZoneData: Bad sql data for zone: " + zoneId);
-                                        rset.close();
-                                        statement.close();
-                                        continue;
-                                    }
-                                } else {
-                                    _log.warn("ZoneData: Unknown shape: " + zoneShape);
-                                    rset.close();
-                                    statement.close();
+                                if(vertices.size() < 2) {
+                                    _log.warn("ZoneData: Missing cuboid vertex in sql data for zone: {}", zoneId);
                                     continue;
                                 }
 
-                                rset.close();
-                                statement.close();
-                            } catch (Exception e) {
-                                _log.warn("ZoneData: Failed to load zone coordinates: " + e);
+                                int[] x = vertices.stream().mapToInt(ZoneVertices::getX).toArray();
+                                int[] y = vertices.stream().mapToInt(ZoneVertices::getY).toArray();
+
+                                temp.setZone(new ZoneCuboid(x[0], x[1], y[0], y[1], minZ, maxZ));
+                            } else if (zoneShape.equals("NPoly")) {
+                                // An nPoly needs to have at least 3 vertices
+                                if (vertices.size() > 2) {
+                                    int[] aX = vertices.stream().mapToInt(ZoneVertices::getX).toArray();
+                                    int[] aY = vertices.stream().mapToInt(ZoneVertices::getY).toArray();
+
+                                    temp.setZone(new ZoneNPoly(aX, aY, minZ, maxZ));
+                                } else {
+                                    _log.warn("ZoneData: Bad sql data for zone: {}", zoneId);
+                                    continue;
+                                }
+                            } else {
+                                _log.warn("ZoneData: Unknown shape: {}", zoneShape);
+                                continue;
                             }
 
                             // Check for aditional parameters
@@ -262,15 +188,13 @@ public class ZoneData {
                                     by = ((y + 1) - L2World.OFFSET_Y) << L2World.SHIFT_BY;
 
                                     if (temp.getZone().intersectsRectangle(ax, bx, ay, by)) {
-                                        if (Config.DEBUG) {
-                                            _log.info("Zone (" + zoneId + ") added to: " + x + " " + y);
-                                        }
                                         worldRegions[x][y].addZone(temp);
+                                        _log.debug("Zone ( {} ) added to: {}, {}.", zoneId, x, y);
                                     }
                                 }
                             }
 
-                            // Special managers for arenas, towns...
+
                             if (temp instanceof L2ArenaZone) {
                                 ArenaManager.getInstance().addArena((L2ArenaZone) temp);
                             } else if (temp instanceof L2TownZone) {
@@ -279,7 +203,6 @@ public class ZoneData {
                                 OlympiadStadiaManager.getInstance().addStadium((L2OlympiadStadiumZone) temp);
                             }
 
-                            // Increase the counter
                             zoneCount++;
                         }
                     }
@@ -288,13 +211,8 @@ public class ZoneData {
         } catch (Exception e) {
             _log.error( "Error while loading zones.", e);
             return;
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
         }
 
-        _log.info("Done: loaded " + zoneCount + " zones.");
+        _log.info("Done: loaded {} zones.", zoneCount);
     }
 }
