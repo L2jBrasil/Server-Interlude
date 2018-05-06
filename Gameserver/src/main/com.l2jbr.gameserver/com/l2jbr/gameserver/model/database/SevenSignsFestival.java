@@ -1,10 +1,11 @@
 package com.l2jbr.gameserver.model.database;
 
 import com.l2jbr.commons.database.annotation.Table;
+import com.l2jbr.commons.database.model.Entity;
 import org.springframework.data.annotation.Id;
 
 @Table("seven_signs_festival")
-public class SevenSignsFestival  {
+public class SevenSignsFestival extends Entity<Integer> {
 
     @Id
     private int festivalId;
@@ -25,7 +26,8 @@ public class SevenSignsFestival  {
         this.members = members;
     }
 
-    public int getFestivalId() {
+    @Override
+    public Integer getId() {
         return festivalId;
     }
 

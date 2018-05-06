@@ -19,7 +19,6 @@ package com.l2jbr.gameserver;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.datatables.MapRegionTable;
 import com.l2jbr.gameserver.instancemanager.CastleManager;
 import com.l2jbr.gameserver.model.AutoChatHandler;
@@ -28,6 +27,7 @@ import com.l2jbr.gameserver.model.AutoSpawnHandler.AutoSpawnInstance;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.database.repository.SevenSignsRepository;
+import com.l2jbr.gameserver.model.database.repository.SevenSignsStatusRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SignsSky;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
@@ -37,8 +37,6 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -619,8 +617,8 @@ public class SevenSigns {
     }
 
     protected void restoreSevenSignsData() {
-        SevenSignsRepository repository = DatabaseAccess.getRepository(SevenSignsRepository.class);
-        repository.findAll().forEach(sevenSigns -> {
+        SevenSignsRepository signsRepository = DatabaseAccess.getRepository(SevenSignsRepository.class);
+        signsRepository.findAll().forEach(sevenSigns -> {
             int charObjId = sevenSigns.getId();
 
             StatsSet sevenDat = new StatsSet();
@@ -637,128 +635,71 @@ public class SevenSigns {
 
             _signsPlayerData.put(charObjId, sevenDat);
         });
-        try (Connection con = L2DatabaseFactory.getInstance().getConnection()) {
 
-            try (PreparedStatement ps2 = con.prepareStatement("SELECT * FROM seven_signs_status WHERE id=0");
-                 ResultSet rs2 = ps2.executeQuery()) {
-                while (rs2.next()) {
-                    _currentCycle = rs2.getInt("current_cycle");
-                    _activePeriod = rs2.getInt("active_period");
-                    _previousWinner = rs2.getInt("previous_winner");
+        SevenSignsStatusRepository statusRepository = DatabaseAccess.getRepository(SevenSignsStatusRepository.class);
+        statusRepository.findById(0).ifPresent(status -> {
+            _currentCycle = status.getCurrentCycle();
+            _activePeriod = status.getActivePeriod();
+            _previousWinner = status.getPreviousWinner();
 
-                    _dawnStoneScore = rs2.getDouble("dawn_stone_score");
-                    _dawnFestivalScore = rs2.getInt("dawn_festival_score");
-                    _duskStoneScore = rs2.getDouble("dusk_stone_score");
-                    _duskFestivalScore = rs2.getInt("dusk_festival_score");
+            _dawnStoneScore = status.getDawnStoneScore();
+            _dawnFestivalScore = status.getDawnFestivalScore();
+            _duskStoneScore = status.getDuskStoneScore();
+            _duskFestivalScore = status.getDuskFestivalScore();
 
-                    _signsSealOwners.put(SEAL_AVARICE, rs2.getInt("avarice_owner"));
-                    _signsSealOwners.put(SEAL_GNOSIS, rs2.getInt("gnosis_owner"));
-                    _signsSealOwners.put(SEAL_STRIFE, rs2.getInt("strife_owner"));
+            _signsSealOwners.put(SEAL_AVARICE, status.getAvariceOwner());
+            _signsSealOwners.put(SEAL_GNOSIS, status.getGnosisOwner());
+            _signsSealOwners.put(SEAL_STRIFE, status.getStrifeOwner());
 
-                    _signsDawnSealTotals.put(SEAL_AVARICE, rs2.getInt("avarice_dawn_score"));
-                    _signsDawnSealTotals.put(SEAL_GNOSIS, rs2.getInt("gnosis_dawn_score"));
-                    _signsDawnSealTotals.put(SEAL_STRIFE, rs2.getInt("strife_dawn_score"));
-                    _signsDuskSealTotals.put(SEAL_AVARICE, rs2.getInt("avarice_dusk_score"));
-                    _signsDuskSealTotals.put(SEAL_GNOSIS, rs2.getInt("gnosis_dusk_score"));
-                    _signsDuskSealTotals.put(SEAL_STRIFE, rs2.getInt("strife_dusk_score"));
-                }
-            }
+            _signsDawnSealTotals.put(SEAL_AVARICE, status.getAvariceDawnScore());
+            _signsDawnSealTotals.put(SEAL_GNOSIS, status.getGnosisDawnScore());
+            _signsDawnSealTotals.put(SEAL_STRIFE, status.getStrifeDawnScore());
+            _signsDuskSealTotals.put(SEAL_AVARICE, status.getAvariceDuskScore());
+            _signsDuskSealTotals.put(SEAL_GNOSIS, status.getGnosisDuskScore());
+            _signsDuskSealTotals.put(SEAL_STRIFE, status.getStrifeDuskScore());
+        });
 
-            try (PreparedStatement ps3 = con.prepareStatement("UPDATE seven_signs_status SET date=? WHERE id=0")) {
-                ps3.setInt(1, Calendar.getInstance().get(Calendar.DAY_OF_WEEK));
-                ps3.execute();
-            }
-        } catch (SQLException e) {
-            _log.error("SevenSigns: Unable to load Seven Signs data from database: " + e);
-        }
-        // Festival data is loaded now after the Seven Signs engine data.
+        statusRepository.updateDate(0, Calendar.getInstance().get(Calendar.DAY_OF_WEEK));
     }
 
     /**
-     * Saves all Seven Signs data, both to the database and properties file (if updateSettings = True). Often called to preserve data integrity and synchronization with DB, in case of errors. <BR>
+     * Saves all Seven Signs data, both to the database and properties file (if updateSettings = True).
+     * Often called to preserve data integrity and synchronization with DB, in case of errors. <BR>
      * If player != null, just that player's data is updated in the database, otherwise all player's data is sequentially updated.
      *
-     * @param player
-     * @param updateSettings
      */
     public void saveSevenSignsData(L2PcInstance player, boolean updateSettings) {
-        Connection con = null;
-        PreparedStatement statement = null;
+        _log.debug("SevenSigns: Saving data to disk.");
 
-        if (Config.DEBUG) {
-            System.out.println("SevenSigns: Saving data to disk.");
+        SevenSignsRepository repository = DatabaseAccess.getRepository(SevenSignsRepository.class);
+
+        for (StatsSet sevenDat : _signsPlayerData.values()) {
+            if (player != null) {
+                if (sevenDat.getInteger("char_obj_id") != player.getObjectId()) {
+                    continue;
+                }
+            }
+
+            repository.updateContribution(sevenDat.getInteger("char_obj_id"), sevenDat.getString("cabal"), sevenDat.getInteger("seal"),
+                sevenDat.getInteger("red_stones"), sevenDat.getInteger("green_stones"), sevenDat.getInteger("blue_stones"),
+                sevenDat.getDouble("ancient_adena_amount"), sevenDat.getDouble("contribution_score"));
+
+            _log.debug("SevenSigns: Updated data in database for char ID {} ()", sevenDat.getInteger("char_obj_id"), sevenDat.getString("cabal"));
         }
 
-        try {
-            SevenSignsRepository repository = DatabaseAccess.getRepository(SevenSignsRepository.class);
+        if (updateSettings) {
+            SevenSignsStatusRepository statusRepository = DatabaseAccess.getRepository(SevenSignsStatusRepository.class);
 
-            for (StatsSet sevenDat : _signsPlayerData.values()) {
-                if (player != null) {
-                    if (sevenDat.getInteger("char_obj_id") != player.getObjectId()) {
-                        continue;
-                    }
-                }
+            SevenSignsFestival festival = SevenSignsFestival.getInstance();
+            statusRepository.update(0, _currentCycle, _activePeriod, _previousWinner, _dawnStoneScore, _dawnFestivalScore, _duskStoneScore,
+                _duskFestivalScore, _signsSealOwners.get(SEAL_AVARICE), _signsSealOwners.get(SEAL_GNOSIS), _signsSealOwners.get(SEAL_STRIFE),
+                _signsDawnSealTotals.get(SEAL_AVARICE), _signsDawnSealTotals.get(SEAL_GNOSIS), _signsDawnSealTotals.get(SEAL_STRIFE),
+                _signsDuskSealTotals.get(SEAL_AVARICE), _signsDuskSealTotals.get(SEAL_GNOSIS), _signsDuskSealTotals.get(SEAL_STRIFE),
+                SevenSignsFestival.getInstance().getCurrentFestivalCycle(), festival.getAccumulatedBonus(0), festival.getAccumulatedBonus(1),
+                festival.getAccumulatedBonus(2), festival.getAccumulatedBonus(3), festival.getAccumulatedBonus(4),
+                Calendar.getInstance().get(Calendar.DAY_OF_WEEK));
 
-                repository.updateContribution(sevenDat.getInteger("char_obj_id"), sevenDat.getString("cabal"), sevenDat.getInteger("seal"),
-                    sevenDat.getInteger("red_stones"), sevenDat.getInteger("green_stones"), sevenDat.getInteger("blue_stones"),
-                    sevenDat.getDouble("ancient_adena_amount"), sevenDat.getDouble("contribution_score"));
-
-                _log.debug("SevenSigns: Updated data in database for char ID {} ()", sevenDat.getInteger("char_obj_id"), sevenDat.getString("cabal"));
-            }
-
-            if (updateSettings) {
-                String sqlQuery = "UPDATE seven_signs_status SET current_cycle=?, active_period=?, previous_winner=?, " + "dawn_stone_score=?, dawn_festival_score=?, dusk_stone_score=?, dusk_festival_score=?, " + "avarice_owner=?, gnosis_owner=?, strife_owner=?, avarice_dawn_score=?, gnosis_dawn_score=?, " + "strife_dawn_score=?, avarice_dusk_score=?, gnosis_dusk_score=?, strife_dusk_score=?, " + "festival_cycle=?, ";
-
-                for (int i = 0; i < (SevenSignsFestival.FESTIVAL_COUNT); i++) {
-                    sqlQuery += "accumulated_bonus" + String.valueOf(i) + "=?, ";
-                }
-
-                sqlQuery += "date=? WHERE id=0";
-
-                con = L2DatabaseFactory.getInstance().getConnection();
-
-                statement = con.prepareStatement(sqlQuery);
-                statement.setInt(1, _currentCycle);
-                statement.setInt(2, _activePeriod);
-                statement.setInt(3, _previousWinner);
-                statement.setDouble(4, _dawnStoneScore);
-                statement.setInt(5, _dawnFestivalScore);
-                statement.setDouble(6, _duskStoneScore);
-                statement.setInt(7, _duskFestivalScore);
-                statement.setInt(8, _signsSealOwners.get(SEAL_AVARICE));
-                statement.setInt(9, _signsSealOwners.get(SEAL_GNOSIS));
-                statement.setInt(10, _signsSealOwners.get(SEAL_STRIFE));
-                statement.setInt(11, _signsDawnSealTotals.get(SEAL_AVARICE));
-                statement.setInt(12, _signsDawnSealTotals.get(SEAL_GNOSIS));
-                statement.setInt(13, _signsDawnSealTotals.get(SEAL_STRIFE));
-                statement.setInt(14, _signsDuskSealTotals.get(SEAL_AVARICE));
-                statement.setInt(15, _signsDuskSealTotals.get(SEAL_GNOSIS));
-                statement.setInt(16, _signsDuskSealTotals.get(SEAL_STRIFE));
-                statement.setInt(17, SevenSignsFestival.getInstance().getCurrentFestivalCycle());
-
-                for (int i = 0; i < SevenSignsFestival.FESTIVAL_COUNT; i++) {
-                    statement.setInt(18 + i, SevenSignsFestival.getInstance().getAccumulatedBonus(i));
-                }
-
-                statement.setInt(18 + SevenSignsFestival.FESTIVAL_COUNT, Calendar.getInstance().get(Calendar.DAY_OF_WEEK));
-                statement.execute();
-
-                statement.close();
-                con.close();
-
-                if (Config.DEBUG) {
-                    _log.info("SevenSigns: Updated data in database.");
-                }
-
-            }
-        } catch (SQLException e) {
-            _log.error("SevenSigns: Unable to save data to database: " + e);
-        } finally {
-            try {
-                statement.close();
-                con.close();
-            } catch (Exception e) {
-            }
+            _log.info("SevenSigns: Updated data in database.");
         }
     }
 

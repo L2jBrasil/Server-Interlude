@@ -19,7 +19,6 @@ package com.l2jbr.gameserver;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.ai.CtrlIntention;
 import com.l2jbr.gameserver.datatables.ClanTable;
@@ -33,6 +32,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.base.Experience;
 import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.model.database.repository.SevenSignsFestivalRepository;
+import com.l2jbr.gameserver.model.database.repository.SevenSignsStatusRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.CreatureSay;
 import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
@@ -44,10 +44,6 @@ import com.l2jbr.gameserver.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -3309,7 +3305,7 @@ public class SevenSignsFestival implements SpawnListener {
         SevenSignsFestivalRepository repository = DatabaseAccess.getRepository(SevenSignsFestivalRepository.class);
         repository.findAll().forEach(festival -> {
             int festivalCycle = festival.getCycle();
-            int festivalId = festival.getFestivalId();
+            int festivalId = festival.getId();
             String cabal = festival.getCabal();
 
             StatsSet festivalDat = new StatsSet();
@@ -3336,31 +3332,15 @@ public class SevenSignsFestival implements SpawnListener {
             _festivalData.put(festivalCycle, tempData);
         });
 
-        try (Connection con = L2DatabaseFactory.getInstance().getConnection()) {
-
-            String query = "SELECT festival_cycle, ";
-
-            for (int i = 0; i < (FESTIVAL_COUNT - 1); i++) {
-                query += "accumulated_bonus" + String.valueOf(i) + ", ";
-            }
-            query += "accumulated_bonus" + String.valueOf(FESTIVAL_COUNT - 1) + " ";
-            query += "FROM seven_signs_status WHERE id=0";
-            try (PreparedStatement ps2 = con.prepareStatement(query);
-                 ResultSet rs2 = ps2.executeQuery()) {
-                while (rs2.next()) {
-                    _festivalCycle = rs2.getInt("festival_cycle");
-
-                    for (int i = 0; i < FESTIVAL_COUNT; i++) {
-                        _accumulatedBonuses.add(i, rs2.getInt("accumulated_bonus" + String.valueOf(i)));
-                    }
-                }
-            }
-            if (Config.DEBUG) {
-                _log.info("SevenSignsFestival: Loaded data from database.");
-            }
-        } catch (SQLException e) {
-            _log.error("SevenSignsFestival: Failed to load configuration: " + e);
-        }
+        SevenSignsStatusRepository statusRepository = DatabaseAccess.getRepository(SevenSignsStatusRepository.class);
+        statusRepository.findById(0).ifPresent(status -> {
+            _festivalCycle = status.getFestivalCycle();
+            _accumulatedBonuses.add(0, status.getAccumulatedBonus0());
+            _accumulatedBonuses.add(1, status.getAccumulatedBonus1());
+            _accumulatedBonuses.add(2, status.getAccumulatedBonus2());
+            _accumulatedBonuses.add(3, status.getAccumulatedBonus3());
+            _accumulatedBonuses.add(4, status.getAccumulatedBonus4());
+        });
     }
 
     /**
