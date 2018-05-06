@@ -19,7 +19,6 @@
 package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.L2EnchantSkillLearn;
 import com.l2jbr.gameserver.model.L2PledgeSkillLearn;
 import com.l2jbr.gameserver.model.L2Skill;
@@ -27,17 +26,10 @@ import com.l2jbr.gameserver.model.L2SkillLearn;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.base.ClassId;
 import com.l2jbr.gameserver.model.database.CharTemplate;
-import com.l2jbr.gameserver.model.database.EnchantSkillTrees;
-import com.l2jbr.gameserver.model.database.repository.CharTemplateRepository;
-import com.l2jbr.gameserver.model.database.repository.EnchantSkillTreesRepository;
-import com.l2jbr.gameserver.model.database.repository.FishingSkillTreeRepository;
-import com.l2jbr.gameserver.model.database.repository.PledgeSkillTreesRepository;
+import com.l2jbr.gameserver.model.database.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.*;
 
 
@@ -121,55 +113,38 @@ public class SkillTreeTable {
     private SkillTreeTable() {
         int count = 0;
         CharTemplateRepository charTemplateRepository = DatabaseAccess.getRepository(CharTemplateRepository.class);
-        Map<Integer, L2SkillLearn> map;
+        SkillTreeRepository skillTreeRepository = DatabaseAccess.getRepository(SkillTreeRepository.class);
         int parentClassId;
         int classId;
-        L2SkillLearn skillLearn;
         for (CharTemplate charTemplate : charTemplateRepository.findAll()) {
-            map = new LinkedHashMap<>();
+            Map<Integer, L2SkillLearn>  map = new LinkedHashMap<>();
             parentClassId = charTemplate.getParentId();
             classId = charTemplate.getId();
 
-            try(Connection con = L2DatabaseFactory.getInstance().getConnection();
-                PreparedStatement statement2 = con.prepareStatement("SELECT class_id, skill_id, level, name, sp, min_level FROM skill_trees where class_id=? ORDER BY skill_id, level")) {
-
-                statement2.setInt(1, classId);
-                ResultSet skilltree = statement2.executeQuery();
-
-                if (parentClassId != -1) {
-                    Map<Integer, L2SkillLearn> parentMap = getSkillTrees().get(ClassId.values()[parentClassId]);
-                    map.putAll(parentMap);
-                }
-
-                int prevSkillId = -1;
-
-                while (skilltree.next()) {
-                    int id = skilltree.getInt("skill_id");
-                    int lvl = skilltree.getInt("level");
-                    String name = skilltree.getString("name");
-                    int minLvl = skilltree.getInt("min_level");
-                    int cost = skilltree.getInt("sp");
-
-                    if (prevSkillId != id) {
-                        prevSkillId = id;
-                    }
-
-                    skillLearn = new L2SkillLearn(id, lvl, minLvl, name, cost, 0, 0);
-                    map.put(SkillTable.getSkillHashCode(id, lvl), skillLearn);
-                }
-
-                getSkillTrees().put(ClassId.values()[classId], map);
-                count += map.size();
-
-                _log.debug("SkillTreeTable: skill tree for class " + classId + " has " + map.size() + " skills");
-            } catch (Exception e) {
-                _log.error("Error while creating skill tree (Class ID " + classId + "):" + e);
+            if (parentClassId != -1) {
+                Map<Integer, L2SkillLearn> parentMap = getSkillTrees().get(ClassId.values()[parentClassId]);
+                map.putAll(parentMap);
             }
+
+            skillTreeRepository.findAllByClassOrderBySkill(classId).forEach(skillTrees -> {
+                int id = skillTrees.getSkillId();
+                int lvl = skillTrees.getLevel();
+                String name = skillTrees.getName();
+                int minLvl = skillTrees.getMinLevel();
+                int cost = skillTrees.getSp();
+
+                L2SkillLearn skillLearn = new L2SkillLearn(id, lvl, minLvl, name, cost, 0, 0);
+                map.put(SkillTable.getSkillHashCode(id, lvl), skillLearn);
+            });
+
+            getSkillTrees().put(ClassId.values()[classId], map);
+            count += map.size();
+
+            _log.debug("SkillTreeTable: skill tree for class {} has {} skills.", classId, map.size());
         }
 
         _log.info("SkillTreeTable: Loaded " + count + " skills.");
 
-        // Skill tree for fishing skill (from Fisherman)
 
         _fishingSkillTrees = new LinkedList<>();
         _expandDwarfCraftSkillTrees = new LinkedList<>();
