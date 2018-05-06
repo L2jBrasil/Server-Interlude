@@ -18,13 +18,15 @@
 package com.l2jbr.gameserver.instancemanager;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
+import com.l2jbr.commons.util.Util;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.Location;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.repository.SiegeClanRepository;
 import com.l2jbr.gameserver.model.entity.Castle;
 import com.l2jbr.gameserver.model.entity.Siege;
 import com.l2jbr.gameserver.network.SystemMessageId;
@@ -35,8 +37,6 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.*;
 
 
@@ -119,14 +119,9 @@ public class SiegeManager {
 
     /**
      * Return true if the clan is registered or owner of a castle<BR>
-     * <BR>
-     *
-     * @param clan     The L2Clan of the player
-     * @param castleid
-     * @return
      */
     public final boolean checkIsRegistered(L2Clan clan, int castleid) {
-        if (clan == null) {
+        if (Util.isNull(clan)) {
             return false;
         }
 
@@ -134,32 +129,8 @@ public class SiegeManager {
             return true;
         }
 
-        java.sql.Connection con = null;
-        boolean register = false;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("SELECT clan_id FROM siege_clans where clan_id=? and castle_id=?");
-            statement.setInt(1, clan.getClanId());
-            statement.setInt(2, castleid);
-            ResultSet rs = statement.executeQuery();
-
-            while (rs.next()) {
-                register = true;
-                break;
-            }
-
-            rs.close();
-            statement.close();
-        } catch (Exception e) {
-            System.out.println("Exception: checkIsRegistered(): " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
-        return register;
+        SiegeClanRepository repository = DatabaseAccess.getRepository(SiegeClanRepository.class);
+        return repository.existsByClanAndCastle(clan.getClanId(), castleid);
     }
 
     public final void removeSiegeSkills(L2PcInstance character) {
