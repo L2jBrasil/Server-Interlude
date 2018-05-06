@@ -32,6 +32,7 @@ import com.l2jbr.gameserver.model.database.Npc;
 import com.l2jbr.gameserver.model.database.repository.MinionRepository;
 import com.l2jbr.gameserver.model.database.repository.NpcRepository;
 import com.l2jbr.gameserver.model.database.repository.NpcSkillRepository;
+import com.l2jbr.gameserver.model.database.repository.SkillLearnRepository;
 import com.l2jbr.gameserver.skills.Stats;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.templates.StatsSet;
@@ -144,33 +145,19 @@ public class NpcTable {
                 _log.error("NPCTable: Error reading NPC drop data: " + e);
             }
 
-            try {
-                PreparedStatement statement3 = con.prepareStatement("SELECT " + L2DatabaseFactory.getInstance().safetyString(new String[]
-                        {
-                                "npc_id",
-                                "class_id"
-                        }) + " FROM skill_learn");
-                ResultSet learndata = statement3.executeQuery();
+            SkillLearnRepository repository = DatabaseAccess.getRepository(SkillLearnRepository.class);
+            repository.findAll().forEach(skillLearn -> {
+                int npcId = skillLearn.getNpcId();
+                int classId = skillLearn.getClassId();
+                L2NpcTemplate npc = getTemplate(npcId);
 
-                while (learndata.next()) {
-                    int npcId = learndata.getInt("npc_id");
-                    int classId = learndata.getInt("class_id");
-                    L2NpcTemplate npc = getTemplate(npcId);
-
-                    if (npc == null) {
-                        _log.warn("NPCTable: Error getting NPC template ID " + npcId + " while trying to load skill trainer data.");
-                        continue;
-                    }
-
-                    npc.addTeachInfo(ClassId.values()[classId]);
+                if (npc == null) {
+                    _log.warn("NPCTable: Error getting NPC template ID " + npcId + " while trying to load skill trainer data.");
+                    return;
                 }
 
-                learndata.close();
-                statement3.close();
-            } catch (Exception e) {
-                _log.error("NPCTable: Error reading NPC trainer data: " + e);
-            }
-
+                npc.addTeachInfo(ClassId.values()[classId]);
+            });
 
             MinionRepository minionRepository = DatabaseAccess.getRepository(MinionRepository.class);
             int cnt = 0;
