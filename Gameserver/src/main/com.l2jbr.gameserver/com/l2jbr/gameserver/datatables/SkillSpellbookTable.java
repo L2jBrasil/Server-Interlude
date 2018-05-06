@@ -18,19 +18,14 @@
  */
 package com.l2jbr.gameserver.datatables;
 
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.model.L2Skill;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.l2jbr.gameserver.model.database.repository.SkillSpeelBooksRepository;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-
 public class SkillSpellbookTable {
-    private static Logger _log = LoggerFactory.getLogger(SkillTreeTable.class.getName());
     private static SkillSpellbookTable _instance;
 
     private static Map<Integer, Integer> _skillSpellbooks;
@@ -39,42 +34,22 @@ public class SkillSpellbookTable {
         if (_instance == null) {
             _instance = new SkillSpellbookTable();
         }
-
         return _instance;
     }
 
     private SkillSpellbookTable() {
         _skillSpellbooks = new LinkedHashMap<>();
         java.sql.Connection con = null;
-
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement = con.prepareStatement("SELECT skill_id, item_id FROM skill_spellbooks");
-            ResultSet spbooks = statement.executeQuery();
-
-            while (spbooks.next()) {
-                _skillSpellbooks.put(spbooks.getInt("skill_id"), spbooks.getInt("item_id"));
-            }
-
-            spbooks.close();
-            statement.close();
-
-            _log.info("SkillSpellbookTable: Loaded " + _skillSpellbooks.size() + " Spellbooks.");
-        } catch (Exception e) {
-            _log.warn("Error while loading spellbook data: " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        SkillSpeelBooksRepository repository = DatabaseAccess.getRepository(SkillSpeelBooksRepository.class);
+        repository.findAll().forEach(skillSpellBooks -> {
+            _skillSpellbooks.put(skillSpellBooks.getSkillId(), skillSpellBooks.getItemId());
+        });
     }
 
     public int getBookForSkill(int skillId) {
         if (!_skillSpellbooks.containsKey(skillId)) {
             return -1;
         }
-
         return _skillSpellbooks.get(skillId);
     }
 
