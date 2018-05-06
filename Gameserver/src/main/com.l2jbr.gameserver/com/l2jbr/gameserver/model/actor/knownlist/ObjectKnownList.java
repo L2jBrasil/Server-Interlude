@@ -27,8 +27,8 @@ import com.l2jbr.gameserver.model.actor.instance.L2PlayableInstance;
 import com.l2jbr.gameserver.util.Util;
 
 import java.util.Collection;
-import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 public class ObjectKnownList {
@@ -210,7 +210,7 @@ public class ObjectKnownList {
      */
     public final Map<Integer, L2Object> getKnownObjects() {
         if (_knownObjects == null) {
-            _knownObjects = new LinkedHashMap<>();
+            _knownObjects = new ConcurrentHashMap<>();
         }
         return _knownObjects;
     }
