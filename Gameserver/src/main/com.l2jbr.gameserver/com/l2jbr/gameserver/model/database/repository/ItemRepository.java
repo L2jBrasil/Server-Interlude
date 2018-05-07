@@ -16,7 +16,7 @@ public interface ItemRepository extends CrudRepository<Items, Integer> {
     @Query("SELECT * FROM items WHERE owner_id=:owner AND loc=:loc")
     Iterable<Items> findAllByOwnerAndLocation(@Param("owner") int ownerObjectId, @Param("loc") String loc);
 
-    @Query("SELECT owner_id FROM items WHERE item_id=?")
+    @Query("SELECT owner_id FROM items WHERE item_id=:item")
     Optional<Integer> findOwnerIdByItem(@Param("item") int itemId);
 
     @Modifying

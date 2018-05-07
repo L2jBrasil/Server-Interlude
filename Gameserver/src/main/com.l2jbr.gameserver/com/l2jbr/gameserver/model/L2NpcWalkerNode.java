@@ -47,7 +47,7 @@ public class L2NpcWalkerNode
 		this._moveY = walkerRoutes.getMoveY();
 		this._moveZ = walkerRoutes.getMoveZ();
 		this._delay = walkerRoutes.getDelay();
-		this._running = walkerRoutes.getRunning() == 1;
+		this._running = walkerRoutes.getRunning();
 	}
 
 	public void setRunning(boolean val)

@@ -2,9 +2,11 @@ plugins {
     id "java"
     id "idea"
     id "eclipse"
+    id "application"
 }
 
 ext.moduleName = 'com.l2jbr.gameserver'
+mainClassName = "com.l2jbr.gameserver.GameServer"
 
 version '1.3.1'
 
@@ -36,7 +38,7 @@ dependencies {
     runtime 'org.apache.logging.log4j:log4j-slf4j-impl:2.11.0'
     runtime 'org.beanshell:bsh:2.0b5'
     runtime 'com.zaxxer:HikariCP:3.0.0'
-    runtime 'mysql:mysql-connector-java:8.0.9-rc'
+    runtime 'mysql:mysql-connector-java:8.0.11'
 
 }
 

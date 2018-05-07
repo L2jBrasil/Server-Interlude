@@ -1,24 +1,27 @@
 -- ---------------------------
 -- Table structure for clanhall
 -- ---------------------------
+DROP TABLE IF EXISTS `clanhall` ;
+
 CREATE TABLE IF NOT EXISTS `clanhall` (
-  `id` int(11) NOT NULL default '0',
-  `name` varchar(40) NOT NULL default '',
-  `ownerId` int(11) NOT NULL default '0',
-  `lease` int(10) NOT NULL default '0',
-  `desc` text NOT NULL,
-  `location` varchar(15) NOT NULL default '',
-  `paidUntil` decimal(20,0) NOT NULL default '0',
-  `Grade` decimal(1,0) NOT NULL default '0',
-  `paid` int( 1 ) NOT NULL default '0',
-  PRIMARY KEY `id` (`id`)
-);
+  `id` INT(11) NOT NULL DEFAULT '0',
+  `name` VARCHAR(40) NOT NULL DEFAULT '',
+  `ownerId` INT(11) NOT NULL DEFAULT '0',
+  `lease` INT(10) NOT NULL DEFAULT '0',
+  description TEXT NOT NULL,
+  `location` VARCHAR(15) NOT NULL DEFAULT '',
+  `paidUntil` DECIMAL(20,0) NOT NULL DEFAULT '0',
+  `Grade` DECIMAL(1,0) NOT NULL DEFAULT '0',
+  `paid` INT(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
 
 -- ----------------------------
 -- Records 
 -- ----------------------------
 INSERT IGNORE INTO `clanhall` VALUE
-  ('21','Fortress of Resistance','0','100000','Ol Mahum Fortress of Resistance','Dion','0','0','0'),
+('21','Fortress of Resistance','0','100000','Ol Mahum Fortress of Resistance','Dion','0','0','0'),
 ('22','Moonstone Hall','0','100000','Clan hall located in the Town of Gludio','Gludio','0','2','0'),
 ('23','Onyx Hall','0','100000','Clan hall located in the Town of Gludio','Gludio','0','2','0'),
 ('24','Topaz Hall','0','100000','Clan hall located in the Town of Gludio','Gludio','0','2','0'),

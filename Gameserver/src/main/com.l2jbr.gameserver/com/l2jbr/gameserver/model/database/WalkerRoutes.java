@@ -21,7 +21,7 @@ public class WalkerRoutes  {
     @Column("move_z")
     private int moveZ;
     private int delay;
-    private int running;
+    private boolean running;
 
     public int getRouteId() {
         return routeId;
@@ -55,7 +55,7 @@ public class WalkerRoutes  {
         return delay;
     }
 
-    public int getRunning() {
+    public boolean getRunning() {
         return running;
     }
 }

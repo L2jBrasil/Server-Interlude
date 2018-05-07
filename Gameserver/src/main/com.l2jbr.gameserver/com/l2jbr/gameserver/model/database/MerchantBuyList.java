@@ -14,7 +14,7 @@ public class MerchantBuyList extends Entity<Integer> {
     @Column("item_id")
     private int itemId;
     private int price;
-    private int order;
+    private int ordering;
     private int count;
     private int currentCount;
     private int time;
@@ -22,11 +22,11 @@ public class MerchantBuyList extends Entity<Integer> {
 
     public MerchantBuyList() {}
 
-    public MerchantBuyList(int itemId, int price, int shopId, int order) {
+    public MerchantBuyList(int itemId, int price, int shopId, int ordering) {
         this.itemId =itemId;
         this.price = price;
         this.shopId = shopId;
-        this.order = order;
+        this.ordering = ordering;
     }
 
     @Override
@@ -42,8 +42,8 @@ public class MerchantBuyList extends Entity<Integer> {
         return price;
     }
 
-    public int getOrder() {
-        return order;
+    public int getOrdering() {
+        return ordering;
     }
 
     public int getCount() {

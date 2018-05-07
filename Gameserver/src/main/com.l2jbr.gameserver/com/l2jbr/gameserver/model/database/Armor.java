@@ -1,17 +1,20 @@
 package com.l2jbr.gameserver.model.database;
 
-
 import com.l2jbr.commons.database.annotation.Column;
 import com.l2jbr.commons.database.annotation.Table;
 import com.l2jbr.commons.database.model.Entity;
+import org.springframework.data.annotation.Id;
 
 @Table("armor")
 public class Armor extends Entity<Integer> {
 
+    @Id
+    @Column("item_id")
     private int itemId;
     private String name;
     private String bodyPart;
     private String crystallizable;
+    @Column("armor_type")
     private String armorType;
     private int weight;
     private String material;

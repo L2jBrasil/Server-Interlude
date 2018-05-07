@@ -19,7 +19,7 @@ public class DimensionalRift  {
     private int xT;
     private int yT;
     private int zT;
-    private int boss;
+    private boolean boss;
 
     public byte getType() {
         return type;
@@ -65,7 +65,7 @@ public class DimensionalRift  {
         return zT;
     }
 
-    public int getBoss() {
+    public boolean getBoss() {
         return boss;
     }
 }

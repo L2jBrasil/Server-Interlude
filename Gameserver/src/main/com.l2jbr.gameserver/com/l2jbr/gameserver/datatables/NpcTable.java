@@ -45,6 +45,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
+import static com.l2jbr.gameserver.util.GameserverMessages.getMessage;
+
 
 /**
  * This class ...
@@ -77,7 +79,7 @@ public class NpcTable {
         NpcRepository npcRepository = DatabaseAccess.getRepository(NpcRepository.class);
         npcRepository.findAll().forEach(this::addToNpcMap);
 
-        _log.info("info.loaded.npc", _npcs.size());
+        _log.info(getMessage("info.npc.loaded"), _npcs.size());
 
         try (Connection con = L2DatabaseFactory.getInstance().getConnection()) {
             NpcSkillRepository npcSkillRepository = DatabaseAccess.getRepository(NpcSkillRepository.class);

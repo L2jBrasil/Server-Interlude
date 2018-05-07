@@ -2,11 +2,14 @@ package com.l2jbr.gameserver.model.database;
 
 import com.l2jbr.commons.database.annotation.Column;
 import com.l2jbr.commons.database.annotation.Table;
+import org.springframework.data.annotation.Id;
 
 import java.util.Set;
 
 @Table("merchant_shopids")
 public class MerchantShopIds  {
+
+    @Id
     @Column("shop_id")
     private int shopId;
     @Column("npc_id")

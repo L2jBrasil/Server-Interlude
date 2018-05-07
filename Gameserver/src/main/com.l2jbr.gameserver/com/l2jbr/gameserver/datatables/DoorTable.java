@@ -117,16 +117,16 @@ public class DoorTable {
         int rangeYMin = castleDoor.getRangeYmin();
         int rangeYMax = castleDoor.getRangeYmax();
         int rangeZMin = castleDoor.getRangeZmin();
-        int rangeZMax = castleDoor.getRangeXmax();
+        int rangeZMax = castleDoor.getRangeZmax();
 
         if (rangeXMin > rangeXMax) {
-            _log.error("Error in door data, ID: {}", castleDoor.getId() );
+            _log.error("Error in door data, ID: {} rangeXMin greater than rangeXMax", castleDoor.getId() );
         }
         if (rangeYMin > rangeYMax) {
-            _log.error("Error in door data, ID: {}", castleDoor.getId());
+            _log.error("Error in door data, ID: {} rangeYMin greater than rangeYMax", castleDoor.getId());
         }
         if (rangeZMin > rangeZMax) {
-            _log.error("Error in door data, ID: {}", castleDoor.getId());
+            _log.error("Error in door data, ID: {} rangeZMin greater than rangeZMax", castleDoor.getId());
         }
 
         int collisionRadius; // (max) radius for movement checks
@@ -190,7 +190,8 @@ public class DoorTable {
         try {
             door.setMapRegion(MapRegionTable.getInstance().getMapRegion(castleDoor.getX(), castleDoor.getY()));
         } catch (Exception e) {
-            _log.error("Error in door data, ID:" + id);
+            _log.error("Error in door data, ID: {}", id);
+            _log.error(e.getLocalizedMessage(), e);
         }
         door.setCurrentHpMp(door.getMaxHp(), door.getMaxMp());
         door.setOpen(1);

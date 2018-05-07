@@ -29,6 +29,8 @@ import org.slf4j.LoggerFactory;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static com.l2jbr.gameserver.util.GameserverMessages.getMessage;
+
 public class HennaTable {
     private static Logger _log = LoggerFactory.getLogger(HennaTable.class.getName());
 
@@ -52,7 +54,7 @@ public class HennaTable {
     private void restoreHennaData() {
         HennaRepository repository = DatabaseAccess.getRepository(HennaRepository.class);
         repository.findAll().forEach(this::fillHennaTable);
-        _log.info("info.henna.loaded", + _henna.size());
+        _log.info(getMessage("info.henna.loaded"),  _henna.size());
     }
 
     private void fillHennaTable(Henna henna) {

@@ -1,24 +1,26 @@
 --
 -- Table structure for table `merchant_buylists`
 --
-DROP TABLE IF EXISTS merchant_buylists;
-CREATE TABLE merchant_buylists (
-  item_id decimal(9,0) NOT NULL default '0',
-  price decimal(11,0) NOT NULL default '0',
-  shop_id decimal(9,0) NOT NULL default '0',
-  `order` decimal(4,0) NOT NULL default '0',
-  `count` INT( 11 ) NOT NULL DEFAULT '-1',
-  `currentCount` INT( 11 ) NOT NULL DEFAULT '-1',
-  time INT NOT NULL DEFAULT '0',
-  savetimer DECIMAL(20,0) NOT NULL DEFAULT '0',
-  PRIMARY KEY  (shop_id,`order`)
-);
+DROP TABLE IF EXISTS `merchant_buylists` ;
+
+CREATE TABLE IF NOT EXISTS `merchant_buylists` (
+  `item_id` DECIMAL(9,0) NOT NULL DEFAULT '0',
+  `price` DECIMAL(11,0) NOT NULL DEFAULT '0',
+  `shop_id` DECIMAL(9,0) NOT NULL DEFAULT '0',
+  ordering DECIMAL(4,0) NOT NULL DEFAULT '0',
+  `count` INT(11) NOT NULL DEFAULT '-1',
+  `currentCount` INT(11) NOT NULL DEFAULT '-1',
+  `time` INT(11) NOT NULL DEFAULT '0',
+  `savetimer` DECIMAL(20,0) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`shop_id`, ordering))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
 
 --
 -- Dumping data for table `merchant_buylists`
 --
 
-INSERT INTO `merchant_buylists` (`item_id`,`price`,`shop_id`,`order`) VALUES 
+INSERT INTO `merchant_buylists` (`item_id`,`price`,`shop_id`, ordering) VALUES
 
 -- General Shops
 
@@ -4685,7 +4687,7 @@ INSERT INTO `merchant_buylists` (`item_id`,`price`,`shop_id`,`order`) VALUES
 (8945,8100,133,101),
 (8946,6250,133,102);
 
-INSERT INTO `merchant_buylists` (`item_id`,`price`,`shop_id`,`order`) VALUES 
+INSERT INTO `merchant_buylists` (`item_id`,`price`,`shop_id`,ordering) VALUES
 
 (4445,5100,134,0),
 (4446,5100,134,1),
@@ -15811,7 +15813,7 @@ INSERT INTO `merchant_buylists` (`item_id`,`price`,`shop_id`,`order`) VALUES
 (7678,0,300542,30),
 (7679,0,300542,31);
 
-INSERT INTO `merchant_buylists` (`item_id`,`price`,`shop_id`,`order`) VALUES
+INSERT INTO `merchant_buylists` (`item_id`,`price`,`shop_id`, ordering) VALUES
 (6779,30000,355111,1),
 (6793,90000,355111,12),
 (6794,200000,355111,13),
@@ -15866,7 +15868,7 @@ INSERT INTO `merchant_buylists` (`item_id`,`price`,`shop_id`,`order`) VALUES
 
 -- INTERLUDE GM SHOP START
 -- Accessory
-INSERT INTO `merchant_buylists`(`item_id`,`price`,`shop_id`,`order`) VALUES 
+INSERT INTO `merchant_buylists`(`item_id`,`price`,`shop_id`,ordering) VALUES
 (8910,0,71032,1),
 (8911,0,71032,2),
 (8912,0,71032,3),
@@ -15952,7 +15954,7 @@ INSERT INTO `merchant_buylists`(`item_id`,`price`,`shop_id`,`order`) VALUES
 --
 -- Clan Hall Item Creation
 --
-INSERT INTO `merchant_buylists` (`item_id`,`price`,`shop_id`,`order`,`count`,time) VALUES 
+INSERT INTO `merchant_buylists` (`item_id`,`price`,`shop_id`,ordering,`count`,time) VALUES
 (6902,12900,135445,1,-1,0),
 (6316,300,135445,2,-1,0),
 (1829,500,135445,3,5,1),
@@ -17634,7 +17636,7 @@ INSERT INTO `merchant_buylists` (`item_id`,`price`,`shop_id`,`order`,`count`,tim
 --
 -- Castles Item Creation
 --
-INSERT INTO `merchant_buylists` (`item_id`,`price`,`shop_id`,`order`) VALUES 
+INSERT INTO `merchant_buylists` (`item_id`,`price`,`shop_id`,ordering) VALUES
 (5169,300,351001,1),
 (6838,500000,351001,2),
 (7015,12900,351001,3),
@@ -17683,7 +17685,7 @@ INSERT INTO `merchant_buylists` (`item_id`,`price`,`shop_id`,`order`) VALUES
 --
 -- Harvester
 --
-INSERT INTO `merchant_buylists` (`item_id`,`price`,`shop_id`,`order`,`count`,`currentCount`, time, savetimer) VALUES
+INSERT INTO `merchant_buylists` (`item_id`,`price`,`shop_id`,ordering,`count`,`currentCount`, time, savetimer) VALUES
 (5125,575,335103,1,-1,-1,0,0),
 (5125,575,335145,1,-1,-1,0,0),
 (5125,575,335187,1,-1,-1,0,0),

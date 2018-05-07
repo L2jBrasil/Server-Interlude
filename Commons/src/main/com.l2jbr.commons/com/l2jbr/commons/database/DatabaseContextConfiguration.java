@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 import java.util.Optional;
 
 @Configuration
-@EnableJdbcRepositories
+@EnableJdbcRepositories({"com.l2jbr.commons.database", "com.l2jbr.gameserver.model.database.repository"})
 public class DatabaseContextConfiguration {
 
     @Bean
@@ -41,7 +41,7 @@ public class DatabaseContextConfiguration {
         dataSourceConfig.addDataSourceProperty("cacheServerConfiguration", true);
         dataSourceConfig.addDataSourceProperty("cacheResultSetMetadata", true);
         dataSourceConfig.addDataSourceProperty("maintainTimeStats", true);
-        dataSourceConfig.addDataSourceProperty("logger", "com.mysql.cj.core.log.Slf4JLogger");
+        dataSourceConfig.addDataSourceProperty("logger", "com.mysql.cj.log.Slf4JLogger");
         dataSourceConfig.addDataSourceProperty("autoCommit", true);
         dataSourceConfig.addDataSourceProperty("minimumIdle", 10);
         dataSourceConfig.addDataSourceProperty("validationTimeout", 500); // 500 milliseconds wait before try to acquire connection again

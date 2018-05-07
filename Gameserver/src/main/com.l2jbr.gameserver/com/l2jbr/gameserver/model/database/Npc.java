@@ -14,7 +14,8 @@ public class Npc  {
     private Integer serverSideName;
     private String title;
     private Integer serverSideTitle;
-    private String _class;
+    @Column("class")
+    private String npcClass;
     private Double collision_radius;
     private Double collision_height;
     private Integer level;
@@ -28,8 +29,7 @@ public class Npc  {
     private Integer str;
     private Integer con;
     private Integer dex;
-    @Column("int")
-    private Integer _int;
+    private Integer intelligence;
     private Integer wit;
     private Integer men;
     private Integer exp;
@@ -81,7 +81,7 @@ public class Npc  {
     }
 
     public String getNpcClass() {
-        return _class;
+        return npcClass;
     }
 
     public double getCollision_radius() {
@@ -137,7 +137,7 @@ public class Npc  {
     }
 
     public int getInt() {
-        return _int;
+        return intelligence;
     }
 
     public int getWit() {

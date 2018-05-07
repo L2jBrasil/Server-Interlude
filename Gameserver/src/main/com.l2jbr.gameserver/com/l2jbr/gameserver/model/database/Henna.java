@@ -8,7 +8,7 @@ import org.springframework.data.annotation.Id;
 public class Henna  {
 
     @Id
-    @Column("simbol_id")
+    @Column("symbol_id")
     private int symbolId;
     @Column("symbol_name")
     private String symbolName;

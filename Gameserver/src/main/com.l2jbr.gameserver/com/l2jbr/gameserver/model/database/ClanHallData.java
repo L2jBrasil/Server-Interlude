@@ -12,7 +12,7 @@ public class ClanHallData extends Entity<Integer> {
     private String name;
     private Integer ownerId;
     private Integer lease;
-    private String desc;
+    private String description;
     private String location;
     private Long paidUntil;
     private Integer Grade;
@@ -35,8 +35,8 @@ public class ClanHallData extends Entity<Integer> {
         return lease;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
     public String getLocation() {

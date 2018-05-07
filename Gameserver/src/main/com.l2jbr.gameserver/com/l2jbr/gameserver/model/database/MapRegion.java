@@ -1,9 +1,12 @@
 package com.l2jbr.gameserver.model.database;
 
 import com.l2jbr.commons.database.annotation.Table;
+import org.springframework.data.annotation.Id;
 
 @Table("mapregion")
 public class MapRegion  {
+
+    @Id
     private int region;
     private int sec0;
     private int sec1;

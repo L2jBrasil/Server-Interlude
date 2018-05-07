@@ -11,7 +11,6 @@ public class CharTemplate extends Entity<Integer> {
     @Id
     private Integer classId;
     private String className;
-    @Column("class_lvl")
     private Integer classLevel;
     private Integer RaceId;
     @Column("parent_id")

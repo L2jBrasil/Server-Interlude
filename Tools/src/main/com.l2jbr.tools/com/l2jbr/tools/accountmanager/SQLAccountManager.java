@@ -94,7 +94,6 @@ public class SQLAccountManager {
             } while (_level.isEmpty());
         }
 
-
         if (_mode.equals("1")) {
             addOrUpdateAccount(_uname, _pass, _level);
         } else if (_mode.equals("2")) {

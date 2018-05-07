@@ -72,15 +72,15 @@ public class ClanHallManager {
             int id = clanHall.getId();
             if (clanHall.getOwnerId() == 0) {
                 _freeClanHall.put(id, new ClanHall(id, clanHall.getName(), clanHall.getOwnerId(), clanHall.getLease(),
-                    clanHall.getDesc(), clanHall.getLocation(), 0, clanHall.getGrade(), clanHall.getPaid() == 1));
+                    clanHall.getDescription(), clanHall.getLocation(), 0, clanHall.getGrade(), clanHall.getPaid() == 1));
             } else {
                 if (ClanTable.getInstance().getClan(clanHall.getOwnerId()) != null) {
-                    _clanHall.put(id, new ClanHall(id, clanHall.getName(), clanHall.getOwnerId(), clanHall.getLease(), clanHall.getDesc(),
+                    _clanHall.put(id, new ClanHall(id, clanHall.getName(), clanHall.getOwnerId(), clanHall.getLease(), clanHall.getDescription(),
                         clanHall.getLocation(), clanHall.getPaidUntil(), clanHall.getGrade(), clanHall.getPaid() == 1));
                     ClanTable.getInstance().getClan(clanHall.getOwnerId()).setHasHideout(id);
                 } else {
                     _freeClanHall.put(id, new ClanHall(id, clanHall.getName(), clanHall.getOwnerId(), clanHall.getLease(),
-                        clanHall.getDesc(), clanHall.getLocation(), 0, clanHall.getGrade(), clanHall.getPaid() == 1));
+                        clanHall.getDescription(), clanHall.getLocation(), 0, clanHall.getGrade(), clanHall.getPaid() == 1));
                     _freeClanHall.get(id).free();
                     AuctionManager.getInstance().initNPC(id);
                 }

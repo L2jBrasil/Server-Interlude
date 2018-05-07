@@ -183,7 +183,7 @@ DROP TABLE IF EXISTS `char_templates` ;
 CREATE TABLE IF NOT EXISTS `char_templates` (
   `ClassId` INT(11) NOT NULL DEFAULT '0',
   `ClassName` VARCHAR(20) NOT NULL DEFAULT '',
-  `class_lvl` INT(3) NOT NULL DEFAULT '0',
+  `classLevel` INT(3) NOT NULL DEFAULT '0',
   `RaceId` INT(1) NOT NULL DEFAULT '0',
   `parent_id` INT(11) NOT NULL DEFAULT '0',
   `STR` INT(2) NOT NULL DEFAULT '0',
@@ -382,7 +382,7 @@ CREATE TABLE IF NOT EXISTS `clanhall` (
   `name` VARCHAR(40) NOT NULL DEFAULT '',
   `ownerId` INT(11) NOT NULL DEFAULT '0',
   `lease` INT(10) NOT NULL DEFAULT '0',
-  `desc` TEXT NOT NULL,
+  description TEXT NOT NULL,
   `location` VARCHAR(15) NOT NULL DEFAULT '',
   `paidUntil` DECIMAL(20,0) NOT NULL DEFAULT '0',
   `Grade` DECIMAL(1,0) NOT NULL DEFAULT '0',
@@ -499,7 +499,7 @@ CREATE TABLE IF NOT EXISTS `npc` (
   `str` DECIMAL(7,0) NULL DEFAULT NULL,
   `con` DECIMAL(7,0) NULL DEFAULT NULL,
   `dex` DECIMAL(7,0) NULL DEFAULT NULL,
-  `int` DECIMAL(7,0) NULL DEFAULT NULL,
+  intelligence DECIMAL(7,0) NULL DEFAULT NULL,
   `wit` DECIMAL(7,0) NULL DEFAULT NULL,
   `men` DECIMAL(7,0) NULL DEFAULT NULL,
   `exp` DECIMAL(9,0) NULL DEFAULT NULL,
@@ -1155,8 +1155,8 @@ DEFAULT CHARACTER SET = latin1;
 DROP TABLE IF EXISTS `dimensional_rift` ;
 
 CREATE TABLE IF NOT EXISTS `dimensional_rift` (
-  `type` TINYINT(1) NOT NULL,
-  `room_id` TINYINT(1) NOT NULL,
+  `type` TINYINT(2) NOT NULL,
+  `room_id` TINYINT(2) NOT NULL,
   `xMin` INT(11) NOT NULL,
   `xMax` INT(11) NOT NULL,
   `yMin` INT(11) NOT NULL,
@@ -1524,11 +1524,6 @@ CREATE TABLE IF NOT EXISTS `merchants` (
     FOREIGN KEY (`npc_id`)
     REFERENCES `npc` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_merchants_merchant_areas_list1`
-    FOREIGN KEY (`merchant_area_id`)
-    REFERENCES `merchant_areas_list` (`merchant_area_id`)
-    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
@@ -1562,17 +1557,12 @@ CREATE TABLE IF NOT EXISTS `merchant_buylists` (
   `item_id` DECIMAL(9,0) NOT NULL DEFAULT '0',
   `price` DECIMAL(11,0) NOT NULL DEFAULT '0',
   `shop_id` DECIMAL(9,0) NOT NULL DEFAULT '0',
-  `order` DECIMAL(4,0) NOT NULL DEFAULT '0',
+  ordering DECIMAL(4,0) NOT NULL DEFAULT '0',
   `count` INT(11) NOT NULL DEFAULT '-1',
   `currentCount` INT(11) NOT NULL DEFAULT '-1',
   `time` INT(11) NOT NULL DEFAULT '0',
   `savetimer` DECIMAL(20,0) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`shop_id`, `order`),
-  CONSTRAINT `fk_merchant_buylists_merchant_shopids1`
-    FOREIGN KEY (`shop_id`)
-    REFERENCES `merchant_shopids` (`shop_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`shop_id`, ordering))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 

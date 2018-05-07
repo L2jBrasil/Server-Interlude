@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.instancemanager;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.datatables.NpcTable;
 import com.l2jbr.gameserver.datatables.SpawnTable;
@@ -43,9 +42,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -332,7 +328,7 @@ public class DimensionalRiftManager {
             _zMin = dimensionalRift.getzMin();
             _zMax = dimensionalRift.getzMax();
             _teleportCoords = new int[] { dimensionalRift.getxT(), dimensionalRift.getyT(), dimensionalRift.getzT() };
-            _isBossRoom = dimensionalRift.getBoss() > 0;
+            _isBossRoom = dimensionalRift.getBoss();
             _roomSpawns = new LinkedList<>();
             _roomMobs = new LinkedList<>();
             _s = new Polygon(new int[] {

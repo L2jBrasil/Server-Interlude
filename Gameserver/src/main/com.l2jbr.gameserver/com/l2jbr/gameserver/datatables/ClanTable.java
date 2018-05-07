@@ -76,7 +76,7 @@ public class ClanTable {
                 }
             }
         });
-        _log.info(getMessage("info.restored.clans"), _clans.size());
+        _log.info(getMessage("info.restored.clans", _clans.size()));
         restoreWars();
     }
 

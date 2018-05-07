@@ -365,13 +365,12 @@ public class Castle {
         _taxRate = _taxPercent / 100.0;
 
         ClanRepository clanRepository = DatabaseAccess.getRepository(ClanRepository.class);
-        int clanId = clanRepository.findClanIdByCastle(getCastleId());
-        if(clanId != 0) {
+        clanRepository.findClanIdByCastle(castleData.getId()).ifPresent(clanId -> {
             _ownerId = clanId;
             L2Clan clan = ClanTable.getInstance().getClan(getOwnerId()); // Try to find clan instance
             ThreadPoolManager.getInstance().scheduleGeneral(new CastleUpdater(clan, 1), 3600000); // Schedule owner tasks to start running
-        }
-
+        });
+       
         for (CastleDoor castleDoor : castleData.getDoors()) {
 
             _doorDefault.add(castleDoor);

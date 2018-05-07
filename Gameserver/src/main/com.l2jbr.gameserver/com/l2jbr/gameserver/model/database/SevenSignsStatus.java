@@ -26,7 +26,7 @@ public class SevenSignsStatus  {
     private long duskStoneScore;
     @Column("dusk_festival_score")
     private int duskFestivalScore;
-    @Column("avarice_onwer")
+    @Column("avarice_owner")
     private int avariceOwner;
     @Column("gnosis_owner")
     private int gnosisOwner;

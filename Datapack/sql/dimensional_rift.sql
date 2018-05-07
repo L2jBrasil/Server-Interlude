@@ -3,8 +3,8 @@
 -- ----------------------------
 DROP TABLE IF EXISTS `dimensional_rift`;
 CREATE TABLE `dimensional_rift` (
-  `type` tinyint(1) NOT NULL,
-  `room_id` tinyint(1) NOT NULL,
+  `type` tinyint(2) NOT NULL,
+  `room_id` tinyint(2) NOT NULL,
   `xMin` int(11) NOT NULL,
   `xMax` int(11) NOT NULL,
   `yMin` int(11) NOT NULL,

@@ -3316,7 +3316,7 @@ public class SevenSignsFestival implements SpawnListener {
             festivalDat.set("score", festival.getScore());
             festivalDat.set("members", festival.getMembers());
 
-            _log.info("SevenSignsFestival: Loaded data from DB for (Cycle = {}, Oracle = {}, Festival = {})", festivalCycle, cabal, getFestivalName(festivalId));
+            _log.debug("SevenSignsFestival: Loaded data from DB for (Cycle = {}, Oracle = {}, Festival = {})", festivalCycle, cabal, getFestivalName(festivalId));
 
             if (cabal.equals("dawn")) {
                 festivalId += FESTIVAL_COUNT;

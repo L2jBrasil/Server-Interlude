@@ -28,7 +28,7 @@ dependencies {
     compile ('org.springframework.data:spring-data-jdbc:1.0.0.BUILD-SNAPSHOT') { changing = true }
     compile 'com.zaxxer:HikariCP:3.0.0'
 
-    runtime 'mysql:mysql-connector-java:8.0.9-rc'
+    runtime 'mysql:mysql-connector-java:8.0.11'
 }
 
 jar {

@@ -15,7 +15,7 @@ public interface ClanRepository extends CrudRepository<ClanData, Integer> {
     int updateClanCrestById(@Param("clanId") int clanId, @Param("crestId") int crestId);
 
     @Query("SELECT clan_id FROM clan_data WHERE hasCastle=:castle")
-    Integer findClanIdByCastle(@Param("castle") int castleId);
+    Optional<Integer> findClanIdByCastle(@Param("castle") int castleId);
 
     @Modifying
     @Query("UPDATE clan_data SET hasCastle=0 WHERE hasCastle=:castle")

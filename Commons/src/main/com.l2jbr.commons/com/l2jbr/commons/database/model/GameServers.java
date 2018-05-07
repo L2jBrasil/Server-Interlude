@@ -6,11 +6,14 @@ import org.springframework.data.annotation.Id;
 
 @Table("gameservers")
 public class GameServers extends Entity<Integer> {
+
     @Id
     @Column("server_id")
-    private int serverId;
+    private Integer serverId;
     private String hexid;
     private String host;
+
+    public GameServers() { }
 
     public GameServers(int id, String hexId, String host) {
         this.serverId = id;

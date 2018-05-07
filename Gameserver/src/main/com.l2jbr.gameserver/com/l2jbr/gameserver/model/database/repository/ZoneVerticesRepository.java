@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface ZoneVerticesRepository extends CrudRepository<ZoneVertices, Integer> {
 
-    @Query("SELECT * FROM zone_vertices WHERE id=? ORDER BY 'order' ASC ")
+    @Query("SELECT * FROM zone_vertices WHERE id=:zone ORDER BY `order` ASC ")
     List<ZoneVertices> findAllOrderedById(@Param("zone") int zoneId);
 }
