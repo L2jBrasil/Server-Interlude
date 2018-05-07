@@ -12,12 +12,13 @@ public interface SevenSignsStatusRepository extends CrudRepository<SevenSignsSta
     @Query("UPDATE seven_signs_status SET date=:date WHERE id=:id")
     int updateDate(@Param("id") int id, @Param("date") int date);
 
-    @Query("UPDATE seven_signs_status SET current_cycle=?, active_period=?, previous_winner=?, " +
-               "dawn_stone_score=?, dawn_festival_score=?, dusk_stone_score=?, dusk_festival_score=?, " +
-               "avarice_owner=?, gnosis_owner=?, strife_owner=?, avarice_dawn_score=?, gnosis_dawn_score=?, " +
-               "strife_dawn_score=?, avarice_dusk_score=?, gnosis_dusk_score=?, strife_dusk_score=?, " +
-               "festival_cycle=?, accumulated_bonus0=?, accumulated_bonus1=?, accumulated_bonus2=?, accumulated_bonus3=?, " +
-               "accumulated_bonus4=?, date=? WHERE id=?")
+    @Modifying
+    @Query("UPDATE seven_signs_status SET current_cycle=:cycle, active_period=:period, previous_winner=:previousWinner, " +
+               "dawn_stone_score=:dawnStone, dawn_festival_score=:dawnFestival, dusk_stone_score=:duskStone, dusk_festival_score=:duskFestival, " +
+               "avarice_owner=:avariceOwner, gnosis_owner=:gnosisOwner, strife_owner=:strifeOwner, avarice_dawn_score=:avariceDawn, gnosis_dawn_score=:gnosisDawn, " +
+               "strife_dawn_score=:strifeDawn, avarice_dusk_score=:avariceDusk, gnosis_dusk_score=:gnosisDusk, strife_dusk_score=:strifeDusk, " +
+               "festival_cycle=:festivalCycle, accumulated_bonus0=:bonus0, accumulated_bonus1=:bonus1, accumulated_bonus2=:bonus2, accumulated_bonus3=:bonus3, " +
+               "accumulated_bonus4=:bonus4, date=:date WHERE id=:id")
     void update(@Param("id") int id, @Param("cycle") int currentCycle, @Param("period") int activePeriod, @Param("previousWinner") int previousWinner,
                 @Param("dawnStone") double dawnStoneScore, @Param("dawnFestival") int dawnFestivalScore, @Param("duskStone") double duskStoneScore,
                 @Param("duskFestival") int duskFestivalScore, @Param("avariceOwner") int avariceOwner, @Param("gnosisOwner") int gnosisOwner,

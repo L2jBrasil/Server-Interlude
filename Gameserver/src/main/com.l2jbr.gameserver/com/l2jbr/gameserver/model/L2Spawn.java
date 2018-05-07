@@ -446,19 +446,13 @@ public class L2Spawn {
     public L2NpcInstance doSpawn() {
         L2NpcInstance mob = null;
         try {
-            // Check if the L2Spawn is not a L2Pet or L2Minion spawn
             if (_template.type.equalsIgnoreCase("L2Pet") || _template.type.equalsIgnoreCase("L2Minion")) {
                 _currentCount++;
-
                 return mob;
             }
 
             // Get L2NpcInstance Init parameters and its generate an Identifier
-            Object[] parameters =
-                    {
-                            IdFactory.getInstance().getNextId(),
-                            _template
-                    };
+            Object[] parameters = { IdFactory.getInstance().getNextId(),  _template };
 
             // Call the constructor of the L2NpcInstance
             // (can be a L2ArtefactInstance, L2FriendlyMobInstance, L2GuardInstance, L2MonsterInstance, L2SiegeGuardInstance, L2BoxInstance,
@@ -472,7 +466,8 @@ public class L2Spawn {
             mob = (L2NpcInstance) tmp;
             return intializeNpcInstance(mob);
         } catch (Exception e) {
-            _log.warn( "NPC " + _template.npcId + " class not found", e);
+            _log.warn( "NPC {} class not found", _template.npcId);
+            _log.error(e.getLocalizedMessage(), e);
         }
         return mob;
     }

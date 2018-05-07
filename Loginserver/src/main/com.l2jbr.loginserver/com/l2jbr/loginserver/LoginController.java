@@ -427,8 +427,6 @@ public class LoginController {
                     account.setLastIP(address.getHostAddress());
                     repository.save(account);
                 }
-
-
             } else if (Config.AUTO_CREATE_ACCOUNTS) {
                 if ((user.length() >= 2) && (user.length() <= 14)) {
                     String pwd = Base64.encodeBytes(hash);
@@ -443,9 +441,9 @@ public class LoginController {
                     return false;
                 }
 
+            } else {
+                _log.debug("account missing for user {}", user);
             }
-            _log.debug("account missing for user {}", user);
-            return false;
         }catch (Exception e) {
             _log.warn("Could not check password:" + e);
             ok = false;
