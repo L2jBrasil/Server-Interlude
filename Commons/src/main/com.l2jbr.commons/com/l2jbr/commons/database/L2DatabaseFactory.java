@@ -37,16 +37,18 @@ public class L2DatabaseFactory {
 
     public L2DatabaseFactory() throws SQLException {
         context = new AnnotationConfigApplicationContext(DatabaseContextConfiguration.class);
+        ((AnnotationConfigApplicationContext) context).registerShutdownHook();
         _dataSource = context.getBean(HikariDataSource.class);
 
         try {
             _dataSource.getConnection().close();
         } catch (SQLException e) {
             _log.error(e.getMessage(), e);
+            throw  e;
         }
     }
 
-    public final static String prepQuerySelect(String[] fields, String tableName, String whereClause, boolean returnOnlyTopRecord) {
+    public static String prepQuerySelect(String[] fields, String tableName, String whereClause, boolean returnOnlyTopRecord) {
         String msSqlTop1 = "";
         String mySqlTop1 = "";
         if (returnOnlyTopRecord) {

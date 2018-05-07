@@ -19,14 +19,11 @@
 package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.database.L2DatabaseFactory;
-import com.l2jbr.gameserver.model.L2PetDataTable;
+import com.l2jbr.commons.database.DatabaseAccess;
+import com.l2jbr.gameserver.model.database.repository.PetsRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -47,47 +44,9 @@ public class PetNameTable
 		return _instance;
 	}
 	
-	public boolean doesPetNameExist(String name, int petNpcId)
-	{
-		boolean result = true;
-		java.sql.Connection con = null;
-		
-		try
-		{
-			con = L2DatabaseFactory.getInstance().getConnection();
-			PreparedStatement statement = con.prepareStatement("SELECT name FROM pets p, items i WHERE p.item_obj_id = i.object_id AND name=? AND i.item_id IN (?)");
-			statement.setString(1, name);
-			
-			String cond = "";
-			for (int it : L2PetDataTable.getPetItemsAsNpc(petNpcId))
-			{
-				if (cond != "")
-				{
-					cond += ", ";
-				}
-				cond += it;
-			}
-			statement.setString(2, cond);
-			ResultSet rset = statement.executeQuery();
-			result = rset.next();
-			rset.close();
-			statement.close();
-		}
-		catch (SQLException e)
-		{
-			_log.warn("could not check existing petname:" + e.getMessage());
-		}
-		finally
-		{
-			try
-			{
-				con.close();
-			}
-			catch (Exception e)
-			{
-			}
-		}
-		return result;
+	public boolean doesPetNameExist(String name, int petNpcId) {
+        PetsRepository repository = DatabaseAccess.getRepository(PetsRepository.class);
+        return repository.existsByName(name);
 	}
 	
 	public boolean isValidPetName(String name)

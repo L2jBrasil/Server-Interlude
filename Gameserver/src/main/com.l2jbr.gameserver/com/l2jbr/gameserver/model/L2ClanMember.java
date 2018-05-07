@@ -19,13 +19,9 @@
 package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.instancemanager.SiegeManager;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
-
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 
 /**
@@ -463,33 +459,8 @@ public class L2ClanMember
 		return pledgeClass;
 	}
 	
-	public void saveApprenticeAndSponsor(int apprentice, int sponsor)
-	{
-		java.sql.Connection con = null;
-		
-		try
-		{
-			con = L2DatabaseFactory.getInstance().getConnection();
-			PreparedStatement statement = con.prepareStatement("UPDATE characters SET apprentice=?,sponsor=? WHERE obj_Id=?");
-			statement.setInt(1, apprentice);
-			statement.setInt(2, sponsor);
-			statement.setInt(3, getObjectId());
-			statement.execute();
-			statement.close();
-		}
-		catch (SQLException e)
-		{
-			// _log.warn("could not set apprentice/sponsor:"+e.getMessage());
-		}
-		finally
-		{
-			try
-			{
-				con.close();
-			}
-			catch (Exception e)
-			{
-			}
-		}
+	public void saveApprenticeAndSponsor(int apprentice, int sponsor) {
+		CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
+		repository.updateApprenticeAndSponsor(getObjectId(), apprentice, sponsor);
 	}
 }

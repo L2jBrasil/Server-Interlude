@@ -20,4 +20,7 @@ public interface DropListRepository extends CrudRepository<DropList, Integer> {
 
     @Query("DELETE FROM droplist WHERE mobId=:npc AND itemId=:item AND category=:category")
     int deleteByNpcItemAndCategory(@Param("npc") int npcId, @Param("item") int itemId, @Param("category") int category);
+
+    @Query("SELECT * FROM droplist WHERE mobId=:npc")
+    Iterable<DropList> findAllByNpc(@Param("npc") int npcId);
 }

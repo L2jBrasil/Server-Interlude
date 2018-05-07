@@ -25,7 +25,6 @@ package com.l2jbr.gameserver;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.datatables.HeroSkillTable;
 import com.l2jbr.gameserver.datatables.SkillTable;
@@ -46,10 +45,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.ScheduledFuture;
 
@@ -851,34 +846,29 @@ public class Olympiad {
             return;
         }
 
-        try (Connection con = L2DatabaseFactory.getInstance().getConnection();) {
-            PreparedStatement statement;
+        OlympiadNoblesRepository repository = DatabaseAccess.getRepository(OlympiadNoblesRepository.class);
+        for (Integer nobleId : _nobles.keySet()) {
+            StatsSet nobleInfo = _nobles.get(nobleId);
 
-            for (Integer nobleId : _nobles.keySet()) {
-                StatsSet nobleInfo = _nobles.get(nobleId);
+            int charId = nobleId;
+            int classId = nobleInfo.getInteger(CLASS_ID);
+            String charName = nobleInfo.getString(CHAR_NAME);
+            int points = nobleInfo.getInteger(POINTS);
+            int compDone = nobleInfo.getInteger(COMP_DONE);
+            boolean toSave = nobleInfo.getBool("to_save");
 
-                int charId = nobleId;
-                int classId = nobleInfo.getInteger(CLASS_ID);
-                String charName = nobleInfo.getString(CHAR_NAME);
-                int points = nobleInfo.getInteger(POINTS);
-                int compDone = nobleInfo.getInteger(COMP_DONE);
-                boolean toSave = nobleInfo.getBool("to_save");
 
-                OlympiadNoblesRepository repository = DatabaseAccess.getRepository(OlympiadNoblesRepository.class);
-                if (toSave) {
-                    OlympiadNobles nobles = new OlympiadNobles(charId, classId, charName, points, compDone);
-                    repository.save(nobles);
+            if (toSave) {
+                OlympiadNobles nobles = new OlympiadNobles(charId, classId, charName, points, compDone);
+                repository.save(nobles);
 
-                    nobleInfo.set("to_save", false);
+                nobleInfo.set("to_save", false);
 
-                    _nobles.remove(nobleId);
-                    _nobles.put(nobleId, nobleInfo);
-                } else {
-                    repository.updateCompetitions(charId, points, compDone);
-                }
+                _nobles.remove(nobleId);
+                _nobles.put(nobleId, nobleInfo);
+            } else {
+                repository.updateCompetitions(charId, points, compDone);
             }
-        } catch (SQLException e) {
-            _log.warn("Olympiad System: Couldnt save nobles info in db");
         }
     }
 

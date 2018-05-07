@@ -20,7 +20,7 @@ package com.l2jbr.gameserver.handler.admincommandhandlers;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.util.Util;
 import com.l2jbr.gameserver.TradeController;
 import com.l2jbr.gameserver.cache.HtmCache;
 import com.l2jbr.gameserver.datatables.ItemTable;
@@ -29,6 +29,7 @@ import com.l2jbr.gameserver.handler.IAdminCommandHandler;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.L2BoxInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.DropList;
 import com.l2jbr.gameserver.model.database.MerchantBuyList;
 import com.l2jbr.gameserver.model.database.repository.DropListRepository;
 import com.l2jbr.gameserver.model.database.repository.MerchantBuyListRepository;
@@ -39,8 +40,6 @@ import com.l2jbr.gameserver.templates.StatsSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -793,39 +792,21 @@ public class AdminEditNpc implements IAdminCommandHandler {
     }
 
     private void addDropData(L2PcInstance activeChar, int npcId, int itemId, int min, int max, int category, int chance) {
-        java.sql.Connection con = null;
+        DropListRepository repository = DatabaseAccess.getRepository(DropListRepository.class);
+        DropList drop = new DropList(npcId, itemId, min, max, category, chance);
+        repository.save(drop);
 
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
+        reLoadNpcDropList(npcId);
 
-            PreparedStatement statement = con.prepareStatement("INSERT INTO droplist(mobId, itemId, min, max, category, chance) values(?,?,?,?,?,?)");
-            statement.setInt(1, npcId);
-            statement.setInt(2, itemId);
-            statement.setInt(3, min);
-            statement.setInt(4, max);
-            statement.setInt(5, category);
-            statement.setInt(6, chance);
-            statement.execute();
-            statement.close();
+        NpcHtmlMessage adminReply = new NpcHtmlMessage(5);
+        StringBuilder replyMSG = new StringBuilder("<html><title>Add drop data complete!</title>");
+        replyMSG.append("<body>");
+        replyMSG.append("<center><button value=\"Continue add\" action=\"bypass -h admin_add_drop " + npcId + "\" width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\">");
+        replyMSG.append("<br><br><button value=\"DropList\" action=\"bypass -h admin_show_droplist " + npcId + "\" width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\">");
+        replyMSG.append("</center></body></html>");
 
-            reLoadNpcDropList(npcId);
-
-            NpcHtmlMessage adminReply = new NpcHtmlMessage(5);
-            StringBuilder replyMSG = new StringBuilder("<html><title>Add drop data complete!</title>");
-            replyMSG.append("<body>");
-            replyMSG.append("<center><button value=\"Continue add\" action=\"bypass -h admin_add_drop " + npcId + "\" width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\">");
-            replyMSG.append("<br><br><button value=\"DropList\" action=\"bypass -h admin_show_droplist " + npcId + "\" width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\">");
-            replyMSG.append("</center></body></html>");
-
-            adminReply.setHtml(replyMSG.toString());
-            activeChar.sendPacket(adminReply);
-        } catch (Exception e) {
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        adminReply.setHtml(replyMSG.toString());
+        activeChar.sendPacket(adminReply);
     }
 
     private void deleteDropData(L2PcInstance activeChar, int npcId, int itemId, int category) {
@@ -848,52 +829,16 @@ public class AdminEditNpc implements IAdminCommandHandler {
 
     private void reLoadNpcDropList(int npcId) {
         L2NpcTemplate npcData = NpcTable.getInstance().getTemplate(npcId);
-        if (npcData == null) {
+        if (Util.isNull(npcData)) {
             return;
         }
 
-        // reset the drop lists
         npcData.clearAllDropData();
 
-        // get the drops
-        java.sql.Connection con = null;
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            L2DropData dropData = null;
-
-            npcData.getDropData().clear();
-
-            PreparedStatement statement = con.prepareStatement("SELECT " + L2DatabaseFactory.getInstance().safetyString(new String[]
-                    {
-                            "mobId",
-                            "itemId",
-                            "min",
-                            "max",
-                            "category",
-                            "chance"
-                    }) + " FROM droplist WHERE mobId=?");
-            statement.setInt(1, npcId);
-            ResultSet dropDataList = statement.executeQuery();
-
-            while (dropDataList.next()) {
-                dropData = new L2DropData();
-
-                dropData.setItemId(dropDataList.getInt("itemId"));
-                dropData.setMinDrop(dropDataList.getInt("min"));
-                dropData.setMaxDrop(dropDataList.getInt("max"));
-                dropData.setChance(dropDataList.getInt("chance"));
-
-                int category = dropDataList.getInt("category");
-                npcData.addDropData(dropData, category);
-            }
-            dropDataList.close();
-            statement.close();
-        } catch (Exception e) {
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        DropListRepository repository = DatabaseAccess.getRepository(DropListRepository.class);
+        repository.findAllByNpc(npcId).forEach(dropList -> {
+            L2DropData dropData = new L2DropData(dropList);
+            npcData.addDropData(dropData, dropList.getCategory());
+        });
     }
 }

@@ -19,7 +19,9 @@
 package com.l2jbr.gameserver.idfactory;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -117,35 +119,10 @@ public abstract class IdFactory
 				break;
 		}
 	}
-	
-	/**
-	 * Sets all character offline
-	 */
-	private void setAllCharacterOffline()
-	{
-		java.sql.Connection con2 = null;
-		try
-		{
-			con2 = L2DatabaseFactory.getInstance().getConnection();
-			Statement s2 = con2.createStatement();
-			s2.executeUpdate("update characters set online=0");
-			_log.info("Updated characters online status.");
-			
-			s2.close();
-		}
-		catch (SQLException e)
-		{
-		}
-		finally
-		{
-			try
-			{
-				con2.close();
-			}
-			catch (Exception e)
-			{
-			}
-		}
+
+	private void setAllCharacterOffline()  {
+        CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
+        repository.updateAllOnlineStatus(0);
 	}
 	
 	/**

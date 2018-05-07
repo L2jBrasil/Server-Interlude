@@ -18,7 +18,6 @@
 package com.l2jbr.loginserver;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.Server;
 import com.l2jbr.commons.status.Status;
 import com.l2jbr.loginserver.status.LoginStatus;
@@ -57,20 +56,7 @@ public class L2LoginServer {
 
     public L2LoginServer() {
         Server.serverMode = Server.MODE_LOGINSERVER;
-
-        // Load Config
         Config.load();
-
-        // Prepare Database
-        try {
-            L2DatabaseFactory.getInstance();
-        } catch (SQLException e) {
-            _log.error("FATAL: Failed initializing database. Reason: " + e.getMessage());
-            if (Config.DEVELOPER) {
-                e.printStackTrace();
-            }
-            System.exit(1);
-        }
 
         try {
             LoginController.load();

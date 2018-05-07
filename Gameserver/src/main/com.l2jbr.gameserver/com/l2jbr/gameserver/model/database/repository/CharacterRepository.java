@@ -84,4 +84,12 @@ public interface CharacterRepository extends CrudRepository<Character, Integer> 
 
     @Query("SELECT obj_Id FROM characters WHERE char_name=:name")
     int findIdByName(@Param("name") String name);
+
+    @Modifying
+    @Query("UPDATE characters SET online=:online")
+    int updateAllOnlineStatus(@Param("online") int online);
+
+    @Modifying
+    @Query("UPDATE characters SET apprentice=:apprentice,sponsor=:sponsor WHERE obj_Id=:objectId")
+    int updateApprenticeAndSponsor(@Param("objectId") int objectId, @Param("apprentice") int apprentice, @Param("sponsor") int sponsor);
 }

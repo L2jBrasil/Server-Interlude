@@ -29,10 +29,8 @@ import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.base.ClassId;
 import com.l2jbr.gameserver.model.database.Minions;
 import com.l2jbr.gameserver.model.database.Npc;
-import com.l2jbr.gameserver.model.database.repository.MinionRepository;
-import com.l2jbr.gameserver.model.database.repository.NpcRepository;
-import com.l2jbr.gameserver.model.database.repository.NpcSkillRepository;
-import com.l2jbr.gameserver.model.database.repository.SkillLearnRepository;
+import com.l2jbr.gameserver.model.database.repository.*;
+import com.l2jbr.gameserver.skills.SkillConstants;
 import com.l2jbr.gameserver.skills.Stats;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.templates.StatsSet;
@@ -41,8 +39,6 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.*;
 
 import static com.l2jbr.gameserver.util.GameserverMessages.getMessage;
@@ -81,105 +77,81 @@ public class NpcTable {
 
         _log.info(getMessage("info.npc.loaded"), _npcs.size());
 
-        try (Connection con = L2DatabaseFactory.getInstance().getConnection()) {
-            NpcSkillRepository npcSkillRepository = DatabaseAccess.getRepository(NpcSkillRepository.class);
-            npcSkillRepository.findAll().forEach(npcSkill -> {
-                int mobId = npcSkill.getNpcid();
-                L2NpcTemplate npcDat = _npcs.get(mobId);
+        NpcSkillRepository npcSkillRepository = DatabaseAccess.getRepository(NpcSkillRepository.class);
+        npcSkillRepository.findAll().forEach(npcSkill -> {
+            int mobId = npcSkill.getNpcid();
+            L2NpcTemplate npcDat = _npcs.get(mobId);
 
-                if (Util.isNull(npcDat)) {
-                    return;
-                }
-
-                int skillId = npcSkill.getSkillid();
-                int level = npcSkill.getLevel();
-
-                if (Util.isNull(npcDat.race) && (skillId == 4416)) {
-                    npcDat.setRace(level);
-                    return;
-                }
-
-                L2Skill skill = SkillTable.getInstance().getInfo(skillId, level);
-
-                if (Util.isNull(skill)) {
-                    return;
-                }
-
-                npcDat.addSkill(skill);
-            });
-
-            try {
-                PreparedStatement statement2 = con.prepareStatement("SELECT " + L2DatabaseFactory.getInstance().safetyString(new String[]
-                        {
-                                "mobId",
-                                "itemId",
-                                "min",
-                                "max",
-                                "category",
-                                "chance"
-                        }) + " FROM droplist ORDER BY mobId, chance DESC");
-                ResultSet dropData = statement2.executeQuery();
-                L2DropData dropDat = null;
-                L2NpcTemplate npcDat = null;
-
-                while (dropData.next()) {
-                    int mobId = dropData.getInt("mobId");
-                    npcDat = _npcs.get(mobId);
-                    if (npcDat == null) {
-                        _log.error("NPCTable: No npc correlating with id : " + mobId);
-                        continue;
-                    }
-                    dropDat = new L2DropData();
-
-                    dropDat.setItemId(dropData.getInt("itemId"));
-                    dropDat.setMinDrop(dropData.getInt("min"));
-                    dropDat.setMaxDrop(dropData.getInt("max"));
-                    dropDat.setChance(dropData.getInt("chance"));
-
-                    int category = dropData.getInt("category");
-
-                    npcDat.addDropData(dropDat, category);
-                }
-
-                dropData.close();
-                statement2.close();
-            } catch (Exception e) {
-                _log.error("NPCTable: Error reading NPC drop data: " + e);
+            if (Util.isNull(npcDat)) {
+                return;
             }
 
-            SkillLearnRepository repository = DatabaseAccess.getRepository(SkillLearnRepository.class);
-            repository.findAll().forEach(skillLearn -> {
-                int npcId = skillLearn.getNpcId();
-                int classId = skillLearn.getClassId();
-                L2NpcTemplate npc = getTemplate(npcId);
+            int skillId = npcSkill.getSkillid();
+            int level = npcSkill.getLevel();
 
-                if (npc == null) {
-                    _log.warn("NPCTable: Error getting NPC template ID " + npcId + " while trying to load skill trainer data.");
-                    return;
-                }
-
-                npc.addTeachInfo(ClassId.values()[classId]);
-            });
-
-            MinionRepository minionRepository = DatabaseAccess.getRepository(MinionRepository.class);
-            int cnt = 0;
-            L2NpcTemplate npcDat = null;
-            L2MinionData minionDat = null;
-            for (Minions minion : minionRepository.findAll()) {
-                int raidId = minion.getBossId();
-                npcDat = _npcs.get(raidId);
-                minionDat = new L2MinionData();
-                minionDat.setMinionId(minion.getMinionId());
-                minionDat.setAmountMin(minion.getAmountMin());
-                minionDat.setAmountMax(minion.getAmountMin());
-                npcDat.addRaidData(minionDat);
-                cnt++;
+            if (Util.isNull(npcDat.race) && (skillId == SkillConstants.RACES)) {
+                npcDat.setRace(level);
+                return;
             }
-            _log.info("NpcTable: Loaded {} Minions", cnt);
-        } catch (SQLException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
+
+            L2Skill skill = SkillTable.getInstance().getInfo(skillId, level);
+
+            if (Util.isNull(skill)) {
+                return;
+            }
+
+            npcDat.addSkill(skill);
+        });
+
+        DropListRepository dropListRepository = DatabaseAccess.getRepository(DropListRepository.class);
+        dropListRepository.findAll().forEach(dropList -> {
+            int mobId = dropList.getMobId();
+            L2NpcTemplate npcDat = _npcs.get(mobId);
+            if (npcDat == null) {
+                _log.error("NPCTable: No npc correlating with id : {}", mobId);
+                return;
+            }
+            L2DropData dropDat = new L2DropData();
+
+            dropDat.setItemId(dropList.getItemId());
+            dropDat.setMinDrop(dropList.getMin());
+            dropDat.setMaxDrop(dropList.getMax());
+            dropDat.setChance(dropList.getChance());
+
+            int category = dropList.getCategory();
+
+            npcDat.addDropData(dropDat, category);
+        });
+
+        SkillLearnRepository repository = DatabaseAccess.getRepository(SkillLearnRepository.class);
+        repository.findAll().forEach(skillLearn -> {
+            int npcId = skillLearn.getNpcId();
+            int classId = skillLearn.getClassId();
+            L2NpcTemplate npc = getTemplate(npcId);
+
+            if (npc == null) {
+                _log.warn("NPCTable: Error getting NPC template ID " + npcId + " while trying to load skill trainer data.");
+                return;
+            }
+
+            npc.addTeachInfo(ClassId.values()[classId]);
+        });
+
+        MinionRepository minionRepository = DatabaseAccess.getRepository(MinionRepository.class);
+        int cnt = 0;
+        L2NpcTemplate npcDat = null;
+        L2MinionData minionDat = null;
+        for (Minions minion : minionRepository.findAll()) {
+            int raidId = minion.getBossId();
+            npcDat = _npcs.get(raidId);
+            minionDat = new L2MinionData();
+            minionDat.setMinionId(minion.getMinionId());
+            minionDat.setAmountMin(minion.getAmountMin());
+            minionDat.setAmountMax(minion.getAmountMin());
+            npcDat.addRaidData(minionDat);
+            cnt++;
         }
+        _log.info("NpcTable: Loaded {} Minions", cnt);
 
         _initialized = true;
     }

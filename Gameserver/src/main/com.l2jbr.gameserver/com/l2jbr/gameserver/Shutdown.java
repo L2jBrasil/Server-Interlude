@@ -19,7 +19,6 @@
 package com.l2jbr.gameserver;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.gameserverpackets.ServerStatus;
 import com.l2jbr.gameserver.instancemanager.*;
 import com.l2jbr.gameserver.model.L2World;
@@ -218,16 +217,6 @@ public class Shutdown extends Thread
 			catch (Throwable t)
 			{
 				// ignore
-			}
-			
-			// commit data, last chance
-			try
-			{
-				L2DatabaseFactory.getInstance().shutdown();
-			}
-			catch (Throwable t)
-			{
-				
 			}
 			
 			// server will quit, when this function ends.

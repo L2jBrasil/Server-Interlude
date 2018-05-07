@@ -19,7 +19,6 @@
 package com.l2jbr.gameserver;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.Server;
 import com.l2jbr.commons.status.Status;
 import com.l2jbr.gameserver.cache.CrestCache;
@@ -506,15 +505,11 @@ public class GameServer {
     }
 
     public static void main(String[] args) throws Exception {
-        configureLogger();
         Server.serverMode = Server.MODE_GAMESERVER;
-
-        // Initialize config
+        configureLogger();
         Config.load();
-
         Locale.setDefault(Locale.forLanguageTag(Config.LANGUAGE));
 
-        L2DatabaseFactory.getInstance();
         gameServer = new GameServer();
 
         if (Config.IS_TELNET_ENABLED) {

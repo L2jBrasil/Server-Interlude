@@ -2,10 +2,11 @@ package com.l2jbr.gameserver.model.database;
 
 import com.l2jbr.commons.database.annotation.Column;
 import com.l2jbr.commons.database.annotation.Table;
+import com.l2jbr.commons.database.model.Entity;
 import org.springframework.data.annotation.Id;
 
 @Table("pets")
-public class Pets  {
+public class Pets extends Entity<Integer> {
 
     @Id
     @Column("item_obj_id")
@@ -33,5 +34,46 @@ public class Pets  {
         this.karma = karma;
         this.pkkills = pkKills;
         this.fed = currentFed;
+    }
+
+    @Override
+    public Integer getId() {
+        return itemObjId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public byte getLevel() {
+        return level;
+    }
+
+    public double getCurHp() {
+        return curHp;
+    }
+
+    public double getCurMp() {
+        return curMp;
+    }
+
+    public long getExp() {
+        return exp;
+    }
+
+    public int getSp() {
+        return sp;
+    }
+
+    public int getKarma() {
+        return karma;
+    }
+
+    public int getPkkills() {
+        return pkkills;
+    }
+
+    public int getFed() {
+        return fed;
     }
 }

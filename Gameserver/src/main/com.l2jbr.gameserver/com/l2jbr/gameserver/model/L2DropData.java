@@ -18,6 +18,8 @@
  */
 package com.l2jbr.gameserver.model;
 
+import com.l2jbr.gameserver.model.database.DropList;
+
 import java.util.Arrays;
 
 
@@ -35,8 +37,18 @@ public class L2DropData
 	private int _chance;
 	private String _questID = null;
 	private String[] _stateID = null;
-	
-	/**
+
+    public L2DropData() {
+    }
+
+    public L2DropData(DropList dropList) {
+        _itemId = dropList.getItemId();
+        _minDrop = dropList.getMin();
+        _maxDrop = dropList.getMax();
+        _chance = dropList.getChance();
+	}
+
+    /**
 	 * Returns the ID of the item dropped
 	 * @return int
 	 */

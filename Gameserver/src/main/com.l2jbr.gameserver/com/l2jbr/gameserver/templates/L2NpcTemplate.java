@@ -274,7 +274,7 @@ public final class L2NpcTemplate extends L2CharTemplate {
      * <BR>
      */
     public synchronized void clearAllDropData() {
-        _categories.forEach( c -> c.clearAllDrops());
+        _categories.forEach(L2DropCategory::clearAllDrops);
         _categories.clear();
     }
 

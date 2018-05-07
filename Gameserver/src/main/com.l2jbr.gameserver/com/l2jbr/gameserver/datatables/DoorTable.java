@@ -75,9 +75,8 @@ public class DoorTable {
             File doorData = new File(Config.DATAPACK_ROOT, "data/door.csv");
             lnr = new LineNumberReader(new BufferedReader(new FileReader(doorData)));
 
+            _log.debug("Searching clan halls doors:");
             String line = null;
-            _log.warn("Searching clan halls doors:");
-
             while ((line = lnr.readLine()) != null) {
                 if ((line.trim().length() == 0) || line.startsWith("#")) {
                     continue;

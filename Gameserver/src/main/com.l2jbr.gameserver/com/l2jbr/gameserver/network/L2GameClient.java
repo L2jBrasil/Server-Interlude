@@ -19,7 +19,6 @@ package com.l2jbr.gameserver.network;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.LoginServerThread;
 import com.l2jbr.gameserver.LoginServerThread.SessionKey;
 import com.l2jbr.gameserver.ThreadPoolManager;
@@ -41,7 +40,6 @@ import org.slf4j.LoggerFactory;
 
 import java.net.InetAddress;
 import java.nio.ByteBuffer;
-import java.sql.PreparedStatement;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Future;
@@ -240,72 +238,56 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> {
             return;
         }
 
-        java.sql.Connection con = null;
+        CharacterFriendRepository characterFriendRepository = DatabaseAccess.getRepository(CharacterFriendRepository.class);
+        characterFriendRepository.deleteFriends(objId);
 
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
+        CharacterHennasRepository characterHennasRepository = DatabaseAccess.getRepository(CharacterHennasRepository.class);
+        characterHennasRepository.deleteById(objId);
 
-            CharacterFriendRepository characterFriendRepository = DatabaseAccess.getRepository(CharacterFriendRepository.class);
-            characterFriendRepository.deleteFriends(objId);
+        CharacterMacrosesRepository characterMacrosesRepository = DatabaseAccess.getRepository(CharacterMacrosesRepository.class);
+        characterMacrosesRepository.deleteById(objId);
 
-            CharacterHennasRepository characterHennasRepository = DatabaseAccess.getRepository(CharacterHennasRepository.class);
-            characterHennasRepository.deleteById(objId);
+        CharacterQuestsRepository characterQuestsRepository = DatabaseAccess.getRepository(CharacterQuestsRepository.class);
+        characterQuestsRepository.deleteById(objId);
 
-            CharacterMacrosesRepository characterMacrosesRepository = DatabaseAccess.getRepository(CharacterMacrosesRepository.class);
-            characterMacrosesRepository.deleteById(objId);
+        CharacterRecipebookRepository recipebookRepository = DatabaseAccess.getRepository(CharacterRecipebookRepository.class);
+        recipebookRepository.deleteAllByCharacter(objId);
 
-            CharacterQuestsRepository characterQuestsRepository = DatabaseAccess.getRepository(CharacterQuestsRepository.class);
-            characterQuestsRepository.deleteById(objId);
+        CharacterShortcutsRepository shortcutsRepository = DatabaseAccess.getRepository(CharacterShortcutsRepository.class);
+        shortcutsRepository.deleteById(objId);
 
-            CharacterRecipebookRepository recipebookRepository = DatabaseAccess.getRepository(CharacterRecipebookRepository.class);
-            recipebookRepository.deleteAllByCharacter(objId);
+        CharacterSkillsRepository skillsRepository = DatabaseAccess.getRepository(CharacterSkillsRepository.class);
+        skillsRepository.deleteById(objId);
 
-            CharacterShortcutsRepository shortcutsRepository = DatabaseAccess.getRepository(CharacterShortcutsRepository.class);
-            shortcutsRepository.deleteById(objId);
+        CharacterSkillsSaveRepository skillsSaveRepository = DatabaseAccess.getRepository(CharacterSkillsSaveRepository.class);
+        skillsSaveRepository.deleteById(objId);
 
-            CharacterSkillsRepository skillsRepository = DatabaseAccess.getRepository(CharacterSkillsRepository.class);
-            skillsRepository.deleteById(objId);
+        CharacterSubclassesRepository subclassesRepository = DatabaseAccess.getRepository(CharacterSubclassesRepository.class);
+        subclassesRepository.deleteById(objId);
 
-            CharacterSkillsSaveRepository skillsSaveRepository = DatabaseAccess.getRepository(CharacterSkillsSaveRepository.class);
-            skillsSaveRepository.deleteById(objId);
+        HeroesRepository heroesRepository = DatabaseAccess.getRepository(HeroesRepository.class);
+        heroesRepository.deleteById(objId);
 
-            CharacterSubclassesRepository subclassesRepository = DatabaseAccess.getRepository(CharacterSubclassesRepository.class);
-            subclassesRepository.deleteById(objId);
+        OlympiadNoblesRepository noblesRepository = DatabaseAccess.getRepository(OlympiadNoblesRepository.class);
+        noblesRepository.deleteById(objId);
 
-            HeroesRepository heroesRepository = DatabaseAccess.getRepository(HeroesRepository.class);
-            heroesRepository.deleteById(objId);
+        SevenSignsRepository sevenSignsRepository = DatabaseAccess.getRepository(SevenSignsRepository.class);
+        sevenSignsRepository.deleteById(objId);
 
-            OlympiadNoblesRepository noblesRepository = DatabaseAccess.getRepository(OlympiadNoblesRepository.class);
-            noblesRepository.deleteById(objId);
+        PetsRepository repository = DatabaseAccess.getRepository(PetsRepository.class);
+        repository.deleteByOwner(objId);
 
-            SevenSignsRepository sevenSignsRepository = DatabaseAccess.getRepository(SevenSignsRepository.class);
-            sevenSignsRepository.deleteById(objId);
+        AugmentationsRepository augmentationsRepository = DatabaseAccess.getRepository(AugmentationsRepository.class);
+        augmentationsRepository.deleteByItemOwner(objId);
 
-            statement = con.prepareStatement("DELETE FROM pets WHERE item_obj_id IN (SELECT object_id FROM items WHERE items.owner_id=?)");
-            statement.setInt(1, objId);
-            statement.execute();
-            statement.close();
+        ItemRepository itemRepository = DatabaseAccess.getRepository(ItemRepository.class);
+        itemRepository.deleteByOwner(objId);
 
-            AugmentationsRepository augmentationsRepository = DatabaseAccess.getRepository(AugmentationsRepository.class);
-            augmentationsRepository.deleteByItemOwner(objId);
+        MerchantLeaseRepository leaseRepository = DatabaseAccess.getRepository(MerchantLeaseRepository.class);
+        leaseRepository.deleteByPlayer(objId);
 
-            ItemRepository itemRepository = DatabaseAccess.getRepository(ItemRepository.class);
-            itemRepository.deleteByOwner(objId);
-
-            MerchantLeaseRepository leaseRepository = DatabaseAccess.getRepository(MerchantLeaseRepository.class);
-            leaseRepository.deleteByPlayer(objId);
-
-            CharacterRepository characterRepository = DatabaseAccess.getRepository(CharacterRepository.class);
-            characterRepository.deleteById(objId);
-        } catch (Exception e) {
-            _log.warn("Data error on deleting char: " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        CharacterRepository characterRepository = DatabaseAccess.getRepository(CharacterRepository.class);
+        characterRepository.deleteById(objId);
     }
 
     public L2PcInstance loadCharFromDisk(int charslot) {

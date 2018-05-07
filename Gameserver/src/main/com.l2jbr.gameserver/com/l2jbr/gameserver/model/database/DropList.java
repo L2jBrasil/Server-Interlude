@@ -14,6 +14,18 @@ public class DropList extends Entity<Integer> {
     private int category;
     private int chance;
 
+    public DropList() {
+    }
+
+    public DropList(int npcId, int itemId, int min, int max, int category, int chance) {
+        this.mobId = npcId;
+        this.itemId = itemId;
+        this.min = min;
+        this.max = max;
+        this.category = category;
+        this.chance = chance;
+    }
+
     @Override
     public Integer getId() {
         return mobId;

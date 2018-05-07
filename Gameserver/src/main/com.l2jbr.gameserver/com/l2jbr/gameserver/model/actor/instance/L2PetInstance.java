@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.ai.CtrlIntention;
 import com.l2jbr.gameserver.idfactory.IdFactory;
@@ -39,8 +38,6 @@ import com.l2jbr.gameserver.templates.L2Weapon;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.concurrent.Future;
 
 
@@ -777,66 +774,33 @@ public class L2PetInstance extends L2Summon
 		return _mountable;
 	}
 	
-	private static L2PetInstance restore(L2ItemInstance control, L2NpcTemplate template, L2PcInstance owner)
-	{
-		java.sql.Connection con = null;
-		try
-		{
-			L2PetInstance pet;
-			if (template.type.compareToIgnoreCase("L2BabyPet") == 0)
-			{
-				pet = new L2BabyPetInstance(IdFactory.getInstance().getNextId(), template, owner, control);
-			}
-			else
-			{
-				pet = new L2PetInstance(IdFactory.getInstance().getNextId(), template, owner, control);
-			}
-			
-			con = L2DatabaseFactory.getInstance().getConnection();
-			PreparedStatement statement = con.prepareStatement("SELECT item_obj_id, name, level, curHp, curMp, exp, sp, karma, pkkills, fed FROM pets WHERE item_obj_id=?");
-			statement.setInt(1, control.getObjectId());
-			ResultSet rset = statement.executeQuery();
-			if (!rset.next())
-			{
-				rset.close();
-				statement.close();
-				return pet;
-			}
-			
-			pet._respawned = true;
-			pet.setName(rset.getString("name"));
-			
-			pet.getStat().setLevel(rset.getByte("level"));
-			pet.getStat().setExp(rset.getLong("exp"));
-			pet.getStat().setSp(rset.getInt("sp"));
-			
-			pet.getStatus().setCurrentHp(rset.getDouble("curHp"));
-			pet.getStatus().setCurrentMp(rset.getDouble("curMp"));
-			pet.getStatus().setCurrentCp(pet.getMaxCp());
-			
-			pet.setKarma(rset.getInt("karma"));
-			pet.setPkKills(rset.getInt("pkkills"));
-			pet.setCurrentFed(rset.getInt("fed"));
-			
-			rset.close();
-			statement.close();
-			return pet;
-		}
-		catch (Exception e)
-		{
-			_logPet.warn("could not restore pet data: " + e);
-			return null;
-		}
-		finally
-		{
-			try
-			{
-				con.close();
-			}
-			catch (Exception e)
-			{
-			}
-		}
+	private static L2PetInstance restore(L2ItemInstance control, L2NpcTemplate template, L2PcInstance owner) {
+        L2PetInstance pet;
+        if (template.type.compareToIgnoreCase("L2BabyPet") == 0) {
+            pet = new L2BabyPetInstance(IdFactory.getInstance().getNextId(), template, owner, control);
+        }
+        else {
+            pet = new L2PetInstance(IdFactory.getInstance().getNextId(), template, owner, control);
+        }
+
+        PetsRepository repository = DatabaseAccess.getRepository(PetsRepository.class);
+        repository.findById(control.getObjectId()).ifPresent(petData -> {
+            pet._respawned = true;
+            pet.setName(petData.getName());
+
+            pet.getStat().setLevel(petData.getLevel());
+            pet.getStat().setExp(petData.getExp());
+            pet.getStat().setSp(petData.getSp());
+
+            pet.getStatus().setCurrentHp(petData.getCurHp());
+            pet.getStatus().setCurrentMp(petData.getCurMp());
+            pet.getStatus().setCurrentCp(pet.getMaxCp());
+
+            pet.setKarma(petData.getKarma());
+            pet.setPkKills(petData.getPkkills());
+            pet.setCurrentFed(petData.getFed());
+        });
+        return pet;
 	}
 	
 	@Override

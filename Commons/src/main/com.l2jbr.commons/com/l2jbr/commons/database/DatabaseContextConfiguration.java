@@ -80,6 +80,4 @@ public class DatabaseContextConfiguration {
             extractModel(event).ifPresent(Entity::onLoad);
         };
     }
-
-
 }

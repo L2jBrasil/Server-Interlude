@@ -39,6 +39,8 @@ import java.util.Map;
 import java.util.concurrent.ScheduledFuture;
 import java.util.stream.Collectors;
 
+import static com.l2jbr.gameserver.util.GameserverMessages.getMessage;
+
 
 /**
  * Auto Chat Handler Allows NPCs to automatically send messages to nearby players at a set time interval.
@@ -71,7 +73,7 @@ public class AutoChatHandler implements SpawnListener {
             registerGlobalChat(autoChat.getNpcId(), chatTexts , autoChat.getChatDelay());
         }
 
-        _log.info("info.auto.chat.loaded", numLoaded);
+        _log.info(getMessage("info.auto.chat.loaded"), numLoaded);
     }
 
     public static AutoChatHandler getInstance() {
