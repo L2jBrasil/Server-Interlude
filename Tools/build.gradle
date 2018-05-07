@@ -34,7 +34,7 @@ dependencies {
 
     runtime project(':Mmocore')
 
-    runtime ('org.springframework.data:spring-data-jdbc:1.0.0.BUILD-SNAPSHOT') { changing = true }
+    runtime ('org.springframework.data:spring-data-jdbc:1.0.0.M2') { changing = true }
     runtime 'org.apache.logging.log4j:log4j-core:2.11.0'
     runtime 'org.apache.logging.log4j:log4j-api:2.11.0'
     runtime 'org.apache.logging.log4j:log4j-slf4j-impl:2.11.0'
