@@ -22,7 +22,6 @@ import org.slf4j.LoggerFactory;
 import java.util.BitSet;
 import java.util.concurrent.atomic.AtomicInteger;
 
-
 /**
  * This class ..
  * @version $Revision: 1.2 $ $Date: 2004/06/27 08:12:59 $
@@ -88,7 +87,7 @@ public class BitSetIDFactory extends IdFactory
 		{
 			_initialized = false;
 			_log.error("BitSet ID Factory could not be initialized correctly");
-			e.printStackTrace();
+			_log.error(e.getLocalizedMessage(), e);
 		}
 	}
 	

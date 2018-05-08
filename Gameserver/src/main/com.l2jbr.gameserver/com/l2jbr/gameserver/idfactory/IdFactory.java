@@ -18,9 +18,9 @@
  */
 package com.l2jbr.gameserver.idfactory;
 
-import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
+import com.l2jbr.commons.util.Util;
 import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +28,6 @@ import org.slf4j.LoggerFactory;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 
 /**
  * This class ...
@@ -92,7 +91,7 @@ public abstract class IdFactory
 	
 	protected boolean _initialized;
 	
-	public static final int FIRST_OID = 0x10000000;
+	public static final int FIRST_OID = 0x10000001;
 	public static final int LAST_OID = 0x7FFFFFFF;
 	public static final int FREE_OBJECT_ID_SIZE = LAST_OID - FIRST_OID;
 	
@@ -102,22 +101,6 @@ public abstract class IdFactory
 	{
 		setAllCharacterOffline();
 		cleanUpDB();
-	}
-	
-	static
-	{
-		switch (Config.IDFACTORY_TYPE)
-		{
-			case Compaction:
-				_instance = new CompactionIDFactory();
-				break;
-			case BitSet:
-				_instance = new BitSetIDFactory();
-				break;
-			case Stack:
-				_instance = new StackIDFactory();
-				break;
-		}
 	}
 
 	private void setAllCharacterOffline()  {
@@ -253,9 +236,12 @@ public abstract class IdFactory
 		return _initialized;
 	}
 	
-	public static IdFactory getInstance()
-	{
-		return _instance;
+	public static IdFactory getInstance() {
+	    if(Util.isNull(_instance)) {
+	        _instance = new BitSetIDFactory();
+        }
+        return _instance;
+
 	}
 	
 	public abstract int getNextId();
