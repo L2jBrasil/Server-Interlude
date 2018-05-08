@@ -325,7 +325,7 @@ public class NpcTable {
                 }
             }
 
-            //TODO remove this
+            //TODO use repositories instead
             query = "UPDATE npc SET " + values + " WHERE id = ?";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setInt(1, npc.getInteger("npcId"));

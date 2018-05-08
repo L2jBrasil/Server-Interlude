@@ -30,7 +30,6 @@ import java.util.Map;
 
 import static com.l2jbr.gameserver.util.GameserverMessages.getMessage;
 
-
 /**
  * @author Steuf
  */

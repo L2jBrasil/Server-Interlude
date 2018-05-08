@@ -79,6 +79,7 @@ public class L2DatabaseFactory {
         return result;
     }
 
+    // TODO remove access from external modules
     public static L2DatabaseFactory getInstance() throws SQLException {
         if (_instance == null) {
             _instance = new L2DatabaseFactory();

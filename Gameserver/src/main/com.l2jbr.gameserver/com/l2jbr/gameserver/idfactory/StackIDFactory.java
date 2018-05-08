@@ -32,7 +32,10 @@ import java.util.Stack;
 /**
  * This class ...
  * @version $Revision: 1.3.2.1.2.7 $ $Date: 2005/04/11 10:06:12 $
+ *
+ * @deprecated  use {@link BitSetIDFactory }
  */
+@Deprecated(forRemoval = true)
 public class StackIDFactory extends IdFactory
 {
 	private static Logger _log = LoggerFactory.getLogger(IdFactory.class.getName());

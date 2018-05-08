@@ -18,14 +18,12 @@
 package com.l2jbr.gameserver.instancemanager;
 
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.database.repository.AuctionRepository;
+import com.l2jbr.gameserver.model.database.repository.ClanHallRepository;
 import com.l2jbr.gameserver.model.entity.Auction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -162,40 +160,22 @@ public class AuctionManager {
         return _auctions;
     }
 
-    /**
-     * Init Clan NPC auction
-     *
-     * @param id
-     *
-     * XXX This doesn't make any sense, since we have these data on Database and all of it is loaded on Constructor.
-     */
-    @Deprecated(forRemoval = true)
     public void initNPC(int id) {
-        java.sql.Connection con = null;
-        int i = 0;
-        for (i = 0; i < ItemInitDataId.length; i++) {
-            if (ItemInitDataId[i] == id) {
-                break;
-            }
-        }
-        if (i >= ItemInitDataId.length) {
-            _log.warn("Clan Hall auction not found for Id :" + id);
+        int startingBid = 0;
+
+        if(id >= 23 && id <= 30) {
+            startingBid = 20000000;
+        } else if(id >= 31 && id <= 33) {
+            startingBid = 8000000;
+        } else if(id >= 36 && id <= 61) {
+            startingBid = 50000000;
+        } else {
+            _log.warn("Clan Hall auction not found for Id: {}", id);
             return;
         }
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            PreparedStatement statement;
-            statement = con.prepareStatement("INSERT INTO `auction` VALUES " + ITEM_INIT_DATA[i]);
-            statement.execute();
-            statement.close();
-            _auctions.add(new Auction(id));
-        } catch (Exception e) {
-            _log.error( "Exception: Auction.initNPC(): " + e.getMessage(), e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+
+        ClanHallRepository repository = DatabaseAccess.getRepository(ClanHallRepository.class);
+        repository.updateWithInitialData(id, startingBid);
+        _auctions.add(new Auction(id));
     }
 }

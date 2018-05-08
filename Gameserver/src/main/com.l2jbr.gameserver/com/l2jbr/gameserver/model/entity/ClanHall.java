@@ -226,7 +226,7 @@ public class ClanHall {
      *
      * @return
      */
-    public final int getId() {
+    public final int  getId() {
         return _clanHallId;
     }
 
@@ -535,11 +535,7 @@ public class ClanHall {
         repository.updateOwner(_clanHallId, _ownerId, _paidUntil, _paid ? 1 : 0);
     }
 
-    /**
-     * Initialize Fee Task
-     *
-     * @param forced
-     */
+
     private void initialyzeTask(boolean forced) {
         long currentTime = System.currentTimeMillis();
         if (_paidUntil > currentTime) {

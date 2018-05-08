@@ -124,10 +124,7 @@ public abstract class IdFactory
         CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
         repository.updateAllOnlineStatus(0);
 	}
-	
-	/**
-	 * Cleans up Database
-	 */
+
 	private void cleanUpDB()
 	{
 		java.sql.Connection conn = null;
@@ -136,6 +133,7 @@ public abstract class IdFactory
 			int cleanCount = 0;
 			conn = L2DatabaseFactory.getInstance().getConnection();
 			Statement stmt = conn.createStatement();
+			// TODO Database should ensure these data integrity using constraints
 			// Character related
 			cleanCount += stmt.executeUpdate("DELETE FROM character_friends WHERE character_friends.char_id NOT IN (SELECT obj_Id FROM characters);");
 			cleanCount += stmt.executeUpdate("DELETE FROM character_hennas WHERE character_hennas.char_obj_id NOT IN (SELECT obj_Id FROM characters);");
@@ -191,11 +189,7 @@ public abstract class IdFactory
 			}
 		}
 	}
-	
-	/**
-	 * @return
-	 * @throws SQLException
-	 */
+
 	protected int[] extractUsedObjectIDTable() throws SQLException
 	{
 		java.sql.Connection con = null;
@@ -212,7 +206,6 @@ public abstract class IdFactory
 			catch (SQLException e)
 			{
 			}
-			// TODO verify if we must delete itemsonground here.
 			s.executeUpdate("delete from itemsonground where object_id in (select object_id from items)");
 			s.executeUpdate("create table temporaryObjectTable (object_id int NOT NULL PRIMARY KEY)");
 			

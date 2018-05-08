@@ -39,7 +39,6 @@ import java.util.Calendar;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-
 public class Auction {
     protected static final Logger _log = LoggerFactory.getLogger(Auction.class.getName());
     private int _id = 0;
@@ -60,17 +59,9 @@ public class Auction {
     private int _startingBid = 0;
 
     private final Map<Integer, Bidder> _bidders = new LinkedHashMap<>();
-    private static final String[] ItemTypeName =
-            {
-                    "ClanHall"
-            };
+    private static final String[] ItemTypeName =  { "ClanHall" };
 
-    /**
-     * Constructor
-     *
-     * @param auctionId
-     */
-    @Deprecated(forRemoval = true)
+
     public Auction(int auctionId) {
         _id = auctionId;
         load();
@@ -186,9 +177,7 @@ public class Auction {
         });
     }
 
-    /**
-     * Task Manage
-     */
+
     private void startAutoTask() {
         long currentTime = System.currentTimeMillis();
         long taskDelay = 0;

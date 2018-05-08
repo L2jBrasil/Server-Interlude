@@ -23,7 +23,6 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.commons.Server;
 import com.l2jbr.commons.database.AccountRepository;
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.database.model.Account;
 import com.l2jbr.gameserver.model.database.repository.*;
 
@@ -32,7 +31,6 @@ import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.regex.Pattern;
@@ -145,7 +143,6 @@ public class SQLAccountManager {
         Optional<Account> optionalAccount = repository.findById(login);
 
         if(optionalAccount.isPresent()) {
-            final Connection con = L2DatabaseFactory.getInstance().getConnection();
 
             CharacterRepository characterRepository = DatabaseAccess.getRepository(CharacterRepository.class);
             ClanRepository clanRepository = DatabaseAccess.getRepository(ClanRepository.class);

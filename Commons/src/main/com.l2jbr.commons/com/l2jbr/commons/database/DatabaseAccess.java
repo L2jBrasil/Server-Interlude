@@ -36,7 +36,7 @@ public class DatabaseAccess {
         try {
             L2DatabaseFactory.getInstance().shutdown();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getLocalizedMessage(), e);
         }
     }
 }
