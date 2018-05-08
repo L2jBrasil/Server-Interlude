@@ -33,8 +33,6 @@ import java.io.LineNumberReader;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.regex.Pattern;
@@ -170,53 +168,33 @@ public class SQLAccountManager {
                 });
 
                 System.out.println("Deleting character " + character.getCharName());
-                PreparedStatement statement = null;
-                ResultSet rcln = null;
-                try {
 
-                    CharacterSkillsRepository skillsRepository = DatabaseAccess.getRepository(CharacterSkillsRepository.class);
-                    skillsRepository.deleteById(character.getObjectId());
+                CharacterSkillsRepository skillsRepository = DatabaseAccess.getRepository(CharacterSkillsRepository.class);
+                skillsRepository.deleteById(character.getObjectId());
 
-                    CharacterShortcutsRepository shortcutsRepository = DatabaseAccess.getRepository(CharacterShortcutsRepository.class);
-                    shortcutsRepository.deleteById(character.getObjectId());
+                CharacterShortcutsRepository shortcutsRepository = DatabaseAccess.getRepository(CharacterShortcutsRepository.class);
+                shortcutsRepository.deleteById(character.getObjectId());
 
-                    ItemRepository itemRepository = DatabaseAccess.getRepository(ItemRepository.class);
-                    itemRepository.deleteByOwner(character.getObjectId());
+                ItemRepository itemRepository = DatabaseAccess.getRepository(ItemRepository.class);
+                itemRepository.deleteByOwner(character.getObjectId());
 
-                    CharacterRecipebookRepository recipebookRepository = DatabaseAccess.getRepository(CharacterRecipebookRepository.class);
-                    recipebookRepository.deleteAllByCharacter(character.getObjectId());
+                CharacterRecipebookRepository recipebookRepository = DatabaseAccess.getRepository(CharacterRecipebookRepository.class);
+                recipebookRepository.deleteAllByCharacter(character.getObjectId());
 
-                    CharacterQuestsRepository characterQuestsRepository = DatabaseAccess.getRepository(CharacterQuestsRepository.class);
-                    characterQuestsRepository.deleteById(character.getObjectId());
+                CharacterQuestsRepository characterQuestsRepository = DatabaseAccess.getRepository(CharacterQuestsRepository.class);
+                characterQuestsRepository.deleteById(character.getObjectId());
 
-                    CharacterMacrosesRepository characterMacrosesRepository = DatabaseAccess.getRepository(CharacterMacrosesRepository.class);
-                    characterMacrosesRepository.deleteById(character.getObjectId());
+                CharacterMacrosesRepository characterMacrosesRepository = DatabaseAccess.getRepository(CharacterMacrosesRepository.class);
+                characterMacrosesRepository.deleteById(character.getObjectId());
 
-                    CharacterFriendRepository characterFriendRepository = DatabaseAccess.getRepository(CharacterFriendRepository.class);
-                    characterFriendRepository.deleteById(character.getObjectId());
+                CharacterFriendRepository characterFriendRepository = DatabaseAccess.getRepository(CharacterFriendRepository.class);
+                characterFriendRepository.deleteById(character.getObjectId());
 
-                    MerchantLeaseRepository leaseRepository = DatabaseAccess.getRepository(MerchantLeaseRepository.class);
-                    leaseRepository.deleteByPlayer(character.getObjectId());
+                MerchantLeaseRepository leaseRepository = DatabaseAccess.getRepository(MerchantLeaseRepository.class);
+                leaseRepository.deleteByPlayer(character.getObjectId());
 
-                    // boxaccess
-                    statement.close();
-                    statement = con.prepareStatement("DELETE FROM boxaccess WHERE charname=?;");
-                    statement.setString(1, character.getCharName());
-                    statement.executeUpdate();
-
-                    // characters
-                    characterRepository.delete(character);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } finally {
-                    try {
-                        rcln.close();
-                        statement.close();
-                        con.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
+                // characters
+                characterRepository.delete(character);
 
             });
             // Get Accounts ID

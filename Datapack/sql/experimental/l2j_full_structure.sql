@@ -563,38 +563,6 @@ CREATE TABLE IF NOT EXISTS `auto_chat_text` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
-
--- -----------------------------------------------------
--- Table `boxaccess`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `boxaccess` ;
-
-CREATE TABLE IF NOT EXISTS `boxaccess` (
-  `spawn` DECIMAL(11,0) NULL DEFAULT NULL,
-  `charname` VARCHAR(32) NULL DEFAULT NULL)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
--- Table `boxes`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `boxes` ;
-
-CREATE TABLE IF NOT EXISTS `boxes` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `spawn` DECIMAL(11,0) NULL DEFAULT NULL,
-  `npcid` DECIMAL(11,0) NULL DEFAULT NULL,
-  `drawer` VARCHAR(32) NULL DEFAULT NULL,
-  `itemid` DECIMAL(11,0) NULL DEFAULT NULL,
-  `name` VARCHAR(32) NULL DEFAULT '',
-  `count` DECIMAL(11,0) NULL DEFAULT NULL,
-  `enchant` DECIMAL(2,0) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
-
-
 -- -----------------------------------------------------
 -- Table `castle`
 -- -----------------------------------------------------

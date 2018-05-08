@@ -5,8 +5,6 @@ DROP TABLE IF EXISTS auction_bid;
 DROP TABLE IF EXISTS augmentations;
 DROP TABLE IF EXISTS auto_chat;
 DROP TABLE IF EXISTS auto_chat_text;
-DROP TABLE IF EXISTS boxaccess;
-DROP TABLE IF EXISTS boxes;
 DROP TABLE IF EXISTS castle;
 DROP TABLE IF EXISTS castle_door;
 DROP TABLE IF EXISTS castle_siege_guards;

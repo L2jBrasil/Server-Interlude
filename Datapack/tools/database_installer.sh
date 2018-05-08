@@ -261,8 +261,6 @@ $MYG < ../sql/auction_bid.sql &> /dev/null
 $MYG < ../sql/augmentations.sql &> /dev/null
 $MYG < ../sql/auto_chat.sql &> /dev/null
 $MYG < ../sql/auto_chat_text.sql &> /dev/null
-$MYG < ../sql/boxaccess.sql &> /dev/null
-$MYG < ../sql/boxes.sql &> /dev/null
 $MYG < ../sql/castle.sql &> /dev/null
 $MYG < ../sql/castle_door.sql &> /dev/null
 $MYG < ../sql/castle_siege_guards.sql &> /dev/null

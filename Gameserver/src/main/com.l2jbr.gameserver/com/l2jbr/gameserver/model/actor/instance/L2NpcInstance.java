@@ -65,7 +65,7 @@ import static com.l2jbr.gameserver.ai.CtrlIntention.AI_INTENTION_ACTIVE;
  * <BR>
  * L2Character :<BR>
  * <BR>
- * <li>L2Attackable</li> <li>L2BoxInstance</li> <li>L2FolkInstance</li>
+ * <li>L2Attackable</li> <li>L2FolkInstance</li>
  *
  * @version $Revision: 1.32.2.7.2.24 $ $Date: 2005/04/11 10:06:09 $
  */

@@ -521,8 +521,6 @@ auction_bid.sql
 augmentations.sql
 auto_chat.sql
 auto_chat_text.sql
-boxaccess.sql
-boxes.sql
 castle.sql
 castle_door.sql
 castle_siege_guards.sql
@@ -595,7 +593,6 @@ teleport.sql
 topic.sql
 walker_routes.sql
 weapon.sql
-zone.sql
 zone_vertices.sql
 castle_manor_procure.sql
 castle_manor_production.sql
