@@ -19,6 +19,7 @@
 package com.l2jbr.gameserver;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.gameserverpackets.ServerStatus;
 import com.l2jbr.gameserver.instancemanager.*;
 import com.l2jbr.gameserver.model.L2World;
@@ -219,6 +220,9 @@ public class Shutdown extends Thread
 				// ignore
 			}
 			
+			// commit data, last chance
+			DatabaseAccess.shutdown();
+
 			// server will quit, when this function ends.
 			if (_instance._shutdownMode == GM_RESTART)
 			{

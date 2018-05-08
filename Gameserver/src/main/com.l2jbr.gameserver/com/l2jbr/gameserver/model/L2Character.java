@@ -6497,7 +6497,8 @@ public abstract class L2Character extends L2Object {
             return;
         }
 
-        _disabledSkills.remove(skillId);
+        //this forced wrapper is necessary. otherwise it should try remove by index
+        _disabledSkills.remove(Integer.valueOf(skillId));
 
         if (this instanceof L2PcInstance) {
             removeTimeStamp(skillId);

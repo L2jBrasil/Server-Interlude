@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.*;
 import com.l2jbr.gameserver.SevenSigns;
@@ -49,8 +48,8 @@ import com.l2jbr.gameserver.model.actor.knownlist.PcKnownList;
 import com.l2jbr.gameserver.model.actor.stat.PcStat;
 import com.l2jbr.gameserver.model.actor.status.PcStatus;
 import com.l2jbr.gameserver.model.base.*;
-import com.l2jbr.gameserver.model.database.*;
 import com.l2jbr.gameserver.model.database.Character;
+import com.l2jbr.gameserver.model.database.*;
 import com.l2jbr.gameserver.model.database.repository.*;
 import com.l2jbr.gameserver.model.entity.*;
 import com.l2jbr.gameserver.model.quest.Quest;
@@ -66,8 +65,6 @@ import com.l2jbr.gameserver.util.FloodProtector;
 import com.l2jbr.gameserver.util.Point3D;
 
 import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.*;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
@@ -6144,8 +6141,9 @@ public final class L2PcInstance extends L2PlayableInstance {
      * Update the characters table of the database with online status and lastAccess of this L2PcInstance (called when login and logout).
      */
     public void updateOnlineStatus() {
+        _lastAccess = System.currentTimeMillis();
         CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
-        repository.updateOnlineStatus(getObjectId(), isOnline(), System.currentTimeMillis());
+        repository.updateOnlineStatus(getObjectId(), isOnline(), _lastAccess);
     }
 
     /**
@@ -6397,7 +6395,7 @@ public final class L2PcInstance extends L2PlayableInstance {
             player.setXYZInvisible(character.getX(), character.getY(), character.getZ());
             player.setHeading(character.getHeading());
 
-            repository.findOthersCharactersOnAccount(player.getAccountName(), player.getObjectId()).forEach(other -> {
+            repository.findOthersCharactersOnAccount(character.getAccountName(), player.getObjectId()).forEach(other -> {
                 player.getAccountChars().put(other.getObjectId(), other.getCharName());
             });
 
@@ -6587,6 +6585,7 @@ public final class L2PcInstance extends L2PlayableInstance {
         Character character = new Character();
 
         character.setObjId(getObjectId());
+        character.setAccountName(_accountName);
 
         character.setLevel(level);
         character.setExperience(exp);
@@ -6607,6 +6606,19 @@ public final class L2PcInstance extends L2PlayableInstance {
         character.setMentality(getMEN());
         character.setWitness(getWIT());
         character.setMaxload(getMaxLoad());
+        character.setAccuracy(getAccuracy());
+        character.setCritical(getCriticalHit(null, null));
+        character.setEvasion(getEvasionRate(null));
+        character.setMagicalAttack(getMAtk(null, null));
+        character.setMagicalDefense(getMDef(null, null));
+        character.setMagicalSpeed(getMAtkSpd());
+        character.setPhysicalAttack(getPAtk(null));
+        character.setPhysicalDefense(getPDef(null));
+        character.setPhysicalSpeed(getPAtkSpd());
+        character.setRunSpeed(getRunSpeed());
+        character.setWalkSpeed(getWalkSpeed());
+        character.setMovementMultiplier(1);
+        character.setAttackSpeedMultiplier(1);
 
         PcAppearance appearance = getAppearance();
 
@@ -6615,6 +6627,9 @@ public final class L2PcInstance extends L2PlayableInstance {
         character.setHairColor(appearance.getHairColor());
         character.setTitle(getTitle());
         character.setCharName(getName());
+        character.setSex(appearance.getSex() ? 1 : 0);
+        character.setCollisionRadius(getTemplate().collisionRadius);
+        character.setCollisionHeight(getTemplate().collisionHeight);
 
         character.setHeading(getHeading());
         setCharacterPosition(character);
@@ -6645,6 +6660,7 @@ public final class L2PcInstance extends L2PlayableInstance {
 
         character.setDeletetime(getDeleteTimer());
         character.setOnline(isOnline());
+        character.setLastAccess(_lastAccess);
         character.setIsin7sdungeon(isIn7sDungeon() ? 1 : 0);
 
         long totalOnlineTime = _onlineTime;
@@ -6660,6 +6676,8 @@ public final class L2PcInstance extends L2PlayableInstance {
         character.setNobless(isNoble() ? 1 : 0);
         character.setVarkaKetraAlly(getAllianceWithVarkaKetra());
         character.setDeathPenaltyLevel(getDeathPenaltyBuffLevel());
+        character.setCancraft(hasDwarvenCraft() ? 1 : 0);
+
 
         character.setPersisted();
 

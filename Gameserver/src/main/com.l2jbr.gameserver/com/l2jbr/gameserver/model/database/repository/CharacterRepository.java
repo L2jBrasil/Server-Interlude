@@ -72,7 +72,7 @@ public interface CharacterRepository extends CrudRepository<Character, Integer> 
     int updateOnlineStatus(@Param("objectId") int objectId, @Param("online") int online, @Param("lastAccess") long lastAccess);
 
     @Modifying
-    @Query("UPDATE characters SET isIn7sDungeon=? WHERE obj_id=?")
+    @Query("UPDATE characters SET isIn7sDungeon=:inDungeon WHERE obj_id=:objectId")
     int updateSevenSignsDungeonStatus(@Param("objectId") int objectId, @Param("inDungeon") int isInDungeon);
 
     @Modifying

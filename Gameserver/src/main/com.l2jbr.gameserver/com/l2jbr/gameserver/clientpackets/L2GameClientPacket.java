@@ -25,7 +25,6 @@ import com.l2jbr.mmocore.ReceivablePacket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 /**
  * Packets received by the game server from clients
  * @author KenM
@@ -35,18 +34,14 @@ public abstract class L2GameClientPacket extends ReceivablePacket<L2GameClient>
 	private static final Logger _log = LoggerFactory.getLogger(L2GameClientPacket.class.getName());
 	
 	@Override
-	protected boolean read()
-	{
-		// System.out.println(this.getType());
-		try
-		{
+	protected boolean read() {
+		try {
 			readImpl();
 			return true;
 		}
-		catch (Throwable t)
-		{
+		catch (Throwable t) {
 			_log.error("Client: " + getClient().toString() + " - Failed reading: " + getType() + ";");
-			t.printStackTrace();
+			_log.error(t.getLocalizedMessage(), t);
 		}
 		return false;
 	}
@@ -54,23 +49,17 @@ public abstract class L2GameClientPacket extends ReceivablePacket<L2GameClient>
 	protected abstract void readImpl();
 	
 	@Override
-	public void run()
-	{
-		try
-		{
+	public void run() {
+		try {
 			// flood protection
-			if ((GameTimeController.getGameTicks() - getClient().packetsSentStartTick) > 10)
-			{
+			if ((GameTimeController.getGameTicks() - getClient().packetsSentStartTick) > 10) {
 				getClient().packetsSentStartTick = GameTimeController.getGameTicks();
 				getClient().packetsSentInSec = 0;
 			}
-			else
-			{
+			else {
 				getClient().packetsSentInSec++;
-				if (getClient().packetsSentInSec > 12)
-				{
-					if (getClient().packetsSentInSec < 100)
-					{
+				if (getClient().packetsSentInSec > 12) {
+					if (getClient().packetsSentInSec < 100) {
 						sendPacket(new ActionFailed());
 					}
 					return;
@@ -83,16 +72,14 @@ public abstract class L2GameClientPacket extends ReceivablePacket<L2GameClient>
 			{
 				// Removes onspawn protection - player has faster computer than
 				// average
-				if (getClient().getActiveChar() != null)
-				{
+				if (getClient().getActiveChar() != null) {
 					getClient().getActiveChar().onActionRequest();
 				}
 			}
 		}
-		catch (Throwable t)
-		{
+		catch (Throwable t) {
 			_log.error("Client: " + getClient().toString() + " - Failed running: " + getType() + ";");
-			t.printStackTrace();
+			_log.error(t.getLocalizedMessage(), t);
 		}
 	}
 	

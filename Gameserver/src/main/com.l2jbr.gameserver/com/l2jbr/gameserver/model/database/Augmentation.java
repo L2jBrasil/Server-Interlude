@@ -1,5 +1,6 @@
 package com.l2jbr.gameserver.model.database;
 
+import com.l2jbr.commons.database.annotation.Column;
 import com.l2jbr.commons.database.annotation.Table;
 import com.l2jbr.commons.database.model.Entity;
 import com.l2jbr.commons.util.Util;
@@ -10,6 +11,7 @@ import org.springframework.data.annotation.Id;
 public class Augmentation extends Entity<Integer> {
 
     @Id
+    @Column("item_id")
     private Integer itemId;
     private Integer attributes;
     private Integer skill;

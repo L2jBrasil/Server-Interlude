@@ -19,7 +19,6 @@
 package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.database.repository.CharacterShortcutsRepository;
 import com.l2jbr.gameserver.serverpackets.ExAutoSoulShot;
@@ -28,8 +27,6 @@ import com.l2jbr.gameserver.templates.L2EtcItemType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -152,7 +149,7 @@ public class ShortCuts
             int slot = shortcut.getSlot();
             int page = shortcut.getPage();
             int type = shortcut.getType();
-            int id = shortcut.getId();
+            int id = shortcut.getShortcutId();
             int level = shortcut.getLevel();
 
             L2ShortCut sc = new L2ShortCut(slot, page, type, id, level, 1);

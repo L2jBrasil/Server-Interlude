@@ -26,7 +26,7 @@ public class Items extends Entity<Integer> {
     @Column("price_buy")
     private int priceBuy;
     @Column("time_of_use")
-    private int timeOfUse;
+    private Integer timeOfUse;
     @Column("custom_type1")
     private int customType1;
     @Column("custom_type2")

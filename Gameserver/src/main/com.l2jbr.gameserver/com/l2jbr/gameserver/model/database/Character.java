@@ -9,6 +9,7 @@ import org.springframework.data.annotation.Id;
 public class Character extends Entity<Integer> {
 
     @Id
+    @Column("obj_Id")
     private int objId;
     @Column("account_name")
     private String accountName;
@@ -76,7 +77,7 @@ public class Character extends Entity<Integer> {
     private int online;
     private long onlinetime;
     @Column("char_slot")
-    private int slot;
+    private Integer slot;
     private int newbie;
     private long lastAccess;
     @Column("clan_privs")
@@ -85,7 +86,7 @@ public class Character extends Entity<Integer> {
     private int isin7sdungeon;
     @Column("in_jail")
     private int inJail;
-    @Column("jailTimer")
+    @Column("jail_timer")
     private long jailTimer;
     @Column("power_grade")
     private int powerGrade;
@@ -105,7 +106,6 @@ public class Character extends Entity<Integer> {
     private long clanCreateExpiryTime;
     @Column("death_penalty_level")
     private int deathPenaltyLevel;
-
 
     @Override
     public Integer getId() {

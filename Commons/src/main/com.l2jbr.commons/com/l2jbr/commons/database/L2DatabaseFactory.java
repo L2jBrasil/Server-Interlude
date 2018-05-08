@@ -37,7 +37,6 @@ public class L2DatabaseFactory {
 
     public L2DatabaseFactory() throws SQLException {
         context = new AnnotationConfigApplicationContext(DatabaseContextConfiguration.class);
-        ((AnnotationConfigApplicationContext) context).registerShutdownHook();
         _dataSource = context.getBean(HikariDataSource.class);
 
         try {

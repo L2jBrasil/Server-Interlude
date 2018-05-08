@@ -167,12 +167,8 @@ public final class CharacterCreate extends L2GameClientPacket
 		return result;
 	}
 	
-	private void initNewChar(L2GameClient client, L2PcInstance newChar)
-	{
-		if (Config.DEBUG)
-		{
-			_log.debug("Character init start");
-		}
+	private void initNewChar(L2GameClient client, L2PcInstance newChar) {
+		_log.debug("Character init start");
 		L2World.getInstance().storeObject(newChar);
 		
 		L2PcTemplate template = newChar.getTemplate();

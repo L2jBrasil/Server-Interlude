@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface CharacterQuestsRepository extends CrudRepository<CharacterQuests, Integer> {
 
-    @Query("SELECT * FROM character_quests WHERE char_id=:objectId AND var=<state>")
+    @Query("SELECT * FROM character_quests WHERE char_id=:objectId AND var='<state>'")
     Iterable<CharacterQuests> findAllByState(@Param("objectId") int charObjectId);
 
     @Modifying
@@ -30,6 +30,6 @@ public interface CharacterQuestsRepository extends CrudRepository<CharacterQuest
     @Query("DELETE FROM character_quests WHERE name=:name and char_id IN (SELECT obj_id FROM characters WHERE clanId=:clan AND online=0")
     int deleteAllByOfflineClanMembers(@Param("name") String questName, @Param("clan") int clanId);
 
-    @Query("SELECT * FROM character_quests WHERE char_id=? AND var=? AND name=?")
+    @Query("SELECT * FROM character_quests WHERE char_id=:char AND var=:var AND name=:name")
     Iterable<CharacterQuests> findByNameAndVar(@Param("char") int charObjectId, @Param("name") String questName, @Param("var") String var);
 }

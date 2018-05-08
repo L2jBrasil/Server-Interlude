@@ -1,5 +1,6 @@
 package com.l2jbr.gameserver.model.database;
 
+import com.l2jbr.commons.database.annotation.Column;
 import com.l2jbr.commons.database.annotation.Table;
 import com.l2jbr.commons.database.model.Entity;
 import org.springframework.data.annotation.Id;
@@ -12,8 +13,10 @@ public class AuctionBid extends Entity<Integer> {
     private Integer auctionId;
     private Integer bidderId;
     private String bidderName;
+    @Column("clan_name")
     private String clanName;
     private Integer maxBid;
+    @Column("time_bid")
     private Long timeBid;
 
     @Override
