@@ -3,7 +3,7 @@ package com.l2jbr.commons.database;
 import com.l2jbr.commons.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.Repository;
 
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
@@ -13,17 +13,17 @@ public class DatabaseAccess {
 
     private static Logger logger = LoggerFactory.getLogger(DatabaseAccess.class);
 
-    private static Map<Object, Object> objects = new LinkedHashMap<>();
+    private static Map<Class<? extends Repository>, Repository> repositories = new LinkedHashMap<>();
 
-    public static <T extends CrudRepository> T getRepository(Class<T> repositoryClass) {
-        if(objects.containsKey(repositoryClass)) {
-            return repositoryClass.cast(objects.get(repositoryClass));
+    public static <T extends Repository> T getRepository(Class<T> repositoryClass) {
+        if(repositories.containsKey(repositoryClass)) {
+            return repositoryClass.cast(repositories.get(repositoryClass));
         }
         T repository = null;
         try {
             repository = L2DatabaseFactory.getInstance().getRepository(repositoryClass);
             if(Util.isNotNull(repository)) {
-                objects.put(repositoryClass, repository);
+                repositories.put(repositoryClass, repository);
             }
         } catch (Exception e) {
             logger.error("Error accessing Database", e);
@@ -36,7 +36,7 @@ public class DatabaseAccess {
         try {
             L2DatabaseFactory.getInstance().shutdown();
         } catch (SQLException e) {
-            logger.error(e.getLocalizedMessage(), e);
+            logger.warn(e.getLocalizedMessage(), e);
         }
     }
 }

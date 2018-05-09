@@ -199,7 +199,6 @@ public class DoorTable {
         return door;
     }
 
-    @Deprecated(forRemoval =  true)
     public static L2DoorInstance parseList(String line) {
         StringTokenizer st = new StringTokenizer(line, ";");
 
@@ -314,8 +313,7 @@ public class DoorTable {
     }
 
     public L2DoorInstance[] getDoors() {
-        L2DoorInstance[] _allTemplates = _staticItems.values().toArray(new L2DoorInstance[_staticItems.size()]);
-        return _allTemplates;
+        return _staticItems.values().toArray(new L2DoorInstance[0]);
     }
 
     /**

@@ -8,10 +8,6 @@ version '1.3.1'
 
 ext.moduleName = 'com.l2jbr.commons'
 
-configurations.all {
-    transitive = true
-}
-
 sourceSets {
     main {
         java {
@@ -25,10 +21,14 @@ sourceSets {
 
 dependencies {
     compile 'org.slf4j:slf4j-api:1.8.0-beta2'
-    compile ('org.springframework.data:spring-data-jdbc:1.0.0.M2') { changing = true }
+    compile ('org.springframework.data:spring-data-jdbc:1.0.0.M2') {
+        changing = true
+    }
     compile 'com.zaxxer:HikariCP:3.0.0'
 
-    runtime 'mysql:mysql-connector-java:8.0.11'
+    runtime ('mysql:mysql-connector-java:8.0.11') {
+        transitive = false
+    }
 }
 
 jar {
