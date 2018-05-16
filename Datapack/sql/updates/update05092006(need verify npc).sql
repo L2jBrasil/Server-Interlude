@@ -1,0 +1,1 @@
+UPDATE npc SET type = 'L2PenaltyMonster' WHERE id BETWEEN 13245 AND 13252;

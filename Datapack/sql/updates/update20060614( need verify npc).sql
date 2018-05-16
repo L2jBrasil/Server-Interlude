@@ -1,5 +1,3 @@
-ALTER TABLE `npc` ADD `absorb_level` decimal(2,0) default 0;
-
 UPDATE `npc` SET `absorb_level` = 2 WHERE `id` IN (583, 584, 585, 586, 769, 770, 793, 794, 849);
 UPDATE `npc` SET `absorb_level` = 3 WHERE `id` IN (587, 588, 638, 767, 768, 798, 799, 800, 838, 839, 848);
 UPDATE `npc` SET `absorb_level` = 4 WHERE `id` IN (636, 637, 639, 801, 802, 840, 841, 842, 995);

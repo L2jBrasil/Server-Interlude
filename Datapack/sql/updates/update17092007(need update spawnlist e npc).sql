@@ -42,15 +42,3 @@ UPDATE `npc` SET `type` = 'L2RiftInvader', `aggro` = 300, `faction_range` = 300,
 21795,21796
 );
 
-UPDATE `npc` SET `type` = 'L2Chest', `isUndead` = 0 WHERE `id` IN(
-21671,21694,21717,21740,21763,21786
-);
-
-UPDATE `npc` SET `type` = 'L2Chest', `aggro` = 0 WHERE `id` IN(
-18287,18288,18289,18290,18291,18292,18293,18294,
-18295,18296,18297,18298
-);
-
-UPDATE `npc` SET `type` = 'L2Boss', `aggro` = 0 WHERE `id` IN(
-25333,25334,25335,25336,25337,25338
-);

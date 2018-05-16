@@ -1,1 +1,0 @@
-ALTER TABLE `clan_data` ADD `crest_large_id` INT( 11 ) AFTER `crest_id` ;

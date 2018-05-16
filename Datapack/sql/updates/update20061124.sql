@@ -1,1 +1,0 @@
-ALTER TABLE characters ADD COLUMN last_recom_date decimal(20,0) NOT NULL DEFAULT 0 AFTER subpledge;

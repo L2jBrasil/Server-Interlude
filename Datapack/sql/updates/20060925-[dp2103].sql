@@ -1,1 +1,0 @@
-ALTER TABLE characters CHANGE power_grade power_grade DECIMAL( 11, 0 ) NULL DEFAULT NULL;

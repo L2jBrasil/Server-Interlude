@@ -1,1 +1,0 @@
-UPDATE `clanhall` SET `lease`=100000;
