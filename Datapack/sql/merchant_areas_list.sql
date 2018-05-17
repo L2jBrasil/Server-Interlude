@@ -13,7 +13,7 @@ CREATE TABLE `merchant_areas_list` (
 --
 -- Dumping data for table `merchant_areas_list`
 --
-
+INSERT INTO `merchant_areas_list` VALUES
 (1,'Starter Town',0.15,0),
 (2,'West of Alter of Rights',0.50,1),
 (3,'Gludin',0.20,0),
