@@ -19,7 +19,7 @@
 package com.l2jbr.gameserver.clientpackets;
 
 import com.l2jbr.gameserver.TaskPriority;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.instancemanager.BoatManager;
 import com.l2jbr.gameserver.model.L2CharPosition;
 import com.l2jbr.gameserver.model.actor.instance.L2BoatInstance;
@@ -77,7 +77,7 @@ public final class RequestMoveToLocationInVehicle extends L2GameClientPacket
 			L2BoatInstance boat = BoatManager.getInstance().GetBoat(_boatId);
 			activeChar.setBoat(boat);
 			activeChar.setInBoatPosition(_pos);
-			activeChar.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO_IN_A_BOAT, new L2CharPosition(_pos.getX(), _pos.getY(), _pos.getZ(), 0), new L2CharPosition(_origin_pos.getX(), _origin_pos.getY(), _origin_pos.getZ(), 0));
+			activeChar.getAI().setIntention(Intention.AI_INTENTION_MOVE_TO_IN_A_BOAT, new L2CharPosition(_pos.getX(), _pos.getY(), _pos.getZ(), 0), new L2CharPosition(_origin_pos.getX(), _origin_pos.getY(), _origin_pos.getZ(), 0));
 		}
 	}
 	

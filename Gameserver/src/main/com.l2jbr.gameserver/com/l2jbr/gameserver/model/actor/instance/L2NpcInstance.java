@@ -24,7 +24,7 @@ import com.l2jbr.gameserver.Olympiad;
 import com.l2jbr.gameserver.SevenSigns;
 import com.l2jbr.gameserver.SevenSignsFestival;
 import com.l2jbr.gameserver.ThreadPoolManager;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.cache.HtmCache;
 import com.l2jbr.gameserver.datatables.*;
 import com.l2jbr.gameserver.idfactory.IdFactory;
@@ -57,7 +57,7 @@ import java.text.DateFormat;
 import java.util.LinkedList;
 import java.util.List;
 
-import static com.l2jbr.gameserver.ai.CtrlIntention.AI_INTENTION_ACTIVE;
+import static com.l2jbr.gameserver.ai.Intention.AI_INTENTION_ACTIVE;
 
 
 /**
@@ -632,7 +632,7 @@ public class L2NpcInstance extends L2Character {
                 if (Math.abs(player.getZ() - getZ()) < 400) // this max heigth difference might need some tweaking
                 {
                     // Set the L2PcInstance Intention to AI_INTENTION_ATTACK
-                    player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, this);
+                    player.getAI().setIntention(Intention.AI_INTENTION_ATTACK, this);
                     // player.startAttack(this);
                 } else {
                     // Send a Server->Client ActionFailed to the L2PcInstance in order to avoid that the client wait another packet
@@ -642,7 +642,7 @@ public class L2NpcInstance extends L2Character {
                 // Calculate the distance between the L2PcInstance and the L2NpcInstance
                 if (!canInteract(player)) {
                     // Notify the L2PcInstance AI with AI_INTENTION_INTERACT
-                    player.getAI().setIntention(CtrlIntention.AI_INTENTION_INTERACT, this);
+                    player.getAI().setIntention(Intention.AI_INTENTION_INTERACT, this);
                 } else {
                     // Send a Server->Client packet SocialAction to the all L2PcInstance on the _knownPlayer of the L2NpcInstance
                     // to display a social action of the L2NpcInstance on their client

@@ -19,13 +19,17 @@
 package com.l2jbr.gameserver.ai;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.gameserver.GameTimeController;
+import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.Universe;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.*;
-import com.l2jbr.gameserver.serverpackets.AutoAttackStop;
+import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.taskmanager.AttackStanceTaskManager;
 
-import static com.l2jbr.gameserver.ai.CtrlIntention.*;
+import java.util.concurrent.Future;
+
+import static com.l2jbr.gameserver.ai.Intention.*;
 
 
 /**
@@ -36,8 +40,12 @@ import static com.l2jbr.gameserver.ai.CtrlIntention.*;
  * <li>L2AttackableAI</li> <li>L2DoorAI</li> <li>L2PlayerAI</li> <li>L2SummonAI</li><BR>
  * <BR>
  */
-public class L2CharacterAI extends AbstractAI
+public class L2CharacterAI<T extends L2Character.AIAccessor> extends AbstractAI<T>
 {
+
+    private static final int FOLLOW_INTERVAL = 1000;
+    private static final int ATTACK_FOLLOW_INTERVAL = 500;
+
 	@Override
 	protected void onEvtAttacked(L2Character attacker)
 	{
@@ -184,7 +192,7 @@ public class L2CharacterAI extends AbstractAI
 				stopFollow();
 				
 				// Launch the Think Event
-				notifyEvent(CtrlEvent.EVT_THINK, null);
+				notifyEvent(Event.EVT_THINK, null);
 				
 			}
 			else
@@ -203,7 +211,7 @@ public class L2CharacterAI extends AbstractAI
 			stopFollow();
 			
 			// Launch the Think Event
-			notifyEvent(CtrlEvent.EVT_THINK, null);
+			notifyEvent(Event.EVT_THINK, null);
 		}
 	}
 	
@@ -261,7 +269,7 @@ public class L2CharacterAI extends AbstractAI
 		changeIntention(AI_INTENTION_CAST, skill, target);
 		
 		// Launch the Think Event
-		notifyEvent(CtrlEvent.EVT_THINK, null);
+		notifyEvent(Event.EVT_THINK, null);
 	}
 	
 	/**
@@ -1077,4 +1085,466 @@ public class L2CharacterAI extends AbstractAI
 		}
 		return false;
 	}
+
+    class FollowTask implements Runnable
+    {
+        protected int _range = 60;
+
+        public FollowTask()
+        {
+        }
+
+        public FollowTask(int range)
+        {
+            _range = range;
+        }
+
+        @Override
+        public void run()
+        {
+            try
+            {
+                if (_followTask == null)
+                {
+                    return;
+                }
+
+                if (_followTarget == null)
+                {
+                    stopFollow();
+                    return;
+                }
+                if (!_actor.isInsideRadius(_followTarget, _range, true, false))
+                {
+                    moveToPawn(_followTarget, _range);
+                }
+            }
+            catch (Throwable t)
+            {
+                _log.warn( "", t);
+            }
+        }
+    }
+
+    /**
+     * Create and Launch an AI Follow Task to execute every 1s.<BR>
+     * <BR>
+     * @param target The L2Character to follow
+     */
+    public synchronized void startFollow(L2Character target)
+    {
+        if (_followTask != null)
+        {
+            _followTask.cancel(false);
+            _followTask = null;
+        }
+
+        // Create and Launch an AI Follow Task to execute every 1s
+        _followTarget = target;
+        _followTask = ThreadPoolManager.getInstance().scheduleAiAtFixedRate(new FollowTask(), 5, FOLLOW_INTERVAL);
+    }
+
+    /**
+     * Kill the actor client side by sending Server->Client packet AutoAttackStop, StopMove/StopRotation, Die <I>(broadcast)</I>.<BR>
+     * <BR>
+     * <FONT COLOR=#FF0000><B> <U>Caution</U> : Low level function, used by AI subclasses</B></FONT><BR>
+     * <BR>
+     */
+    protected void clientNotifyDead()
+    {
+        // Send a Server->Client packet Die to the actor and all L2PcInstance in its _knownPlayers
+        Die msg = new Die(_actor);
+        _actor.broadcastPacket(msg);
+
+        // Init AI
+        _intention = AI_INTENTION_IDLE;
+        _target = null;
+        _castTarget = null;
+        _attackTarget = null;
+
+        // Cancel the follow task if necessary
+        stopFollow();
+    }
+
+    /**
+     * Update the state of this actor client side by sending Server->Client packet MoveToPawn/CharMoveToLocation and AutoAttackStart to the L2PcInstance player.<BR>
+     * <BR>
+     * <FONT COLOR=#FF0000><B> <U>Caution</U> : Low level function, used by AI subclasses</B></FONT><BR>
+     * <BR>
+     * @param player The L2PcIstance to notify with state of this L2Character
+     */
+    public void describeStateToPlayer(L2PcInstance player)
+    {
+        if (_clientMoving)
+        {
+            if ((_clientMovingToPawnOffset != 0) && (_followTarget != null))
+            {
+                // Send a Server->Client packet MoveToPawn to the actor and all L2PcInstance in its _knownPlayers
+                MoveToPawn msg = new MoveToPawn(_actor, _followTarget, _clientMovingToPawnOffset);
+                player.sendPacket(msg);
+            }
+            else
+            {
+                // Send a Server->Client packet CharMoveToLocation to the actor and all L2PcInstance in its _knownPlayers
+                CharMoveToLocation msg = new CharMoveToLocation(_actor);
+                player.sendPacket(msg);
+            }
+        }
+    }
+
+
+
+    /**
+     * Create and Launch an AI Follow Task to execute every 0.5s, following at specified range.
+     * @param target The L2Character to follow
+     * @param range
+     */
+    public synchronized void startFollow(L2Character target, int range)
+    {
+        if (_followTask != null)
+        {
+            _followTask.cancel(false);
+            _followTask = null;
+        }
+
+        _followTarget = target;
+        _followTask = ThreadPoolManager.getInstance().scheduleAiAtFixedRate(new FollowTask(range), 5, ATTACK_FOLLOW_INTERVAL);
+    }
+
+    /**
+     * Stop an AI Follow Task.<BR>
+     * <BR>
+     */
+    public synchronized void stopFollow()
+    {
+        if (_followTask != null)
+        {
+            // Stop the Follow Task
+            _followTask.cancel(false);
+            _followTask = null;
+        }
+        _followTarget = null;
+    }
+
+    protected L2Character getFollowTarget()
+    {
+        return _followTarget;
+    }
+
+    /**
+     * Cancel action client side by sending Server->Client packet ActionFailed to the L2PcInstance actor.<BR>
+     * <BR>
+     * <FONT COLOR=#FF0000><B> <U>Caution</U> : Low level function, used by AI subclasses</B></FONT><BR>
+     * <BR>
+     */
+    protected void clientActionFailed()
+    {
+        if (_actor instanceof L2PcInstance)
+        {
+            _actor.sendPacket(new ActionFailed());
+        }
+    }
+
+    /**
+     * Move the actor to Pawn server side AND client side by sending Server->Client packet MoveToPawn <I>(broadcast)</I>.<BR>
+     * <BR>
+     * <FONT COLOR=#FF0000><B> <U>Caution</U> : Low level function, used by AI subclasses</B></FONT><BR>
+     * <BR>
+     * @param pawn
+     * @param offset
+     */
+    protected void moveToPawn(L2Object pawn, int offset)
+    {
+        // Chek if actor can move
+        if (!_actor.isMovementDisabled())
+        {
+            if (offset < 10)
+            {
+                offset = 10;
+            }
+
+            // prevent possible extra calls to this function (there is none?),
+            // also don't send movetopawn packets too often
+            boolean sendPacket = true;
+            if (_clientMoving && (_target == pawn))
+            {
+                if (_clientMovingToPawnOffset == offset)
+                {
+                    if (GameTimeController.getGameTicks() < _moveToPawnTimeout)
+                    {
+                        return;
+                    }
+                    sendPacket = false;
+                }
+                else if (_actor.isOnGeodataPath())
+                {
+                    // minimum time to calculate new route is 2 seconds
+                    if (GameTimeController.getGameTicks() < (_moveToPawnTimeout + 10))
+                    {
+                        return;
+                    }
+                }
+            }
+
+            // Set AI movement data
+            _clientMoving = true;
+            _clientMovingToPawnOffset = offset;
+            _target = pawn;
+            _moveToPawnTimeout = GameTimeController.getGameTicks();
+            _moveToPawnTimeout += 1000 / GameTimeController.MILLIS_IN_TICK;
+
+            if ((pawn == null) || (_accessor == null))
+            {
+                return;
+            }
+
+            // Calculate movement data for a move to location action and add the actor to movingObjects of GameTimeController
+            _accessor.moveTo(pawn.getX(), pawn.getY(), pawn.getZ(), offset);
+
+            if (!_actor.isMoving())
+            {
+                _actor.sendPacket(new ActionFailed());
+                return;
+            }
+
+            // Send a Server->Client packet MoveToPawn/CharMoveToLocation to the actor and all L2PcInstance in its _knownPlayers
+            if (pawn instanceof L2Character)
+            {
+                if (_actor.isOnGeodataPath())
+                {
+                    _actor.broadcastPacket(new CharMoveToLocation(_actor));
+                    _clientMovingToPawnOffset = 0;
+                }
+                else if (sendPacket)
+                {
+                    _actor.broadcastPacket(new MoveToPawn(_actor, (L2Character) pawn, offset));
+                }
+            }
+            else
+            {
+                _actor.broadcastPacket(new CharMoveToLocation(_actor));
+            }
+        }
+        else
+        {
+            _actor.sendPacket(new ActionFailed());
+        }
+    }
+
+    /**
+     * Move the actor to Location (x,y,z) server side AND client side by sending Server->Client packet CharMoveToLocation <I>(broadcast)</I>.<BR>
+     * <BR>
+     * <FONT COLOR=#FF0000><B> <U>Caution</U> : Low level function, used by AI subclasses</B></FONT><BR>
+     * <BR>
+     * @param x
+     * @param y
+     * @param z
+     */
+    protected void moveTo(int x, int y, int z)
+    {
+        // Chek if actor can move
+        if (!_actor.isMovementDisabled())
+        {
+            // Set AI movement data
+            _clientMoving = true;
+            _clientMovingToPawnOffset = 0;
+
+            // Calculate movement data for a move to location action and add the actor to movingObjects of GameTimeController
+            _accessor.moveTo(x, y, z);
+
+            // Send a Server->Client packet CharMoveToLocation to the actor and all L2PcInstance in its _knownPlayers
+            CharMoveToLocation msg = new CharMoveToLocation(_actor);
+            _actor.broadcastPacket(msg);
+
+        }
+        else
+        {
+            _actor.sendPacket(new ActionFailed());
+        }
+    }
+
+    protected void moveToInABoat(L2CharPosition destination, L2CharPosition origin)
+    {
+        // Chek if actor can move
+        if (!_actor.isMovementDisabled())
+        {
+            /*
+             * // Set AI movement data _client_moving = true; _client_moving_to_pawn_offset = 0; // Calculate movement data for a move to location action and add the actor to movingObjects of GameTimeController _accessor.moveTo(((L2PcInstance)_actor).getBoat().getX() -
+             * destination.x,((L2PcInstance)_actor).getBoat().getY()- destination.y,((L2PcInstance)_actor).getBoat().getZ() - destination.z);
+             */
+            // Send a Server->Client packet CharMoveToLocation to the actor and all L2PcInstance in its _knownPlayers
+            // CharMoveToLocation msg = new CharMoveToLocation(_actor);
+            if (((L2PcInstance) _actor).getBoat() != null)
+            {
+                MoveToLocationInVehicle msg = new MoveToLocationInVehicle(_actor, destination, origin);
+                _actor.broadcastPacket(msg);
+            }
+
+        }
+        else
+        {
+            _actor.sendPacket(new ActionFailed());
+        }
+    }
+
+    /**
+     * Stop the actor movement server side AND client side by sending Server->Client packet StopMove/StopRotation <I>(broadcast)</I>.<BR>
+     * <BR>
+     * <FONT COLOR=#FF0000><B> <U>Caution</U> : Low level function, used by AI subclasses</B></FONT><BR>
+     * <BR>
+     * @param pos
+     */
+    protected void clientStopMoving(L2CharPosition pos)
+    {
+        /*
+         * if (Config.DEBUG) _log.warn("clientStopMoving();");
+         */
+
+        // Stop movement of the L2Character
+        if (_actor.isMoving())
+        {
+            _accessor.stopMove(pos);
+        }
+
+        _clientMovingToPawnOffset = 0;
+
+        if (_clientMoving || (pos != null))
+        {
+            _clientMoving = false;
+
+            // Send a Server->Client packet StopMove to the actor and all L2PcInstance in its _knownPlayers
+            StopMove msg = new StopMove(_actor);
+            _actor.broadcastPacket(msg);
+
+            if (pos != null)
+            {
+                // Send a Server->Client packet StopRotation to the actor and all L2PcInstance in its _knownPlayers
+                StopRotation sr = new StopRotation(_actor, pos.heading);
+                _actor.sendPacket(sr);
+                _actor.broadcastPacket(sr);
+            }
+        }
+    }
+
+    // Client has already arrived to target, no need to force StopMove packet
+    protected void clientStoppedMoving()
+    {
+        if (_clientMovingToPawnOffset > 0) // movetoPawn needs to be stopped
+        {
+            _clientMovingToPawnOffset = 0;
+            StopMove msg = new StopMove(_actor);
+            _actor.broadcastPacket(msg);
+        }
+        _clientMoving = false;
+    }
+
+    public boolean isAutoAttacking()
+    {
+        return _clientAutoAttacking;
+    }
+
+    public void setAutoAttacking(boolean isAutoAttacking)
+    {
+        _clientAutoAttacking = isAutoAttacking;
+    }
+
+    /**
+     * Start the actor Auto Attack client side by sending Server->Client packet AutoAttackStart <I>(broadcast)</I>.<BR>
+     * <BR>
+     * <FONT COLOR=#FF0000><B> <U>Caution</U> : Low level function, used by AI subclasses</B></FONT><BR>
+     * <BR>
+     */
+    public void clientStartAutoAttack()
+    {
+        if (!isAutoAttacking())
+        {
+            // Send a Server->Client packet AutoAttackStart to the actor and all L2PcInstance in its _knownPlayers
+            _actor.broadcastPacket(new AutoAttackStart(_actor.getObjectId()));
+            setAutoAttacking(true);
+        }
+        AttackStanceTaskManager.getInstance().addAttackStanceTask(_actor);
+    }
+
+    /**
+     * Stop the actor auto-attack client side by sending Server->Client packet AutoAttackStop <I>(broadcast)</I>.<BR>
+     * <BR>
+     * <FONT COLOR=#FF0000><B> <U>Caution</U> : Low level function, used by AI subclasses</B></FONT><BR>
+     * <BR>
+     */
+    public void clientStopAutoAttack()
+    {
+        if (_actor instanceof L2PcInstance)
+        {
+            if (!AttackStanceTaskManager.getInstance().getAttackStanceTask(_actor) && isAutoAttacking())
+            {
+                AttackStanceTaskManager.getInstance().addAttackStanceTask(_actor);
+            }
+        }
+        else if (isAutoAttacking())
+        {
+            _actor.broadcastPacket(new AutoAttackStop(_actor.getObjectId()));
+        }
+        setAutoAttacking(false);
+    }
+
+
+
+    protected L2Object getTarget()
+    {
+        return _target;
+    }
+
+    protected synchronized void setTarget(L2Object target)
+    {
+        _target = target;
+    }
+
+    protected synchronized void setCastTarget(L2Character target)
+    {
+        _castTarget = target;
+    }
+
+    /**
+     * @return the current cast target.
+     */
+    public L2Character getCastTarget()
+    {
+        return _castTarget;
+    }
+
+    protected synchronized void setAttackTarget(L2Character target)
+    {
+        _attackTarget = target;
+    }
+
+    /**
+     * Return current attack target.<BR>
+     * <BR>
+     */
+    @Override
+    public L2Character getAttackTarget()
+    {
+        return _attackTarget;
+    }
+
+    /** Flags about client's state, in order to know which messages to send */
+    protected boolean _clientMoving;
+    /** Flags about client's state, in order to know which messages to send */
+    protected boolean _clientAutoAttacking;
+    /** Flags about client's state, in order to know which messages to send */
+    protected int _clientMovingToPawnOffset;
+
+    /** Different targets this AI maintains */
+    private L2Object _target;
+    private L2Character _castTarget;
+    protected L2Character _attackTarget;
+    protected L2Character _followTarget;
+
+    /** The skill we are curently casting by INTENTION_CAST */
+    L2Skill _skill;
+
+    /** Diferent internal state flags */
+    private int _moveToPawnTimeout;
+
+    protected Future<?> _followTask = null;
 }

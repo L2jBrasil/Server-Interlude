@@ -24,7 +24,7 @@ import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.*;
 import com.l2jbr.gameserver.SevenSigns;
 import com.l2jbr.gameserver.SevenSignsFestival;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.ai.L2CharacterAI;
 import com.l2jbr.gameserver.ai.L2PlayerAI;
 import com.l2jbr.gameserver.cache.HtmCache;
@@ -1496,7 +1496,7 @@ public final class L2PcInstance extends L2PlayableInstance {
         L2CharPosition pos = new L2CharPosition(x, y, z, 0);
 
         // Set the AI Intention to AI_INTENTION_MOVE_TO
-        getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, pos);
+        getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, pos);
     }
 
     /**
@@ -2288,8 +2288,8 @@ public final class L2PcInstance extends L2PlayableInstance {
                     continue;
                 }
 
-                if (((L2GuardInstance) object).getAI().getIntention() == CtrlIntention.AI_INTENTION_IDLE) {
-                    ((L2GuardInstance) object).getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE, null);
+                if (((L2GuardInstance) object).getAI().getIntention() == Intention.AI_INTENTION_IDLE) {
+                    ((L2GuardInstance) object).getAI().setIntention(Intention.AI_INTENTION_ACTIVE, null);
                 }
             }
         } else if ((_karma > 0) && (karma == 0)) {
@@ -2989,7 +2989,7 @@ public final class L2PcInstance extends L2PlayableInstance {
         @Override
         public void run() {
             _player.setIsParalyzed(false);
-            _player.getAI().setIntention(CtrlIntention.AI_INTENTION_REST);
+            _player.getAI().setIntention(Intention.AI_INTENTION_REST);
         }
     }
 
@@ -3015,7 +3015,7 @@ public final class L2PcInstance extends L2PlayableInstance {
         @Override
         public void run() {
             _player.setIsSitting(false);
-            _player.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+            _player.getAI().setIntention(Intention.AI_INTENTION_IDLE);
         }
     }
 
@@ -4017,7 +4017,7 @@ public final class L2PcInstance extends L2PlayableInstance {
             }
             // Check if this L2PcInstance has a Private Store
             if (getPrivateStoreType() != 0) {
-                player.getAI().setIntention(CtrlIntention.AI_INTENTION_INTERACT, this);
+                player.getAI().setIntention(Intention.AI_INTENTION_INTERACT, this);
             } else {
                 // Check if this L2PcInstance is autoAttackable
                 if (isAutoAttackable(player)) {
@@ -4028,21 +4028,21 @@ public final class L2PcInstance extends L2PlayableInstance {
                     } else {
                         if (Config.GEODATA > 0) {
                             if (GeoData.getInstance().canSeeTarget(player, this)) {
-                                player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, this);
+                                player.getAI().setIntention(Intention.AI_INTENTION_ATTACK, this);
                                 player.onActionRequest();
                             }
                         } else {
-                            player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, this);
+                            player.getAI().setIntention(Intention.AI_INTENTION_ATTACK, this);
                             player.onActionRequest();
                         }
                     }
                 } else {
                     if (Config.GEODATA > 0) {
                         if (GeoData.getInstance().canSeeTarget(player, this)) {
-                            player.getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, this);
+                            player.getAI().setIntention(Intention.AI_INTENTION_FOLLOW, this);
                         }
                     } else {
-                        player.getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, this);
+                        player.getAI().setIntention(Intention.AI_INTENTION_FOLLOW, this);
                     }
                 }
             }
@@ -4327,7 +4327,7 @@ public final class L2PcInstance extends L2PlayableInstance {
         }
 
         // Set the AI Intention to AI_INTENTION_IDLE
-        getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+        getAI().setIntention(Intention.AI_INTENTION_IDLE);
 
         // Check if the L2Object to pick up is a L2ItemInstance
         if (!(object instanceof L2ItemInstance)) {
@@ -6019,7 +6019,7 @@ public final class L2PcInstance extends L2PlayableInstance {
      */
     public void cancelCastMagic() {
         // Set the Intention of the AI to AI_INTENTION_IDLE
-        getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+        getAI().setIntention(Intention.AI_INTENTION_IDLE);
 
         // Enable all skills (set _allSkillsDisabled to False)
         enableAllSkills();
@@ -8344,7 +8344,7 @@ public final class L2PcInstance extends L2PlayableInstance {
         setIsInvul(false);
 
         if (getAI() != null) {
-            getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+            getAI().setIntention(Intention.AI_INTENTION_IDLE);
         }
 
         _observerMode = false;
@@ -8362,7 +8362,7 @@ public final class L2PcInstance extends L2PlayableInstance {
         getAppearance().setVisible();
         setIsInvul(false);
         if (getAI() != null) {
-            getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+            getAI().setIntention(Intention.AI_INTENTION_IDLE);
         }
         Olympiad.getInstance().removeSpectator(_olympiadGameId, this);
         _olympiadGameId = -1;

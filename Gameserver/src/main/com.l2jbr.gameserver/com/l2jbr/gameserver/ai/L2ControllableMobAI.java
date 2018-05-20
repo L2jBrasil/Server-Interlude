@@ -27,14 +27,13 @@ import com.l2jbr.gameserver.util.Util;
 import java.util.LinkedList;
 import java.util.List;
 
-import static com.l2jbr.gameserver.ai.CtrlIntention.AI_INTENTION_ACTIVE;
-import static com.l2jbr.gameserver.ai.CtrlIntention.AI_INTENTION_ATTACK;
-
+import static com.l2jbr.gameserver.ai.Intention.AI_INTENTION_ACTIVE;
+import static com.l2jbr.gameserver.ai.Intention.AI_INTENTION_ATTACK;
 
 /**
  * @author littlecrow AI for controllable mobs
  */
-public class L2ControllableMobAI extends L2AttackableAI {
+public class L2ControllableMobAI extends L2AttackableAI<L2ControllableMobInstance.ControllableAIAcessor> {
     public static final int AI_IDLE = 1;
     public static final int AI_NORMAL = 2;
     public static final int AI_FORCEATTACK = 3;
@@ -74,8 +73,8 @@ public class L2ControllableMobAI extends L2AttackableAI {
         try {
             switch (getAlternateAI()) {
                 case AI_IDLE:
-                    if (getIntention() != CtrlIntention.AI_INTENTION_ACTIVE) {
-                        setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+                    if (getIntention() != Intention.AI_INTENTION_ACTIVE) {
+                        setIntention(Intention.AI_INTENTION_ACTIVE);
                     }
                     break;
                 case AI_FOLLOW:
@@ -276,7 +275,7 @@ public class L2ControllableMobAI extends L2AttackableAI {
                     }
 
                     if (_actor.isInsideRadius(npc, npc.getFactionRange(), false, true) && (Math.abs(getAttackTarget().getZ() - npc.getZ()) < 200)) {
-                        npc.getAI().notifyEvent(CtrlEvent.EVT_AGGRESSION, getAttackTarget(), 1);
+                        npc.getAI().notifyEvent(Event.EVT_AGGRESSION, getAttackTarget(), 1);
                     }
                 }
             }
@@ -359,7 +358,7 @@ public class L2ControllableMobAI extends L2AttackableAI {
 
         if (hated != null) {
             _actor.setRunning();
-            setIntention(CtrlIntention.AI_INTENTION_ATTACK, hated);
+            setIntention(Intention.AI_INTENTION_ATTACK, hated);
         }
 
         return;

@@ -812,7 +812,7 @@ public class L2ClanHallManagerInstance extends L2FolkInstance
 			{
 				// Notify the L2PcInstance AI with AI_INTENTION_INTERACT
 				// note: commented out so the player must stand close
-				// player.getAI().setIntention(CtrlIntention.AI_INTENTION_INTERACT, this);
+				// player.getAI().setIntention(Intention.AI_INTENTION_INTERACT, this);
 			}
 			else
 			{

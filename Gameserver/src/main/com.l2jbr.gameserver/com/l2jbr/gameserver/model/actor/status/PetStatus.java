@@ -17,7 +17,7 @@
  */
 package com.l2jbr.gameserver.model.actor.status;
 
-import com.l2jbr.gameserver.ai.CtrlEvent;
+import com.l2jbr.gameserver.ai.Event;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PetInstance;
@@ -70,7 +70,7 @@ public class PetStatus extends SummonStatus
 			sm.addNumber((int) value);
 			getActiveChar().getOwner().sendPacket(sm);
 			
-			getActiveChar().getAI().notifyEvent(CtrlEvent.EVT_ATTACKED, attacker);
+			getActiveChar().getAI().notifyEvent(Event.EVT_ATTACKED, attacker);
 		}
 	}
 	

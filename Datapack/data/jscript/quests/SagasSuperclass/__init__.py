@@ -6,8 +6,8 @@ from com.l2jbr.gameserver.model.quest import QuestState
 from com.l2jbr.gameserver.serverpackets import CreatureSay
 from com.l2jbr.gameserver.datatables import SpawnTable
 from com.l2jbr.gameserver.model import L2Spawn
-from com.l2jbr.gameserver.ai import CtrlIntention
-from com.l2jbr.gameserver.ai import CtrlEvent
+from com.l2jbr.gameserver.ai import Intention
+from com.l2jbr.gameserver.ai import Event
 from com.l2jbr.gameserver.serverpackets import MagicSkillUser
 from com.l2jbr.gameserver.model import L2World
 from java.util import Iterator
@@ -140,7 +140,7 @@ class Quest (JQuest) :
             st2.startQuestTimer("Archon Hellisha has despawned",600000,Archon)
             self.AutoChat(Archon,self.Text[13].replace('PLAYERNAME',st2.getPlayer().getName()))
             Archon.addDamageHate(st2.getPlayer(),0,99999)
-            Archon.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK,st2.getPlayer(),None)
+            Archon.getAI().setIntention(Intention.AI_INTENTION_ATTACK,st2.getPlayer(),None)
         else :
             st2.giveItems(self.Items[3],1)
      return
@@ -334,9 +334,9 @@ class Quest (JQuest) :
        Mob_2 = self.FindSpawn(player,st.getInt("Mob_2"))
        if npc.getKnownList().knowsObject(Mob_2) :
            npc.addDamageHate(Mob_2,0,99999)
-           npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK,Mob_2,None)
+           npc.getAI().setIntention(Intention.AI_INTENTION_ATTACK,Mob_2,None)
            #Mob_2.addDamageHate(npc,0,99999)
-           Mob_2.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK,npc,None)
+           Mob_2.getAI().setIntention(Intention.AI_INTENTION_ATTACK,npc,None)
            self.AutoChat(npc,self.Text[14].replace('PLAYERNAME',player.getName()))
        else :
            st.startQuestTimer("Mob_3 Timer 1",500,npc)

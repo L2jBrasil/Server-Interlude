@@ -20,11 +20,12 @@ package com.l2jbr.gameserver.ai;
 
 import com.l2jbr.gameserver.model.L2Character.AIAccessor;
 import com.l2jbr.gameserver.model.L2Summon;
+import com.l2jbr.gameserver.model.actor.instance.L2SummonInstance;
 
-import static com.l2jbr.gameserver.ai.CtrlIntention.*;
+import static com.l2jbr.gameserver.ai.Intention.*;
 
 
-public class L2SummonAI extends L2CharacterAI
+public class L2SummonAI extends L2CharacterAI<L2SummonInstance.AIAccessor>
 {
 	
 	private boolean _thinking; // to prevent recursive thinking

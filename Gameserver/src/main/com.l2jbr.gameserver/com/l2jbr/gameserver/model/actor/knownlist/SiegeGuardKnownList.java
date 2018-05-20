@@ -17,7 +17,7 @@
  */
 package com.l2jbr.gameserver.model.actor.knownlist;
 
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.L2Summon;
@@ -75,9 +75,9 @@ public class SiegeGuardKnownList extends AttackableKnownList
 			if ((player != null) && ((player.getClan() == null) || (getActiveChar().getCastle().getSiege().getAttackerClan(player.getClan()) != null)))
 			{
 				// if (Config.DEBUG) _log.debug(getObjectId()+": PK "+player.getObjectId()+" entered scan range");
-				if (getActiveChar().getAI().getIntention() == CtrlIntention.AI_INTENTION_IDLE)
+				if (getActiveChar().getAI().getIntention() == Intention.AI_INTENTION_IDLE)
 				{
-					getActiveChar().getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE, null);// (L2Character)object);
+					getActiveChar().getAI().setIntention(Intention.AI_INTENTION_ACTIVE, null);// (L2Character)object);
 				}
 			}
 			

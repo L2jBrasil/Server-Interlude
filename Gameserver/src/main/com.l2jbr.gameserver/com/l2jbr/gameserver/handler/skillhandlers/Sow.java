@@ -19,7 +19,7 @@
 package com.l2jbr.gameserver.handler.skillhandlers;
 
 import com.l2jbr.commons.util.Rnd;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.handler.ISkillHandler;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.L2Skill.SkillType;
@@ -128,7 +128,7 @@ public class Sow implements ISkillHandler
 				_activeChar.getParty().broadcastToPartyMembers(sm);
 			}
 			// TODO: Mob should not agro on player, this way doesn't work really nice
-			_target.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+			_target.getAI().setIntention(Intention.AI_INTENTION_IDLE);
 		}
 		
 	}

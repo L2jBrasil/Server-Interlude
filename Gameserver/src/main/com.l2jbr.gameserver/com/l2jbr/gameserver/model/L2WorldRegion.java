@@ -184,7 +184,7 @@ public final class L2WorldRegion {
                     mob.clearAggroList();
                     mob.getKnownList().removeAllKnownObjects();
 
-                    mob.getAI().setIntention(com.l2jbr.gameserver.ai.CtrlIntention.AI_INTENTION_IDLE);
+                    mob.getAI().setIntention(com.l2jbr.gameserver.ai.Intention.AI_INTENTION_IDLE);
 
                     // stop the ai tasks
                     ((L2AttackableAI) mob.getAI()).stopAITask();

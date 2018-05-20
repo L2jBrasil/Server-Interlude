@@ -2,7 +2,7 @@
 # Written by Fulminus
 # # # # # # # # # # #
 import sys
-from com.l2jbr.gameserver.ai import CtrlIntention
+from com.l2jbr.gameserver.ai import Intention
 from com.l2jbr.gameserver.idfactory import IdFactory
 from com.l2jbr.gameserver.datatables import NpcTable
 from com.l2jbr.gameserver.model.actor.instance import L2TamedBeastInstance
@@ -112,7 +112,7 @@ class feedable_beasts(JQuest) :
                 self.feedInfo[nextNpc.getObjectId()] = player.getObjectId()
                 nextNpc.setRunning()
                 nextNpc.addDamageHate(player,0,99999)
-                nextNpc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player)
+                nextNpc.getAI().setIntention(Intention.AI_INTENTION_ATTACK, player)
 
     def spawnNext(self, npc, growthLevel,player,food) :
         npcId = npc.getNpcId()
@@ -197,7 +197,7 @@ class feedable_beasts(JQuest) :
             self.feedInfo[nextNpc.getObjectId()] = player.getObjectId()
             nextNpc.setRunning()
             nextNpc.addDamageHate(player,0,99999)
-            nextNpc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player)
+            nextNpc.getAI().setIntention(Intention.AI_INTENTION_ATTACK, player)
 
     def onSkillUse (self,npc,player,skill):
         # gather some values on local variables

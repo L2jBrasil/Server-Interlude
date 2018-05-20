@@ -18,7 +18,7 @@
 package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.commons.util.Rnd;
-import com.l2jbr.gameserver.ai.CtrlEvent;
+import com.l2jbr.gameserver.ai.Event;
 import com.l2jbr.gameserver.clientpackets.Say2;
 import com.l2jbr.gameserver.datatables.SpawnTable;
 import com.l2jbr.gameserver.model.L2Character;
@@ -65,7 +65,7 @@ public class L2PenaltyMonsterInstance extends L2MonsterInstance
 		}
 		_ptk = ptk;
 		addDamageHate(ptk, 10, 10);
-		getAI().notifyEvent(CtrlEvent.EVT_ATTACKED, ptk);
+		getAI().notifyEvent(Event.EVT_ATTACKED, ptk);
 		addAttackerToAttackByList(ptk);
 	}
 	

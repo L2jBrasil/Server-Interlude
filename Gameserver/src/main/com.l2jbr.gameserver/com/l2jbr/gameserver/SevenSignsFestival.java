@@ -20,7 +20,7 @@ package com.l2jbr.gameserver;
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.util.Rnd;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.datatables.ClanTable;
 import com.l2jbr.gameserver.datatables.MapRegionTable;
 import com.l2jbr.gameserver.datatables.NpcTable;
@@ -4256,7 +4256,7 @@ public class SevenSignsFestival implements SpawnListener {
                             y -= Rnd.nextInt(FESTIVAL_MAX_OFFSET_Y);
                         }
 
-                        participant.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+                        participant.getAI().setIntention(Intention.AI_INTENTION_IDLE);
                         participant.teleToLocation(x, y, _startLocation._z, true);
 
                         // Remove all buffs from all participants on entry. Works like the skill Cancel.
@@ -4332,9 +4332,9 @@ public class SevenSignsFestival implements SpawnListener {
                 }
 
                 // Only move monsters that are idle or doing their usual functions.
-                CtrlIntention currIntention = festivalMob.getAI().getIntention();
+                Intention currIntention = festivalMob.getAI().getIntention();
 
-                if ((currIntention != CtrlIntention.AI_INTENTION_IDLE) && (currIntention != CtrlIntention.AI_INTENTION_ACTIVE)) {
+                if ((currIntention != Intention.AI_INTENTION_IDLE) && (currIntention != Intention.AI_INTENTION_ACTIVE)) {
                     continue;
                 }
 
@@ -4357,7 +4357,7 @@ public class SevenSignsFestival implements SpawnListener {
                 L2CharPosition moveTo = new L2CharPosition(x, y, _startLocation._z, Rnd.nextInt(65536));
 
                 festivalMob.setRunning();
-                festivalMob.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, moveTo);
+                festivalMob.getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, moveTo);
             }
         }
 
@@ -4513,7 +4513,7 @@ public class SevenSignsFestival implements SpawnListener {
                     _originalLocations.remove(participant);
                 }
 
-                participant.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+                participant.getAI().setIntention(Intention.AI_INTENTION_IDLE);
                 participant.teleToLocation(origPosition._x, origPosition._y, origPosition._z, true);
                 participant.sendMessage("You have been removed from the festival arena.");
             } catch (Exception e) {

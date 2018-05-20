@@ -1,7 +1,7 @@
 import sys
 from com.l2jbr.gameserver.model.quest.jython import QuestJython as JQuest
 from com.l2jbr.gameserver.serverpackets import MagicSkillUser
-from com.l2jbr.gameserver.ai import CtrlIntention
+from com.l2jbr.gameserver.ai import Intention
 
 # Angel spawns...when one of the angels in the keys dies, the other angel will spawn.
 
@@ -29,7 +29,7 @@ class polymorphing_angel(JQuest) :
                 killer = player.getPet()
             newNpc.setRunning()
             newNpc.addDamageHate(killer,0,999)
-            newNpc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, killer)
+            newNpc.getAI().setIntention(Intention.AI_INTENTION_ATTACK, killer)
         return 
 
 # now call the constructor (starts up the ai)

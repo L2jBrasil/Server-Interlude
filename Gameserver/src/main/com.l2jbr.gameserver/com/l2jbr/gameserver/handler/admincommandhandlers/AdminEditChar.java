@@ -19,7 +19,7 @@
 package com.l2jbr.gameserver.handler.admincommandhandlers;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.datatables.ClanTable;
 import com.l2jbr.gameserver.handler.IAdminCommandHandler;
 import com.l2jbr.gameserver.model.GMAudit;
@@ -518,7 +518,7 @@ public class AdminEditChar implements IAdminCommandHandler {
 
         player.broadcastPacket(new CharInfo(player));
         player.sendPacket(new UserInfo(player));
-        player.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+        player.getAI().setIntention(Intention.AI_INTENTION_IDLE);
         player.decayMe();
         player.spawnMe(activeChar.getX(), activeChar.getY(), activeChar.getZ());
     }

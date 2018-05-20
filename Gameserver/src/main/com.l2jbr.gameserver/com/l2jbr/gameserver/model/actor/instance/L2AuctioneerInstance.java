@@ -19,7 +19,7 @@
 package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.datatables.MapRegionTable;
 import com.l2jbr.gameserver.instancemanager.AuctionManager;
 import com.l2jbr.gameserver.instancemanager.ClanHallManager;
@@ -70,7 +70,7 @@ public final class L2AuctioneerInstance extends L2FolkInstance {
             // Calculate the distance between the L2PcInstance and the L2NpcInstance
             if (!canInteract(player)) {
                 // Notify the L2PcInstance AI with AI_INTENTION_INTERACT
-                player.getAI().setIntention(CtrlIntention.AI_INTENTION_INTERACT, this);
+                player.getAI().setIntention(Intention.AI_INTENTION_INTERACT, this);
             } else {
                 showMessageWindow(player);
             }

@@ -21,7 +21,7 @@ package com.l2jbr.gameserver.model.actor.instance;
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.ThreadPoolManager;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.instancemanager.CursedWeaponsManager;
 import com.l2jbr.gameserver.instancemanager.ItemsOnGroundManager;
@@ -424,7 +424,7 @@ public class L2PetInstance extends L2Summon
 	@Override
 	protected void doPickupItem(L2Object object)
 	{
-		getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+		getAI().setIntention(Intention.AI_INTENTION_IDLE);
 		StopMove sm = new StopMove(getObjectId(), getX(), getY(), getZ(), getHeading());
 		
 		if (Config.DEBUG)
@@ -513,7 +513,7 @@ public class L2PetInstance extends L2Summon
 		PetItemList iu = new PetItemList(this);
 		getOwner().sendPacket(iu);
 		
-		getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+		getAI().setIntention(Intention.AI_INTENTION_IDLE);
 		
 		if (getFollowStatus())
 		{

@@ -20,7 +20,7 @@ package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.util.Rnd;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.ai.L2CharacterAI;
 import com.l2jbr.gameserver.ai.L2SiegeGuardAI;
 import com.l2jbr.gameserver.model.L2Attackable;
@@ -127,7 +127,7 @@ public final class L2SiegeGuardInstance extends L2Attackable
 			
 			if (hasAI())
 			{
-				getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new L2CharPosition(_homeX, _homeY, _homeZ, 0));
+				getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, new L2CharPosition(_homeX, _homeY, _homeZ, 0));
 			}
 		}
 	}
@@ -173,7 +173,7 @@ public final class L2SiegeGuardInstance extends L2Attackable
 			{
 				if (Math.abs(player.getZ() - getZ()) < 600) // this max heigth difference might need some tweaking
 				{
-					player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, this);
+					player.getAI().setIntention(Intention.AI_INTENTION_ATTACK, this);
 				}
 				else
 				{
@@ -186,7 +186,7 @@ public final class L2SiegeGuardInstance extends L2Attackable
 				if (!canInteract(player))
 				{
 					// Notify the L2PcInstance AI with AI_INTENTION_INTERACT
-					player.getAI().setIntention(CtrlIntention.AI_INTENTION_INTERACT, this);
+					player.getAI().setIntention(Intention.AI_INTENTION_INTERACT, this);
 				}
 				else
 				{

@@ -21,7 +21,7 @@ package com.l2jbr.gameserver.handler.usercommandhandlers;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.GameTimeController;
 import com.l2jbr.gameserver.ThreadPoolManager;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.datatables.MapRegionTable;
 import com.l2jbr.gameserver.handler.IUserCommandHandler;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
@@ -84,7 +84,7 @@ public class Escape implements IUserCommandHandler
 		SystemMessage sm = new SystemMessage(SystemMessageId.S1_S2);
 		sm.addString("After " + (unstuckTimer / 60000) + " min. you be returned to near village.");
 		
-		activeChar.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+		activeChar.getAI().setIntention(Intention.AI_INTENTION_IDLE);
 		// SoE Animation section
 		activeChar.setTarget(activeChar);
 		activeChar.disableAllSkills();

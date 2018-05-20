@@ -28,13 +28,13 @@ import com.l2jbr.gameserver.model.actor.instance.*;
 
 import java.util.concurrent.Future;
 
-import static com.l2jbr.gameserver.ai.CtrlIntention.*;
+import static com.l2jbr.gameserver.ai.Intention.*;
 
 
 /**
  * This class manages AI of L2Attackable.
  */
-public class L2SiegeGuardAI extends L2CharacterAI implements Runnable
+public class L2SiegeGuardAI extends L2CharacterAI<L2SiegeGuardInstance.AIAccessor> implements Runnable
 {
 	private static final int MAX_ATTACK_TIMEOUT = 300; // int ticks, i.e. 30 seconds
 	
@@ -141,7 +141,7 @@ public class L2SiegeGuardAI extends L2CharacterAI implements Runnable
 	 * @param arg1 The second parameter of the Intention
 	 */
 	@Override
-	synchronized void changeIntention(CtrlIntention intention, Object arg0, Object arg1)
+	synchronized void changeIntention(Intention intention, Object arg0, Object arg1)
 	{
 		if (Config.DEBUG)
 		{
@@ -286,7 +286,7 @@ public class L2SiegeGuardAI extends L2CharacterAI implements Runnable
 					}
 					
 					// Set the AI Intention to AI_INTENTION_ATTACK
-					setIntention(CtrlIntention.AI_INTENTION_ATTACK, hated, null);
+					setIntention(Intention.AI_INTENTION_ATTACK, hated, null);
 				}
 				
 				return;
@@ -608,14 +608,14 @@ public class L2SiegeGuardAI extends L2CharacterAI implements Runnable
 			}
 			
 			// Check if the L2Object is inside the Faction Range of the actor
-			if (((npc.getAI().getIntention() == CtrlIntention.AI_INTENTION_IDLE) || (npc.getAI().getIntention() == CtrlIntention.AI_INTENTION_ACTIVE)) && _actor.isInsideRadius(npc, npc.getFactionRange(), false, true) && (npc.getTarget() == null) && _attackTarget.isInsideRadius(npc, npc.getFactionRange(), false, true))
+			if (((npc.getAI().getIntention() == Intention.AI_INTENTION_IDLE) || (npc.getAI().getIntention() == Intention.AI_INTENTION_ACTIVE)) && _actor.isInsideRadius(npc, npc.getFactionRange(), false, true) && (npc.getTarget() == null) && _attackTarget.isInsideRadius(npc, npc.getFactionRange(), false, true))
 			{
 				if (Config.GEODATA > 0)
 				{
 					if (GeoData.getInstance().canSeeTarget(npc, _attackTarget))
 					{
 						// Notify the L2Object AI with EVT_AGGRESSION
-						npc.getAI().notifyEvent(CtrlEvent.EVT_AGGRESSION, _attackTarget, 1);
+						npc.getAI().notifyEvent(Event.EVT_AGGRESSION, _attackTarget, 1);
 					}
 				}
 				else
@@ -623,7 +623,7 @@ public class L2SiegeGuardAI extends L2CharacterAI implements Runnable
 					if (Math.abs(_attackTarget.getZ() - npc.getZ()) < 600)
 					{
 						// Notify the L2Object AI with EVT_AGGRESSION
-						npc.getAI().notifyEvent(CtrlEvent.EVT_AGGRESSION, _attackTarget, 1);
+						npc.getAI().notifyEvent(Event.EVT_AGGRESSION, _attackTarget, 1);
 					}
 				}
 			}
@@ -702,7 +702,7 @@ public class L2SiegeGuardAI extends L2CharacterAI implements Runnable
 		// Set the Intention to AI_INTENTION_ATTACK
 		if (getIntention() != AI_INTENTION_ATTACK)
 		{
-			setIntention(CtrlIntention.AI_INTENTION_ATTACK, attacker, null);
+			setIntention(Intention.AI_INTENTION_ATTACK, attacker, null);
 		}
 		
 		super.onEvtAttacked(attacker);
@@ -747,7 +747,7 @@ public class L2SiegeGuardAI extends L2CharacterAI implements Runnable
 			}
 			
 			// Set the actor AI Intention to AI_INTENTION_ATTACK
-			if (getIntention() != CtrlIntention.AI_INTENTION_ATTACK)
+			if (getIntention() != Intention.AI_INTENTION_ATTACK)
 			{
 				// Set the L2Character movement type to run and send Server->Client packet ChangeMoveType to all others L2PcInstance
 				if (!_actor.isRunning())
@@ -762,7 +762,7 @@ public class L2SiegeGuardAI extends L2CharacterAI implements Runnable
 				// Check if the L2SiegeGuardInstance is not too far from its home location
 				if (((homeX * homeX) + (homeY * homeY)) < 3240000)
 				{
-					setIntention(CtrlIntention.AI_INTENTION_ATTACK, target, null);
+					setIntention(Intention.AI_INTENTION_ATTACK, target, null);
 				}
 			}
 		}

@@ -18,7 +18,7 @@
 package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.ai.L2CharacterAI;
 import com.l2jbr.gameserver.ai.L2ControllableMobAI;
 import com.l2jbr.gameserver.model.L2Character;
@@ -33,7 +33,7 @@ public class L2ControllableMobInstance extends L2MonsterInstance
 	private boolean _isInvul;
 	private L2ControllableMobAI _aiBackup; // to save ai, avoiding beeing detached
 	
-	protected class ControllableAIAcessor extends AIAccessor
+	public class ControllableAIAcessor extends AIAccessor
 	{
 		@Override
 		public void detachAI()
@@ -161,7 +161,7 @@ public class L2ControllableMobInstance extends L2MonsterInstance
 		{
 			if (_aiBackup != null)
 			{
-				_aiBackup.setIntention(CtrlIntention.AI_INTENTION_IDLE);
+				_aiBackup.setIntention(Intention.AI_INTENTION_IDLE);
 				_aiBackup = null;
 				_ai = null;
 			}

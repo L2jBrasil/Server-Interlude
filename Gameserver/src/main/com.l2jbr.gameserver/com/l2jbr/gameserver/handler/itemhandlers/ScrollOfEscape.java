@@ -21,7 +21,7 @@ package com.l2jbr.gameserver.handler.itemhandlers;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.GameTimeController;
 import com.l2jbr.gameserver.ThreadPoolManager;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.datatables.MapRegionTable;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.handler.IItemHandler;
@@ -143,7 +143,7 @@ public class ScrollOfEscape implements IItemHandler
 		}
 		
 		// activeChar.abortCast();
-		activeChar.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+		activeChar.getAI().setIntention(Intention.AI_INTENTION_IDLE);
 		// SoE Animation section
 		activeChar.setTarget(activeChar);
 		

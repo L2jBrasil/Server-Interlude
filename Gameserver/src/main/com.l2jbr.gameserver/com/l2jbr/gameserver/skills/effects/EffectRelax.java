@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.skills.effects;
 
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.model.L2Effect;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
@@ -51,7 +51,7 @@ class EffectRelax extends L2Effect
 		}
 		else
 		{
-			getEffected().getAI().setIntention(CtrlIntention.AI_INTENTION_REST);
+			getEffected().getAI().setIntention(Intention.AI_INTENTION_REST);
 		}
 		super.onStart();
 	}

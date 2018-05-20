@@ -12,7 +12,7 @@ public interface CharacterQuestsRepository extends CrudRepository<CharacterQuest
     Iterable<CharacterQuests> findAllByState(@Param("objectId") int charObjectId);
 
     @Modifying
-    @Query("DELETE FROM character_quests WHERE char_id=:objectId and name=:questName")
+    @Query("DELETE FROM character_quests WHERE char_id=:objectId and name=:name")
     int deleteByName(@Param("objectId") int charObjectId, @Param("name") String questName);
 
     @Query("SELECT * FROM character_quests WHERE char_id=:objectId")

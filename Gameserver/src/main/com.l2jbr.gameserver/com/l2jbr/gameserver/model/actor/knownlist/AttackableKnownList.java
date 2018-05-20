@@ -17,7 +17,7 @@
  */
 package com.l2jbr.gameserver.model.actor.knownlist;
 
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.ai.L2CharacterAI;
 import com.l2jbr.gameserver.model.L2Attackable;
 import com.l2jbr.gameserver.model.L2Character;
@@ -63,7 +63,7 @@ public class AttackableKnownList extends NpcKnownList
 		L2CharacterAI ai = getActiveChar().getAI();
 		if ((ai != null) && ((known == null) || known.isEmpty()))
 		{
-			ai.setIntention(CtrlIntention.AI_INTENTION_IDLE);
+			ai.setIntention(Intention.AI_INTENTION_IDLE);
 		}
 		
 		return true;

@@ -20,7 +20,7 @@ package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.ThreadPoolManager;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.ai.L2CharacterAI;
 import com.l2jbr.gameserver.ai.L2DoorAI;
 import com.l2jbr.gameserver.instancemanager.CastleManager;
@@ -386,11 +386,11 @@ public class L2DoorInstance extends L2Character {
             if (isAutoAttackable(player)) {
                 if (Math.abs(player.getZ() - getZ()) < 400) // this max heigth difference might need some tweaking
                 {
-                    player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, this);
+                    player.getAI().setIntention(Intention.AI_INTENTION_ATTACK, this);
                 }
             } else if ((player.getClan() != null) && (getClanHall() != null) && (player.getClanId() == getClanHall().getOwnerId())) {
                 if (!isInsideRadius(player, L2NpcInstance.INTERACTION_DISTANCE, false, false)) {
-                    player.getAI().setIntention(CtrlIntention.AI_INTENTION_INTERACT, this);
+                    player.getAI().setIntention(Intention.AI_INTENTION_INTERACT, this);
                 } else {
                     // need find serverpacket which ask open/close gate. now auto
                     // if (getOpen() == 1) player.sendPacket(new SystemMessage(1140));

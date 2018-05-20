@@ -18,7 +18,7 @@
 package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.gameserver.GeoData;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Spawn;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
@@ -83,7 +83,7 @@ public class L2ControlTowerInstance extends L2NpcInstance {
             if (isAutoAttackable(player) && (Math.abs(player.getZ() - getZ()) < 100 // Less then max height difference, delete check when geo
             ) && GeoData.getInstance().canSeeTarget(player, this)) {
                 // Notify the L2PcInstance AI with AI_INTENTION_INTERACT
-                player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, this);
+                player.getAI().setIntention(Intention.AI_INTENTION_ATTACK, this);
 
                 // Send a Server->Client ActionFailed to the L2PcInstance in order to avoid that the client wait another packet
                 player.sendPacket(new ActionFailed());

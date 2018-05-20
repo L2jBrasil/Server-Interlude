@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.model.actor.instance;
 
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
@@ -96,7 +96,7 @@ public final class L2BossInstance extends L2MonsterInstance
 				if (((getCurrentHp() - damage) < (getMaxHp() / 2)) && !getTeleported())
 				{
 					clearAggroList();
-					getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+					getAI().setIntention(Intention.AI_INTENTION_IDLE);
 					teleToLocation(43577, 15985, -4396, false);
 					setTeleported(true);
 				}

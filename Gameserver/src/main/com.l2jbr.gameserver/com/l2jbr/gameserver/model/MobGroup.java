@@ -18,7 +18,7 @@
 package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.util.Rnd;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.ai.L2ControllableMobAI;
 import com.l2jbr.gameserver.datatables.SpawnTable;
 import com.l2jbr.gameserver.model.actor.instance.L2ControllableMobInstance;
@@ -217,7 +217,7 @@ public final class MobGroup {
 
             L2ControllableMobAI ai = (L2ControllableMobAI) mobInst.getAI();
             ai.setAlternateAI(L2ControllableMobAI.AI_NORMAL);
-            ai.setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+            ai.setIntention(Intention.AI_INTENTION_ACTIVE);
         }
     }
 
@@ -336,7 +336,7 @@ public final class MobGroup {
 
             L2ControllableMobAI ai = (L2ControllableMobAI) mobInst.getAI();
             ai.forceAttackGroup(otherGrp);
-            ai.setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+            ai.setIntention(Intention.AI_INTENTION_ACTIVE);
         }
     }
 }

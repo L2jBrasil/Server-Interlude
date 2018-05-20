@@ -21,7 +21,7 @@ package com.l2jbr.gameserver.model.actor.instance;
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.ThreadPoolManager;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.ai.L2AttackableAI;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.knownlist.GuardKnownList;
@@ -53,7 +53,7 @@ public final class L2GuardInstance extends L2Attackable
 		@Override
 		public void run()
 		{
-			if (getAI().getIntention() == CtrlIntention.AI_INTENTION_IDLE)
+			if (getAI().getIntention() == Intention.AI_INTENTION_IDLE)
 			{
 				returnHome();
 			}
@@ -139,7 +139,7 @@ public final class L2GuardInstance extends L2Attackable
 			
 			clearAggroList();
 			
-			getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new L2CharPosition(_homeX, _homeY, _homeZ, 0));
+			getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, new L2CharPosition(_homeX, _homeY, _homeZ, 0));
 		}
 	}
 	
@@ -250,7 +250,7 @@ public final class L2GuardInstance extends L2Attackable
 				}
 				
 				// Set the L2PcInstance Intention to AI_INTENTION_ATTACK
-				player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, this);
+				player.getAI().setIntention(Intention.AI_INTENTION_ATTACK, this);
 			}
 			else
 			{
@@ -258,7 +258,7 @@ public final class L2GuardInstance extends L2Attackable
 				if (!canInteract(player))
 				{
 					// Set the L2PcInstance Intention to AI_INTENTION_INTERACT
-					player.getAI().setIntention(CtrlIntention.AI_INTENTION_INTERACT, this);
+					player.getAI().setIntention(Intention.AI_INTENTION_INTERACT, this);
 				}
 				else
 				{

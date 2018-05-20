@@ -28,7 +28,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2NpcWalkerInstance;
 import java.util.List;
 
 
-public class L2NpcWalkerAI extends L2CharacterAI implements Runnable {
+public class L2NpcWalkerAI extends L2CharacterAI<L2NpcWalkerInstance.AIAccessor> implements Runnable {
     private static final int DEFAULT_MOVE_DELAY = 0;
 
     private long _nextMoveTime;
@@ -158,7 +158,7 @@ public class L2NpcWalkerAI extends L2CharacterAI implements Runnable {
         // notify AI of MOVE_TO
         setWalkingToNextPoint(true);
 
-        setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new L2CharPosition(destinationX, destinationY, destinationZ, 0));
+        setIntention(Intention.AI_INTENTION_MOVE_TO, new L2CharPosition(destinationX, destinationY, destinationZ, 0));
     }
 
     @Override

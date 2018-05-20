@@ -19,7 +19,7 @@
 package com.l2jbr.gameserver.clientpackets;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.gameserver.ai.CtrlEvent;
+import com.l2jbr.gameserver.ai.Event;
 import com.l2jbr.gameserver.model.L2CharPosition;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
@@ -67,7 +67,7 @@ public final class CannotMoveAnymore extends L2GameClientPacket
 		}
 		if (player.getAI() != null)
 		{
-			player.getAI().notifyEvent(CtrlEvent.EVT_ARRIVED_BLOCKED, new L2CharPosition(_x, _y, _z, _heading));
+			player.getAI().notifyEvent(Event.EVT_ARRIVED_BLOCKED, new L2CharPosition(_x, _y, _z, _heading));
 		}
 		if ((player instanceof L2PcInstance) && (((L2PcInstance) player).getParty() != null))
 		{

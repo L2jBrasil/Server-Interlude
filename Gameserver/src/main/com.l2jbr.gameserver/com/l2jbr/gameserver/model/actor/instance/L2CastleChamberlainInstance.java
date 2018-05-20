@@ -20,7 +20,7 @@ package com.l2jbr.gameserver.model.actor.instance;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.SevenSigns;
 import com.l2jbr.gameserver.TradeController;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.datatables.ClanTable;
 import com.l2jbr.gameserver.instancemanager.CastleManager;
 import com.l2jbr.gameserver.instancemanager.CastleManorManager;
@@ -73,7 +73,7 @@ public class L2CastleChamberlainInstance extends L2FolkInstance {
             // Calculate the distance between the L2PcInstance and the L2NpcInstance
             if (!canInteract(player)) {
                 // Notify the L2PcInstance AI with AI_INTENTION_INTERACT
-                player.getAI().setIntention(CtrlIntention.AI_INTENTION_INTERACT, this);
+                player.getAI().setIntention(Intention.AI_INTENTION_INTERACT, this);
             } else {
                 showMessageWindow(player);
             }

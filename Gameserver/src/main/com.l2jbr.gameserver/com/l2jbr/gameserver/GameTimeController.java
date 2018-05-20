@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver;
 
-import com.l2jbr.gameserver.ai.CtrlEvent;
+import com.l2jbr.gameserver.ai.Event;
 import com.l2jbr.gameserver.instancemanager.DayNightSpawnManager;
 import com.l2jbr.gameserver.model.L2Character;
 import org.slf4j.Logger;
@@ -230,7 +230,7 @@ public class GameTimeController {
             for (L2Character cha : _ended) {
                 try {
                     cha.getKnownList().updateKnownObjects();
-                    cha.getAI().notifyEvent(CtrlEvent.EVT_ARRIVED);
+                    cha.getAI().notifyEvent(Event.EVT_ARRIVED);
                 } catch (NullPointerException e) {
                 }
             }

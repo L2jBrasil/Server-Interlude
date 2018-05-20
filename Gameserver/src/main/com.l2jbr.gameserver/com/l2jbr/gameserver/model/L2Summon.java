@@ -19,7 +19,7 @@
 package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.ai.L2CharacterAI;
 import com.l2jbr.gameserver.ai.L2SummonAI;
 import com.l2jbr.gameserver.datatables.SkillTable;
@@ -379,11 +379,11 @@ public abstract class L2Summon extends L2PlayableInstance
 		_follow = state;
 		if (_follow)
 		{
-			getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, getOwner());
+			getAI().setIntention(Intention.AI_INTENTION_FOLLOW, getOwner());
 		}
 		else
 		{
-			getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE, null);
+			getAI().setIntention(Intention.AI_INTENTION_IDLE, null);
 		}
 	}
 	
@@ -644,7 +644,7 @@ public abstract class L2Summon extends L2PlayableInstance
 		}
 		
 		// Notify the AI with AI_INTENTION_CAST and target
-		getAI().setIntention(CtrlIntention.AI_INTENTION_CAST, skill, target);
+		getAI().setIntention(Intention.AI_INTENTION_CAST, skill, target);
 	}
 	
 	@Override

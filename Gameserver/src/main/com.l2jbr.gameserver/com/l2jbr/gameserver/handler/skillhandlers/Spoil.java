@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.handler.skillhandlers;
 
-import com.l2jbr.gameserver.ai.CtrlEvent;
+import com.l2jbr.gameserver.ai.Event;
 import com.l2jbr.gameserver.handler.ISkillHandler;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Object;
@@ -91,7 +91,7 @@ public class Spoil implements ISkillHandler
 					sm.addSkillName(skill.getDisplayId());
 					activeChar.sendPacket(sm);
 				}
-				target.getAI().notifyEvent(CtrlEvent.EVT_ATTACKED, activeChar);
+				target.getAI().notifyEvent(Event.EVT_ATTACKED, activeChar);
 			}
 		}
 	}

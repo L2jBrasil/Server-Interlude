@@ -3,7 +3,7 @@
 # Written by Fulminus
 # # # # # # # # # # #
 import sys
-from com.l2jbr.gameserver.ai import CtrlIntention
+from com.l2jbr.gameserver.ai import Intention
 from com.l2jbr.gameserver.model.quest.jython import QuestJython as JQuest
 from com.l2jbr.commons.util import Rnd;
 
@@ -74,7 +74,7 @@ class chests(JQuest) :
                     attacker = player.getPet()
                 npc.setRunning()
                 npc.addDamageHate(attacker,0,999)
-                npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, attacker)
+                npc.getAI().setIntention(Intention.AI_INTENTION_ATTACK, attacker)
         return
 
     def onAttack(self,npc,player,damage,isPet) :
@@ -94,7 +94,7 @@ class chests(JQuest) :
                     attacker = player.getPet()
                 npc.setRunning()
                 npc.addDamageHate(attacker,0,(damage*100)/(npc.getLevel()+7))
-                npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, attacker)
+                npc.getAI().setIntention(Intention.AI_INTENTION_ATTACK, attacker)
         return
 
 # now call the constructor (starts up the ai)

@@ -18,7 +18,7 @@
 package com.l2jbr.gameserver.handler.skillhandlers;
 
 import com.l2jbr.commons.util.Rnd;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.handler.ISkillHandler;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Object;
@@ -244,7 +244,7 @@ public class Unlock implements ISkillHandler
 					}
 					chest.setInteracted();
 					chest.addDamageHate(activeChar, 0, 1);
-					chest.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, activeChar);
+					chest.getAI().setIntention(Intention.AI_INTENTION_ATTACK, activeChar);
 				}
 			}
 		}

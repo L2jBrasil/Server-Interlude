@@ -17,8 +17,8 @@
  */
 package com.l2jbr.gameserver.model.actor.knownlist;
 
-import com.l2jbr.gameserver.ai.CtrlEvent;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Event;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.actor.instance.L2FriendlyMobInstance;
@@ -53,9 +53,9 @@ public class FriendlyMobKnownList extends AttackableKnownList
 			return false;
 		}
 		
-		if ((object instanceof L2PcInstance) && (getActiveChar().getAI().getIntention() == CtrlIntention.AI_INTENTION_IDLE))
+		if ((object instanceof L2PcInstance) && (getActiveChar().getAI().getIntention() == Intention.AI_INTENTION_IDLE))
 		{
-			getActiveChar().getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE, null);
+			getActiveChar().getAI().setIntention(Intention.AI_INTENTION_ACTIVE, null);
 		}
 		
 		return true;
@@ -77,7 +77,7 @@ public class FriendlyMobKnownList extends AttackableKnownList
 		if (getActiveChar().hasAI())
 		{
 			L2Character temp = (L2Character) object;
-			getActiveChar().getAI().notifyEvent(CtrlEvent.EVT_FORGET_OBJECT, object);
+			getActiveChar().getAI().notifyEvent(Event.EVT_FORGET_OBJECT, object);
 			if (getActiveChar().getTarget() == temp)
 			{
 				getActiveChar().setTarget(null);
@@ -90,7 +90,7 @@ public class FriendlyMobKnownList extends AttackableKnownList
 			// removeAllKnownObjects();
 			if (getActiveChar().hasAI())
 			{
-				getActiveChar().getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE, null);
+				getActiveChar().getAI().setIntention(Intention.AI_INTENTION_IDLE, null);
 			}
 		}
 		

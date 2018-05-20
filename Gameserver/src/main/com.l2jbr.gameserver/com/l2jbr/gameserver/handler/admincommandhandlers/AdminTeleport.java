@@ -19,7 +19,7 @@
 package com.l2jbr.gameserver.handler.admincommandhandlers;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.datatables.NpcTable;
 import com.l2jbr.gameserver.datatables.SpawnTable;
 import com.l2jbr.gameserver.handler.IAdminCommandHandler;
@@ -117,7 +117,7 @@ public class AdminTeleport implements IAdminCommandHandler {
                 String z1 = st.nextToken();
                 int z = Integer.parseInt(z1);
                 L2CharPosition pos = new L2CharPosition(x, y, z, 0);
-                activeChar.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, pos);
+                activeChar.getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, pos);
             } catch (Exception e) {
                 if (Config.DEBUG) {
                     _log.info("admin_walk: " + e);
@@ -213,7 +213,7 @@ public class AdminTeleport implements IAdminCommandHandler {
             String z1 = st.nextToken();
             int z = Integer.parseInt(z1);
 
-            activeChar.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+            activeChar.getAI().setIntention(Intention.AI_INTENTION_IDLE);
             activeChar.teleToLocation(x, y, z, false);
 
             SystemMessage sm = new SystemMessage(SystemMessageId.S1_S2);
@@ -297,7 +297,7 @@ public class AdminTeleport implements IAdminCommandHandler {
             // Common character information
             player.sendMessage("Admin is teleporting you.");
 
-            player.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+            player.getAI().setIntention(Intention.AI_INTENTION_IDLE);
             player.teleToLocation(x, y, z, true);
         }
     }
@@ -318,7 +318,7 @@ public class AdminTeleport implements IAdminCommandHandler {
             int y = player.getY();
             int z = player.getZ();
 
-            activeChar.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+            activeChar.getAI().setIntention(Intention.AI_INTENTION_IDLE);
             activeChar.teleToLocation(x, y, z, true);
 
             activeChar.sendMessage("You have teleported to character " + player.getName() + ".");

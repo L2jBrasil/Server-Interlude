@@ -20,7 +20,7 @@ package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.ThreadPoolManager;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2ItemInstance;
@@ -34,7 +34,7 @@ import com.l2jbr.gameserver.util.Point3D;
 import java.util.LinkedHashMap;
 import java.util.concurrent.Future;
 
-import static com.l2jbr.gameserver.ai.CtrlIntention.AI_INTENTION_IDLE;
+import static com.l2jbr.gameserver.ai.Intention.AI_INTENTION_IDLE;
 
 
 // While a tamed beast behaves a lot like a pet (ingame) and does have
@@ -274,7 +274,7 @@ public final class L2TamedBeastInstance extends L2FeedableBeastInstance {
 
         setTarget(target);
         doCast(skill);
-        getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, _owner);
+        getAI().setIntention(Intention.AI_INTENTION_FOLLOW, _owner);
     }
 
     private class CheckDuration implements Runnable {
@@ -387,7 +387,7 @@ public final class L2TamedBeastInstance extends L2FeedableBeastInstance {
             if (((_numBuffs * 2) / 3) > totalBuffsOnOwner) {
                 _tamedBeast.sitCastAndFollow(buffToGive, owner);
             }
-            getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, _tamedBeast.getOwner());
+            getAI().setIntention(Intention.AI_INTENTION_FOLLOW, _tamedBeast.getOwner());
         }
     }
 }

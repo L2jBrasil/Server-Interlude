@@ -8,7 +8,7 @@ from com.l2jbr.gameserver.model.quest.jython import QuestJython as JQuest
 from com.l2jbr.gameserver.serverpackets import SocialAction
 from com.l2jbr.gameserver.serverpackets import Earthquake
 from com.l2jbr.gameserver.serverpackets import PlaySound
-from com.l2jbr.gameserver.ai import CtrlIntention
+from com.l2jbr.gameserver.ai import Intention
 from com.l2jbr.commons.util import Rnd
 from java.lang import System
 

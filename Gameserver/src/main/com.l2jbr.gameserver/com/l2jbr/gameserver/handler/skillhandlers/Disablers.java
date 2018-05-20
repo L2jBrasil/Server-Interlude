@@ -19,8 +19,8 @@
 package com.l2jbr.gameserver.handler.skillhandlers;
 
 import com.l2jbr.commons.util.Rnd;
-import com.l2jbr.gameserver.ai.CtrlEvent;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Event;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.ai.L2AttackableAI;
 import com.l2jbr.gameserver.handler.ISkillHandler;
 import com.l2jbr.gameserver.handler.SkillHandler;
@@ -304,7 +304,7 @@ public class Disablers implements ISkillHandler
 				{
 					if (target instanceof L2Attackable)
 					{
-						target.getAI().notifyEvent(CtrlEvent.EVT_AGGRESSION, activeChar, (int) ((150 * skill.getPower()) / (target.getLevel() + 7)));
+						target.getAI().notifyEvent(Event.EVT_AGGRESSION, activeChar, (int) ((150 * skill.getPower()) / (target.getLevel() + 7)));
 					}
 					// TODO [Nemesiss] should this have 100% chance?
 					skill.getEffects(activeChar, target);
@@ -343,7 +343,7 @@ public class Disablers implements ISkillHandler
 							{
 								((L2AttackableAI) targ.getAI()).setGlobalAggro(-25);
 								targ.clearAggroList();
-								targ.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+								targ.getAI().setIntention(Intention.AI_INTENTION_ACTIVE);
 								targ.setWalking();
 							}
 						}

@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.skills.effects;
 
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.model.L2Effect;
 import com.l2jbr.gameserver.model.L2Summon;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
@@ -49,7 +49,7 @@ final class EffectBetray extends L2Effect
 		{
 			L2PcInstance targetOwner = null;
 			targetOwner = ((L2Summon) getEffected()).getOwner();
-			getEffected().getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, targetOwner);
+			getEffected().getAI().setIntention(Intention.AI_INTENTION_ATTACK, targetOwner);
 			targetOwner.setIsBetrayed(true);
 			onActionTime();
 		}
@@ -64,7 +64,7 @@ final class EffectBetray extends L2Effect
 			L2PcInstance targetOwner = null;
 			targetOwner = ((L2Summon) getEffected()).getOwner();
 			targetOwner.setIsBetrayed(false);
-			getEffected().getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+			getEffected().getAI().setIntention(Intention.AI_INTENTION_IDLE);
 		}
 	}
 	

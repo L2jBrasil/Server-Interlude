@@ -23,7 +23,7 @@ package com.l2jbr.gameserver.ai;
  * Enumaration of generic intentions of an NPC/PC, an intention may require several steps to be completed
  */
 
-public enum CtrlIntention
+public enum Intention
 {
 	/** Do nothing, disconnect AI of NPC if no players around */
 	AI_INTENTION_IDLE,

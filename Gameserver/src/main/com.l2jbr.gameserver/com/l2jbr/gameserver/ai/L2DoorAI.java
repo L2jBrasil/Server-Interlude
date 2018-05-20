@@ -30,7 +30,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2SiegeGuardInstance;
 /**
  * @author mkizub TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates
  */
-public class L2DoorAI extends L2CharacterAI
+public class L2DoorAI extends L2CharacterAI<L2DoorInstance.AIAccessor>
 {
 	
 	public L2DoorAI(L2DoorInstance.AIAccessor accessor)
@@ -176,7 +176,7 @@ public class L2DoorAI extends L2CharacterAI
 			{
 				if (_actor.isInsideRadius(guard, guard.getFactionRange(), false, true) && (Math.abs(_attacker.getZ() - guard.getZ()) < 200))
 				{
-					guard.getAI().notifyEvent(CtrlEvent.EVT_AGGRESSION, _attacker, 15);
+					guard.getAI().notifyEvent(Event.EVT_AGGRESSION, _attacker, 15);
 				}
 			}
 		}

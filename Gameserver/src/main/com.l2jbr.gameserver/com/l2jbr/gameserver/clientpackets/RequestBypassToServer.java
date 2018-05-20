@@ -19,7 +19,7 @@
 package com.l2jbr.gameserver.clientpackets;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.communitybbs.CommunityBoard;
 import com.l2jbr.gameserver.handler.AdminCommandHandler;
 import com.l2jbr.gameserver.handler.IAdminCommandHandler;
@@ -210,7 +210,7 @@ public final class RequestBypassToServer extends L2GameClientPacket
 		{
 			L2NpcInstance temp = (L2NpcInstance) obj;
 			temp.setTarget(activeChar);
-			temp.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new L2CharPosition(activeChar.getX(), activeChar.getY(), activeChar.getZ(), 0));
+			temp.getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, new L2CharPosition(activeChar.getX(), activeChar.getY(), activeChar.getZ(), 0));
 			// temp.moveTo(player.getX(),player.getY(), player.getZ(), 0 );
 		}
 		

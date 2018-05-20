@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.clientpackets;
 
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PetInstance;
@@ -63,7 +63,7 @@ public final class RequestPetGetItem extends L2GameClientPacket
 			sendPacket(new ActionFailed());
 			return;
 		}
-		pet.getAI().setIntention(CtrlIntention.AI_INTENTION_PICK_UP, item);
+		pet.getAI().setIntention(Intention.AI_INTENTION_PICK_UP, item);
 	}
 	
 	@Override

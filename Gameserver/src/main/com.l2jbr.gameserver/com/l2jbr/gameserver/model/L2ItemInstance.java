@@ -21,7 +21,7 @@ package com.l2jbr.gameserver.model;
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.ThreadPoolManager;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.instancemanager.ItemsOnGroundManager;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
@@ -604,13 +604,13 @@ public final class L2ItemInstance extends L2Object
 			}
 			
 			player.setTarget(this);
-			player.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+			player.getAI().setIntention(Intention.AI_INTENTION_IDLE);
 			// Send a Server->Client ActionFailed to the L2PcInstance in order to avoid that the client wait another packet
 			player.sendPacket(new ActionFailed());
 		}
 		else
 		{
-			player.getAI().setIntention(CtrlIntention.AI_INTENTION_PICK_UP, this);
+			player.getAI().setIntention(Intention.AI_INTENTION_PICK_UP, this);
 		}
 	}
 	

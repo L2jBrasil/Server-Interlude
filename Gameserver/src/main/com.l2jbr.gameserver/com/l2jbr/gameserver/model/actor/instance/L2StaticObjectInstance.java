@@ -14,7 +14,7 @@
  */
 package com.l2jbr.gameserver.model.actor.instance;
 
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.cache.HtmCache;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Object;
@@ -124,7 +124,7 @@ public class L2StaticObjectInstance extends L2Object
 			if (!player.isInsideRadius(this, INTERACTION_DISTANCE, false, false))
 			{
 				// Notify the L2PcInstance AI with AI_INTENTION_INTERACT
-				player.getAI().setIntention(CtrlIntention.AI_INTENTION_INTERACT, this);
+				player.getAI().setIntention(Intention.AI_INTENTION_INTERACT, this);
 				
 				// Send a Server->Client packet ActionFailed (target is out of interaction range) to the L2PcInstance player
 				player.sendPacket(new ActionFailed());

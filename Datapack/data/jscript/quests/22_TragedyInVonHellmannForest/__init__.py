@@ -4,7 +4,7 @@ from com.l2jbr.gameserver.model.quest import State
 from com.l2jbr.gameserver.model.quest import QuestState
 from com.l2jbr.gameserver.model.quest.jython import QuestJython as JQuest
 from com.l2jbr.gameserver.serverpackets import CreatureSay
-from com.l2jbr.gameserver.ai import CtrlIntention
+from com.l2jbr.gameserver.ai import Intention
 
 qn = "22_TragedyInVonHellmannForest"
 
@@ -120,7 +120,7 @@ class Quest (JQuest) :
            st.startQuestTimer("Soul of Well 1",90000,soul)
            st.startQuestTimer("Soul of Well Despawn",120000,soul)
            soul.addDamageHate(player,0,99999)
-           soul.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK,player,None)
+           soul.getAI().setIntention(Intention.AI_INTENTION_ATTACK,player,None)
        else :
            htmltext = "31527-03.htm"
    elif event == "31328-13.htm" :

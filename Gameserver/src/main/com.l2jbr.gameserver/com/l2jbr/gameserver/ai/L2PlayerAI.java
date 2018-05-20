@@ -29,20 +29,19 @@ import com.l2jbr.gameserver.model.actor.knownlist.ObjectKnownList.KnownListAsync
 import java.util.EmptyStackException;
 import java.util.Stack;
 
-import static com.l2jbr.gameserver.ai.CtrlIntention.*;
+import static com.l2jbr.gameserver.ai.Intention.*;
 
-
-public class L2PlayerAI extends L2CharacterAI
+public class L2PlayerAI extends L2CharacterAI<L2PcInstance.AIAccessor>
 {
 	
 	private boolean _thinking; // to prevent recursive thinking
 	
 	class IntentionCommand
 	{
-		protected CtrlIntention _crtlIntention;
+		protected Intention _crtlIntention;
 		protected Object _arg0, _arg1;
 		
-		protected IntentionCommand(CtrlIntention pIntention, Object pArg0, Object pArg1)
+		protected IntentionCommand(Intention pIntention, Object pArg0, Object pArg1)
 		{
 			_crtlIntention = pIntention;
 			_arg0 = pArg0;
@@ -65,7 +64,7 @@ public class L2PlayerAI extends L2CharacterAI
 	 * @param arg1 The second parameter of the Intention
 	 */
 	@Override
-	synchronized void changeIntention(CtrlIntention intention, Object arg0, Object arg1)
+	synchronized void changeIntention(Intention intention, Object arg0, Object arg1)
 	{
 		/*
 		 * if (Config.DEBUG) _log.warn("L2PlayerAI: changeIntention -> " + intention + " " + arg0 + " " + arg1);

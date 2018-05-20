@@ -19,7 +19,7 @@
 package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.datatables.CharTemplateTable;
 import com.l2jbr.gameserver.model.base.ClassId;
 import com.l2jbr.gameserver.model.base.ClassLevel;
@@ -97,7 +97,7 @@ public final class L2ClassMasterInstance extends L2FolkInstance {
             player.sendPacket(new ValidateLocation(this));
         } else {
             if (!canInteract(player)) {
-                player.getAI().setIntention(CtrlIntention.AI_INTENTION_INTERACT, this);
+                player.getAI().setIntention(Intention.AI_INTENTION_INTERACT, this);
                 return;
             }
 

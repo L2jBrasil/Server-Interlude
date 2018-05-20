@@ -18,8 +18,8 @@
  */
 package com.l2jbr.gameserver.handler.skillhandlers;
 
-import com.l2jbr.gameserver.ai.CtrlEvent;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Event;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.handler.ISkillHandler;
 import com.l2jbr.gameserver.instancemanager.DuelManager;
 import com.l2jbr.gameserver.model.*;
@@ -224,13 +224,13 @@ public class Continuous implements ISkillHandler
 			{
 				if (target instanceof L2Attackable)
 				{
-					target.getAI().notifyEvent(CtrlEvent.EVT_AGGRESSION, activeChar, (int) skill.getPower());
+					target.getAI().notifyEvent(Event.EVT_AGGRESSION, activeChar, (int) skill.getPower());
 				}
 				else if (target instanceof L2PlayableInstance)
 				{
 					if (target.getTarget() == activeChar)
 					{
-						target.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, activeChar);
+						target.getAI().setIntention(Intention.AI_INTENTION_ATTACK, activeChar);
 					}
 					else
 					{

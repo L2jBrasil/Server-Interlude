@@ -19,7 +19,7 @@
 package com.l2jbr.gameserver.model.entity;
 
 import com.l2jbr.gameserver.ThreadPoolManager;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.instancemanager.DuelManager;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Effect;
@@ -257,22 +257,22 @@ public class Duel {
         if (_partyDuel) {
             for (L2PcInstance temp : _playerA.getParty().getPartyMembers()) {
                 temp.abortCast();
-                temp.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+                temp.getAI().setIntention(Intention.AI_INTENTION_ACTIVE);
                 temp.setTarget(null);
                 temp.sendPacket(af);
             }
             for (L2PcInstance temp : _playerB.getParty().getPartyMembers()) {
                 temp.abortCast();
-                temp.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+                temp.getAI().setIntention(Intention.AI_INTENTION_ACTIVE);
                 temp.setTarget(null);
                 temp.sendPacket(af);
             }
         } else {
             _playerA.abortCast();
             _playerB.abortCast();
-            _playerA.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+            _playerA.getAI().setIntention(Intention.AI_INTENTION_ACTIVE);
             _playerA.setTarget(null);
-            _playerB.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+            _playerB.getAI().setIntention(Intention.AI_INTENTION_ACTIVE);
             _playerB.setTarget(null);
             _playerA.sendPacket(af);
             _playerB.sendPacket(af);

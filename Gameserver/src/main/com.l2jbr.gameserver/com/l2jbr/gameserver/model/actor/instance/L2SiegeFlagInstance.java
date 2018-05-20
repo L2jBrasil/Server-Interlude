@@ -17,7 +17,7 @@
  */
 package com.l2jbr.gameserver.model.actor.instance;
 
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.instancemanager.SiegeManager;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2SiegeClan;
@@ -124,7 +124,7 @@ public class L2SiegeFlagInstance extends L2NpcInstance
 		{
 			if (isAutoAttackable(player) && (Math.abs(player.getZ() - getZ()) < 100))
 			{
-				player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, this);
+				player.getAI().setIntention(Intention.AI_INTENTION_ATTACK, this);
 			}
 			else
 			{

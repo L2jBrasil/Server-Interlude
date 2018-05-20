@@ -822,13 +822,13 @@ public class L2Attackable extends L2NpcInstance {
         ai._damage += damage;
 
         // Set the intention to the L2Attackable to AI_INTENTION_ACTIVE
-        if ((aggro > 0) && (getAI().getIntention() == CtrlIntention.AI_INTENTION_IDLE)) {
-            getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+        if ((aggro > 0) && (getAI().getIntention() == Intention.AI_INTENTION_IDLE)) {
+            getAI().setIntention(Intention.AI_INTENTION_ACTIVE);
         }
 
         // Notify the L2Attackable AI with EVT_ATTACKED
         if (damage > 0) {
-            getAI().notifyEvent(CtrlEvent.EVT_ATTACKED, attacker);
+            getAI().notifyEvent(Event.EVT_ATTACKED, attacker);
 
             try {
                 if ((attacker instanceof L2PcInstance) || (attacker instanceof L2Summon)) {
@@ -851,7 +851,7 @@ public class L2Attackable extends L2NpcInstance {
             // TODO: this just prevents error until siege guards are handled properly
             stopHating(target);
             setTarget(null);
-            getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE, null, null);
+            getAI().setIntention(Intention.AI_INTENTION_IDLE, null, null);
             return;
         }
         if (target == null) // whole aggrolist
@@ -875,7 +875,7 @@ public class L2Attackable extends L2NpcInstance {
             if (amount <= 0) {
                 ((L2AttackableAI) getAI()).setGlobalAggro(-25);
                 clearAggroList();
-                getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+                getAI().setIntention(Intention.AI_INTENTION_ACTIVE);
                 setWalking();
             }
             return;
@@ -890,7 +890,7 @@ public class L2Attackable extends L2NpcInstance {
             if (getMostHated() == null) {
                 ((L2AttackableAI) getAI()).setGlobalAggro(-25);
                 clearAggroList();
-                getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+                getAI().setIntention(Intention.AI_INTENTION_ACTIVE);
                 setWalking();
             }
         }

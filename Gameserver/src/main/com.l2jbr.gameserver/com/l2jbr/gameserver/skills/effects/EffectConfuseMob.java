@@ -19,7 +19,7 @@
 package com.l2jbr.gameserver.skills.effects;
 
 import com.l2jbr.commons.util.Rnd;
-import com.l2jbr.gameserver.ai.CtrlIntention;
+import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.model.L2Attackable;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Effect;
@@ -88,7 +88,7 @@ final class EffectConfuseMob extends L2Effect {
         // Attacking the target
         // getEffected().setTarget(target);
         getEffected().setTarget(target);
-        getEffected().getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
+        getEffected().getAI().setIntention(Intention.AI_INTENTION_ATTACK, target);
 
         return true;
     }
