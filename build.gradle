@@ -31,6 +31,7 @@ subprojects {
                 options.compilerArgs = [
                     '--module-path', classpath.asPath,
                 ]
+                options.compilerArgs << "-Xlint:unchecked"
                 classpath = files()
             }
         }

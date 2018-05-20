@@ -25,6 +25,8 @@ public class Account extends Entity<String> {
         this.password = password;
         this.lastActive = lastActive;
         this.lastIP = lastIP;
+        this.accessLevel = 0;
+        this.lastServer = 1;
     }
 
     @Override
