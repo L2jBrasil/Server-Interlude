@@ -4354,7 +4354,7 @@ public class SevenSignsFestival implements SpawnListener {
                     y -= Rnd.nextInt(FESTIVAL_MAX_OFFSET_Y);
                 }
 
-                L2CharPosition moveTo = new L2CharPosition(x, y, _startLocation._z, Rnd.nextInt(65536));
+                L2Position moveTo = new L2Position(x, y, _startLocation._z, Rnd.nextInt(65536));
 
                 festivalMob.setRunning();
                 festivalMob.getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, moveTo);

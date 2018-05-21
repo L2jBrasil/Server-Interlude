@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
-import com.l2jbr.gameserver.model.L2CharPosition;
+import com.l2jbr.gameserver.model.L2Position;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
@@ -30,15 +30,15 @@ public class MoveToLocationInVehicle extends L2GameServerPacket
 {
 	private int _charObjId;
 	private int _boatId;
-	private L2CharPosition _destination;
-	private L2CharPosition _origin;
+	private L2Position _destination;
+	private L2Position _origin;
 	
 	/**
 	 * @param actor
 	 * @param destination
 	 * @param origin
 	 */
-	public MoveToLocationInVehicle(L2Character actor, L2CharPosition destination, L2CharPosition origin)
+	public MoveToLocationInVehicle(L2Character actor, L2Position destination, L2Position origin)
 	{
 		if (!(actor instanceof L2PcInstance))
 		{

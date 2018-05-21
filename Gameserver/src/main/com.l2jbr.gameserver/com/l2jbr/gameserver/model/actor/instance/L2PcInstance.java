@@ -131,18 +131,9 @@ public final class L2PcInstance extends L2PlayableInstance {
      * The Class AIAccessor.
      */
     public class AIAccessor extends L2Character.AIAccessor {
-        /**
-         * Instantiates a new AI accessor.
-         */
-        protected AIAccessor() {
-        }
 
-        /**
-         * Gets the player.
-         *
-         * @return the player
-         */
-        public L2PcInstance getPlayer() {
+        @Override
+        public L2PcInstance getActor() {
             return L2PcInstance.this;
         }
 
@@ -169,7 +160,7 @@ public final class L2PcInstance extends L2PlayableInstance {
             super.doAttack(target);
 
             // cancel the recent fake-death protection instantly if the player attacks or casts spells
-            getPlayer().setRecentFakeDeath(false);
+            setRecentFakeDeath(false);
             for (L2CubicInstance cubic : getCubics().values()) {
                 if (cubic.getId() != L2CubicInstance.LIFE_CUBIC) {
                     cubic.doAction(target);
@@ -182,7 +173,7 @@ public final class L2PcInstance extends L2PlayableInstance {
             super.doCast(skill);
 
             // cancel the recent fake-death protection instantly if the player attacks or casts spells
-            getPlayer().setRecentFakeDeath(false);
+            setRecentFakeDeath(false);
             if (skill == null) {
                 return;
             }
@@ -1450,7 +1441,7 @@ public final class L2PcInstance extends L2PlayableInstance {
      * @return the aI
      */
     @Override
-    public L2CharacterAI getAI() {
+    public L2CharacterAI<? extends L2Character.AIAccessor> getAI() {
         if (_ai == null) {
             synchronized (this) {
                 if (_ai == null) {
@@ -1493,7 +1484,7 @@ public final class L2PcInstance extends L2PlayableInstance {
 
         int z = getZ();
 
-        L2CharPosition pos = new L2CharPosition(x, y, z, 0);
+        L2Position pos = new L2Position(x, y, z, 0);
 
         // Set the AI Intention to AI_INTENTION_MOVE_TO
         getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, pos);

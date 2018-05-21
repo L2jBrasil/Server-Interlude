@@ -19,10 +19,7 @@
 package com.l2jbr.gameserver.ai;
 
 import com.l2jbr.gameserver.ai.accessor.AIAccessor;
-import com.l2jbr.gameserver.model.L2CharPosition;
-import com.l2jbr.gameserver.model.L2Character;
-import com.l2jbr.gameserver.model.L2Object;
-import com.l2jbr.gameserver.model.L2Skill;
+import com.l2jbr.gameserver.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,132 +32,58 @@ abstract class AbstractAI<T extends AIAccessor> implements AI<T> {
 	
 	protected static final Logger _log = LoggerFactory.getLogger(AbstractAI.class.getName());
 
-	/** The character that this AI manages */
-	protected final L2Character _actor;
-	
-	/** An accessor for private methods of the actor */
-	protected final L2Character.AIAccessor _accessor;
-	
-	/** Current long-term intention */
-	protected Intention _intention = AI_INTENTION_IDLE;
-	/** Current long-term intention parameter */
-	protected Object _intentionArg0 = null;
-	/** Current long-term intention parameter */
-	protected Object _intentionArg1 = null;
+	private final T accessor;
 
-	/**
-	 * Constructor of AbstractAI.<BR>
-	 * <BR>
-	 * @param accessor The AI accessor of the L2Character
-	 */
-	protected AbstractAI(L2Character.AIAccessor accessor)
-	{
-		_accessor = accessor;
+	Intention _intention = AI_INTENTION_IDLE;
+	Object _intentionArg0 = null;
+	Object _intentionArg1 = null;
 
-		// Get the L2Character managed by this Accessor AI
-		_actor = accessor.getActor();
+
+	protected AbstractAI(T accessor) {
+		this.accessor = accessor;
 	}
-
-    public L2Character getActor() {
-        return _actor;
-    }
 
     @Override
     public T getAccessor() {
-        return null;
+        return accessor;
     }
 
-    /**
-	 * Return the current Intention.<BR>
-	 * <BR>
-	 */
 	@Override
 	public Intention getIntention()
 	{
 		return _intention;
 	}
-	
 
-	
-	/**
-	 * Set the Intention of this AbstractAI.<BR>
-	 * <BR>
-	 * <FONT COLOR=#FF0000><B> <U>Caution</U> : This method is USED by AI classes</B></FONT><BR>
-	 * <BR>
-	 * <B><U> Overriden in </U> : </B><BR>
-	 * <B>L2AttackableAI</B> : Create an AI Task executed every 1s (if necessary)<BR>
-	 * <B>L2PlayerAI</B> : Stores the current AI intention parameters to later restore it if necessary<BR>
-	 * <BR>
-	 * @param intention The new Intention to set to the AI
-	 * @param arg0 The first parameter of the Intention
-	 * @param arg1 The second parameter of the Intention
-	 */
-	synchronized void changeIntention(Intention intention, Object arg0, Object arg1)
-	{
-		/*
-		 * if (Config.DEBUG) _log.warn("AbstractAI: changeIntention -> " + intention + " " + arg0 + " " + arg1);
-		 */
-		
+	synchronized void changeIntention(Intention intention, Object arg0, Object arg1) {
 		_intention = intention;
 		_intentionArg0 = arg0;
 		_intentionArg1 = arg1;
 	}
-	
-	/**
-	 * Launch the L2CharacterAI onIntention method corresponding to the new Intention.<BR>
-	 * <BR>
-	 * <FONT COLOR=#FF0000><B> <U>Caution</U> : Stop the FOLLOW mode if necessary</B></FONT><BR>
-	 * <BR>
-	 * @param intention The new Intention to set to the AI
-	 */
+
 	@Override
 	public final void setIntention(Intention intention)
 	{
 		setIntention(intention, null, null);
 	}
-	
-	/**
-	 * Launch the L2CharacterAI onIntention method corresponding to the new Intention.<BR>
-	 * <BR>
-	 * <FONT COLOR=#FF0000><B> <U>Caution</U> : Stop the FOLLOW mode if necessary</B></FONT><BR>
-	 * <BR>
-	 * @param intention The new Intention to set to the AI
-	 * @param arg0 The first parameter of the Intention (optional target)
-	 */
+
 	@Override
 	public final void setIntention(Intention intention, Object arg0)
 	{
 		setIntention(intention, arg0, null);
 	}
-	
-	/**
-	 * Launch the L2CharacterAI onIntention method corresponding to the new Intention.<BR>
-	 * <BR>
-	 * <FONT COLOR=#FF0000><B> <U>Caution</U> : Stop the FOLLOW mode if necessary</B></FONT><BR>
-	 * <BR>
-	 * @param intention The new Intention to set to the AI
-	 * @param arg0 The first parameter of the Intention (optional target)
-	 * @param arg1 The second parameter of the Intention (optional target)
-	 */
+
 	@Override
-	public final void setIntention(Intention intention, Object arg0, Object arg1)
-	{
-		if (!_actor.isVisible() || !_actor.hasAI())
-		{
+	public final void setIntention(Intention intention, Object arg0, Object arg1) {
+		if (!accessor.getActor().isVisible()) {
 			return;
 		}
-		
-		/*
-		 * if (Config.DEBUG) _log.warn("AbstractAI: setIntention -> " + intention + " " + arg0 + " " + arg1);
-		 */
-		
-		// TODO Stop the follow mode if necessary. move conditional to onIntentioniFollow and onIntentionAttack
+
+		// TODO Stop the follow mode if necessary. move this to movable AI
 		/*if ((intention != AI_INTENTION_FOLLOW) && (intention != AI_INTENTION_ATTACK))
 		{
 			stopFollow();
 		}*/
-		
-		// Launch the onIntention method of the L2CharacterAI corresponding to the new Intention
+
 		switch (intention)
 		{
 			case AI_INTENTION_IDLE:
@@ -179,10 +102,10 @@ abstract class AbstractAI<T extends AIAccessor> implements AI<T> {
 				onIntentionCast((L2Skill) arg0, (L2Object) arg1);
 				break;
 			case AI_INTENTION_MOVE_TO:
-				onIntentionMoveTo((L2CharPosition) arg0);
+				onIntentionMoveTo((L2Position) arg0);
 				break;
 			case AI_INTENTION_MOVE_TO_IN_A_BOAT:
-				onIntentionMoveToInABoat((L2CharPosition) arg0, (L2CharPosition) arg1);
+				onIntentionMoveToInABoat((L2Position) arg0, (L2Position) arg1);
 				break;
 			case AI_INTENTION_FOLLOW:
 				onIntentionFollow((L2Character) arg0);
@@ -233,16 +156,10 @@ abstract class AbstractAI<T extends AIAccessor> implements AI<T> {
 	 * @param arg1 The second parameter of the Event (optional target)
 	 */
 	@Override
-	public final void notifyEvent(Event evt, Object arg0, Object arg1)
-	{
-		if (!_actor.isVisible() || !_actor.hasAI())
-		{
-			return;
-		}
-		
-		/*
-		 * if (Config.DEBUG) _log.warn("AbstractAI: notifyEvent -> " + evt + " " + arg0 + " " + arg1);
-		 */
+	public final void notifyEvent(Event evt, Object arg0, Object arg1) {
+	    if(!accessor.getActor().isVisible()) {
+	        return;
+        }
 		
 		switch (evt)
 		{
@@ -283,7 +200,7 @@ abstract class AbstractAI<T extends AIAccessor> implements AI<T> {
 				onEvtArrivedRevalidate();
 				break;
 			case EVT_ARRIVED_BLOCKED:
-				onEvtArrivedBlocked((L2CharPosition) arg0);
+				onEvtArrivedBlocked((L2Position) arg0);
 				break;
 			case EVT_FORGET_OBJECT:
 				onEvtForgetObject((L2Object) arg0);
@@ -313,9 +230,9 @@ abstract class AbstractAI<T extends AIAccessor> implements AI<T> {
 	
 	protected abstract void onIntentionCast(L2Skill skill, L2Object target);
 	
-	protected abstract void onIntentionMoveTo(L2CharPosition destination);
+	protected abstract void onIntentionMoveTo(L2Position destination);
 	
-	protected abstract void onIntentionMoveToInABoat(L2CharPosition destination, L2CharPosition origin);
+	protected abstract void onIntentionMoveToInABoat(L2Position destination, L2Position origin);
 	
 	protected abstract void onIntentionFollow(L2Character target);
 	
@@ -347,7 +264,7 @@ abstract class AbstractAI<T extends AIAccessor> implements AI<T> {
 	
 	protected abstract void onEvtArrivedRevalidate();
 	
-	protected abstract void onEvtArrivedBlocked(L2CharPosition blocked_at_pos);
+	protected abstract void onEvtArrivedBlocked(L2Position blocked_at_pos);
 	
 	protected abstract void onEvtForgetObject(L2Object object);
 	

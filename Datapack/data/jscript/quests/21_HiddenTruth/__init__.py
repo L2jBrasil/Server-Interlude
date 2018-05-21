@@ -6,7 +6,7 @@ from com.l2jbr.gameserver.ai import Intention
 from com.l2jbr.gameserver.model.quest import State
 from com.l2jbr.gameserver.model.quest import QuestState
 from com.l2jbr.gameserver.model.quest.jython import QuestJython as JQuest
-from com.l2jbr.gameserver.model import L2CharPosition
+from com.l2jbr.gameserver.model import L2Position
 
 qn = "21_HiddenTruth"
 
@@ -77,19 +77,19 @@ class Quest (JQuest) :
             loc = int(event)
             x,y,z,heading=ROUTES[loc]
             if event == "1" :
-                npc.getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, L2CharPosition(x,y,z,heading))
+                npc.getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, L2Position(x,y,z,heading))
                 self.startQuestTimer("2",5000,npc,player)
             elif event == "2" :
-                npc.getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, L2CharPosition(x,y,z,heading))
+                npc.getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, L2Position(x,y,z,heading))
                 self.startQuestTimer("3",12000,npc,player)
             elif event == "3" :
-                npc.getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, L2CharPosition(x,y,z,heading))
+                npc.getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, L2Position(x,y,z,heading))
                 self.startQuestTimer("4",15000,npc,player)
             elif event == "4" :
-                npc.getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, L2CharPosition(x,y,z,heading))
+                npc.getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, L2Position(x,y,z,heading))
                 self.startQuestTimer("5",5000,npc,player)
             elif event == "5" :
-                npc.getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, L2CharPosition(x,y,z,heading))
+                npc.getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, L2Position(x,y,z,heading))
         return htmltext
 
  def onTalk (self,npc,player):

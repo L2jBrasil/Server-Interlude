@@ -18,17 +18,13 @@
  */
 package com.l2jbr.gameserver.ai;
 
-import com.l2jbr.gameserver.model.L2Character.AIAccessor;
 import com.l2jbr.gameserver.model.L2Summon;
-import com.l2jbr.gameserver.model.actor.instance.L2SummonInstance;
+import com.l2jbr.gameserver.model.L2Summon.AIAccessor;
 
 import static com.l2jbr.gameserver.ai.Intention.*;
 
-
-public class L2SummonAI extends L2CharacterAI<L2SummonInstance.AIAccessor>
-{
-	
-	private boolean _thinking; // to prevent recursive thinking
+public class L2SummonAI extends L2CharacterAI<AIAccessor> {
+	private boolean _thinking;
 	
 	public L2SummonAI(AIAccessor accessor)
 	{
@@ -36,127 +32,101 @@ public class L2SummonAI extends L2CharacterAI<L2SummonInstance.AIAccessor>
 	}
 	
 	@Override
-	protected void onIntentionIdle()
-	{
+	protected void onIntentionIdle() {
 		stopFollow();
 		onIntentionActive();
 	}
 	
 	@Override
-	protected void onIntentionActive()
-	{
-		L2Summon summon = (L2Summon) _actor;
-		if (summon.getFollowStatus())
-		{
+	protected void onIntentionActive() {
+		L2Summon summon = getActor();
+		if (summon.getFollowStatus()) {
 			setIntention(AI_INTENTION_FOLLOW, summon.getOwner());
-		}
-		else
-		{
+		} else {
 			super.onIntentionActive();
 		}
 	}
-	
-	private void thinkAttack()
-	{
-		if (checkTargetLostOrDead(getAttackTarget()))
-		{
+
+	private L2Summon getActor() {
+		return getAccessor().getActor();
+	}
+
+	private void thinkAttack() {
+		if (checkTargetLostOrDead(getAttackTarget())) {
 			setAttackTarget(null);
 			return;
 		}
-		if (maybeMoveToPawn(getAttackTarget(), _actor.getPhysicalAttackRange()))
-		{
+
+		if (maybeMoveToPawn(getAttackTarget(), getActor().getPhysicalAttackRange())) {
 			return;
 		}
 		clientStopMoving(null);
-		_accessor.doAttack(getAttackTarget());
-		return;
+		getAccessor().doAttack(getAttackTarget());
 	}
 	
-	private void thinkCast()
-	{
-		L2Summon summon = (L2Summon) _actor;
-		if (checkTargetLost(getCastTarget()))
-		{
+	private void thinkCast() {
+		L2Summon summon = getActor();
+		if (checkTargetLost(getCastTarget())) {
 			setCastTarget(null);
 			return;
 		}
-		if (maybeMoveToPawn(getCastTarget(), _actor.getMagicalAttackRange(_skill)))
-		{
+		if (maybeMoveToPawn(getCastTarget(), summon.getMagicalAttackRange(_skill))) {
 			return;
 		}
 		clientStopMoving(null);
 		summon.setFollowStatus(false);
 		setIntention(AI_INTENTION_IDLE);
-		_accessor.doCast(_skill);
-		return;
+		getAccessor().doCast(_skill);
 	}
 	
-	private void thinkPickUp()
-	{
-		if (_actor.isAllSkillsDisabled())
-		{
+	private void thinkPickUp() {
+		if (getActor().isAllSkillsDisabled()) {
 			return;
 		}
-		if (checkTargetLost(getTarget()))
-		{
+		if (checkTargetLost(getTarget())) {
 			return;
 		}
-		if (maybeMoveToPawn(getTarget(), 36))
-		{
+		if (maybeMoveToPawn(getTarget(), 36)) {
 			return;
 		}
 		setIntention(AI_INTENTION_IDLE);
-		((L2Summon.AIAccessor) _accessor).doPickupItem(getTarget());
-		return;
+		getAccessor().doPickupItem(getTarget());
 	}
 	
-	private void thinkInteract()
-	{
-		if (_actor.isAllSkillsDisabled())
-		{
+	private void thinkInteract() {
+		if (getActor().isAllSkillsDisabled()) {
 			return;
 		}
-		if (checkTargetLost(getTarget()))
-		{
+		if (checkTargetLost(getTarget())) {
 			return;
 		}
-		if (maybeMoveToPawn(getTarget(), 36))
-		{
+		if (maybeMoveToPawn(getTarget(), 36)) {
 			return;
 		}
 		setIntention(AI_INTENTION_IDLE);
-		return;
 	}
 	
 	@Override
-	protected void onEvtThink()
-	{
-		if (_thinking || _actor.isAllSkillsDisabled())
-		{
+	protected void onEvtThink() {
+		if (_thinking || getActor().isAllSkillsDisabled()) {
 			return;
 		}
 		_thinking = true;
-		try
-		{
-			if (getIntention() == AI_INTENTION_ATTACK)
-			{
+		try {
+			if (getIntention() == AI_INTENTION_ATTACK) {
 				thinkAttack();
 			}
-			else if (getIntention() == AI_INTENTION_CAST)
-			{
+			else if (getIntention() == AI_INTENTION_CAST) {
 				thinkCast();
 			}
-			else if (getIntention() == AI_INTENTION_PICK_UP)
-			{
+			else if (getIntention() == AI_INTENTION_PICK_UP) {
 				thinkPickUp();
 			}
-			else if (getIntention() == AI_INTENTION_INTERACT)
-			{
+			else if (getIntention() == AI_INTENTION_INTERACT) {
 				thinkInteract();
 			}
 		}
-		finally
-		{
+		finally {
 			_thinking = false;
 		}
 	}

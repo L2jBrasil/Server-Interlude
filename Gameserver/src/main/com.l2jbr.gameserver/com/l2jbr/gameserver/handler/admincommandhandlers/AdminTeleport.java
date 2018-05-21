@@ -116,7 +116,7 @@ public class AdminTeleport implements IAdminCommandHandler {
                 int y = Integer.parseInt(y1);
                 String z1 = st.nextToken();
                 int z = Integer.parseInt(z1);
-                L2CharPosition pos = new L2CharPosition(x, y, z, 0);
+                L2Position pos = new L2Position(x, y, z, 0);
                 activeChar.getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, pos);
             } catch (Exception e) {
                 if (Config.DEBUG) {

@@ -20,47 +20,31 @@ package com.l2jbr.gameserver.ai;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.datatables.NpcWalkerRoutesTable;
-import com.l2jbr.gameserver.model.L2CharPosition;
-import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2NpcWalkerNode;
+import com.l2jbr.gameserver.model.L2Position;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcWalkerInstance;
+import com.l2jbr.gameserver.model.actor.instance.L2NpcWalkerInstance.L2NpcWalkerAIAccessor;
 
 import java.util.List;
 
-
-public class L2NpcWalkerAI extends L2CharacterAI<L2NpcWalkerInstance.AIAccessor> implements Runnable {
+public class L2NpcWalkerAI extends L2CharacterAI<L2NpcWalkerAIAccessor> implements Runnable {
     private static final int DEFAULT_MOVE_DELAY = 0;
 
     private long _nextMoveTime;
 
     private boolean _walkingToNextPoint = false;
 
-    /**
-     * home points for xyz
-     */
     int _homeX, _homeY, _homeZ;
 
-    /**
-     * route of the current npc
-     */
-    private final List<L2NpcWalkerNode> _route = NpcWalkerRoutesTable.getInstance().getRouteForNpc(getActor().getNpcId());
+    private final List<L2NpcWalkerNode> _route;
 
-    /**
-     * current node
-     */
     private int _currentPos;
 
-    /**
-     * Constructor of L2CharacterAI.<BR>
-     * <BR>
-     *
-     * @param accessor The AI accessor of the L2Character
-     */
-    public L2NpcWalkerAI(L2Character.AIAccessor accessor) {
+    public L2NpcWalkerAI(L2NpcWalkerAIAccessor accessor) {
         super(accessor);
-        // Do we really need 2 minutes delay before start?
-        // no we dont... :)
+        _route = NpcWalkerRoutesTable.getInstance().getRouteForNpc(accessor.getActor().getNpcId());
         ThreadPoolManager.getInstance().scheduleAiAtFixedRate(this, 0, 1000);
+
     }
 
     @Override
@@ -84,13 +68,8 @@ public class L2NpcWalkerAI extends L2CharacterAI<L2NpcWalkerInstance.AIAccessor>
         }
     }
 
-    /**
-     * If npc can't walk to it's target then just teleport to next point
-     *
-     * @param blocked_at_pos ignoring it
-     */
     @Override
-    protected void onEvtArrivedBlocked(L2CharPosition blocked_at_pos) {
+    protected void onEvtArrivedBlocked(L2Position blocked_at_pos) {
         _log.warn("NpcWalker ID: " + getActor().getNpcId() + ": Blocked at rote position [" + _currentPos + "], coords: " + blocked_at_pos.x + ", " + blocked_at_pos.y + ", " + blocked_at_pos.z + ". Teleporting to next point");
 
         int destinationX = _route.get(_currentPos).getMoveX();
@@ -116,10 +95,8 @@ public class L2NpcWalkerAI extends L2CharacterAI<L2NpcWalkerInstance.AIAccessor>
                 }
             }
 
-            // time in millis
             long delay = _route.get(_currentPos).getDelay() * 1000;
 
-            // sleeps between each move
             if (delay <= 0) {
                 delay = DEFAULT_MOVE_DELAY;
                 if (Config.DEVELOPER) {
@@ -141,29 +118,19 @@ public class L2NpcWalkerAI extends L2CharacterAI<L2NpcWalkerInstance.AIAccessor>
 
         boolean moveType = _route.get(_currentPos).getRunning();
 
-        /**
-         * false - walking true - Running
-         */
         if (moveType) {
             getActor().setRunning();
         } else {
             getActor().setWalking();
         }
 
-        // now we define destination
         int destinationX = _route.get(_currentPos).getMoveX();
         int destinationY = _route.get(_currentPos).getMoveY();
         int destinationZ = _route.get(_currentPos).getMoveZ();
 
-        // notify AI of MOVE_TO
         setWalkingToNextPoint(true);
 
-        setIntention(Intention.AI_INTENTION_MOVE_TO, new L2CharPosition(destinationX, destinationY, destinationZ, 0));
-    }
-
-    @Override
-    public L2NpcWalkerInstance getActor() {
-        return (L2NpcWalkerInstance) super.getActor();
+        setIntention(Intention.AI_INTENTION_MOVE_TO, new L2Position(destinationX, destinationY, destinationZ, 0));
     }
 
     public int getHomeX() {
@@ -196,5 +163,9 @@ public class L2NpcWalkerAI extends L2CharacterAI<L2NpcWalkerInstance.AIAccessor>
 
     public void setWalkingToNextPoint(boolean value) {
         _walkingToNextPoint = value;
+    }
+
+    private L2NpcWalkerInstance getActor() {
+        return getAccessor().getActor();
     }
 }

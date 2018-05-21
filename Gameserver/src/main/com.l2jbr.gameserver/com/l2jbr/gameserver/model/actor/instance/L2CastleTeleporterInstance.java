@@ -20,7 +20,7 @@ package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.datatables.TeleportLocationTable;
-import com.l2jbr.gameserver.model.L2CharPosition;
+import com.l2jbr.gameserver.model.L2Position;
 import com.l2jbr.gameserver.model.L2TeleportLocation;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
@@ -158,7 +158,7 @@ public final class L2CastleTeleporterInstance extends L2FolkInstance
 				
 				// teleport
 				player.teleToLocation(list.getLocX(), list.getLocY(), list.getLocZ(), true);
-				player.stopMove(new L2CharPosition(list.getLocX(), list.getLocY(), list.getLocZ(), player.getHeading()));
+				player.stopMove(new L2Position(list.getLocX(), list.getLocY(), list.getLocZ(), player.getHeading()));
 			}
 		}
 		else

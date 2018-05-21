@@ -337,11 +337,11 @@ public class L2Attackable extends L2NpcInstance {
      * Return the L2Character AI of the L2Attackable and if its null create a new one.
      */
     @Override
-    public L2CharacterAI getAI() {
+    public L2CharacterAI<? extends L2Character.AIAccessor> getAI() {
         if (_ai == null) {
             synchronized (this) {
                 if (_ai == null) {
-                    _ai = new L2AttackableAI(new AIAccessor());
+                    _ai = new L2AttackableAI<>(new AIAccessor());
                 }
             }
         }
@@ -2295,6 +2295,13 @@ public class L2Attackable extends L2NpcInstance {
                     }
                 }
             }
+        }
+    }
+
+    public class AIAccessor extends L2Character.AIAccessor {
+        @Override
+        public L2Attackable getActor() {
+            return L2Attackable.this;
         }
     }
 }

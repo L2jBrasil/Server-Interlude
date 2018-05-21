@@ -24,7 +24,7 @@ import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.ai.L2CharacterAI;
 import com.l2jbr.gameserver.ai.L2SiegeGuardAI;
 import com.l2jbr.gameserver.model.L2Attackable;
-import com.l2jbr.gameserver.model.L2CharPosition;
+import com.l2jbr.gameserver.model.L2Position;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.actor.knownlist.SiegeGuardKnownList;
 import com.l2jbr.gameserver.serverpackets.*;
@@ -62,7 +62,7 @@ public final class L2SiegeGuardInstance extends L2Attackable
 	}
 	
 	@Override
-	public L2CharacterAI getAI()
+	public L2CharacterAI<? extends L2Character.AIAccessor> getAI()
 	{
 		synchronized (this)
 		{
@@ -127,7 +127,7 @@ public final class L2SiegeGuardInstance extends L2Attackable
 			
 			if (hasAI())
 			{
-				getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, new L2CharPosition(_homeX, _homeY, _homeZ, 0));
+				getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, new L2Position(_homeX, _homeY, _homeZ, 0));
 			}
 		}
 	}
@@ -212,4 +212,11 @@ public final class L2SiegeGuardInstance extends L2Attackable
 			super.addDamageHate(attacker, damage, aggro);
 		}
 	}
+
+	public class AIAccessor extends L2Character.AIAccessor {
+        @Override
+        public L2SiegeGuardInstance getActor() {
+            return L2SiegeGuardInstance.this;
+        }
+    }
 }

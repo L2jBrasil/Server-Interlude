@@ -60,14 +60,13 @@ public abstract class L2Summon extends L2PlayableInstance
 	private final int _spiritShotsPerHit = 1;
 	protected boolean _showSummonAnimation;
 	
-	public class AIAccessor extends L2Character.AIAccessor
-	{
+	public class AIAccessor extends L2Character.AIAccessor {
 		protected AIAccessor()
 		{
 		}
-		
-		public L2Summon getSummon()
-		{
+
+		@Override
+		public L2Summon getActor() {
 			return L2Summon.this;
 		}
 		
@@ -127,7 +126,7 @@ public abstract class L2Summon extends L2PlayableInstance
 	}
 	
 	@Override
-	public L2CharacterAI getAI()
+	public L2CharacterAI<? extends L2Character.AIAccessor> getAI()
 	{
 		if (_ai == null)
 		{

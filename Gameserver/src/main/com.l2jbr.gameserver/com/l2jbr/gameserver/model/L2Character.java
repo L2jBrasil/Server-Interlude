@@ -1674,11 +1674,11 @@ public abstract class L2Character extends L2Object {
      *
      * @return the aI
      */
-    public L2CharacterAI getAI() {
+    public L2CharacterAI<? extends AIAccessor> getAI() {
         if (_ai == null) {
             synchronized (this) {
                 if (_ai == null) {
-                    _ai = new L2CharacterAI(new AIAccessor());
+                    _ai = new L2CharacterAI<>(new AIAccessor());
                 }
             }
         }
@@ -1691,8 +1691,8 @@ public abstract class L2Character extends L2Object {
      *
      * @param newAI the new aI
      */
-    public void setAI(L2CharacterAI newAI) {
-        L2CharacterAI oldAI = getAI();
+    public <T extends L2CharacterAI<? extends AIAccessor>> void setAI(T newAI) {
+        L2CharacterAI<? extends AIAccessor> oldAI = getAI();
         if ((oldAI != null) && (oldAI != newAI) && (oldAI instanceof L2AttackableAI)) {
             ((L2AttackableAI) oldAI).stopAITask();
         }
@@ -3745,7 +3745,7 @@ public abstract class L2Character extends L2Object {
          *
          * @param pos the pos
          */
-        public void stopMove(L2CharPosition pos) {
+        public void stopMove(L2Position pos) {
             L2Character.this.stopMove(pos);
         }
 
@@ -3962,7 +3962,7 @@ public abstract class L2Character extends L2Object {
     /**
      * The _ai.
      */
-    protected L2CharacterAI _ai;
+    protected L2CharacterAI<? extends  AIAccessor> _ai;
 
     /**
      * Future Skill Cast.
@@ -4702,7 +4702,7 @@ public abstract class L2Character extends L2Object {
      *
      * @param pos the pos
      */
-    public void stopMove(L2CharPosition pos) {
+    public void stopMove(L2Position pos) {
         stopMove(pos, true);
     }
 
@@ -4712,7 +4712,7 @@ public abstract class L2Character extends L2Object {
      * @param pos                the pos
      * @param updateKnownObjects the update known objects
      */
-    public void stopMove(L2CharPosition pos, boolean updateKnownObjects) {
+    public void stopMove(L2Position pos, boolean updateKnownObjects) {
         // Delete movement data of the L2Character
         _move = null;
 
@@ -4720,7 +4720,7 @@ public abstract class L2Character extends L2Object {
         // getAI().setIntention(Intention.AI_INTENTION_IDLE);
 
         // Set the current position (x,y,z), its current L2WorldRegion if necessary and its heading
-        // All data are contained in a L2CharPosition object
+        // All data are contained in a L2Position object
         if (pos != null) {
             getPosition().setXYZ(pos.x, pos.y, pos.z);
             setHeading(pos.heading);
@@ -4821,7 +4821,7 @@ public abstract class L2Character extends L2Object {
      * <BR>
      * <B><U> Example of use </U> :</B><BR>
      * <BR>
-     * <li>AI : onIntentionMoveTo(L2CharPosition), onIntentionPickUp(L2Object), onIntentionInteract(L2Object)</li> <li>FollowTask</li><BR>
+     * <li>AI : onIntentionMoveTo(L2Position), onIntentionPickUp(L2Object), onIntentionInteract(L2Object)</li> <li>FollowTask</li><BR>
      * <BR>
      *
      * @param x      The X position of the destination

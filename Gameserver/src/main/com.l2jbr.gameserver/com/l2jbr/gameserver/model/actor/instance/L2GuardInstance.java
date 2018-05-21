@@ -139,7 +139,7 @@ public final class L2GuardInstance extends L2Attackable
 			
 			clearAggroList();
 			
-			getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, new L2CharPosition(_homeX, _homeY, _homeZ, 0));
+			getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, new L2Position(_homeX, _homeY, _homeZ, 0));
 		}
 	}
 	

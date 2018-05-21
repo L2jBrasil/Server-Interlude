@@ -35,6 +35,12 @@ public class L2ControllableMobInstance extends L2MonsterInstance
 	
 	public class ControllableAIAcessor extends AIAccessor
 	{
+
+		@Override
+		public L2ControllableMobInstance getActor() {
+			return L2ControllableMobInstance.this;
+		}
+
 		@Override
 		public void detachAI()
 		{
@@ -61,7 +67,7 @@ public class L2ControllableMobInstance extends L2MonsterInstance
 	}
 	
 	@Override
-	public L2CharacterAI getAI()
+	public L2CharacterAI<? extends L2Character.AIAccessor> getAI()
 	{
 		if (_ai == null)
 		{

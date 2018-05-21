@@ -19,7 +19,7 @@
 package com.l2jbr.gameserver.skills.effects;
 
 import com.l2jbr.gameserver.ai.Intention;
-import com.l2jbr.gameserver.model.L2CharPosition;
+import com.l2jbr.gameserver.model.L2Position;
 import com.l2jbr.gameserver.model.L2Effect;
 import com.l2jbr.gameserver.model.actor.instance.L2FolkInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
@@ -84,7 +84,7 @@ final class EffectBluff extends L2Effect
 		// posY += signy*40;
 		
 		getEffected().setRunning();
-		getEffected().getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, new L2CharPosition(posX + (signx * 40), posY + (signy * 40), posZ, 0));
+		getEffected().getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, new L2Position(posX + (signx * 40), posY + (signy * 40), posZ, 0));
 		getEffected().sendPacket(SystemMessage.sendString("You can feel Bluff's effect"));
 		getEffected().setTarget(null);
 		onActionTime();

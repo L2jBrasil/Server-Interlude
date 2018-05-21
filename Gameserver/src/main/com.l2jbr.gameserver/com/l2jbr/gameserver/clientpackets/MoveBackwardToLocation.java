@@ -21,7 +21,7 @@ package com.l2jbr.gameserver.clientpackets;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.TaskPriority;
 import com.l2jbr.gameserver.ai.Intention;
-import com.l2jbr.gameserver.model.L2CharPosition;
+import com.l2jbr.gameserver.model.L2Position;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.PartyMemberPosition;
@@ -127,7 +127,7 @@ public class MoveBackwardToLocation extends L2GameClientPacket
 				activeChar.sendPacket(new ActionFailed());
 				return;
 			}
-			activeChar.getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, new L2CharPosition(_targetX, _targetY, _targetZ, 0));
+			activeChar.getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, new L2Position(_targetX, _targetY, _targetZ, 0));
 			
 			if (activeChar.getParty() != null)
 			{

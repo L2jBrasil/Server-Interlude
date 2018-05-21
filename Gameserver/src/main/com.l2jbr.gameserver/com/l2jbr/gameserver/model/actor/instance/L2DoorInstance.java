@@ -96,7 +96,7 @@ public class L2DoorInstance extends L2Character {
         }
 
         @Override
-        public void stopMove(L2CharPosition pos) {
+        public void stopMove(L2Position pos) {
         }
 
         @Override
@@ -109,7 +109,7 @@ public class L2DoorInstance extends L2Character {
     }
 
     @Override
-    public L2CharacterAI getAI() {
+    public L2CharacterAI<? extends L2Character.AIAccessor> getAI() {
         if (_ai == null) {
             synchronized (this) {
                 if (_ai == null) {

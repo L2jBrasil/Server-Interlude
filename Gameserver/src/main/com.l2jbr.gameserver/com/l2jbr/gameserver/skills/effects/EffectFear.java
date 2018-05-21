@@ -19,7 +19,7 @@
 package com.l2jbr.gameserver.skills.effects;
 
 import com.l2jbr.gameserver.ai.Intention;
-import com.l2jbr.gameserver.model.L2CharPosition;
+import com.l2jbr.gameserver.model.L2Position;
 import com.l2jbr.gameserver.model.L2Effect;
 import com.l2jbr.gameserver.model.actor.instance.*;
 import com.l2jbr.gameserver.skills.Env;
@@ -105,7 +105,7 @@ final class EffectFear extends L2Effect
 		posX += signx * FEAR_RANGE;
 		posY += signy * FEAR_RANGE;
 		getEffected().setRunning();
-		getEffected().getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, new L2CharPosition(posX, posY, posZ, 0));
+		getEffected().getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, new L2Position(posX, posY, posZ, 0));
 		return true;
 	}
 }

@@ -391,13 +391,13 @@ public final class RequestActionUse extends L2GameClientPacket
 			case 53: // move to target
 				if ((target != null) && (pet != null) && (pet != target) && !pet.isMovementDisabled())
 				{
-					pet.getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, new L2CharPosition(target.getX(), target.getY(), target.getZ(), 0));
+					pet.getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, new L2Position(target.getX(), target.getY(), target.getZ(), 0));
 				}
 				break;
 			case 54: // move to target hatch/strider
 				if ((target != null) && (pet != null) && (pet != target) && !pet.isMovementDisabled())
 				{
-					pet.getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, new L2CharPosition(target.getX(), target.getY(), target.getZ(), 0));
+					pet.getAI().setIntention(Intention.AI_INTENTION_MOVE_TO, new L2Position(target.getX(), target.getY(), target.getZ(), 0));
 				}
 				break;
 			case 96: // Quit Party Command Channel

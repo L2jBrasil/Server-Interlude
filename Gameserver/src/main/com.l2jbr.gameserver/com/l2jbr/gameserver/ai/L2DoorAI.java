@@ -19,163 +19,112 @@
 package com.l2jbr.gameserver.ai;
 
 import com.l2jbr.gameserver.ThreadPoolManager;
-import com.l2jbr.gameserver.model.L2CharPosition;
+import com.l2jbr.gameserver.model.L2Position;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.actor.instance.L2DoorInstance;
+import com.l2jbr.gameserver.model.actor.instance.L2DoorInstance.AIAccessor;
 import com.l2jbr.gameserver.model.actor.instance.L2SiegeGuardInstance;
 
-
-/**
- * @author mkizub TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates
- */
-public class L2DoorAI extends L2CharacterAI<L2DoorInstance.AIAccessor>
+public class L2DoorAI extends L2CharacterAI<AIAccessor>
 {
 	
-	public L2DoorAI(L2DoorInstance.AIAccessor accessor)
+	public L2DoorAI(AIAccessor accessor)
 	{
 		super(accessor);
 	}
-	
-	// rather stupid AI... well, it's for doors :D
+
 	@Override
-	protected void onIntentionIdle()
-	{
-	}
+	protected void onIntentionIdle() { }
 	
 	@Override
-	protected void onIntentionActive()
-	{
-	}
+	protected void onIntentionActive() { }
 	
 	@Override
-	protected void onIntentionRest()
-	{
-	}
+	protected void onIntentionRest() { }
 	
 	@Override
-	protected void onIntentionAttack(L2Character target)
-	{
-	}
+	protected void onIntentionAttack(L2Character target) { }
 	
 	@Override
-	protected void onIntentionCast(L2Skill skill, L2Object target)
-	{
-	}
+	protected void onIntentionCast(L2Skill skill, L2Object target) { }
 	
 	@Override
-	protected void onIntentionMoveTo(L2CharPosition destination)
-	{
-	}
+	protected void onIntentionMoveTo(L2Position destination) { }
 	
 	@Override
-	protected void onIntentionFollow(L2Character target)
-	{
-	}
+	protected void onIntentionFollow(L2Character target) { }
 	
 	@Override
-	protected void onIntentionPickUp(L2Object item)
-	{
-	}
+	protected void onIntentionPickUp(L2Object item) { }
 	
 	@Override
-	protected void onIntentionInteract(L2Object object)
-	{
-	}
+	protected void onIntentionInteract(L2Object object) { }
 	
 	@Override
-	protected void onEvtThink()
-	{
-	}
+	protected void onEvtThink() { }
 	
 	@Override
-	protected void onEvtAttacked(L2Character attacker)
-	{
-		L2DoorInstance me = (L2DoorInstance) _actor;
-		ThreadPoolManager.getInstance().executeTask(new onEventAttackedDoorTask(me, attacker));
+	protected void onEvtAttacked(L2Character attacker) {
+		ThreadPoolManager.getInstance().executeTask(new onEventAttackedDoorTask(getActor(), attacker));
 	}
+
+    private L2DoorInstance getActor() {
+        return getAccessor().getActor();
+    }
+
+    @Override
+	protected void onEvtAggression(L2Character target, int aggro) { }
 	
 	@Override
-	protected void onEvtAggression(L2Character target, int aggro)
-	{
-	}
+	protected void onEvtStunned(L2Character attacker) { }
 	
 	@Override
-	protected void onEvtStunned(L2Character attacker)
-	{
-	}
+	protected void onEvtSleeping(L2Character attacker) { }
 	
 	@Override
-	protected void onEvtSleeping(L2Character attacker)
-	{
-	}
+	protected void onEvtRooted(L2Character attacker) { }
 	
 	@Override
-	protected void onEvtRooted(L2Character attacker)
-	{
-	}
+	protected void onEvtReadyToAct() { }
 	
 	@Override
-	protected void onEvtReadyToAct()
-	{
-	}
+	protected void onEvtUserCmd(Object arg0, Object arg1) { }
 	
 	@Override
-	protected void onEvtUserCmd(Object arg0, Object arg1)
-	{
-	}
+	protected void onEvtArrived() { }
 	
 	@Override
-	protected void onEvtArrived()
-	{
-	}
+	protected void onEvtArrivedRevalidate() { }
 	
 	@Override
-	protected void onEvtArrivedRevalidate()
-	{
-	}
+	protected void onEvtArrivedBlocked(L2Position blocked_at_pos) { }
 	
 	@Override
-	protected void onEvtArrivedBlocked(L2CharPosition blocked_at_pos)
-	{
-	}
+	protected void onEvtForgetObject(L2Object object) { }
 	
 	@Override
-	protected void onEvtForgetObject(L2Object object)
-	{
-	}
+	protected void onEvtCancel() { }
 	
 	@Override
-	protected void onEvtCancel()
-	{
-	}
+	protected void onEvtDead() { }
 	
-	@Override
-	protected void onEvtDead()
-	{
-	}
-	
-	private class onEventAttackedDoorTask implements Runnable
-	{
+	private class onEventAttackedDoorTask implements Runnable {
 		private final L2DoorInstance _door;
 		private final L2Character _attacker;
 		
-		public onEventAttackedDoorTask(L2DoorInstance door, L2Character attacker)
-		{
+		public onEventAttackedDoorTask(L2DoorInstance door, L2Character attacker) {
 			_door = door;
 			_attacker = attacker;
 		}
 		
 		@Override
-		public void run()
-		{
+		public void run() {
 			_door.getKnownList().updateKnownObjects();
 			
-			for (L2SiegeGuardInstance guard : _door.getKnownSiegeGuards())
-			{
-				if (_actor.isInsideRadius(guard, guard.getFactionRange(), false, true) && (Math.abs(_attacker.getZ() - guard.getZ()) < 200))
-				{
+			for (L2SiegeGuardInstance guard : _door.getKnownSiegeGuards()) {
+				if (getActor().isInsideRadius(guard, guard.getFactionRange(), false, true) && (Math.abs(_attacker.getZ() - guard.getZ()) < 200)) {
 					guard.getAI().notifyEvent(Event.EVT_AGGRESSION, _attacker, 15);
 				}
 			}
