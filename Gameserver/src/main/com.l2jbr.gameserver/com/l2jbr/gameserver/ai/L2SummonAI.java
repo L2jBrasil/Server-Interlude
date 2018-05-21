@@ -23,7 +23,7 @@ import com.l2jbr.gameserver.model.L2Summon.AIAccessor;
 
 import static com.l2jbr.gameserver.ai.Intention.*;
 
-public class L2SummonAI extends L2CharacterAI<AIAccessor> {
+public class L2SummonAI extends MovableAI<AIAccessor> {
 	private boolean _thinking;
 	
 	public L2SummonAI(AIAccessor accessor)

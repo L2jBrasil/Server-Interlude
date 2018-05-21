@@ -28,7 +28,7 @@ import static com.l2jbr.gameserver.ai.Intention.AI_INTENTION_IDLE;
 /**
  * Mother class of all objects AI in the world.
  */
-abstract class AbstractAI<T extends AIAccessor> implements AI<T> {
+abstract class AbstractAI<T extends AIAccessor> implements AI {
 	
 	protected static final Logger _log = LoggerFactory.getLogger(AbstractAI.class.getName());
 
@@ -43,10 +43,9 @@ abstract class AbstractAI<T extends AIAccessor> implements AI<T> {
 		this.accessor = accessor;
 	}
 
-    @Override
-    public T getAccessor() {
-        return accessor;
-    }
+    protected T getAccessor() {
+		return accessor;
+	}
 
 	@Override
 	public Intention getIntention()

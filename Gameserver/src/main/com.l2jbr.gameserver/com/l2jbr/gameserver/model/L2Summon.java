@@ -19,8 +19,8 @@
 package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.gameserver.ai.AI;
 import com.l2jbr.gameserver.ai.Intention;
-import com.l2jbr.gameserver.ai.L2CharacterAI;
 import com.l2jbr.gameserver.ai.L2SummonAI;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.L2Skill.SkillTargetType;
@@ -126,7 +126,7 @@ public abstract class L2Summon extends L2PlayableInstance
 	}
 	
 	@Override
-	public L2CharacterAI<? extends L2Character.AIAccessor> getAI()
+	public AI getAI()
 	{
 		if (_ai == null)
 		{

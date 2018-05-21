@@ -37,7 +37,7 @@ import static com.l2jbr.gameserver.ai.Intention.*;
 /**
  * This class manages AI of L2Attackable.
  */
-public class L2AttackableAI<T extends L2Attackable.AIAccessor> extends L2CharacterAI<T> implements Runnable
+public class L2AttackableAI<T extends L2Attackable.AIAccessor> extends MovableAI<T> implements Runnable
 {
 	// protected static final Logger _log = LoggerFactory.getLogger(L2AttackableAI.class.getName());
 	
@@ -598,7 +598,7 @@ public class L2AttackableAI<T extends L2Attackable.AIAccessor> extends L2Charact
 						}
 						
 						// Check if the L2Object is inside the Faction Range of the actor
-						if (actor.isInsideRadius(npc, npc.getFactionRange(), true, false) && GeoData.getInstance().canSeeTarget(actor, npc) && (Math.abs(getAttackTarget().getZ() - npc.getZ()) < 600) && (npc.getAI() != null) && actor.getAttackByList().contains(getAttackTarget()) && ((npc.getAI()._intention == Intention.AI_INTENTION_IDLE) || (npc.getAI()._intention == Intention.AI_INTENTION_ACTIVE)))
+						if (actor.isInsideRadius(npc, npc.getFactionRange(), true, false) && GeoData.getInstance().canSeeTarget(actor, npc) && (Math.abs(getAttackTarget().getZ() - npc.getZ()) < 600) && (npc.getAI() != null) && actor.getAttackByList().contains(getAttackTarget()) && ((npc.getAI().getIntention() == Intention.AI_INTENTION_IDLE) || (npc.getAI().getIntention() == Intention.AI_INTENTION_ACTIVE)))
 						{
 							if ((getAttackTarget() instanceof L2PcInstance) && getAttackTarget().isInParty() && getAttackTarget().getParty().isInDimensionalRift())
 							{

@@ -30,7 +30,7 @@ import java.util.concurrent.Future;
 
 import static com.l2jbr.gameserver.ai.Intention.*;
 
-public class L2SiegeGuardAI extends L2CharacterAI<L2SiegeGuardInstance.AIAccessor> implements Runnable {
+public class L2SiegeGuardAI extends L2AttackableAI<L2SiegeGuardInstance.AIAccessor> implements Runnable {
 	private static final int MAX_ATTACK_TIMEOUT = 300;
 
 	private Future<?> _aiTask;

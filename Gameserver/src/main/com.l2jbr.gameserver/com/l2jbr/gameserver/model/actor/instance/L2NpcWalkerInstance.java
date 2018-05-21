@@ -18,7 +18,7 @@
 package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.gameserver.ai.L2CharacterAI;
+import com.l2jbr.gameserver.ai.AI;
 import com.l2jbr.gameserver.ai.L2NpcWalkerAI;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.serverpackets.CreatureSay;
@@ -53,7 +53,7 @@ public class L2NpcWalkerInstance extends L2NpcInstance
 	 * @param newAI AI to set for this L2NpcWalkerInstance
 	 */
 	@Override
-	public <T extends L2CharacterAI<? extends AIAccessor>> void setAI(T newAI)
+	public void setAI(AI newAI)
 	{
 		if (_ai == null)
 		{

@@ -24,10 +24,7 @@ import com.l2jbr.gameserver.GameTimeController;
 import com.l2jbr.gameserver.GeoData;
 import com.l2jbr.gameserver.Olympiad;
 import com.l2jbr.gameserver.ThreadPoolManager;
-import com.l2jbr.gameserver.ai.Event;
-import com.l2jbr.gameserver.ai.Intention;
-import com.l2jbr.gameserver.ai.L2AttackableAI;
-import com.l2jbr.gameserver.ai.L2CharacterAI;
+import com.l2jbr.gameserver.ai.*;
 import com.l2jbr.gameserver.datatables.DoorTable;
 import com.l2jbr.gameserver.datatables.MapRegionTable;
 import com.l2jbr.gameserver.datatables.MapRegionTable.TeleportWhereType;
@@ -1674,7 +1671,7 @@ public abstract class L2Character extends L2Object {
      *
      * @return the aI
      */
-    public L2CharacterAI<? extends AIAccessor> getAI() {
+    public AI getAI() {
         if (_ai == null) {
             synchronized (this) {
                 if (_ai == null) {
@@ -1690,9 +1687,12 @@ public abstract class L2Character extends L2Object {
      * Sets the aI.
      *
      * @param newAI the new aI
+     *
+     * @deprecated there is no reason to change that
      */
-    public <T extends L2CharacterAI<? extends AIAccessor>> void setAI(T newAI) {
-        L2CharacterAI<? extends AIAccessor> oldAI = getAI();
+    @Deprecated(forRemoval =  true)
+    public void setAI(AI newAI) {
+        AI oldAI = getAI();
         if ((oldAI != null) && (oldAI != newAI) && (oldAI instanceof L2AttackableAI)) {
             ((L2AttackableAI) oldAI).stopAITask();
         }
@@ -3962,7 +3962,7 @@ public abstract class L2Character extends L2Object {
     /**
      * The _ai.
      */
-    protected L2CharacterAI<? extends  AIAccessor> _ai;
+    protected AI _ai;
 
     /**
      * Future Skill Cast.
@@ -5678,6 +5678,8 @@ public abstract class L2Character extends L2Object {
 
                 // Notify AI with EVT_ATTACKED
                 target.getAI().notifyEvent(Event.EVT_ATTACKED, this);
+
+                // TODO hotfix to refactoring hierarchy should be removed asap
                 getAI().clientStartAutoAttack();
 
                 // Manage attack or cast break of the target (calculating rate, sending message...)

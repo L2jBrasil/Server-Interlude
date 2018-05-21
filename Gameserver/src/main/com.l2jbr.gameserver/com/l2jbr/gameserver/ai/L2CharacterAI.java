@@ -61,7 +61,7 @@ public class L2CharacterAI<T extends L2Character.AIAccessor> extends AbstractAI<
 		super(accessor);
 	}
 
-    @Override
+	@Override
     protected void onEvtAttacked(L2Character attacker) {
         clientStartAutoAttack();
     }
@@ -717,7 +717,7 @@ public class L2CharacterAI<T extends L2Character.AIAccessor> extends AbstractAI<
         _followTarget = null;
     }
 
-    protected L2Character getFollowTarget()
+	protected L2Character getFollowTarget()
     {
         return _followTarget;
     }

@@ -337,7 +337,7 @@ public class L2Attackable extends L2NpcInstance {
      * Return the L2Character AI of the L2Attackable and if its null create a new one.
      */
     @Override
-    public L2CharacterAI<? extends L2Character.AIAccessor> getAI() {
+    public AI getAI() {
         if (_ai == null) {
             synchronized (this) {
                 if (_ai == null) {

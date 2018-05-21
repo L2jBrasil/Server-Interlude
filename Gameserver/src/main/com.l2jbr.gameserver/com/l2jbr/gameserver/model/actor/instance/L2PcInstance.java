@@ -24,8 +24,8 @@ import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.*;
 import com.l2jbr.gameserver.SevenSigns;
 import com.l2jbr.gameserver.SevenSignsFestival;
+import com.l2jbr.gameserver.ai.AI;
 import com.l2jbr.gameserver.ai.Intention;
-import com.l2jbr.gameserver.ai.L2CharacterAI;
 import com.l2jbr.gameserver.ai.L2PlayerAI;
 import com.l2jbr.gameserver.cache.HtmCache;
 import com.l2jbr.gameserver.cache.WarehouseCacheManager;
@@ -1441,7 +1441,7 @@ public final class L2PcInstance extends L2PlayableInstance {
      * @return the aI
      */
     @Override
-    public L2CharacterAI<? extends L2Character.AIAccessor> getAI() {
+    public AI getAI() {
         if (_ai == null) {
             synchronized (this) {
                 if (_ai == null) {

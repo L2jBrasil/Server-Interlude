@@ -18,8 +18,8 @@
  */
 package com.l2jbr.gameserver.ai;
 
-import com.l2jbr.gameserver.ai.accessor.AIAccessor;
 import com.l2jbr.gameserver.model.L2Character;
+import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
 
 /**
@@ -31,10 +31,9 @@ import com.l2jbr.gameserver.model.L2Character;
  * disabled (by Root spell, for instance). Depending on character's ability AI may choose to wait, or to use magic ATTACK and so on. Additionally incoming events are compared with client's state of the character, and required network messages are sent to client's, i.e. if we have incoming event that
  * character's movement was disabled, it causes changing if its behavour, and if client's state for the character is "moving" we send messages to clients to stop the avatar/mob.
  */
-public interface AI<T extends AIAccessor> {
+public interface AI {
 
-	T getAccessor();
-
+    // TODO this should be removed no one must know about the intention's AI but itself
 	Intention getIntention();
 
 	L2Character getAttackTarget();
@@ -50,4 +49,17 @@ public interface AI<T extends AIAccessor> {
 	void notifyEvent(Event evt, Object arg0);
 	
 	void notifyEvent(Event evt, Object arg0, Object arg1);
+
+	// TODO this should be removed asap. Just for reestructuring
+	void clientStartAutoAttack();
+    // TODO this should be removed asap. Just for reestructuring
+    void describeStateToPlayer(L2PcInstance activeChar);
+    // TODO this should be removed asap. Just for reestructuring
+    void setAutoAttacking(boolean b);
+    // TODO this should be removed asap. Just for reestructuring
+    void stopFollow();
+    // TODO this should be removed asap. Just for reestructuring
+    void startFollow(L2Character l2PcInstance);
+    // TODO this should be removed asap. Just for reestructuring
+    void startFollow(L2Character owner, int i);
 }

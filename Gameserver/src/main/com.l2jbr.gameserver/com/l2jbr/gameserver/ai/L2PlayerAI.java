@@ -31,7 +31,7 @@ import java.util.Stack;
 
 import static com.l2jbr.gameserver.ai.Intention.*;
 
-public class L2PlayerAI extends L2CharacterAI<AIAccessor> {
+public class L2PlayerAI extends MovableAI<AIAccessor> {
 	
 	private boolean _thinking;
 	
@@ -82,7 +82,9 @@ public class L2PlayerAI extends L2CharacterAI<AIAccessor> {
 				try {
 					cmd = _interuptedIntentions.pop();
 				}
-				catch (EmptyStackException ese) { }
+				catch (EmptyStackException ese) {
+
+				}
 				
 				if ((cmd != null) && (cmd.intention != AI_INTENTION_CAST)) {
 					setIntention(cmd.intention, cmd._arg0, cmd._arg1);
@@ -139,7 +141,6 @@ public class L2PlayerAI extends L2CharacterAI<AIAccessor> {
 		}
 		
 		getAccessor().doAttack(target);
-		return;
 	}
 
     private L2PcInstance getActor() {
@@ -182,8 +183,7 @@ public class L2PlayerAI extends L2CharacterAI<AIAccessor> {
 		} else {
 			getAccessor().doCast(_skill);
 		}
-		
-		return;
+
 	}
 	
 	private void thinkPickUp() {

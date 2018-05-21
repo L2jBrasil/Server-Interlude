@@ -20,12 +20,12 @@ package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.util.Rnd;
+import com.l2jbr.gameserver.ai.AI;
 import com.l2jbr.gameserver.ai.Intention;
-import com.l2jbr.gameserver.ai.L2CharacterAI;
 import com.l2jbr.gameserver.ai.L2SiegeGuardAI;
 import com.l2jbr.gameserver.model.L2Attackable;
-import com.l2jbr.gameserver.model.L2Position;
 import com.l2jbr.gameserver.model.L2Character;
+import com.l2jbr.gameserver.model.L2Position;
 import com.l2jbr.gameserver.model.actor.knownlist.SiegeGuardKnownList;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
@@ -62,7 +62,7 @@ public final class L2SiegeGuardInstance extends L2Attackable
 	}
 	
 	@Override
-	public L2CharacterAI<? extends L2Character.AIAccessor> getAI()
+	public AI getAI()
 	{
 		synchronized (this)
 		{
@@ -213,7 +213,7 @@ public final class L2SiegeGuardInstance extends L2Attackable
 		}
 	}
 
-	public class AIAccessor extends L2Character.AIAccessor {
+	public class AIAccessor extends L2Attackable.AIAccessor {
         @Override
         public L2SiegeGuardInstance getActor() {
             return L2SiegeGuardInstance.this;
