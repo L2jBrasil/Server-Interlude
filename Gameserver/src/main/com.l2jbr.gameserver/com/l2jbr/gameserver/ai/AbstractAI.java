@@ -38,7 +38,6 @@ abstract class AbstractAI<T extends AIAccessor> implements AI {
 	Object _intentionArg0 = null;
 	Object _intentionArg1 = null;
 
-
 	protected AbstractAI(T accessor) {
 		this.accessor = accessor;
 	}

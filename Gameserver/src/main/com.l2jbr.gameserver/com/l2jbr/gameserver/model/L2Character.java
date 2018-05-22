@@ -1694,7 +1694,7 @@ public abstract class L2Character extends L2Object {
     public void setAI(AI newAI) {
         AI oldAI = getAI();
         if ((oldAI != null) && (oldAI != newAI) && (oldAI instanceof L2AttackableAI)) {
-            ((L2AttackableAI) oldAI).stopAITask();
+            ((L2AttackableAI) oldAI).stopAITask(false);
         }
         _ai = newAI;
     }

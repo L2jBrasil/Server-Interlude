@@ -80,7 +80,7 @@ public final class L2MinionInstance extends L2MonsterInstance
 		L2WorldRegion region = L2World.getInstance().getRegion(getX(), getY());
 		if ((region != null) && (!region.isActive()))
 		{
-			((L2AttackableAI) getAI()).stopAITask();
+			((L2AttackableAI) getAI()).stopAITask(false);
 		}
 	}
 	

@@ -187,7 +187,7 @@ public final class L2WorldRegion {
                     mob.getAI().setIntention(com.l2jbr.gameserver.ai.Intention.AI_INTENTION_IDLE);
 
                     // stop the ai tasks
-                    ((L2AttackableAI) mob.getAI()).stopAITask();
+                    ((L2AttackableAI) mob.getAI()).stopAITask(false);
 
                     // Stop HP/MP/CP Regeneration task
                     // try this: allow regen, but only until mob is 100% full...then stop

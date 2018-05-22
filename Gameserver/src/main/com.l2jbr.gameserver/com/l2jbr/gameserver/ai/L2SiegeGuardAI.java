@@ -22,7 +22,6 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.GameTimeController;
 import com.l2jbr.gameserver.GeoData;
-import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.*;
 
@@ -85,45 +84,8 @@ public class L2SiegeGuardAI extends L2AttackableAI<L2SiegeGuardInstance.AIAccess
 	@Override
 	synchronized void changeIntention(Intention intention, Object arg0, Object arg1) {
 	    _log.debug("L2SiegeAI.changeIntention( {}, {}, {})", intention , arg0, arg1);
-
-        L2SiegeGuardInstance actor = getActor();
 		getActor().setisReturningToSpawnPoint(false);
-		
-		if (intention == AI_INTENTION_IDLE ) {
-			if (!actor.isAlikeDead()) {
-				if (actor.getKnownList().getKnownPlayers().size() > 0) {
-					intention = AI_INTENTION_ACTIVE;
-				} else {
-					intention = AI_INTENTION_IDLE;
-				}
-			}
-			
-			if (intention == AI_INTENTION_IDLE) {
-				super.changeIntention(AI_INTENTION_IDLE, null, null);
-
-				if (_aiTask != null) {
-					_aiTask.cancel(true);
-					_aiTask = null;
-				}
-				
-				// Why Cancel the AI?
-				getAccessor().detachAI();
-				
-				return;
-			}
-		}
-
 		super.changeIntention(intention, arg0, arg1);
-
-		if (_aiTask == null) {
-			_aiTask = ThreadPoolManager.getInstance().scheduleAiAtFixedRate(this, 1000, 1000);
-		}
-	}
-
-	@Override
-	protected void onIntentionAttack(L2Character target) {
-		_attackTimeout = MAX_ATTACK_TIMEOUT + GameTimeController.getGameTicks();
-		super.onIntentionAttack(target);
 	}
 	
 	/**
@@ -445,28 +407,6 @@ public class L2SiegeGuardAI extends L2AttackableAI<L2SiegeGuardInstance.AIAccess
 		finally {
 			_thinking = false;
 		}
-	}
-	
-
-	@Override
-	protected void onEvtAttacked(L2Character attacker) {
-		_attackTimeout = MAX_ATTACK_TIMEOUT + GameTimeController.getGameTicks();
-
-		if (_globalAggro < 0) {
-			_globalAggro = 0;
-		}
-
-        L2SiegeGuardInstance actor = getActor();
-		actor.addDamageHate(attacker, 0, 1);
-
-		if (!actor.isRunning()) {
-			actor.setRunning();
-		}
-
-		if (getIntention() != AI_INTENTION_ATTACK) {
-			setIntention(Intention.AI_INTENTION_ATTACK, attacker, null);
-		}
-		super.onEvtAttacked(attacker);
 	}
 
 	@Override

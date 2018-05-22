@@ -2136,9 +2136,9 @@ public class L2Attackable extends L2NpcInstance {
         // check the region where this mob is, do not activate the AI if region is inactive.
         if (!isInActiveRegion()) {
             if (this instanceof L2SiegeGuardInstance) {
-                ((L2SiegeGuardAI) getAI()).stopAITask();
+                ((L2SiegeGuardAI) getAI()).stopAITask(false);
             } else {
-                ((L2AttackableAI) getAI()).stopAITask();
+                ((L2AttackableAI) getAI()).stopAITask(false);
             }
         }
     }

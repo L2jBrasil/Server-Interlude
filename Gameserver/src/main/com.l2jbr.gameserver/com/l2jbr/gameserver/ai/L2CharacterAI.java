@@ -34,8 +34,7 @@ import static com.l2jbr.gameserver.ai.Intention.*;
 /**
  * This class manages AI of L2Character.<BR>
  */
-public class L2CharacterAI<T extends L2Character.AIAccessor> extends AbstractAI<T>
-{
+public class L2CharacterAI<T extends L2Character.AIAccessor> extends AbstractAI<T> {
 
     private static final int FOLLOW_INTERVAL = 1000;
     private static final int ATTACK_FOLLOW_INTERVAL = 500;

@@ -251,11 +251,9 @@ public class L2AttackableAI<T extends L2Attackable.AIAccessor> extends MovableAI
 		}
 	}
 	
-	public void stopAITask()
-	{
-		if (_aiTask != null)
-		{
-			_aiTask.cancel(false);
+	public void stopAITask(boolean interruptIfRunning) {
+		if (_aiTask != null) {
+			_aiTask.cancel(interruptIfRunning);
 			_aiTask = null;
 		}
 	}
@@ -263,7 +261,7 @@ public class L2AttackableAI<T extends L2Attackable.AIAccessor> extends MovableAI
 	@Override
 	protected void onEvtDead()
 	{
-		stopAITask();
+		stopAITask(false);
 		super.onEvtDead();
 	}
 	
@@ -271,68 +269,40 @@ public class L2AttackableAI<T extends L2Attackable.AIAccessor> extends MovableAI
 	 * Set the Intention of this L2CharacterAI and create an AI Task executed every
 	 * 1s (call onEvtThink method) for this L2Attackable.<BR>
 	 * <BR>
-	 * <FONT COLOR=#FF0000><B> <U>Caution</U> : If actor _knowPlayer isn't EMPTY, AI_INTENTION_IDLE will be change in AI_INTENTION_ACTIVE</B></FONT><BR>
+	 * <FONT COLOR=#FF0000><B> <U>Caution</U> :
+	 *
+	 * If actor _knowPlayer isn't EMPTY, AI_INTENTION_IDLE will be change in AI_INTENTION_ACTIVE</B></FONT><BR>
 	 * <BR>
 	 * @param intention The new Intention to set to the AI
 	 * @param arg0 The first parameter of the Intention
 	 * @param arg1 The second parameter of the Intention
 	 */
 	@Override
-	synchronized void changeIntention(Intention intention, Object arg0, Object arg1)
-	{
+	synchronized void changeIntention(Intention intention, Object arg0, Object arg1) {
         L2Attackable actor = getActor();
-		if ((intention == AI_INTENTION_IDLE) || (intention == AI_INTENTION_ACTIVE))
-		{
-			// Check if actor is not dead
-			if (!actor.isAlikeDead())
-			{
-				L2Attackable npc = (L2Attackable) actor;
-				
-				// If its _knownPlayer isn't empty set the Intention to AI_INTENTION_ACTIVE
-				if (npc.getKnownList().getKnownPlayers().size() > 0)
-				{
+		if ((intention == AI_INTENTION_IDLE)) {
+			if (!actor.isAlikeDead()) {
+				if (actor.getKnownList().getKnownPlayers().size() > 0) {
 					intention = AI_INTENTION_ACTIVE;
 				}
 			}
-			
-			if (intention == AI_INTENTION_IDLE)
-			{
-				// Set the Intention of this L2AttackableAI to AI_INTENTION_IDLE
-				super.changeIntention(AI_INTENTION_IDLE, null, null);
-				
-				// Stop AI task and detach AI from NPC
-				if (_aiTask != null)
-				{
-					_aiTask.cancel(true);
-					_aiTask = null;
-				}
-				
-				// Cancel the AI
-				getAccessor().detachAI();
-				
-				return;
-			}
 		}
-		
-		// Set the Intention of this L2AttackableAI to intention
-		super.changeIntention(intention, arg0, arg1);
-		
-		// If not idle - create an AI task (schedule onEvtThink repeatedly)
+
+        super.changeIntention(intention, null, null);
+
+        if (intention == AI_INTENTION_IDLE) {
+            stopAITask(true);
+            // Cancel the AI
+            getAccessor().detachAI();
+            return;
+        }
+
 		startAITask();
 	}
-	
-	/**
-	 * Manage the Attack Intention : Stop current Attack (if necessary), Calculate attack timeout, Start a new Attack and Launch Think Event.<BR>
-	 * <BR>
-	 * @param target The L2Character to attack
-	 */
+
 	@Override
-	protected void onIntentionAttack(L2Character target)
-	{
-		// Calculate the attack timeout
+	protected void onIntentionAttack(L2Character target) {
 		_attackTimeout = MAX_ATTACK_TIMEOUT + GameTimeController.getGameTicks();
-		
-		// Manage the Attack Intention : Stop current Attack (if necessary), Start a new Attack and Launch Think Event
 		super.onIntentionAttack(target);
 	}
 	
@@ -857,54 +827,30 @@ public class L2AttackableAI<T extends L2Attackable.AIAccessor> extends MovableAI
 		}
 	}
 	
-	/**
-	 * Launch actions corresponding to the Event Attacked.<BR>
-	 * <BR>
-	 * <B><U> Actions</U> :</B><BR>
-	 * <BR>
-	 * <li>Init the attack : Calculate the attack timeout, Set the _globalAggro to 0, Add the attacker to the actor _aggroList</li> <li>Set the L2Character movement type to run and send Server->Client packet ChangeMoveType to all others L2PcInstance</li> <li>Set the Intention to AI_INTENTION_ATTACK</li>
-	 * <BR>
-	 * <BR>
-	 * @param attacker The L2Character that attacks the actor
-	 */
+
 	@Override
-	protected void onEvtAttacked(L2Character attacker)
-	{
-		// if (_actor instanceof L2ChestInstance && !((L2ChestInstance)_actor).isInteracted())
-		// {
-		// ((L2ChestInstance)_actor).deleteMe();
-		// ((L2ChestInstance)_actor).getSpawn().startRespawn();
-		// return;
-		// }
-		
-		// Calculate the attack timeout
+	protected void onEvtAttacked(L2Character attacker) {
 		_attackTimeout = MAX_ATTACK_TIMEOUT + GameTimeController.getGameTicks();
-		
-		// Set the _globalAggro to 0 to permit attack even just after spawn
-		if (_globalAggro < 0)
-		{
+
+		if (_globalAggro < 0) {
 			_globalAggro = 0;
 		}
 
         L2Attackable actor = getActor();
-		// Add the attacker to the _aggroList of the actor
-		((L2Attackable) actor).addDamageHate(attacker, 0, 1);
-		
-		// Set the L2Character movement type to run and send Server->Client packet ChangeMoveType to all others L2PcInstance
-		if (!actor.isRunning())
-		{
+		actor.addDamageHate(attacker, 0, 1);
+
+		if (!actor.isRunning()) {
 			actor.setRunning();
 		}
-		
-		// Set the Intention to AI_INTENTION_ATTACK
-		if (getIntention() != AI_INTENTION_ATTACK)
-		{
+
+		if (getIntention() != AI_INTENTION_ATTACK) {
 			setIntention(Intention.AI_INTENTION_ATTACK, attacker);
-		}
-		else if (((L2Attackable) actor).getMostHated() != getAttackTarget())
-		{
-			setIntention(Intention.AI_INTENTION_ATTACK, attacker);
-		}
+		} else {
+            L2Character mostHated = actor.getMostHated();
+		    if (mostHated != getAttackTarget()) {
+                setIntention(Intention.AI_INTENTION_ATTACK, mostHated);
+            }
+        }
 		
 		super.onEvtAttacked(attacker);
 	}
@@ -944,9 +890,7 @@ public class L2AttackableAI<T extends L2Attackable.AIAccessor> extends MovableAI
 	}
 	
 	@Override
-	protected void onIntentionActive()
-	{
-		// Cancel attack timeout
+	protected void onIntentionActive() {
 		_attackTimeout = Integer.MAX_VALUE;
 		super.onIntentionActive();
 	}

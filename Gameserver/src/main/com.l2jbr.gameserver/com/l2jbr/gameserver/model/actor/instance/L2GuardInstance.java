@@ -164,7 +164,7 @@ public final class L2GuardInstance extends L2Attackable
 		L2WorldRegion region = L2World.getInstance().getRegion(getX(), getY());
 		if ((region != null) && (!region.isActive()))
 		{
-			((L2AttackableAI) getAI()).stopAITask();
+			((L2AttackableAI) getAI()).stopAITask(false);
 		}
 	}
 	
