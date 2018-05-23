@@ -25,25 +25,16 @@ import com.l2jbr.gameserver.GeoData;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.*;
 
-import java.util.concurrent.Future;
-
-import static com.l2jbr.gameserver.ai.Intention.*;
+import static com.l2jbr.gameserver.ai.Intention.AI_INTENTION_ACTIVE;
+import static com.l2jbr.gameserver.ai.Intention.AI_INTENTION_IDLE;
 
 public class L2SiegeGuardAI extends L2AttackableAI<L2SiegeGuardInstance.AIAccessor> implements Runnable {
 	private static final int MAX_ATTACK_TIMEOUT = 300;
 
-	private Future<?> _aiTask;
-	private int _attackTimeout;
-	private int _globalAggro;
-	private boolean _thinking;
 	private final int _attackRange;
 
 	public L2SiegeGuardAI(L2SiegeGuardInstance.AIAccessor accessor) {
 		super(accessor);
-		
-		_attackTimeout = Integer.MAX_VALUE;
-		_globalAggro = -10;
-		
 		_attackRange = accessor.getActor().getPhysicalAttackRange();
 	}
 	
@@ -374,6 +365,7 @@ public class L2SiegeGuardAI extends L2AttackableAI<L2SiegeGuardInstance.AIAccess
 			if (((npc.getAI().getIntention() == Intention.AI_INTENTION_IDLE) || (npc.getAI().getIntention() == Intention.AI_INTENTION_ACTIVE))
                     && actor.isInsideRadius(npc, npc.getFactionRange(), false, true) && (npc.getTarget() == null) &&
                     _attackTarget.isInsideRadius(npc, npc.getFactionRange(), false, true)) {
+
 				if (Config.GEODATA > 0) {
 					if (GeoData.getInstance().canSeeTarget(npc, _attackTarget)) {
 						npc.getAI().notifyEvent(Event.EVT_AGGRESSION, _attackTarget, 1);
@@ -384,28 +376,6 @@ public class L2SiegeGuardAI extends L2AttackableAI<L2SiegeGuardInstance.AIAccess
 					}
 				}
 			}
-		}
-	}
-
-	@Override
-	protected void onEvtThink() {
-        L2SiegeGuardInstance actor = getActor();
-		if (_thinking || actor.isAllSkillsDisabled()) {
-			return;
-		}
-
-		_thinking = true;
-		
-		try {
-			if (getIntention() == AI_INTENTION_ACTIVE) {
-				thinkActive();
-			}
-			else if (getIntention() == AI_INTENTION_ATTACK) {
-				thinkAttack();
-			}
-		}
-		finally {
-			_thinking = false;
 		}
 	}
 
@@ -465,19 +435,4 @@ public class L2SiegeGuardAI extends L2AttackableAI<L2SiegeGuardInstance.AIAccess
 			}
 		}
 	}
-	
-	@Override
-	protected void onEvtDead() {
-		stopAITask();
-		super.onEvtDead();
-	}
-	
-	public void stopAITask() {
-		if (_aiTask != null) {
-			_aiTask.cancel(false);
-			_aiTask = null;
-		}
-		getAccessor().detachAI();
-	}
-	
 }

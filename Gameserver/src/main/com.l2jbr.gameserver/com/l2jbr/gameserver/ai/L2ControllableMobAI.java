@@ -43,7 +43,6 @@ public class L2ControllableMobAI extends L2AttackableAI<ControllableAIAcessor> {
 
     private int _alternateAI;
 
-    private boolean _isThinking; // to prevent thinking recursively
     private boolean _isNotMoving;
 
     private L2Character _forcedTarget;
@@ -69,11 +68,11 @@ public class L2ControllableMobAI extends L2AttackableAI<ControllableAIAcessor> {
     @Override
     protected void onEvtThink() {
         L2ControllableMobInstance actor = getActor();
-        if (isThinking() || actor.isAllSkillsDisabled()) {
+        if (_thinking || actor.isAllSkillsDisabled()) {
             return;
         }
 
-        setThinking(true);
+        _thinking = true;
 
         try {
             switch (getAlternateAI()) {
@@ -103,7 +102,7 @@ public class L2ControllableMobAI extends L2AttackableAI<ControllableAIAcessor> {
                     break;
             }
         } finally {
-            setThinking(false);
+            _thinking = false;
         }
     }
 
@@ -148,8 +147,6 @@ public class L2ControllableMobAI extends L2AttackableAI<ControllableAIAcessor> {
             if (!isNotMoving()) {
                 moveToPawn(getAttackTarget(), max_range);
             }
-
-            return;
         }
     }
 
@@ -496,9 +493,6 @@ public class L2ControllableMobAI extends L2AttackableAI<ControllableAIAcessor> {
         setForcedTarget(target);
     }
 
-    public boolean isThinking() {
-        return _isThinking;
-    }
 
     public boolean isNotMoving() {
         return _isNotMoving;
@@ -506,10 +500,6 @@ public class L2ControllableMobAI extends L2AttackableAI<ControllableAIAcessor> {
 
     public void setNotMoving(boolean isNotMoving) {
         _isNotMoving = isNotMoving;
-    }
-
-    public void setThinking(boolean isThinking) {
-        _isThinking = isThinking;
     }
 
     private L2Character getForcedTarget() {

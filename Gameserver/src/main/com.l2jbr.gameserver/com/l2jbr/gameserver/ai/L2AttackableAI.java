@@ -49,13 +49,13 @@ public class L2AttackableAI<T extends L2Attackable.AIAccessor> extends MovableAI
 	private Future<?> _aiTask;
 	
 	/** The delay after wich the attacked is stopped */
-	private int _attackTimeout;
+	protected int _attackTimeout;
 	
 	/** The L2Attackable aggro counter */
-	private int _globalAggro;
+	protected int _globalAggro;
 	
 	/** The flag used to indicate that a thinking action is in progress */
-	private boolean _thinking; // to prevent recursive thinking
+	protected boolean _thinking; // to prevent recursive thinking
 	
 	/**
 	 * Constructor of L2AttackableAI.<BR>
@@ -518,30 +518,18 @@ public class L2AttackableAI<T extends L2Attackable.AIAccessor> extends MovableAI
 	 * <BR>
 	 * TODO: Manage casting rules to healer mobs (like Ant Nurses)
 	 */
-	private void thinkAttack()
-	{
+	private void thinkAttack(){
         L2Attackable actor = getActor();
-		if (_attackTimeout < GameTimeController.getGameTicks())
-		{
-			// Check if the actor is running
-			if (actor.isRunning())
-			{
-				// Set the actor movement type to walk and send Server->Client packet ChangeMoveType to all others L2PcInstance
+		if (_attackTimeout < GameTimeController.getGameTicks()){
+			if (actor.isRunning()){
 				actor.setWalking();
-				
-				// Calculate a new attack timeout
 				_attackTimeout = MAX_ATTACK_TIMEOUT + GameTimeController.getGameTicks();
 			}
 		}
-		
-		// Check if target is dead or if timeout is expired to stop this attack
-		if ((getAttackTarget() == null) || getAttackTarget().isAlikeDead() || (_attackTimeout < GameTimeController.getGameTicks()))
-		{
-			// Stop hating this target after the attack timeout or if target is dead
-			if (getAttackTarget() != null)
-			{
-				L2Attackable npc = (L2Attackable) actor;
-				npc.stopHating(getAttackTarget());
+
+		if ((getAttackTarget() == null) || getAttackTarget().isAlikeDead() || (_attackTimeout < GameTimeController.getGameTicks())) {
+			if (getAttackTarget() != null) {
+				actor.stopHating(getAttackTarget());
 			}
 			
 			// Set the AI Intention to AI_INTENTION_ACTIVE
@@ -791,42 +779,27 @@ public class L2AttackableAI<T extends L2Attackable.AIAccessor> extends MovableAI
 		}
 	}
 	
-	/**
-	 * Manage AI thinking actions of a L2Attackable.<BR>
-	 * <BR>
-	 */
+
 	@Override
-	protected void onEvtThink()
-	{
+	protected void onEvtThink() {
         L2Attackable actor = getActor();
-		// Check if the actor can't use skills and if a thinking action isn't already in progress
-		if (_thinking || actor.isAllSkillsDisabled())
-		{
+		if (_thinking || actor.isAllSkillsDisabled()) {
 			return;
 		}
-		
-		// Start thinking action
+
 		_thinking = true;
-		
-		try
-		{
-			// Manage AI thinks of a L2Attackable
-			if (getIntention() == AI_INTENTION_ACTIVE)
-			{
+
+		try {
+			if (getIntention() == AI_INTENTION_ACTIVE) {
 				thinkActive();
-			}
-			else if (getIntention() == AI_INTENTION_ATTACK)
-			{
+			} else if (getIntention() == AI_INTENTION_ATTACK) {
 				thinkAttack();
 			}
-		}
-		finally
-		{
-			// Stop thinking action
+		} finally {
 			_thinking = false;
 		}
 	}
-	
+
 
 	@Override
 	protected void onEvtAttacked(L2Character attacker) {
