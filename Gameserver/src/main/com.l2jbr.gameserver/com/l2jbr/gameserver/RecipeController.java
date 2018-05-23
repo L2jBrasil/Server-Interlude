@@ -35,13 +35,12 @@ import java.io.FileReader;
 import java.io.LineNumberReader;
 import java.util.*;
 
-
 public class RecipeController {
     protected static final Logger _log = LoggerFactory.getLogger(RecipeController.class.getName());
 
     private static RecipeController _instance;
     private final Map<Integer, L2RecipeList> _lists;
-    protected static final Map<L2PcInstance, RecipeItemMaker> _activeMakers = Collections.synchronizedMap(new WeakHashMap<L2PcInstance, RecipeItemMaker>());
+    protected static final Map<L2PcInstance, RecipeItemMaker> _activeMakers = Collections.synchronizedMap(new WeakHashMap<>());
 
     public static RecipeController getInstance() {
         return _instance == null ? _instance = new RecipeController() : _instance;

@@ -24,10 +24,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
@@ -40,7 +41,7 @@ public class L2Manor {
     private static Logger _log = LoggerFactory.getLogger(L2Manor.class.getName());
     private static L2Manor _instance;
 
-    private static LinkedHashMap<Integer, SeedData> _seeds = new LinkedHashMap<>();
+    private static Map<Integer, SeedData> _seeds = new ConcurrentHashMap<>();
 
     public L2Manor() {
         _seeds.clear();

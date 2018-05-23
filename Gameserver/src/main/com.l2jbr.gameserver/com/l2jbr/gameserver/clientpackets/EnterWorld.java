@@ -345,6 +345,7 @@ public class EnterWorld extends L2GameClientPacket
 		 */
 		
 		TvTEvent.onLogin(activeChar);
+
 	}
 	
 	/**

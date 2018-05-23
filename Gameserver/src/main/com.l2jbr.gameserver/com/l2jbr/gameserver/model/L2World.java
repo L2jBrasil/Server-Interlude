@@ -29,6 +29,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
@@ -79,7 +80,7 @@ public final class L2World {
     /**
      * List with the pets instances and their owner id
      */
-    private final LinkedHashMap<Integer, L2PetInstance> _petsInstance;
+    private final Map<Integer, L2PetInstance> _petsInstance;
 
     private static L2World _instance;
 
@@ -90,8 +91,8 @@ public final class L2World {
      * <BR>
      */
     private L2World() {
-        _allPlayers = new LinkedHashMap<>();
-        _petsInstance = new LinkedHashMap<>();
+        _allPlayers = new ConcurrentHashMap<>();
+        _petsInstance = new ConcurrentHashMap<>();
         _allObjects = L2ObjectMap.createL2ObjectMap();
 
         initRegions();

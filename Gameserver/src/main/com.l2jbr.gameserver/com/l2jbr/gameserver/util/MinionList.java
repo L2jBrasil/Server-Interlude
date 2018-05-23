@@ -26,6 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
@@ -41,7 +42,7 @@ public class MinionList {
      * List containing the current spawned minions for this L2MonsterInstance
      */
     private final List<L2MinionInstance> minionReferences;
-    protected Map<Long, Integer> _respawnTasks = new LinkedHashMap<>();
+    protected Map<Long, Integer> _respawnTasks = new ConcurrentHashMap<>();
     private final L2MonsterInstance master;
 
     public MinionList(L2MonsterInstance pMaster) {

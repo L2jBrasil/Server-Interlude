@@ -17,8 +17,8 @@ package com.l2jbr.gameserver.util;
 import com.l2jbr.gameserver.model.L2Object;
 
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
@@ -28,7 +28,7 @@ import java.util.Map;
  * @version $Revision: 1.2 $ $Date: 2004/06/27 08:12:59 $
  */
 public class WorldObjectMap<T extends L2Object> extends L2ObjectMap<T> {
-    private final Map<Integer, T> _objectMap = new LinkedHashMap<>();
+    private final Map<Integer, T> _objectMap = new ConcurrentHashMap<>();
 
     @Override
     public int size() {

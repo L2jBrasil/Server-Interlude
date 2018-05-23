@@ -41,10 +41,10 @@ import com.l2jbr.gameserver.templates.L2EtcItemType;
 import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.util.Util;
 
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
@@ -228,7 +228,7 @@ public class L2Attackable extends L2NpcInstance {
     /**
      * The table containing all autoAttackable L2Character in its Aggro Range and L2Character that attacked the L2Attackable This Map is Thread Safe, but Removing Object While Iterating Over It Will Result NPE
      */
-    private final Map<L2Character, AggroInfo> _aggroList = new LinkedHashMap<>();
+    private final Map<L2Character, AggroInfo> _aggroList = new ConcurrentHashMap<>();
 
     /**
      * Use this to Read or Put Object to this Map
@@ -300,7 +300,7 @@ public class L2Attackable extends L2NpcInstance {
     /**
      * The table containing all L2PcInstance that successfully absorbed the soul of this L2Attackable
      */
-    private final Map<L2PcInstance, AbsorberInfo> _absorbersList = new LinkedHashMap<>();
+    private final Map<L2PcInstance, AbsorberInfo> _absorbersList = new ConcurrentHashMap<>();
 
     /**
      * Have this L2Attackable to reward Exp and SP on Die?
@@ -513,7 +513,7 @@ public class L2Attackable extends L2NpcInstance {
     @Override
     protected void calculateRewards(L2Character lastAttacker) {
         // Creates an empty list of rewards
-        Map<L2Character, RewardInfo> rewards = new LinkedHashMap<>();
+        Map<L2Character, RewardInfo> rewards = new ConcurrentHashMap<>();
 
         try {
             if (getAggroListRP().isEmpty()) {

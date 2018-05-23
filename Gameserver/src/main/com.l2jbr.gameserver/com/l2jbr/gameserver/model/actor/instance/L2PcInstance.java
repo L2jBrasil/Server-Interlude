@@ -62,6 +62,7 @@ import com.l2jbr.gameserver.util.Point3D;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
@@ -823,7 +824,7 @@ public final class L2PcInstance extends L2PlayableInstance {
     /**
      * Active shots. A FastSet variable would actually suffice but this was changed to fix threading stability...
      */
-    protected Map<Integer, Integer> _activeSoulShots = new LinkedHashMap<>();
+    protected Map<Integer, Integer> _activeSoulShots = new ConcurrentHashMap<>();
 
     /**
      * The soul shot lock.
@@ -11587,7 +11588,7 @@ public final class L2PcInstance extends L2PlayableInstance {
     /**
      * The Reuse time stamps.
      */
-    private final Map<Integer, TimeStamp> ReuseTimeStamps = new LinkedHashMap<>();
+    private final Map<Integer, TimeStamp> ReuseTimeStamps = new ConcurrentHashMap<>();
 
     /**
      * Simple class containing all neccessary information to maintain valid timestamps and reuse for skills upon relog. Filter this carefully as it becomes redundant to store reuse for small delays.

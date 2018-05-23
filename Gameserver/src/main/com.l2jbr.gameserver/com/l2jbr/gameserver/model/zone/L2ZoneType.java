@@ -21,8 +21,8 @@ import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
@@ -46,7 +46,7 @@ public abstract class L2ZoneType {
     private char _classType;
 
     protected L2ZoneType() {
-        _characterList = new LinkedHashMap<>();
+        _characterList = new ConcurrentHashMap<>();
 
         _checkAffected = false;
 
