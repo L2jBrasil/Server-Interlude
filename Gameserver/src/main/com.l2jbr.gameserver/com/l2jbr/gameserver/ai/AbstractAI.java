@@ -23,6 +23,8 @@ import com.l2jbr.gameserver.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static com.l2jbr.gameserver.ai.Intention.AI_INTENTION_ATTACK;
+import static com.l2jbr.gameserver.ai.Intention.AI_INTENTION_FOLLOW;
 import static com.l2jbr.gameserver.ai.Intention.AI_INTENTION_IDLE;
 
 /**
@@ -77,10 +79,9 @@ abstract class AbstractAI<T extends AIAccessor> implements AI {
 		}
 
 		// TODO Stop the follow mode if necessary. move this to movable AI
-		/*if ((intention != AI_INTENTION_FOLLOW) && (intention != AI_INTENTION_ATTACK))
-		{
+		if ((intention != AI_INTENTION_FOLLOW) && (intention != AI_INTENTION_ATTACK)) {
 			stopFollow();
-		}*/
+		}
 
 		switch (intention)
 		{
