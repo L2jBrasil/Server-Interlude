@@ -45,18 +45,15 @@ import java.security.KeyFactory;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.RSAKeyGenParameterSpec;
 import java.security.spec.RSAPublicKeySpec;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 public class LoginServerThread extends Thread {
     protected static final Logger _log = LoggerFactory.getLogger(LoginServerThread.class.getName());
 
-    /**
-     * The LoginServerThread singleton
-     */
     private static LoginServerThread _instance;
 
     private static final int REVISION = 0x0102;
@@ -109,7 +106,7 @@ public class LoginServerThread extends Thread {
         _gameExternalHost = Config.EXTERNAL_HOSTNAME;
         _gameInternalHost = Config.INTERNAL_HOSTNAME;
         _waitingClients = new LinkedList<>();
-        _accountsInGameServer = new LinkedHashMap<>();
+        _accountsInGameServer = new ConcurrentHashMap<>();
         _maxPlayer = Config.MAXIMUM_ONLINE_USERS;
     }
 

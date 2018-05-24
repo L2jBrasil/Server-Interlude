@@ -21,9 +21,8 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
-
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author -Nemesiss-
@@ -42,7 +41,7 @@ public class WarehouseCacheManager {
 
     private WarehouseCacheManager() {
         _cacheTime = Config.WAREHOUSE_CACHE_TIME * 60000L; // 60*1000 = 60000
-        _cachedWh = new LinkedHashMap<>();
+        _cachedWh = new ConcurrentHashMap<>();
         ThreadPoolManager.getInstance().scheduleAiAtFixedRate(new CacheScheduler(), 120000, 60000);
     }
 

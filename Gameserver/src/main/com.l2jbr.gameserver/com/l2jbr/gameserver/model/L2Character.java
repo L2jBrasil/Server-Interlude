@@ -62,6 +62,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Future;
 
 import static com.l2jbr.gameserver.ai.Intention.AI_INTENTION_ATTACK;
@@ -376,7 +377,7 @@ public abstract class L2Character extends L2Object {
             }
         } else {
             // Initialize the FastMap _skills to null
-            _skills = new LinkedHashMap<>();
+            _skills = new ConcurrentHashMap<>();
 
             // If L2Character is a L2PcInstance or a L2Summon, create the basic calculator set
             _calculators = new Calculator[Stats.NUM_STATS];

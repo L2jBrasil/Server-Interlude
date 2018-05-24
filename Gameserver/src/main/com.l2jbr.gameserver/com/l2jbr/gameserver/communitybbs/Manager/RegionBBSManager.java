@@ -33,6 +33,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 public class RegionBBSManager extends BaseBBSManager {
@@ -214,12 +215,9 @@ public class RegionBBSManager extends BaseBBSManager {
     private static RegionBBSManager _instance = null;
     private int _onlineCount = 0;
     private int _onlineCountGm = 0;
-    private static Map<Integer, List<L2PcInstance>> _onlinePlayers = new LinkedHashMap<>();
-    private static Map<Integer, Map<String, String>> _communityPages = new LinkedHashMap<>();
+    private static Map<Integer, List<L2PcInstance>> _onlinePlayers = new ConcurrentHashMap<>();
+    private static Map<Integer, Map<String, String>> _communityPages = new ConcurrentHashMap<>();
 
-    /**
-     * @return
-     */
     public static RegionBBSManager getInstance() {
         if (_instance == null) {
             _instance = new RegionBBSManager();

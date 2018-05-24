@@ -25,6 +25,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.util.Util;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 public class CharKnownList extends ObjectKnownList {
@@ -160,14 +161,14 @@ public class CharKnownList extends ObjectKnownList {
 
     public final Map<Integer, L2PcInstance> getKnownPlayers() {
         if (_knownPlayers == null) {
-            _knownPlayers = new LinkedHashMap<>();
+            _knownPlayers = new ConcurrentHashMap<>();
         }
         return _knownPlayers;
     }
 
     public final Map<Integer, Integer> getKnownRelations() {
         if (_knownRelations == null) {
-            _knownRelations = new LinkedHashMap<>();
+            _knownRelations = new ConcurrentHashMap<>();
         }
         return _knownRelations;
     }

@@ -41,6 +41,7 @@ import java.security.MessageDigest;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.spec.RSAKeyGenParameterSpec;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
@@ -66,9 +67,9 @@ public class LoginController {
     /**
      * Authed Clients on LoginServer
      */
-    protected Map<String, L2LoginClient> _loginServerClients = new LinkedHashMap<>();
+    protected Map<String, L2LoginClient> _loginServerClients = new ConcurrentHashMap<>();
 
-    private final Map<InetAddress, BanInfo> _bannedIps = new LinkedHashMap<>();
+    private final Map<InetAddress, BanInfo> _bannedIps = new ConcurrentHashMap<>();
 
     private final Map<InetAddress, FailedLoginAttempt> _hackProtection;
 

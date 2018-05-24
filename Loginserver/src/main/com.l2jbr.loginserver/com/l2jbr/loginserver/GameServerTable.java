@@ -39,6 +39,7 @@ import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
@@ -52,7 +53,7 @@ public class GameServerTable {
     private static Map<Integer, String> _serverNames = new LinkedHashMap<>();
 
     // Game Server Table
-    private final Map<Integer, GameServerInfo> _gameServerTable = new LinkedHashMap<>();
+    private final Map<Integer, GameServerInfo> _gameServerTable = new ConcurrentHashMap<>();
 
     // RSA Config
     private static final int KEYS_SIZE = 10;

@@ -22,7 +22,8 @@ import com.l2jbr.gameserver.GameTimeController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
@@ -41,11 +42,8 @@ public class FloodProtector {
         return _instance;
     }
 
-    // =========================================================
-    // Data Field
-    private final LinkedHashMap<Integer, Integer[]> _floodClient;
 
-    // =========================================================
+    private final Map<Integer, Integer[]> _floodClient;
 
     // reuse delays for protected actions (in game ticks 1 tick = 100ms)
     private static final int[] REUSEDELAY = new int[]
@@ -68,7 +66,7 @@ public class FloodProtector {
     // Constructor
     private FloodProtector() {
         _log.info("Initializing FloodProtector");
-        _floodClient = new LinkedHashMap<>(Config.FLOODPROTECTOR_INITIALSIZE);
+        _floodClient = new ConcurrentHashMap<>(Config.FLOODPROTECTOR_INITIALSIZE);
     }
 
     /**
