@@ -52,8 +52,8 @@ public class Character extends Entity<Integer> {
     private int movementMultiplier;
     @Column("attack_speed_multiplier")
     private int attackSpeedMultiplier;
-    private int colRad;
-    private int colHeight;
+    private float colRad;
+    private float colHeight;
     private long exp;
     private long expBeforeDeath;
     private int sp;
@@ -396,19 +396,19 @@ public class Character extends Entity<Integer> {
         this.attackSpeedMultiplier = attackSpeedMultiplier;
     }
 
-    public int getColRad() {
+    public float getColRad() {
         return colRad;
     }
 
-    public void setCollisionRadius(int colRad) {
+    public void setCollisionRadius(float colRad) {
         this.colRad = colRad;
     }
 
-    public int getColHeight() {
+    public float getColHeight() {
         return colHeight;
     }
 
-    public void setCollisionHeight(int colHeight) {
+    public void setCollisionHeight(float colHeight) {
         this.colHeight = colHeight;
     }
 

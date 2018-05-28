@@ -97,7 +97,7 @@ public class L2MonsterInstance extends L2Attackable
 	@Override
 	public boolean isAggressive()
 	{
-		return (getTemplate().aggroRange > 0) && !isEventMob;
+		return (getTemplate().getAggro() > 0) && !isEventMob;
 	}
 	
 	@Override
@@ -105,7 +105,7 @@ public class L2MonsterInstance extends L2Attackable
 	{
 		super.onSpawn();
 		
-		if (getTemplate().getMinionData() != null)
+		if (getTemplate().getMinions() != null)
 		{
 			try
 			{

@@ -142,11 +142,11 @@ public abstract class CharTemplate extends Entity<Integer> {
         return pDef;
     }
 
-    public short getmAtk() {
+    public short getMAtk() {
         return mAtk;
     }
 
-    public short getmDef() {
+    public short getMDef() {
         return mDef;
     }
 
@@ -325,4 +325,9 @@ public abstract class CharTemplate extends Entity<Integer> {
     public void setHp(float hp) {
         this.hp = hp;
     }
+
+    public double getCp() {
+        return 0;
+    }
+
 }

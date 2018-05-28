@@ -28,11 +28,11 @@ import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.knownlist.DoorKnownList;
 import com.l2jbr.gameserver.model.actor.stat.DoorStat;
 import com.l2jbr.gameserver.model.actor.status.DoorStatus;
+import com.l2jbr.gameserver.model.database.CharTemplate;
 import com.l2jbr.gameserver.model.entity.Castle;
 import com.l2jbr.gameserver.model.entity.ClanHall;
 import com.l2jbr.gameserver.network.L2GameClient;
 import com.l2jbr.gameserver.serverpackets.*;
-import com.l2jbr.gameserver.templates.L2CharTemplate;
 import com.l2jbr.gameserver.templates.L2Weapon;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -169,7 +169,7 @@ public class L2DoorInstance extends L2Character {
      * @param name
      * @param unlockable
      */
-    public L2DoorInstance(int objectId, L2CharTemplate template, int doorId, String name, boolean unlockable) {
+    public L2DoorInstance(int objectId, CharTemplate template, int doorId, String name, boolean unlockable) {
         super(objectId, template);
         getKnownList(); // init knownlist
         getStat(); // init stats

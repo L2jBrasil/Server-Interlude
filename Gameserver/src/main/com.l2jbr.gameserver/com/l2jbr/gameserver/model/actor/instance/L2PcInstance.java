@@ -1193,7 +1193,7 @@ public final class L2PcInstance extends L2PlayableInstance {
      * @param sex         the sex
      * @return The L2PcInstance added to the database or null
      */
-    public static L2PcInstance create(int objectId, L2PcTemplate template, String accountName, String name, byte hairStyle, byte hairColor, byte face, boolean sex) {
+    public static L2PcInstance create(int objectId, PlayerTemplate template, String accountName, String name, byte hairStyle, byte hairColor, byte face, boolean sex) {
         // Create a new L2PcInstance with an account name
         PcAppearance app = new PcAppearance(face, hairColor, hairStyle, sex);
         L2PcInstance player = new L2PcInstance(objectId, template, accountName, app);
@@ -1413,7 +1413,7 @@ public final class L2PcInstance extends L2PlayableInstance {
      *
      * @return the base template
      */
-    public final L2PcTemplate getBaseTemplate() {
+    public final PlayerTemplate getBaseTemplate() {
         return CharTemplateTable.getInstance().getTemplate(_baseClass);
     }
 
@@ -2485,7 +2485,7 @@ public final class L2PcInstance extends L2PlayableInstance {
      * @return the class id
      */
     public ClassId getClassId() {
-        return getTemplate().classId;
+        return getTemplate().getClassId();
     }
 
     /**
@@ -2768,11 +2768,11 @@ public final class L2PcInstance extends L2PlayableInstance {
      */
     public Race getRace() {
         if (!isSubClassActive()) {
-            return getTemplate().race;
+            return getTemplate().getRace();
         }
 
-        L2PcTemplate charTemp = CharTemplateTable.getInstance().getTemplate(_baseClass);
-        return charTemp.race;
+        PlayerTemplate charTemp = CharTemplateTable.getInstance().getTemplate(_baseClass);
+        return charTemp.getRace();
     }
 
     /**
@@ -6200,8 +6200,8 @@ public final class L2PcInstance extends L2PlayableInstance {
         character.setTitle(getTitle());
         character.setCharName(getName());
 
-        character.setCollisionRadius(getTemplate().collisionRadius);
-        character.setCollisionHeight(getTemplate().collisionHeight);
+        character.setCollisionRadius(getTemplate().getCollisionRadius());
+        character.setCollisionHeight(getTemplate().getFCollisionHeight());
 
         character.setHeading(getHeading());
         setCharacterPosition(character);
@@ -6276,7 +6276,7 @@ public final class L2PcInstance extends L2PlayableInstance {
             Character character = optionalCharacter.get();
             final int activeClassId = character.getClassId();
             final boolean female = character.getSex() != 0;
-            final L2PcTemplate template = CharTemplateTable.getInstance().getTemplate(activeClassId);
+            final PlayerTemplate template = CharTemplateTable.getInstance().getTemplate(activeClassId);
             PcAppearance app = new PcAppearance(character.getFace(), character.getHairColor(), character.getHairStyle(), female);
 
             L2PcInstance player = new L2PcInstance(objectId, template, character.getAccountName(), app);
@@ -6620,8 +6620,8 @@ public final class L2PcInstance extends L2PlayableInstance {
         character.setTitle(getTitle());
         character.setCharName(getName());
         character.setSex(appearance.getSex() ? 1 : 0);
-        character.setCollisionRadius(getTemplate().collisionRadius);
-        character.setCollisionHeight(getTemplate().collisionHeight);
+        character.setCollisionRadius(getTemplate().getCollisionRadius());
+        character.setCollisionHeight(getTemplate().getCollisionHeight());
 
         character.setHeading(getHeading());
         setCharacterPosition(character);
@@ -7538,7 +7538,7 @@ public final class L2PcInstance extends L2PlayableInstance {
             // Check if the target is in the skill cast range
             if (dontMove) {
                 // Calculate the distance between the L2PcInstance and the target
-                if ((skill.getCastRange() > 0) && !isInsideRadius(target, skill.getCastRange() + getTemplate().collisionRadius, false, false)) {
+                if ((skill.getCastRange() > 0) && !isInsideRadius(target, skill.getCastRange() + (int) getTemplate().getCollisionRadius(), false, false)) {
                     // Send a System Message to the caster
                     sendPacket(new SystemMessage(SystemMessageId.TARGET_TOO_FAR));
 
@@ -9138,7 +9138,7 @@ public final class L2PcInstance extends L2PlayableInstance {
     private void setClassTemplate(int classId) {
         _activeClass = classId;
 
-        L2PcTemplate t = CharTemplateTable.getInstance().getTemplate(classId);
+        PlayerTemplate t = CharTemplateTable.getInstance().getTemplate(classId);
 
         if (t == null) {
             _log.error("Missing template for classId: " + classId);

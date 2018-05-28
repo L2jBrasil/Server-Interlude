@@ -528,10 +528,10 @@ public class L2CharacterAI<T extends L2Character.AIAccessor> extends AbstractAI<
 
 		L2Character actor = getActor();
 
-		offset += actor.getTemplate().collisionRadius;
+		offset += actor.getTemplate().getCollisionRadius();
 
 		if (target instanceof L2Character) {
-			offset += ((L2Character) target).getTemplate().collisionRadius;
+			offset += ((L2Character) target).getTemplate().getCollisionRadius();
 		}
 		
 		if (!actor.isInsideRadius(target, offset, false, false)) {

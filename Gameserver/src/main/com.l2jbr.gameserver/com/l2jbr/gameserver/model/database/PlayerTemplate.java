@@ -2,7 +2,16 @@ package com.l2jbr.gameserver.model.database;
 
 import com.l2jbr.commons.database.annotation.Column;
 import com.l2jbr.commons.database.annotation.Table;
+import com.l2jbr.commons.util.Util;
+import com.l2jbr.gameserver.datatables.ItemTable;
+import com.l2jbr.gameserver.model.base.ClassId;
+import com.l2jbr.gameserver.model.base.Race;
+import com.l2jbr.gameserver.templates.L2Item;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+
+import java.util.LinkedList;
+import java.util.List;
 
 @Table("char_templates")
 public class PlayerTemplate extends CharTemplate {
@@ -52,6 +61,13 @@ public class PlayerTemplate extends CharTemplate {
     private Integer item3;
     private Integer item4;
     private Integer item5;
+
+    @Transient
+    private ClassId classId;
+    @Transient
+    private Race race;
+    @Transient
+    private List<L2Item> items;
 
     @Override
     public Integer getId() {
@@ -172,5 +188,42 @@ public class PlayerTemplate extends CharTemplate {
 
     public Integer getItem5() {
         return item5;
+    }
+
+    public ClassId getClassId() {
+        return classId;
+    }
+
+    public Race getRace() {
+        return race;
+    }
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        classId = ClassId.values()[id];
+        race = Race.values()[raceId];
+        loadItems();
+
+    }
+
+    private void loadItems() {
+        items = new LinkedList<>();
+        addItem(item1);
+        addItem(item2);
+        addItem(item3);
+        addItem(item4);
+        addItem(item5);
+    }
+
+    private void addItem(int itemId) {
+        L2Item item = ItemTable.getInstance().getTemplate(itemId);
+        if(Util.isNotNull(item)) {
+            items.add(item);
+        }
+    }
+
+    public List<L2Item> getItems() {
+        return items;
     }
 }

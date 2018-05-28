@@ -26,12 +26,12 @@ import com.l2jbr.gameserver.model.L2ShortCut;
 import com.l2jbr.gameserver.model.L2SkillLearn;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.PlayerTemplate;
 import com.l2jbr.gameserver.network.L2GameClient;
 import com.l2jbr.gameserver.serverpackets.CharCreateFail;
 import com.l2jbr.gameserver.serverpackets.CharCreateOk;
 import com.l2jbr.gameserver.serverpackets.CharSelectInfo;
 import com.l2jbr.gameserver.templates.L2Item;
-import com.l2jbr.gameserver.templates.L2PcTemplate;
 import com.l2jbr.gameserver.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -123,8 +123,8 @@ public final class CharacterCreate extends L2GameClientPacket
 			_log.debug("charname: " + _name + " classId: " + _classId);
 		}
 		
-		L2PcTemplate template = CharTemplateTable.getInstance().getTemplate(_classId);
-		if ((template == null) || (template.classBaseLevel > 1))
+		PlayerTemplate template = CharTemplateTable.getInstance().getTemplate(_classId);
+		if ((template == null) || (template.getClassLevel() > 1))
 		{
 			CharCreateFail ccf = new CharCreateFail(CharCreateFail.REASON_CREATION_FAILED);
 			sendPacket(ccf);
@@ -133,9 +133,9 @@ public final class CharacterCreate extends L2GameClientPacket
 		
 		int objectId = IdFactory.getInstance().getNextId();
 		L2PcInstance newChar = L2PcInstance.create(objectId, template, getClient().getAccountName(), _name, _hairStyle, _hairColor, _face, _sex != 0);
-		newChar.setCurrentHp(template.baseHpMax);
-		newChar.setCurrentCp(template.baseCpMax);
-		newChar.setCurrentMp(template.baseMpMax);
+		newChar.setCurrentHp(template.getHp());
+		newChar.setCurrentCp(template.getCp());
+		newChar.setCurrentMp(template.getMp());
 		// newChar.setMaxLoad(template.baseLoad);
 		
 		// send acknowledgement
@@ -171,11 +171,11 @@ public final class CharacterCreate extends L2GameClientPacket
 		_log.debug("Character init start");
 		L2World.getInstance().storeObject(newChar);
 		
-		L2PcTemplate template = newChar.getTemplate();
+		PlayerTemplate template = newChar.getTemplate();
 		
 		newChar.addAdena("Init", Config.STARTING_ADENA, null, false);
 		
-		newChar.setXYZInvisible(template.spawnX, template.spawnY, template.spawnZ);
+		newChar.setXYZInvisible(template.getX(), template.getY(), template.getZ());
 		newChar.setTitle("");
 		
 		L2ShortCut shortcut;

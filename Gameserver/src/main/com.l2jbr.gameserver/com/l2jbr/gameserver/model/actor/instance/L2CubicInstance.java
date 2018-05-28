@@ -191,7 +191,7 @@ public class L2CubicInstance {
 
                             int x, y, z;
                             // temporary range check until real behavior of cubics is known/coded
-                            int range = _target.getTemplate().collisionRadius + 400; // skill.getCastRange();
+                            int range = (int) _target.getTemplate().getCollisionRadius() + 400; // skill.getCastRange();
 
                             x = (_owner.getX() - _target.getX());
                             y = (_owner.getY() - _target.getY());

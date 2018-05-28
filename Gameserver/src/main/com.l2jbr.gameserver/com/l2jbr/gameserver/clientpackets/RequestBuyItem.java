@@ -186,7 +186,7 @@ public final class RequestBuyItem extends L2GameClientPacket
 		
 		if (_listId > 1000000) // lease
 		{
-			if ((merchant != null) && (merchant.getTemplate().npcId != (_listId - 1000000)))
+			if ((merchant != null) && (merchant.getTemplate().getId() != (_listId - 1000000)))
 			{
 				sendPacket(new ActionFailed());
 				return;

@@ -204,7 +204,7 @@ public class AdminEditChar implements IAdminCommandHandler {
                     if (!player.isSubClassActive()) {
                         player.setBaseClass(classidval);
                     }
-                    String newclass = player.getTemplate().className;
+                    String newclass = player.getTemplate().getClassName();
                     player.store();
                     player.sendMessage("A GM changed your class to " + newclass);
                     player.broadcastUserInfo();
@@ -346,7 +346,7 @@ public class AdminEditChar implements IAdminCommandHandler {
         adminReply.replace("%pages%", replyMSG.toString());
         replyMSG.delete(0, replyMSG.length());
         for (int i = CharactersStart; i < CharactersEnd; i++) { // Add player info into new Table row
-            replyMSG.append("<tr><td width=80><a action=\"bypass -h admin_character_info " + players[i].getName() + "\">" + players[i].getName() + "</a></td><td width=110>" + players[i].getTemplate().className + "</td><td width=40>" + players[i].getLevel() + "</td></tr>");
+            replyMSG.append("<tr><td width=80><a action=\"bypass -h admin_character_info " + players[i].getName() + "\">" + players[i].getName() + "</a></td><td width=110>" + players[i].getTemplate().getClassName() + "</td><td width=40>" + players[i].getLevel() + "</td></tr>");
         }
         adminReply.replace("%players%", replyMSG.toString());
         activeChar.sendPacket(adminReply);
@@ -391,7 +391,7 @@ public class AdminEditChar implements IAdminCommandHandler {
         adminReply.replace("%clan%", String.valueOf(ClanTable.getInstance().getClan(player.getClanId())));
         adminReply.replace("%xp%", String.valueOf(player.getExp()));
         adminReply.replace("%sp%", String.valueOf(player.getSp()));
-        adminReply.replace("%class%", player.getTemplate().className);
+        adminReply.replace("%class%", player.getTemplate().getClassName());
         adminReply.replace("%ordinal%", String.valueOf(player.getClassId().ordinal()));
         adminReply.replace("%classid%", String.valueOf(player.getClassId()));
         adminReply.replace("%x%", String.valueOf(player.getX()));
@@ -548,7 +548,7 @@ public class AdminEditChar implements IAdminCommandHandler {
             name = player.getName();
             if (name.toLowerCase().contains(CharacterToFind.toLowerCase())) {
                 CharactersFound = CharactersFound + 1;
-                replyMSG.append("<tr><td width=80><a action=\"bypass -h admin_character_list " + name + "\">" + name + "</a></td><td width=110>" + player.getTemplate().className + "</td><td width=40>" + player.getLevel() + "</td></tr>");
+                replyMSG.append("<tr><td width=80><a action=\"bypass -h admin_character_list " + name + "\">" + name + "</a></td><td width=110>" + player.getTemplate().getClassName() + "</td><td width=40>" + player.getLevel() + "</td></tr>");
             }
             if (CharactersFound > 20) {
                 break;
@@ -592,7 +592,7 @@ public class AdminEditChar implements IAdminCommandHandler {
             if (ip.equals(IpAdress)) {
                 name = player.getName();
                 CharactersFound = CharactersFound + 1;
-                replyMSG.append("<tr><td width=80><a action=\"bypass -h admin_character_list " + name + "\">" + name + "</a></td><td width=110>" + player.getTemplate().className + "</td><td width=40>" + player.getLevel() + "</td></tr>");
+                replyMSG.append("<tr><td width=80><a action=\"bypass -h admin_character_list " + name + "\">" + name + "</a></td><td width=110>" + player.getTemplate().getClassName() + "</td><td width=40>" + player.getLevel() + "</td></tr>");
             }
             if (CharactersFound > 20) {
                 break;

@@ -179,7 +179,7 @@ public class L2ControllableMobAI extends L2AttackableAI<ControllableAIAcessor> {
         try {
             skills = actor.getAllSkills();
             dist2 = actor.getPlanDistanceSq(target.getX(), target.getY());
-            range = actor.getPhysicalAttackRange() + actor.getTemplate().collisionRadius + target.getTemplate().collisionRadius;
+            range = actor.getPhysicalAttackRange() + (int) actor.getTemplate().getCollisionRadius() + (int) target.getTemplate().getCollisionRadius();
             max_range = range;
         } catch (NullPointerException e) {
             _log.warn("Encountered Null Value.");
@@ -225,7 +225,7 @@ public class L2ControllableMobAI extends L2AttackableAI<ControllableAIAcessor> {
             _actor.setTarget(getForcedTarget());
             skills = _actor.getAllSkills();
             dist2 = _actor.getPlanDistanceSq(getForcedTarget().getX(), getForcedTarget().getY());
-            range = _actor.getPhysicalAttackRange() + _actor.getTemplate().collisionRadius + getForcedTarget().getTemplate().collisionRadius;
+            range = _actor.getPhysicalAttackRange() + (int) _actor.getTemplate().getCollisionRadius() + (int) getForcedTarget().getTemplate().getCollisionRadius();
             max_range = range;
         } catch (NullPointerException e) {
             _log.warn("Encountered Null Value.");
@@ -295,7 +295,7 @@ public class L2ControllableMobAI extends L2AttackableAI<ControllableAIAcessor> {
                 actor.setTarget(getAttackTarget());
                 skills = actor.getAllSkills();
                 dist2 = actor.getPlanDistanceSq(getAttackTarget().getX(), getAttackTarget().getY());
-                range = actor.getPhysicalAttackRange() + actor.getTemplate().collisionRadius + getAttackTarget().getTemplate().collisionRadius;
+                range = actor.getPhysicalAttackRange() + (int) actor.getTemplate().getCollisionRadius() + (int) getAttackTarget().getTemplate().getCollisionRadius();
                 max_range = range;
             } catch (NullPointerException e) {
                 _log.warn("Encountered Null Value.");

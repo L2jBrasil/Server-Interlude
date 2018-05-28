@@ -530,8 +530,8 @@ public class AdminEditNpc implements IAdminCommandHandler {
             adminReply.replace("%sp%", String.valueOf(npc.getSp()));
             adminReply.replace("%pAtk%", String.valueOf(npc.getpAtk()));
             adminReply.replace("%pDef%", String.valueOf(npc.getpDef()));
-            adminReply.replace("%mAtk%", String.valueOf(npc.getmAtk()));
-            adminReply.replace("%mDef%", String.valueOf(npc.getmDef()));
+            adminReply.replace("%mAtk%", String.valueOf(npc.getMAtk()));
+            adminReply.replace("%mDef%", String.valueOf(npc.getMDef()));
             adminReply.replace("%pAtkSpd%", String.valueOf(npc.getPAtkSpd()));
             adminReply.replace("%aggro%", String.valueOf(npc.getAggro()));
             adminReply.replace("%mAtkSpd%", String.valueOf(npc.getMAtkSpd()));

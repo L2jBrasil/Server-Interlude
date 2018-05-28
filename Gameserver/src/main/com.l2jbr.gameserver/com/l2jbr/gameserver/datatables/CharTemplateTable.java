@@ -201,8 +201,8 @@ public class CharTemplateTable {
             set.set("baseMpReg", 0.9);
             set.set("basePAtk", charTemplate.getpAtk());
             set.set("basePDef", charTemplate.getpDef());
-            set.set("baseMAtk", charTemplate.getmAtk());
-            set.set("baseMDef", charTemplate.getmDef());
+            set.set("baseMAtk", charTemplate.getMAtk());
+            set.set("baseMDef", charTemplate.getMDef());
             set.set("classBaseLevel", charTemplate.getClassLevel());
             set.set("basePAtkSpd", charTemplate.getPAtkSpd());
             set.set("baseMAtkSpd", charTemplate.getMAtkSpd());
@@ -221,14 +221,14 @@ public class CharTemplateTable {
             set.set("collision_radius", charTemplate.getCollisionRadius());
             set.set("collision_height", charTemplate.getCollisionRadius());
 
-            PlayerTemplate ct = new PlayerTemplate(set);
+            L2PcTemplate ct = new L2PcTemplate(set);
 
             ct.addItem(charTemplate.getItem1());
             ct.addItem(charTemplate.getItem2());
             ct.addItem(charTemplate.getItem3());
             ct.addItem(charTemplate.getItem4());
             ct.addItem(charTemplate.getItem5());
-            _templates.put(ct.classId.getId(), ca);
+            _templates.put(charTemplate.getId(), charTemplate);
         });
 
         _log.info("CharTemplateTable: Loaded " + _templates.size() + " Character Templates.");
