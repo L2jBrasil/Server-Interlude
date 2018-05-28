@@ -24,13 +24,13 @@ import com.l2jbr.gameserver.datatables.MapRegionTable;
 import com.l2jbr.gameserver.instancemanager.AuctionManager;
 import com.l2jbr.gameserver.instancemanager.ClanHallManager;
 import com.l2jbr.gameserver.model.L2Clan;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.model.entity.Auction;
 import com.l2jbr.gameserver.model.entity.Auction.Bidder;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.MyTargetSelected;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.ValidateLocation;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -43,7 +43,7 @@ public final class L2AuctioneerInstance extends L2FolkInstance {
 
     private final Map<Integer, Auction> _pendingAuctions = new LinkedHashMap<>();
 
-    public L2AuctioneerInstance(int objectId, L2NpcTemplate template) {
+    public L2AuctioneerInstance(int objectId, NpcTemplate template) {
         super(objectId, template);
     }
 

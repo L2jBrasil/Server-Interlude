@@ -17,8 +17,8 @@ package com.l2jbr.gameserver.model.actor.instance;
 import com.l2jbr.gameserver.datatables.HennaTreeTable;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2HennaInstance;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.HennaEquipList;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 
 /**
@@ -65,7 +65,7 @@ public class L2SymbolMakerInstance extends L2FolkInstance {
         insertObjectIdAndShowChatWindow(player, html1.toString());
     }
 
-    public L2SymbolMakerInstance(int objectID, L2NpcTemplate template) {
+    public L2SymbolMakerInstance(int objectID, NpcTemplate template) {
         super(objectID, template);
     }
 

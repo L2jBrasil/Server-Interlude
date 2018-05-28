@@ -22,8 +22,8 @@ import com.l2jbr.gameserver.SevenSignsFestival;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Party;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 
 /**
@@ -45,7 +45,7 @@ public class L2FestivalMonsterInstance extends L2MonsterInstance
 	 * @param objectId Identifier of the object to initialized
 	 * @param template the template to apply to the NPC
 	 */
-	public L2FestivalMonsterInstance(int objectId, L2NpcTemplate template)
+	public L2FestivalMonsterInstance(int objectId, NpcTemplate template)
 	{
 		super(objectId, template);
 	}

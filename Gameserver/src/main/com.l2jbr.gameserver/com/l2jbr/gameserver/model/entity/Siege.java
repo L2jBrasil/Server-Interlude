@@ -35,6 +35,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2ArtefactInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2ControlTowerInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.model.database.SiegeClan;
 import com.l2jbr.gameserver.model.database.repository.CastleRepository;
 import com.l2jbr.gameserver.model.database.repository.SiegeClanRepository;
@@ -43,7 +44,6 @@ import com.l2jbr.gameserver.serverpackets.RelationChanged;
 import com.l2jbr.gameserver.serverpackets.SiegeInfo;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.serverpackets.UserInfo;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 import java.util.Calendar;
 import java.util.LinkedList;
@@ -281,7 +281,7 @@ public class Siege {
                 _siegeGuardManager.removeMercs(); // Remove all merc entry from db
             }
 
-            if ((getDefenderClans().size() == 0) && // If defender doesn't exist (Pc vs Npc)
+            if ((getDefenderClans().size() == 0) && // If defender doesn't exist (Pc vs NpcTemplate)
                     (getAttackerClans().size() == 1 // Only 1 attacker
                     )) {
                 L2SiegeClan sc_newowner = getAttackerClan(getCastle().getOwnerId());
@@ -293,7 +293,7 @@ public class Siege {
             if (getCastle().getOwnerId() > 0) {
 
                 int allyId = ClanTable.getInstance().getClan(getCastle().getOwnerId()).getAllyId();
-                if (getDefenderClans().size() == 0) // If defender doesn't exist (Pc vs Npc)
+                if (getDefenderClans().size() == 0) // If defender doesn't exist (Pc vs NpcTemplate)
                 // and only an alliance attacks
                 {
                     // The player's clan is in an alliance
@@ -1077,9 +1077,9 @@ public class Siege {
         for (SiegeSpawn _sp : SiegeManager.getInstance().getControlTowerSpawnList(Id)) {
             L2ControlTowerInstance ct;
 
-            L2NpcTemplate template = NpcTable.getInstance().getTemplate(_sp.getNpcId());
+            NpcTemplate template = NpcTable.getInstance().getTemplate(_sp.getNpcId());
 
-            template.getStatsSet().set("baseHpMax", _sp.getHp());
+            template.setHp(_sp.getHp());
             // TODO: Check/confirm if control towers have any special weapon resistances/vulnerabilities
             // template.addVulnerability(Stats.BOW_WPN_VULN,0);
             // template.addVulnerability(Stats.BLUNT_WPN_VULN,0);

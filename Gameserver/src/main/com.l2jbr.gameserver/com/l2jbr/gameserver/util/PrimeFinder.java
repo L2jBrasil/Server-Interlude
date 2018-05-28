@@ -321,7 +321,7 @@ public final class PrimeFinder
 	
 	static
 	{ // initializer
-		// The above prime numbers are formatted for human readability.
+		// The above prime numbers are formatted for HUMAN readability.
 		// To find numbers fast, we sort them once and for all.
 		
 		Arrays.sort(PRIME_CAPACITIES);

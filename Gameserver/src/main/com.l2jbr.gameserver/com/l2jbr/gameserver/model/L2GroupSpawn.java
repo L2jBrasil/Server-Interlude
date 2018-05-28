@@ -22,7 +22,7 @@ import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.Territory;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 
 import java.lang.reflect.Constructor;
 
@@ -33,9 +33,9 @@ import java.lang.reflect.Constructor;
 public class L2GroupSpawn extends L2Spawn
 {
 	private final Constructor<?> _constructor;
-	private final L2NpcTemplate _template;
+	private final NpcTemplate _template;
 	
-	public L2GroupSpawn(L2NpcTemplate mobTemplate) throws SecurityException, ClassNotFoundException, NoSuchMethodException
+	public L2GroupSpawn(NpcTemplate mobTemplate) throws SecurityException, ClassNotFoundException, NoSuchMethodException
 	{
 		super(mobTemplate);
 		_constructor = Class.forName("com.l2jbr.gameserver.model.actor.instance.L2ControllableMobInstance").getConstructors()[0];
@@ -50,7 +50,7 @@ public class L2GroupSpawn extends L2Spawn
 		
 		try
 		{
-			if (_template.type.equalsIgnoreCase("L2Pet") || _template.type.equalsIgnoreCase("L2Minion"))
+			if (_template.getType().equalsIgnoreCase("L2Pet") || _template.getType().equalsIgnoreCase("L2Minion"))
 			{
 				return null;
 			}
@@ -107,7 +107,7 @@ public class L2GroupSpawn extends L2Spawn
 			
 			if (Config.DEBUG)
 			{
-				_log.debug("spawned Mob ID: " + _template.npcId + " ,at: " + mob.getX() + " x, " + mob.getY() + " y, " + mob.getZ() + " z");
+				_log.debug("spawned Mob ID: " + _template.getId() + " ,at: " + mob.getX() + " x, " + mob.getY() + " y, " + mob.getZ() + " z");
 			}
 			
 			return mob;

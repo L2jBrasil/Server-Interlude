@@ -21,7 +21,7 @@ package com.l2jbr.gameserver.model.actor.instance;
 import com.l2jbr.gameserver.model.L2Attackable;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.actor.knownlist.FriendlyMobKnownList;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 
 
 /**
@@ -30,7 +30,7 @@ import com.l2jbr.gameserver.templates.L2NpcTemplate;
  */
 public class L2FriendlyMobInstance extends L2Attackable
 {
-	public L2FriendlyMobInstance(int objectId, L2NpcTemplate template)
+	public L2FriendlyMobInstance(int objectId, NpcTemplate template)
 	{
 		super(objectId, template);
 		getKnownList(); // init knownlist

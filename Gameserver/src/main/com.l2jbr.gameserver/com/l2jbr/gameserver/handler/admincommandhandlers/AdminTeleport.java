@@ -26,10 +26,10 @@ import com.l2jbr.gameserver.handler.IAdminCommandHandler;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -330,8 +330,8 @@ public class AdminTeleport implements IAdminCommandHandler {
         if ((obj != null) && (obj instanceof L2NpcInstance)) {
             L2NpcInstance target = (L2NpcInstance) obj;
 
-            int monsterTemplate = target.getTemplate().npcId;
-            L2NpcTemplate template1 = NpcTable.getInstance().getTemplate(monsterTemplate);
+            int monsterTemplate = target.getTemplate().getId();
+            NpcTemplate template1 = NpcTable.getInstance().getTemplate(monsterTemplate);
             if (template1 == null) {
                 activeChar.sendMessage("Incorrect monster template.");
                 _log.warn("ERROR: NPC " + target.getObjectId() + " has a 'null' template.");
@@ -364,7 +364,7 @@ public class AdminTeleport implements IAdminCommandHandler {
                 spawn.init();
 
                 SystemMessage sm = new SystemMessage(SystemMessageId.S1_S2);
-                sm.addString("Created " + template1.name + " on " + target.getObjectId() + ".");
+                sm.addString("Created " + template1.getName() + " on " + target.getObjectId() + ".");
                 activeChar.sendPacket(sm);
 
                 if (Config.DEBUG) {

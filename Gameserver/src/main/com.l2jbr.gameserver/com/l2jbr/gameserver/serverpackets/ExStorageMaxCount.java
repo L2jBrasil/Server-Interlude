@@ -22,7 +22,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
 
 /**
- * Format: (ch)ddddddd d: Number of Inventory Slots d: Number of Warehouse Slots d: Number of Freight Slots (unconfirmed) (200 for a low level dwarf) d: Private Sell Store Slots (unconfirmed) (4 for a low level dwarf) d: Private Buy Store Slots (unconfirmed) (5 for a low level dwarf) d: Dwarven
+ * Format: (ch)ddddddd d: Number of Inventory Slots d: Number of Warehouse Slots d: Number of Freight Slots (unconfirmed) (200 for a low level DWARF) d: Private Sell Store Slots (unconfirmed) (4 for a low level DWARF) d: Private Buy Store Slots (unconfirmed) (5 for a low level DWARF) d: Dwarven
  * Recipe Book Slots d: Normal Recipe Book Slots
  * @author -Wooden- format from KenM
  */

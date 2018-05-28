@@ -215,6 +215,11 @@ public final class L2NpcTemplate extends L2CharTemplate {
         }
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+
     public void addRaidData(L2MinionData minion) {
         _minions.add(minion);
     }
@@ -347,82 +352,7 @@ public final class L2NpcTemplate extends L2CharTemplate {
         return _npcStatsSet;
     }
 
-    public void setRace(int raceId) {
-        switch (raceId) {
-            case 1:
-                race = Race.UNDEAD;
-                break;
-            case 2:
-                race = Race.MAGICCREATURE;
-                break;
-            case 3:
-                race = Race.BEAST;
-                break;
-            case 4:
-                race = Race.ANIMAL;
-                break;
-            case 5:
-                race = Race.PLANT;
-                break;
-            case 6:
-                race = Race.HUMANOID;
-                break;
-            case 7:
-                race = Race.SPIRIT;
-                break;
-            case 8:
-                race = Race.ANGEL;
-                break;
-            case 9:
-                race = Race.DEMON;
-                break;
-            case 10:
-                race = Race.DRAGON;
-                break;
-            case 11:
-                race = Race.GIANT;
-                break;
-            case 12:
-                race = Race.BUG;
-                break;
-            case 13:
-                race = Race.FAIRIE;
-                break;
-            case 14:
-                race = Race.HUMAN;
-                break;
-            case 15:
-                race = Race.ELVE;
-                break;
-            case 16:
-                race = Race.DARKELVE;
-                break;
-            case 17:
-                race = Race.ORC;
-                break;
-            case 18:
-                race = Race.DWARVE;
-                break;
-            case 19:
-                race = Race.OTHER;
-                break;
-            case 20:
-                race = Race.NONLIVING;
-                break;
-            case 21:
-                race = Race.SIEGEWEAPON;
-                break;
-            case 22:
-                race = Race.DEFENDINGARMY;
-                break;
-            case 23:
-                race = Race.MERCENARIE;
-                break;
-            default:
-                race = Race.UNKNOWN;
-                break;
-        }
-    }
+
 
     public Race getRace() {
         if (race == null) {

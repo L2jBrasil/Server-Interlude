@@ -24,12 +24,12 @@ import com.l2jbr.gameserver.cache.HtmCache;
 import com.l2jbr.gameserver.datatables.ClanTable;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.L2ItemInstance;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,7 +44,7 @@ import java.util.StringTokenizer;
 public class L2SignsPriestInstance extends L2FolkInstance {
      private static Logger _log = LoggerFactory.getLogger(L2SignsPriestInstance.class.getName());
 
-    public L2SignsPriestInstance(int objectId, L2NpcTemplate template) {
+    public L2SignsPriestInstance(int objectId, NpcTemplate template) {
         super(objectId, template);
     }
 

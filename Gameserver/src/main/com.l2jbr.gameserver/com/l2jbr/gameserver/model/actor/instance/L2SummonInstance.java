@@ -24,10 +24,10 @@ import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.L2Summon;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SetSummonRemainTime;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,7 +51,7 @@ public class L2SummonInstance extends L2Summon
 	
 	private Future<?> _summonLifeTask;
 	
-	public L2SummonInstance(int objectId, L2NpcTemplate template, L2PcInstance owner, L2Skill skill)
+	public L2SummonInstance(int objectId, NpcTemplate template, L2PcInstance owner, L2Skill skill)
 	{
 		super(objectId, template, owner);
 		setShowSummonAnimation(true);

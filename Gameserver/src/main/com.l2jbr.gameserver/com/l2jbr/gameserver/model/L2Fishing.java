@@ -22,11 +22,11 @@ import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.datatables.NpcTable;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PenaltyMonsterInstance;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ExFishingHpRegen;
 import com.l2jbr.gameserver.serverpackets.ExFishingStartCombat;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 import java.util.concurrent.Future;
 
@@ -397,7 +397,7 @@ public class L2Fishing implements Runnable
 				npcid = 18319;
 				break;
 		}
-		L2NpcTemplate temp;
+		NpcTemplate temp;
 		temp = NpcTable.getInstance().getTemplate(npcid);
 		if (temp != null)
 		{

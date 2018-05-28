@@ -20,7 +20,7 @@ package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Skill;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 
 
 public class L2SiegeSummonInstance extends L2SummonInstance
@@ -29,7 +29,7 @@ public class L2SiegeSummonInstance extends L2SummonInstance
 	public static final int HOG_CANNON_ID = 14768;
 	public static final int SWOOP_CANNON_ID = 14839;
 	
-	public L2SiegeSummonInstance(int objectId, L2NpcTemplate template, L2PcInstance owner, L2Skill skill)
+	public L2SiegeSummonInstance(int objectId, NpcTemplate template, L2PcInstance owner, L2Skill skill)
 	{
 		super(objectId, template, owner, skill);
 	}

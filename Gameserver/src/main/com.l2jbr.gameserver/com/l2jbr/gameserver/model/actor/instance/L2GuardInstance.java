@@ -25,11 +25,11 @@ import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.ai.L2AttackableAI;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.knownlist.GuardKnownList;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.MyTargetSelected;
 import com.l2jbr.gameserver.serverpackets.SocialAction;
 import com.l2jbr.gameserver.serverpackets.ValidateLocation;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -71,7 +71,7 @@ public final class L2GuardInstance extends L2Attackable
 	 * @param objectId Identifier of the object to initialized
 	 * @param template the template to apply to the NPC
 	 */
-	public L2GuardInstance(int objectId, L2NpcTemplate template)
+	public L2GuardInstance(int objectId, NpcTemplate template)
 	{
 		super(objectId, template);
 		getKnownList(); // init knownlist

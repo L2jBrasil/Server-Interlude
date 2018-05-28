@@ -24,7 +24,7 @@ import com.l2jbr.gameserver.instancemanager.CursedWeaponsManager;
 import com.l2jbr.gameserver.model.Inventory;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -127,7 +127,7 @@ public class CharInfo extends L2GameServerPacket
 		
 		if (_activeChar.getPoly().isMorphed())
 		{
-			L2NpcTemplate template = NpcTable.getInstance().getTemplate(_activeChar.getPoly().getPolyId());
+			NpcTemplate template = NpcTable.getInstance().getTemplate(_activeChar.getPoly().getPolyId());
 			
 			if (template != null)
 			{
@@ -152,8 +152,8 @@ public class CharInfo extends L2GameServerPacket
 				writeD(_flyWalkSpd);
 				writeF(_moveMultiplier);
 				writeF(_attackSpeedMultiplier);
-				writeF(template.collisionRadius);
-				writeF(template.collisionHeight);
+				writeF(template.getCollisionRadius());
+				writeF(template.getCollisionHeight());
 				writeD(_inv.getPaperdollItemId(Inventory.PAPERDOLL_RHAND)); // right hand weapon
 				writeD(0);
 				writeD(_inv.getPaperdollItemId(Inventory.PAPERDOLL_LHAND)); // left hand weapon
@@ -203,7 +203,7 @@ public class CharInfo extends L2GameServerPacket
 			}
 			else
 			{
-				_log.warn("Character " + _activeChar.getName() + " (" + _activeChar.getObjectId() + ") morphed in a Npc (" + _activeChar.getPoly().getPolyId() + ") w/o template.");
+				_log.warn("Character " + _activeChar.getName() + " (" + _activeChar.getObjectId() + ") morphed in a NpcTemplate (" + _activeChar.getPoly().getPolyId() + ") w/o template.");
 			}
 		}
 		else

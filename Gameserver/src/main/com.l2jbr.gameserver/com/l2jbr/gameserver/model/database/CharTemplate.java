@@ -1,261 +1,328 @@
 package com.l2jbr.gameserver.model.database;
 
 import com.l2jbr.commons.database.annotation.Column;
-import com.l2jbr.commons.database.annotation.Table;
 import com.l2jbr.commons.database.model.Entity;
-import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 
-@Table("char_templates")
-public class CharTemplate extends Entity<Integer> {
+public abstract class CharTemplate extends Entity<Integer> {
 
-    @Id
-    private Integer classId;
-    private String className;
-    private Integer classLevel;
-    private Integer RaceId;
-    @Column("parent_id")
-    private Integer parentId;
-    private Integer STR;
-    private Integer CON;
-    private Integer DEX;
-    private Integer _INT;
-    private Integer WIT;
-    private Integer MEN;
+    @Column("walk_spd")
+    private short walkSpd;
+    @Column("run_spd")
+    private short runSpd;
+    private short strength;
+    private short constitution;
+    private short dexterity;
+    private short intelligence;
+    private short witness;
+    private short mentality;
     @Column("p_atk")
-    private Integer pAtk;
+    private short pAtk;
     @Column("p_def")
-    private Integer pDef;
+    private short pDef;
     @Column("m_atk")
-    private Integer mAtk;
-    @Column("M_DEF")
-    private Integer mDef;
-    @Column("P_SPD")
-    private Integer pSpd;
-    @Column("M_SPD")
-    private Integer mSpd;
-    private Integer acc;
-    private Integer critical;
-    private Integer evasion;
-    @Column("move_spd")
-    private Integer moveSpeed;
-    private Integer _load;
-    private Float defaultHpBase;
-    private Float defaultHpAdd;
-    private Float defaultHpMod;
-    private Float defaultCpBase;
-    private Float defaultCpAdd;
-    private Float defaultCpMod;
-    private Float defaultMpBase;
-    private Float defaultMpAdd;
-    private Float defaultMpMod;
-    private Integer x;
-    private Integer y;
-    private Integer z;
-    private Integer canCraft;
-    private Float M_UNK1;
-    private Float M_UNK2;
-    private Float M_COL_R;
-    private Float M_COL_H;
-    private Float F_UNK1;
-    private Float F_UNK2;
-    private Float F_COL_R;
-    private Float F_COL_H;
-    private Integer items1;
-    private Integer items2;
-    private Integer items3;
-    private Integer items4;
-    private Integer items5;
+    private short mAtk;
+    @Column("m_def")
+    private short mDef;
+    @Column("p_atk_spd")
+    private short pAtkSpd;
+    @Column("m_atk_spd")
+    private short mAtkSpd;
+    @Column("crit_rate")
+    private short critRate;
+    private float hp;
+    private float mp;
+    @Column("hp_regen")
+    private float hpRegen;
+    @Column("mp_regen")
+    private float mpRegen;
+    @Column("atk_range")
+    private short atkRange;
+    @Column("collision_radius")
+    private float collisionRadius;
+    @Column("collision_height")
+    private float collisionHeight;
 
-    @Override
-    public Integer getId() {
-        return classId;
+    @Transient
+    private float mReuseRate = 1;
+    @Transient
+    private short shieldDef = 0;
+    @Transient
+    private short shieldRate = 0;
+    @Transient
+    private float mpConsumeRate = 0;
+    @Transient
+    private float hpConsumeRate =  0;
+    @Transient
+    private short breath = 100;
+    @Transient
+    private short aggression = 0;
+    @Transient
+    private short bleed =  0;
+    @Transient
+    private short poison = 0;
+    @Transient
+    private short stun = 0;
+    @Transient
+    private short root = 0;
+    @Transient
+    private short movement =  0;
+    @Transient
+    private short confusion =  0;
+    @Transient
+    private short  sleep =  0;
+    @Transient
+    private short fire =  0;
+    @Transient
+    private short wind =  0;
+    @Transient
+    private short water =  0;
+    @Transient
+    private short earth =  0;
+    @Transient
+    private short holy =  0;
+    @Transient
+    private short dark =  0;
+    @Transient
+    private float aggressionVuln =  1;
+    @Transient
+    private float bleedVuln =  1;
+    @Transient
+    private float poisonVuln =  1;
+    @Transient
+    private float stunVuln =  1;
+    @Transient
+    private float rootVuln =  1;
+    @Transient
+    private float movementVuln =  1;
+    @Transient
+    private float confusionVuln =  1;
+    @Transient
+    private float sleepVuln =  1;
+    @Transient
+    private float fireVuln =  1;
+    @Transient
+    private float windVuln =  1;
+    @Transient
+    private float waterVuln =  1;
+    @Transient
+    private float earthVuln =  1;
+    @Transient
+    private float holyVuln =  1;
+    @Transient
+    private float darkVuln =  1;
+
+    public int getStrength() {
+        return strength;
     }
 
-    public String getClassName() {
-        return className;
+    public short getConstitution() {
+        return constitution;
     }
 
-    public int getRaceId() {
-        return RaceId;
+    public short getDexterity() {
+        return dexterity;
     }
 
-    public int getSTR() {
-        return STR;
+    public short getIntellienge() { return intelligence;  }
+
+    public short getWitness() {
+        return witness;
     }
 
-    public Integer getClassLevel() {
-        return classLevel;
+    public short getMentality() {
+        return mentality;
     }
 
-    public Integer getParentId() {
-        return parentId;
-    }
-
-    public Integer getCON() {
-        return CON;
-    }
-
-    public Integer getDEX() {
-        return DEX;
-    }
-
-    public Integer getINT() {
-        return _INT;
-    }
-
-    public Integer getWIT() {
-        return WIT;
-    }
-
-    public Integer getMEN() {
-        return MEN;
-    }
-
-    public Integer getpAtk() {
+    public short getpAtk() {
         return pAtk;
     }
 
-    public Integer getpDef() {
+    public short getpDef() {
         return pDef;
     }
 
-    public Integer getmAtk() {
+    public short getmAtk() {
         return mAtk;
     }
 
-    public Integer getmDef() {
+    public short getmDef() {
         return mDef;
     }
 
-    public Integer getpSpd() {
-        return pSpd;
+    public short getPAtkSpd() {
+        return pAtkSpd;
     }
 
-    public Integer getmSpd() {
-        return mSpd;
+    public short getMAtkSpd() {
+        return mAtkSpd;
     }
 
-    public Integer getAcc() {
-        return acc;
+    public short getCritRate() {
+        return critRate;
     }
 
-    public Integer getCritical() {
-        return critical;
+    public float getHp() {
+        return hp;
     }
 
-    public Integer getEvasion() {
-        return evasion;
+    public float getMp() {
+        return mp;
     }
 
-    public Integer getMoveSpeed() {
-        return moveSpeed;
+    public float getCollisionRadius() {
+        return collisionRadius;
     }
 
-    public Integer get_load() {
-        return _load;
+    public float getCollisionHeight() {
+        return collisionHeight;
     }
 
-    public float getDefaultHpBase() {
-        return defaultHpBase;
+    public short getAtkRange() {
+        return atkRange;
     }
 
-    public float getDefaultHpAdd() {
-        return defaultHpAdd;
+    public short getWalkSpd() {
+        return walkSpd;
     }
 
-    public float getDefaultHpMod() {
-        return defaultHpMod;
+    public float getHpRegen() {
+        return hpRegen;
     }
 
-    public float getDefaultCpBase() {
-        return defaultCpBase;
+    protected void setHpRegen(float hpRegen) {
+        this.hpRegen = hpRegen;
     }
 
-    public float getDefaultCpAdd() {
-        return defaultCpAdd;
+    public float getMpRegen() {
+        return mpRegen;
     }
 
-    public float getDefaultCpMod() {
-        return defaultCpMod;
+    protected void setMpRegen(float mpRegen) {
+        this.mpRegen = mpRegen;
     }
 
-    public float getDefaultMpBase() {
-        return defaultMpBase;
+    public short getRunSpd() {
+        return runSpd;
     }
 
-    public float getDefaultMpAdd() {
-        return defaultMpAdd;
+    public short getAggression() {
+        return aggression;
     }
 
-    public float getDefaultMpMod() {
-        return defaultMpMod;
+    public short getBreath() {
+        return breath;
     }
 
-    public Integer getX() {
-        return x;
+    public short getBleed() {
+        return bleed;
     }
 
-    public Integer getY() {
-        return y;
+    public short getPoison() {
+        return poison;
     }
 
-    public Integer getZ() {
-        return z;
+    public short getStun() {
+        return stun;
     }
 
-    public Integer getCanCraft() {
-        return canCraft;
+    public short getRoot() {
+        return root;
     }
 
-    public float getM_UNK1() {
-        return M_UNK1;
+    public short getMovement() {
+        return movement;
     }
 
-    public float getM_UNK2() {
-        return M_UNK2;
+    public short getConfusion() {
+        return confusion;
     }
 
-    public float getM_COL_R() {
-        return M_COL_R;
+    public short getSleep() {
+        return sleep;
     }
 
-    public float getM_COL_H() {
-        return M_COL_H;
+    public short getFire() {
+        return fire;
     }
 
-    public float getF_UNK1() {
-        return F_UNK1;
+    public short getWind() {
+        return wind;
     }
 
-    public float getF_UNK2() {
-        return F_UNK2;
+    public short getWater() {
+        return water;
     }
 
-    public float getF_COL_R() {
-        return F_COL_R;
+    public short getEarth() {
+        return earth;
     }
 
-    public float getF_COL_H() {
-        return F_COL_H;
+    public short getHoly() {
+        return holy;
     }
 
-    public Integer getItems1() {
-        return items1;
+    public short getDark() {
+        return dark;
     }
 
-    public Integer getItems2() {
-        return items2;
+    public float getAggressionVuln() {
+        return aggressionVuln;
     }
 
-    public Integer getItems3() {
-        return items3;
+    public float getBleedVuln() {
+        return bleedVuln;
     }
 
-    public Integer getItems4() {
-        return items4;
+    public float getPoisonVuln() {
+        return poisonVuln;
     }
 
-    public Integer getItems5() {
-        return items5;
+    public float getStunVuln() {
+        return stunVuln;
+    }
+
+    public float getRootVuln() {
+        return rootVuln;
+    }
+
+    public float getMovementVuln() {
+        return movementVuln;
+    }
+
+    public float getConfusionVuln() {
+        return confusionVuln;
+    }
+
+    public float getSleepVuln() {
+        return sleepVuln;
+    }
+
+    public float getFireVuln() {
+        return fireVuln;
+    }
+
+    public float getWindVuln() {
+        return windVuln;
+    }
+
+    public float getWaterVuln() {
+        return waterVuln;
+    }
+
+    public float getEarthVuln() {
+        return earthVuln;
+    }
+
+    public float getHolyVuln() {
+        return holyVuln;
+    }
+
+    public float getDarkVuln() {
+        return darkVuln;
+    }
+
+    public void setHp(float hp) {
+        this.hp = hp;
     }
 }

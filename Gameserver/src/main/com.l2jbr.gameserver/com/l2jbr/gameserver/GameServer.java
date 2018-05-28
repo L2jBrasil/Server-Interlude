@@ -169,7 +169,7 @@ public class GameServer {
 
         if (!_npcTable.isInitialized()) {
             _log.error(getMessage(ERROR_EXTRACTED_FILE_NOT_FOUND));
-            throw new Exception(getMessage(ERROR_INITIALIZE_TABLE, "Npc"));
+            throw new Exception(getMessage(ERROR_INITIALIZE_TABLE, "NpcTemplate"));
         }
 
         _hennaTable = HennaTable.getInstance();

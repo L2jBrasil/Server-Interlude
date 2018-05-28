@@ -1335,7 +1335,7 @@ public final class L2PcInstance extends L2PlayableInstance {
      * @param accountName The name of the account including this L2PcInstance
      * @param app         the app
      */
-    private L2PcInstance(int objectId, L2PcTemplate template, String accountName, PcAppearance app) {
+    private L2PcInstance(int objectId, PlayerTemplate template, String accountName, PcAppearance app) {
         super(objectId, template);
         getKnownList(); // init knownlist
         getStat(); // init stats
@@ -1423,8 +1423,8 @@ public final class L2PcInstance extends L2PlayableInstance {
      * @return the template
      */
     @Override
-    public final L2PcTemplate getTemplate() {
-        return (L2PcTemplate) super.getTemplate();
+    public final PlayerTemplate getTemplate() {
+        return (PlayerTemplate) super.getTemplate();
     }
 
     /**
@@ -2578,11 +2578,11 @@ public final class L2PcInstance extends L2PlayableInstance {
     public L2Weapon findFistsWeaponItem(int classId) {
         L2Weapon weaponItem = null;
         if ((classId >= 0x00) && (classId <= 0x09)) {
-            // human fighter fists
+            // HUMAN fighter fists
             L2Item temp = ItemTable.getInstance().getTemplate(246);
             weaponItem = (L2Weapon) temp;
         } else if ((classId >= 0x0a) && (classId <= 0x11)) {
-            // human mage fists
+            // HUMAN mage fists
             L2Item temp = ItemTable.getInstance().getTemplate(251);
             weaponItem = (L2Weapon) temp;
         } else if ((classId >= 0x12) && (classId <= 0x18)) {
@@ -2602,11 +2602,11 @@ public final class L2PcInstance extends L2PlayableInstance {
             L2Item temp = ItemTable.getInstance().getTemplate(250);
             weaponItem = (L2Weapon) temp;
         } else if ((classId >= 0x2c) && (classId <= 0x30)) {
-            // orc fighter fists
+            // ORC fighter fists
             L2Item temp = ItemTable.getInstance().getTemplate(248);
             weaponItem = (L2Weapon) temp;
         } else if ((classId >= 0x31) && (classId <= 0x34)) {
-            // orc mage fists
+            // ORC mage fists
             L2Item temp = ItemTable.getInstance().getTemplate(252);
             weaponItem = (L2Weapon) temp;
         } else if ((classId >= 0x35) && (classId <= 0x39)) {
@@ -2661,7 +2661,7 @@ public final class L2PcInstance extends L2PlayableInstance {
 
         // Active skill dwarven craft
 
-        if ((getSkillLevel(1321) < 1) && (getRace() == Race.dwarf)) {
+        if ((getSkillLevel(1321) < 1) && (getRace() == Race.DWARF)) {
             L2Skill skill = SkillTable.getInstance().getInfo(1321, 1);
             addSkill(skill, true);
         }
@@ -10613,7 +10613,7 @@ public final class L2PcInstance extends L2PlayableInstance {
         int ivlim;
         if (isGM()) {
             ivlim = Config.INVENTORY_MAXIMUM_GM;
-        } else if (getRace() == Race.dwarf) {
+        } else if (getRace() == Race.DWARF) {
             ivlim = Config.INVENTORY_MAXIMUM_DWARF;
         } else {
             ivlim = Config.INVENTORY_MAXIMUM_NO_DWARF;
@@ -10630,7 +10630,7 @@ public final class L2PcInstance extends L2PlayableInstance {
      */
     public int GetWareHouseLimit() {
         int whlim;
-        if (getRace() == Race.dwarf) {
+        if (getRace() == Race.DWARF) {
             whlim = Config.WAREHOUSE_SLOTS_DWARF;
         } else {
             whlim = Config.WAREHOUSE_SLOTS_NO_DWARF;
@@ -10647,7 +10647,7 @@ public final class L2PcInstance extends L2PlayableInstance {
      */
     public int GetPrivateSellStoreLimit() {
         int pslim;
-        if (getRace() == Race.dwarf) {
+        if (getRace() == Race.DWARF) {
             pslim = Config.MAX_PVTSTORE_SLOTS_DWARF;
         } else {
             pslim = Config.MAX_PVTSTORE_SLOTS_OTHER;
@@ -10664,7 +10664,7 @@ public final class L2PcInstance extends L2PlayableInstance {
      */
     public int GetPrivateBuyStoreLimit() {
         int pblim;
-        if (getRace() == Race.dwarf) {
+        if (getRace() == Race.DWARF) {
             pblim = Config.MAX_PVTSTORE_SLOTS_DWARF;
         } else {
             pblim = Config.MAX_PVTSTORE_SLOTS_OTHER;
@@ -10684,7 +10684,7 @@ public final class L2PcInstance extends L2PlayableInstance {
     }
 
     /**
-     * Gets the dwarf recipe limit.
+     * Gets the DWARF recipe limit.
      *
      * @return the int
      */

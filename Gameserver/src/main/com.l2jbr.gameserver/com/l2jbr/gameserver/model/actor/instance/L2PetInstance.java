@@ -27,13 +27,13 @@ import com.l2jbr.gameserver.instancemanager.CursedWeaponsManager;
 import com.l2jbr.gameserver.instancemanager.ItemsOnGroundManager;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.stat.PetStat;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.model.database.Pets;
 import com.l2jbr.gameserver.model.database.repository.PetsRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.taskmanager.DecayTaskManager;
 import com.l2jbr.gameserver.templates.L2Item;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.templates.L2Weapon;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,7 +70,7 @@ public class L2PetInstance extends L2Summon
 	{
 		if (_data == null)
 		{
-			_data = L2PetDataTable.getInstance().getPetData(getTemplate().npcId, getStat().getLevel());
+			_data = L2PetDataTable.getInstance().getPetData(getTemplate().getId(), getStat().getLevel());
 		}
 		
 		return _data;
@@ -126,7 +126,7 @@ public class L2PetInstance extends L2Summon
 					getOwner().sendMessage("Your pet is too hungry to stay summoned.");
 				}
 				
-				int foodId = L2PetDataTable.getFoodItemId(getTemplate().npcId);
+				int foodId = L2PetDataTable.getFoodItemId(getTemplate().getId());
 				if (foodId == 0)
 				{
 					return;
@@ -161,7 +161,7 @@ public class L2PetInstance extends L2Summon
 		}
 	}
 	
-	public synchronized static L2PetInstance spawnPet(L2NpcTemplate template, L2PcInstance owner, L2ItemInstance control)
+	public synchronized static L2PetInstance spawnPet(NpcTemplate template, L2PcInstance owner, L2ItemInstance control)
 	{
 		if (L2World.getInstance().getPet(owner.getObjectId()) != null)
 		{
@@ -178,7 +178,7 @@ public class L2PetInstance extends L2Summon
 		return pet;
 	}
 	
-	public L2PetInstance(int objectId, L2NpcTemplate template, L2PcInstance owner, L2ItemInstance control)
+	public L2PetInstance(int objectId, NpcTemplate template, L2PcInstance owner, L2ItemInstance control)
 	{
 		super(objectId, template, owner);
 		super.setStat(new PetStat(this));
@@ -191,18 +191,18 @@ public class L2PetInstance extends L2Summon
 		// Hatcling : Level 35
 		// Tested and confirmed on official servers
 		// Sin-eaters are defaulted at the owner's level
-		if (template.npcId == 12564)
+		if (template.getId() == 12564)
 		{
 			getStat().setLevel((byte) getOwner().getLevel());
 		}
 		else
 		{
-			getStat().setLevel(template.level);
+			getStat().setLevel(template.getLevel());
 		}
 		
 		_inventory = new PetInventory(this);
 		
-		int npcId = template.npcId;
+		int npcId = template.getId();
 		_mountable = L2PetDataTable.isMountable(npcId);
 	}
 	
@@ -774,9 +774,9 @@ public class L2PetInstance extends L2Summon
 		return _mountable;
 	}
 	
-	private static L2PetInstance restore(L2ItemInstance control, L2NpcTemplate template, L2PcInstance owner) {
+	private static L2PetInstance restore(L2ItemInstance control, NpcTemplate template, L2PcInstance owner) {
         L2PetInstance pet;
-        if (template.type.compareToIgnoreCase("L2BabyPet") == 0) {
+        if (template.getType().compareToIgnoreCase("L2BabyPet") == 0) {
             pet = new L2BabyPetInstance(IdFactory.getInstance().getNextId(), template, owner, control);
         }
         else {

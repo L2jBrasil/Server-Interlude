@@ -23,9 +23,9 @@ import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.instancemanager.DayNightSpawnManager;
 import com.l2jbr.gameserver.model.L2Spawn;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.model.database.Spawnlist;
 import com.l2jbr.gameserver.model.database.repository.SpawnListRepository;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -66,13 +66,13 @@ public class SpawnTable {
         java.sql.Connection con = null;
         SpawnListRepository repository = DatabaseAccess.getRepository(SpawnListRepository.class);
         repository.findAll().forEach(spawnlist -> {
-            L2NpcTemplate template1 = NpcTable.getInstance().getTemplate(spawnlist.getNpcTemplateId());
+            NpcTemplate template1 = NpcTable.getInstance().getTemplate(spawnlist.getNpcTemplateId());
             if (template1 != null) {
-                if (template1.type.equalsIgnoreCase("L2SiegeGuard")) {
+                if (template1.getType().equalsIgnoreCase("L2SiegeGuard")) {
                     // Don't spawn
-                } else if (template1.type.equalsIgnoreCase("L2RaidBoss")) {
+                } else if (template1.getType().equalsIgnoreCase("L2RaidBoss")) {
                     // Don't spawn raidboss
-                } else if (!Config.ALLOW_CLASS_MASTERS && template1.type.equals("L2ClassMaster")) {
+                } else if (!Config.ALLOW_CLASS_MASTERS && template1.getType().equals("L2ClassMaster")) {
                     // Dont' spawn class masters
                 } else {
                     L2Spawn spawnDat = null;
@@ -116,7 +116,7 @@ public class SpawnTable {
             }
         });
 
-        _log.info("SpawnTable: Loaded {} Npc Spawn Locations.", _spawntable.size());
+        _log.info("SpawnTable: Loaded {} NpcTemplate Spawn Locations.", _spawntable.size());
         _log.debug("SpawnTable: Spawning completed, total number of NPCs in the world: {}", _npcSpawnCount);
     }
 
@@ -170,7 +170,7 @@ public class SpawnTable {
                         activeChar.teleToLocation(spawn.getLocx(), spawn.getLocy(), spawn.getLocz(), true);
                     }
                 } else {
-                    activeChar.sendMessage(index + " - " + spawn.getTemplate().name + " (" + spawn.getId() + "): " + spawn.getLocx() + " " + spawn.getLocy() + " " + spawn.getLocz());
+                    activeChar.sendMessage(index + " - " + spawn.getTemplate().getName() + " (" + spawn.getId() + "): " + spawn.getLocx() + " " + spawn.getLocy() + " " + spawn.getLocz());
                 }
             }
         }

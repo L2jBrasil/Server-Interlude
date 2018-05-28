@@ -24,15 +24,17 @@ import com.l2jbr.gameserver.model.L2EnchantSkillLearn;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.L2SkillLearn;
 import com.l2jbr.gameserver.model.base.ClassId;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
+
+import java.util.Set;
 
 
 public class L2FolkInstance extends L2NpcInstance {
-    private final ClassId[] _classesToTeach;
+    private final Set<ClassId> _classesToTeach;
 
-    public L2FolkInstance(int objectId, L2NpcTemplate template) {
+    public L2FolkInstance(int objectId, NpcTemplate template) {
         super(objectId, template);
         _classesToTeach = template.getTeachInfo();
     }
@@ -54,7 +56,7 @@ public class L2FolkInstance extends L2NpcInstance {
             _log.debug("SkillList activated on: " + getObjectId());
         }
 
-        int npcId = getTemplate().npcId;
+        int npcId = getTemplate().getId();
 
         if (_classesToTeach == null) {
             NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
@@ -125,7 +127,7 @@ public class L2FolkInstance extends L2NpcInstance {
         if (Config.DEBUG) {
             _log.debug("EnchantSkillList activated on: " + getObjectId());
         }
-        int npcId = getTemplate().npcId;
+        int npcId = getTemplate().getId();
 
         if (_classesToTeach == null) {
             NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());

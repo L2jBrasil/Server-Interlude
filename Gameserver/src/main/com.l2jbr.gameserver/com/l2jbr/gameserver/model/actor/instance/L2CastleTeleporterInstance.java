@@ -22,9 +22,9 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.datatables.TeleportLocationTable;
 import com.l2jbr.gameserver.model.L2Position;
 import com.l2jbr.gameserver.model.L2TeleportLocation;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 import java.util.StringTokenizer;
 
@@ -45,7 +45,7 @@ public final class L2CastleTeleporterInstance extends L2FolkInstance
 	 * @param objectId
 	 * @param template
 	 */
-	public L2CastleTeleporterInstance(int objectId, L2NpcTemplate template)
+	public L2CastleTeleporterInstance(int objectId, NpcTemplate template)
 	{
 		super(objectId, template);
 	}

@@ -31,10 +31,10 @@ import com.l2jbr.gameserver.model.actor.knownlist.SummonKnownList;
 import com.l2jbr.gameserver.model.actor.stat.SummonStat;
 import com.l2jbr.gameserver.model.actor.status.SummonStatus;
 import com.l2jbr.gameserver.model.base.Experience;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.taskmanager.DecayTaskManager;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.templates.L2Weapon;
 
 
@@ -81,7 +81,7 @@ public abstract class L2Summon extends L2PlayableInstance
 		}
 	}
 	
-	public L2Summon(int objectId, L2NpcTemplate template, L2PcInstance owner)
+	public L2Summon(int objectId, NpcTemplate template, L2PcInstance owner)
 	{
 		super(objectId, template);
 		getKnownList(); // init knownlist
@@ -143,9 +143,9 @@ public abstract class L2Summon extends L2PlayableInstance
 	}
 	
 	@Override
-	public L2NpcTemplate getTemplate()
+	public NpcTemplate getTemplate()
 	{
-		return (L2NpcTemplate) super.getTemplate();
+		return (NpcTemplate) super.getTemplate();
 	}
 	
 	// this defines the action buttons, 1 for Summon, 2 for Pets
@@ -223,7 +223,7 @@ public abstract class L2Summon extends L2PlayableInstance
 	
 	public final int getNpcId()
 	{
-		return getTemplate().npcId;
+		return getTemplate().getId();
 	}
 	
 	public void setPvpFlag(byte pvpFlag)

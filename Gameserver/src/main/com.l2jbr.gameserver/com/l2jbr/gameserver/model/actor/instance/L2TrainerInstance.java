@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.model.actor.instance;
 
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 
 
 /**
@@ -31,7 +31,7 @@ public final class L2TrainerInstance extends L2FolkInstance
 	 * @param objectId
 	 * @param template
 	 */
-	public L2TrainerInstance(int objectId, L2NpcTemplate template)
+	public L2TrainerInstance(int objectId, NpcTemplate template)
 	{
 		super(objectId, template);
 	}

@@ -47,7 +47,7 @@ public class L2MotherTreeZone extends L2ZoneType
 			{
 				for (L2PcInstance member : player.getParty().getPartyMembers())
 				{
-					if (member.getRace() != Race.elf)
+					if (member.getRace() != Race.ELF)
 					{
 						return;
 					}

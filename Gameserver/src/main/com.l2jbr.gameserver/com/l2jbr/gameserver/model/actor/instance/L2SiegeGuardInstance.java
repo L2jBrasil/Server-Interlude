@@ -27,8 +27,8 @@ import com.l2jbr.gameserver.model.L2Attackable;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Position;
 import com.l2jbr.gameserver.model.actor.knownlist.SiegeGuardKnownList;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.*;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,7 +45,7 @@ public final class L2SiegeGuardInstance extends L2Attackable
 	private int _homeY;
 	private int _homeZ;
 	
-	public L2SiegeGuardInstance(int objectId, L2NpcTemplate template)
+	public L2SiegeGuardInstance(int objectId, NpcTemplate template)
 	{
 		super(objectId, template);
 		getKnownList(); // inits the knownlist

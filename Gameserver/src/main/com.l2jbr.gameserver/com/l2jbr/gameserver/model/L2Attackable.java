@@ -31,6 +31,7 @@ import com.l2jbr.gameserver.instancemanager.CursedWeaponsManager;
 import com.l2jbr.gameserver.model.actor.instance.*;
 import com.l2jbr.gameserver.model.actor.knownlist.AttackableKnownList;
 import com.l2jbr.gameserver.model.base.SoulCrystal;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.model.quest.Quest;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.CreatureSay;
@@ -38,7 +39,6 @@ import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.Stats;
 import com.l2jbr.gameserver.templates.L2EtcItemType;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.util.Util;
 
 import java.util.LinkedList;
@@ -319,7 +319,7 @@ public class L2Attackable extends L2NpcInstance {
      * @param objectId Identifier of the object to initialized
      * @param template the template to apply to the NPC
      */
-    public L2Attackable(int objectId, L2NpcTemplate template) {
+    public L2Attackable(int objectId, NpcTemplate template) {
         super(objectId, template);
         getKnownList(); // init knownlist
         _mustGiveExpSp = true;
@@ -1267,7 +1267,7 @@ public class L2Attackable extends L2NpcInstance {
      * @param npcTemplate
      * @param lastAttacker The L2Character that has killed the L2Attackable
      */
-    public void doItemDrop(L2NpcTemplate npcTemplate, L2Character lastAttacker) {
+    public void doItemDrop(NpcTemplate npcTemplate, L2Character lastAttacker) {
         L2PcInstance player = null;
         if (lastAttacker instanceof L2PcInstance) {
             player = (L2PcInstance) lastAttacker;
@@ -1287,7 +1287,7 @@ public class L2Attackable extends L2NpcInstance {
         }
 
         // now throw all categorized drops and handle spoil.
-        for (L2DropCategory cat : npcTemplate.getDropData()) {
+        for (L2DropCategory cat : npcTemplate.getDropCategories().values()) {
             RewardItem item = null;
             if (cat.isSweep()) {
                 // according to sh1ny, seeded mobs CAN be spoiled and swept.
@@ -1363,7 +1363,7 @@ public class L2Attackable extends L2NpcInstance {
 
         // Instant Item Drop :>
         double rateHp = getStat().calcStat(Stats.MAX_HP, 1, this, null);
-        if ((rateHp <= 1) && String.valueOf(npcTemplate.type).contentEquals("L2Monster")) // only L2Monster with <= 1x HP can drop herbs
+        if ((rateHp <= 1) && String.valueOf(npcTemplate.getType()).contentEquals("L2Monster")) // only L2Monster with <= 1x HP can drop herbs
         {
             boolean _hp = false;
             boolean _mp = false;
@@ -1823,7 +1823,7 @@ public class L2Attackable extends L2NpcInstance {
         boolean doLevelup = true;
         boolean isBossMob = maxAbsorbLevel > 10 ? true : false;
 
-        L2NpcTemplate.AbsorbCrystalType absorbType = getTemplate().absorbType;
+        NpcTemplate.AbsorbCrystalType absorbType = getTemplate().getAbsorbType();
 
         L2PcInstance killer = (attacker instanceof L2Summon) ? ((L2Summon) attacker).getOwner() : (L2PcInstance) attacker;
 
@@ -1871,9 +1871,9 @@ public class L2Attackable extends L2NpcInstance {
 
         List<L2PcInstance> players = new LinkedList<>();
 
-        if ((absorbType == L2NpcTemplate.AbsorbCrystalType.FULL_PARTY) && killer.isInParty()) {
+        if ((absorbType == NpcTemplate.AbsorbCrystalType.FULL_PARTY) && killer.isInParty()) {
             players = killer.getParty().getPartyMembers();
-        } else if ((absorbType == L2NpcTemplate.AbsorbCrystalType.PARTY_ONE_RANDOM) && killer.isInParty()) {
+        } else if ((absorbType == NpcTemplate.AbsorbCrystalType.PARTY_ONE_RANDOM) && killer.isInParty()) {
             // This is a naive method for selecting a random member. It gets any random party member and
             // then checks if the member has a valid crystal. It does not select the random party member
             // among those who have crystals, only. However, this might actually be correct (same as retail).
@@ -1985,7 +1985,7 @@ public class L2Attackable extends L2NpcInstance {
             int chanceLevelUp = isBossMob ? 70 : SoulCrystal.LEVEL_CHANCE;
 
             // If succeeds or it is a full party absorb, level up the crystal.
-            if (((absorbType == L2NpcTemplate.AbsorbCrystalType.FULL_PARTY) && doLevelup) || (dice <= chanceLevelUp)) {
+            if (((absorbType == NpcTemplate.AbsorbCrystalType.FULL_PARTY) && doLevelup) || (dice <= chanceLevelUp)) {
                 // Give staged crystal
                 exchangeCrystal(player, crystalOLD, crystalNEW, false);
             }
@@ -2234,7 +2234,7 @@ public class L2Attackable extends L2NpcInstance {
     }
 
     private int getAbsorbLevel() {
-        return getTemplate().absorbLevel;
+        return getTemplate().getAbsorbLevel();
     }
 
     /**

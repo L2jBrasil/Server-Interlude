@@ -197,7 +197,7 @@ public class RecipeController {
             StringTokenizer st = new StringTokenizer(line, ";");
             List<L2RecipeInstance> recipePartList = new LinkedList<>();
 
-            // we use common/dwarf for easy reading of the recipes.csv file
+            // we use common/DWARF for easy reading of the recipes.csv file
             String recipeTypeString = st.nextToken();
 
             // now parse the string into a boolean

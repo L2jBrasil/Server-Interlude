@@ -2,6 +2,7 @@ package com.l2jbr.gameserver.model.database;
 
 import com.l2jbr.commons.database.annotation.Column;
 import com.l2jbr.commons.database.annotation.Table;
+import com.l2jbr.commons.util.Rnd;
 import org.springframework.data.annotation.Id;
 
 @Table("minions")
@@ -30,5 +31,12 @@ public class Minions  {
 
     public int getAmountMax() {
         return amountMax;
+    }
+
+    public int getAmount() {
+        if (amountMax > amountMin) {
+            return Rnd.get(amountMin, amountMax);
+        }
+        return amountMin;
     }
 }

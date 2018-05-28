@@ -29,10 +29,10 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2SiegeSummonInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2SummonInstance;
 import com.l2jbr.gameserver.model.base.Experience;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.PetInfo;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.templates.StatsSet;
 
 
@@ -190,8 +190,8 @@ public class L2SkillSummon extends L2Skill
 		}
 		
 		L2SummonInstance summon;
-		L2NpcTemplate summonTemplate = NpcTable.getInstance().getTemplate(_npcId);
-		if (summonTemplate.type.equalsIgnoreCase("L2SiegeSummon"))
+		NpcTemplate summonTemplate = NpcTable.getInstance().getTemplate(_npcId);
+		if (summonTemplate.getType().equalsIgnoreCase("L2SiegeSummon"))
 		{
 			summon = new L2SiegeSummonInstance(IdFactory.getInstance().getNextId(), summonTemplate, activeChar, this);
 		}
@@ -200,7 +200,7 @@ public class L2SkillSummon extends L2Skill
 			summon = new L2SummonInstance(IdFactory.getInstance().getNextId(), summonTemplate, activeChar, this);
 		}
 		
-		summon.setName(summonTemplate.name);
+		summon.setName(summonTemplate.getName());
 		summon.setTitle(activeChar.getName());
 		summon.setExpPenalty(_expPenalty);
 		if (summon.getLevel() >= Experience.LEVEL.length)

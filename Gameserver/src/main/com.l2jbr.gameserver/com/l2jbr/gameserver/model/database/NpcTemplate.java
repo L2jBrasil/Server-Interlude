@@ -1,0 +1,354 @@
+package com.l2jbr.gameserver.model.database;
+
+import com.l2jbr.commons.database.annotation.Column;
+import com.l2jbr.commons.database.annotation.Table;
+import com.l2jbr.commons.util.Util;
+import com.l2jbr.gameserver.datatables.SkillTable;
+import com.l2jbr.gameserver.model.L2DropCategory;
+import com.l2jbr.gameserver.model.L2DropData;
+import com.l2jbr.gameserver.model.L2Skill;
+import com.l2jbr.gameserver.model.base.ClassId;
+import com.l2jbr.gameserver.model.base.Race;
+import com.l2jbr.gameserver.model.quest.Quest;
+import com.l2jbr.gameserver.skills.SkillConstants;
+import com.l2jbr.gameserver.skills.Stats;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
+
+@Table("npc")
+public class NpcTemplate extends CharTemplate {
+
+    @Transient
+    public static Logger log = LoggerFactory.getLogger(NpcTemplate.class);
+
+    @Id
+    private Integer id;
+    @Column("template_id")
+    private Integer templateId;
+    private String name;
+    @Column("server_side_name")
+    private boolean serverSideName;
+    private String title;
+    @Column("server_side_title")
+    private boolean serverSideTitle;
+    private byte level;
+    private String sex;
+    private String type;
+    private Integer exp;
+    private Integer sp;
+    private Integer aggro;
+    private Integer rhand;
+    private Integer lhand;
+    private Integer armor;
+    @Column("faction_id")
+    private String factionId;
+    @Column("faction_range")
+    private Integer factionRange;
+    private boolean isUndead;
+    @Column("absorb_level")
+    private Integer absorbLevel;
+    @Column("absorb_type")
+    private AbsorbCrystalType absorbType;
+    @Column("npcid")
+    private Set<NpcSkills> npcSkills;
+    @Column("mobid")
+    private Set<DropList> dropLists;
+    @Column("npc_id")
+    private Set<SkillLearn> skillLearns;
+    @Column("boss_id")
+    private Set<Minions> minions;
+
+    @Transient
+    private Map<Stats, Float> vulnerabilities;
+    @Transient
+    private Map<Integer, L2Skill> skills;
+    @Transient
+    private Map<Integer, L2DropCategory> dropCategories;
+    @Transient
+    private Race race;
+    @Transient
+    private Set<ClassId> teachInfo;
+    // contains a list of quests for each event type (questStart, questAttack, questKill, etc)
+    @Transient
+    private Map<Quest.QuestEventType, Quest[]> _questEvents;
+
+    public NpcTemplate() {
+        vulnerabilities = new LinkedHashMap<>();
+        vulnerabilities.put(Stats.BOW_WPN_VULN, 1f);
+        vulnerabilities.put(Stats.BLUNT_WPN_VULN, 1f);
+        vulnerabilities.put(Stats.DAGGER_WPN_VULN, 1f);
+    }
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
+
+        float hpRegen = getHpRegen();
+        if(hpRegen <= 0) {
+            hpRegen = 1.5f + ((level - 1) / 10.0f);
+            setHpRegen(hpRegen);
+        }
+
+        float mpRegen = getMpRegen();
+        if(mpRegen <= 0) {
+            mpRegen = 0.9f + (0.3f * ((level - 1) / 10.0f));
+            setMpRegen(mpRegen);
+        }
+
+        loadSkills();
+        loadDrops();
+        loadTeachInfo();
+    }
+
+    private void loadTeachInfo() {
+        if(Util.isNullOrEmpty(skillLearns)) {
+            return;
+        }
+        teachInfo = new LinkedHashSet<>();
+        for(SkillLearn skillLearn : skillLearns) {
+            teachInfo.add(ClassId.values()[skillLearn.getClassId()]);
+        }
+    }
+
+    private void loadDrops() {
+        if(Util.isNullOrEmpty(dropLists)) {
+            return;
+        }
+        dropCategories = new LinkedHashMap<>();
+        for (DropList dropList : dropLists) {
+            L2DropData dropDat = new L2DropData();
+
+            dropDat.setItemId(dropList.getItemId());
+            dropDat.setMinDrop(dropList.getMin());
+            dropDat.setMaxDrop(dropList.getMax());
+            dropDat.setChance(dropList.getChance());
+
+            int category = dropList.getCategory();
+
+            addDropData(dropDat, category);
+        }
+    }
+
+    public void addDropData(L2DropData dropDat, int category) {
+        if(Util.isNull(dropCategories)) {
+            dropCategories = new LinkedHashMap<>();
+        }
+        L2DropCategory dropCategory = dropCategories.getOrDefault(category, new L2DropCategory(category));
+        dropCategory.addDropData(dropDat);
+        dropCategories.putIfAbsent(category, dropCategory);
+    }
+
+    private void loadSkills() {
+        if(Util.isNullOrEmpty(npcSkills)) {
+           return;
+        }
+        skills = new LinkedHashMap<>();
+        for (NpcSkills npcSkill : npcSkills) {
+            int skillId = npcSkill.getSkillid();
+            int skillLevel = npcSkill.getLevel();
+
+            //TODO implement RACE skill
+            if (Util.isNull(race) && (skillId == SkillConstants.RACES)) {
+                race = Race.fromRaceSkillLevel(skillLevel);
+            }
+
+            L2Skill skill = SkillTable.getInstance().getInfo(skillId, skillLevel);
+
+            if (Util.isNull(skill)) {
+                continue;
+            }
+
+            skills.put(skillId, skill);
+        }
+    }
+
+    public Quest[] getEventQuests(Quest.QuestEventType EventType) {
+        if (_questEvents == null) {
+            return null;
+        }
+        return _questEvents.get(EventType);
+    }
+
+    public boolean canTeach(ClassId classId) {
+        if (teachInfo == null) {
+            return false;
+        }
+
+        // If the player is on a third class, fetch the class teacher
+        // information for its parent class.
+        if (classId.getId() >= 88) {
+            return teachInfo.contains(classId.getParent());
+        }
+
+        return teachInfo.contains(classId);
+    }
+
+    public void addQuestEvent(Quest.QuestEventType EventType, Quest quest) {
+        if (_questEvents == null) {
+            _questEvents = new LinkedHashMap<>();
+        }
+
+        if (_questEvents.get(EventType) == null) {
+            _questEvents.put(EventType, new Quest[]
+                                            {
+                                                quest
+                                            });
+        } else {
+            Quest[] _quests = _questEvents.get(EventType);
+            int len = _quests.length;
+
+            // if only one registration per npc is allowed for this event type
+            // then only register this NPC if not already registered for the specified event.
+            // if a quest allows multiple registrations, then register regardless of count
+            // In all cases, check if this new registration is replacing an older copy of the SAME quest
+            if (!EventType.isMultipleRegistrationAllowed()) {
+                if (_quests[0].getName().equals(quest.getName())) {
+                    _quests[0] = quest;
+                } else {
+                    log.warn("Quest event not allowed in multiple quests.  Skipped addition of Event Type \"" + EventType + "\" for NPC \"" + name + "\" and quest \"" + quest.getName() + "\".");
+                }
+            } else {
+                // be ready to add a new quest to a new copy of the list, with larger size than previously.
+                Quest[] tmp = new Quest[len + 1];
+                // loop through the existing quests and copy them to the new list. While doing so, also
+                // check if this new quest happens to be just a replacement for a previously loaded quest.
+                // If so, just save the updated reference and do NOT use the new list. Else, add the new
+                // quest to the end of the new list
+                for (int i = 0; i < len; i++) {
+                    if (_quests[i].getName().equals(quest.getName())) {
+                        _quests[i] = quest;
+                        return;
+                    }
+                    tmp[i] = _quests[i];
+                }
+                tmp[len] = quest;
+                _questEvents.put(EventType, tmp);
+            }
+        }
+    }
+
+
+    public Integer getId() {
+        return  id;
+    }
+
+    public int getTemplateId() {
+        return templateId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean isServerSideName() {
+        return serverSideName;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public boolean isServerSideTitle() {
+        return serverSideTitle;
+    }
+
+    public byte getLevel() {
+        return level;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getExp() {
+        return exp;
+    }
+
+    public int getSp() {
+        return sp;
+    }
+
+    public int getAggro() {
+        return aggro;
+    }
+
+    public int getRhand() {
+        return rhand;
+    }
+
+    public int getLhand() {
+        return lhand;
+    }
+
+    public int getArmor() {
+        return armor;
+    }
+
+    public String getFactionId() {
+        return factionId;
+    }
+
+    public int getFactionRange() {
+        return factionRange;
+    }
+
+    public boolean isUndead() {
+        return isUndead;
+    }
+
+    public int getAbsorbLevel() {
+        return absorbLevel;
+    }
+
+    public AbsorbCrystalType getAbsorbType() {
+        return absorbType;
+    }
+
+    public Map<Integer, L2Skill> getSkills() {
+        return skills;
+    }
+
+    public Set<Minions> getMinions() {
+        return minions;
+    }
+
+    public Map<Integer, L2DropCategory> getDropCategories() {
+        return dropCategories;
+    }
+
+    public Set<ClassId> getTeachInfo() {
+        return teachInfo;
+    }
+
+    public void clearAllDropData() {
+        dropCategories.clear();
+    }
+
+    public Race getRace() {
+        return race;
+    }
+
+    public double getVulnerability(Stats id) {
+        if ((vulnerabilities == null) || (vulnerabilities.get(id) == null)) {
+            return 1;
+        }
+        return vulnerabilities.get(id);
+    }
+
+    public enum AbsorbCrystalType {
+        LAST_HIT,
+        FULL_PARTY,
+        PARTY_ONE_RANDOM
+    }
+}

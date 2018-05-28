@@ -20,10 +20,10 @@ package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.model.L2Character;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.MyTargetSelected;
 import com.l2jbr.gameserver.serverpackets.ValidateLocation;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 
 /**
@@ -44,7 +44,7 @@ public final class L2ArtefactInstance extends L2NpcInstance
 	 * @param objectId Identifier of the object to initialized
 	 * @param template the template to apply to the NPC
 	 */
-	public L2ArtefactInstance(int objectId, L2NpcTemplate template)
+	public L2ArtefactInstance(int objectId, NpcTemplate template)
 	{
 		super(objectId, template);
 	}

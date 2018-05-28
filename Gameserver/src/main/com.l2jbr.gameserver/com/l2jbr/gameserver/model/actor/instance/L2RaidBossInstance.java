@@ -23,9 +23,9 @@ import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.instancemanager.RaidBossSpawnManager;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Spawn;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 
 /**
@@ -49,7 +49,7 @@ public final class L2RaidBossInstance extends L2MonsterInstance
 	 * @param objectId Identifier of the object to initialized
 	 * @param template the template to apply to the NPC
 	 */
-	public L2RaidBossInstance(int objectId, L2NpcTemplate template)
+	public L2RaidBossInstance(int objectId, NpcTemplate template)
 	{
 		super(objectId, template);
 	}

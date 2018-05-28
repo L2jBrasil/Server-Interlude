@@ -1,9 +1,9 @@
 package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.gameserver.model.L2Clan;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 
 /**
@@ -19,7 +19,7 @@ public class L2CastleWarehouseInstance extends L2FolkInstance
 	 * @param objectId
 	 * @param template
 	 */
-	public L2CastleWarehouseInstance(int objectId, L2NpcTemplate template)
+	public L2CastleWarehouseInstance(int objectId, NpcTemplate template)
 	{
 		super(objectId, template);
 	}

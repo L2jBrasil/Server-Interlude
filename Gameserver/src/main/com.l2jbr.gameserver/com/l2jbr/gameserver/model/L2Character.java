@@ -41,6 +41,8 @@ import com.l2jbr.gameserver.model.actor.knownlist.CharKnownList;
 import com.l2jbr.gameserver.model.actor.knownlist.ObjectKnownList.KnownListAsynchronousUpdateTask;
 import com.l2jbr.gameserver.model.actor.stat.CharStat;
 import com.l2jbr.gameserver.model.actor.status.CharStatus;
+import com.l2jbr.gameserver.model.database.CharTemplate;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.model.entity.Duel;
 import com.l2jbr.gameserver.model.quest.Quest;
 import com.l2jbr.gameserver.model.quest.QuestState;
@@ -53,8 +55,6 @@ import com.l2jbr.gameserver.skills.Formulas;
 import com.l2jbr.gameserver.skills.Stats;
 import com.l2jbr.gameserver.skills.effects.EffectCharge;
 import com.l2jbr.gameserver.skills.funcs.Func;
-import com.l2jbr.gameserver.templates.L2CharTemplate;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.templates.L2Weapon;
 import com.l2jbr.gameserver.templates.L2WeaponType;
 import com.l2jbr.gameserver.util.Util;
@@ -214,7 +214,7 @@ public abstract class L2Character extends L2Object {
     /**
      * The _template.
      */
-    private L2CharTemplate _template; // The link on the L2CharTemplate object containing generic and static properties of this L2Character type (ex : Max HP, Speed...)
+    private CharTemplate _template; // The link on the L2CharTemplate object containing generic and static properties of this L2Character type (ex : Max HP, Speed...)
 
     /**
      * The _title.
@@ -355,7 +355,7 @@ public abstract class L2Character extends L2Object {
      * @param objectId Identifier of the object to initialized
      * @param template The L2CharTemplate to apply to the object
      */
-    public L2Character(int objectId, L2CharTemplate template) {
+    public L2Character(int objectId, CharTemplate template) {
         super(objectId);
         getKnownList();
 
@@ -369,7 +369,7 @@ public abstract class L2Character extends L2Object {
             // Copy the skills of the L2NPCInstance from its template to the L2Character Instance
             // The skills list can be affected by spell effects so it's necessary to make a copy
             // to avoid that a spell affecting a L2NPCInstance, affects others L2NPCInstance of the same type too.
-            _skills = ((L2NpcTemplate) template).getSkills();
+            _skills = ((NpcTemplate) template).getSkills();
             if (_skills != null) {
                 for (Map.Entry<Integer, L2Skill> skill : _skills.entrySet()) {
                     addStatFuncs(skill.getValue().getStatFuncs(null, this));
@@ -2183,7 +2183,7 @@ public abstract class L2Character extends L2Object {
      * @return true, if is undead
      */
     public boolean isUndead() {
-        return _template.isUndead;
+        return false;
     }
 
     @Override
@@ -2241,7 +2241,7 @@ public abstract class L2Character extends L2Object {
      *
      * @return the template
      */
-    public L2CharTemplate getTemplate() {
+    public CharTemplate getTemplate() {
         return _template;
     }
 
@@ -2260,7 +2260,7 @@ public abstract class L2Character extends L2Object {
      *
      * @param template the new template
      */
-    protected final void setTemplate(L2CharTemplate template) {
+    protected final void setTemplate(CharTemplate template) {
         _template = template;
     }
 
@@ -5569,7 +5569,7 @@ public abstract class L2Character extends L2Object {
                 SystemMessage sm = new SystemMessage(SystemMessageId.AVOIDED_S1S_ATTACK);
 
                 if (this instanceof L2Summon) {
-                    int mobId = ((L2Summon) this).getTemplate().npcId;
+                    int mobId = ((L2Summon) this).getTemplate().getId();
                     sm.addNpcName(mobId);
                 } else {
                     sm.addString(getName());

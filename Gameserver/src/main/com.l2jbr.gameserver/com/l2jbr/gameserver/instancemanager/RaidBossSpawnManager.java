@@ -27,9 +27,9 @@ import com.l2jbr.gameserver.datatables.NpcTable;
 import com.l2jbr.gameserver.datatables.SpawnTable;
 import com.l2jbr.gameserver.model.L2Spawn;
 import com.l2jbr.gameserver.model.actor.instance.L2RaidBossInstance;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.model.database.RaidbossSpawnList;
 import com.l2jbr.gameserver.model.database.repository.RaidBossSpawnListRepository;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.templates.StatsSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -82,7 +82,7 @@ public class RaidBossSpawnManager {
         Connection con = null;
         RaidBossSpawnListRepository repository = DatabaseAccess.getRepository(RaidBossSpawnListRepository.class);
         repository.findAll().forEach(spawnList -> {
-            L2NpcTemplate template = getValidTemplate(spawnList.getBossId());
+            NpcTemplate template = getValidTemplate(spawnList.getBossId());
             if (template != null) {
                 try {
                     L2Spawn spawnDat = new L2Spawn(template);;
@@ -337,12 +337,12 @@ public class RaidBossSpawnManager {
         }
     }
 
-    public L2NpcTemplate getValidTemplate(int bossId) {
-        L2NpcTemplate template = NpcTable.getInstance().getTemplate(bossId);
+    public NpcTemplate getValidTemplate(int bossId) {
+        NpcTemplate template = NpcTable.getInstance().getTemplate(bossId);
         if (template == null) {
             return null;
         }
-        if (!template.type.equalsIgnoreCase("L2RaidBoss")) {
+        if (!template.getType().equalsIgnoreCase("L2RaidBoss")) {
             return null;
         }
         return template;

@@ -24,10 +24,10 @@ import com.l2jbr.gameserver.datatables.CharTemplateTable;
 import com.l2jbr.gameserver.model.base.ClassId;
 import com.l2jbr.gameserver.model.base.ClassLevel;
 import com.l2jbr.gameserver.model.base.PlayerClass;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.model.quest.Quest;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 
 /**
@@ -75,7 +75,7 @@ public final class L2ClassMasterInstance extends L2FolkInstance {
      * @param objectId
      * @param template
      */
-    public L2ClassMasterInstance(int objectId, L2NpcTemplate template) {
+    public L2ClassMasterInstance(int objectId, NpcTemplate template) {
         super(objectId, template);
     }
 

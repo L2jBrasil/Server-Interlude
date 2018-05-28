@@ -2,11 +2,11 @@ package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.instancemanager.CastleManorManager;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.MyTargetSelected;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.ValidateLocation;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 
 /**
@@ -18,7 +18,7 @@ public class L2CastleBlacksmithInstance extends L2FolkInstance
 	protected static final int COND_BUSY_BECAUSE_OF_SIEGE = 1;
 	protected static final int COND_OWNER = 2;
 	
-	public L2CastleBlacksmithInstance(int objectId, L2NpcTemplate template)
+	public L2CastleBlacksmithInstance(int objectId, NpcTemplate template)
 	{
 		super(objectId, template);
 	}

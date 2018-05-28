@@ -27,9 +27,9 @@ import com.l2jbr.gameserver.model.Inventory;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.L2World;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.model.entity.Couple;
 import com.l2jbr.gameserver.serverpackets.*;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 
 public class L2WeddingManagerInstance extends L2NpcInstance
@@ -39,7 +39,7 @@ public class L2WeddingManagerInstance extends L2NpcInstance
 	 * @param objectId
 	 * @param template
 	 */
-	public L2WeddingManagerInstance(int objectId, L2NpcTemplate template)
+	public L2WeddingManagerInstance(int objectId, NpcTemplate template)
 	{
 		super(objectId, template);
 	}

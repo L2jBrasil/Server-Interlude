@@ -23,15 +23,15 @@ import com.l2jbr.gameserver.clientpackets.Say2;
 import com.l2jbr.gameserver.datatables.SpawnTable;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Spawn;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.CreatureSay;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 
 public class L2PenaltyMonsterInstance extends L2MonsterInstance
 {
 	private L2PcInstance _ptk;
 	
-	public L2PenaltyMonsterInstance(int objectId, L2NpcTemplate template)
+	public L2PenaltyMonsterInstance(int objectId, NpcTemplate template)
 	{
 		super(objectId, template);
 	}

@@ -22,7 +22,7 @@ import com.l2jbr.gameserver.ai.AI;
 import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.ai.L2ControllableMobAI;
 import com.l2jbr.gameserver.model.L2Character;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 
 
 /**
@@ -61,7 +61,7 @@ public class L2ControllableMobInstance extends L2MonsterInstance
 		return 500;
 	}
 	
-	public L2ControllableMobInstance(int objectId, L2NpcTemplate template)
+	public L2ControllableMobInstance(int objectId, NpcTemplate template)
 	{
 		super(objectId, template);
 	}

@@ -23,8 +23,8 @@ import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.L2Skill;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 import java.util.concurrent.ScheduledFuture;
 
@@ -75,7 +75,7 @@ public class L2XmassTreeInstance extends L2NpcInstance
 		
 	}
 	
-	public L2XmassTreeInstance(int objectId, L2NpcTemplate template)
+	public L2XmassTreeInstance(int objectId, NpcTemplate template)
 	{
 		super(objectId, template);
 		_aiTask = ThreadPoolManager.getInstance().scheduleGeneralAtFixedRate(new XmassAI(this), 3000, 3000);

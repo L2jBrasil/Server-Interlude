@@ -24,11 +24,11 @@ import com.l2jbr.gameserver.instancemanager.CastleManager;
 import com.l2jbr.gameserver.instancemanager.SiegeManager;
 import com.l2jbr.gameserver.instancemanager.TownManager;
 import com.l2jbr.gameserver.model.L2TeleportLocation;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 import java.util.StringTokenizer;
 
@@ -48,7 +48,7 @@ public final class L2TeleporterInstance extends L2FolkInstance
 	 * @param objectId
 	 * @param template
 	 */
-	public L2TeleporterInstance(int objectId, L2NpcTemplate template)
+	public L2TeleporterInstance(int objectId, NpcTemplate template)
 	{
 		super(objectId, template);
 	}
@@ -65,7 +65,7 @@ public final class L2TeleporterInstance extends L2FolkInstance
 		
 		if (actualCommand.equalsIgnoreCase("goto"))
 		{
-			int npcId = getTemplate().npcId;
+			int npcId = getTemplate().getId();
 			
 			switch (npcId)
 			{

@@ -25,7 +25,7 @@ import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.L2SkillLearn;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.base.ClassId;
-import com.l2jbr.gameserver.model.database.CharTemplate;
+import com.l2jbr.gameserver.model.database.PlayerTemplate;
 import com.l2jbr.gameserver.model.database.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +44,7 @@ public class SkillTreeTable {
 
     private Map<ClassId, Map<Integer, L2SkillLearn>> _skillTrees;
     private List<L2SkillLearn> _fishingSkillTrees; // all common skills (teached by Fisherman)
-    private List<L2SkillLearn> _expandDwarfCraftSkillTrees; // list of special skill for dwarf (expand dwarf craft) learned by class teacher
+    private List<L2SkillLearn> _expandDwarfCraftSkillTrees; // list of special skill for DWARF (expand DWARF craft) learned by class teacher
     private List<L2PledgeSkillLearn> _pledgeSkillTrees; // pledge skill list
     private List<L2EnchantSkillLearn> _enchantSkillTrees; // enchant skill list
 
@@ -116,7 +116,7 @@ public class SkillTreeTable {
         SkillTreeRepository skillTreeRepository = DatabaseAccess.getRepository(SkillTreeRepository.class);
         int parentClassId;
         int classId;
-        for (CharTemplate charTemplate : charTemplateRepository.findAll()) {
+        for (PlayerTemplate charTemplate : charTemplateRepository.findAll()) {
             Map<Integer, L2SkillLearn>  map = new LinkedHashMap<>();
             parentClassId = charTemplate.getParentId();
             classId = charTemplate.getId();

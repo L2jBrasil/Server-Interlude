@@ -22,7 +22,7 @@ import com.l2jbr.gameserver.ai.L2AttackableAI;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.L2WorldRegion;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 
 
 /**
@@ -47,7 +47,7 @@ public final class L2MinionInstance extends L2MonsterInstance
 	 * @param objectId Identifier of the object to initialized
 	 * @param template the template to apply to the NPC
 	 */
-	public L2MinionInstance(int objectId, L2NpcTemplate template)
+	public L2MinionInstance(int objectId, NpcTemplate template)
 	{
 		super(objectId, template);
 	}

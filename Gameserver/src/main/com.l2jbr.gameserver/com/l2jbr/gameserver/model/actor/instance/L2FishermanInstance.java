@@ -25,9 +25,9 @@ import com.l2jbr.gameserver.datatables.SkillTreeTable;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.L2SkillLearn;
 import com.l2jbr.gameserver.model.L2TradeList;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 import java.util.StringTokenizer;
 
@@ -37,7 +37,7 @@ public class L2FishermanInstance extends L2FolkInstance {
      * @param objectId
      * @param template
      */
-    public L2FishermanInstance(int objectId, L2NpcTemplate template) {
+    public L2FishermanInstance(int objectId, NpcTemplate template) {
         super(objectId, template);
     }
 

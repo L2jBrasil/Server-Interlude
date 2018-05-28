@@ -27,9 +27,9 @@ import com.l2jbr.gameserver.model.L2Spawn;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PlayableInstance;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 
 public class ChristmasTree implements IItemHandler
@@ -51,7 +51,7 @@ public class ChristmasTree implements IItemHandler
 	public void useItem(L2PlayableInstance playable, L2ItemInstance item)
 	{
 		L2PcInstance activeChar = (L2PcInstance) playable;
-		L2NpcTemplate template1 = null;
+		NpcTemplate template1 = null;
 		
 		int itemId = item.getItemId();
 		for (int i = 0; i < ITEM_IDS.length; i++)
@@ -86,7 +86,7 @@ public class ChristmasTree implements IItemHandler
 			activeChar.destroyItem("Consume", item.getObjectId(), 1, null, false);
 			
 			SystemMessage sm = new SystemMessage(SystemMessageId.S1_S2);
-			sm.addString("Created " + template1.name + " at x: " + spawn.getLocx() + " y: " + spawn.getLocy() + " z: " + spawn.getLocz());
+			sm.addString("Created " + template1.getName() + " at x: " + spawn.getLocx() + " y: " + spawn.getLocy() + " z: " + spawn.getLocz());
 			activeChar.sendPacket(sm);
 		}
 		catch (Exception e)

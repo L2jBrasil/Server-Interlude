@@ -24,7 +24,7 @@ import com.l2jbr.gameserver.instancemanager.CursedWeaponsManager;
 import com.l2jbr.gameserver.model.Inventory;
 import com.l2jbr.gameserver.model.L2Summon;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 
 
 /**
@@ -237,10 +237,10 @@ public class UserInfo extends L2GameServerPacket
 		}
 		if (_activeChar.getPoly().isMorphed())
 		{
-			L2NpcTemplate polyObj = NpcTable.getInstance().getTemplate(_activeChar.getPoly().getPolyId());
+			NpcTemplate polyObj = NpcTable.getInstance().getTemplate(_activeChar.getPoly().getPolyId());
 			if (polyObj != null)
 			{
-				title += " - " + polyObj.name;
+				title += " - " + polyObj.getName();
 			}
 		}
 		writeS(title);

@@ -21,11 +21,11 @@ import com.l2jbr.gameserver.GeoData;
 import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Spawn;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.MyTargetSelected;
 import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.ValidateLocation;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -35,7 +35,7 @@ public class L2ControlTowerInstance extends L2NpcInstance {
 
     private List<L2Spawn> _guards;
 
-    public L2ControlTowerInstance(int objectId, L2NpcTemplate template) {
+    public L2ControlTowerInstance(int objectId, NpcTemplate template) {
         super(objectId, template);
     }
 

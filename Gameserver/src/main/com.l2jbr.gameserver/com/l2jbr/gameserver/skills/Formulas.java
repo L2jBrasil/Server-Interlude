@@ -30,6 +30,8 @@ import com.l2jbr.gameserver.model.actor.instance.L2DoorInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PetInstance;
+import com.l2jbr.gameserver.model.base.Race;
+import com.l2jbr.gameserver.model.database.PlayerTemplate;
 import com.l2jbr.gameserver.model.entity.ClanHall;
 import com.l2jbr.gameserver.model.entity.Siege;
 import com.l2jbr.gameserver.network.SystemMessageId;
@@ -38,7 +40,9 @@ import com.l2jbr.gameserver.skills.conditions.ConditionPlayerState;
 import com.l2jbr.gameserver.skills.conditions.ConditionPlayerState.CheckPlayerState;
 import com.l2jbr.gameserver.skills.conditions.ConditionUsingItemType;
 import com.l2jbr.gameserver.skills.funcs.Func;
-import com.l2jbr.gameserver.templates.*;
+import com.l2jbr.gameserver.templates.L2Armor;
+import com.l2jbr.gameserver.templates.L2Weapon;
+import com.l2jbr.gameserver.templates.L2WeaponType;
 import com.l2jbr.gameserver.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -714,11 +718,11 @@ public final class Formulas
 		@Override
 		public void calc(Env env)
 		{
-			L2PcTemplate t = (L2PcTemplate) env.player.getTemplate();
-			int lvl = env.player.getLevel() - t.classBaseLevel;
-			double hpmod = t.lvlHpMod * lvl;
-			double hpmax = (t.lvlHpAdd + hpmod) * lvl;
-			double hpmin = (t.lvlHpAdd * lvl) + hpmod;
+			PlayerTemplate t = (PlayerTemplate) env.player.getTemplate();
+			int lvl = env.player.getLevel() - t.getClassLevel();
+			double hpmod = t.getHpMod() * lvl;
+			double hpmax = (t.getHpAdd() + hpmod) * lvl;
+			double hpmin = (t.getHpAdd() * lvl) + hpmod;
 			env.value += (hpmax + hpmin) / 2;
 		}
 	}
@@ -762,11 +766,11 @@ public final class Formulas
 		@Override
 		public void calc(Env env)
 		{
-			L2PcTemplate t = (L2PcTemplate) env.player.getTemplate();
-			int lvl = env.player.getLevel() - t.classBaseLevel;
-			double cpmod = t.lvlCpMod * lvl;
-			double cpmax = (t.lvlCpAdd + cpmod) * lvl;
-			double cpmin = (t.lvlCpAdd * lvl) + cpmod;
+			PlayerTemplate t = (PlayerTemplate) env.player.getTemplate();
+			int lvl = env.player.getLevel() - t.getClassLevel();
+			double cpmod = t.getCpMod() * lvl;
+			double cpmax = (t.getCpAdd() + cpmod) * lvl;
+			double cpmin = (t.getCpAdd() * lvl) + cpmod;
 			env.value += (cpmax + cpmin) / 2;
 		}
 	}
@@ -810,11 +814,11 @@ public final class Formulas
 		@Override
 		public void calc(Env env)
 		{
-			L2PcTemplate t = (L2PcTemplate) env.player.getTemplate();
-			int lvl = env.player.getLevel() - t.classBaseLevel;
-			double mpmod = t.lvlMpMod * lvl;
-			double mpmax = (t.lvlMpAdd + mpmod) * lvl;
-			double mpmin = (t.lvlMpAdd * lvl) + mpmod;
+			PlayerTemplate t = (PlayerTemplate) env.player.getTemplate();
+			int lvl = env.player.getLevel() - t.getClassLevel();
+			double mpmod = t.getMpMod() * lvl;
+			double mpmax = (t.getMpAdd() + mpmod) * lvl;
+			double mpmin = (t.getMpAdd() * lvl) + mpmod;
 			env.value += (mpmax + mpmin) / 2;
 		}
 	}
@@ -875,7 +879,7 @@ public final class Formulas
 	 * <BR>
 	 * A calculator is created to manage and dynamically calculate the effect of a character property (ex : MAX_HP, REGENERATE_HP_RATE...). In fact, each calculator is a table of Func object in which each Func represents a mathematic function : <BR>
 	 * <BR>
-	 * FuncAtkAccuracy -> Math.sqrt(_player.getDEX())*6+_player.getLevel()<BR>
+	 * FuncAtkAccuracy -> Math.sqrt(_player.getDexterity())*6+_player.getLevel()<BR>
 	 * <BR>
 	 * To reduce cache memory use, L2NPCInstances who don't have skills share the same Calculator set called <B>NPC_STD_CALCULATOR</B>.<BR>
 	 * <BR>
@@ -903,7 +907,7 @@ public final class Formulas
 	 * <BR>
 	 * A calculator is created to manage and dynamically calculate the effect of a character property (ex : MAX_HP, REGENERATE_HP_RATE...). In fact, each calculator is a table of Func object in which each Func represents a mathematic function : <BR>
 	 * <BR>
-	 * FuncAtkAccuracy -> Math.sqrt(_player.getDEX())*6+_player.getLevel()<BR>
+	 * FuncAtkAccuracy -> Math.sqrt(_player.getDexterity())*6+_player.getLevel()<BR>
 	 * <BR>
 	 * @param cha L2PcInstance or L2Summon that must obtain basic Func objects
 	 */
@@ -967,7 +971,7 @@ public final class Formulas
 	 */
 	public final double calcHpRegen(L2Character cha)
 	{
-		double init = cha.getTemplate().baseHpReg;
+		double init = cha.getTemplate().getHpRegen();
 		double hpRegenMultiplier = cha.isRaid() ? Config.RAID_HP_REGEN_MULTIPLIER : Config.HP_REGEN_MULTIPLIER;
 		double hpRegenBonus = 0;
 		
@@ -1053,7 +1057,7 @@ public final class Formulas
 	 */
 	public final double calcMpRegen(L2Character cha)
 	{
-		double init = cha.getTemplate().baseMpReg;
+		double init = cha.getTemplate().getMpRegen();
 		double mpRegenMultiplier = cha.isRaid() ? Config.RAID_MP_REGEN_MULTIPLIER : Config.MP_REGEN_MULTIPLIER;
 		double mpRegenBonus = 0;
 		
@@ -1126,7 +1130,7 @@ public final class Formulas
 	 */
 	public final double calcCpRegen(L2Character cha)
 	{
-		double init = cha.getTemplate().baseHpReg;
+		double init = cha.getTemplate().getHpRegen();
 		double cpRegenMultiplier = Config.CP_REGEN_MULTIPLIER;
 		double cpRegenBonus = 0;
 		
@@ -1401,7 +1405,7 @@ public final class Formulas
 		// if (!(attacker instanceof L2RaidBossInstance) &&
 		/*
 		 * if ((attacker instanceof L2NpcInstance || attacker instanceof L2SiegeGuardInstance)) { if (attacker instanceof L2RaidBossInstance) damage *= 1; // was 10 changed for temp fix // else // damage *= 2; // if (attacker instanceof L2NpcInstance || attacker instanceof L2SiegeGuardInstance){
-		 * //damage = damage * attacker.getSTR() * attacker.getAccuracy() * 0.05 / defence; // damage = damage * attacker.getSTR()* (attacker.getSTR() + attacker.getLevel()) * 0.025 / defence; // damage += _rnd.nextDouble() * damage / 10 ; }
+		 * //damage = damage * attacker.getStrength() * attacker.getAccuracy() * 0.05 / defence; // damage = damage * attacker.getStrength()* (attacker.getStrength() + attacker.getLevel()) * 0.025 / defence; // damage += _rnd.nextDouble() * damage / 10 ; }
 		 */
 		// else {
 		// if (skill == null)
@@ -1433,7 +1437,7 @@ public final class Formulas
 		if (attacker instanceof L2NpcInstance)
 		{
 			// Skill Race : Undead
-			if (((L2NpcInstance) attacker).getTemplate().getRace() == L2NpcTemplate.Race.UNDEAD)
+			if (((L2NpcInstance) attacker).getTemplate().getRace() == Race.UNDEAD)
 			{
 				damage /= attacker.getPDefUndead(target);
 			}
@@ -1818,46 +1822,46 @@ public final class Formulas
 				switch (stat)
 				{
 					case AGGRESSION:
-						multiplier *= target.getTemplate().baseAggressionVuln;
+						multiplier *= target.getTemplate().getAggressionVuln();
 						break;
 					case BLEED:
-						multiplier *= target.getTemplate().baseBleedVuln;
+						multiplier *= target.getTemplate().getBleedVuln();
 						break;
 					case POISON:
-						multiplier *= target.getTemplate().basePoisonVuln;
+						multiplier *= target.getTemplate().getPoisonVuln();
 						break;
 					case STUN:
-						multiplier *= target.getTemplate().baseStunVuln;
+						multiplier *= target.getTemplate().getStunVuln();
 						break;
 					case ROOT:
-						multiplier *= target.getTemplate().baseRootVuln;
+						multiplier *= target.getTemplate().getRootVuln();
 						break;
 					case MOVEMENT:
-						multiplier *= target.getTemplate().baseMovementVuln;
+						multiplier *= target.getTemplate().getMovementVuln();
 						break;
 					case CONFUSION:
-						multiplier *= target.getTemplate().baseConfusionVuln;
+						multiplier *= target.getTemplate().getConfusionVuln();
 						break;
 					case SLEEP:
-						multiplier *= target.getTemplate().baseSleepVuln;
+						multiplier *= target.getTemplate().getSleepVuln();
 						break;
 					case FIRE:
-						multiplier *= target.getTemplate().baseFireVuln;
+						multiplier *= target.getTemplate().getFireVuln();
 						break;
 					case WIND:
-						multiplier *= target.getTemplate().baseWindVuln;
+						multiplier *= target.getTemplate().getWindVuln();
 						break;
 					case WATER:
-						multiplier *= target.getTemplate().baseWaterVuln;
+						multiplier *= target.getTemplate().getWaterVuln();
 						break;
 					case EARTH:
-						multiplier *= target.getTemplate().baseEarthVuln;
+						multiplier *= target.getTemplate().getEarthVuln();
 						break;
 					case HOLY:
-						multiplier *= target.getTemplate().baseHolyVuln;
+						multiplier *= target.getTemplate().getHolyVuln();
 						break;
 					case DARK:
-						multiplier *= target.getTemplate().baseDarkVuln;
+						multiplier *= target.getTemplate().getDarkVuln();
 						break;
 				}
 			}

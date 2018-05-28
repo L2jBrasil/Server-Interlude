@@ -22,9 +22,9 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.TradeController;
 import com.l2jbr.gameserver.model.L2Multisell;
 import com.l2jbr.gameserver.model.L2TradeList;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.network.L2GameClient;
 import com.l2jbr.gameserver.serverpackets.*;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 import java.util.StringTokenizer;
 
@@ -39,7 +39,7 @@ public class L2MerchantInstance extends L2FolkInstance {
      * @param objectId
      * @param template
      */
-    public L2MerchantInstance(int objectId, L2NpcTemplate template) {
+    public L2MerchantInstance(int objectId, NpcTemplate template) {
         super(objectId, template);
     }
 
@@ -167,7 +167,7 @@ public class L2MerchantInstance extends L2FolkInstance {
     }
 
     public void showRentPetWindow(L2PcInstance player) {
-        if (!Config.LIST_PET_RENT_NPC.contains(getTemplate().npcId)) {
+        if (!Config.LIST_PET_RENT_NPC.contains(getTemplate().getId())) {
             return;
         }
 
@@ -262,7 +262,7 @@ public class L2MerchantInstance extends L2FolkInstance {
             html1.append("<tr><td><br></td></tr>");
 
             html1.append("<tr><td>Object ID: " + getObjectId() + "</td></tr>");
-            html1.append("<tr><td>Template ID: " + getTemplate().npcId + "</td></tr>");
+            html1.append("<tr><td>Template ID: " + getTemplate().getId() + "</td></tr>");
             html1.append("<tr><td><br></td></tr>");
 
             html1.append("<tr><td>HP: " + getCurrentHp() + "</td></tr>");
@@ -274,14 +274,14 @@ public class L2MerchantInstance extends L2FolkInstance {
             html1.append("<tr><td><br></td></tr>");
 
             // changed by terry 2005-02-22 21:45
-            html1.append("</table><table><tr><td><button value=\"Edit NPC\" action=\"bypass -h admin_edit_npc " + getTemplate().npcId + "\" width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\"></td>");
+            html1.append("</table><table><tr><td><button value=\"Edit NPC\" action=\"bypass -h admin_edit_npc " + getTemplate().getId() + "\" width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\"></td>");
             html1.append("<td><button value=\"Kill\" action=\"bypass -h admin_kill\" width=40 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\"></td></tr>");
-            html1.append("<tr><td><button value=\"Show DropList\" action=\"bypass -h admin_show_droplist " + getTemplate().npcId + "\" width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\"></td></tr>");
+            html1.append("<tr><td><button value=\"Show DropList\" action=\"bypass -h admin_show_droplist " + getTemplate().getId() + "\" width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\"></td></tr>");
             html1.append("<td><button value=\"Delete\" action=\"bypass -h admin_delete\" width=40 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\"></td></tr>");
             html1.append("</table>");
 
             if (player.isGM()) {
-                html1.append("<button value=\"View Shop\" action=\"bypass -h admin_showShop " + getTemplate().npcId + "\" width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\"></br>");
+                html1.append("<button value=\"View Shop\" action=\"bypass -h admin_showShop " + getTemplate().getId() + "\" width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\"></br>");
                 html1.append("<button value=\"Lease next week\" action=\"bypass -h npc_" + getObjectId() + "_Lease\" width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\">");
                 html1.append("<button value=\"Abort current leasing\" action=\"bypass -h npc_" + getObjectId() + "_Lease next\" width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\">");
                 html1.append("<button value=\"Manage items\" action=\"bypass -h npc_" + getObjectId() + "_Lease manage\" width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\">");

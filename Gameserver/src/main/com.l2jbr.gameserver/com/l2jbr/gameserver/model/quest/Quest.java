@@ -29,12 +29,12 @@ import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.database.CharacterQuests;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.model.database.repository.CharacterQuestsRepository;
 import com.l2jbr.gameserver.model.database.repository.QuestGlobalDataRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -624,11 +624,11 @@ public abstract class Quest {
      *
      * @param npcId     : id of the NPC to register
      * @param eventType : type of event being registered
-     * @return L2NpcTemplate : Npc Template corresponding to the npcId, or null if the id is invalid
+     * @return L2NpcTemplate : NpcTemplate Template corresponding to the npcId, or null if the id is invalid
      */
-    public L2NpcTemplate addEventId(int npcId, QuestEventType eventType) {
+    public NpcTemplate addEventId(int npcId, QuestEventType eventType) {
         try {
-            L2NpcTemplate t = NpcTable.getInstance().getTemplate(npcId);
+            NpcTemplate t = NpcTable.getInstance().getTemplate(npcId);
             if (t != null) {
                 t.addQuestEvent(eventType, this);
             }
@@ -645,7 +645,7 @@ public abstract class Quest {
      * @param npcId
      * @return L2NpcTemplate : Start NPC
      */
-    public L2NpcTemplate addStartNpc(int npcId) {
+    public NpcTemplate addStartNpc(int npcId) {
         return addEventId(npcId, QuestEventType.QUEST_START);
     }
 
@@ -655,7 +655,7 @@ public abstract class Quest {
      * @param npcId
      * @return L2NpcTemplate : Start NPC
      */
-    public L2NpcTemplate addFirstTalkId(int npcId) {
+    public NpcTemplate addFirstTalkId(int npcId) {
         return addEventId(npcId, QuestEventType.NPC_FIRST_TALK);
     }
 
@@ -666,7 +666,7 @@ public abstract class Quest {
      * @param attackId
      * @return int : attackId
      */
-    public L2NpcTemplate addAttackId(int attackId) {
+    public NpcTemplate addAttackId(int attackId) {
         return addEventId(attackId, QuestEventType.MOBGOTATTACKED);
     }
 
@@ -677,7 +677,7 @@ public abstract class Quest {
      * @param killId
      * @return int : killId
      */
-    public L2NpcTemplate addKillId(int killId) {
+    public NpcTemplate addKillId(int killId) {
         return addEventId(killId, QuestEventType.MOBKILLED);
     }
 
@@ -688,7 +688,7 @@ public abstract class Quest {
      * @param talkId : ID of the NPC
      * @return int : ID of the NPC
      */
-    public L2NpcTemplate addTalkId(int talkId) {
+    public NpcTemplate addTalkId(int talkId) {
         return addEventId(talkId, QuestEventType.QUEST_TALK);
     }
 
@@ -699,7 +699,7 @@ public abstract class Quest {
      * @param npcId : ID of the NPC
      * @return int : ID of the NPC
      */
-    public L2NpcTemplate addSkillUseId(int npcId) {
+    public NpcTemplate addSkillUseId(int npcId) {
         return addEventId(npcId, QuestEventType.MOB_TARGETED_BY_SKILL);
     }
 
@@ -907,7 +907,7 @@ public abstract class Quest {
     public L2NpcInstance addSpawn(int npcId, int x, int y, int z, int heading, boolean randomOffset, int despawnDelay) {
         L2NpcInstance result = null;
         try {
-            L2NpcTemplate template = NpcTable.getInstance().getTemplate(npcId);
+            NpcTemplate template = NpcTable.getInstance().getTemplate(npcId);
             if (template != null) {
                 // Sometimes, even if the quest script specifies some xyz (for example npc.getX() etc) by the time the code
                 // reaches here, xyz have become 0! Also, a questdev might have purposely set xy to 0,0...however,
@@ -950,7 +950,7 @@ public abstract class Quest {
                 return result;
             }
         } catch (Exception e1) {
-            _log.warn("Could not spawn Npc " + npcId);
+            _log.warn("Could not spawn NpcTemplate " + npcId);
         }
 
         return null;

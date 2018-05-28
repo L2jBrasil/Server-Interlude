@@ -27,9 +27,9 @@ import com.l2jbr.gameserver.instancemanager.CastleManorManager;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.L2TradeList;
 import com.l2jbr.gameserver.model.PcInventory;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.util.Util;
 
 import java.util.NoSuchElementException;
@@ -46,7 +46,7 @@ public class L2CastleChamberlainInstance extends L2FolkInstance {
     protected static final int COND_BUSY_BECAUSE_OF_SIEGE = 1;
     protected static final int COND_OWNER = 2;
 
-    public L2CastleChamberlainInstance(int objectId, L2NpcTemplate template) {
+    public L2CastleChamberlainInstance(int objectId, NpcTemplate template) {
         super(objectId, template);
     }
 
@@ -346,7 +346,7 @@ public class L2CastleChamberlainInstance extends L2FolkInstance {
                 }
 
                 NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
-                html.setFile("data/html/chamberlain/" + getTemplate().npcId + "-d.htm");
+                html.setFile("data/html/chamberlain/" + getTemplate().getId() + "-d.htm");
                 html.replace("%objectId%", String.valueOf(getObjectId()));
                 html.replace("%npcname%", getName());
                 player.sendPacket(html);

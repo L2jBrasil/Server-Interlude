@@ -137,9 +137,6 @@ public class DoorTable {
 
         StatsSet npcDat = new StatsSet();
         int id = castleDoor.getId();
-        npcDat.set("npcId", id);
-        npcDat.set("level", 0);
-        npcDat.set("jClass", "door");
 
         npcDat.set("baseSTR", 0);
         npcDat.set("baseCON", 0);
@@ -150,39 +147,30 @@ public class DoorTable {
 
         npcDat.set("baseShldDef", 0);
         npcDat.set("baseShldRate", 0);
-        npcDat.set("baseAccCombat", 38);
-        npcDat.set("baseEvasRate", 38);
         npcDat.set("baseCritRate", 38);
 
         // npcDat.set("name", "");
         npcDat.set("collision_radius", collisionRadius);
         npcDat.set("collision_height", rangeZMax - rangeZMin);
-        npcDat.set("sex", "male");
-        npcDat.set("type", "");
         npcDat.set("baseAtkRange", 0);
         npcDat.set("baseMpMax", 0);
         npcDat.set("baseCpMax", 0);
-        npcDat.set("rewardExp", 0);
-        npcDat.set("rewardSp", 0);
+
         npcDat.set("basePAtk", 0);
         npcDat.set("baseMAtk", 0);
         npcDat.set("basePAtkSpd", 0);
-        npcDat.set("aggroRange", 0);
+
         npcDat.set("baseMAtkSpd", 0);
-        npcDat.set("rhand", 0);
-        npcDat.set("lhand", 0);
-        npcDat.set("armor", 0);
         npcDat.set("baseWalkSpd", 0);
         npcDat.set("baseRunSpd", 0);
 
-        String name = castleDoor.getName();
-        npcDat.set("name", name);
         npcDat.set("baseHpMax", castleDoor.getHp());
         npcDat.set("baseHpReg", 3.e-3f);
         npcDat.set("baseMpReg", 3.e-3f);
         npcDat.set("basePDef", castleDoor.getpDef());
         npcDat.set("baseMDef", castleDoor.getmDef());
 
+        String name = castleDoor.getName();
         L2CharTemplate template = new L2CharTemplate(npcDat);
         L2DoorInstance door = new L2DoorInstance(IdFactory.getInstance().getNextId(), template, id, name, false);
         door.setRange(rangeXMin, rangeYMin, rangeZMin, rangeXMax, rangeYMax, rangeZMax);
@@ -239,9 +227,6 @@ public class DoorTable {
         }
 
         StatsSet npcDat = new StatsSet();
-        npcDat.set("npcId", id);
-        npcDat.set("level", 0);
-        npcDat.set("jClass", "door");
 
         npcDat.set("baseSTR", 0);
         npcDat.set("baseCON", 0);
@@ -252,20 +237,13 @@ public class DoorTable {
 
         npcDat.set("baseShldDef", 0);
         npcDat.set("baseShldRate", 0);
-        npcDat.set("baseAccCombat", 38);
-        npcDat.set("baseEvasRate", 38);
         npcDat.set("baseCritRate", 38);
 
-        // npcDat.set("name", "");
         npcDat.set("collision_radius", collisionRadius);
         npcDat.set("collision_height", rangeZMax - rangeZMin);
-        npcDat.set("sex", "male");
-        npcDat.set("type", "");
         npcDat.set("baseAtkRange", 0);
         npcDat.set("baseMpMax", 0);
         npcDat.set("baseCpMax", 0);
-        npcDat.set("rewardExp", 0);
-        npcDat.set("rewardSp", 0);
         npcDat.set("basePAtk", 0);
         npcDat.set("baseMAtk", 0);
         npcDat.set("basePAtkSpd", 0);

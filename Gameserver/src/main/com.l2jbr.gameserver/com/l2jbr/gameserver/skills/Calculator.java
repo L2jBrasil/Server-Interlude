@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * A calculator is created to manage and dynamically calculate the effect of a character property (ex : MAX_HP, REGENERATE_HP_RATE...). In fact, each calculator is a table of Func object in which each Func represents a mathematic function : <BR>
  * <BR>
- * FuncAtkAccuracy -> Math.sqrt(_player.getDEX())*6+_player.getLevel()<BR>
+ * FuncAtkAccuracy -> Math.sqrt(_player.getDexterity())*6+_player.getLevel()<BR>
  * <BR>
  * When the calc method of a calculator is launched, each mathematic function is called according to its priority <B>_order</B>. Indeed, Func with lowest priority order is executed first and Funcs with the same order are executed in unspecified order. The result of the calculation is stored in the
  * value property of an Env class instance.<BR>

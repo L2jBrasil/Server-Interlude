@@ -27,10 +27,10 @@ import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Spawn;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.model.database.repository.DimensionalRiftRepository;
 import com.l2jbr.gameserver.model.entity.DimensionalRift;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -115,7 +115,7 @@ public class DimensionalRiftManager {
             byte type, roomId;
             int mobId, x, y, z, delay, count;
             L2Spawn spawnDat;
-            L2NpcTemplate template;
+            NpcTemplate template;
 
             for (Node rift = doc.getFirstChild(); rift != null; rift = rift.getNextSibling()) {
                 if ("rift".equalsIgnoreCase(rift.getNodeName())) {

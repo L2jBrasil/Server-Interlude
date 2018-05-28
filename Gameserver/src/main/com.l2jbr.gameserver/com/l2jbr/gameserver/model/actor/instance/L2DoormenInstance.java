@@ -22,12 +22,12 @@ import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.datatables.ClanTable;
 import com.l2jbr.gameserver.instancemanager.ClanHallManager;
 import com.l2jbr.gameserver.model.L2Clan;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.model.entity.ClanHall;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.MyTargetSelected;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.ValidateLocation;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 import java.util.StringTokenizer;
 
@@ -48,7 +48,7 @@ public class L2DoormenInstance extends L2FolkInstance
 	 * @param objectID
 	 * @param template
 	 */
-	public L2DoormenInstance(int objectID, L2NpcTemplate template)
+	public L2DoormenInstance(int objectID, NpcTemplate template)
 	{
 		super(objectID, template);
 	}
@@ -183,16 +183,16 @@ public class L2DoormenInstance extends L2FolkInstance
 	public void showMessageWindow(L2PcInstance player)
 	{
 		player.sendPacket(new ActionFailed());
-		String filename = "data/html/doormen/" + getTemplate().npcId + "-no.htm";
+		String filename = "data/html/doormen/" + getTemplate().getId() + "-no.htm";
 		
 		int condition = validateCondition(player);
 		if (condition == COND_BUSY_BECAUSE_OF_SIEGE)
 		{
-			filename = "data/html/doormen/" + getTemplate().npcId + "-busy.htm"; // Busy because of siege
+			filename = "data/html/doormen/" + getTemplate().getId() + "-busy.htm"; // Busy because of siege
 		}
 		else if (condition == COND_CASTLE_OWNER)
 		{
-			filename = "data/html/doormen/" + getTemplate().npcId + ".htm"; // Owner message window
+			filename = "data/html/doormen/" + getTemplate().getId() + ".htm"; // Owner message window
 		}
 		
 		// Prepare doormen for clan hall

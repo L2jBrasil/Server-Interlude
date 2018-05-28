@@ -37,10 +37,10 @@ import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PetInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PlayableInstance;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.model.entity.TvTEvent;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.util.FloodProtector;
 
 
@@ -110,7 +110,7 @@ public class SummonItems implements IItemHandler
 			return;
 		}
 		
-		L2NpcTemplate npcTemplate = NpcTable.getInstance().getTemplate(npcID);
+		NpcTemplate npcTemplate = NpcTable.getInstance().getTemplate(npcID);
 		
 		if (npcTemplate == null)
 		{
@@ -130,7 +130,7 @@ public class SummonItems implements IItemHandler
 					spawn.setLocz(activeChar.getZ());
 					L2World.getInstance().storeObject(spawn.spawnOne());
 					activeChar.destroyItem("Summon", item.getObjectId(), 1, null, false);
-					activeChar.sendMessage("Created " + npcTemplate.name + " at x: " + spawn.getLocx() + " y: " + spawn.getLocy() + " z: " + spawn.getLocz());
+					activeChar.sendMessage("Created " + npcTemplate.getName() + " at x: " + spawn.getLocx() + " y: " + spawn.getLocy() + " z: " + spawn.getLocz());
 				}
 				catch (Exception e)
 				{

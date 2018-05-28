@@ -33,12 +33,12 @@ import com.l2jbr.gameserver.model.L2TradeList;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.database.DropList;
 import com.l2jbr.gameserver.model.database.MerchantBuyList;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.model.database.repository.DropListRepository;
 import com.l2jbr.gameserver.model.database.repository.MerchantBuyListRepository;
+import com.l2jbr.gameserver.model.database.repository.NpcRepository;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.templates.L2Item;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
-import com.l2jbr.gameserver.templates.StatsSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -94,8 +94,8 @@ public class AdminEditNpc implements IAdminCommandHandler {
             try {
                 String[] commandSplit = command.split(" ");
                 int npcId = Integer.valueOf(commandSplit[1]);
-                L2NpcTemplate npc = NpcTable.getInstance().getTemplate(npcId);
-                Show_Npc_Property(activeChar, npc);
+                NpcTemplate npc = NpcTable.getInstance().getTemplate(npcId);
+                showNpcProperty(activeChar, npc);
             } catch (Exception e) {
                 activeChar.sendMessage("Wrong usage: //edit_npc <npcId>");
             }
@@ -179,7 +179,7 @@ public class AdminEditNpc implements IAdminCommandHandler {
                     }
 
                     if (npcId > 0) {
-                        L2NpcTemplate npcData = NpcTable.getInstance().getTemplate(npcId);
+                        NpcTemplate npcData = NpcTable.getInstance().getTemplate(npcId);
                         showAddDropData(activeChar, npcData);
                     }
                 } else if (st.countTokens() == 6) {
@@ -498,52 +498,52 @@ public class AdminEditNpc implements IAdminCommandHandler {
         return ADMIN_COMMANDS;
     }
 
-    private void Show_Npc_Property(L2PcInstance activeChar, L2NpcTemplate npc) {
+    private void showNpcProperty(L2PcInstance activeChar, NpcTemplate npc) {
         NpcHtmlMessage adminReply = new NpcHtmlMessage(5);
         String content = HtmCache.getInstance().getHtm("data/html/admin/editnpc.htm");
 
         if (content != null) {
             adminReply.setHtml(content);
-            adminReply.replace("%npcId%", String.valueOf(npc.npcId));
-            adminReply.replace("%templateId%", String.valueOf(npc.idTemplate));
-            adminReply.replace("%name%", npc.name);
-            adminReply.replace("%serverSideName%", npc.serverSideName == true ? "1" : "0");
-            adminReply.replace("%title%", npc.title);
-            adminReply.replace("%serverSideTitle%", npc.serverSideTitle == true ? "1" : "0");
-            adminReply.replace("%collisionRadius%", String.valueOf(npc.collisionRadius));
-            adminReply.replace("%collisionHeight%", String.valueOf(npc.collisionHeight));
-            adminReply.replace("%level%", String.valueOf(npc.level));
-            adminReply.replace("%sex%", String.valueOf(npc.sex));
-            adminReply.replace("%type%", String.valueOf(npc.type));
-            adminReply.replace("%attackRange%", String.valueOf(npc.baseAtkRange));
-            adminReply.replace("%hp%", String.valueOf(npc.baseHpMax));
-            adminReply.replace("%mp%", String.valueOf(npc.baseMpMax));
-            adminReply.replace("%hpRegen%", String.valueOf(npc.baseHpReg));
-            adminReply.replace("%mpRegen%", String.valueOf(npc.baseMpReg));
-            adminReply.replace("%str%", String.valueOf(npc.baseSTR));
-            adminReply.replace("%con%", String.valueOf(npc.baseCON));
-            adminReply.replace("%dex%", String.valueOf(npc.baseDEX));
-            adminReply.replace("%int%", String.valueOf(npc.baseINT));
-            adminReply.replace("%wit%", String.valueOf(npc.baseWIT));
-            adminReply.replace("%men%", String.valueOf(npc.baseMEN));
-            adminReply.replace("%exp%", String.valueOf(npc.rewardExp));
-            adminReply.replace("%sp%", String.valueOf(npc.rewardSp));
-            adminReply.replace("%pAtk%", String.valueOf(npc.basePAtk));
-            adminReply.replace("%pDef%", String.valueOf(npc.basePDef));
-            adminReply.replace("%mAtk%", String.valueOf(npc.baseMAtk));
-            adminReply.replace("%mDef%", String.valueOf(npc.baseMDef));
-            adminReply.replace("%pAtkSpd%", String.valueOf(npc.basePAtkSpd));
-            adminReply.replace("%aggro%", String.valueOf(npc.aggroRange));
-            adminReply.replace("%mAtkSpd%", String.valueOf(npc.baseMAtkSpd));
-            adminReply.replace("%rHand%", String.valueOf(npc.rhand));
-            adminReply.replace("%lHand%", String.valueOf(npc.lhand));
-            adminReply.replace("%armor%", String.valueOf(npc.armor));
-            adminReply.replace("%walkSpd%", String.valueOf(npc.baseWalkSpd));
-            adminReply.replace("%runSpd%", String.valueOf(npc.baseRunSpd));
-            adminReply.replace("%factionId%", npc.factionId == null ? "" : npc.factionId);
-            adminReply.replace("%factionRange%", String.valueOf(npc.factionRange));
-            adminReply.replace("%isUndead%", npc.isUndead ? "1" : "0");
-            adminReply.replace("%absorbLevel%", String.valueOf(npc.absorbLevel));
+            adminReply.replace("%npcId%", String.valueOf(npc.getId()));
+            adminReply.replace("%templateId%", String.valueOf(npc.getTemplateId()));
+            adminReply.replace("%name%", npc.getName());
+            adminReply.replace("%serverSideName%", npc.isServerSideName() ? "1" : "0");
+            adminReply.replace("%title%", npc.getTitle());
+            adminReply.replace("%serverSideTitle%", npc.isServerSideTitle() ? "1" : "0");
+            adminReply.replace("%collisionRadius%", String.valueOf(npc.getCollisionRadius()));
+            adminReply.replace("%collisionHeight%", String.valueOf(npc.getCollisionHeight()));
+            adminReply.replace("%level%", String.valueOf(npc.getLevel()));
+            adminReply.replace("%sex%", String.valueOf(npc.getSex()));
+            adminReply.replace("%type%", String.valueOf(npc.getType()));
+            adminReply.replace("%attackRange%", String.valueOf(npc.getAtkRange()));
+            adminReply.replace("%hp%", String.valueOf(npc.getHp()));
+            adminReply.replace("%mp%", String.valueOf(npc.getMp()));
+            adminReply.replace("%hpRegen%", String.valueOf(npc.getHpRegen()));
+            adminReply.replace("%mpRegen%", String.valueOf(npc.getMpRegen()));
+            adminReply.replace("%str%", String.valueOf(npc.getStrength()));
+            adminReply.replace("%con%", String.valueOf(npc.getConstitution()));
+            adminReply.replace("%dex%", String.valueOf(npc.getDexterity()));
+            adminReply.replace("%int%", String.valueOf(npc.getIntellienge()));
+            adminReply.replace("%wit%", String.valueOf(npc.getWitness()));
+            adminReply.replace("%men%", String.valueOf(npc.getMentality()));
+            adminReply.replace("%exp%", String.valueOf(npc.getExp()));
+            adminReply.replace("%sp%", String.valueOf(npc.getSp()));
+            adminReply.replace("%pAtk%", String.valueOf(npc.getpAtk()));
+            adminReply.replace("%pDef%", String.valueOf(npc.getpDef()));
+            adminReply.replace("%mAtk%", String.valueOf(npc.getmAtk()));
+            adminReply.replace("%mDef%", String.valueOf(npc.getmDef()));
+            adminReply.replace("%pAtkSpd%", String.valueOf(npc.getPAtkSpd()));
+            adminReply.replace("%aggro%", String.valueOf(npc.getAggro()));
+            adminReply.replace("%mAtkSpd%", String.valueOf(npc.getMAtkSpd()));
+            adminReply.replace("%rHand%", String.valueOf(npc.getRhand()));
+            adminReply.replace("%lHand%", String.valueOf(npc.getLhand()));
+            adminReply.replace("%armor%", String.valueOf(npc.getArmor()));
+            adminReply.replace("%walkSpd%", String.valueOf(npc.getWalkSpd()));
+            adminReply.replace("%runSpd%", String.valueOf(npc.getRunSpd()));
+            adminReply.replace("%factionId%", npc.getFactionId() == null ? "" : npc.getFactionId());
+            adminReply.replace("%factionRange%", String.valueOf(npc.getFactionRange()));
+            adminReply.replace("%isUndead%", npc.isUndead() ? "1" : "0");
+            adminReply.replace("%absorbLevel%", String.valueOf(npc.getAbsorbLevel()));
         } else {
             adminReply.setHtml("<html><head><body>File not found: data/html/admin/editnpc.htm</body></html>");
         }
@@ -557,114 +557,62 @@ public class AdminEditNpc implements IAdminCommandHandler {
             return;
         }
 
-        StatsSet newNpcData = new StatsSet();
+        int npcId = Integer.parseInt(commandSplit[1]);
 
-        try {
-            newNpcData.set("npcId", commandSplit[1]);
+        String statToSet = commandSplit[2];
+        String value = commandSplit[3];
 
-            String statToSet = commandSplit[2];
-            String value = commandSplit[3];
-
-            if (commandSplit.length > 4) {
-                for (int i = 0; i < (commandSplit.length - 3); i++) {
-                    value += " " + commandSplit[i + 4];
-                }
+        if (commandSplit.length > 4) {
+            for (int i = 0; i < (commandSplit.length - 3); i++) {
+                value += " " + commandSplit[i + 4];
             }
-
-            if (statToSet.equals("templateId")) {
-                newNpcData.set("idTemplate", Integer.valueOf(value));
-            } else if (statToSet.equals("name")) {
-                newNpcData.set("name", value);
-            } else if (statToSet.equals("serverSideName")) {
-                newNpcData.set("serverSideName", Integer.valueOf(value));
-            } else if (statToSet.equals("title")) {
-                newNpcData.set("title", value);
-            } else if (statToSet.equals("serverSideTitle")) {
-                newNpcData.set("serverSideTitle", Integer.valueOf(value) == 1 ? 1 : 0);
-            } else if (statToSet.equals("collisionRadius")) {
-                newNpcData.set("collision_radius", Integer.valueOf(value));
-            } else if (statToSet.equals("collisionHeight")) {
-                newNpcData.set("collision_height", Integer.valueOf(value));
-            } else if (statToSet.equals("level")) {
-                newNpcData.set("level", Integer.valueOf(value));
-            } else if (statToSet.equals("sex")) {
-                int intValue = Integer.valueOf(value);
-                newNpcData.set("sex", intValue == 0 ? "male" : intValue == 1 ? "female" : "etc");
-            } else if (statToSet.equals("type")) {
-                Class.forName("com.l2jbr.gameserver.model.actor.instance." + value + "Instance");
-                newNpcData.set("type", value);
-            } else if (statToSet.equals("attackRange")) {
-                newNpcData.set("attackrange", Integer.valueOf(value));
-            } else if (statToSet.equals("hp")) {
-                newNpcData.set("hp", Integer.valueOf(value));
-            } else if (statToSet.equals("mp")) {
-                newNpcData.set("mp", Integer.valueOf(value));
-            } else if (statToSet.equals("hpRegen")) {
-                newNpcData.set("hpreg", Integer.valueOf(value));
-            } else if (statToSet.equals("mpRegen")) {
-                newNpcData.set("mpreg", Integer.valueOf(value));
-            } else if (statToSet.equals("str")) {
-                newNpcData.set("str", Integer.valueOf(value));
-            } else if (statToSet.equals("con")) {
-                newNpcData.set("con", Integer.valueOf(value));
-            } else if (statToSet.equals("dex")) {
-                newNpcData.set("dex", Integer.valueOf(value));
-            } else if (statToSet.equals("int")) {
-                newNpcData.set("int", Integer.valueOf(value));
-            } else if (statToSet.equals("wit")) {
-                newNpcData.set("wit", Integer.valueOf(value));
-            } else if (statToSet.equals("men")) {
-                newNpcData.set("men", Integer.valueOf(value));
-            } else if (statToSet.equals("exp")) {
-                newNpcData.set("exp", Integer.valueOf(value));
-            } else if (statToSet.equals("sp")) {
-                newNpcData.set("sp", Integer.valueOf(value));
-            } else if (statToSet.equals("pAtk")) {
-                newNpcData.set("patk", Integer.valueOf(value));
-            } else if (statToSet.equals("pDef")) {
-                newNpcData.set("pdef", Integer.valueOf(value));
-            } else if (statToSet.equals("mAtk")) {
-                newNpcData.set("matk", Integer.valueOf(value));
-            } else if (statToSet.equals("mDef")) {
-                newNpcData.set("mdef", Integer.valueOf(value));
-            } else if (statToSet.equals("pAtkSpd")) {
-                newNpcData.set("atkspd", Integer.valueOf(value));
-            } else if (statToSet.equals("aggro")) {
-                newNpcData.set("aggro", Integer.valueOf(value));
-            } else if (statToSet.equals("mAtkSpd")) {
-                newNpcData.set("matkspd", Integer.valueOf(value));
-            } else if (statToSet.equals("rHand")) {
-                newNpcData.set("rhand", Integer.valueOf(value));
-            } else if (statToSet.equals("lHand")) {
-                newNpcData.set("lhand", Integer.valueOf(value));
-            } else if (statToSet.equals("armor")) {
-                newNpcData.set("armor", Integer.valueOf(value));
-            } else if (statToSet.equals("runSpd")) {
-                newNpcData.set("runspd", Integer.valueOf(value));
-            } else if (statToSet.equals("factionId")) {
-                newNpcData.set("faction_id", value);
-            } else if (statToSet.equals("factionRange")) {
-                newNpcData.set("faction_range", Integer.valueOf(value));
-            } else if (statToSet.equals("isUndead")) {
-                newNpcData.set("isUndead", Integer.valueOf(value) == 1 ? 1 : 0);
-            } else if (statToSet.equals("absorbLevel")) {
-                int intVal = Integer.valueOf(value);
-                newNpcData.set("absorb_level", intVal < 0 ? 0 : intVal > 12 ? 0 : intVal);
-            }
-        } catch (Exception e) {
-            _log.warn("Error saving new npc value: " + e);
         }
 
-        NpcTable.getInstance().saveNpc(newNpcData);
+        NpcTemplate npc = NpcTable.getInstance().getTemplate(npcId);
+        final String statValue = value;
 
-        int npcId = newNpcData.getInteger("npcId");
+        Util.getField(statToSet, NpcTemplate.class).ifPresent(f -> {
+            if(Util.isNull(npc)) {
+                return;
+            }
+            try {
+                f.trySetAccessible();
+                if ("sex".equalsIgnoreCase(statToSet)) {
+                    switch (statValue) {
+                        case "0":
+                            f.set(npc, "male");
+                            break;
+                        case "1":
+                            f.set(npc, "female");
+                            break;
+                        default:
+                            f.set(npc, "etc");
+                    }
+                } else if("type".equalsIgnoreCase(statToSet)) {
+                    Class.forName("com.l2jbr.gameserver.model.actor.instance." + statValue + "Instance");
+                    f.set(npc, statValue);
+                } else if("absorb_level".equalsIgnoreCase(statToSet)) {
+                    int intValue = Integer.parseInt(statValue);
+                    if(intValue < 0 || intValue > 12) {
+                        intValue = 0;
+                    }
+                    f.set(npc, intValue);
+                } else {
+                    f.set(npc, f.getType().cast(statValue));
+                }
+                NpcRepository repository = DatabaseAccess.getRepository(NpcRepository.class);
+                repository.save(npc);
+            }catch (Exception e) {
+                _log.warn("Error saving new npc value", e);
+            }
+        });
 
         NpcTable.getInstance().reloadNpc(npcId);
-        Show_Npc_Property(activeChar, NpcTable.getInstance().getTemplate(npcId));
+        showNpcProperty(activeChar, npc);
     }
 
     private void showNpcDropList(L2PcInstance activeChar, int npcId) {
-        L2NpcTemplate npcData = NpcTable.getInstance().getTemplate(npcId);
+        NpcTemplate npcData = NpcTable.getInstance().getTemplate(npcId);
         if (npcData == null) {
             activeChar.sendMessage("unknown npc template id" + npcId);
             return;
@@ -672,15 +620,15 @@ public class AdminEditNpc implements IAdminCommandHandler {
 
         NpcHtmlMessage adminReply = new NpcHtmlMessage(5);
 
-        StringBuilder replyMSG = new StringBuilder("<html><title>NPC: " + npcData.name + "(" + npcData.npcId + ") 's drop manage</title>");
+        StringBuilder replyMSG = new StringBuilder("<html><title>NPC: " + npcData.getName() + "(" + npcData.getId() + ") 's drop manage</title>");
         replyMSG.append("<body>");
         replyMSG.append("<br>Notes: click[drop_id]to show the detail of drop data,click[del] to delete the drop data!");
         replyMSG.append("<table>");
         replyMSG.append("<tr><td>npc_id itemId category</td><td>item[id]</td><td>type</td><td>del</td></tr>");
 
-        for (L2DropCategory cat : npcData.getDropData()) {
+        for (L2DropCategory cat : npcData.getDropCategories().values()) {
             for (L2DropData drop : cat.getAllDrops()) {
-                replyMSG.append("<tr><td><a action=\"bypass -h admin_edit_drop " + npcData.npcId + " " + drop.getItemId() + " " + cat.getCategoryType() + "\">" + npcData.npcId + " " + drop.getItemId() + " " + cat.getCategoryType() + "</a></td>" + "<td>" + ItemTable.getInstance().getTemplate(drop.getItemId()).getName() + "[" + drop.getItemId() + "]" + "</td><td>" + (drop.isQuestDrop() ? "Q" : (cat.isSweep() ? "S" : "D")) + "</td><td>" + "<a action=\"bypass -h admin_del_drop " + npcData.npcId + " " + drop.getItemId() + " " + cat.getCategoryType() + "\">del</a></td></tr>");
+                replyMSG.append("<tr><td><a action=\"bypass -h admin_edit_drop " + npcData.getId() + " " + drop.getItemId() + " " + cat.getCategoryType() + "\">" + npcData.getId() + " " + drop.getItemId() + " " + cat.getCategoryType() + "</a></td>" + "<td>" + ItemTable.getInstance().getTemplate(drop.getItemId()).getName() + "[" + drop.getItemId() + "]" + "</td><td>" + (drop.isQuestDrop() ? "Q" : (cat.isSweep() ? "S" : "D")) + "</td><td>" + "<a action=\"bypass -h admin_del_drop " + npcData.getId() + " " + drop.getItemId() + " " + cat.getCategoryType() + "\">del</a></td></tr>");
             }
         }
 
@@ -704,7 +652,7 @@ public class AdminEditNpc implements IAdminCommandHandler {
         DropListRepository repository = DatabaseAccess.getRepository(DropListRepository.class);
         repository.findByNpcItemAndCategory(npcId, itemId, category).ifPresent(dropList -> {
             replyMSG.append("<table>");
-            replyMSG.append("<tr><td>Appertain of NPC</td><td>" + NpcTable.getInstance().getTemplate(npcId).name + "</td></tr>");
+            replyMSG.append("<tr><td>Appertain of NPC</td><td>" + NpcTable.getInstance().getTemplate(npcId).getName() + "</td></tr>");
             replyMSG.append("<tr><td>ItemName</td><td>" + ItemTable.getInstance().getTemplate(itemId).getName() + "(" + itemId + ")</td></tr>");
             replyMSG.append("<tr><td>Category</td><td>" + ((category == -1) ? "sweep" : Integer.toString(category)) + "</td></tr>");
             replyMSG.append("<tr><td>MIN(" + dropList.getMin() + ")</td><td><edit var=\"min\" width=80></td></tr>");
@@ -724,10 +672,10 @@ public class AdminEditNpc implements IAdminCommandHandler {
         activeChar.sendPacket(adminReply);
     }
 
-    private void showAddDropData(L2PcInstance activeChar, L2NpcTemplate npcData) {
+    private void showAddDropData(L2PcInstance activeChar, NpcTemplate npcData) {
         NpcHtmlMessage adminReply = new NpcHtmlMessage(5);
 
-        StringBuilder replyMSG = new StringBuilder("<html><title>Add dropdata to " + npcData.name + "(" + npcData.npcId + ")</title>");
+        StringBuilder replyMSG = new StringBuilder("<html><title>Add dropdata to " + npcData.getName() + "(" + npcData.getId() + ")</title>");
         replyMSG.append("<body>");
         replyMSG.append("<table>");
         replyMSG.append("<tr><td>Item-Id</td><td><edit var=\"itemId\" width=80></td></tr>");
@@ -738,8 +686,8 @@ public class AdminEditNpc implements IAdminCommandHandler {
         replyMSG.append("</table>");
 
         replyMSG.append("<center>");
-        replyMSG.append("<button value=\"SAVE\" action=\"bypass -h admin_add_drop " + npcData.npcId + " $itemId $category $min $max $chance\"  width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\">");
-        replyMSG.append("<br><button value=\"DropList\" action=\"bypass -h admin_show_droplist " + npcData.npcId + "\"  width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\">");
+        replyMSG.append("<button value=\"SAVE\" action=\"bypass -h admin_add_drop " + npcData.getId() + " $itemId $category $min $max $chance\"  width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\">");
+        replyMSG.append("<br><button value=\"DropList\" action=\"bypass -h admin_show_droplist " + npcData.getId() + "\"  width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\">");
         replyMSG.append("</center>");
         replyMSG.append("</body></html>");
         adminReply.setHtml(replyMSG.toString());
@@ -802,7 +750,7 @@ public class AdminEditNpc implements IAdminCommandHandler {
     }
 
     private void reLoadNpcDropList(int npcId) {
-        L2NpcTemplate npcData = NpcTable.getInstance().getTemplate(npcId);
+        NpcTemplate npcData = NpcTable.getInstance().getTemplate(npcId);
         if (Util.isNull(npcData)) {
             return;
         }

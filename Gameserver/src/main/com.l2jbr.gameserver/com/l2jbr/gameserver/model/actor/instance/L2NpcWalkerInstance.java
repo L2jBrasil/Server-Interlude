@@ -21,8 +21,8 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.ai.AI;
 import com.l2jbr.gameserver.ai.L2NpcWalkerAI;
 import com.l2jbr.gameserver.model.L2Character;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.CreatureSay;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 import java.util.Map;
 
@@ -42,7 +42,7 @@ public class L2NpcWalkerInstance extends L2NpcInstance
 	 * @param objectId
 	 * @param template
 	 */
-	public L2NpcWalkerInstance(int objectId, L2NpcTemplate template)
+	public L2NpcWalkerInstance(int objectId, NpcTemplate template)
 	{
 		super(objectId, template);
 		setAI(new L2NpcWalkerAI(new L2NpcWalkerAIAccessor()));

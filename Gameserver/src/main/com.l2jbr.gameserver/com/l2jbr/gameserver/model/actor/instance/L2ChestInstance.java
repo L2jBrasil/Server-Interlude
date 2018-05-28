@@ -25,9 +25,9 @@ import com.l2jbr.gameserver.datatables.NpcTable;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Skill;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 
 /**
@@ -38,7 +38,7 @@ public final class L2ChestInstance extends L2MonsterInstance
 	private volatile boolean _isInteracted;
 	private volatile boolean _specialDrop;
 	
-	public L2ChestInstance(int objectId, L2NpcTemplate template)
+	public L2ChestInstance(int objectId, NpcTemplate template)
 	{
 		super(objectId, template);
 		_isInteracted = false;
@@ -75,9 +75,9 @@ public final class L2ChestInstance extends L2MonsterInstance
 	}
 	
 	@Override
-	public void doItemDrop(L2NpcTemplate npcTemplate, L2Character lastAttacker)
+	public void doItemDrop(NpcTemplate npcTemplate, L2Character lastAttacker)
 	{
-		int id = getTemplate().npcId;
+		int id = getTemplate().getId();
 		
 		if (!_specialDrop)
 		{
@@ -120,7 +120,7 @@ public final class L2ChestInstance extends L2MonsterInstance
 		int trapSkillId = 0;
 		int rnd = Rnd.get(120);
 		
-		if (getTemplate().level >= 61)
+		if (getTemplate().getLevel() >= 61)
 		{
 			if (rnd >= 90)
 			{
@@ -139,7 +139,7 @@ public final class L2ChestInstance extends L2MonsterInstance
 				trapSkillId = 223;// sting
 			}
 		}
-		else if (getTemplate().level >= 41)
+		else if (getTemplate().getLevel() >= 41)
 		{
 			if (rnd >= 90)
 			{
@@ -158,7 +158,7 @@ public final class L2ChestInstance extends L2MonsterInstance
 				trapSkillId = 4118;// area paralysys
 			}
 		}
-		else if (getTemplate().level >= 21)
+		else if (getTemplate().getLevel() >= 21)
 		{
 			if (rnd >= 80)
 			{
@@ -203,7 +203,7 @@ public final class L2ChestInstance extends L2MonsterInstance
 	private boolean handleCast(L2Character player, int skillId)
 	{
 		int skillLevel = 1;
-		byte lvl = getTemplate().level;
+		byte lvl = getTemplate().getLevel();
 		if ((lvl > 20) && (lvl <= 40))
 		{
 			skillLevel = 3;

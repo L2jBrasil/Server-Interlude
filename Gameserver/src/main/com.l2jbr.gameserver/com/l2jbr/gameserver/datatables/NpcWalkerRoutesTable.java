@@ -29,7 +29,7 @@ import java.util.List;
 
 
 /**
- * Main Table to Load Npc Walkers Routes and Chat SQL Table.<br>
+ * Main Table to Load NpcTemplate Walkers Routes and Chat SQL Table.<br>
  *
  * @author Rayan RPG for L2Emu Project
  * @since 927
@@ -60,7 +60,7 @@ public class NpcWalkerRoutesTable {
             _routes.add(route);
         });
 
-        _log.info("WalkerRoutesTable: Loaded {} Npc Walker Routes.", _routes.size());
+        _log.info("WalkerRoutesTable: Loaded {} NpcTemplate Walker Routes.", _routes.size());
     }
 
     public List<L2NpcWalkerNode> getRouteForNpc(int id) {

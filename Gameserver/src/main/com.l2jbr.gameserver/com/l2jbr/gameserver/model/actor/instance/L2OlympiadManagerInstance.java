@@ -21,12 +21,12 @@ package com.l2jbr.gameserver.model.actor.instance;
 import com.l2jbr.gameserver.Olympiad;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Multisell;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ExHeroList;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,7 +34,7 @@ import java.util.List;
 
 
 /**
- * Olympiad Npc's Instance
+ * Olympiad NpcTemplate's Instance
  *
  * @author godson
  */
@@ -44,7 +44,7 @@ public class L2OlympiadManagerInstance extends L2FolkInstance {
 
     private static final int GATE_PASS = 6651;
 
-    public L2OlympiadManagerInstance(int objectId, L2NpcTemplate template) {
+    public L2OlympiadManagerInstance(int objectId, NpcTemplate template) {
         super(objectId, template);
     }
 

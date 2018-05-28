@@ -18,18 +18,44 @@
  */
 package com.l2jbr.gameserver.model.base;
 
+public enum Race {
+	HUMAN,
+    ELF,
+    DARK_ELF,
+    ORC,
+    DWARF,
+    UNDEAD,
+    MAGICC_REATURE,
+    BEAST,
+    ANIMAL,
+    PLANT,
+    HUMANOID,
+    SPIRIT,
+    ANGEL,
+    DEMON,
+    DRAGON,
+    GIANT,
+    BUG,
+    FAIRY,
+    OTHER,
+    NON_LIVING,
+    SIEGE_WEAPON,
+    DEFENDING_ARMY,
+    MERCENARY,
+    UNKNOWN;
 
-/**
- * This class defines all races (human, elf, darkelf, orc, dwarf) that a player can chose.<BR>
- * <BR>
- * @version $Revision: 1.2.4.2 $ $Date: 2005/03/27 15:29:32 $
- */
+	// TODO implement RACE skill (4416) to remove this
+    public static Race fromRaceSkillLevel(int skillLevel) {
+        int raceIndex = skillLevel;
+        if(skillLevel > 0 && skillLevel < 14) {
+            raceIndex = skillLevel + 4;
+        } else if(skillLevel >= 14 && skillLevel <= 18) {
+            raceIndex= skillLevel - 4;
+        } else if(skillLevel > 23) {
+            raceIndex = 23;
+        }
 
-public enum Race
-{
-	human,
-	elf,
-	darkelf,
-	orc,
-	dwarf;
+        return Race.values()[raceIndex];
+    }
+
 }

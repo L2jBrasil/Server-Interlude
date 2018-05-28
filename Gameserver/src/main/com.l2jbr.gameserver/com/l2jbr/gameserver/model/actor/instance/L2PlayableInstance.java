@@ -24,7 +24,7 @@ import com.l2jbr.gameserver.model.L2Summon;
 import com.l2jbr.gameserver.model.actor.knownlist.PlayableKnownList;
 import com.l2jbr.gameserver.model.actor.stat.PlayableStat;
 import com.l2jbr.gameserver.model.actor.status.PlayableStatus;
-import com.l2jbr.gameserver.templates.L2CharTemplate;
+import com.l2jbr.gameserver.model.database.CharTemplate;
 
 
 /**
@@ -52,7 +52,7 @@ public abstract class L2PlayableInstance extends L2Character
 	 * @param objectId Identifier of the object to initialized
 	 * @param template The L2CharTemplate to apply to the L2PlayableInstance
 	 */
-	public L2PlayableInstance(int objectId, L2CharTemplate template)
+	public L2PlayableInstance(int objectId, CharTemplate template)
 	{
 		super(objectId, template);
 		getKnownList(); // init knownlist

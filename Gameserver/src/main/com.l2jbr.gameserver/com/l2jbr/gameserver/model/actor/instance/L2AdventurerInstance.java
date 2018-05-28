@@ -20,9 +20,9 @@ package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.gameserver.instancemanager.RaidBossSpawnManager;
 import com.l2jbr.gameserver.model.L2Spawn;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.ExQuestInfo;
 import com.l2jbr.gameserver.serverpackets.RadarControl;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 
 /**
@@ -34,7 +34,7 @@ public class L2AdventurerInstance extends L2FolkInstance
 {
 	// private static Logger _log = LoggerFactory.getLogger(L2AdventurerInstance.class.getName());
 	
-	public L2AdventurerInstance(int objectId, L2NpcTemplate template)
+	public L2AdventurerInstance(int objectId, NpcTemplate template)
 	{
 		super(objectId, template);
 	}

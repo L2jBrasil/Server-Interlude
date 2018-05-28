@@ -26,9 +26,9 @@ import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.L2Skill;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.NpcInfo;
 import com.l2jbr.gameserver.serverpackets.StopMove;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.util.Point3D;
 
 import java.util.LinkedHashMap;
@@ -56,12 +56,12 @@ public final class L2TamedBeastInstance extends L2FeedableBeastInstance {
     private Future<?> _buffTask = null;
     private Future<?> _durationCheckTask = null;
 
-    public L2TamedBeastInstance(int objectId, L2NpcTemplate template) {
+    public L2TamedBeastInstance(int objectId, NpcTemplate template) {
         super(objectId, template);
         setHome(this);
     }
 
-    public L2TamedBeastInstance(int objectId, L2NpcTemplate template, L2PcInstance owner, int foodSkillId, int x, int y, int z) {
+    public L2TamedBeastInstance(int objectId, NpcTemplate template, L2PcInstance owner, int foodSkillId, int x, int y, int z) {
         super(objectId, template);
 
         setCurrentHp(getMaxHp());

@@ -20,15 +20,15 @@ package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.cache.HtmCache;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.model.entity.TvTEvent;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 
 public class L2TvTEventNpcInstance extends L2NpcInstance
 {
-	public L2TvTEventNpcInstance(int objectId, L2NpcTemplate template)
+	public L2TvTEventNpcInstance(int objectId, NpcTemplate template)
 	{
 		super(objectId, template);
 	}

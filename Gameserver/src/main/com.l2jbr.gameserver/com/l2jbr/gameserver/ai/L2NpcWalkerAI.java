@@ -100,7 +100,7 @@ public class L2NpcWalkerAI extends MovableAI<L2NpcWalkerAIAccessor> implements R
             if (delay <= 0) {
                 delay = DEFAULT_MOVE_DELAY;
                 if (Config.DEVELOPER) {
-                    _log.warn("Wrong Delay Set in Npc Walker Functions = " + delay + " secs, using default delay: " + DEFAULT_MOVE_DELAY + " secs instead.");
+                    _log.warn("Wrong Delay Set in NpcTemplate Walker Functions = " + delay + " secs, using default delay: " + DEFAULT_MOVE_DELAY + " secs instead.");
                 }
             }
 

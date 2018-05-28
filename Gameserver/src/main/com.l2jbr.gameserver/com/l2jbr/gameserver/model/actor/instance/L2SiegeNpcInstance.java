@@ -19,11 +19,11 @@
 package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.gameserver.ai.Intention;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.MyTargetSelected;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.ValidateLocation;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 
 /**
@@ -34,7 +34,7 @@ public class L2SiegeNpcInstance extends L2FolkInstance
 {
 	// private static Logger _log = LoggerFactory.getLogger(L2SiegeNpcInstance.class.getName());
 	
-	public L2SiegeNpcInstance(int objectID, L2NpcTemplate template)
+	public L2SiegeNpcInstance(int objectID, NpcTemplate template)
 	{
 		super(objectID, template);
 	}
@@ -94,7 +94,7 @@ public class L2SiegeNpcInstance extends L2FolkInstance
 		else
 		{
 			NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
-			html.setFile("data/html/siege/" + getTemplate().npcId + "-busy.htm");
+			html.setFile("data/html/siege/" + getTemplate().getId() + "-busy.htm");
 			html.replace("%castlename%", getCastle().getName());
 			html.replace("%objectId%", String.valueOf(getObjectId()));
 			player.sendPacket(html);

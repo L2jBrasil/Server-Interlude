@@ -8,7 +8,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jdbc.mapping.event.AfterLoadEvent;
-import org.springframework.data.jdbc.mapping.event.BeforeSaveEvent;
+import org.springframework.data.jdbc.mapping.event.AfterSaveEvent;
 import org.springframework.data.jdbc.mapping.event.WithEntity;
 import org.springframework.data.jdbc.mapping.model.NamingStrategy;
 import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
@@ -60,7 +60,7 @@ public class DatabaseContextConfiguration {
     }
 
     @Bean
-    public ApplicationListener<BeforeSaveEvent> beforeSaveEventApplicationListener() {
+    public ApplicationListener<AfterSaveEvent> afterSaveEventApplicationListener() {
         return event -> {
             extractModel(event).ifPresent(Entity::onSave);
         };

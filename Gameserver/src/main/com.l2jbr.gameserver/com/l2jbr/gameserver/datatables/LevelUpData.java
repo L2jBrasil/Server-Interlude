@@ -53,15 +53,15 @@ public class LevelUpData {
             L2LvlupData lvlDat = new L2LvlupData();
             lvlDat.setClassid(charTemplate.getId());
             lvlDat.setClassLvl(charTemplate.getClassLevel());
-            lvlDat.setClassHpBase(charTemplate.getDefaultHpBase());
-            lvlDat.setClassHpAdd(charTemplate.getDefaultHpAdd());
-            lvlDat.setClassHpModifier(charTemplate.getDefaultHpMod());
-            lvlDat.setClassCpBase(charTemplate.getDefaultCpBase());
-            lvlDat.setClassCpAdd(charTemplate.getDefaultCpAdd());
-            lvlDat.setClassCpModifier(charTemplate.getDefaultCpMod());
-            lvlDat.setClassMpBase(charTemplate.getDefaultMpBase());
-            lvlDat.setClassMpAdd(charTemplate.getDefaultMpAdd());
-            lvlDat.setClassMpModifier(charTemplate.getDefaultMpMod());
+            lvlDat.setClassHpBase(charTemplate.getHp());
+            lvlDat.setClassHpAdd(charTemplate.getHpAdd());
+            lvlDat.setClassHpModifier(charTemplate.getHpMod());
+            lvlDat.setClassCpBase(charTemplate.getCp());
+            lvlDat.setClassCpAdd(charTemplate.getCpAdd());
+            lvlDat.setClassCpModifier(charTemplate.getCpMod());
+            lvlDat.setClassMpBase(charTemplate.getMp());
+            lvlDat.setClassMpAdd(charTemplate.getMpAdd());
+            lvlDat.setClassMpModifier(charTemplate.getMpMod());
 
             _lvlTable.put(lvlDat.getClassid(), lvlDat);
         });

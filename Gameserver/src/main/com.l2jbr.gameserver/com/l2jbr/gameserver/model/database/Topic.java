@@ -21,7 +21,7 @@ public class Topic extends Entity<Integer> {
     private String topicOwnerName;
     @Column("topic_ownerid")
     private int topicOwnerId;
-    @Column("topicType")
+    @Column("topic_type")
     private int topicType;
     @Column("topic_reply")
     private int topicReply;

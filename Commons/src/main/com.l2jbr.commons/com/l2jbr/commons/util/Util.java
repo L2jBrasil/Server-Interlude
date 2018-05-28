@@ -15,7 +15,9 @@
 package com.l2jbr.commons.util;
 
 
+import java.lang.reflect.Field;
 import java.util.Collection;
+import java.util.Optional;
 
 /**
  * This class ...
@@ -93,6 +95,20 @@ public class Util {
         }
 
         return number;
+    }
+
+    public static Optional<Field> getField(String fieldName, Class<?> clazz) {
+        Class<?> searchClass = clazz;
+        Field f = null;
+        while(Util.isNotNull(searchClass)) {
+            try {
+                f = searchClass.getDeclaredField(fieldName);
+                break;
+            } catch (NoSuchFieldException e) {
+                searchClass = searchClass.getSuperclass();
+            }
+        }
+        return Optional.of(f);
     }
 
 

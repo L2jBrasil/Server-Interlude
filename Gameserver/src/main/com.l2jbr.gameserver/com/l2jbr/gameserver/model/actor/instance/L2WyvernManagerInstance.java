@@ -19,15 +19,15 @@ package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.datatables.SkillTable;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 
 public class L2WyvernManagerInstance extends L2CastleChamberlainInstance
 {
 	
-	public L2WyvernManagerInstance(int objectId, L2NpcTemplate template)
+	public L2WyvernManagerInstance(int objectId, NpcTemplate template)
 	{
 		super(objectId, template);
 	}

@@ -22,7 +22,7 @@ import com.l2jbr.gameserver.datatables.NpcTable;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Object;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 
 
 /**
@@ -47,9 +47,9 @@ public class NpcInfoPoly extends L2GameServerPacket
 	private int _rhand, _lhand;
 	private String _name, _title;
 	private int _abnormalEffect;
-	L2NpcTemplate _template;
-	private final int _collisionRadius;
-	private final int _collisionHeight;
+	NpcTemplate _template;
+	private final float _collisionRadius;
+	private final float _collisionHeight;
 	
 	/**
 	 * @param obj
@@ -64,14 +64,14 @@ public class NpcInfoPoly extends L2GameServerPacket
 		_rhand = 0;
 		_lhand = 0;
 		_isSummoned = false;
-		_collisionRadius = _template.collisionRadius;
-		_collisionHeight = _template.collisionHeight;
+		_collisionRadius = _template.getCollisionRadius();
+		_collisionHeight = _template.getCollisionHeight();
 		if (_obj instanceof L2Character)
 		{
 			_activeChar = (L2Character) obj;
 			_isAttackable = obj.isAutoAttackable(attacker);
-			_rhand = _template.rhand;
-			_lhand = _template.lhand;
+			_rhand = _template.getRhand();
+			_lhand = _template.getLhand();
 			
 		}
 		

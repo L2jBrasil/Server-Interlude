@@ -19,7 +19,7 @@
 package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.gameserver.model.L2Multisell;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 
 
 /**
@@ -27,7 +27,7 @@ import com.l2jbr.gameserver.templates.L2NpcTemplate;
  */
 public class L2BlacksmithInstance extends L2FolkInstance
 {
-	public L2BlacksmithInstance(int objectId, L2NpcTemplate template)
+	public L2BlacksmithInstance(int objectId, NpcTemplate template)
 	{
 		super(objectId, template);
 	}

@@ -24,10 +24,10 @@ import com.l2jbr.gameserver.datatables.SpawnTable;
 import com.l2jbr.gameserver.model.L2Spawn;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.CreatureSay;
 import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.util.EventData;
 
 import java.io.*;
@@ -135,7 +135,7 @@ public class L2Event {
 
     public static void spawn(L2PcInstance target, int npcid) {
 
-        L2NpcTemplate template1 = NpcTable.getInstance().getTemplate(npcid);
+        NpcTemplate template1 = NpcTable.getInstance().getTemplate(npcid);
 
         try {
             // L2MonsterInstance mob = new L2MonsterInstance(template1);

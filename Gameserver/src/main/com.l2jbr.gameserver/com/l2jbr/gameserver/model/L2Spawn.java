@@ -25,7 +25,7 @@ import com.l2jbr.gameserver.Territory;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,7 +49,7 @@ public class L2Spawn {
     /**
      * The link on the L2NpcTemplate object containing generic and static properties of this spawn (ex : RewardExp, RewardSP, AggroRange...)
      */
-    private L2NpcTemplate _template;
+    private NpcTemplate _template;
 
     /**
      * The Identifier of this spawn in the spawn table
@@ -172,7 +172,7 @@ public class L2Spawn {
      * @throws ClassNotFoundException
      * @throws NoSuchMethodException
      */
-    public L2Spawn(L2NpcTemplate mobTemplate) throws SecurityException, ClassNotFoundException, NoSuchMethodException {
+    public L2Spawn(NpcTemplate mobTemplate) throws SecurityException, ClassNotFoundException, NoSuchMethodException {
         // Set the _template of the L2Spawn
         _template = mobTemplate;
 
@@ -181,15 +181,15 @@ public class L2Spawn {
         }
 
         // The Name of the L2NpcInstance type managed by this L2Spawn
-        String implementationName = _template.type; // implementing class name
+        String implementationName = _template.getType(); // implementing class name
 
-        if (mobTemplate.npcId == 30995) {
+        if (mobTemplate.getId() == 30995) {
             implementationName = "L2RaceManager";
         }
 
         // if (mobTemplate.npcId == 8050)
 
-        if ((mobTemplate.npcId >= 31046) && (mobTemplate.npcId <= 31053)) {
+        if ((mobTemplate.getId() >= 31046) && (mobTemplate.getId() <= 31053)) {
             implementationName = "L2SymbolMaker";
         }
 
@@ -197,7 +197,7 @@ public class L2Spawn {
         Class<?>[] parameters =
                 {
                         int.class,
-                        Class.forName("com.l2jbr.gameserver.templates.L2NpcTemplate")
+                        Class.forName("com.l2jbr.gameserver.templates.NpcTemplate")
                 };
         _constructor = Class.forName("com.l2jbr.gameserver.model.actor.instance." + implementationName + "Instance").getConstructor(parameters);
     }
@@ -248,7 +248,7 @@ public class L2Spawn {
      * @return the Itdentifier of the L2NpcInstance manage by this L2Spwan contained in the L2NpcTemplate.
      */
     public int getNpcid() {
-        return _template.npcId;
+        return _template.getId();
     }
 
     /**
@@ -446,7 +446,7 @@ public class L2Spawn {
     public L2NpcInstance doSpawn() {
         L2NpcInstance mob = null;
         try {
-            if (_template.type.equalsIgnoreCase("L2Pet") || _template.type.equalsIgnoreCase("L2Minion")) {
+            if (_template.getType().equalsIgnoreCase("L2Pet") || _template.getType().equalsIgnoreCase("L2Minion")) {
                 _currentCount++;
                 return mob;
             }
@@ -466,7 +466,7 @@ public class L2Spawn {
             mob = (L2NpcInstance) tmp;
             return intializeNpcInstance(mob);
         } catch (Exception e) {
-            _log.warn( "NPC {} class not found", _template.npcId);
+            _log.warn( "NPC {} class not found", _template.getId());
             _log.error(e.getLocalizedMessage(), e);
         }
         return mob;
@@ -533,7 +533,7 @@ public class L2Spawn {
         _lastSpawn = mob;
 
         if (Config.DEBUG) {
-            _log.debug("spawned Mob ID: " + _template.npcId + " ,at: " + mob.getX() + " x, " + mob.getY() + " y, " + mob.getZ() + " z");
+            _log.debug("spawned Mob ID: " + _template.getId() + " ,at: " + mob.getX() + " x, " + mob.getY() + " y, " + mob.getZ() + " z");
         }
 
         // Increase the current number of L2NpcInstance managed by this L2Spawn
@@ -589,7 +589,7 @@ public class L2Spawn {
         intializeNpcInstance(oldNpc);
     }
 
-    public L2NpcTemplate getTemplate() {
+    public NpcTemplate getTemplate() {
         return _template;
     }
 }

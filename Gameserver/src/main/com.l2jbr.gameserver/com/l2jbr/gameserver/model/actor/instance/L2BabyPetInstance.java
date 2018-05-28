@@ -23,7 +23,7 @@ import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Skill;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 
 import java.util.LinkedHashMap;
 import java.util.concurrent.Future;
@@ -39,7 +39,7 @@ public final class L2BabyPetInstance extends L2PetInstance {
     protected L2Skill _strongHeal;
     private Future<?> _healingTask;
 
-    public L2BabyPetInstance(int objectId, L2NpcTemplate template, L2PcInstance owner, L2ItemInstance control) {
+    public L2BabyPetInstance(int objectId, NpcTemplate template, L2PcInstance owner, L2ItemInstance control) {
         super(objectId, template, owner, control);
 
         // look through the skills that this template has and find the weak and strong heal.

@@ -22,11 +22,11 @@ import com.l2jbr.gameserver.datatables.NpcTable;
 import com.l2jbr.gameserver.handler.IAdminCommandHandler;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
 import com.l2jbr.gameserver.serverpackets.SetupGauge;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.util.Broadcast;
 
 
@@ -299,7 +299,7 @@ public class AdminMobGroup implements IAdminCommandHandler
 			return;
 		}
 		
-		L2NpcTemplate template = NpcTable.getInstance().getTemplate(templateId);
+		NpcTemplate template = NpcTable.getInstance().getTemplate(templateId);
 		
 		if (template == null)
 		{

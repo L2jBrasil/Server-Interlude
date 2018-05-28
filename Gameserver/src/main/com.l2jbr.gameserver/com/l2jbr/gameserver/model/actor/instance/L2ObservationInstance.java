@@ -19,11 +19,11 @@
 package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.gameserver.instancemanager.SiegeManager;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.ItemList;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 import java.util.StringTokenizer;
 
@@ -38,7 +38,7 @@ public final class L2ObservationInstance extends L2FolkInstance
 	 * @param objectId
 	 * @param template
 	 */
-	public L2ObservationInstance(int objectId, L2NpcTemplate template)
+	public L2ObservationInstance(int objectId, NpcTemplate template)
 	{
 		super(objectId, template);
 	}

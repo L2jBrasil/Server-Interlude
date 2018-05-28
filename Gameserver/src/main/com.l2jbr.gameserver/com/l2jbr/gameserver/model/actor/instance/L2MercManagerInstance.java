@@ -22,8 +22,8 @@ import com.l2jbr.gameserver.TradeController;
 import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.L2TradeList;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.*;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 import java.util.StringTokenizer;
 
@@ -36,7 +36,7 @@ public final class L2MercManagerInstance extends L2FolkInstance
 	private static final int COND_BUSY_BECAUSE_OF_SIEGE = 1;
 	private static final int COND_OWNER = 2;
 	
-	public L2MercManagerInstance(int objectId, L2NpcTemplate template)
+	public L2MercManagerInstance(int objectId, NpcTemplate template)
 	{
 		super(objectId, template);
 	}

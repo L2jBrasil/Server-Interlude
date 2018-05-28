@@ -23,11 +23,11 @@ import com.l2jbr.gameserver.SevenSigns;
 import com.l2jbr.gameserver.SevenSignsFestival;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Party;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.templates.StatsSet;
 
 import java.util.Calendar;
@@ -50,7 +50,7 @@ public final class L2FestivalGuideInstance extends L2FolkInstance {
      * @param objectId
      * @param template
      */
-    public L2FestivalGuideInstance(int objectId, L2NpcTemplate template) {
+    public L2FestivalGuideInstance(int objectId, NpcTemplate template) {
         super(objectId, template);
 
         switch (getNpcId()) {

@@ -22,7 +22,7 @@ import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.datatables.NpcTable;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 
 import java.lang.reflect.Constructor;
 
@@ -64,7 +64,7 @@ public class MonsterRace
 			{
 				for (int j = i - 1; j >= 0; j--)
 				{
-					if (_monsters[j].getTemplate().npcId == (id + random))
+					if (_monsters[j].getTemplate().getId() == (id + random))
 					{
 						random = Rnd.get(24);
 						continue;
@@ -74,8 +74,8 @@ public class MonsterRace
 			}
 			try
 			{
-				L2NpcTemplate template = NpcTable.getInstance().getTemplate(id + random);
-				_constructor = Class.forName("com.l2jbr.gameserver.model.actor.instance." + template.type + "Instance").getConstructors()[0];
+				NpcTemplate template = NpcTable.getInstance().getTemplate(id + random);
+				_constructor = Class.forName("com.l2jbr.gameserver.model.actor.instance." + template.getType() + "Instance").getConstructors()[0];
 				int objectId = IdFactory.getInstance().getNextId();
 				_monsters[i] = (L2NpcInstance) _constructor.newInstance(objectId, template);
 			}

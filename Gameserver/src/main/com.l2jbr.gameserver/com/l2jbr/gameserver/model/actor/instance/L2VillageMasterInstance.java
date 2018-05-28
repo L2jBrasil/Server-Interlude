@@ -31,11 +31,11 @@ import com.l2jbr.gameserver.model.L2Clan.SubPledge;
 import com.l2jbr.gameserver.model.L2ClanMember;
 import com.l2jbr.gameserver.model.L2PledgeSkillLearn;
 import com.l2jbr.gameserver.model.base.*;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.model.entity.Castle;
 import com.l2jbr.gameserver.model.quest.QuestState;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import com.l2jbr.gameserver.util.Util;
 
 import java.util.Iterator;
@@ -54,7 +54,7 @@ public final class L2VillageMasterInstance extends L2FolkInstance {
      * @param objectId
      * @param template
      */
-    public L2VillageMasterInstance(int objectId, L2NpcTemplate template) {
+    public L2VillageMasterInstance(int objectId, NpcTemplate template) {
         super(objectId, template);
     }
 
@@ -634,7 +634,7 @@ public final class L2VillageMasterInstance extends L2FolkInstance {
                 }
 
                 if (((npcRace == PlayerRace.Human) || (npcRace == PlayerRace.LightElf))) {
-                    // If the master is human or light elf, ensure that fighter-type
+                    // If the master is HUMAN or light ELF, ensure that fighter-type
                     // masters only teach fighter classes, and priest-type masters
                     // only teach priest classes etc.
                     if (!availSub.isOfType(npcTeachType)) {
@@ -643,7 +643,7 @@ public final class L2VillageMasterInstance extends L2FolkInstance {
                         availSubs.remove(availSub);
                     }
                 } else {
-                    // If the master is not human and not light elf,
+                    // If the master is not HUMAN and not light ELF,
                     // then remove any classes not of the same race as the master.
                     if (((npcRace != PlayerRace.Human) && (npcRace != PlayerRace.LightElf)) && !availSub.isOfRace(npcRace)) {
                         availSubs.remove(availSub);
@@ -715,39 +715,38 @@ public final class L2VillageMasterInstance extends L2FolkInstance {
     }
 
     private final PlayerRace getVillageMasterRace() {
-        String npcClass = getTemplate().getStatsSet().getString("jClass").toLowerCase();
-
-        if (npcClass.indexOf("human") > -1) {
+        Set<ClassId> classIds = getTemplate().getTeachInfo();
+        if(classIds.contains(ClassId.fighter) || classIds.contains(ClassId.mage)) {
             return PlayerRace.Human;
         }
 
-        if (npcClass.indexOf("darkelf") > -1) {
-            return PlayerRace.DarkElf;
-        }
-
-        if (npcClass.indexOf("elf") > -1) {
+        if(classIds.contains(ClassId.elvenFighter) || classIds.contains(ClassId.elvenMage)) {
             return PlayerRace.LightElf;
         }
 
-        if (npcClass.indexOf("orc") > -1) {
-            return PlayerRace.Orc;
+        if(classIds.contains(ClassId.darkFighter) || classIds.contains(ClassId.darkMage)) {
+            return PlayerRace.DarkElf;
         }
 
+        if(classIds.contains(ClassId.orcFighter) || classIds.contains(ClassId.orcMage)) {
+            return PlayerRace.Orc;
+        }
         return PlayerRace.Dwarf;
     }
 
     private final ClassType getVillageMasterTeachType() {
-        String npcClass = getTemplate().getStatsSet().getString("jClass");
-
-        if ((npcClass.indexOf("sanctuary") > -1) || (npcClass.indexOf("clergyman") > -1)) {
+        // TODO verify if this works
+        Set<ClassId> classIds = getTemplate().getTeachInfo();
+        if(classIds.contains(ClassId.cleric) || classIds.contains(ClassId.oracle) || classIds.contains(ClassId.shillienOracle)) {
             return ClassType.Priest;
         }
 
-        if ((npcClass.indexOf("mageguild") > -1) || (npcClass.indexOf("patriarch") > -1)) {
-            return ClassType.Mystic;
+        if(classIds.contains(ClassId.wizard) || classIds.contains(ClassId.elvenWizard) || classIds.contains(ClassId.darkWizard) ||
+            classIds.contains(ClassId.orcMage)) {
+            return  ClassType.Mystic;
         }
 
-        return ClassType.Fighter;
+        return  ClassType.Fighter;
     }
 
     private Iterator<SubClass> iterSubClasses(L2PcInstance player) {

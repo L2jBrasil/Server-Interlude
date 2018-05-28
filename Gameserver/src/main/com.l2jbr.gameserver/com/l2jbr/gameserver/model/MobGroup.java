@@ -23,7 +23,7 @@ import com.l2jbr.gameserver.ai.L2ControllableMobAI;
 import com.l2jbr.gameserver.datatables.SpawnTable;
 import com.l2jbr.gameserver.model.actor.instance.L2ControllableMobInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -33,13 +33,13 @@ import java.util.List;
  * @author littlecrow
  */
 public final class MobGroup {
-    private final L2NpcTemplate _npcTemplate;
+    private final NpcTemplate _npcTemplate;
     private final int _groupId;
     private final int _maxMobCount;
 
     private List<L2ControllableMobInstance> _mobs;
 
-    public MobGroup(int groupId, L2NpcTemplate npcTemplate, int maxMobCount) {
+    public MobGroup(int groupId, NpcTemplate npcTemplate, int maxMobCount) {
         _groupId = groupId;
         _npcTemplate = npcTemplate;
         _maxMobCount = maxMobCount;
@@ -88,7 +88,7 @@ public final class MobGroup {
         }
     }
 
-    public L2NpcTemplate getTemplate() {
+    public NpcTemplate getTemplate() {
         return _npcTemplate;
     }
 

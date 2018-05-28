@@ -27,9 +27,9 @@ import com.l2jbr.gameserver.datatables.NpcTable;
 import com.l2jbr.gameserver.datatables.SpawnTable;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.model.database.RandomSpawn;
 import com.l2jbr.gameserver.model.database.repository.RandomSpawnRepository;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -372,7 +372,7 @@ public class AutoSpawnHandler {
                 final int heading = locationList[locationIndex].getHeading();
 
                 // Fetch the template for this NPC ID and create a new spawn.
-                L2NpcTemplate npcTemp = NpcTable.getInstance().getTemplate(spawnInst.getNpcId());
+                NpcTemplate npcTemp = NpcTable.getInstance().getTemplate(spawnInst.getNpcId());
                 if (npcTemp == null) {
                     _log.warn("Couldnt find NPC id" + spawnInst.getNpcId() + " Try to update your DP");
                     return;

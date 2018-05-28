@@ -26,12 +26,12 @@ import com.l2jbr.gameserver.datatables.NpcTable;
 import com.l2jbr.gameserver.datatables.SpawnTable;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.*;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 
 /**
@@ -83,7 +83,7 @@ public class TvTEvent
 	 */
 	public static boolean startParticipation()
 	{
-		L2NpcTemplate tmpl = NpcTable.getInstance().getTemplate(Config.TVT_EVENT_PARTICIPATION_NPC_ID);
+		NpcTemplate tmpl = NpcTable.getInstance().getTemplate(Config.TVT_EVENT_PARTICIPATION_NPC_ID);
 		
 		if (tmpl == null)
 		{

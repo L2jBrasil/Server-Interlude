@@ -20,7 +20,7 @@ package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.model.L2Character;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 
 
 /**
@@ -52,7 +52,7 @@ public final class L2BossInstance extends L2MonsterInstance
 	 * @param objectId ID of the instance
 	 * @param template L2NpcTemplate of the instance
 	 */
-	public L2BossInstance(int objectId, L2NpcTemplate template)
+	public L2BossInstance(int objectId, NpcTemplate template)
 	{
 		super(objectId, template);
 	}
@@ -90,7 +90,7 @@ public final class L2BossInstance extends L2MonsterInstance
 	@Override
 	public void reduceCurrentHp(double damage, L2Character attacker, boolean awake)
 	{
-		switch (getTemplate().npcId)
+		switch (getTemplate().getId())
 		{
 			case 29014: // Orfen
 				if (((getCurrentHp() - damage) < (getMaxHp() / 2)) && !getTeleported())

@@ -26,9 +26,9 @@ import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2SiegeGuardInstance;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.model.database.repository.CastleSiegeGuardRepository;
 import com.l2jbr.gameserver.model.entity.Castle;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -839,7 +839,7 @@ public class MercTicketManager {
     }
 
     private void spawnMercenary(int npcId, int x, int y, int z, int despawnDelay, String[] messages, int chatDelay) {
-        L2NpcTemplate template = NpcTable.getInstance().getTemplate(npcId);
+        NpcTemplate template = NpcTable.getInstance().getTemplate(npcId);
         if (template != null) {
             final L2SiegeGuardInstance npc = new L2SiegeGuardInstance(IdFactory.getInstance().getNextId(), template);
             npc.setCurrentHpMp(npc.getMaxHp(), npc.getMaxMp());

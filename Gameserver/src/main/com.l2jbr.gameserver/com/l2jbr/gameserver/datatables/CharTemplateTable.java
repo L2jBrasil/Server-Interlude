@@ -20,6 +20,7 @@ package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.model.base.ClassId;
+import com.l2jbr.gameserver.model.database.PlayerTemplate;
 import com.l2jbr.gameserver.model.database.repository.CharTemplateRepository;
 import com.l2jbr.gameserver.templates.L2PcTemplate;
 import com.l2jbr.gameserver.templates.StatsSet;
@@ -162,7 +163,7 @@ public class CharTemplateTable {
         "Maestro"
     };
 
-    private final Map<Integer, L2PcTemplate> _templates;
+    private final Map<Integer, PlayerTemplate> _templates;
 
     public static CharTemplateTable getInstance() {
         if (_instance == null) {
@@ -181,21 +182,21 @@ public class CharTemplateTable {
             set.set("classId", charTemplate.getId());
             set.set("className", charTemplate.getClassName());
             set.set("raceId", charTemplate.getRaceId());
-            set.set("baseSTR", charTemplate.getSTR());
-            set.set("baseCON", charTemplate.getCON());
-            set.set("baseDEX", charTemplate.getDEX());
-            set.set("baseINT", charTemplate.getINT());
-            set.set("baseWIT", charTemplate.getWIT());
-            set.set("baseMEN", charTemplate.getMEN());
-            set.set("baseHpMax", charTemplate.getDefaultHpBase());
-            set.set("lvlHpAdd", charTemplate.getDefaultHpAdd());
-            set.set("lvlHpMod", charTemplate.getDefaultHpMod());
-            set.set("baseMpMax", charTemplate.getDefaultMpBase());
-            set.set("baseCpMax", charTemplate.getDefaultCpBase());
-            set.set("lvlCpAdd", charTemplate.getDefaultCpAdd());
-            set.set("lvlCpMod", charTemplate.getDefaultCpMod());
-            set.set("lvlMpAdd", charTemplate.getDefaultMpAdd());
-            set.set("lvlMpMod", charTemplate.getDefaultMpMod());
+            set.set("baseSTR", charTemplate.getStrength());
+            set.set("baseCON", charTemplate.getConstitution());
+            set.set("baseDEX", charTemplate.getDexterity());
+            set.set("baseINT", charTemplate.getIntellienge());
+            set.set("baseWIT", charTemplate.getWitness());
+            set.set("baseMEN", charTemplate.getMentality());
+            set.set("baseHpMax", charTemplate.getHp());
+            set.set("lvlHpAdd", charTemplate.getHpAdd());
+            set.set("lvlHpMod", charTemplate.getHpMod());
+            set.set("baseMpMax", charTemplate.getMp());
+            set.set("baseCpMax", charTemplate.getCp());
+            set.set("lvlCpAdd", charTemplate.getCpAdd());
+            set.set("lvlCpMod", charTemplate.getCpMod());
+            set.set("lvlMpAdd", charTemplate.getMpAdd());
+            set.set("lvlMpMod", charTemplate.getMpMod());
             set.set("baseHpReg", 1.5);
             set.set("baseMpReg", 0.9);
             set.set("basePAtk", charTemplate.getpAtk());
@@ -203,10 +204,10 @@ public class CharTemplateTable {
             set.set("baseMAtk", charTemplate.getmAtk());
             set.set("baseMDef", charTemplate.getmDef());
             set.set("classBaseLevel", charTemplate.getClassLevel());
-            set.set("basePAtkSpd", charTemplate.getpSpd());
-            set.set("baseMAtkSpd", charTemplate.getmSpd());
-            set.set("baseCritRate", charTemplate.getCritical() / 10);
-            set.set("baseRunSpd", charTemplate.getMoveSpeed());
+            set.set("basePAtkSpd", charTemplate.getPAtkSpd());
+            set.set("baseMAtkSpd", charTemplate.getMAtkSpd());
+            set.set("baseCritRate", charTemplate.getCritRate() / 10);
+            set.set("baseRunSpd", charTemplate.getRunSpd());
             set.set("baseWalkSpd", 0);
             set.set("baseShldDef", 0);
             set.set("baseShldRate", 0);
@@ -217,27 +218,27 @@ public class CharTemplateTable {
             set.set("spawnZ", charTemplate.getZ());
 
 
-            set.set("collision_radius", charTemplate.getM_COL_R());
-            set.set("collision_height", charTemplate.getM_COL_H());
+            set.set("collision_radius", charTemplate.getCollisionRadius());
+            set.set("collision_height", charTemplate.getCollisionRadius());
 
-            L2PcTemplate ct = new L2PcTemplate(set);
+            PlayerTemplate ct = new PlayerTemplate(set);
 
-            ct.addItem(charTemplate.getItems1());
-            ct.addItem(charTemplate.getItems2());
-            ct.addItem(charTemplate.getItems3());
-            ct.addItem(charTemplate.getItems4());
-            ct.addItem(charTemplate.getItems5());
-            _templates.put(ct.classId.getId(), ct);
+            ct.addItem(charTemplate.getItem1());
+            ct.addItem(charTemplate.getItem2());
+            ct.addItem(charTemplate.getItem3());
+            ct.addItem(charTemplate.getItem4());
+            ct.addItem(charTemplate.getItem5());
+            _templates.put(ct.classId.getId(), ca);
         });
 
         _log.info("CharTemplateTable: Loaded " + _templates.size() + " Character Templates.");
     }
 
-    public L2PcTemplate getTemplate(ClassId classId) {
+    public PlayerTemplate getTemplate(ClassId classId) {
         return getTemplate(classId.getId());
     }
 
-    public L2PcTemplate getTemplate(int classId) {
+    public PlayerTemplate getTemplate(int classId) {
         int key = classId;
         return _templates.get(key);
     }

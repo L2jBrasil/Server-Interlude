@@ -21,9 +21,9 @@ package com.l2jbr.gameserver.model.actor.instance;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.PcFreight;
+import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
-import com.l2jbr.gameserver.templates.L2NpcTemplate;
 
 import java.util.Map;
 
@@ -38,7 +38,7 @@ public final class L2WarehouseInstance extends L2FolkInstance
 	 * @param objectId
 	 * @param template
 	 */
-	public L2WarehouseInstance(int objectId, L2NpcTemplate template)
+	public L2WarehouseInstance(int objectId, NpcTemplate template)
 	{
 		super(objectId, template);
 	}
