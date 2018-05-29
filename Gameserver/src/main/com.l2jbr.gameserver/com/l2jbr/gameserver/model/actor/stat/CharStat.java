@@ -457,7 +457,7 @@ public class CharStat
 			return 1;
 		}
 		
-		return (int) calcStat(Stats.STAT_MEN, _activeChar.getTemplate().baseMEN, null, null);
+		return (int) calcStat(Stats.STAT_MEN, _activeChar.getTemplate().getMentality(), null, null);
 	}
 	
 	public final float getMovementSpeedMultiplier()
@@ -467,7 +467,7 @@ public class CharStat
 			return 1;
 		}
 		
-		return (getRunSpeed() * 1f) / _activeChar.getTemplate().baseRunSpd;
+		return (getRunSpeed() * 1f) / _activeChar.getTemplate().getRunSpd();
 	}
 	
 	/**
@@ -500,7 +500,7 @@ public class CharStat
 			return 1;
 		}
 		
-		return calcStat(Stats.MAGIC_REUSE_RATE, _activeChar.getTemplate().baseMReuseRate, null, skill);
+		return calcStat(Stats.MAGIC_REUSE_RATE, _activeChar.getTemplate().getMReuseRate(), null, skill);
 	}
 	
 	/**
@@ -519,7 +519,7 @@ public class CharStat
 		{
 			bonusAtk = Config.L2JMOD_CHAMPION_ATK;
 		}
-		return (int) calcStat(Stats.POWER_ATTACK, _activeChar.getTemplate().basePAtk * bonusAtk, target, null);
+		return (int) calcStat(Stats.POWER_ATTACK, _activeChar.getTemplate().getpAtk() * bonusAtk, target, null);
 	}
 	
 	/**
@@ -587,7 +587,7 @@ public class CharStat
 		{
 			bonusAtk = Config.L2JMOD_CHAMPION_SPD_ATK;
 		}
-		return (int) (calcStat(Stats.POWER_ATTACK_SPEED, _activeChar.getTemplate().basePAtkSpd * bonusAtk, null, null) / _activeChar.getArmourExpertisePenalty());
+		return (int) (calcStat(Stats.POWER_ATTACK_SPEED, _activeChar.getTemplate().getPAtkSpd() * bonusAtk, null, null) / _activeChar.getArmourExpertisePenalty());
 	}
 	
 	/**
@@ -617,7 +617,7 @@ public class CharStat
 			return 1;
 		}
 		
-		return (int) calcStat(Stats.POWER_DEFENCE, (_activeChar.isRaid()) ? _activeChar.getTemplate().basePDef * Config.RAID_DEFENCE_MULTIPLIER : _activeChar.getTemplate().basePDef, target, null);
+		return (int) calcStat(Stats.POWER_DEFENCE, (_activeChar.isRaid()) ? _activeChar.getTemplate().getpDef() * Config.RAID_DEFENCE_MULTIPLIER : _activeChar.getTemplate().getpDef(), target, null);
 	}
 	
 	/**
@@ -631,7 +631,7 @@ public class CharStat
 			return 1;
 		}
 		
-		return (int) calcStat(Stats.POWER_ATTACK_RANGE, _activeChar.getTemplate().baseAtkRange, null, null);
+		return (int) calcStat(Stats.POWER_ATTACK_RANGE, _activeChar.getTemplate().getAtkRange(), null, null);
 	}
 	
 	/**
@@ -657,7 +657,7 @@ public class CharStat
 		
 		// err we should be adding TO the persons run speed
 		// not making it a constant
-		int val = (int) calcStat(Stats.RUN_SPEED, _activeChar.getTemplate().baseRunSpd, null, null);
+		int val = (int) calcStat(Stats.RUN_SPEED, _activeChar.getTemplate().getRunSpd(), null, null);
 		
 		if (_activeChar.isFlying())
 		{
@@ -703,7 +703,7 @@ public class CharStat
 			return 1;
 		}
 		
-		return (int) calcStat(Stats.STAT_STR, _activeChar.getTemplate().baseSTR, null, null);
+		return (int) calcStat(Stats.STAT_STR, _activeChar.getTemplate().getStrength(), null, null);
 	}
 	
 	/**
@@ -722,7 +722,7 @@ public class CharStat
 		{
 			return (getRunSpeed() * 70) / 100;
 		}
-		return (int) calcStat(Stats.WALK_SPEED, _activeChar.getTemplate().baseWalkSpd, null, null);
+		return (int) calcStat(Stats.WALK_SPEED, _activeChar.getTemplate().getWalkSpd(), null, null);
 		
 	}
 	
@@ -737,7 +737,7 @@ public class CharStat
 			return 1;
 		}
 		
-		return (int) calcStat(Stats.STAT_WIT, _activeChar.getTemplate().baseWIT, null, null);
+		return (int) calcStat(Stats.STAT_WIT, _activeChar.getTemplate().getWitness(), null, null);
 	}
 	
 	/**

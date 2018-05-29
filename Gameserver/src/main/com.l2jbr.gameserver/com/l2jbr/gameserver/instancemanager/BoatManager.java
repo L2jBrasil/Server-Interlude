@@ -21,8 +21,7 @@ package com.l2jbr.gameserver.instancemanager;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.actor.instance.L2BoatInstance;
-import com.l2jbr.gameserver.templates.L2CharTemplate;
-import com.l2jbr.gameserver.templates.StatsSet;
+import com.l2jbr.gameserver.model.database.CharTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,36 +30,26 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-
 public class BoatManager {
     private static final Logger _log = LoggerFactory.getLogger(BoatManager.class.getName());
 
-    // =========================================================
     private static BoatManager _instance;
 
-    public static final BoatManager getInstance() {
+    public static BoatManager getInstance() {
         if (_instance == null) {
-            System.out.println("Initializing BoatManager");
+            _log.info("Initializing BoatManager");
             _instance = new BoatManager();
             _instance.load();
         }
         return _instance;
     }
 
-    // =========================================================
-
-    // =========================================================
-    // Data Field
     private Map<Integer, L2BoatInstance> _staticItems = new LinkedHashMap<>();
 
-    // =========================================================
-    // Constructor
-    public BoatManager() {
+    private BoatManager() {
     }
 
-    // =========================================================
-    // Method - Private
-    private final void load() {
+    private void load() {
         if (!Config.ALLOW_BOAT) {
             return;
         }
@@ -77,9 +66,7 @@ public class BoatManager {
                 L2BoatInstance boat = parseLine(line);
                 boat.spawn();
                 _staticItems.put(boat.getObjectId(), boat);
-                if (Config.DEBUG) {
-                    System.out.println("Boat ID : " + boat.getObjectId());
-                }
+                _log.debug("Boat ID : {}", boat.getObjectId());
             }
         } catch (FileNotFoundException e) {
             _log.warn("boat.csv is missing in data folder");
@@ -94,70 +81,20 @@ public class BoatManager {
         }
     }
 
-    /**
-     * @param line
-     * @return
-     */
     private L2BoatInstance parseLine(String line) {
         L2BoatInstance boat;
         StringTokenizer st = new StringTokenizer(line, ";");
 
         String name = st.nextToken();
-        int id = Integer.parseInt(st.nextToken());
         int xspawn = Integer.parseInt(st.nextToken());
         int yspawn = Integer.parseInt(st.nextToken());
         int zspawn = Integer.parseInt(st.nextToken());
         int heading = Integer.parseInt(st.nextToken());
 
-        StatsSet npcDat = new StatsSet();
-        npcDat.set("npcId", id);
-        npcDat.set("level", 0);
-        npcDat.set("jClass", "boat");
-
-        npcDat.set("baseSTR", 0);
-        npcDat.set("baseCON", 0);
-        npcDat.set("baseDEX", 0);
-        npcDat.set("baseINT", 0);
-        npcDat.set("baseWIT", 0);
-        npcDat.set("baseMEN", 0);
-
-        npcDat.set("baseShldDef", 0);
-        npcDat.set("baseShldRate", 0);
-        npcDat.set("baseAccCombat", 38);
-        npcDat.set("baseEvasRate", 38);
-        npcDat.set("baseCritRate", 38);
-
-        // npcDat.set("name", "");
-        npcDat.set("collision_radius", 0);
-        npcDat.set("collision_height", 0);
-        npcDat.set("sex", "male");
-        npcDat.set("type", "");
-        npcDat.set("baseAtkRange", 0);
-        npcDat.set("baseMpMax", 0);
-        npcDat.set("baseCpMax", 0);
-        npcDat.set("rewardExp", 0);
-        npcDat.set("rewardSp", 0);
-        npcDat.set("basePAtk", 0);
-        npcDat.set("baseMAtk", 0);
-        npcDat.set("basePAtkSpd", 0);
-        npcDat.set("aggroRange", 0);
-        npcDat.set("baseMAtkSpd", 0);
-        npcDat.set("rhand", 0);
-        npcDat.set("lhand", 0);
-        npcDat.set("armor", 0);
-        npcDat.set("baseWalkSpd", 0);
-        npcDat.set("baseRunSpd", 0);
-        npcDat.set("name", name);
-        npcDat.set("baseHpMax", 50000);
-        npcDat.set("baseHpReg", 3.e-3f);
-        npcDat.set("baseMpReg", 3.e-3f);
-        npcDat.set("basePDef", 100);
-        npcDat.set("baseMDef", 100);
-        L2CharTemplate template = new L2CharTemplate(npcDat);
+        CharTemplate template = CharTemplate.objectTemplate(50000, (short)100, (short)100, 0f, 0f);
         boat = new L2BoatInstance(IdFactory.getInstance().getNextId(), template, name);
         boat.getPosition().setHeading(heading);
         boat.setXYZ(xspawn, yspawn, zspawn);
-        // boat.spawnMe();
 
         int IdWaypoint1 = Integer.parseInt(st.nextToken());
         int IdWTicket1 = Integer.parseInt(st.nextToken());
@@ -186,13 +123,6 @@ public class BoatManager {
         return boat;
     }
 
-    // =========================================================
-    // Property - Public
-
-    /**
-     * @param boatId
-     * @return
-     */
     public L2BoatInstance GetBoat(int boatId) {
         if (_staticItems == null) {
             _staticItems = new LinkedHashMap<>();

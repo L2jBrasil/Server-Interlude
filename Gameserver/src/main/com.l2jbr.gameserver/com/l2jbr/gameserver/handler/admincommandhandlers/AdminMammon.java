@@ -164,7 +164,7 @@ public class AdminMammon implements IAdminCommandHandler
 				else
 				{
 					params[1] = params[1].replace('_', ' ');
-					npcId = NpcTable.getInstance().getTemplateByName(params[1]).npcId;
+					npcId = NpcTable.getInstance().getTemplateByName(params[1]).getId();
 				}
 				if (params.length > 2)
 				{

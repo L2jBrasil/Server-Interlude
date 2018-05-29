@@ -21,8 +21,8 @@ package com.l2jbr.gameserver.clientpackets;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.datatables.CharTemplateTable;
 import com.l2jbr.gameserver.model.base.ClassId;
+import com.l2jbr.gameserver.model.database.PlayerTemplate;
 import com.l2jbr.gameserver.serverpackets.CharTemplates;
-import com.l2jbr.gameserver.templates.L2PcTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,7 +52,7 @@ public final class NewCharacter extends L2GameClientPacket
 		
 		CharTemplates ct = new CharTemplates();
 		
-		L2PcTemplate template = CharTemplateTable.getInstance().getTemplate(0);
+		PlayerTemplate template = CharTemplateTable.getInstance().getTemplate(0);
 		ct.addChar(template);
 		
 		template = CharTemplateTable.getInstance().getTemplate(ClassId.fighter); // HUMAN fighter

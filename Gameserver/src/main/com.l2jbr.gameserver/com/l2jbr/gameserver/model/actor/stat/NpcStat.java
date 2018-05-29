@@ -32,7 +32,7 @@ public class NpcStat extends CharStat
 	{
 		super(activeChar);
 		
-		setLevel(getActiveChar().getTemplate().level);
+		setLevel(getActiveChar().getTemplate().getLevel());
 	}
 	
 	// =========================================================
@@ -52,6 +52,6 @@ public class NpcStat extends CharStat
 	@Override
 	public final int getMaxHp()
 	{
-		return (int) calcStat(Stats.MAX_HP, getActiveChar().getTemplate().baseHpMax, null, null);
+		return (int) calcStat(Stats.MAX_HP, getActiveChar().getTemplate().getHp(), null, null);
 	}
 }

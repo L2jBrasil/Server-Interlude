@@ -160,11 +160,11 @@ public final class Util
 		int rad = 0;
 		if (obj1 instanceof L2Character)
 		{
-			rad += ((L2Character) obj1).getTemplate().collisionRadius;
+			rad += ((L2Character) obj1).getTemplate().getCollisionRadius();
 		}
 		if (obj2 instanceof L2Character)
 		{
-			rad += ((L2Character) obj2).getTemplate().collisionRadius;
+			rad += ((L2Character) obj2).getTemplate().getCollisionRadius();
 		}
 		
 		double dx = obj1.getX() - obj2.getX();

@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
-import com.l2jbr.gameserver.templates.L2PcTemplate;
+import com.l2jbr.gameserver.model.database.PlayerTemplate;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -32,9 +32,9 @@ import java.util.List;
 public class CharTemplates extends L2GameServerPacket {
     // dddddddddddddddddddd
     private static final String _S__23_CHARTEMPLATES = "[S] 23 CharTemplates";
-    private final List<L2PcTemplate> _chars = new LinkedList<>();
+    private final List<PlayerTemplate> _chars = new LinkedList<>();
 
-    public void addChar(L2PcTemplate template) {
+    public void addChar(PlayerTemplate template) {
         _chars.add(template);
     }
 
@@ -43,26 +43,26 @@ public class CharTemplates extends L2GameServerPacket {
         writeC(0x17);
         writeD(_chars.size());
 
-        for (L2PcTemplate temp : _chars) {
-            writeD(temp.race.ordinal());
-            writeD(temp.classId.getId());
+        for (PlayerTemplate temp : _chars) {
+            writeD(temp.getRace().ordinal());
+            writeD(temp.getClassId().getId());
             writeD(0x46);
-            writeD(temp.baseSTR);
+            writeD(temp.getStrength());
             writeD(0x0a);
             writeD(0x46);
-            writeD(temp.baseDEX);
+            writeD(temp.getDexterity());
             writeD(0x0a);
             writeD(0x46);
-            writeD(temp.baseCON);
+            writeD(temp.getConstitution());
             writeD(0x0a);
             writeD(0x46);
-            writeD(temp.baseINT);
+            writeD(temp.getIntellienge());
             writeD(0x0a);
             writeD(0x46);
-            writeD(temp.baseWIT);
+            writeD(temp.getWitness());
             writeD(0x0a);
             writeD(0x46);
-            writeD(temp.baseMEN);
+            writeD(temp.getMentality());
             writeD(0x0a);
         }
     }

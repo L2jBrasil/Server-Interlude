@@ -147,7 +147,7 @@ public class L2SiegeGuardAI extends L2AttackableAI<L2SiegeGuardInstance.AIAccess
 			actor.setTarget(_attackTarget);
 			skills = actor.getAllSkills();
 			dist_2 = actor.getPlanDistanceSq(_attackTarget.getX(), _attackTarget.getY());
-			range = actor.getPhysicalAttackRange() + actor.getTemplate().collisionRadius + _attackTarget.getTemplate().collisionRadius;
+			range = actor.getPhysicalAttackRange() + (int) actor.getTemplate().getCollisionRadius() + (int) _attackTarget.getTemplate().getCollisionRadius();
 		}
 		catch (NullPointerException e) {
 			_log.warn("AttackableAI: Attack target is NULL.", e);

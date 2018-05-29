@@ -25,9 +25,6 @@ import java.util.Set;
 @Table("npc")
 public class NpcTemplate extends CharTemplate {
 
-    @Transient
-    public static Logger log = LoggerFactory.getLogger(NpcTemplate.class);
-
     @Id
     private Integer id;
     @Column("template_id")
@@ -65,6 +62,9 @@ public class NpcTemplate extends CharTemplate {
     @Column("boss_id")
     private Set<Minions> minions;
 
+
+    @Transient
+    public static final Logger log = LoggerFactory.getLogger(NpcTemplate.class);
     @Transient
     private Map<Stats, Float> vulnerabilities;
     @Transient
@@ -196,10 +196,7 @@ public class NpcTemplate extends CharTemplate {
         }
 
         if (_questEvents.get(EventType) == null) {
-            _questEvents.put(EventType, new Quest[]
-                                            {
-                                                quest
-                                            });
+            _questEvents.put(EventType, new Quest[] {  quest });
         } else {
             Quest[] _quests = _questEvents.get(EventType);
             int len = _quests.length;

@@ -125,7 +125,7 @@ public class AdminExpSp implements IAdminCommandHandler
 		adminReply.replace("%level%", String.valueOf(player.getLevel()));
 		adminReply.replace("%xp%", String.valueOf(player.getExp()));
 		adminReply.replace("%sp%", String.valueOf(player.getSp()));
-		adminReply.replace("%class%", player.getTemplate().className);
+		adminReply.replace("%class%", player.getTemplate().getClassName());
 		activeChar.sendPacket(adminReply);
 	}
 	

@@ -46,7 +46,7 @@ public class NpcInfo extends L2GameServerPacket
 	private int _flyRunSpd;
 	private int _flyWalkSpd;
 	private final int _rhand, _lhand;
-	private final int _collisionHeight, _collisionRadius;
+	private final float _collisionHeight, _collisionRadius;
 	private String _name = "";
 	private String _title = "";
 	
@@ -57,25 +57,25 @@ public class NpcInfo extends L2GameServerPacket
 	public NpcInfo(L2NpcInstance cha, L2Character attacker)
 	{
 		_activeChar = cha;
-		_idTemplate = cha.getTemplate().idTemplate;
+		_idTemplate = cha.getTemplate().getTemplateId();
 		_isAttackable = cha.isAutoAttackable(attacker);
 		_rhand = cha.getRightHandItem();
 		_lhand = cha.getLeftHandItem();
 		_isSummoned = false;
 		_collisionHeight = cha.getCollisionHeight();
 		_collisionRadius = cha.getCollisionRadius();
-		if (cha.getTemplate().serverSideName)
+		if (cha.getTemplate().isServerSideName())
 		{
-			_name = cha.getTemplate().name;
+			_name = cha.getTemplate().getName();
 		}
 		
 		if (Config.L2JMOD_CHAMPION_ENABLE && cha.isChampion())
 		{
 			_title = ("Champion");
 		}
-		else if (cha.getTemplate().serverSideTitle)
+		else if (cha.getTemplate().isServerSideTitle())
 		{
-			_title = cha.getTemplate().title;
+			_title = cha.getTemplate().getTitle();
 		}
 		else
 		{
@@ -108,14 +108,14 @@ public class NpcInfo extends L2GameServerPacket
 	public NpcInfo(L2Summon cha, L2Character attacker)
 	{
 		_activeChar = cha;
-		_idTemplate = cha.getTemplate().idTemplate;
+		_idTemplate = cha.getTemplate().getTemplateId();
 		_isAttackable = cha.isAutoAttackable(attacker); // (cha.getKarma() > 0);
 		_rhand = 0;
 		_lhand = 0;
 		_isSummoned = cha.isShowSummonAnimation();
-		_collisionHeight = _activeChar.getTemplate().collisionHeight;
-		_collisionRadius = _activeChar.getTemplate().collisionRadius;
-		if (cha.getTemplate().serverSideName || (cha instanceof L2PetInstance))
+		_collisionHeight = _activeChar.getTemplate().getCollisionHeight();
+		_collisionRadius = _activeChar.getTemplate().getCollisionRadius();
+		if (cha.getTemplate().isServerSideName() || (cha instanceof L2PetInstance))
 		{
 			_name = _activeChar.getName();
 			_title = cha.getTitle();

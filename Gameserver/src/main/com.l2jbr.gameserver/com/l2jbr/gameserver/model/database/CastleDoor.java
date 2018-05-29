@@ -27,8 +27,8 @@ public class CastleDoor  {
     @Column("range_zmax")
     private int rangeZmax;
     private int hp;
-    private int pDef;
-    private int mDef;
+    private short pDef;
+    private short mDef;
 
     public int getCastleId() {
         return castleId;
@@ -82,11 +82,11 @@ public class CastleDoor  {
         return hp;
     }
 
-    public int getpDef() {
+    public short getpDef() {
         return pDef;
     }
 
-    public int getmDef() {
+    public short getmDef() {
         return mDef;
     }
 }

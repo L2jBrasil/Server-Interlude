@@ -19,15 +19,11 @@
 package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.model.database.repository.NpcRepository;
-import com.l2jbr.gameserver.templates.StatsSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.util.*;
 
 import static com.l2jbr.gameserver.util.GameserverMessages.getMessage;
@@ -72,51 +68,8 @@ public class NpcTable {
         restoreNpcData();
     }
 
-    public void saveNpc(StatsSet npc) {
-        Connection con = null;
-        String query = "";
-
-        try {
-            con = L2DatabaseFactory.getInstance().getConnection();
-            Map<String, Object> set = npc.getSet();
-
-            String name = "";
-            String values = "";
-
-            for (Object obj : set.keySet()) {
-                name = (String) obj;
-
-                if (!name.equalsIgnoreCase("npcId")) {
-                    if (values != "") {
-                        values += ", ";
-                    }
-
-                    values += name + " = '" + set.get(name) + "'";
-                }
-            }
-
-            //TODO use repositories instead
-            query = "UPDATE npc SET " + values + " WHERE id = ?";
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setInt(1, npc.getInteger("npcId"));
-            statement.execute();
-            statement.close();
-        } catch (Exception e) {
-            _log.warn("NPCTable: Could not store new NPC data in database: " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
-    }
-
     public boolean isInitialized() {
         return _initialized;
-    }
-
-    public void replaceTemplate(NpcTemplate npc) {
-        npcs.put(npc.getId(), npc);
     }
 
     public NpcTemplate getTemplate(int id) {
@@ -140,7 +93,7 @@ public class NpcTable {
                 list.add(t);
             }
         }
-        return list.toArray(new NpcTemplate[list.size()]);
+        return list.toArray(new NpcTemplate[0]);
     }
 
     public NpcTemplate[] getAllMonstersOfLevel(int lvl) {
@@ -151,7 +104,7 @@ public class NpcTable {
                 list.add(t);
             }
         }
-        return list.toArray(new NpcTemplate[list.size()]);
+        return list.toArray(new NpcTemplate[0]);
     }
 
     public NpcTemplate[] getAllNpcStartingWith(String letter) {
@@ -163,31 +116,19 @@ public class NpcTable {
             }
         }
 
-        return list.toArray(new NpcTemplate[list.size()]);
+        return list.toArray(new NpcTemplate[0]);
     }
 
-    /**
-     * @param classType
-     * @return
-     */
     public Set<Integer> getAllNpcOfClassType(String classType) {
         // TODO Auto-generated method stub
         return null;
     }
 
-    /**
-     * @param clazz
-     * @return
-     */
     public Set<Integer> getAllNpcOfL2jClass(Class<?> clazz) {
         // TODO Auto-generated method stub
         return null;
     }
 
-    /**
-     * @param aiType
-     * @return
-     */
     public Set<Integer> getAllNpcOfAiType(String aiType) {
         // TODO Auto-generated method stub
         return null;

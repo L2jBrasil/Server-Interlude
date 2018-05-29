@@ -2175,11 +2175,11 @@ public class L2NpcInstance extends L2Character {
         _currentRHandId = newWeaponId;
     }
 
-    public void setCollisionHeight(int height) {
+    public void setCollisionHeight(float height) {
         _currentCollisionHeight = height;
     }
 
-    public void setCollisionRadius(int radius) {
+    public void setCollisionRadius(float radius) {
         _currentCollisionRadius = radius;
     }
 

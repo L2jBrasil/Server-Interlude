@@ -201,10 +201,12 @@ public class PlayerTemplate extends CharTemplate {
     @Override
     public void onLoad() {
         super.onLoad();
+        setHpRegen(1.5f);
+        setMpRegen(0.9f);
+
         classId = ClassId.values()[id];
         race = Race.values()[raceId];
         loadItems();
-
     }
 
     private void loadItems() {

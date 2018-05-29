@@ -21,7 +21,7 @@ public abstract class CharTemplate extends Entity<Integer> {
     @Column("p_def")
     private short pDef;
     @Column("m_atk")
-    private short mAtk;
+    private int mAtk;
     @Column("m_def")
     private short mDef;
     @Column("p_atk_spd")
@@ -112,6 +112,23 @@ public abstract class CharTemplate extends Entity<Integer> {
     @Transient
     private float darkVuln =  1;
 
+
+    public static CharTemplate objectTemplate(int hp, short pdef, short mdef, float collisionRadius, float collisionHeight) {
+        CharTemplate template = new CharTemplate() {
+            @Override
+            public Integer getId() {
+                return 0;
+            }
+        };
+        template.hp = hp;
+        template.pDef = pdef;
+        template.mDef = mdef;
+        template.collisionRadius = collisionRadius;
+        template.collisionHeight = collisionHeight;
+        template.hpRegen = 3.e-3f;
+        return template;
+    }
+
     public int getStrength() {
         return strength;
     }
@@ -142,7 +159,7 @@ public abstract class CharTemplate extends Entity<Integer> {
         return pDef;
     }
 
-    public short getMAtk() {
+    public int getMAtk() {
         return mAtk;
     }
 
@@ -326,8 +343,11 @@ public abstract class CharTemplate extends Entity<Integer> {
         this.hp = hp;
     }
 
-    public double getCp() {
+    public float getCp() {
         return 0;
     }
 
+    public float getMReuseRate() {
+        return mReuseRate;
+    }
 }

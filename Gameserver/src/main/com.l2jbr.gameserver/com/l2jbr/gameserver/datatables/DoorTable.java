@@ -23,10 +23,9 @@ import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.instancemanager.ClanHallManager;
 import com.l2jbr.gameserver.model.actor.instance.L2DoorInstance;
 import com.l2jbr.gameserver.model.database.CastleDoor;
+import com.l2jbr.gameserver.model.database.CharTemplate;
 import com.l2jbr.gameserver.model.entity.ClanHall;
 import com.l2jbr.gameserver.pathfinding.AbstractNodeLoc;
-import com.l2jbr.gameserver.templates.L2CharTemplate;
-import com.l2jbr.gameserver.templates.StatsSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -117,6 +116,9 @@ public class DoorTable {
         int rangeYMax = castleDoor.getRangeYmax();
         int rangeZMin = castleDoor.getRangeZmin();
         int rangeZMax = castleDoor.getRangeZmax();
+        int x = castleDoor.getX();
+        int y = castleDoor.getY();
+        int z = castleDoor.getZ();
 
         if (rangeXMin > rangeXMax) {
             _log.error("Error in door data, ID: {} rangeXMin greater than rangeXMax", castleDoor.getId() );
@@ -128,63 +130,38 @@ public class DoorTable {
             _log.error("Error in door data, ID: {} rangeZMin greater than rangeZMax", castleDoor.getId());
         }
 
-        int collisionRadius; // (max) radius for movement checks
+        float collisionRadius; // (max) radius for movement checks
+
         if ((rangeXMax - rangeXMin) > (rangeYMax - rangeYMin)) {
             collisionRadius = rangeYMax - rangeYMin;
         } else {
             collisionRadius = rangeXMax - rangeXMin;
         }
 
-        StatsSet npcDat = new StatsSet();
+        float collisionHeight = rangeZMax - rangeZMin;
+
         int id = castleDoor.getId();
 
-        npcDat.set("baseSTR", 0);
-        npcDat.set("baseCON", 0);
-        npcDat.set("baseDEX", 0);
-        npcDat.set("baseINT", 0);
-        npcDat.set("baseWIT", 0);
-        npcDat.set("baseMEN", 0);
-
-        npcDat.set("baseShldDef", 0);
-        npcDat.set("baseShldRate", 0);
-        npcDat.set("baseCritRate", 38);
-
-        // npcDat.set("name", "");
-        npcDat.set("collision_radius", collisionRadius);
-        npcDat.set("collision_height", rangeZMax - rangeZMin);
-        npcDat.set("baseAtkRange", 0);
-        npcDat.set("baseMpMax", 0);
-        npcDat.set("baseCpMax", 0);
-
-        npcDat.set("basePAtk", 0);
-        npcDat.set("baseMAtk", 0);
-        npcDat.set("basePAtkSpd", 0);
-
-        npcDat.set("baseMAtkSpd", 0);
-        npcDat.set("baseWalkSpd", 0);
-        npcDat.set("baseRunSpd", 0);
-
-        npcDat.set("baseHpMax", castleDoor.getHp());
-        npcDat.set("baseHpReg", 3.e-3f);
-        npcDat.set("baseMpReg", 3.e-3f);
-        npcDat.set("basePDef", castleDoor.getpDef());
-        npcDat.set("baseMDef", castleDoor.getmDef());
-
         String name = castleDoor.getName();
-        L2CharTemplate template = new L2CharTemplate(npcDat);
+        CharTemplate template =  CharTemplate.objectTemplate(castleDoor.getHp(), castleDoor.getpDef(), castleDoor.getmDef(), collisionRadius, collisionHeight);
+
         L2DoorInstance door = new L2DoorInstance(IdFactory.getInstance().getNextId(), template, id, name, false);
+        initDoor(rangeXMin, rangeXMax, rangeYMin, rangeYMax, rangeZMin, rangeZMax, x, y, z, id, door);
+
+        return door;
+    }
+
+    private static void initDoor(int rangeXMin, int rangeXMax, int rangeYMin, int rangeYMax, int rangeZMin, int rangeZMax, int x, int y, int z, int id, L2DoorInstance door) {
         door.setRange(rangeXMin, rangeYMin, rangeZMin, rangeXMax, rangeYMax, rangeZMax);
         try {
-            door.setMapRegion(MapRegionTable.getInstance().getMapRegion(castleDoor.getX(), castleDoor.getY()));
+            door.setMapRegion(MapRegionTable.getInstance().getMapRegion(x, y));
         } catch (Exception e) {
             _log.error("Error in door data, ID: {}", id);
             _log.error(e.getLocalizedMessage(), e);
         }
         door.setCurrentHpMp(door.getMaxHp(), door.getMaxMp());
         door.setOpen(1);
-        door.setXYZInvisible(castleDoor.getX(), castleDoor.getY(), castleDoor.getZ());
-
-        return door;
+        door.setXYZInvisible(x, y, z);
     }
 
     public static L2DoorInstance parseList(String line) {
@@ -202,8 +179,8 @@ public class DoorTable {
         int rangeYMax = Integer.parseInt(st.nextToken());
         int rangeZMax = Integer.parseInt(st.nextToken());
         int hp = Integer.parseInt(st.nextToken());
-        int pdef = Integer.parseInt(st.nextToken());
-        int mdef = Integer.parseInt(st.nextToken());
+        short pdef = Short.parseShort(st.nextToken());
+        short mdef = Short.parseShort(st.nextToken());
         boolean unlockable = false;
 
         if (st.hasMoreTokens()) {
@@ -219,60 +196,18 @@ public class DoorTable {
         if (rangeZMin > rangeZMax) {
             _log.error("Error in door data, ID:" + id);
         }
-        int collisionRadius; // (max) radius for movement checks
+        float collisionRadius; // (max) radius for movement checks
         if ((rangeXMax - rangeXMin) > (rangeYMax - rangeYMin)) {
             collisionRadius = rangeYMax - rangeYMin;
         } else {
             collisionRadius = rangeXMax - rangeXMin;
         }
+        float collisionHeight = rangeZMax - rangeZMin;
 
-        StatsSet npcDat = new StatsSet();
 
-        npcDat.set("baseSTR", 0);
-        npcDat.set("baseCON", 0);
-        npcDat.set("baseDEX", 0);
-        npcDat.set("baseINT", 0);
-        npcDat.set("baseWIT", 0);
-        npcDat.set("baseMEN", 0);
-
-        npcDat.set("baseShldDef", 0);
-        npcDat.set("baseShldRate", 0);
-        npcDat.set("baseCritRate", 38);
-
-        npcDat.set("collision_radius", collisionRadius);
-        npcDat.set("collision_height", rangeZMax - rangeZMin);
-        npcDat.set("baseAtkRange", 0);
-        npcDat.set("baseMpMax", 0);
-        npcDat.set("baseCpMax", 0);
-        npcDat.set("basePAtk", 0);
-        npcDat.set("baseMAtk", 0);
-        npcDat.set("basePAtkSpd", 0);
-        npcDat.set("aggroRange", 0);
-        npcDat.set("baseMAtkSpd", 0);
-        npcDat.set("rhand", 0);
-        npcDat.set("lhand", 0);
-        npcDat.set("armor", 0);
-        npcDat.set("baseWalkSpd", 0);
-        npcDat.set("baseRunSpd", 0);
-        npcDat.set("name", name);
-        npcDat.set("baseHpMax", hp);
-        npcDat.set("baseHpReg", 3.e-3f);
-        npcDat.set("baseMpReg", 3.e-3f);
-        npcDat.set("basePDef", pdef);
-        npcDat.set("baseMDef", mdef);
-
-        L2CharTemplate template = new L2CharTemplate(npcDat);
+        CharTemplate template = CharTemplate.objectTemplate(hp, pdef, mdef, collisionRadius, collisionHeight);
         L2DoorInstance door = new L2DoorInstance(IdFactory.getInstance().getNextId(), template, id, name, unlockable);
-        door.setRange(rangeXMin, rangeYMin, rangeZMin, rangeXMax, rangeYMax, rangeZMax);
-        try {
-            door.setMapRegion(MapRegionTable.getInstance().getMapRegion(x, y));
-        } catch (Exception e) {
-            _log.error("Error in door data, ID:" + id);
-        }
-        door.setCurrentHpMp(door.getMaxHp(), door.getMaxMp());
-        door.setOpen(1);
-        door.setXYZInvisible(x, y, z);
-
+        initDoor(rangeXMin, rangeXMax, rangeXMin, rangeYMax, rangeZMin, rangeZMax, x, y, z, id, door);
         return door;
     }
 

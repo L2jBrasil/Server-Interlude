@@ -36,6 +36,7 @@ import com.l2jbr.gameserver.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -190,7 +191,7 @@ public final class CharacterCreate extends L2GameClientPacket
 		newChar.registerShortCut(shortcut);
 		
 		ItemTable.getInstance();
-		L2Item[] items = template.getItems();
+		List<L2Item> items = template.getItems();
 		for (L2Item item2 : items)
 		{
 			L2ItemInstance item = newChar.getInventory().addItem("Init", item2.getItemId(), 1, newChar, null);

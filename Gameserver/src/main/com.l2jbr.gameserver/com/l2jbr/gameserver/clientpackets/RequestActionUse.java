@@ -277,7 +277,7 @@ public final class RequestActionUse extends L2GameClientPacket
 						{
 							return;
 						}
-						Ride mount = new Ride(activeChar.getObjectId(), Ride.ACTION_MOUNT, pet.getTemplate().npcId);
+						Ride mount = new Ride(activeChar.getObjectId(), Ride.ACTION_MOUNT, pet.getTemplate().getId());
 						activeChar.broadcastPacket(mount);
 						activeChar.setMountType(mount.getMountType());
 						activeChar.setMountObjectID(pet.getControlItemId());
