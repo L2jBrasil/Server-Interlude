@@ -25,6 +25,7 @@ import com.l2jbr.gameserver.model.database.repository.CharTemplateRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -155,7 +156,7 @@ public class CharTemplateTable {
         "Maestro"
     };
 
-    private final Map<Integer, PlayerTemplate> _templates;
+    private final Map<Integer, PlayerTemplate> templates;
 
     public static CharTemplateTable getInstance() {
         if (_instance == null) {
@@ -165,16 +166,15 @@ public class CharTemplateTable {
     }
 
     private CharTemplateTable() {
-        _templates = new LinkedHashMap<>();
-
+        templates = new LinkedHashMap<>();
         CharTemplateRepository repository = DatabaseAccess.getRepository(CharTemplateRepository.class);
         repository.findAll().forEach(this::addToTemplates);
 
-        _log.info("CharTemplateTable: Loaded {} Character Templates.", _templates.size());
+        _log.info("CharTemplateTable: Loaded {} Character Templates.", templates.size());
     }
 
     private void addToTemplates(PlayerTemplate playerTemplate) {
-        _templates.put(playerTemplate.getId(), playerTemplate);
+        templates.put(playerTemplate.getId(), playerTemplate);
     }
 
     public PlayerTemplate getTemplate(ClassId classId) {
@@ -182,10 +182,14 @@ public class CharTemplateTable {
     }
 
     public PlayerTemplate getTemplate(int classId) {
-        return _templates.get(classId);
+        return templates.get(classId);
     }
 
     public static String getClassNameById(int classId) {
         return CHAR_CLASSES[classId];
+    }
+
+    public Collection<PlayerTemplate> all() {
+        return templates.values();
     }
 }

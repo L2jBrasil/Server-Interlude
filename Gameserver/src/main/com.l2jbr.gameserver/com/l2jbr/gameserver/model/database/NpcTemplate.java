@@ -101,10 +101,6 @@ public class NpcTemplate extends CharTemplate {
             mpRegen = 0.9f + (0.3f * ((level - 1) / 10.0f));
             setMpRegen(mpRegen);
         }
-
-        loadSkills();
-        loadDrops();
-        loadTeachInfo();
     }
 
     private void loadTeachInfo() {
@@ -138,7 +134,7 @@ public class NpcTemplate extends CharTemplate {
 
     public void addDropData(L2DropData dropDat, int category) {
         if(Util.isNull(dropCategories)) {
-            dropCategories = new LinkedHashMap<>();
+          loadDrops();
         }
         L2DropCategory dropCategory = dropCategories.getOrDefault(category, new L2DropCategory(category));
         dropCategory.addDropData(dropDat);
@@ -313,6 +309,9 @@ public class NpcTemplate extends CharTemplate {
     }
 
     public Map<Integer, L2Skill> getSkills() {
+        if(Util.isNull(skills)) {
+            loadSkills();
+        }
         return skills;
     }
 
@@ -321,10 +320,16 @@ public class NpcTemplate extends CharTemplate {
     }
 
     public Map<Integer, L2DropCategory> getDropCategories() {
+        if(Util.isNull(dropCategories)) {
+            loadDrops();
+        }
         return dropCategories;
     }
 
     public Set<ClassId> getTeachInfo() {
+        if(Util.isNull(teachInfo)) {
+            loadTeachInfo();
+        }
         return teachInfo;
     }
 

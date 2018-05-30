@@ -29,7 +29,7 @@ public class PlayerTemplate extends CharTemplate {
     private short accuracy;
     private short evasion;
     @Column("_load")
-    private short load;
+    private int load;
     @Column("hp_add")
     private Float hpAdd;
     @Column("hp_mod")
@@ -70,6 +70,39 @@ public class PlayerTemplate extends CharTemplate {
     private List<L2Item> items;
 
     @Override
+    public void onLoad() {
+        super.onLoad();
+        setHpRegen(1.5f);
+        setMpRegen(0.9f);
+
+        classId = ClassId.values()[id];
+        race = Race.values()[raceId];
+    }
+
+    private void loadItems() {
+        items = new LinkedList<>();
+        addItem(item1);
+        addItem(item2);
+        addItem(item3);
+        addItem(item4);
+        addItem(item5);
+    }
+
+    private void addItem(int itemId) {
+        L2Item item = ItemTable.getInstance().getTemplate(itemId);
+        if(Util.isNotNull(item)) {
+            items.add(item);
+        }
+    }
+
+    public List<L2Item> getItems() {
+        if(Util.isNull(items)){
+            loadItems();
+        }
+        return items;
+    }
+
+    @Override
     public Integer getId() {
         return id;
     }
@@ -98,7 +131,7 @@ public class PlayerTemplate extends CharTemplate {
         return evasion;
     }
 
-    public short getLoad() {
+    public int getLoad() {
         return load;
     }
 
@@ -196,36 +229,5 @@ public class PlayerTemplate extends CharTemplate {
 
     public Race getRace() {
         return race;
-    }
-
-    @Override
-    public void onLoad() {
-        super.onLoad();
-        setHpRegen(1.5f);
-        setMpRegen(0.9f);
-
-        classId = ClassId.values()[id];
-        race = Race.values()[raceId];
-        loadItems();
-    }
-
-    private void loadItems() {
-        items = new LinkedList<>();
-        addItem(item1);
-        addItem(item2);
-        addItem(item3);
-        addItem(item4);
-        addItem(item5);
-    }
-
-    private void addItem(int itemId) {
-        L2Item item = ItemTable.getInstance().getTemplate(itemId);
-        if(Util.isNotNull(item)) {
-            items.add(item);
-        }
-    }
-
-    public List<L2Item> getItems() {
-        return items;
     }
 }

@@ -26,7 +26,10 @@ import com.l2jbr.gameserver.model.L2SkillLearn;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.base.ClassId;
 import com.l2jbr.gameserver.model.database.PlayerTemplate;
-import com.l2jbr.gameserver.model.database.repository.*;
+import com.l2jbr.gameserver.model.database.repository.EnchantSkillTreesRepository;
+import com.l2jbr.gameserver.model.database.repository.FishingSkillTreeRepository;
+import com.l2jbr.gameserver.model.database.repository.PledgeSkillTreesRepository;
+import com.l2jbr.gameserver.model.database.repository.SkillTreeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -112,11 +115,10 @@ public class SkillTreeTable {
 
     private SkillTreeTable() {
         int count = 0;
-        CharTemplateRepository charTemplateRepository = DatabaseAccess.getRepository(CharTemplateRepository.class);
         SkillTreeRepository skillTreeRepository = DatabaseAccess.getRepository(SkillTreeRepository.class);
         int parentClassId;
         int classId;
-        for (PlayerTemplate charTemplate : charTemplateRepository.findAll()) {
+        for (PlayerTemplate charTemplate : CharTemplateTable.getInstance().all()) {
             Map<Integer, L2SkillLearn>  map = new LinkedHashMap<>();
             parentClassId = charTemplate.getParentId();
             classId = charTemplate.getId();

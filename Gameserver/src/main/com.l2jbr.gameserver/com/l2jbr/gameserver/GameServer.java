@@ -201,7 +201,6 @@ public class GameServer {
         SiegeManager.getInstance();
 
         TeleportLocationTable.getInstance();
-        LevelUpData.getInstance();
         L2World.getInstance();
         ZoneData.getInstance();
         SpawnTable.getInstance();

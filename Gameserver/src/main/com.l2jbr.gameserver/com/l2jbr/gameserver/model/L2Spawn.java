@@ -194,11 +194,10 @@ public class L2Spawn {
         }
 
         // Create the generic constructor of L2NpcInstance managed by this L2Spawn
-        Class<?>[] parameters =
-                {
-                        int.class,
-                        Class.forName("com.l2jbr.gameserver.templates.NpcTemplate")
-                };
+        Class<?>[] parameters = {
+            int.class,
+            NpcTemplate.class
+        };
         _constructor = Class.forName("com.l2jbr.gameserver.model.actor.instance." + implementationName + "Instance").getConstructor(parameters);
     }
 

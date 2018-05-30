@@ -185,7 +185,7 @@ public class ItemTable {
     /**
      * Constructor.
      */
-    public ItemTable() {
+    private ItemTable() {
         _etcItems = new LinkedHashMap<>();
         _armors = new LinkedHashMap<>();
         _weapons = new LinkedHashMap<>();
