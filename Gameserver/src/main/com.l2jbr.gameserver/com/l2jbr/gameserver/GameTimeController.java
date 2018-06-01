@@ -30,12 +30,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ScheduledFuture;
 
-
-/**
- * This class ...
- *
- * @version $Revision: 1.1.4.8 $ $Date: 2005/04/06 16:13:24 $
- */
 public class GameTimeController {
     static final Logger _log = LoggerFactory.getLogger(GameTimeController.class.getName());
 
@@ -55,8 +49,6 @@ public class GameTimeController {
 
     /**
      * One in-game day is 240 real minutes.
-     *
-     * @return
      */
     public static GameTimeController getInstance() {
         return _instance == null ? _instance = new GameTimeController() : _instance;

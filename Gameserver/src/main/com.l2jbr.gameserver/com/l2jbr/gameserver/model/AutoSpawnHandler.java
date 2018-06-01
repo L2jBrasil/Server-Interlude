@@ -397,7 +397,7 @@ public class AutoSpawnHandler {
 
                 if (spawnInst._spawnCount == 1) {
                     npcInst = newSpawn.doSpawn();
-                    npcInst.setXYZ(npcInst.getX(), npcInst.getY(), npcInst.getZ());
+                    npcInst.setPosition(npcInst.getX(), npcInst.getY(), npcInst.getZ());
                     spawnInst.addNpcInstance(npcInst);
                 } else {
                     for (int i = 0; i < spawnInst._spawnCount; i++) {
@@ -406,7 +406,7 @@ public class AutoSpawnHandler {
                         // To prevent spawning of more than one NPC in the exact
                         // same spot,
                         // move it slightly by a small random offset.
-                        npcInst.setXYZ(npcInst.getX() + Rnd.nextInt(50), npcInst.getY() + Rnd.nextInt(50), npcInst.getZ());
+                        npcInst.setPosition(npcInst.getX() + Rnd.nextInt(50), npcInst.getY() + Rnd.nextInt(50), npcInst.getZ());
 
                         // Add the NPC instance to the list of managed
                         // instances.

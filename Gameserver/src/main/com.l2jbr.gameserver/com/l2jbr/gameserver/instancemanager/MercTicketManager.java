@@ -713,7 +713,7 @@ public class MercTicketManager {
                         L2ItemInstance dropticket = new L2ItemInstance(IdFactory.getInstance().getNextId(), itemId);
                         dropticket.setLocation(L2ItemInstance.ItemLocation.INVENTORY);
                         dropticket.dropMe(null, x, y, z);
-                        dropticket.setDropTime(0); // avoids it from beeing removed by the auto item destroyer
+                        dropticket.setDropTime(0); // avoids it from beeing removed by the auto item DESTROYER
                         L2World.getInstance().storeObject(dropticket);
                         getDroppedTickets().add(dropticket);
                     }
@@ -827,7 +827,7 @@ public class MercTicketManager {
                 L2ItemInstance dropticket = new L2ItemInstance(IdFactory.getInstance().getNextId(), itemId);
                 dropticket.setLocation(L2ItemInstance.ItemLocation.INVENTORY);
                 dropticket.dropMe(null, x, y, z);
-                dropticket.setDropTime(0); // avoids it from beeing removed by the auto item destroyer
+                dropticket.setDropTime(0); // avoids it from beeing removed by the auto item DESTROYER
                 L2World.getInstance().storeObject(dropticket); // add to the world
                 // and keep track of this ticket in the list
                 _droppedTickets.add(dropticket);

@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.communitybbs.BB.Forum;
 import com.l2jbr.gameserver.communitybbs.Manager.ForumsBBSManager;
 import com.l2jbr.gameserver.datatables.ClanTable;
@@ -38,8 +37,6 @@ import com.l2jbr.gameserver.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -323,7 +320,7 @@ public class L2Clan {
     }
 
     public void addClanMember(L2PcInstance player) {
-        L2ClanMember member = new L2ClanMember(this, player.getName(), player.getLevel(), player.getClassId().getId(), player.getObjectId(), player.getPledgeType(), player.getPowerGrade(), player.getTitle());
+        L2ClanMember member = new L2ClanMember(this, player.getName(), player.getLevel(), player.getPlayerClass().getId(), player.getObjectId(), player.getPledgeType(), player.getPowerGrade(), player.getTitle());
         // store in memory
         addClanMember(member);
         member.setPlayerInstance(player);
@@ -1375,7 +1372,7 @@ public class L2Clan {
             sm = null;
             return false;
         }
-        if (((target.getLevel() > 40) || (target.getClassId().level() >= 2)) && (pledgeType == -1)) {
+        if (((target.getLevel() > 40) || (target.getPlayerClass().level() >= 2)) && (pledgeType == -1)) {
             SystemMessage sm = new SystemMessage(SystemMessageId.S1_DOESNOT_MEET_REQUIREMENTS_TO_JOIN_ACADEMY);
             sm.addString(target.getName());
             activeChar.sendPacket(sm);

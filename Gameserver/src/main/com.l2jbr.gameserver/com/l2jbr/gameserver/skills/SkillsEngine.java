@@ -31,10 +31,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-
-/**
- * @author mkizub TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates
- */
 public class SkillsEngine {
 
     protected static final Logger _log = LoggerFactory.getLogger(SkillsEngine.class.getName());
@@ -43,7 +39,6 @@ public class SkillsEngine {
 
     private final List<File> _armorFiles = new LinkedList<>();
     private final List<File> _weaponFiles = new LinkedList<>();
-    private final List<File> _etcitemFiles = new LinkedList<>();
     private final List<File> _skillFiles = new LinkedList<>();
 
     public static SkillsEngine getInstance() {
@@ -51,7 +46,6 @@ public class SkillsEngine {
     }
 
     private SkillsEngine() {
-        // hashFiles("data/stats/etcitem", _etcitemFiles);
         hashFiles("data/stats/armor", _armorFiles);
         hashFiles("data/stats/weapon", _weaponFiles);
         hashFiles("data/stats/skills", _skillFiles);
@@ -120,13 +114,8 @@ public class SkillsEngine {
 
     public List<L2EtcItem> loadItems(Map<Integer, Item> itemData) {
         List<L2EtcItem> list = new LinkedList<>();
-        for (L2Item item : loadData(itemData, _etcitemFiles)) {
-            list.add((L2EtcItem) item);
-        }
-        if (list.size() == 0) {
-            for (Item item : itemData.values()) {
-                list.add(new L2EtcItem((L2EtcItemType) item.type, item.set));
-            }
+        for (Item item : itemData.values()) {
+            list.add(new L2EtcItem((L2EtcItemType) item.type, item.set));
         }
         return list;
     }

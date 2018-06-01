@@ -65,7 +65,7 @@ public class EnergyStone implements IItemHandler
 		{
 			return;
 		}
-		int classid = activeChar.getClassId().getId();
+		int classid = activeChar.getPlayerClass().getId();
 		
 		if ((classid == 2) || (classid == 48) || (classid == 88) || (classid == 114))
 		{

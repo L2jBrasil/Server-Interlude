@@ -23,7 +23,7 @@ import com.l2jbr.gameserver.datatables.HeroSkillTable;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.datatables.SkillTreeTable;
 import com.l2jbr.gameserver.model.actor.instance.*;
-import com.l2jbr.gameserver.model.base.ClassId;
+import com.l2jbr.gameserver.model.base.PlayerClass;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.EtcStatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
@@ -428,8 +428,8 @@ public abstract class L2Skill {
     private final int _addCrossLearn; // -1 disable, otherwice SP price for others classes, default 1000
     private final float _mulCrossLearn; // multiplay for others classes, default 2
     private final float _mulCrossLearnRace; // multiplay for others races, default 2
-    private final float _mulCrossLearnProf; // multiplay for fighter/mage missmatch, default 3
-    private final List<ClassId> _canLearn; // which classes can learn
+    private final float _mulCrossLearnProf; // multiplay for FIGHTER/MAGE missmatch, default 3
+    private final List<PlayerClass> _canLearn; // which classes can learn
     private final List<Integer> _teachers; // which NPC teaches
     private final int _minPledgeClass;
 
@@ -542,7 +542,7 @@ public abstract class L2Skill {
             while (st.hasMoreTokens()) {
                 String cls = st.nextToken();
                 try {
-                    _canLearn.add(ClassId.valueOf(cls));
+                    _canLearn.add(PlayerClass.valueOf(cls));
                 } catch (Throwable t) {
                     _log.error( "Bad class " + cls + " to learn skill", t);
                 }
@@ -923,7 +923,7 @@ public abstract class L2Skill {
         return _mulCrossLearnProf;
     }
 
-    public final boolean getCanLearn(ClassId cls) {
+    public final boolean getCanLearn(PlayerClass cls) {
         return (_canLearn == null) || _canLearn.contains(cls);
     }
 

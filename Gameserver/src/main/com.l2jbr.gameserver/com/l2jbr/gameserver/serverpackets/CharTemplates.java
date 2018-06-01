@@ -45,7 +45,7 @@ public class CharTemplates extends L2GameServerPacket {
 
         for (PlayerTemplate temp : _chars) {
             writeD(temp.getRace().ordinal());
-            writeD(temp.getClassId().getId());
+            writeD(temp.getPlayerClass().getId());
             writeD(0x46);
             writeD(temp.getStrength());
             writeD(0x0a);

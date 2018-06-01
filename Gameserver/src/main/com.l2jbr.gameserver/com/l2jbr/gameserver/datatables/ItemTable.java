@@ -45,14 +45,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.ScheduledFuture;
 
-
-/**
- * This class ...
- *
- * @version $Revision: 1.9.2.6.2.9 $ $Date: 2005/04/02 15:57:34 $
- */
 public class ItemTable {
-    private static Logger _log = LoggerFactory.getLogger(ItemTable.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(ItemTable.class);
     private static Logger _logItems = LoggerFactory.getLogger("item");
 
     private static final Map<String, Integer> _materials = new LinkedHashMap<>();

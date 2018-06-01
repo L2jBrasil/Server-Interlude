@@ -84,8 +84,8 @@ class Quest (JQuest) :
    st = player.getQuestState(qn)
    npcId = npc.getNpcId()
    race = player.getRace().ordinal()
-   classId = player.getClassId()
-   id = classId.getId()
+   playerClass = player.getPlayerClass()
+   id = playerClass.getId()
    htmltext = default
    if player.isSubClassActive() :
       st.exitQuest(1)
@@ -98,13 +98,13 @@ class Quest (JQuest) :
          return htmltext+"-01.htm"
        elif id == 11 :      # human wizard
          return htmltext+"-08.htm"
-       elif not classId.isMage() :   # all elf/human fighters from all occupation levels
+       elif not playerClass.isMage() :   # all elf/human fighters from all occupation levels
          htmltext += "-40.htm"
-       elif classId.level() == 0 : # first occupation change not made yet
+       elif playerClass.level() == 0 : # first occupation change not made yet
          htmltext += "-38.htm"
-       elif classId.level() == 1 : # buffers/oracles
+       elif playerClass.level() == 1 : # buffers/oracles
          htmltext += "-40.htm"
-       elif classId.level() >= 2 : # second/third occupation change already made
+       elif playerClass.level() >= 2 : # second/third occupation change already made
          htmltext += "-39.htm"
      else :
        htmltext += "-40.htm"  # other races

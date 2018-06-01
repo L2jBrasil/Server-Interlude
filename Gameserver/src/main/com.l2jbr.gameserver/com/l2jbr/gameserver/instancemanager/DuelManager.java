@@ -83,7 +83,7 @@ public class DuelManager {
         }
 
         // return if a player has PvPFlag
-        String engagedInPvP = "The duel was canceled because a duelist engaged in PvP combat.";
+        String engagedInPvP = "The duel was canceled because a DUELIST engaged in PvP combat.";
         if (partyDuel == 1) {
             boolean playerInPvP = false;
             for (L2PcInstance temp : playerA.getParty().getPartyMembers()) {

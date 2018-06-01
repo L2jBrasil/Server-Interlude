@@ -4,7 +4,7 @@ import com.l2jbr.commons.database.annotation.Column;
 import com.l2jbr.commons.database.annotation.Table;
 import com.l2jbr.commons.util.Util;
 import com.l2jbr.gameserver.datatables.ItemTable;
-import com.l2jbr.gameserver.model.base.ClassId;
+import com.l2jbr.gameserver.model.base.PlayerClass;
 import com.l2jbr.gameserver.model.base.Race;
 import com.l2jbr.gameserver.templates.L2Item;
 import org.springframework.data.annotation.Id;
@@ -13,19 +13,13 @@ import org.springframework.data.annotation.Transient;
 import java.util.LinkedList;
 import java.util.List;
 
-@Table("char_templates")
+@Table("player_templates")
 public class PlayerTemplate extends CharTemplate {
 
     @Id
     private Integer id;
-    @Column("class_name")
-    private String className;
-    @Column("class_level")
-    private byte classLevel;
-    @Column("race_id")
-    private byte raceId;
-    @Column("parent_id")
-    private byte parentId;
+    @Column("player_class")
+    private PlayerClass playerClass;
     private short accuracy;
     private short evasion;
     @Column("_load")
@@ -63,10 +57,6 @@ public class PlayerTemplate extends CharTemplate {
     private Integer item5;
 
     @Transient
-    private ClassId classId;
-    @Transient
-    private Race race;
-    @Transient
     private List<L2Item> items;
 
     @Override
@@ -74,9 +64,6 @@ public class PlayerTemplate extends CharTemplate {
         super.onLoad();
         setHpRegen(1.5f);
         setMpRegen(0.9f);
-
-        classId = ClassId.values()[id];
-        race = Race.values()[raceId];
     }
 
     private void loadItems() {
@@ -105,22 +92,6 @@ public class PlayerTemplate extends CharTemplate {
     @Override
     public Integer getId() {
         return id;
-    }
-
-    public String getClassName() {
-        return className;
-    }
-
-    public int getRaceId() {
-        return raceId;
-    }
-
-    public byte getClassLevel() {
-        return classLevel;
-    }
-
-    public byte getParentId() {
-        return parentId;
     }
 
     public short getAccuracy() {
@@ -203,31 +174,15 @@ public class PlayerTemplate extends CharTemplate {
         return fCollisionHeight;
     }
 
-    public Integer getItem1() {
-        return item1;
-    }
-
-    public Integer getItem2() {
-        return item2;
-    }
-
-    public Integer getItem3() {
-        return item3;
-    }
-
-    public Integer getItem4() {
-        return item4;
-    }
-
-    public Integer getItem5() {
-        return item5;
-    }
-
-    public ClassId getClassId() {
-        return classId;
+    public PlayerClass getPlayerClass() {
+        return playerClass;
     }
 
     public Race getRace() {
-        return race;
+        return playerClass.getRace();
+    }
+
+    public int getClassLevel() {
+        return playerClass.level();
     }
 }

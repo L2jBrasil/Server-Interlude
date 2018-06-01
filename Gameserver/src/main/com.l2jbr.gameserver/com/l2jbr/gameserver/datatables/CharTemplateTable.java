@@ -19,7 +19,7 @@
 package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.gameserver.model.base.ClassId;
+import com.l2jbr.gameserver.model.base.PlayerClass;
 import com.l2jbr.gameserver.model.database.PlayerTemplate;
 import com.l2jbr.gameserver.model.database.repository.CharTemplateRepository;
 import org.slf4j.Logger;
@@ -177,8 +177,8 @@ public class CharTemplateTable {
         templates.put(playerTemplate.getId(), playerTemplate);
     }
 
-    public PlayerTemplate getTemplate(ClassId classId) {
-        return getTemplate(classId.getId());
+    public PlayerTemplate getTemplate(PlayerClass playerClass) {
+        return getTemplate(playerClass.getId());
     }
 
     public PlayerTemplate getTemplate(int classId) {

@@ -56,7 +56,7 @@ public class CharSelected extends L2GameServerPacket
 		writeD(0x00); // ??
 		writeD(_activeChar.getAppearance().getSex() ? 1 : 0);
 		writeD(_activeChar.getRace().ordinal());
-		writeD(_activeChar.getClassId().getId());
+		writeD(_activeChar.getPlayerClass().getId());
 		writeD(0x01); // active ??
 		writeD(_activeChar.getX());
 		writeD(_activeChar.getY());

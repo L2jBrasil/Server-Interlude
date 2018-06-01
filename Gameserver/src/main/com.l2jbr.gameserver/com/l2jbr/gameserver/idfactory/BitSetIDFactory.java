@@ -21,11 +21,8 @@ import org.slf4j.LoggerFactory;
 import java.util.BitSet;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/**
- * This class ..
- * @version $Revision: 1.2 $ $Date: 2004/06/27 08:12:59 $
- */
 public class BitSetIDFactory extends IdFactory {
+	private static final int INITIAL_CAPACITY = 100000;
 	private static Logger _log = LoggerFactory.getLogger(BitSetIDFactory.class.getName());
 	
 	private BitSet _freeIds;
@@ -39,19 +36,10 @@ public class BitSetIDFactory extends IdFactory {
 	
 	private void initialize() {
 		try {
-			_freeIds = new BitSet(PrimeFinder.nextPrime(100000));
+			_freeIds = new BitSet(PrimeFinder.nextPrime(INITIAL_CAPACITY));
 			_freeIds.clear();
 			_freeIdCount = new AtomicInteger(FREE_OBJECT_ID_SIZE);
-			
-			for (int usedObjectId : extractUsedObjectIDTable()) {
-				int objectID = usedObjectId - FIRST_OID;
-				if (objectID < 0) {
-					_log.warn("Object ID {} in DB is less than minimum ID of {}", usedObjectId, FIRST_OID);
-					continue;
-				}
-				_freeIds.set(objectID);
-				_freeIdCount.decrementAndGet();
-			}
+			markUsedIds();
 			_nextFreeId = new AtomicInteger(_freeIds.nextClearBit(0));
 			_initialized = true;
 		}
@@ -61,7 +49,19 @@ public class BitSetIDFactory extends IdFactory {
 			_log.error(e.getLocalizedMessage(), e);
 		}
 	}
-	
+
+	private void markUsedIds() {
+		for (int usedObjectId : extractUsedObjectIDTable()) {
+			int objectID = usedObjectId - FIRST_OID;
+			if (objectID < 0) {
+				_log.warn("Object ID {} in DB is less than minimum ID of {}", usedObjectId, FIRST_OID);
+				continue;
+			}
+			_freeIds.set(objectID);
+			_freeIdCount.decrementAndGet();
+		}
+	}
+
 	@Override
 	public synchronized void releaseId(int objectID) {
 		if ((objectID - FIRST_OID) > -1) {

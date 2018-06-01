@@ -535,7 +535,7 @@ public final class L2PcInstance extends L2PlayableInstance {
     /**
      * The _skill learning class id.
      */
-    private ClassId _skillLearningClassId;
+    private PlayerClass _skillLearningPlayerClass;
 
     // hennas
     /**
@@ -653,7 +653,7 @@ public final class L2PcInstance extends L2PlayableInstance {
     private int _clanPrivileges = 0;
 
     /**
-     * L2PcInstance's pledge class (knight, Baron, etc.)
+     * L2PcInstance's pledge class (KNIGHT, Baron, etc.)
      */
     private int _pledgeClass = 0;
 
@@ -1202,7 +1202,7 @@ public final class L2PcInstance extends L2PlayableInstance {
         player.setName(name);
 
         // Set the base class ID to that of the actual class ID.
-        player.setBaseClass(player.getClassId());
+        player.setBaseClass(player.getPlayerClass());
 
         if (Config.ALT_GAME_NEW_CHAR_ALWAYS_IS_NEWBIE) {
             player.setNewbie(true);
@@ -1432,7 +1432,7 @@ public final class L2PcInstance extends L2PlayableInstance {
      *
      * @param newclass the new template
      */
-    public void setTemplate(ClassId newclass) {
+    public void setTemplate(PlayerClass newclass) {
         super.setTemplate(CharTemplateTable.getInstance().getTemplate(newclass));
     }
 
@@ -1531,10 +1531,10 @@ public final class L2PcInstance extends L2PlayableInstance {
     /**
      * Sets the base class.
      *
-     * @param classId the new base class
+     * @param playerClass the new base class
      */
-    public void setBaseClass(ClassId classId) {
-        _baseClass = classId.ordinal();
+    public void setBaseClass(PlayerClass playerClass) {
+        _baseClass = playerClass.ordinal();
     }
 
     /**
@@ -2480,12 +2480,12 @@ public final class L2PcInstance extends L2PlayableInstance {
     }
 
     /**
-     * Return the ClassId object of the L2PcInstance contained in L2PcTemplate.
+     * Return the PlayerClass object of the L2PcInstance contained in L2PcTemplate.
      *
      * @return the class id
      */
-    public ClassId getClassId() {
-        return getTemplate().getClassId();
+    public PlayerClass getPlayerClass() {
+        return getTemplate().getPlayerClass();
     }
 
     /**
@@ -2495,7 +2495,7 @@ public final class L2PcInstance extends L2PlayableInstance {
      */
     public void setClassId(int Id) {
 
-        if ((getLvlJoinedAcademy() != 0) && (_clan != null) && (PlayerClass.values()[Id].getLevel() == ClassLevel.Third)) {
+        if ((getLvlJoinedAcademy() != 0) && (_clan != null) && (PlayerClass.values()[Id].level() == 2)) {
             if (getLvlJoinedAcademy() <= 16) {
                 _clan.setReputationScore(_clan.getReputationScore() + 400, true);
             } else if (getLvlJoinedAcademy() >= 39) {
@@ -2578,35 +2578,35 @@ public final class L2PcInstance extends L2PlayableInstance {
     public L2Weapon findFistsWeaponItem(int classId) {
         L2Weapon weaponItem = null;
         if ((classId >= 0x00) && (classId <= 0x09)) {
-            // HUMAN fighter fists
+            // HUMAN FIGHTER fists
             L2Item temp = ItemTable.getInstance().getTemplate(246);
             weaponItem = (L2Weapon) temp;
         } else if ((classId >= 0x0a) && (classId <= 0x11)) {
-            // HUMAN mage fists
+            // HUMAN MAGE fists
             L2Item temp = ItemTable.getInstance().getTemplate(251);
             weaponItem = (L2Weapon) temp;
         } else if ((classId >= 0x12) && (classId <= 0x18)) {
-            // elven fighter fists
+            // elven FIGHTER fists
             L2Item temp = ItemTable.getInstance().getTemplate(244);
             weaponItem = (L2Weapon) temp;
         } else if ((classId >= 0x19) && (classId <= 0x1e)) {
-            // elven mage fists
+            // elven MAGE fists
             L2Item temp = ItemTable.getInstance().getTemplate(249);
             weaponItem = (L2Weapon) temp;
         } else if ((classId >= 0x1f) && (classId <= 0x25)) {
-            // dark elven fighter fists
+            // dark elven FIGHTER fists
             L2Item temp = ItemTable.getInstance().getTemplate(245);
             weaponItem = (L2Weapon) temp;
         } else if ((classId >= 0x26) && (classId <= 0x2b)) {
-            // dark elven mage fists
+            // dark elven MAGE fists
             L2Item temp = ItemTable.getInstance().getTemplate(250);
             weaponItem = (L2Weapon) temp;
         } else if ((classId >= 0x2c) && (classId <= 0x30)) {
-            // ORC fighter fists
+            // ORC FIGHTER fists
             L2Item temp = ItemTable.getInstance().getTemplate(248);
             weaponItem = (L2Weapon) temp;
         } else if ((classId >= 0x31) && (classId <= 0x34)) {
-            // ORC mage fists
+            // ORC MAGE fists
             L2Item temp = ItemTable.getInstance().getTemplate(252);
             weaponItem = (L2Weapon) temp;
         } else if ((classId >= 0x35) && (classId <= 0x39)) {
@@ -2729,11 +2729,11 @@ public final class L2PcInstance extends L2PlayableInstance {
         int skillCounter = 0;
 
         // Get available skills
-        L2SkillLearn[] skills = SkillTreeTable.getInstance().getAvailableSkills(this, getClassId());
+        L2SkillLearn[] skills = SkillTreeTable.getInstance().getAvailableSkills(this, getPlayerClass());
         while (skills.length > unLearnable) {
             for (L2SkillLearn s : skills) {
                 L2Skill sk = SkillTable.getInstance().getInfo(s.getId(), s.getLevel());
-                if ((sk == null) || !sk.getCanLearn(getClassId())) {
+                if ((sk == null) || !sk.getCanLearn(getPlayerClass())) {
                     unLearnable++;
                     continue;
                 }
@@ -2746,7 +2746,7 @@ public final class L2PcInstance extends L2PlayableInstance {
             }
 
             // Get new available skills
-            skills = SkillTreeTable.getInstance().getAvailableSkills(this, getClassId());
+            skills = SkillTreeTable.getInstance().getAvailableSkills(this, getPlayerClass());
         }
 
         sendMessage("You have learned " + skillCounter + " new skills.");
@@ -5670,21 +5670,21 @@ public final class L2PcInstance extends L2PlayableInstance {
     }
 
     /**
-     * Set the _skillLearningClassId object of the L2PcInstance.
+     * Set the _skillLearningPlayerClass object of the L2PcInstance.
      *
-     * @param classId the new skill learning class id
+     * @param playerClass the new skill learning class id
      */
-    public void setSkillLearningClassId(ClassId classId) {
-        _skillLearningClassId = classId;
+    public void setSkillLearningClassId(PlayerClass playerClass) {
+        _skillLearningPlayerClass = playerClass;
     }
 
     /**
-     * Return the _skillLearningClassId object of the L2PcInstance.
+     * Return the _skillLearningPlayerClass object of the L2PcInstance.
      *
      * @return the skill learning class id
      */
-    public ClassId getSkillLearningClassId() {
-        return _skillLearningClassId;
+    public PlayerClass getSkillLearningClassId() {
+        return _skillLearningPlayerClass;
     }
 
     /**
@@ -6201,7 +6201,7 @@ public final class L2PcInstance extends L2PlayableInstance {
         character.setCharName(getName());
 
         character.setCollisionRadius(getTemplate().getCollisionRadius());
-        character.setCollisionHeight(getTemplate().getFCollisionHeight());
+        character.setCollisionHeight(getTemplate().getCollisionHeight());
 
         character.setHeading(getHeading());
         setCharacterPosition(character);
@@ -6227,7 +6227,7 @@ public final class L2PcInstance extends L2PlayableInstance {
         character.setSubpledge(getPledgeType());
 
         character.setRace(getRace().ordinal());
-        character.setClassid(getClassId().getId());
+        character.setClassid(getPlayerClass().getId());
         character.setBaseClass(getBaseClass());
 
         character.setDeletetime(getDeleteTimer());
@@ -6384,7 +6384,7 @@ public final class L2PcInstance extends L2PlayableInstance {
             CursedWeaponsManager.getInstance().checkPlayer(player);
             player.setAllianceWithVarkaKetra(character.getVarkaKetraAlly());
             player.setDeathPenaltyBuffLevel(character.getDeathPenaltyLevel());
-            player.setXYZInvisible(character.getX(), character.getY(), character.getZ());
+            player.setPositionInvisible(character.getX(), character.getY(), character.getZ());
             player.setHeading(character.getHeading());
 
             repository.findOthersCharactersOnAccount(character.getAccountName(), player.getObjectId()).forEach(other -> {
@@ -6553,7 +6553,7 @@ public final class L2PcInstance extends L2PlayableInstance {
     public synchronized void store() {
         // update client coords, if these look like true
         if (isInsideRadius(getClientX(), getClientY(), 1000, true)) {
-            setXYZ(getClientX(), getClientY(), getClientZ());
+            setPosition(getClientX(), getClientY(), getClientZ());
         }
 
         storeCharBase();
@@ -6647,7 +6647,7 @@ public final class L2PcInstance extends L2PlayableInstance {
         character.setSubpledge(getPledgeType());
 
         character.setRace(getRace().ordinal());
-        character.setClassid(getClassId().getId());
+        character.setClassid(getPlayerClass().getId());
         character.setBaseClass(getBaseClass());
 
         character.setDeletetime(getDeleteTimer());
@@ -6975,7 +6975,7 @@ public final class L2PcInstance extends L2PlayableInstance {
      * @return the henna empty slots
      */
     public int getHennaEmptySlots() {
-        int totalSlots = 1 + getClassId().level();
+        int totalSlots = 1 + getPlayerClass().level();
 
         for (int i = 0; i < 3; i++) {
             if (_henna[i] != null) {
@@ -7735,10 +7735,10 @@ public final class L2PcInstance extends L2PlayableInstance {
     /**
      * Return True if the L2PcInstance is a Mage.
      *
-     * @return true, if is mage class
+     * @return true, if is MAGE class
      */
     public boolean isMageClass() {
-        return getClassId().isMage();
+        return getPlayerClass().isMage();
     }
 
     /**
@@ -8281,7 +8281,7 @@ public final class L2PcInstance extends L2PlayableInstance {
         setIsInvul(true);
         getAppearance().setInvisible();
         sendPacket(new ObservationMode(x, y, z));
-        setXYZ(x, y, z);
+        setPosition(x, y, z);
 
         _observerMode = true;
         broadcastUserInfo();
@@ -8330,7 +8330,7 @@ public final class L2PcInstance extends L2PlayableInstance {
      */
     public void leaveObserverMode() {
         setTarget(null);
-        setXYZ(_obsX, _obsY, _obsZ);
+        setPosition(_obsX, _obsY, _obsZ);
         setIsParalyzed(false);
         getAppearance().setVisible();
         setIsInvul(false);
@@ -9009,7 +9009,7 @@ public final class L2PcInstance extends L2PlayableInstance {
             _log.info(getName() + " added class ID " + classId + " as a sub class at index " + classIndex + ".");
         }
 
-        ClassId subTemplate = ClassId.values()[classId];
+        PlayerClass subTemplate = PlayerClass.values()[classId];
         Collection<L2SkillLearn> skillTree = SkillTreeTable.getInstance().getAllowedSkills(subTemplate);
 
         if (skillTree == null) {
@@ -9674,10 +9674,10 @@ public final class L2PcInstance extends L2PlayableInstance {
 
         if (distFraction > 1) {
             // Set the position of the L2Character to the destination
-            super.setXYZ(m._xDestination, m._yDestination, m._zDestination);
+            super.setPosition(m._xDestination, m._yDestination, m._zDestination);
         } else {
             // Set the position of the L2Character to estimated after parcial move
-            super.setXYZ(getX() + (int) ((dx * distFraction) + 0.5), getY() + (int) ((dy * distFraction) + 0.5), getZ() + (int) (dz * distFraction));
+            super.setPosition(getX() + (int) ((dx * distFraction) + 0.5), getY() + (int) ((dy * distFraction) + 0.5), getZ() + (int) (dz * distFraction));
         }
 
         // Set the timer of last position update to now
@@ -10058,7 +10058,7 @@ public final class L2PcInstance extends L2PlayableInstance {
     public void deleteMe() {
         // Check if the L2PcInstance is in observer mode to set its position to its position before entering in observer mode
         if (inObserverMode()) {
-            setXYZ(_obsX, _obsY, _obsZ);
+            setPosition(_obsX, _obsY, _obsZ);
         }
 
         // Set the online Flag to True or False and update the characters table of the database with online status and lastAccess (called when login and logout)

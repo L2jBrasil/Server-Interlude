@@ -344,11 +344,11 @@ public final class Formulas
 				}
 				if (p.getInventory().getPaperdollItem(Inventory.PAPERDOLL_CHEST) != null)
 				{
-					env.value -= ((p.getClassId().isMage()) ? 15 : 31);
+					env.value -= ((p.getPlayerClass().isMage()) ? 15 : 31);
 				}
 				if (p.getInventory().getPaperdollItem(Inventory.PAPERDOLL_LEGS) != null)
 				{
-					env.value -= ((p.getClassId().isMage()) ? 8 : 18);
+					env.value -= ((p.getPlayerClass().isMage()) ? 8 : 18);
 				}
 				if (p.getInventory().getPaperdollItem(Inventory.PAPERDOLL_GLOVES) != null)
 				{

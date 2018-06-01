@@ -35,6 +35,10 @@ public class Util {
                 ipAddress.startsWith("127.0.0.1"));
     }
 
+    public static String printData(byte[] raw) {
+        return printData(raw, raw.length);
+    }
+
     public static String printData(byte[] data, int len) {
         StringBuilder result = new StringBuilder();
 
@@ -112,10 +116,6 @@ public class Util {
     }
 
 
-    public static String printData(byte[] raw) {
-        return printData(raw, raw.length);
-    }
-
     public static boolean isNull(Object obj) {
         return obj == null;
     }
@@ -130,5 +130,20 @@ public class Util {
 
     public static boolean isNullOrEmpty(Collection<?> collection) {
         return collection == null || collection.isEmpty();
+    }
+
+    public static String capitalize(String text) {
+        if(isNullOrEmpty(text)){
+            return "";
+        }
+        String[] words  = text.split(" ");
+        StringBuilder builder = new StringBuilder();
+        for(String word : words) {
+            char[] caracteres = word.toLowerCase().toCharArray();
+            caracteres[0] = Character.toUpperCase(caracteres[0]);
+            builder.append(caracteres);
+            builder.append(" ");
+        }
+        return  builder.substring(0, builder.length()-1);
     }
 }

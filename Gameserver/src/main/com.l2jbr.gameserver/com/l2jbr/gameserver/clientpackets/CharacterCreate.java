@@ -88,7 +88,7 @@ public final class CharacterCreate extends L2GameClientPacket
 	@Override
 	protected void runImpl()
 	{
-		if ((CharNameTable.getInstance().accountCharNumber(getClient().getAccountName()) >= Config.MAX_CHARACTERS_NUMBER_PER_ACCOUNT) && (Config.MAX_CHARACTERS_NUMBER_PER_ACCOUNT != 0))
+		if ((CharNameTable.accountCharNumber(getClient().getAccountName()) >= Config.MAX_CHARACTERS_NUMBER_PER_ACCOUNT) && (Config.MAX_CHARACTERS_NUMBER_PER_ACCOUNT != 0))
 		{
 			if (Config.DEBUG)
 			{
@@ -98,7 +98,7 @@ public final class CharacterCreate extends L2GameClientPacket
 			sendPacket(ccf);
 			return;
 		}
-		else if (CharNameTable.getInstance().doesCharNameExist(_name))
+		else if (CharNameTable.doesCharNameExist(_name))
 		{
 			if (Config.DEBUG)
 			{
@@ -125,7 +125,7 @@ public final class CharacterCreate extends L2GameClientPacket
 		}
 		
 		PlayerTemplate template = CharTemplateTable.getInstance().getTemplate(_classId);
-		if ((template == null) || (template.getClassLevel() > 1))
+		if ((template == null) || (template.getClassLevel() > 0))
 		{
 			CharCreateFail ccf = new CharCreateFail(CharCreateFail.REASON_CREATION_FAILED);
 			sendPacket(ccf);
@@ -176,7 +176,7 @@ public final class CharacterCreate extends L2GameClientPacket
 		
 		newChar.addAdena("Init", Config.STARTING_ADENA, null, false);
 		
-		newChar.setXYZInvisible(template.getX(), template.getY(), template.getZ());
+		newChar.setPositionInvisible(template.getX(), template.getY(), template.getZ());
 		newChar.setTitle("");
 		
 		L2ShortCut shortcut;
@@ -210,7 +210,7 @@ public final class CharacterCreate extends L2GameClientPacket
 			}
 		}
 		
-		L2SkillLearn[] startSkills = SkillTreeTable.getInstance().getAvailableSkills(newChar, newChar.getClassId());
+		L2SkillLearn[] startSkills = SkillTreeTable.getInstance().getAvailableSkills(newChar, newChar.getPlayerClass());
 		for (L2SkillLearn startSkill : startSkills)
 		{
 			newChar.addSkill(SkillTable.getInstance().getInfo(startSkill.getId(), startSkill.getLevel()), true);

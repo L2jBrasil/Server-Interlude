@@ -50,7 +50,7 @@ public class PartySmallWindowUpdate extends L2GameServerPacket
 		writeD((int) _member.getCurrentMp());
 		writeD(_member.getMaxMp());
 		writeD(_member.getLevel());
-		writeD(_member.getClassId().getId());
+		writeD(_member.getPlayerClass().getId());
 		
 	}
 	

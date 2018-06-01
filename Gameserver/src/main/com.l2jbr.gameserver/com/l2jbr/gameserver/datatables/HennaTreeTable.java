@@ -20,7 +20,7 @@ package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.model.L2HennaInstance;
-import com.l2jbr.gameserver.model.base.ClassId;
+import com.l2jbr.gameserver.model.base.PlayerClass;
 import com.l2jbr.gameserver.model.database.HennaTrees;
 import com.l2jbr.gameserver.model.database.repository.HennaTreeRepository;
 import com.l2jbr.gameserver.templates.L2Henna;
@@ -41,7 +41,7 @@ import java.util.Map;
 public class HennaTreeTable {
     private static Logger _log = LoggerFactory.getLogger(HennaTreeTable.class.getName());
     private static final HennaTreeTable _instance = new HennaTreeTable();
-    private Map<ClassId, List<L2HennaInstance>> _hennaTrees;
+    private Map<PlayerClass, List<L2HennaInstance>> _hennaTrees;
     private final boolean _initialized = true;
 
     public static HennaTreeTable getInstance() {
@@ -62,7 +62,7 @@ public class HennaTreeTable {
             if (template == null) {
                 continue;
             }
-            list = _hennaTrees.getOrDefault(ClassId.values()[classId], new LinkedList<>());
+            list = _hennaTrees.getOrDefault(PlayerClass.values()[classId], new LinkedList<>());
             list.add(new L2HennaInstance(template));
             count++;
         }
@@ -70,12 +70,12 @@ public class HennaTreeTable {
 
     }
 
-    public L2HennaInstance[] getAvailableHenna(ClassId classId) {
+    public L2HennaInstance[] getAvailableHenna(PlayerClass playerClass) {
         List<L2HennaInstance> result = new LinkedList<>();
-        List<L2HennaInstance> henna = _hennaTrees.get(classId);
+        List<L2HennaInstance> henna = _hennaTrees.get(playerClass);
         if (henna == null) {
             // the hennatree for this class is undefined, so we give an empty list
-            _log.warn("Hennatree for class " + classId + " is not defined !");
+            _log.warn("Hennatree for class " + playerClass + " is not defined !");
             return new L2HennaInstance[0];
         }
 

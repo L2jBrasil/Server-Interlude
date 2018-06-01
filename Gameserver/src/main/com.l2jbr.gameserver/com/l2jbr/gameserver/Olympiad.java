@@ -435,7 +435,7 @@ public class Olympiad {
             return false;
         }
 
-        if (noble.getBaseClass() != noble.getClassId().getId()) {
+        if (noble.getBaseClass() != noble.getPlayerClass().getId()) {
             sm = new SystemMessage(SystemMessageId.YOU_CANT_JOIN_THE_OLYMPIAD_WITH_A_SUB_JOB_CHARACTER);
             noble.sendPacket(sm);
             return false;
@@ -443,7 +443,7 @@ public class Olympiad {
 
         if (!_nobles.containsKey(noble.getObjectId())) {
             StatsSet statDat = new StatsSet();
-            statDat.set(CLASS_ID, noble.getClassId().getId());
+            statDat.set(CLASS_ID, noble.getPlayerClass().getId());
             statDat.set(CHAR_NAME, noble.getName());
             statDat.set(POINTS, DEFAULT_POINTS);
             statDat.set(COMP_DONE, 0);
@@ -452,8 +452,8 @@ public class Olympiad {
             _nobles.put(noble.getObjectId(), statDat);
         }
 
-        if (_classBasedRegisters.containsKey(noble.getClassId().getId())) {
-            List<L2PcInstance> classed = _classBasedRegisters.get(noble.getClassId().getId());
+        if (_classBasedRegisters.containsKey(noble.getPlayerClass().getId())) {
+            List<L2PcInstance> classed = _classBasedRegisters.get(noble.getPlayerClass().getId());
             for (L2PcInstance partecipant : classed) {
                 if (partecipant.getObjectId() == noble.getObjectId()) {
                     sm = new SystemMessage(SystemMessageId.YOU_ARE_ALREADY_ON_THE_WAITING_LIST_TO_PARTICIPATE_IN_THE_GAME_FOR_YOUR_CLASS);
@@ -477,12 +477,12 @@ public class Olympiad {
         }
 
         if (classBased) {
-            if (_classBasedRegisters.containsKey(noble.getClassId().getId())) {
-                List<L2PcInstance> classed = _classBasedRegisters.get(noble.getClassId().getId());
+            if (_classBasedRegisters.containsKey(noble.getPlayerClass().getId())) {
+                List<L2PcInstance> classed = _classBasedRegisters.get(noble.getPlayerClass().getId());
                 classed.add(noble);
 
-                _classBasedRegisters.remove(noble.getClassId().getId());
-                _classBasedRegisters.put(noble.getClassId().getId(), classed);
+                _classBasedRegisters.remove(noble.getPlayerClass().getId());
+                _classBasedRegisters.put(noble.getPlayerClass().getId(), classed);
 
                 sm = new SystemMessage(SystemMessageId.YOU_HAVE_BEEN_REGISTERED_IN_A_WAITING_LIST_OF_CLASSIFIED_GAMES);
                 noble.sendPacket(sm);
@@ -490,7 +490,7 @@ public class Olympiad {
                 List<L2PcInstance> classed = new LinkedList<>();
                 classed.add(noble);
 
-                _classBasedRegisters.put(noble.getClassId().getId(), classed);
+                _classBasedRegisters.put(noble.getPlayerClass().getId(), classed);
 
                 sm = new SystemMessage(SystemMessageId.YOU_HAVE_BEEN_REGISTERED_IN_A_WAITING_LIST_OF_CLASSIFIED_GAMES);
                 noble.sendPacket(sm);
@@ -513,10 +513,10 @@ public class Olympiad {
             return false;
         }
         if (!_nonClassBasedRegisters.contains(noble)) {
-            if (!_classBasedRegisters.containsKey(noble.getClassId().getId())) {
+            if (!_classBasedRegisters.containsKey(noble.getPlayerClass().getId())) {
                 return false;
             }
-            final List<L2PcInstance> classed = _classBasedRegisters.get(noble.getClassId().getId());
+            final List<L2PcInstance> classed = _classBasedRegisters.get(noble.getPlayerClass().getId());
             if ((classed == null) || !classed.contains(noble)) {
                 return false;
             }
@@ -553,11 +553,11 @@ public class Olympiad {
         if (_nonClassBasedRegisters.contains(noble)) {
             _nonClassBasedRegisters.remove(noble);
         } else {
-            List<L2PcInstance> classed = _classBasedRegisters.get(noble.getClassId().getId());
+            List<L2PcInstance> classed = _classBasedRegisters.get(noble.getPlayerClass().getId());
             classed.remove(noble);
 
-            _classBasedRegisters.remove(noble.getClassId().getId());
-            _classBasedRegisters.put(noble.getClassId().getId(), classed);
+            _classBasedRegisters.remove(noble.getPlayerClass().getId());
+            _classBasedRegisters.put(noble.getPlayerClass().getId(), classed);
         }
 
         sm = new SystemMessage(SystemMessageId.YOU_HAVE_BEEN_DELETED_FROM_THE_WAITING_LIST_OF_A_GAME);
@@ -948,8 +948,8 @@ public class Olympiad {
 
         if ((_nonClassBasedRegisters != null) && _nonClassBasedRegisters.contains(player)) {
             result = true;
-        } else if ((_classBasedRegisters != null) && _classBasedRegisters.containsKey(player.getClassId().getId())) {
-            List<L2PcInstance> classed = _classBasedRegisters.get(player.getClassId().getId());
+        } else if ((_classBasedRegisters != null) && _classBasedRegisters.containsKey(player.getPlayerClass().getId())) {
+            List<L2PcInstance> classed = _classBasedRegisters.get(player.getPlayerClass().getId());
             if (classed.contains(player)) {
                 result = true;
             }

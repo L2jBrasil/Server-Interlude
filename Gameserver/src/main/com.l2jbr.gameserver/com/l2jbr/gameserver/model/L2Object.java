@@ -30,7 +30,6 @@ import com.l2jbr.gameserver.network.L2GameClient;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.GetItem;
 
-
 /**
  * Mother class of all objects in the world which ones is it possible to interact (PC, NPC, Item...)<BR>
  * <BR>
@@ -38,27 +37,20 @@ import com.l2jbr.gameserver.serverpackets.GetItem;
  * <BR>
  * <li>L2Character</li> <li>L2ItemInstance</li> <li>L2Potion</li>
  */
+public abstract class L2Object {
 
-public abstract class L2Object
-{
-	// =========================================================
-	// Data Field
-	private boolean _isVisible; // Object visibility
+	private boolean _isVisible;
 	private ObjectKnownList _knownList;
 	private String _name;
-	private int _objectId; // Object identifier
+	private int _objectId;
 	private ObjectPoly _poly;
 	private ObjectPosition _position;
-	
-	// =========================================================
-	// Constructor
+
 	public L2Object(int objectId)
 	{
 		_objectId = objectId;
 	}
-	
-	// =========================================================
-	// Event - Public
+
 	public void onAction(L2PcInstance player)
 	{
 		player.sendPacket(new ActionFailed());
@@ -73,148 +65,82 @@ public abstract class L2Object
 	{
 		player.sendPacket(new ActionFailed());
 	}
-	
-	/**
-	 * Do Nothing.<BR>
-	 * <BR>
-	 * <B><U> Overriden in </U> :</B><BR>
-	 * <BR>
-	 * <li>L2GuardInstance : Set the home location of its L2GuardInstance</li> <li>L2Attackable : Reset the Spoiled flag</li><BR>
-	 * <BR>
-	 */
-	public void onSpawn()
-	{
-	}
-	
-	// =========================================================
-	// Position - Should remove to fully move to L2ObjectPosition
-	public final void setXYZ(int x, int y, int z)
+
+	public void onSpawn() { }
+
+	// TODO Position - Should remove to fully move to L2ObjectPosition
+	public final void setPosition(int x, int y, int z)
 	{
 		getPosition().setXYZ(x, y, z);
 	}
 	
-	public final void setXYZInvisible(int x, int y, int z)
+	public final void setPositionInvisible(int x, int y, int z)
 	{
 		getPosition().setXYZInvisible(x, y, z);
 	}
 	
-	public final int getX()
-	{
-		if (Config.ASSERT)
-		{
+	public final int getX() {
+		if (Config.ASSERT) {
 			assert (getPosition().getWorldRegion() != null) || _isVisible;
 		}
 		return getPosition().getX();
 	}
 	
-	public final int getY()
-	{
-		if (Config.ASSERT)
-		{
+	public final int getY() {
+		if (Config.ASSERT) {
 			assert (getPosition().getWorldRegion() != null) || _isVisible;
 		}
 		return getPosition().getY();
 	}
 	
-	public final int getZ()
-	{
-		if (Config.ASSERT)
-		{
+	public final int getZ() {
+		if (Config.ASSERT) {
 			assert (getPosition().getWorldRegion() != null) || _isVisible;
 		}
 		return getPosition().getZ();
 	}
-	
-	// =========================================================
-	// Method - Public
-	/**
-	 * Remove a L2Object from the world.<BR>
-	 * <BR>
-	 * <B><U> Actions</U> :</B><BR>
-	 * <BR>
-	 * <li>Remove the L2Object from the world</li><BR>
-	 * <BR>
-	 * <FONT COLOR=#FF0000><B> <U>Caution</U> : This method DOESN'T REMOVE the object from _allObjects of L2World </B></FONT><BR>
-	 * <FONT COLOR=#FF0000><B> <U>Caution</U> : This method DOESN'T SEND Server->Client packets to players</B></FONT><BR>
-	 * <BR>
-	 * <B><U> Assert </U> :</B><BR>
-	 * <BR>
-	 * <li>_worldRegion != null <I>(L2Object is visible at the beginning)</I></li><BR>
-	 * <BR>
-	 * <B><U> Example of use </U> :</B><BR>
-	 * <BR>
-	 * <li>Delete NPC/PC or Unsummon</li><BR>
-	 * <BR>
-	 */
-	public final void decayMe()
-	{
-		if (Config.ASSERT)
-		{
+
+	public final void decayMe() {
+		if (Config.ASSERT) {
 			assert getPosition().getWorldRegion() != null;
 		}
 		
 		L2WorldRegion reg = getPosition().getWorldRegion();
 		
-		synchronized (this)
-		{
+		synchronized (this) {
 			_isVisible = false;
 			getPosition().setWorldRegion(null);
 		}
-		
-		// this can synchronize on others instancies, so it's out of
-		// synchronized, to avoid deadlocks
-		// Remove the L2Object from the world
+
 		L2World.getInstance().removeVisibleObject(this, reg);
 		L2World.getInstance().removeObject(this);
-		if (Config.SAVE_DROPPED_ITEM)
-		{
+		if (Config.SAVE_DROPPED_ITEM) {
 			ItemsOnGroundManager.getInstance().removeObject(this);
 		}
 	}
-	
-	/**
-	 * Remove a L2ItemInstance from the world and send server->client GetItem packets.<BR>
-	 * <BR>
-	 * <B><U> Actions</U> :</B><BR>
-	 * <BR>
-	 * <li>Send a Server->Client Packet GetItem to player that pick up and its _knowPlayers member</li> <li>Remove the L2Object from the world</li><BR>
-	 * <BR>
-	 * <FONT COLOR=#FF0000><B> <U>Caution</U> : This method DOESN'T REMOVE the object from _allObjects of L2World </B></FONT><BR>
-	 * <BR>
-	 * <B><U> Assert </U> :</B><BR>
-	 * <BR>
-	 * <li>this instanceof L2ItemInstance</li> <li>_worldRegion != null <I>(L2Object is visible at the beginning)</I></li><BR>
-	 * <BR>
-	 * <B><U> Example of use </U> :</B><BR>
-	 * <BR>
-	 * <li>Do Pickup Item : PCInstance and Pet</li><BR>
-	 * <BR>
-	 * @param player Player that pick up the item
-	 */
-	public final void pickupMe(L2Character player) // NOTE: Should move this function into L2ItemInstance because it does not apply to L2Character
-	{
-		if (Config.ASSERT)
-		{
+
+
+	public final void pickupMe(L2Character player) {
+		if (Config.ASSERT) {
 			assert this instanceof L2ItemInstance;
 		}
-		if (Config.ASSERT)
-		{
+
+		if (Config.ASSERT) {
 			assert getPosition().getWorldRegion() != null;
 		}
-		
+
 		L2WorldRegion oldregion = getPosition().getWorldRegion();
-		
+
 		// Create a server->client GetItem packet to pick up the L2ItemInstance
 		GetItem gi = new GetItem((L2ItemInstance) this, player.getObjectId());
 		player.broadcastPacket(gi);
-		
+
 		synchronized (this)
 		{
 			_isVisible = false;
 			getPosition().setWorldRegion(null);
 		}
-		
-		// if this item is a mercenary ticket, remove the spawns!
+
 		if (this instanceof L2ItemInstance)
 		{
 			int itemId = ((L2ItemInstance) this).getItemId();
@@ -224,10 +150,7 @@ public abstract class L2Object
 				ItemsOnGroundManager.getInstance().removeObject(this);
 			}
 		}
-		
-		// this can synchronize on others instancies, so it's out of
-		// synchronized, to avoid deadlocks
-		// Remove the L2ItemInstance from the world
+
 		L2World.getInstance().removeVisibleObject(this, oldregion);
 	}
 	

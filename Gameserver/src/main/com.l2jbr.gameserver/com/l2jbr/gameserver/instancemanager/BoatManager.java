@@ -94,7 +94,7 @@ public class BoatManager {
         CharTemplate template = CharTemplate.objectTemplate(50000, (short)100, (short)100, 0f, 0f);
         boat = new L2BoatInstance(IdFactory.getInstance().getNextId(), template, name);
         boat.getPosition().setHeading(heading);
-        boat.setXYZ(xspawn, yspawn, zspawn);
+        boat.setPosition(xspawn, yspawn, zspawn);
 
         int IdWaypoint1 = Integer.parseInt(st.nextToken());
         int IdWTicket1 = Integer.parseInt(st.nextToken());

@@ -169,7 +169,7 @@ public abstract class L2ZoneType {
                 boolean ok = false;
 
                 for (int _clas : _class) {
-                    if (((L2PcInstance) character).getClassId().ordinal() == _clas) {
+                    if (((L2PcInstance) character).getPlayerClass().ordinal() == _clas) {
                         ok = true;
                         break;
                     }

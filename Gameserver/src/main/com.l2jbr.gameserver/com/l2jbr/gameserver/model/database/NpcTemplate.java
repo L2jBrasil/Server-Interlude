@@ -7,7 +7,7 @@ import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.L2DropCategory;
 import com.l2jbr.gameserver.model.L2DropData;
 import com.l2jbr.gameserver.model.L2Skill;
-import com.l2jbr.gameserver.model.base.ClassId;
+import com.l2jbr.gameserver.model.base.PlayerClass;
 import com.l2jbr.gameserver.model.base.Race;
 import com.l2jbr.gameserver.model.quest.Quest;
 import com.l2jbr.gameserver.skills.SkillConstants;
@@ -74,7 +74,7 @@ public class NpcTemplate extends CharTemplate {
     @Transient
     private Race race;
     @Transient
-    private Set<ClassId> teachInfo;
+    private Set<PlayerClass> teachInfo;
     // contains a list of quests for each event type (questStart, questAttack, questKill, etc)
     @Transient
     private Map<Quest.QuestEventType, Quest[]> _questEvents;
@@ -109,7 +109,7 @@ public class NpcTemplate extends CharTemplate {
         }
         teachInfo = new LinkedHashSet<>();
         for(SkillLearn skillLearn : skillLearns) {
-            teachInfo.add(ClassId.values()[skillLearn.getClassId()]);
+            teachInfo.add(PlayerClass.values()[skillLearn.getClassId()]);
         }
     }
 
@@ -172,18 +172,18 @@ public class NpcTemplate extends CharTemplate {
         return _questEvents.get(EventType);
     }
 
-    public boolean canTeach(ClassId classId) {
+    public boolean canTeach(PlayerClass playerClass) {
         if (teachInfo == null) {
             return false;
         }
 
         // If the player is on a third class, fetch the class teacher
         // information for its parent class.
-        if (classId.getId() >= 88) {
-            return teachInfo.contains(classId.getParent());
+        if (playerClass.getId() >= 88) {
+            return teachInfo.contains(playerClass.getParent());
         }
 
-        return teachInfo.contains(classId);
+        return teachInfo.contains(playerClass);
     }
 
     public void addQuestEvent(Quest.QuestEventType EventType, Quest quest) {
@@ -326,7 +326,7 @@ public class NpcTemplate extends CharTemplate {
         return dropCategories;
     }
 
-    public Set<ClassId> getTeachInfo() {
+    public Set<PlayerClass> getTeachInfo() {
         if(Util.isNull(teachInfo)) {
             loadTeachInfo();
         }

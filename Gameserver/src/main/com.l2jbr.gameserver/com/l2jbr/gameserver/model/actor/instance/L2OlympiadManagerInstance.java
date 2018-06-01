@@ -55,7 +55,7 @@ public class L2OlympiadManagerInstance extends L2FolkInstance {
             String suffix = command.substring(14);
             showChatWindow(player, val, suffix);
         } else if (command.startsWith("OlympiadNoble")) {
-            if (!player.isNoble() || (player.getClassId().getId() < 88)) {
+            if (!player.isNoble() || (player.getPlayerClass().getId() < 88)) {
                 return;
             }
 

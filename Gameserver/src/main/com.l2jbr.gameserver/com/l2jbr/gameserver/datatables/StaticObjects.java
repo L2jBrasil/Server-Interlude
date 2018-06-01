@@ -93,7 +93,7 @@ public class StaticObjects {
         L2StaticObjectInstance obj = new L2StaticObjectInstance(IdFactory.getInstance().getNextId());
         obj.setType(type);
         obj.setStaticObjectId(id);
-        obj.setXYZ(x, y, z);
+        obj.setPosition(x, y, z);
         obj.setMap(texture, map_x, map_y);
         obj.spawnMe();
 

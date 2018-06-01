@@ -21,27 +21,16 @@ package com.l2jbr.gameserver.datatables;
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
 
-/**
- * This class ...
- * @version $Revision: 1.3.2.2.2.1 $ $Date: 2005/03/27 15:29:18 $
- */
 public class CharNameTable {
 	
-	private static CharNameTable _instance;
+	private CharNameTable() {}
 	
-	public static CharNameTable getInstance() {
-		if (_instance == null) {
-			_instance = new CharNameTable();
-		}
-		return _instance;
-	}
-	
-	public boolean doesCharNameExist(String name) {
+	public static boolean doesCharNameExist(String name) {
         CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
         return repository.existsByName(name);
 	}
 	
-	public int accountCharNumber(String account) {
+	public static int accountCharNumber(String account) {
 	    CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
 	    return repository.countByAccount(account);
 	}

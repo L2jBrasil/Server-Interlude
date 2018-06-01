@@ -3573,7 +3573,7 @@ public class SevenSignsFestival implements SpawnListener {
     }
 
     /**
-     * Returns the current festival ID and oracle ID that the specified player is in, but will return the default of {-1, -1} if the player is not found as a participant.
+     * Returns the current festival ID and ORACLE ID that the specified player is in, but will return the default of {-1, -1} if the player is not found as a participant.
      *
      * @param player
      * @return int[] playerFestivalInfo

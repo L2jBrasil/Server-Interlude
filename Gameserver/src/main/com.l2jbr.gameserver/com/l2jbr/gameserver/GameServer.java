@@ -74,7 +74,6 @@ public class GameServer {
     private final ItemTable _itemTable;
     private final NpcTable _npcTable;
     private final HennaTable _hennaTable;
-    private final IdFactory _idFactory;
     public static GameServer gameServer;
     private static ClanHallManager _cHManager;
     private final ItemHandler _itemHandler;
@@ -112,7 +111,7 @@ public class GameServer {
         gameServer = this;
         _log.debug(getMessage("debug.used.memory", getUsedMemoryMB()));
 
-        _idFactory = IdFactory.getInstance();
+        IdFactory _idFactory = IdFactory.getInstance();
         if (!_idFactory.isInitialized()) {
             _log.error(getMessage("error.read.object.id"));
             throw new Exception(getMessage("error.initialize.id.factory"));
@@ -126,9 +125,6 @@ public class GameServer {
 
         // start game time control early
         GameTimeController.getInstance();
-
-        // keep the references of Singletons to prevent garbage collection
-        CharNameTable.getInstance();
 
         _itemTable = ItemTable.getInstance();
         if (!_itemTable.isInitialized()) {

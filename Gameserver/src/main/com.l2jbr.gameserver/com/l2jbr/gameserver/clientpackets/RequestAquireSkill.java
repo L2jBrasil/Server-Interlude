@@ -81,7 +81,7 @@ public class RequestAquireSkill extends L2GameClientPacket
 		
 		if (!Config.ALT_GAME_SKILL_LEARN)
 		{
-			player.setSkillLearningClassId(player.getClassId());
+			player.setSkillLearningClassId(player.getPlayerClass());
 		}
 		
 		if (player.getSkillLevel(_id) >= _level)

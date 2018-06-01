@@ -105,11 +105,11 @@ public class ValidatePosition extends L2GameClientPacket
 					}
 					if (diffSq < 2500)
 					{
-						activeChar.setXYZ(realX, realY, _z);
+						activeChar.setPosition(realX, realY, _z);
 					}
 					else
 					{
-						activeChar.setXYZ(_x, _y, _z);
+						activeChar.setPosition(_x, _y, _z);
 					}
 					activeChar.setHeading(_heading);
 				}
@@ -147,7 +147,7 @@ public class ValidatePosition extends L2GameClientPacket
 			double diffSq = ((dx * dx) + (dy * dy));
 			if (diffSq < 250000)
 			{
-				activeChar.setXYZ(realX, realY, _z);
+				activeChar.setPosition(realX, realY, _z);
 			}
 			int realHeading = activeChar.getHeading();
 			

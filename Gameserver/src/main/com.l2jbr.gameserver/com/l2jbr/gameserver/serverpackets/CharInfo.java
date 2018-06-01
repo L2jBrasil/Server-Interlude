@@ -220,7 +220,7 @@ public class CharInfo extends L2GameServerPacket
 			
 			if (_activeChar.getClassIndex() == 0)
 			{
-				writeD(_activeChar.getClassId().getId());
+				writeD(_activeChar.getPlayerClass().getId());
 			}
 			else
 			{
@@ -343,7 +343,7 @@ public class CharInfo extends L2GameServerPacket
 			
 			writeC(_activeChar.getRecomLeft()); // Changed by Thorgrim
 			writeH(_activeChar.getRecomHave()); // Blue value for name (0 = white, 255 = pure blue)
-			writeD(_activeChar.getClassId().getId());
+			writeD(_activeChar.getPlayerClass().getId());
 			
 			writeD(_maxCp);
 			writeD((int) _activeChar.getCurrentCp());

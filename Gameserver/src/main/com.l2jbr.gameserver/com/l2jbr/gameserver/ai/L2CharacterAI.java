@@ -279,7 +279,7 @@ public class L2CharacterAI<T extends L2Character.AIAccessor> extends AbstractAI<
 		if ((object.getX() == 0) && (object.getY() == 0)) // TODO: Find the drop&spawn bug
 		{
 			_log.warn("Object in coords 0,0 - using a temporary fix");
-			object.setXYZ(actor.getX(), actor.getY(), actor.getZ() + 5);
+			object.setPosition(actor.getX(), actor.getY(), actor.getZ() + 5);
 		}
 
 		moveToPawn(object, 20);

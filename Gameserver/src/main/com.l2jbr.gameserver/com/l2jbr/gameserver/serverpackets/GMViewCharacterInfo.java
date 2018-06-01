@@ -57,7 +57,7 @@ public class GMViewCharacterInfo extends L2GameServerPacket
 		writeS(_activeChar.getName());
 		writeD(_activeChar.getRace().ordinal());
 		writeD(_activeChar.getAppearance().getSex() ? 1 : 0);
-		writeD(_activeChar.getClassId().getId());
+		writeD(_activeChar.getPlayerClass().getId());
 		writeD(_activeChar.getLevel());
 		writeQ(_activeChar.getExp());
 		writeD(_activeChar.getSTR());
@@ -194,7 +194,7 @@ public class GMViewCharacterInfo extends L2GameServerPacket
 		
 		writeH(_activeChar.getRecomLeft());
 		writeH(_activeChar.getRecomHave()); // Blue value for name (0 = white, 255 = pure blue)
-		writeD(_activeChar.getClassId().getId());
+		writeD(_activeChar.getPlayerClass().getId());
 		writeD(0x00); // special effects? circles around player...
 		writeD(_activeChar.getMaxCp());
 		writeD((int) _activeChar.getCurrentCp());

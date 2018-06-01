@@ -40,14 +40,8 @@ import org.slf4j.LoggerFactory;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.ScheduledFuture;
 
 
-/**
- * This class ...
- *
- * @version $Revision: 1.3.2.2.2.5 $ $Date: 2005/03/27 15:29:32 $
- */
 public class L2DoorInstance extends L2Character {
     protected static final Logger log = LoggerFactory.getLogger(L2DoorInstance.class.getName());
 
@@ -73,7 +67,6 @@ public class L2DoorInstance extends L2Character {
     private ClanHall _clanHall;
 
     protected int _autoActionDelay = -1;
-    private ScheduledFuture<?> _autoActionTask;
 
     /**
      * This class may be created only by L2Character and only for AI
@@ -247,12 +240,7 @@ public class L2DoorInstance extends L2Character {
         if (actionDelay > -1) {
             AutoOpenClose ao = new AutoOpenClose();
             ThreadPoolManager.getInstance().scheduleGeneralAtFixedRate(ao, actionDelay, actionDelay);
-        } else {
-            if (_autoActionTask != null) {
-                _autoActionTask.cancel(false);
-            }
         }
-
         _autoActionDelay = actionDelay;
     }
 

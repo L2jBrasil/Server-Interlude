@@ -140,8 +140,8 @@ public class L2HelperBuff
 	}
 	
 	/**
-	 * Returns if this Buff can be cast on a fighter or a mystic
-	 * @return boolean : False if it's a fighter class Buff
+	 * Returns if this Buff can be cast on a FIGHTER or a mystic
+	 * @return boolean : False if it's a FIGHTER class Buff
 	 */
 	public boolean isMagicClassBuff()
 	{
@@ -149,7 +149,7 @@ public class L2HelperBuff
 	}
 	
 	/**
-	 * Sets if this Buff can be cast on a fighter or a mystic
+	 * Sets if this Buff can be cast on a FIGHTER or a mystic
 	 * @param isMagicClass
 	 */
 	public void setIsMagicClass(boolean isMagicClass)

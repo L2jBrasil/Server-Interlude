@@ -30,7 +30,7 @@ public abstract class IdFactory {
 	
 	protected boolean _initialized;
 	
-	protected static final int FIRST_OID = 0x10000000;
+	static final int FIRST_OID = 0x10000000;
 	protected static final int LAST_OID = 0x7FFFFFFF;
 	protected static final int FREE_OBJECT_ID_SIZE = LAST_OID - FIRST_OID;
 	
@@ -57,6 +57,7 @@ public abstract class IdFactory {
         cleanCount += repository.deleteCharacterSkillsInconsistency();
         cleanCount += repository.deleteCharacterSkillsSaveInconsistency();
         cleanCount += repository.deleteCharacterSubclassesInconsistency();
+        cleanCount += repository.deleteCharacterHennasInconsistency();
         cleanCount += repository.deleteCursedWeaponsInconsistency();
         cleanCount += repository.deleteHeroesInconsistency();
         cleanCount += repository.deleteOlympiadNoblesInconsistency();

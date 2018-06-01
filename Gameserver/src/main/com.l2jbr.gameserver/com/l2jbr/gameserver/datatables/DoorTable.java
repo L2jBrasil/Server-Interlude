@@ -161,7 +161,7 @@ public class DoorTable {
         }
         door.setCurrentHpMp(door.getMaxHp(), door.getMaxMp());
         door.setOpen(1);
-        door.setXYZInvisible(x, y, z);
+        door.setPositionInvisible(x, y, z);
     }
 
     public static L2DoorInstance parseList(String line) {

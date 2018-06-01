@@ -109,7 +109,7 @@ public class L2CabaleBufferInstance extends L2NpcInstance
 			
 			/**
 			 * For each known player in range, cast either the positive or negative buff. <BR>
-			 * The stats affected depend on the player type, either a fighter or a mystic. <BR>
+			 * The stats affected depend on the player type, either a FIGHTER or a mystic. <BR>
 			 * <BR>
 			 * Curse of Destruction (Loser)<BR>
 			 * - Fighters: -25% Accuracy, -25% Effect Resistance<BR>

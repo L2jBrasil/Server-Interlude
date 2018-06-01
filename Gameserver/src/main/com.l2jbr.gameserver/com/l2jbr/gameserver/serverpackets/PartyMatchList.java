@@ -56,7 +56,7 @@ public class PartyMatchList extends L2GameServerPacket
 			writeD(_matchingPlayers[i].getObjectId());
 			writeS(_matchingPlayers[i].getName());
 			writeD(_matchingPlayers[i].getLevel());
-			writeD(_matchingPlayers[i].getClassId().getId());
+			writeD(_matchingPlayers[i].getPlayerClass().getId());
 			writeD(00); // 00 -white name 01-red name
 			writeD(_matchingPlayers[i].getClanId());
 			writeD(00); // 00 - no affil 01-party 02-party pending 03-

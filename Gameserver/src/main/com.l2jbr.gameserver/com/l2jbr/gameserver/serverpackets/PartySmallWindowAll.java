@@ -59,7 +59,7 @@ public class PartySmallWindowAll extends L2GameServerPacket {
                 writeD((int) member.getCurrentMp());
                 writeD(member.getMaxMp());
                 writeD(member.getLevel());
-                writeD(member.getClassId().getId());
+                writeD(member.getPlayerClass().getId());
                 writeD(0);// writeD(0x01); ??
                 writeD(0);
             }

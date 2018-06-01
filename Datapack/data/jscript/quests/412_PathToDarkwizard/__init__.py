@@ -27,24 +27,24 @@ class Quest (JQuest) :
  def onEvent (self,event,st) :
     htmltext = event
     level = st.getPlayer().getLevel()
-    classId = st.getPlayer().getClassId().getId()
+    playerClass = st.getPlayer().getPlayerClass().getId()
     if event == "1" :
         st.set("id","0")
         if st.getInt("cond") == 0 :
-          if level >= 19 and classId == 0x26 and st.getQuestItemsCount(JEWEL_OF_DARKNESS) == 0 :
+          if level >= 19 and playerClass == 0x26 and st.getQuestItemsCount(JEWEL_OF_DARKNESS) == 0 :
             st.set("cond","1")
             st.setState(STARTED)
             st.playSound("ItemSound.quest_accept")
             st.giveItems(SEEDS_OF_DESPAIR,1)
             htmltext = "30421-05.htm"
-          elif classId != 0x26 :
-              if classId == 0x27 :
+          elif playerClass != 0x26 :
+              if playerClass == 0x27 :
                 htmltext = "30421-02a.htm"
               else:
                 htmltext = "30421-03.htm"
-          elif level<19 and classId == 0x26 :
+          elif level<19 and playerClass == 0x26 :
               htmltext = "30421-02.htm"
-          elif level >= 19 and classId == 0x26 and st.getQuestItemsCount(JEWEL_OF_DARKNESS) == 1 :
+          elif level >= 19 and playerClass == 0x26 and st.getQuestItemsCount(JEWEL_OF_DARKNESS) == 1 :
               htmltext = "30421-04.htm"
     elif event == "412_1" :
           if st.getQuestItemsCount(SEEDS_OF_ANGER) :

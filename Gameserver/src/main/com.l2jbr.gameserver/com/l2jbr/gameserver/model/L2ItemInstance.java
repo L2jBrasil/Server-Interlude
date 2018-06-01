@@ -1087,6 +1087,8 @@ public final class L2ItemInstance extends L2Object
 			ItemsOnGroundManager.getInstance().save(this);
 		}
 	}
+
+
 	
 	/**
 	 * Update the database with values of the item

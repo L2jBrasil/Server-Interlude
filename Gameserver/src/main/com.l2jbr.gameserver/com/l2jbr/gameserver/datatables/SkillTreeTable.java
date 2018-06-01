@@ -19,12 +19,13 @@
 package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.database.DatabaseAccess;
+import com.l2jbr.commons.util.Util;
 import com.l2jbr.gameserver.model.L2EnchantSkillLearn;
 import com.l2jbr.gameserver.model.L2PledgeSkillLearn;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.L2SkillLearn;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.base.ClassId;
+import com.l2jbr.gameserver.model.base.PlayerClass;
 import com.l2jbr.gameserver.model.database.PlayerTemplate;
 import com.l2jbr.gameserver.model.database.repository.EnchantSkillTreesRepository;
 import com.l2jbr.gameserver.model.database.repository.FishingSkillTreeRepository;
@@ -45,7 +46,7 @@ public class SkillTreeTable {
     private static Logger _log = LoggerFactory.getLogger(SkillTreeTable.class.getName());
     private static SkillTreeTable _instance;
 
-    private Map<ClassId, Map<Integer, L2SkillLearn>> _skillTrees;
+    private Map<PlayerClass, Map<Integer, L2SkillLearn>> _skillTrees;
     private List<L2SkillLearn> _fishingSkillTrees; // all common skills (teached by Fisherman)
     private List<L2SkillLearn> _expandDwarfCraftSkillTrees; // list of special skill for DWARF (expand DWARF craft) learned by class teacher
     private List<L2PledgeSkillLearn> _pledgeSkillTrees; // pledge skill list
@@ -68,8 +69,8 @@ public class SkillTreeTable {
             return 0;
         }
 
-        // since expertise comes at same level for all classes we use paladin for now
-        Map<Integer, L2SkillLearn> learnMap = getSkillTrees().get(ClassId.paladin);
+        // since expertise comes at same level for all classes we use PALADIN for now
+        Map<Integer, L2SkillLearn> learnMap = getSkillTrees().get(PlayerClass.PALADIN);
 
         int skillHashCode = SkillTable.getSkillHashCode(239, grade);
         if (learnMap.containsKey(skillHashCode)) {
@@ -84,12 +85,12 @@ public class SkillTreeTable {
      * Each class receives new skill on certain levels, this methods allow the retrieval of the minimum character level of given class required to learn a given skill
      *
      * @param skillId  The iD of the skill
-     * @param classId  The classId of the character
+     * @param playerClass  The playerClass of the character
      * @param skillLvl The SkillLvl
      * @return The min level
      */
-    public int getMinSkillLevel(int skillId, ClassId classId, int skillLvl) {
-        Map<Integer, L2SkillLearn> map = getSkillTrees().get(classId);
+    public int getMinSkillLevel(int skillId, PlayerClass playerClass, int skillLvl) {
+        Map<Integer, L2SkillLearn> map = getSkillTrees().get(playerClass);
 
         int skillHashCode = SkillTable.getSkillHashCode(skillId, skillLvl);
 
@@ -116,19 +117,16 @@ public class SkillTreeTable {
     private SkillTreeTable() {
         int count = 0;
         SkillTreeRepository skillTreeRepository = DatabaseAccess.getRepository(SkillTreeRepository.class);
-        int parentClassId;
-        int classId;
         for (PlayerTemplate charTemplate : CharTemplateTable.getInstance().all()) {
             Map<Integer, L2SkillLearn>  map = new LinkedHashMap<>();
-            parentClassId = charTemplate.getParentId();
-            classId = charTemplate.getId();
+            PlayerClass playerClass = charTemplate.getPlayerClass();
 
-            if (parentClassId != -1) {
-                Map<Integer, L2SkillLearn> parentMap = getSkillTrees().get(ClassId.values()[parentClassId]);
+            if (Util.isNotNull(playerClass.getParent())) {
+                Map<Integer, L2SkillLearn> parentMap = getSkillTrees().get(playerClass.getParent());
                 map.putAll(parentMap);
             }
 
-            skillTreeRepository.findAllByClassOrderBySkill(classId).forEach(skillTrees -> {
+            skillTreeRepository.findAllByClassOrderBySkill(playerClass.getId()).forEach(skillTrees -> {
                 int id = skillTrees.getSkillId();
                 int lvl = skillTrees.getLevel();
                 String name = skillTrees.getName();
@@ -139,10 +137,10 @@ public class SkillTreeTable {
                 map.put(SkillTable.getSkillHashCode(id, lvl), skillLearn);
             });
 
-            getSkillTrees().put(ClassId.values()[classId], map);
+            getSkillTrees().put(playerClass, map);
             count += map.size();
 
-            _log.debug("SkillTreeTable: skill tree for class {} has {} skills.", classId, map.size());
+            _log.debug("SkillTreeTable: skill tree for class {} has {} skills.", playerClass.getId(), map.size());
         }
 
         _log.info("SkillTreeTable: Loaded " + count + " skills.");
@@ -220,7 +218,7 @@ public class SkillTreeTable {
         _log.info("PledgeSkillTreeTable: Loaded " + count5 + " pledge skills");
     }
 
-    private Map<ClassId, Map<Integer, L2SkillLearn>> getSkillTrees() {
+    private Map<PlayerClass, Map<Integer, L2SkillLearn>> getSkillTrees() {
         if (_skillTrees == null) {
             _skillTrees = new LinkedHashMap<>();
         }
@@ -228,13 +226,13 @@ public class SkillTreeTable {
         return _skillTrees;
     }
 
-    public L2SkillLearn[] getAvailableSkills(L2PcInstance cha, ClassId classId) {
+    public L2SkillLearn[] getAvailableSkills(L2PcInstance cha, PlayerClass playerClass) {
         List<L2SkillLearn> result = new LinkedList<>();
-        Collection<L2SkillLearn> skills = getSkillTrees().get(classId).values();
+        Collection<L2SkillLearn> skills = getSkillTrees().get(playerClass).values();
 
         if (skills == null) {
             // the skilltree for this class is undefined, so we give an empty list
-            _log.warn("Skilltree for class " + classId + " is not defined !");
+            _log.warn("Skilltree for class " + playerClass + " is not defined !");
             return new L2SkillLearn[0];
         }
 
@@ -384,20 +382,20 @@ public class SkillTreeTable {
     /**
      * Returns all allowed skills for a given class.
      *
-     * @param classId
+     * @param playerClass
      * @return all allowed skills for a given class.
      */
-    public Collection<L2SkillLearn> getAllowedSkills(ClassId classId) {
-        return getSkillTrees().get(classId).values();
+    public Collection<L2SkillLearn> getAllowedSkills(PlayerClass playerClass) {
+        return getSkillTrees().get(playerClass).values();
     }
 
-    public int getMinLevelForNewSkill(L2PcInstance cha, ClassId classId) {
+    public int getMinLevelForNewSkill(L2PcInstance cha, PlayerClass playerClass) {
         int minLevel = 0;
-        Collection<L2SkillLearn> skills = getSkillTrees().get(classId).values();
+        Collection<L2SkillLearn> skills = getSkillTrees().get(playerClass).values();
 
         if (skills == null) {
             // the skilltree for this class is undefined, so we give an empty list
-            _log.warn("Skilltree for class " + classId + " is not defined !");
+            _log.warn("Skilltree for class " + playerClass + " is not defined !");
             return minLevel;
         }
 
@@ -441,14 +439,14 @@ public class SkillTreeTable {
 
     public int getSkillCost(L2PcInstance player, L2Skill skill) {
         int skillCost = 100000000;
-        ClassId classId = player.getSkillLearningClassId();
+        PlayerClass playerClass = player.getSkillLearningClassId();
         int skillHashCode = SkillTable.getSkillHashCode(skill);
 
-        if (getSkillTrees().get(classId).containsKey(skillHashCode)) {
-            L2SkillLearn skillLearn = getSkillTrees().get(classId).get(skillHashCode);
+        if (getSkillTrees().get(playerClass).containsKey(skillHashCode)) {
+            L2SkillLearn skillLearn = getSkillTrees().get(playerClass).get(skillHashCode);
             if (skillLearn.getMinLevel() <= player.getLevel()) {
                 skillCost = skillLearn.getSpCost();
-                if (!player.getClassId().equalsOrChildOf(classId)) {
+                if (!player.getPlayerClass().equalsOrChildOf(playerClass)) {
                     if (skill.getCrossLearnAdd() < 0) {
                         return skillCost;
                     }
@@ -457,11 +455,11 @@ public class SkillTreeTable {
                     skillCost *= skill.getCrossLearnMul();
                 }
 
-                if ((classId.getRace() != player.getRace()) && !player.isSubClassActive()) {
+                if ((playerClass.getRace() != player.getRace()) && !player.isSubClassActive()) {
                     skillCost *= skill.getCrossLearnRace();
                 }
 
-                if (classId.isMage() != player.getClassId().isMage()) {
+                if (playerClass.isMage() != player.getPlayerClass().isMage()) {
                     skillCost *= skill.getCrossLearnProf();
                 }
             }

@@ -85,7 +85,7 @@ public final class RequestExEnchantSkill extends L2GameClientPacket
 			return;
 		}
 		
-		if (player.getClassId().getId() < 88)
+		if (player.getPlayerClass().getId() < 88)
 		{
 			return;
 		}
@@ -108,7 +108,7 @@ public final class RequestExEnchantSkill extends L2GameClientPacket
 		for (L2EnchantSkillLearn s : skills)
 		{
 			L2Skill sk = SkillTable.getInstance().getInfo(s.getId(), s.getLevel());
-			if ((sk == null) || (sk != skill) || !sk.getCanLearn(player.getClassId()) || !sk.canTeachBy(npcid))
+			if ((sk == null) || (sk != skill) || !sk.getCanLearn(player.getPlayerClass()) || !sk.canTeachBy(npcid))
 			{
 				continue;
 			}
@@ -197,7 +197,7 @@ public final class RequestExEnchantSkill extends L2GameClientPacket
 			sm.addSkillName(_skillId);
 			player.sendPacket(sm);
 		}
-		trainer.showEnchantSkillList(player, player.getClassId());
+		trainer.showEnchantSkillList(player, player.getPlayerClass());
 		
 		// update all the shortcuts to this skill
 		L2ShortCut[] allShortCuts = player.getAllShortCuts();

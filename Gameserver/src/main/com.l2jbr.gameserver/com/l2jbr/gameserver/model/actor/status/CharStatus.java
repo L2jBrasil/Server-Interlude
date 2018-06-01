@@ -193,7 +193,7 @@ public class CharStatus
 			value = getCurrentHp() - value; // Get diff of Hp vs value
 			if (value <= 0)
 			{
-				// is the dieing one a duelist? if so change his duel state to dead
+				// is the dieing one a DUELIST? if so change his duel state to dead
 				if ((getActiveChar() instanceof L2PcInstance) && ((L2PcInstance) getActiveChar()).isInDuel())
 				{
 					getActiveChar().disableAllSkills();

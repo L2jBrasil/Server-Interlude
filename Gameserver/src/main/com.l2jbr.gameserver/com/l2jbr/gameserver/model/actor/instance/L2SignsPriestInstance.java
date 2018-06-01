@@ -129,10 +129,10 @@ public class L2SignsPriestInstance extends L2FolkInstance {
                         return;
                     }
 
-                    if (player.getClassId().level() == 0) {
+                    if (player.getPlayerClass().level() == 0) {
                         player.sendMessage("You must have already completed your first class transfer.");
                         break;
-                    } else if (player.getClassId().level() >= 2) {
+                    } else if (player.getPlayerClass().level() >= 2) {
                         if (Config.ALT_GAME_REQUIRE_CASTLE_DAWN) {
                             if (getPlayerAllyHasCastle(player)) {
                                 if (cabal == SevenSigns.CABAL_DUSK) {

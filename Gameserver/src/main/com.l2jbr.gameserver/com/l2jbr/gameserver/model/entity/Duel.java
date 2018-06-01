@@ -286,7 +286,7 @@ public class Duel {
      * Check if a player engaged in pvp combat (only for 1on1 duels)
      *
      * @param sendMessage
-     * @return returns true if a duelist is engaged in Pvp combat
+     * @return returns true if a DUELIST is engaged in Pvp combat
      */
     public boolean isDuelistInPvp(boolean sendMessage) {
         if (_partyDuel) {
@@ -294,7 +294,7 @@ public class Duel {
             return false;
         } else if ((_playerA.getPvpFlag() != 0) || (_playerB.getPvpFlag() != 0)) {
             if (sendMessage) {
-                String engagedInPvP = "The duel was canceled because a duelist engaged in PvP combat.";
+                String engagedInPvP = "The duel was canceled because a DUELIST engaged in PvP combat.";
                 _playerA.sendMessage(engagedInPvP);
                 _playerB.sendMessage(engagedInPvP);
             }

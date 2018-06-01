@@ -90,7 +90,7 @@ public class UserInfo extends L2GameServerPacket
 		
 		if (_activeChar.getClassIndex() == 0)
 		{
-			writeD(_activeChar.getClassId().getId());
+			writeD(_activeChar.getPlayerClass().getId());
 		}
 		else
 		{
@@ -276,7 +276,7 @@ public class UserInfo extends L2GameServerPacket
 		writeD(0x00);
 		writeH(_activeChar.GetInventoryLimit());
 		
-		writeD(_activeChar.getClassId().getId());
+		writeD(_activeChar.getPlayerClass().getId());
 		writeD(0x00); // special effects? circles around player...
 		writeD(_activeChar.getMaxCp());
 		writeD((int) _activeChar.getCurrentCp());

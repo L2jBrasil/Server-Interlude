@@ -21,8 +21,6 @@ package com.l2jbr.gameserver.model.actor.instance;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.datatables.CharTemplateTable;
-import com.l2jbr.gameserver.model.base.ClassId;
-import com.l2jbr.gameserver.model.base.ClassLevel;
 import com.l2jbr.gameserver.model.base.PlayerClass;
 import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.model.quest.Quest;
@@ -105,21 +103,10 @@ public final class L2ClassMasterInstance extends L2FolkInstance {
                 _log.debug("ClassMaster activated");
             }
 
-            ClassId classId = player.getClassId();
+            PlayerClass playerClass = player.getPlayerClass();
 
-            int jobLevel = 0;
+            int jobLevel = playerClass.level() + 1;
             int level = player.getLevel();
-            ClassLevel lvl = PlayerClass.values()[classId.getId()].getLevel();
-            switch (lvl) {
-                case First:
-                    jobLevel = 1;
-                    break;
-                case Second:
-                    jobLevel = 2;
-                    break;
-                default:
-                    jobLevel = 3;
-            }
 
             if (!Config.ALLOW_CLASS_MASTERS) {
                 jobLevel = 3;
@@ -128,14 +115,14 @@ public final class L2ClassMasterInstance extends L2FolkInstance {
             if (player.isGM()) {
                 showChatWindowChooseClass(player);
             } else if ((((level >= 20) && (jobLevel == 1)) || ((level >= 40) && (jobLevel == 2))) && Config.ALLOW_CLASS_MASTERS) {
-                showChatWindow(player, classId.getId());
-            } else if ((level >= 76) && Config.ALLOW_CLASS_MASTERS && (classId.getId() < 88)) {
+                showChatWindow(player, playerClass.getId());
+            } else if ((level >= 76) && Config.ALLOW_CLASS_MASTERS && (playerClass.getId() < 88)) {
                 for (int i = 0; i < SECONDN_CLASS_IDS.length; i++) {
-                    if (classId.getId() == SECONDN_CLASS_IDS[i]) {
+                    if (playerClass.getId() == SECONDN_CLASS_IDS[i]) {
                         NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
                         StringBuilder sb = new StringBuilder();
                         sb.append("<html><body<table width=200>");
-                        sb.append("<tr><td><center>" + CharTemplateTable.getClassNameById(player.getClassId().getId()) + " Class Master:</center></td></tr>");
+                        sb.append("<tr><td><center>" + playerClass.humanize() + " Class Master:</center></td></tr>");
                         sb.append("<tr><td><br></td></tr>");
                         sb.append("<tr><td><a action=\"bypass -h npc_" + getObjectId() + "_change_class " + (88 + i) + "\">Advance to " + CharTemplateTable.getClassNameById(88 + i) + "</a></td></tr>");
                         sb.append("<tr><td><br></td></tr>");
@@ -199,14 +186,6 @@ public final class L2ClassMasterInstance extends L2FolkInstance {
         } else if (command.startsWith("change_class")) {
             int val = Integer.parseInt(command.substring(13));
 
-            // Exploit prevention
-            ClassId classId = player.getClassId();
-            int level = player.getLevel();
-            int jobLevel = 0;
-            int newJobLevel = 0;
-
-            ClassLevel lvlnow = PlayerClass.values()[classId.getId()].getLevel();
-
             if (player.isGM()) {
                 changeClass(player, val);
 
@@ -219,45 +198,24 @@ public final class L2ClassMasterInstance extends L2FolkInstance {
                 NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
                 StringBuilder sb = new StringBuilder();
                 sb.append("<html><body>");
-                sb.append("You have now become a <font color=\"LEVEL\">" + CharTemplateTable.getClassNameById(player.getClassId().getId()) + "</font>.");
+                sb.append("You have now become a <font color=\"LEVEL\">" + player.getPlayerClass().humanize() + "</font>.");
                 sb.append("</body></html>");
 
                 html.setHtml(sb.toString());
                 player.sendPacket(html);
                 return;
             }
-            switch (lvlnow) {
-                case First:
-                    jobLevel = 1;
-                    break;
-                case Second:
-                    jobLevel = 2;
-                    break;
-                case Third:
-                    jobLevel = 3;
-                    break;
-                default:
-                    jobLevel = 4;
+
+            // Exploit prevention
+            PlayerClass playerClass = player.getPlayerClass();
+            int jobLevel = playerClass.level() + 1;
+
+            if(jobLevel > 3) {
+                return;  // no more job changes
             }
 
-            if (jobLevel == 4) {
-                return; // no more job changes
-            }
-
-            ClassLevel lvlnext = PlayerClass.values()[val].getLevel();
-            switch (lvlnext) {
-                case First:
-                    newJobLevel = 1;
-                    break;
-                case Second:
-                    newJobLevel = 2;
-                    break;
-                case Third:
-                    newJobLevel = 3;
-                    break;
-                default:
-                    newJobLevel = 4;
-            }
+            int level = player.getLevel();
+            int newJobLevel = PlayerClass.values()[val].level() + 1;
 
             // prevents changing between same level jobs
             if (newJobLevel != (jobLevel + 1)) {
@@ -286,7 +244,7 @@ public final class L2ClassMasterInstance extends L2FolkInstance {
             NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
             StringBuilder sb = new StringBuilder();
             sb.append("<html><body>");
-            sb.append("You have now become a <font color=\"LEVEL\">" + CharTemplateTable.getClassNameById(player.getClassId().getId()) + "</font>.");
+            sb.append("You have now become a <font color=\"LEVEL\">" + player.getPlayerClass().humanize() + "</font>.");
             sb.append("</body></html>");
 
             html.setHtml(sb.toString());
@@ -472,7 +430,7 @@ public final class L2ClassMasterInstance extends L2FolkInstance {
 
     private void changeClass(L2PcInstance player, int val) {
         if (Config.DEBUG) {
-            _log.debug("Changing class to ClassId:" + val);
+            _log.debug("Changing class to PlayerClass:" + val);
         }
         player.setClassId(val);
 

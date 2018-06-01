@@ -71,7 +71,7 @@ public class L2ClanMember
 		_player = player;
 		_name = _player.getName();
 		_level = _player.getLevel();
-		_classId = _player.getClassId().getId();
+		_classId = _player.getPlayerClass().getId();
 		_objectId = _player.getObjectId();
 		_powerGrade = _player.getPowerGrade();
 		_pledgeType = _player.getPledgeType();
@@ -87,7 +87,7 @@ public class L2ClanMember
 			// this is here to keep the data when the player logs off
 			_name = _player.getName();
 			_level = _player.getLevel();
-			_classId = _player.getClassId().getId();
+			_classId = _player.getPlayerClass().getId();
 			_objectId = _player.getObjectId();
 			_powerGrade = _player.getPowerGrade();
 			_pledgeType = _player.getPledgeType();
@@ -136,7 +136,7 @@ public class L2ClanMember
 	{
 		if (_player != null)
 		{
-			return _player.getClassId().getId();
+			return _player.getPlayerClass().getId();
 		}
 		return _classId;
 	}
