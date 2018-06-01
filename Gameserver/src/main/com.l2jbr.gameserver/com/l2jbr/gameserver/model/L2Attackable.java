@@ -1023,7 +1023,7 @@ public class L2Attackable extends L2NpcInstance {
         // Set our limits for chance of drop
         if (dropChance < 1) {
             dropChance = 1;
-            // if (drop.getItemId() == 57 && dropChance > L2DropData.MAX_CHANCE) dropChance = L2DropData.MAX_CHANCE; // If item is adena, dont drop multiple time
+            // if (drop.getId() == 57 && dropChance > L2DropData.MAX_CHANCE) dropChance = L2DropData.MAX_CHANCE; // If item is adena, dont drop multiple time
         }
 
         // Get min and max Item quantity that can be dropped in one time
@@ -1212,9 +1212,9 @@ public class L2Attackable extends L2NpcInstance {
         return null;
 
         /*
-         * // Applies Drop rates if (drop.getItemId() == 57) dropChance *= Config.RATE_DROP_ADENA; else if (isSweep) dropChance *= Config.RATE_DROP_SPOIL; else dropChance *= Config.RATE_DROP_ITEMS; // Round drop chance dropChance = Math.round(dropChance); // Set our limits for chance of drop if
-         * (dropChance < 1) dropChance = 1; // if (drop.getItemId() == 57 && dropChance > L2DropData.MAX_CHANCE) dropChance = L2DropData.MAX_CHANCE; // If item is adena, dont drop multiple time // Get min and max Item quantity that can be dropped in one time int minCount = drop.getMinDrop(); int
-         * maxCount = drop.getMaxDrop(); int itemCount = 0; if (itemCount > 0) return new RewardItem(drop.getItemId(), itemCount); else if (itemCount == 0 && Config.DEBUG) _log.debug("Roll produced 0 items to drop..."); return null;
+         * // Applies Drop rates if (drop.getId() == 57) dropChance *= Config.RATE_DROP_ADENA; else if (isSweep) dropChance *= Config.RATE_DROP_SPOIL; else dropChance *= Config.RATE_DROP_ITEMS; // Round drop chance dropChance = Math.round(dropChance); // Set our limits for chance of drop if
+         * (dropChance < 1) dropChance = 1; // if (drop.getId() == 57 && dropChance > L2DropData.MAX_CHANCE) dropChance = L2DropData.MAX_CHANCE; // If item is adena, dont drop multiple time // Get min and max Item quantity that can be dropped in one time int minCount = drop.getMinDrop(); int
+         * maxCount = drop.getMaxDrop(); int itemCount = 0; if (itemCount > 0) return new RewardItem(drop.getId(), itemCount); else if (itemCount == 0 && Config.DEBUG) _log.debug("Roll produced 0 items to drop..."); return null;
          */
     }
 

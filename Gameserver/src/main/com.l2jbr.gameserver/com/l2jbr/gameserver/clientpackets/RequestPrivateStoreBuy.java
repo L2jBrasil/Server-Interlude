@@ -175,7 +175,7 @@ public final class RequestPrivateStoreBuy extends L2GameClientPacket
 		/*
 		 * Lease holders are currently not implemented else if (_seller != null) { // lease shop sell L2MerchantInstance seller = (L2MerchantInstance)_seller; L2ItemInstance ladena = seller.getLeaseAdena(); for (TradeItem ti : buyerlist) { L2ItemInstance li =
 		 * seller.getLeaseItemByObjectId(ti.getObjectId()); if (li == null) { if (ti.getObjectId() == ladena.getObjectId()) { buyer.addAdena(ti.getCount()); ladena.setCount(ladena.getCount()-ti.getCount()); ladena.updateDatabase(); } continue; } int cnt = li.getCount(); if (cnt < ti.getCount())
-		 * ti.setCount(cnt); if (ti.getCount() <= 0) continue; L2ItemInstance inst = ItemTable.getInstance().createItem(li.getItemId()); inst.setCount(ti.getCount()); inst.setEnchantLevel(li.getEnchantLevel()); buyer.getInventory().addItem(inst); li.setCount(li.getCount()-ti.getCount());
+		 * ti.setCount(cnt); if (ti.getCount() <= 0) continue; L2ItemInstance inst = ItemTable.getInstance().createItem(li.getId()); inst.setCount(ti.getCount()); inst.setEnchantLevel(li.getEnchantLevel()); buyer.getInventory().addItem(inst); li.setCount(li.getCount()-ti.getCount());
 		 * li.updateDatabase(); ladena.setCount(ladena.getCount()+ti.getCount()*ti.getOwnersPrice()); ladena.updateDatabase(); } }
 		 */
 	}

@@ -329,7 +329,7 @@ public final class RequestBuyItem extends L2GameClientPacket
 			// Add item to Inventory and adjust update packet
 			player.getInventory().addItem("Buy", itemId, count, player, merchant);
 			/*
-			 * TODO: Disabled until Leaseholders are rewritten ;-) // Update Leaseholder list if (_listId >= 1000000) { L2ItemInstance li = merchant.findLeaseItem(item.getItemId(), 0); if (li == null) continue; if (li.getCount() < item.getCount()) item.setCount(li.getCount());
+			 * TODO: Disabled until Leaseholders are rewritten ;-) // Update Leaseholder list if (_listId >= 1000000) { L2ItemInstance li = merchant.findLeaseItem(item.getId(), 0); if (li == null) continue; if (li.getCount() < item.getCount()) item.setCount(li.getCount());
 			 * li.setCount(li.getCount() - item.getCount()); li.updateDatabase(); price = item.getCount() + li.getPriceToSell(); L2ItemInstance la = merchant.getLeaseAdena(); la.setCount(la.getCount() + price); la.updateDatabase(); player.getInventory().addItem(item); item.updateDatabase(); }
 			 */
 		}

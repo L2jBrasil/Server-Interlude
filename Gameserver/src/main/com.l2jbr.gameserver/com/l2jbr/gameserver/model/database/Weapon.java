@@ -2,22 +2,13 @@ package com.l2jbr.gameserver.model.database;
 
 import com.l2jbr.commons.database.annotation.Column;
 import com.l2jbr.commons.database.annotation.Table;
-import com.l2jbr.commons.database.model.Entity;
 
 @Table("weapon")
-public class Weapon extends Entity<Integer> {
+public class Weapon extends ItemTemplate {
 
-    @Column("item_id")
-    private Integer itemId;
-    private String name;
     private String bodypart;
-    private String crystallizable;
-    private Integer weight;
     private Integer soulshots;
     private Integer spiritshots;
-    private String material;
-    @Column("crystal_type")
-    private String crystalType;
     @Column("p_dam")
     private Integer pDam;
     @Column("rnd_dam")
@@ -39,14 +30,6 @@ public class Weapon extends Entity<Integer> {
     private Integer mpConsume;
     @Column("m_dam")
     private Integer mDam;
-    private Integer duration;
-    private Integer price;
-    @Column("crystal_count")
-    private Integer crystal_count;
-    private String sellable;
-    private String dropable;
-    private String destroyable;
-    private String tradeable;
     @Column("item_skill_id")
     private Integer itemSkillId;
     @Column("item_skill_lvl")
@@ -68,37 +51,12 @@ public class Weapon extends Entity<Integer> {
     @Column("onCrit_skill_chance")
     private Integer onCritSkillChance;
 
-    @Override
-    public Integer getId() {
-        return itemId;
-    }
-
     public String getType() {
         return type;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public String getBodyPart() {
         return bodypart;
-    }
-
-    public String getMaterial() {
-        return material;
-    }
-
-    public String getCrystalType() {
-        return crystalType;
-    }
-
-    public String getCrystallizable() {
-        return crystallizable;
-    }
-
-    public int getWeight() {
-        return weight;
     }
 
     public int getSoulshots() {
@@ -147,34 +105,6 @@ public class Weapon extends Entity<Integer> {
 
     public int getMDam() {
         return mDam;
-    }
-
-    public int getDuration() {
-        return duration;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public int getCrystalCount() {
-        return crystal_count;
-    }
-
-    public String getSellable() {
-        return sellable;
-    }
-
-    public String getDropable() {
-        return dropable;
-    }
-
-    public String getDestroyable() {
-        return destroyable;
-    }
-
-    public String getTradeable() {
-        return tradeable;
     }
 
     public int getItemSkillId() {

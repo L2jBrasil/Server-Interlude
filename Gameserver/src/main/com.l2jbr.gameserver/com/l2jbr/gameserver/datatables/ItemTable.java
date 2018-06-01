@@ -41,6 +41,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.ScheduledFuture;
@@ -142,24 +143,12 @@ public class ItemTable {
 
     private static ItemTable _instance;
 
-    /**
-     * List of etcItem
-     */
     private static final Map<Integer, Item> itemData = new LinkedHashMap<>();
-    /**
-     * List of weapons
-     */
+
     private static final Map<Integer, Item> weaponData = new LinkedHashMap<>();
-    /**
-     * List of armor
-     */
+
     private static final Map<Integer, Item> armorData = new LinkedHashMap<>();
 
-    /**
-     * Returns instance of ItemTable
-     *
-     * @return ItemTable
-     */
     public static ItemTable getInstance() {
         if (_instance == null) {
             _instance = new ItemTable();
@@ -167,22 +156,15 @@ public class ItemTable {
         return _instance;
     }
 
-    /**
-     * Returns a new object Item
-     *
-     * @return
-     */
     public Item newItem() {
         return new Item();
     }
 
-    /**
-     * Constructor.
-     */
     private ItemTable() {
-        _etcItems = new LinkedHashMap<>();
-        _armors = new LinkedHashMap<>();
-        _weapons = new LinkedHashMap<>();
+
+        _etcItems = new HashMap<>();
+        _armors = new HashMap<>();
+        _weapons = new HashMap<>();
 
         EtcItemRepository etcItemRepository = DatabaseAccess.getRepository(EtcItemRepository.class);
         etcItemRepository.findAll().forEach(item -> {
@@ -370,7 +352,7 @@ public class ItemTable {
     private Item readItem(EtcItem etcItem) {
         Item item = new Item();
         item.set = new StatsSet();
-        item.id = etcItem.getItemId();
+        item.id = etcItem.getId();
 
         item.set.set("item_id", item.id);
         item.set.set("crystallizable", Boolean.valueOf(etcItem.getCrystallizable()));
@@ -458,9 +440,9 @@ public class ItemTable {
 
     /*
      * private void fillEtcItemsTable() { for (Item itemInfo : itemData.values()) { L2EtcItem item = SkillsEngine.getInstance().loadEtcItem(itemInfo.id, itemInfo.type, itemInfo.name, itemInfo.set); if (item == null) { item = new L2EtcItem((L2EtcItemType)itemInfo.type, itemInfo.set); }
-     * _etcItems.put(item.getItemId(), item); } } private void fillArmorsTable() { List<L2Armor> armorList = SkillsEngine.getInstance().loadArmors(armorData); /*for (Item itemInfo : armorData.values()) { L2Armor armor = SkillsEngine.getInstance().loadArmor(itemInfo.id, itemInfo.type, itemInfo.name,
-     * itemInfo.set); if (armor == null) armor = new L2Armor((L2ArmorType)itemInfo.type, itemInfo.set); _armors.put(armor.getItemId(), armor); }* } private void FillWeaponsTable() { for (Item itemInfo : weaponData.values()) { L2Weapon weapon = SkillsEngine.getInstance().loadWeapon(itemInfo.id,
-     * itemInfo.type, itemInfo.name, itemInfo.set); if (weapon == null) weapon = new L2Weapon((L2WeaponType)itemInfo.type, itemInfo.set); _weapons.put(weapon.getItemId(), weapon); } }
+     * _etcItems.put(item.getId(), item); } } private void fillArmorsTable() { List<L2Armor> armorList = SkillsEngine.getInstance().loadArmors(armorData); /*for (Item itemInfo : armorData.values()) { L2Armor armor = SkillsEngine.getInstance().loadArmor(itemInfo.id, itemInfo.type, itemInfo.name,
+     * itemInfo.set); if (armor == null) armor = new L2Armor((L2ArmorType)itemInfo.type, itemInfo.set); _armors.put(armor.getId(), armor); }* } private void FillWeaponsTable() { for (Item itemInfo : weaponData.values()) { L2Weapon weapon = SkillsEngine.getInstance().loadWeapon(itemInfo.id,
+     * itemInfo.type, itemInfo.name, itemInfo.set); if (weapon == null) weapon = new L2Weapon((L2WeaponType)itemInfo.type, itemInfo.set); _weapons.put(weapon.getId(), weapon); } }
      */
 
     /**

@@ -194,7 +194,7 @@ public final class RequestPetUseItem extends L2GameClientPacket
 		}
 		else
 		{
-			// _log.debug("item not equipable id:"+ item.getItemId());
+			// _log.debug("item not equipable id:"+ item.getId());
 			IItemHandler handler = ItemHandler.getInstance().getItemHandler(item.getItemId());
 			
 			if (handler == null)
