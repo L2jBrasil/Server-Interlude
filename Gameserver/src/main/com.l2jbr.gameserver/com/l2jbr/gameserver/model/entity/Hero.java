@@ -40,7 +40,7 @@ import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.PledgeShowInfoUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.serverpackets.UserInfo;
-import com.l2jbr.gameserver.templates.Slot;
+import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.templates.StatsSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -177,7 +177,7 @@ public class Hero {
 				{
 					player.setHero(false);
 					
-					items = player.getInventory().unEquipItemInBodySlotAndRecord(Slot.TWO_HAND);
+					items = player.getInventory().unEquipItemInBodySlotAndRecord(L2Item.SLOT_LR_HAND);
 					iu = new InventoryUpdate();
 					for (L2ItemInstance item : items)
 					{
@@ -185,7 +185,7 @@ public class Hero {
 					}
 					player.sendPacket(iu);
 					
-					items = player.getInventory().unEquipItemInBodySlotAndRecord(Slot.RIGHT_HAND);
+					items = player.getInventory().unEquipItemInBodySlotAndRecord(L2Item.SLOT_R_HAND);
 					iu = new InventoryUpdate();
 					for (L2ItemInstance item : items)
 					{
@@ -193,7 +193,7 @@ public class Hero {
 					}
 					player.sendPacket(iu);
 					
-					items = player.getInventory().unEquipItemInBodySlotAndRecord(Slot.HAIR);
+					items = player.getInventory().unEquipItemInBodySlotAndRecord(L2Item.SLOT_HAIR);
 					iu = new InventoryUpdate();
 					for (L2ItemInstance item : items)
 					{
@@ -201,7 +201,7 @@ public class Hero {
 					}
 					player.sendPacket(iu);
 					
-					items = player.getInventory().unEquipItemInBodySlotAndRecord(Slot.FACE);
+					items = player.getInventory().unEquipItemInBodySlotAndRecord(L2Item.SLOT_FACE);
 					iu = new InventoryUpdate();
 					for (L2ItemInstance item : items)
 					{
@@ -209,7 +209,7 @@ public class Hero {
 					}
 					player.sendPacket(iu);
 					
-					items = player.getInventory().unEquipItemInBodySlotAndRecord(Slot.DHAIR);
+					items = player.getInventory().unEquipItemInBodySlotAndRecord(L2Item.SLOT_DHAIR);
 					iu = new InventoryUpdate();
 					for (L2ItemInstance item : items)
 					{

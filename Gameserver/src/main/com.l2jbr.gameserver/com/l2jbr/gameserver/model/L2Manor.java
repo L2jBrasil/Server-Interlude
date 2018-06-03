@@ -19,7 +19,7 @@ package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.datatables.ItemTable;
-import com.l2jbr.gameserver.model.database.ItemTemplate;
+import com.l2jbr.gameserver.templates.L2Item;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -68,10 +68,10 @@ public class L2Manor {
     }
 
     public int getSeedBasicPrice(int seedId) {
-        ItemTemplate seedItem = ItemTable.getInstance().getTemplate(seedId);
+        L2Item seedItem = ItemTable.getInstance().getTemplate(seedId);
 
         if (seedItem != null) {
-            return seedItem.getPrice();
+            return seedItem.getReferencePrice();
         }
         return 0;
     }
@@ -86,10 +86,10 @@ public class L2Manor {
     }
 
     public int getCropBasicPrice(int cropId) {
-        ItemTemplate cropItem = ItemTable.getInstance().getTemplate(cropId);
+        L2Item cropItem = ItemTable.getInstance().getTemplate(cropId);
 
         if (cropItem != null) {
-            return cropItem.getPrice();
+            return cropItem.getReferencePrice();
         }
         return 0;
     }

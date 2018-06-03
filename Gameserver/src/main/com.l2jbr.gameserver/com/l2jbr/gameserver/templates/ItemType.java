@@ -5,58 +5,69 @@ import com.l2jbr.commons.util.Util;
 public enum ItemType {
 
     //Weapon related
-    SHIELD,
-    SWORD,
-    BLUNT,
-    DAGGER,
-    BOW,
-    POLE,
-    ETC,
-    FIST,
-    DUAL,
-    DUAL_FIST,
-    BIG_SWORD,
-    PET_WEAPON,
-    ROD,
-    BIG_BLUNT,
+    SHIELD(1),
+    SWORD(2),
+    BLUNT(3),
+    DAGGER(4),
+    BOW(5),
+    POLE(6),
+    ETC(7),
+    FIST(8),
+    DUAL(9),
+    DUAL_FIST(10),
+    BIG_SWORD(11),
+    PET_WEAPON(12),
+    ROD(13),
+    BIG_BLUNT(14),
 
     //armor related
-    NONE,
-    LIGHT,
-    HEAVY,
-    MAGIC,
-    PET_ARMOR,
+    NONE(17),
+    LIGHT(18),
+    HEAVY(19),
+    MAGIC(20),
+    PET_ARMOR(21),
 
     //etc item related
-    ARROW,
-    MATERIAL,
-    PET_COLLAR,
-    POTION,
-    RECIPE,
-    SCROLL,
-    QUEST,
-    MONEY,
-    OTHER,
-    SPELL_BOOK,
-    SEED,
-    SHOT,
-    HERB,
-    CASTLE_GUARD,
-    LOTTO,
-    RACE_TICKET,
-    DYE,
-    HARVEST,
-    TICKET_OF_LORD,
-    LURE;
+    ARROW(22),
+    MATERIAL(23),
+    PET_COLLAR(24),
+    POTION(25),
+    RECIPE(26),
+    SCROLL(27),
+    QUEST(28),
+    MONEY(29),
+    OTHER(30),
+    SPELL_BOOK(31),
+    SEED(32),
+    SHOT(33),
+    HERB(34),
+    CASTLE_GUARD(35),
+    LOTTO(36),
+    RACE_TICKET(37),
+    DYE(38),
+    HARVEST(39),
+    TICKET_OF_LORD(40),
+    LURE(41);
+
+
+    private final int id;
+
+    ItemType(int id) {
+        this.id = id;
+    }
 
     public int mask()
     {
-        return 1 << (ordinal() +1);
+        return 1 << id;
     }
 
     @Override
     public String toString()
     {
         return Util.capitalize(super.toString().replace('_', ' '));
+    }
+
+    public String getName() {
+        return name().replaceAll("_", "").toLowerCase();
     }
 }

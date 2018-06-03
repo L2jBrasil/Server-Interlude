@@ -31,9 +31,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PetInstance;
 import com.l2jbr.gameserver.model.base.Race;
-import com.l2jbr.gameserver.model.database.Armor;
 import com.l2jbr.gameserver.model.database.PlayerTemplate;
-import com.l2jbr.gameserver.model.database.Weapon;
 import com.l2jbr.gameserver.model.entity.ClanHall;
 import com.l2jbr.gameserver.model.entity.Siege;
 import com.l2jbr.gameserver.network.SystemMessageId;
@@ -42,12 +40,12 @@ import com.l2jbr.gameserver.skills.conditions.ConditionPlayerState;
 import com.l2jbr.gameserver.skills.conditions.ConditionPlayerState.CheckPlayerState;
 import com.l2jbr.gameserver.skills.conditions.ConditionUsingItemType;
 import com.l2jbr.gameserver.skills.funcs.Func;
+import com.l2jbr.gameserver.templates.L2Armor;
+import com.l2jbr.gameserver.templates.L2Weapon;
 import com.l2jbr.gameserver.templates.L2WeaponType;
 import com.l2jbr.gameserver.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static com.l2jbr.gameserver.templates.ItemType.BOW;
 
 
 /**
@@ -1284,7 +1282,7 @@ public final class Formulas
 		// They were originally added in a late C4 rev (2289).
 		if (target instanceof L2PcInstance)
 		{
-			Armor armor = ((L2PcInstance) target).getActiveChestArmorItem();
+			L2Armor armor = ((L2PcInstance) target).getActiveChestArmorItem();
 			if (armor != null)
 			{
 				if (((L2PcInstance) target).isWearingHeavyArmor())
@@ -1356,17 +1354,17 @@ public final class Formulas
 		}
 		
 		// defence modifier depending of the attacker weapon
-		Weapon weapon = attacker.getActiveWeaponItem();
+		L2Weapon weapon = attacker.getActiveWeaponItem();
 		Stats stat = null;
 		if (weapon != null)
 		{
-			switch (weapon.getType())
+			switch (weapon.getItemType())
 			{
 				case BOW:
 					stat = Stats.BOW_WPN_VULN;
 					break;
 				case BLUNT:
-				case BIG_BLUNT:
+				case BIGBLUNT:
 					stat = Stats.BLUNT_WPN_VULN;
 					break;
 				case DAGGER:
@@ -1375,7 +1373,7 @@ public final class Formulas
 				case DUAL:
 					stat = Stats.DUAL_WPN_VULN;
 					break;
-				case DUAL_FIST:
+				case DUALFIST:
 					stat = Stats.DUALFIST_WPN_VULN;
 					break;
 				case ETC:
@@ -1390,7 +1388,7 @@ public final class Formulas
 				case SWORD:
 					stat = Stats.SWORD_WPN_VULN;
 					break;
-				case BIG_SWORD: // TODO: have a proper resistance/vulnerability for Big swords
+				case BIGSWORD: // TODO: have a proper resistance/vulnerability for Big swords
 					stat = Stats.SWORD_WPN_VULN;
 					break;
 			}
@@ -1656,8 +1654,8 @@ public final class Formulas
 		}
 		if (Config.ALT_GAME_CANCEL_BOW && target.isAttackingNow())
 		{
-			Weapon wpn = target.getActiveWeaponItem();
-			if ((wpn != null) && (wpn.getType() == BOW))
+			L2Weapon wpn = target.getActiveWeaponItem();
+			if ((wpn != null) && (wpn.getItemType() == L2WeaponType.BOW))
 			{
 				init = 15;
 			}
@@ -1766,7 +1764,7 @@ public final class Formulas
 	 */
 	public boolean calcShldUse(L2Character attacker, L2Character target)
 	{
-		Weapon at_weapon = attacker.getActiveWeaponItem();
+		L2Weapon at_weapon = attacker.getActiveWeaponItem();
 		double shldRate = target.calcStat(Stats.SHIELD_RATE, 0, attacker, null) * DEXbonus[target.getDEX()];
 		if (shldRate == 0.0)
 		{
@@ -1781,7 +1779,7 @@ public final class Formulas
 			}
 		}
 		// if attacker use bow and target wear shield, shield block rate is multiplied by 1.3 (30%)
-		if ((at_weapon != null) && (at_weapon.getType() == BOW))
+		if ((at_weapon != null) && (at_weapon.getItemType() == L2WeaponType.BOW))
 		{
 			shldRate *= 1.3;
 		}

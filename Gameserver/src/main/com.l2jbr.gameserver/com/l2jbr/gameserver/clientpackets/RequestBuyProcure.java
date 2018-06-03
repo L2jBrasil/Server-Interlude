@@ -27,12 +27,12 @@ import com.l2jbr.gameserver.model.L2Manor;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.actor.instance.L2ManorManagerInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.ItemTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.util.Util;
 
 import java.util.LinkedList;
@@ -106,7 +106,7 @@ public class RequestBuyProcure extends L2GameClientPacket {
                 return;
             }
 
-            ItemTemplate template = ItemTable.getInstance().getTemplate(L2Manor.getInstance().getRewardItem(itemId, manor.getCastle().getCrop(itemId, CastleManorManager.PERIOD_CURRENT).getReward()));
+            L2Item template = ItemTable.getInstance().getTemplate(L2Manor.getInstance().getRewardItem(itemId, manor.getCastle().getCrop(itemId, CastleManorManager.PERIOD_CURRENT).getReward()));
             weight += count * template.getWeight();
 
             if (!template.isStackable()) {

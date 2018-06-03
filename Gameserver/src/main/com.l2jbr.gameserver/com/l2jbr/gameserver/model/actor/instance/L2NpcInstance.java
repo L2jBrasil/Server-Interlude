@@ -38,9 +38,7 @@ import com.l2jbr.gameserver.model.L2Skill.SkillType;
 import com.l2jbr.gameserver.model.actor.knownlist.NpcKnownList;
 import com.l2jbr.gameserver.model.actor.stat.NpcStat;
 import com.l2jbr.gameserver.model.actor.status.NpcStatus;
-import com.l2jbr.gameserver.model.database.ItemTemplate;
 import com.l2jbr.gameserver.model.database.NpcTemplate;
-import com.l2jbr.gameserver.model.database.Weapon;
 import com.l2jbr.gameserver.model.entity.Castle;
 import com.l2jbr.gameserver.model.entity.L2Event;
 import com.l2jbr.gameserver.model.quest.Quest;
@@ -52,6 +50,8 @@ import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.skills.Stats;
 import com.l2jbr.gameserver.taskmanager.DecayTaskManager;
 import com.l2jbr.gameserver.templates.L2HelperBuff;
+import com.l2jbr.gameserver.templates.L2Item;
+import com.l2jbr.gameserver.templates.L2Weapon;
 
 import java.text.DateFormat;
 import java.util.LinkedList;
@@ -1032,7 +1032,7 @@ public class L2NpcInstance extends L2Character {
      * <BR>
      */
     @Override
-    public Weapon getActiveWeaponItem() {
+    public L2Weapon getActiveWeaponItem() {
         // Get the weapon identifier equiped in the right hand of the L2NpcInstance
         int weaponId = getTemplate().getRhand();
 
@@ -1041,13 +1041,13 @@ public class L2NpcInstance extends L2Character {
         }
 
         // Get the weapon item equiped in the right hand of the L2NpcInstance
-        ItemTemplate item = ItemTable.getInstance().getTemplate(getTemplate().getRhand());
+        L2Item item = ItemTable.getInstance().getTemplate(getTemplate().getRhand());
 
-        if (!(item instanceof Weapon)) {
+        if (!(item instanceof L2Weapon)) {
             return null;
         }
 
-        return (Weapon) item;
+        return (L2Weapon) item;
     }
 
     /**
@@ -1065,7 +1065,7 @@ public class L2NpcInstance extends L2Character {
      * <BR>
      */
     @Override
-    public Weapon getSecondaryWeaponItem() {
+    public L2Weapon getSecondaryWeaponItem() {
         // Get the weapon identifier equiped in the right hand of the L2NpcInstance
         int weaponId = getTemplate().getLhand();
 
@@ -1074,13 +1074,13 @@ public class L2NpcInstance extends L2Character {
         }
 
         // Get the weapon item equiped in the right hand of the L2NpcInstance
-        ItemTemplate item = ItemTable.getInstance().getTemplate(getTemplate().getLhand());
+        L2Item item = ItemTable.getInstance().getTemplate(getTemplate().getLhand());
 
-        if (!(item instanceof Weapon)) {
+        if (!(item instanceof L2Weapon)) {
             return null;
         }
 
-        return (Weapon) item;
+        return (L2Weapon) item;
     }
 
     /**

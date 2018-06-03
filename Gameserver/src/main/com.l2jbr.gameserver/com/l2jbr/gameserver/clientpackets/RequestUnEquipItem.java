@@ -24,7 +24,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.Slot;
+import com.l2jbr.gameserver.templates.L2Item;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -57,8 +57,6 @@ public class RequestUnEquipItem extends L2GameClientPacket
 		{
 			_log.debug("request unequip slot " + _slot);
 		}
-
-        Slot slot = Slot.fromId(_slot);
 		
 		L2PcInstance activeChar = getClient().getActiveChar();
 		
@@ -74,7 +72,7 @@ public class RequestUnEquipItem extends L2GameClientPacket
 			return;
 		}
 		// Prevent of unequiping a cursed weapon
-		if ((slot == Slot.TWO_HAND) && activeChar.isCursedWeaponEquiped())
+		if ((_slot == L2Item.SLOT_LR_HAND) && activeChar.isCursedWeaponEquiped())
 		{
 			// Message ?
 			return;
@@ -97,7 +95,7 @@ public class RequestUnEquipItem extends L2GameClientPacket
 			item.getAugmentation().removeBoni(activeChar);
 		}
 		
-		L2ItemInstance[] unequiped = activeChar.getInventory().unEquipItemInBodySlotAndRecord(slot);
+		L2ItemInstance[] unequiped = activeChar.getInventory().unEquipItemInBodySlotAndRecord(_slot);
 		
 		// show the update in the inventory
 		InventoryUpdate iu = new InventoryUpdate();

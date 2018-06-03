@@ -21,7 +21,7 @@ package com.l2jbr.gameserver.skills.funcs;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.skills.Env;
 import com.l2jbr.gameserver.skills.Stats;
-import com.l2jbr.gameserver.templates.CrystalType;
+import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.templates.L2WeaponType;
 
 
@@ -41,10 +41,10 @@ public class FuncEnchant extends Func
 			return;
 		}
 		L2ItemInstance item = (L2ItemInstance) funcOwner;
-		CrystalType cristall = item.getItem().getCrystalType();
+		int cristall = item.getItem().getCrystalType();
 		Enum<?> itemType = item.getItemType();
 		
-		if (cristall == CrystalType.NONE)
+		if (cristall == L2Item.CRYSTAL_NONE)
 		{
 			return;
 		}
@@ -67,19 +67,19 @@ public class FuncEnchant extends Func
 		{
 			switch (item.getItem().getCrystalType())
 			{
-				case S:
+				case L2Item.CRYSTAL_S:
 					env.value += (4 * enchant) + (8 * overenchant);
 					break;
-				case A:
+				case L2Item.CRYSTAL_A:
 					env.value += (3 * enchant) + (6 * overenchant);
 					break;
-				case B:
+				case L2Item.CRYSTAL_B:
 					env.value += (3 * enchant) + (6 * overenchant);
 					break;
-				case C:
+				case L2Item.CRYSTAL_C:
 					env.value += (3 * enchant) + (6 * overenchant);
 					break;
-				case D:
+				case L2Item.CRYSTAL_D:
 					env.value += (2 * enchant) + (4 * overenchant);
 					break;
 			}
@@ -88,12 +88,12 @@ public class FuncEnchant extends Func
 		
 		switch (item.getItem().getCrystalType())
 		{
-			case A:
+			case L2Item.CRYSTAL_A:
 				if (itemType == L2WeaponType.BOW)
 				{
 					env.value += (8 * enchant) + (16 * overenchant);
 				}
-				else if ((itemType == L2WeaponType.DUALFIST) || (itemType == L2WeaponType.DUAL) || ((itemType == L2WeaponType.SWORD) && (item.getItem().getBodyPart().getId() == 16384)))
+				else if ((itemType == L2WeaponType.DUALFIST) || (itemType == L2WeaponType.DUAL) || ((itemType == L2WeaponType.SWORD) && (item.getItem().getBodyPart() == 16384)))
 				{
 					env.value += (5 * enchant) + (10 * overenchant);
 				}
@@ -102,12 +102,12 @@ public class FuncEnchant extends Func
 					env.value += (4 * enchant) + (8 * overenchant);
 				}
 				break;
-			case B:
+			case L2Item.CRYSTAL_B:
 				if (itemType == L2WeaponType.BOW)
 				{
 					env.value += (6 * enchant) + (12 * overenchant);
 				}
-				else if ((itemType == L2WeaponType.DUALFIST) || (itemType == L2WeaponType.DUAL) || ((itemType == L2WeaponType.SWORD) && (item.getItem().getBodyPart().getId() == 16384)))
+				else if ((itemType == L2WeaponType.DUALFIST) || (itemType == L2WeaponType.DUAL) || ((itemType == L2WeaponType.SWORD) && (item.getItem().getBodyPart() == 16384)))
 				{
 					env.value += (4 * enchant) + (8 * overenchant);
 				}
@@ -116,12 +116,12 @@ public class FuncEnchant extends Func
 					env.value += (3 * enchant) + (6 * overenchant);
 				}
 				break;
-			case C:
+			case L2Item.CRYSTAL_C:
 				if (itemType == L2WeaponType.BOW)
 				{
 					env.value += (6 * enchant) + (12 * overenchant);
 				}
-				else if ((itemType == L2WeaponType.DUALFIST) || (itemType == L2WeaponType.DUAL) || ((itemType == L2WeaponType.SWORD) && (item.getItem().getBodyPart().getId() == 16384)))
+				else if ((itemType == L2WeaponType.DUALFIST) || (itemType == L2WeaponType.DUAL) || ((itemType == L2WeaponType.SWORD) && (item.getItem().getBodyPart() == 16384)))
 				{
 					env.value += (4 * enchant) + (8 * overenchant);
 				}
@@ -131,7 +131,7 @@ public class FuncEnchant extends Func
 				}
 				
 				break;
-			case D:
+			case L2Item.CRYSTAL_D:
 				if (itemType == L2WeaponType.BOW)
 				{
 					env.value += (4 * enchant) + (8 * overenchant);
@@ -141,12 +141,12 @@ public class FuncEnchant extends Func
 					env.value += (2 * enchant) + (4 * overenchant);
 				}
 				break;
-			case S:
+			case L2Item.CRYSTAL_S:
 				if (itemType == L2WeaponType.BOW)
 				{
 					env.value += (10 * enchant) + (20 * overenchant);
 				}
-				else if ((itemType == L2WeaponType.DUALFIST) || (itemType == L2WeaponType.DUAL) || ((itemType == L2WeaponType.SWORD) && (item.getItem().getBodyPart().getId() == 16384)))
+				else if ((itemType == L2WeaponType.DUALFIST) || (itemType == L2WeaponType.DUAL) || ((itemType == L2WeaponType.SWORD) && (item.getItem().getBodyPart() == 16384)))
 				{
 					env.value += (4 * enchant) + (12 * overenchant);
 				}

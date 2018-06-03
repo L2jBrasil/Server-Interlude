@@ -21,7 +21,7 @@ package com.l2jbr.gameserver.serverpackets;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2TradeList;
-import com.l2jbr.gameserver.templates.ItemTypeGroup;
+import com.l2jbr.gameserver.templates.L2Item;
 
 import java.util.List;
 
@@ -64,7 +64,7 @@ public class WearList extends L2GameServerPacket
 		int newlength = 0;
 		for (L2ItemInstance item : _list)
 		{
-			if ((item.getItem().getCrystalType().ordinal() <= _expertise) && item.isEquipable())
+			if ((item.getItem().getCrystalType() <= _expertise) && item.isEquipable())
 			{
 				newlength++;
 			}
@@ -73,14 +73,14 @@ public class WearList extends L2GameServerPacket
 		
 		for (L2ItemInstance item : _list)
 		{
-			if ((item.getItem().getCrystalType().ordinal() <= _expertise) && item.isEquipable())
+			if ((item.getItem().getCrystalType() <= _expertise) && item.isEquipable())
 			{
 				writeD(item.getItemId());
-				writeH(item.getItem().getType2().getId()); // item type2
+				writeH(item.getItem().getType2()); // item type2
 				
-				if (item.getItem().getType1() != ItemTypeGroup.TYPE1_ITEM_QUEST)
+				if (item.getItem().getType1() != L2Item.TYPE1_ITEM_QUESTITEM_ADENA)
 				{
-					writeH(item.getItem().getBodyPart().getId()); // rev 415 slot 0006-lr.ear 0008-neck 0030-lr.finger 0040-head 0080-?? 0100-l.hand 0200-gloves 0400-chest 0800-pants 1000-feet 2000-?? 4000-r.hand 8000-r.hand
+					writeH(item.getItem().getBodyPart()); // rev 415 slot 0006-lr.ear 0008-neck 0030-lr.finger 0040-head 0080-?? 0100-l.hand 0200-gloves 0400-chest 0800-pants 1000-feet 2000-?? 4000-r.hand 8000-r.hand
 				}
 				else
 				{

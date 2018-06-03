@@ -23,15 +23,13 @@ import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PlayableInstance;
-import com.l2jbr.gameserver.model.database.Weapon;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.CrystalType;
+import com.l2jbr.gameserver.templates.L2Item;
+import com.l2jbr.gameserver.templates.L2Weapon;
+import com.l2jbr.gameserver.templates.L2WeaponType;
 import com.l2jbr.gameserver.util.Broadcast;
-
-import static com.l2jbr.gameserver.templates.CrystalType.*;
-import static com.l2jbr.gameserver.templates.ItemType.ROD;
 
 
 /**
@@ -73,9 +71,9 @@ public class FishShots implements IItemHandler
 		
 		L2PcInstance activeChar = (L2PcInstance) playable;
 		L2ItemInstance weaponInst = activeChar.getActiveWeaponInstance();
-		Weapon weaponItem = activeChar.getActiveWeaponItem();
+		L2Weapon weaponItem = activeChar.getActiveWeaponItem();
 		
-		if ((weaponInst == null) || (weaponItem.getType() != ROD))
+		if ((weaponInst == null) || (weaponItem.getItemType() != L2WeaponType.ROD))
 		{
 			return;
 		}
@@ -87,10 +85,10 @@ public class FishShots implements IItemHandler
 		}
 		
 		int FishshotId = item.getItemId();
-		CrystalType grade = weaponItem.getCrystalType();
+		int grade = weaponItem.getCrystalType();
 		int count = item.getCount();
 		
-		if (((grade == CrystalType.NONE) && (FishshotId != 6535)) || ((grade == D) && (FishshotId != 6536)) || ((grade == C) && (FishshotId != 6537)) || ((grade == B) && (FishshotId != 6538)) || ((grade == A) && (FishshotId != 6539)) || ((grade == S) && (FishshotId != 6540)))
+		if (((grade == L2Item.CRYSTAL_NONE) && (FishshotId != 6535)) || ((grade == L2Item.CRYSTAL_D) && (FishshotId != 6536)) || ((grade == L2Item.CRYSTAL_C) && (FishshotId != 6537)) || ((grade == L2Item.CRYSTAL_B) && (FishshotId != 6538)) || ((grade == L2Item.CRYSTAL_A) && (FishshotId != 6539)) || ((grade == L2Item.CRYSTAL_S) && (FishshotId != 6540)))
 		{
 			// 1479 - This fishing shot is not fit for the fishing pole crystal.
 			activeChar.sendPacket(new SystemMessage(SystemMessageId.WRONG_FISHINGSHOT_GRADE));
@@ -109,7 +107,7 @@ public class FishShots implements IItemHandler
 		
 		// activeChar.sendPacket(new SystemMessage(SystemMessage.ENABLED_SPIRITSHOT));
 		
-		MagicSkillUser MSU = new MagicSkillUser(activeChar, SKILL_IDS[grade.ordinal()], 1, 0, 0);
+		MagicSkillUser MSU = new MagicSkillUser(activeChar, SKILL_IDS[grade], 1, 0, 0);
 		Broadcast.toSelfAndKnownPlayers(activeChar, MSU);
 		activeChar.setTarget(oldTarget);
 	}

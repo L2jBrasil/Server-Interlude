@@ -71,10 +71,6 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
-import static com.l2jbr.gameserver.templates.ItemType.*;
-import static com.l2jbr.gameserver.templates.ItemTypeGroup.TYPE2_QUEST;
-import static com.l2jbr.gameserver.templates.ItemTypeGroup.TYPE2_WEAPON;
-
 
 /**
  * This class represents all player characters in the world.<br>
@@ -765,7 +761,7 @@ public final class L2PcInstance extends L2PlayableInstance {
     /**
      * The fists L2Weapon of the L2PcInstance (used when no weapon is equiped).
      */
-    private Weapon _fistsWeaponItem;
+    private L2Weapon _fistsWeaponItem;
 
     /**
      * The _chars.
@@ -2381,7 +2377,7 @@ public final class L2PcInstance extends L2PlayableInstance {
 
         for (L2ItemInstance item : getInventory().getItems()) {
             if ((item != null) && item.isEquipped()) {
-                int crystaltype = item.getItem().getCrystalType().ordinal();
+                int crystaltype = item.getItem().getCrystalType();
 
                 if (crystaltype > newPenalty) {
                     newPenalty = crystaltype;
@@ -2450,7 +2446,7 @@ public final class L2PcInstance extends L2PlayableInstance {
             return;
         }
 
-        if ((unequipped.getItem().getType2() == TYPE2_WEAPON) && (equipped == null ? true : equipped.getItem().getCrystalType() != unequipped.getItem().getCrystalType())) {
+        if ((unequipped.getItem().getType2() == L2Item.TYPE2_WEAPON) && (equipped == null ? true : equipped.getItem().getCrystalType() != unequipped.getItem().getCrystalType())) {
             for (L2ItemInstance ss : getInventory().getItems()) {
                 int _itemId = ss.getItemId();
 
@@ -2560,7 +2556,7 @@ public final class L2PcInstance extends L2PlayableInstance {
      *
      * @param weaponItem The fists L2Weapon to set to the L2PcInstance
      */
-    public void setFistsWeaponItem(Weapon weaponItem) {
+    public void setFistsWeaponItem(L2Weapon weaponItem) {
         _fistsWeaponItem = weaponItem;
     }
 
@@ -2569,7 +2565,7 @@ public final class L2PcInstance extends L2PlayableInstance {
      *
      * @return the fists weapon item
      */
-    public Weapon getFistsWeaponItem() {
+    public L2Weapon getFistsWeaponItem() {
         return _fistsWeaponItem;
     }
 
@@ -2579,44 +2575,44 @@ public final class L2PcInstance extends L2PlayableInstance {
      * @param classId the class id
      * @return the l2 weapon
      */
-    public Weapon findFistsWeaponItem(int classId) {
-        Weapon weaponItem = null;
+    public L2Weapon findFistsWeaponItem(int classId) {
+        L2Weapon weaponItem = null;
         if ((classId >= 0x00) && (classId <= 0x09)) {
             // HUMAN FIGHTER fists
-            ItemTemplate temp = ItemTable.getInstance().getTemplate(246);
-            weaponItem = (Weapon) temp;
+            L2Item temp = ItemTable.getInstance().getTemplate(246);
+            weaponItem = (L2Weapon) temp;
         } else if ((classId >= 0x0a) && (classId <= 0x11)) {
             // HUMAN MAGE fists
-            ItemTemplate temp = ItemTable.getInstance().getTemplate(251);
-            weaponItem = (Weapon) temp;
+            L2Item temp = ItemTable.getInstance().getTemplate(251);
+            weaponItem = (L2Weapon) temp;
         } else if ((classId >= 0x12) && (classId <= 0x18)) {
             // elven FIGHTER fists
-            ItemTemplate temp = ItemTable.getInstance().getTemplate(244);
-            weaponItem = (Weapon) temp;
+            L2Item temp = ItemTable.getInstance().getTemplate(244);
+            weaponItem = (L2Weapon) temp;
         } else if ((classId >= 0x19) && (classId <= 0x1e)) {
             // elven MAGE fists
-            ItemTemplate temp = ItemTable.getInstance().getTemplate(249);
-            weaponItem = (Weapon) temp;
+            L2Item temp = ItemTable.getInstance().getTemplate(249);
+            weaponItem = (L2Weapon) temp;
         } else if ((classId >= 0x1f) && (classId <= 0x25)) {
             // dark elven FIGHTER fists
-            ItemTemplate temp = ItemTable.getInstance().getTemplate(245);
-            weaponItem = (Weapon) temp;
+            L2Item temp = ItemTable.getInstance().getTemplate(245);
+            weaponItem = (L2Weapon) temp;
         } else if ((classId >= 0x26) && (classId <= 0x2b)) {
             // dark elven MAGE fists
-            ItemTemplate temp = ItemTable.getInstance().getTemplate(250);
-            weaponItem = (Weapon) temp;
+            L2Item temp = ItemTable.getInstance().getTemplate(250);
+            weaponItem = (L2Weapon) temp;
         } else if ((classId >= 0x2c) && (classId <= 0x30)) {
             // ORC FIGHTER fists
-            ItemTemplate temp = ItemTable.getInstance().getTemplate(248);
-            weaponItem = (Weapon) temp;
+            L2Item temp = ItemTable.getInstance().getTemplate(248);
+            weaponItem = (L2Weapon) temp;
         } else if ((classId >= 0x31) && (classId <= 0x34)) {
             // ORC MAGE fists
-            ItemTemplate temp = ItemTable.getInstance().getTemplate(252);
-            weaponItem = (Weapon) temp;
+            L2Item temp = ItemTable.getInstance().getTemplate(252);
+            weaponItem = (L2Weapon) temp;
         } else if ((classId >= 0x35) && (classId <= 0x39)) {
             // dwarven fists
-            ItemTemplate temp = ItemTable.getInstance().getTemplate(247);
-            weaponItem = (Weapon) temp;
+            L2Item temp = ItemTable.getInstance().getTemplate(247);
+            weaponItem = (L2Weapon) temp;
         }
 
         return weaponItem;
@@ -3322,7 +3318,7 @@ public final class L2PcInstance extends L2PlayableInstance {
     public void addItem(String process, int itemId, int count, L2Object reference, boolean sendMessage) {
         if (count > 0) {
             // Sends message to client if requested
-            if (sendMessage && ((!isCastingNow() && (ItemTable.getInstance().createDummyItem(itemId).getItemType() == HERB)) || (ItemTable.getInstance().createDummyItem(itemId).getItemType() != HERB))) {
+            if (sendMessage && ((!isCastingNow() && (ItemTable.getInstance().createDummyItem(itemId).getItemType() == L2EtcItemType.HERB)) || (ItemTable.getInstance().createDummyItem(itemId).getItemType() != L2EtcItemType.HERB))) {
                 if (count > 1) {
                     if (process.equalsIgnoreCase("sweep") || process.equalsIgnoreCase("Quest")) {
                         SystemMessage sm = new SystemMessage(SystemMessageId.EARNED_S2_S1_S);
@@ -3348,7 +3344,7 @@ public final class L2PcInstance extends L2PlayableInstance {
                 }
             }
             // Auto use herbs - autoloot
-            if (ItemTable.getInstance().createDummyItem(itemId).getItemType() == HERB) // If item is herb dont add it to iv :]
+            if (ItemTable.getInstance().createDummyItem(itemId).getItemType() == L2EtcItemType.HERB) // If item is herb dont add it to iv :]
             {
                 if (!isCastingNow()) {
                     L2ItemInstance herb = new L2ItemInstance(_charId, itemId);
@@ -4391,7 +4387,7 @@ public final class L2PcInstance extends L2PlayableInstance {
         }
 
         // Auto use herbs - pick up
-        if (target.getItemType() == HERB) {
+        if (target.getItemType() == L2EtcItemType.HERB) {
             IItemHandler handler = ItemHandler.getInstance().getItemHandler(target.getItemId());
             if (handler == null) {
                 _log.debug("No item handler registered for item ID " + target.getItemId() + ".");
@@ -4405,7 +4401,7 @@ public final class L2PcInstance extends L2PlayableInstance {
             addItem("Pickup", target, null, true);
         } else {
             // if item is instance of L2ArmorType or L2WeaponType broadcast an "Attention" system message
-            if ((target.getItemType().ordinal() <= 18) && target.getItemType().ordinal() > 0) {
+            if ((target.getItemType() instanceof L2ArmorType) || (target.getItemType() instanceof L2WeaponType)) {
                 if (target.getEnchantLevel() > 0) {
                     SystemMessage msg = new SystemMessage(SystemMessageId.ATTENTION_S1_PICKED_UP_S2_S3);
                     msg.addString(getName());
@@ -4507,14 +4503,14 @@ public final class L2PcInstance extends L2PlayableInstance {
      * @return the active weapon item
      */
     @Override
-    public Weapon getActiveWeaponItem() {
+    public L2Weapon getActiveWeaponItem() {
         L2ItemInstance weapon = getActiveWeaponInstance();
 
         if (weapon == null) {
             return getFistsWeaponItem();
         }
 
-        return (Weapon) weapon.getItem();
+        return (L2Weapon) weapon.getItem();
     }
 
     /**
@@ -4531,14 +4527,14 @@ public final class L2PcInstance extends L2PlayableInstance {
      *
      * @return the active chest armor item
      */
-    public Armor getActiveChestArmorItem() {
+    public L2Armor getActiveChestArmorItem() {
         L2ItemInstance armor = getChestArmorInstance();
 
         if (armor == null) {
             return null;
         }
 
-        return (Armor) armor.getItem();
+        return (L2Armor) armor.getItem();
     }
 
     /**
@@ -4549,7 +4545,7 @@ public final class L2PcInstance extends L2PlayableInstance {
     public boolean isWearingHeavyArmor() {
         L2ItemInstance armor = getChestArmorInstance();
 
-        if (armor.getItemType() == HEAVY) {
+        if ((L2ArmorType) armor.getItemType() == L2ArmorType.HEAVY) {
             return true;
         }
 
@@ -4564,7 +4560,7 @@ public final class L2PcInstance extends L2PlayableInstance {
     public boolean isWearingLightArmor() {
         L2ItemInstance armor = getChestArmorInstance();
 
-        if (armor.getItemType() == LIGHT) {
+        if ((L2ArmorType) armor.getItemType() == L2ArmorType.LIGHT) {
             return true;
         }
 
@@ -4579,7 +4575,7 @@ public final class L2PcInstance extends L2PlayableInstance {
     public boolean isWearingMagicArmor() {
         L2ItemInstance armor = getChestArmorInstance();
 
-        if (armor.getItemType() == MAGIC) {
+        if ((L2ArmorType) armor.getItemType() == L2ArmorType.MAGIC) {
             return true;
         }
 
@@ -4763,17 +4759,17 @@ public final class L2PcInstance extends L2PlayableInstance {
      * @return the secondary weapon item
      */
     @Override
-    public Weapon getSecondaryWeaponItem() {
+    public L2Weapon getSecondaryWeaponItem() {
         L2ItemInstance weapon = getSecondaryWeaponInstance();
 
         if (weapon == null) {
             return getFistsWeaponItem();
         }
 
-        ItemTemplate item = weapon.getItem();
+        L2Item item = weapon.getItem();
 
-        if (item instanceof Weapon) {
-            return (Weapon) item;
+        if (item instanceof L2Weapon) {
+            return (L2Weapon) item;
         }
 
         return null;
@@ -4931,7 +4927,7 @@ public final class L2PcInstance extends L2PlayableInstance {
                     if (itemDrop.isAugmented() || // Dont drop augmented items
                             itemDrop.isShadowItem() || // Dont drop Shadow Items
                             (itemDrop.getItemId() == 57) || // Adena
-                            (itemDrop.getItem().getType2() == TYPE2_QUEST) || // Quest Items
+                            (itemDrop.getItem().getType2() == L2Item.TYPE2_QUEST) || // Quest Items
                             nonDroppableList.contains(itemDrop.getItemId()) || // Item listed in the non droppable item list
                             nonDroppableListPet.contains(itemDrop.getItemId()) || // Item listed in the non droppable pet item list
                             ((getPet() != null) && (getPet().getControlItemId() == itemDrop.getItemId() // Control Item of active pet
@@ -4941,7 +4937,7 @@ public final class L2PcInstance extends L2PlayableInstance {
 
                     if (itemDrop.isEquipped()) {
                         // Set proper chance according to Item type of equipped Item
-                        itemDropPercent = itemDrop.getItem().getType2() == TYPE2_WEAPON ? dropEquipWeapon : dropEquip;
+                        itemDropPercent = itemDrop.getItem().getType2() == L2Item.TYPE2_WEAPON ? dropEquipWeapon : dropEquip;
                         getInventory().unEquipItemInSlotAndRecord(itemDrop.getEquipSlot());
                     } else {
                         itemDropPercent = dropItem; // Item in inventory
@@ -5891,18 +5887,18 @@ public final class L2PcInstance extends L2PlayableInstance {
      */
     @Override
     public boolean isUsingDualWeapon() {
-        Weapon weaponItem = getActiveWeaponItem();
+        L2Weapon weaponItem = getActiveWeaponItem();
         if (weaponItem == null) {
             return false;
         }
 
-        if (weaponItem.getType() == DUAL) {
+        if (weaponItem.getItemType() == L2WeaponType.DUAL) {
             return true;
-        } else if (weaponItem.getType() == DUAL_FIST) {
+        } else if (weaponItem.getItemType() == L2WeaponType.DUALFIST) {
             return true;
-        } else if (weaponItem.getId() == 248) {
+        } else if (weaponItem.getItemId() == 248) {
             return true;
-        } else if (weaponItem.getId() == 252) {
+        } else if (weaponItem.getItemId() == 252) {
             return true;
         } else {
             return false;

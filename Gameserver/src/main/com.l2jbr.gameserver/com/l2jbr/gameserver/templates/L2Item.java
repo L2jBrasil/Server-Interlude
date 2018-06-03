@@ -120,7 +120,7 @@ public abstract class L2Item {
     private final int _weight;
     private final boolean _crystallizable;
     private final boolean _stackable;
-    private final int _materialType;
+    private final int _materialType = 0;
     private final int _crystalType; // default to none-grade
     private final int _duration;
     private final int _bodyPart;
@@ -158,7 +158,6 @@ public abstract class L2Item {
         _weight = set.getInteger("weight");
         _crystallizable = set.getBool("crystallizable");
         _stackable = set.getBool("stackable", false);
-        _materialType = set.getInteger("material");
         _crystalType = set.getInteger("crystal_type", CRYSTAL_NONE); // default to none-grade
         _duration = set.getInteger("duration");
         _bodyPart = set.getInteger("bodypart");

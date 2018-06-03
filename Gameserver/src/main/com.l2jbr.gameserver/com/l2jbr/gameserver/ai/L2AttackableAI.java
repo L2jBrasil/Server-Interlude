@@ -27,12 +27,12 @@ import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.instancemanager.DimensionalRiftManager;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.*;
-import com.l2jbr.gameserver.model.database.Weapon;
+import com.l2jbr.gameserver.templates.L2Weapon;
+import com.l2jbr.gameserver.templates.L2WeaponType;
 
 import java.util.concurrent.Future;
 
 import static com.l2jbr.gameserver.ai.Intention.*;
-import static com.l2jbr.gameserver.templates.ItemType.BOW;
 
 /**
  * This class manages AI of L2Attackable.
@@ -600,8 +600,8 @@ public class L2AttackableAI<T extends L2Attackable.AIAccessor> extends MovableAI
 				return;
 			}
 			
-			Weapon weapon = actor.getActiveWeaponItem();
-			if ((weapon != null) && (weapon.getType() == BOW))
+			L2Weapon weapon = actor.getActiveWeaponItem();
+			if ((weapon != null) && (weapon.getItemType() == L2WeaponType.BOW))
 			{
 				// Micht: kepping this one otherwise we should do 2 sqrt
 				double distance2 = actor.getPlanDistanceSq(getAttackTarget().getX(), getAttackTarget().getY());

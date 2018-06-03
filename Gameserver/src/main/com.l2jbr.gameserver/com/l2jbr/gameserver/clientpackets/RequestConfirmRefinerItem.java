@@ -23,7 +23,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ExConfirmVariationRefiner;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.CrystalType;
+import com.l2jbr.gameserver.templates.L2Item;
 
 
 /**
@@ -59,8 +59,8 @@ public class RequestConfirmRefinerItem extends L2GameClientPacket
 			return;
 		}
 		
-		CrystalType itemGrade = targetItem.getItem().getCrystalType();
-		int refinerItemId = refinerItem.getItemId();
+		int itemGrade = targetItem.getItem().getItemGrade();
+		int refinerItemId = refinerItem.getItem().getItemId();
 		
 		// is the item a life stone?
 		if ((refinerItemId < 8723) || (refinerItemId > 8762))
@@ -75,13 +75,13 @@ public class RequestConfirmRefinerItem extends L2GameClientPacket
 		SystemMessage sm = new SystemMessage(SystemMessageId.REQUIRES_S1_S2);
 		switch (itemGrade)
 		{
-			case C:
+			case L2Item.CRYSTAL_C:
 				gemstoneCount = 20;
 				gemstoneItemId = GEMSTONE_D;
 				sm.addNumber(gemstoneCount);
 				sm.addString("Gemstone D");
 				break;
-			case B:
+			case L2Item.CRYSTAL_B:
 				if (lifeStoneLevel < 3)
 				{
 					activeChar.sendPacket(new SystemMessage(SystemMessageId.THIS_IS_NOT_A_SUITABLE_ITEM));
@@ -92,7 +92,7 @@ public class RequestConfirmRefinerItem extends L2GameClientPacket
 				sm.addNumber(gemstoneCount);
 				sm.addString("Gemstone D");
 				break;
-			case A:
+			case L2Item.CRYSTAL_A:
 				if (lifeStoneLevel < 6)
 				{
 					activeChar.sendPacket(new SystemMessage(SystemMessageId.THIS_IS_NOT_A_SUITABLE_ITEM));
@@ -103,7 +103,7 @@ public class RequestConfirmRefinerItem extends L2GameClientPacket
 				sm.addNumber(gemstoneCount);
 				sm.addString("Gemstone C");
 				break;
-			case S:
+			case L2Item.CRYSTAL_S:
 				if (lifeStoneLevel != 10)
 				{
 					activeChar.sendPacket(new SystemMessage(SystemMessageId.THIS_IS_NOT_A_SUITABLE_ITEM));

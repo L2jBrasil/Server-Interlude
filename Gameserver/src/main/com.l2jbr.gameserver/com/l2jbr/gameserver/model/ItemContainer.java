@@ -24,8 +24,8 @@ import com.l2jbr.gameserver.GameTimeController;
 import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.model.L2ItemInstance.ItemLocation;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.ItemTemplate;
 import com.l2jbr.gameserver.model.database.repository.ItemRepository;
+import com.l2jbr.gameserver.templates.L2Item;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -231,7 +231,7 @@ public abstract class ItemContainer {
         // If item hasn't be found in inventory, create new one
         else {
             for (int i = 0; i < count; i++) {
-                ItemTemplate template = ItemTable.getInstance().getTemplate(itemId);
+                L2Item template = ItemTable.getInstance().getTemplate(itemId);
                 if (template == null) {
                     _log.warn( (actor != null ? "[" + actor.getName() + "] " : "") + "Invalid ItemId requested: ", itemId);
                     return null;

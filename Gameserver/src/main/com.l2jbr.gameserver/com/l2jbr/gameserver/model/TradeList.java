@@ -21,19 +21,18 @@ package com.l2jbr.gameserver.model;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.ItemTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.ItemList;
 import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import com.l2jbr.gameserver.templates.L2EtcItemType;
+import com.l2jbr.gameserver.templates.L2Item;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.LinkedList;
 import java.util.List;
-
-import static com.l2jbr.gameserver.templates.ItemType.QUEST;
 
 
 /**
@@ -42,7 +41,7 @@ import static com.l2jbr.gameserver.templates.ItemType.QUEST;
 public class TradeList {
     public class TradeItem {
         private int _objectId;
-        private final ItemTemplate _item;
+        private final L2Item _item;
         private int _enchant;
         private int _count;
         private int _price;
@@ -55,7 +54,7 @@ public class TradeList {
             _price = price;
         }
 
-        public TradeItem(ItemTemplate item, int count, int price) {
+        public TradeItem(L2Item item, int count, int price) {
             _objectId = 0;
             _item = item;
             _enchant = 0;
@@ -79,7 +78,7 @@ public class TradeList {
             return _objectId;
         }
 
-        public ItemTemplate getItem() {
+        public L2Item getItem() {
             return _item;
         }
 
@@ -204,7 +203,7 @@ public class TradeList {
     public TradeItem adjustAvailableItem(L2ItemInstance item) {
         if (item.isStackable()) {
             for (TradeItem exclItem : _items) {
-                if (exclItem.getItem().getId() == item.getItemId()) {
+                if (exclItem.getItem().getItemId() == item.getItemId()) {
                     if (item.getCount() <= exclItem.getCount()) {
                         return null;
                     }
@@ -239,7 +238,7 @@ public class TradeList {
      */
     public void adjustItemRequestByItemId(ItemRequest item) {
         for (TradeItem filtItem : _items) {
-            if (filtItem.getItem().getId() == item.getItemId()) {
+            if (filtItem.getItem().getItemId() == item.getItemId()) {
                 if (filtItem.getCount() < item.getCount()) {
                     item.setCount(filtItem.getCount());
                 }
@@ -282,7 +281,7 @@ public class TradeList {
 
         L2ItemInstance item = (L2ItemInstance) o;
 
-        if (!item.isTradeable() || (item.getItemType() == QUEST)) {
+        if (!item.isTradeable() || (item.getItemType() == L2EtcItemType.QUEST)) {
             return null;
         }
 
@@ -321,13 +320,13 @@ public class TradeList {
             return null;
         }
 
-        ItemTemplate item = ItemTable.getInstance().getTemplate(itemId);
+        L2Item item = ItemTable.getInstance().getTemplate(itemId);
         if (item == null) {
             _log.warn(_owner.getName() + ": Attempt to add invalid item to TradeList!");
             return null;
         }
 
-        if (!item.isTradeable() || (item.getType() == QUEST)) {
+        if (!item.isTradeable() || (item.getItemType() == L2EtcItemType.QUEST)) {
             return null;
         }
 
@@ -359,7 +358,7 @@ public class TradeList {
         }
 
         for (TradeItem titem : _items) {
-            if ((titem.getObjectId() == objectId) || (titem.getItem().getId() == itemId)) {
+            if ((titem.getObjectId() == objectId) || (titem.getItem().getItemId() == itemId)) {
                 // If Partner has already confirmed this trade, invalidate the confirmation
                 if (_partner != null) {
                     TradeList partnerList = _partner.getActiveTradeList();
@@ -549,13 +548,13 @@ public class TradeList {
             if (item == null) {
                 continue;
             }
-            ItemTemplate template = ItemTable.getInstance().getTemplate(item.getItem().getId());
+            L2Item template = ItemTable.getInstance().getTemplate(item.getItem().getItemId());
             if (template == null) {
                 continue;
             }
             if (!template.isStackable()) {
                 slots += item.getCount();
-            } else if (partner.getInventory().getItemByItemId(item.getItem().getId()) == null) {
+            } else if (partner.getInventory().getItemByItemId(item.getItem().getItemId()) == null) {
                 slots++;
             }
         }
@@ -575,7 +574,7 @@ public class TradeList {
             if (item == null) {
                 continue;
             }
-            ItemTemplate template = ItemTable.getInstance().getTemplate(item.getItem().getId());
+            L2Item template = ItemTable.getInstance().getTemplate(item.getItem().getItemId());
             if (template == null) {
                 continue;
             }
@@ -660,7 +659,7 @@ public class TradeList {
             if (item == null) {
                 continue;
             }
-            ItemTemplate template = ItemTable.getInstance().getTemplate(item.getItemId());
+            L2Item template = ItemTable.getInstance().getTemplate(item.getItemId());
             if (template == null) {
                 continue;
             }

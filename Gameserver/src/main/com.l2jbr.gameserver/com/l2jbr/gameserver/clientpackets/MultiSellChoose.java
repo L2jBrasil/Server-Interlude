@@ -28,14 +28,14 @@ import com.l2jbr.gameserver.model.L2Multisell.MultiSellListContainer;
 import com.l2jbr.gameserver.model.PcInventory;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.Armor;
-import com.l2jbr.gameserver.model.database.ItemTemplate;
-import com.l2jbr.gameserver.model.database.Weapon;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ItemList;
 import com.l2jbr.gameserver.serverpackets.PledgeShowInfoUpdate;
 import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import com.l2jbr.gameserver.templates.L2Armor;
+import com.l2jbr.gameserver.templates.L2Item;
+import com.l2jbr.gameserver.templates.L2Weapon;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -333,8 +333,8 @@ public class MultiSellChoose extends L2GameClientPacket {
             }
             // if it is an armor/weapon, modify the enchantment level appropriately, if necessary
             else if (maintainEnchantment) {
-                ItemTemplate tempItem = ItemTable.getInstance().createDummyItem(newIngredient.getItemId()).getItem();
-                if ((tempItem instanceof Armor) || (tempItem instanceof Weapon)) {
+                L2Item tempItem = ItemTable.getInstance().createDummyItem(newIngredient.getItemId()).getItem();
+                if ((tempItem instanceof L2Armor) || (tempItem instanceof L2Weapon)) {
                     newIngredient.setEnchantmentLevel(enchantLevel);
                 }
             }
@@ -355,8 +355,8 @@ public class MultiSellChoose extends L2GameClientPacket {
             if (maintainEnchantment) {
                 // if it is an armor/weapon, modify the enchantment level appropriately
                 // (note, if maintain enchantment is "false" this modification will result to a +0)
-                ItemTemplate tempItem = ItemTable.getInstance().createDummyItem(newIngredient.getItemId()).getItem();
-                if ((tempItem instanceof Armor) || (tempItem instanceof Weapon)) {
+                L2Item tempItem = ItemTable.getInstance().createDummyItem(newIngredient.getItemId()).getItem();
+                if ((tempItem instanceof L2Armor) || (tempItem instanceof L2Weapon)) {
                     newIngredient.setEnchantmentLevel(enchantLevel);
                 }
             }

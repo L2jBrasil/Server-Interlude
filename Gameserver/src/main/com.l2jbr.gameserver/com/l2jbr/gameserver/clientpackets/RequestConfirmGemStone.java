@@ -23,7 +23,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ExConfirmVariationGemstone;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.CrystalType;
+import com.l2jbr.gameserver.templates.L2Item;
 
 
 /**
@@ -61,7 +61,7 @@ public final class RequestConfirmGemStone extends L2GameClientPacket
 		}
 		
 		// Make sure the item is a gemstone
-		int gemstoneItemId = gemstoneItem.getItem().getId();
+		int gemstoneItemId = gemstoneItem.getItem().getItemId();
 		if ((gemstoneItemId != 2130) && (gemstoneItemId != 2131))
 		{
 			activeChar.sendPacket(new SystemMessage(SystemMessageId.THIS_IS_NOT_A_SUITABLE_ITEM));
@@ -69,31 +69,31 @@ public final class RequestConfirmGemStone extends L2GameClientPacket
 		}
 		
 		// Check if the gemstoneCount is sufficant
-		CrystalType itemGrade = targetItem.getItem().getCrystalType();
+		int itemGrade = targetItem.getItem().getItemGrade();
 		switch (itemGrade)
 		{
-			case C:
+			case L2Item.CRYSTAL_C:
 				if ((_gemstoneCount != 20) || (gemstoneItemId != 2130))
 				{
 					activeChar.sendPacket(new SystemMessage(SystemMessageId.GEMSTONE_QUANTITY_IS_INCORRECT));
 					return;
 				}
 				break;
-			case B:
+			case L2Item.CRYSTAL_B:
 				if ((_gemstoneCount != 30) || (gemstoneItemId != 2130))
 				{
 					activeChar.sendPacket(new SystemMessage(SystemMessageId.GEMSTONE_QUANTITY_IS_INCORRECT));
 					return;
 				}
 				break;
-			case A:
+			case L2Item.CRYSTAL_A:
 				if ((_gemstoneCount != 20) || (gemstoneItemId != 2131))
 				{
 					activeChar.sendPacket(new SystemMessage(SystemMessageId.GEMSTONE_QUANTITY_IS_INCORRECT));
 					return;
 				}
 				break;
-			case S:
+			case L2Item.CRYSTAL_S:
 				if ((_gemstoneCount != 25) || (gemstoneItemId != 2131))
 				{
 					activeChar.sendPacket(new SystemMessage(SystemMessageId.GEMSTONE_QUANTITY_IS_INCORRECT));

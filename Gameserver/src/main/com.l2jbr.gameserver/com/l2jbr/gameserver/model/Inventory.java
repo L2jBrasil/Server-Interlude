@@ -25,19 +25,11 @@ import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.L2ItemInstance.ItemLocation;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.Armor;
-import com.l2jbr.gameserver.model.database.EtcItem;
-import com.l2jbr.gameserver.model.database.ItemTemplate;
-import com.l2jbr.gameserver.model.database.Weapon;
 import com.l2jbr.gameserver.model.database.repository.ItemRepository;
-import com.l2jbr.gameserver.templates.Slot;
+import com.l2jbr.gameserver.templates.*;
 
 import java.util.LinkedList;
 import java.util.List;
-
-import static com.l2jbr.gameserver.templates.ItemType.ARROW;
-import static com.l2jbr.gameserver.templates.ItemType.BOW;
-import static com.l2jbr.gameserver.templates.Slot.*;
 
 
 /**
@@ -175,7 +167,7 @@ public abstract class Inventory extends ItemContainer {
             if (Config.ASSERT) {
                 assert null == getPaperdollItem(PAPERDOLL_LRHAND);
             }
-            if (item.getItemType() == BOW) {
+            if (item.getItemType() == L2WeaponType.BOW) {
                 L2ItemInstance arrow = getPaperdollItem(PAPERDOLL_LHAND);
                 if (arrow != null) {
                     setPaperdollItem(PAPERDOLL_LHAND, null);
@@ -191,7 +183,7 @@ public abstract class Inventory extends ItemContainer {
             if (Config.ASSERT) {
                 assert item == getPaperdollItem(PAPERDOLL_LRHAND);
             }
-            if (item.getItemType() == BOW) {
+            if (item.getItemType() == L2WeaponType.BOW) {
                 L2ItemInstance arrow = findArrowForBow(item.getItem());
                 if (arrow != null) {
                     setPaperdollItem(PAPERDOLL_LHAND, arrow);
@@ -232,13 +224,13 @@ public abstract class Inventory extends ItemContainer {
             L2Skill passiveSkill = null;
             L2Skill enchant4Skill = null;
 
-            ItemTemplate it = item.getItem();
+            L2Item it = item.getItem();
 
-            if (it instanceof Weapon) {
-                passiveSkill = ((Weapon) it).getSkill();
-                enchant4Skill = ((Weapon) it).getEnchant4Skill();
-            } else if (it instanceof Armor) {
-                passiveSkill = ((Armor) it).getSkill();
+            if (it instanceof L2Weapon) {
+                passiveSkill = ((L2Weapon) it).getSkill();
+                enchant4Skill = ((L2Weapon) it).getEnchant4Skill();
+            } else if (it instanceof L2Armor) {
+                passiveSkill = ((L2Armor) it).getSkill();
             }
 
             if (passiveSkill != null) {
@@ -264,16 +256,16 @@ public abstract class Inventory extends ItemContainer {
             L2Skill passiveSkill = null;
             L2Skill enchant4Skill = null;
 
-            ItemTemplate it = item.getItem();
+            L2Item it = item.getItem();
 
-            if (it instanceof Weapon) {
-                passiveSkill = ((Weapon) it).getSkill();
+            if (it instanceof L2Weapon) {
+                passiveSkill = ((L2Weapon) it).getSkill();
 
                 if (item.getEnchantLevel() >= 4) {
-                    enchant4Skill = ((Weapon) it).getEnchant4Skill();
+                    enchant4Skill = ((L2Weapon) it).getEnchant4Skill();
                 }
-            } else if (it instanceof Armor) {
-                passiveSkill = ((Armor) it).getSkill();
+            } else if (it instanceof L2Armor) {
+                passiveSkill = ((L2Armor) it).getSkill();
             }
 
             if (passiveSkill != null) {
@@ -572,7 +564,6 @@ public abstract class Inventory extends ItemContainer {
      * @return L2ItemInstance
      */
     public L2ItemInstance getPaperdollItemByL2ItemId(int slot) {
-        //TODO change to ENUM
         switch (slot) {
             case 0x01:
                 return _paperdoll[0];
@@ -738,64 +729,64 @@ public abstract class Inventory extends ItemContainer {
         return _wearedMask;
     }
 
-    public Slot getSlotFromItem(L2ItemInstance item) {
-        Slot slot = null;
+    public int getSlotFromItem(L2ItemInstance item) {
+        int slot = -1;
         int location = item.getEquipSlot();
 
         switch (location) {
             case PAPERDOLL_UNDER:
-                slot = UNDERWEAR;
+                slot = L2Item.SLOT_UNDERWEAR;
                 break;
             case PAPERDOLL_LEAR:
-                slot = LEFT_EAR;
+                slot = L2Item.SLOT_L_EAR;
                 break;
             case PAPERDOLL_REAR:
-                slot = RIGHT_EAR;
+                slot = L2Item.SLOT_R_EAR;
                 break;
             case PAPERDOLL_NECK:
-                slot = NECK;
+                slot = L2Item.SLOT_NECK;
                 break;
             case PAPERDOLL_RFINGER:
-                slot = RIGHT_FINGER;
+                slot = L2Item.SLOT_R_FINGER;
                 break;
             case PAPERDOLL_LFINGER:
-                slot = LEFT_FINGER;
+                slot = L2Item.SLOT_L_FINGER;
                 break;
             case PAPERDOLL_HAIR:
-                slot = HAIR;
+                slot = L2Item.SLOT_HAIR;
                 break;
             case PAPERDOLL_FACE:
-                slot = FACE;
+                slot = L2Item.SLOT_FACE;
                 break;
             case PAPERDOLL_DHAIR:
-                slot = DHAIR;
+                slot = L2Item.SLOT_DHAIR;
                 break;
             case PAPERDOLL_HEAD:
-                slot = HEAD;
+                slot = L2Item.SLOT_HEAD;
                 break;
             case PAPERDOLL_RHAND:
-                slot = RIGHT_HAND;
+                slot = L2Item.SLOT_R_HAND;
                 break;
             case PAPERDOLL_LHAND:
-                slot = LEFT_HAND;
+                slot = L2Item.SLOT_L_HAND;
                 break;
             case PAPERDOLL_GLOVES:
-                slot = GLOVES;
+                slot = L2Item.SLOT_GLOVES;
                 break;
             case PAPERDOLL_CHEST:
                 slot = item.getItem().getBodyPart();
                 break;// fall through
             case PAPERDOLL_LEGS:
-                slot = LEGS;
+                slot = L2Item.SLOT_LEGS;
                 break;
             case PAPERDOLL_BACK:
-                slot = BACK;
+                slot = L2Item.SLOT_BACK;
                 break;
             case PAPERDOLL_FEET:
-                slot = FEET;
+                slot = L2Item.SLOT_FEET;
                 break;
             case PAPERDOLL_LRHAND:
-                slot = TWO_HAND;
+                slot = L2Item.SLOT_LR_HAND;
                 break;
         }
 
@@ -808,7 +799,7 @@ public abstract class Inventory extends ItemContainer {
      * @param slot : int designating the slot of the paperdoll
      * @return L2ItemInstance[] : list of changes
      */
-    public synchronized L2ItemInstance[] unEquipItemInBodySlotAndRecord(Slot slot) {
+    public synchronized L2ItemInstance[] unEquipItemInBodySlotAndRecord(int slot) {
         ChangeRecorder recorder = newRecorder();
         try {
             unEquipItemInBodySlot(slot);
@@ -855,68 +846,68 @@ public abstract class Inventory extends ItemContainer {
      *
      * @param slot : int designating the slot
      */
-    private void unEquipItemInBodySlot(Slot slot) {
+    private void unEquipItemInBodySlot(int slot) {
         if (Config.DEBUG) {
             _log.debug("--- unequip body slot:" + slot);
         }
         int pdollSlot = -1;
 
         switch (slot) {
-            case LEFT_EAR:
+            case L2Item.SLOT_L_EAR:
                 pdollSlot = PAPERDOLL_LEAR;
                 break;
-            case RIGHT_EAR:
+            case L2Item.SLOT_R_EAR:
                 pdollSlot = PAPERDOLL_REAR;
                 break;
-            case NECK:
+            case L2Item.SLOT_NECK:
                 pdollSlot = PAPERDOLL_NECK;
                 break;
-            case RIGHT_FINGER:
+            case L2Item.SLOT_R_FINGER:
                 pdollSlot = PAPERDOLL_RFINGER;
                 break;
-            case LEFT_FINGER:
+            case L2Item.SLOT_L_FINGER:
                 pdollSlot = PAPERDOLL_LFINGER;
                 break;
-            case HAIR:
+            case L2Item.SLOT_HAIR:
                 pdollSlot = PAPERDOLL_HAIR;
                 break;
-            case FACE:
+            case L2Item.SLOT_FACE:
                 pdollSlot = PAPERDOLL_FACE;
                 break;
-            case DHAIR:
+            case L2Item.SLOT_DHAIR:
                 setPaperdollItem(PAPERDOLL_HAIR, null);
                 setPaperdollItem(PAPERDOLL_FACE, null);// this should be the same as in DHAIR
                 pdollSlot = PAPERDOLL_DHAIR;
                 break;
-            case HEAD:
+            case L2Item.SLOT_HEAD:
                 pdollSlot = PAPERDOLL_HEAD;
                 break;
-            case RIGHT_HAND:
+            case L2Item.SLOT_R_HAND:
                 pdollSlot = PAPERDOLL_RHAND;
                 break;
-            case LEFT_HAND:
+            case L2Item.SLOT_L_HAND:
                 pdollSlot = PAPERDOLL_LHAND;
                 break;
-            case GLOVES:
+            case L2Item.SLOT_GLOVES:
                 pdollSlot = PAPERDOLL_GLOVES;
                 break;
-            case CHEST: // fall through
-            case FULL_ARMOR:
+            case L2Item.SLOT_CHEST: // fall through
+            case L2Item.SLOT_FULL_ARMOR:
                 pdollSlot = PAPERDOLL_CHEST;
                 break;
-            case LEGS:
+            case L2Item.SLOT_LEGS:
                 pdollSlot = PAPERDOLL_LEGS;
                 break;
-            case BACK:
+            case L2Item.SLOT_BACK:
                 pdollSlot = PAPERDOLL_BACK;
                 break;
-            case FEET:
+            case L2Item.SLOT_FEET:
                 pdollSlot = PAPERDOLL_FEET;
                 break;
-            case UNDERWEAR:
+            case L2Item.SLOT_UNDERWEAR:
                 pdollSlot = PAPERDOLL_UNDER;
                 break;
-            case TWO_HAND:
+            case L2Item.SLOT_LR_HAND:
                 setPaperdollItem(PAPERDOLL_LHAND, null);
                 setPaperdollItem(PAPERDOLL_RHAND, null);// this should be the same as in LRHAND
                 pdollSlot = PAPERDOLL_LRHAND;
@@ -968,10 +959,10 @@ public abstract class Inventory extends ItemContainer {
             }
         }
 
-        Slot targetSlot = item.getItem().getBodyPart();
+        int targetSlot = item.getItem().getBodyPart();
 
         switch (targetSlot) {
-            case TWO_HAND: {
+            case L2Item.SLOT_LR_HAND: {
                 if (setPaperdollItem(PAPERDOLL_LHAND, null) != null) {
                     // exchange 2h for 2h
                     setPaperdollItem(PAPERDOLL_RHAND, null);
@@ -984,8 +975,8 @@ public abstract class Inventory extends ItemContainer {
                 setPaperdollItem(PAPERDOLL_LRHAND, item);
                 break;
             }
-            case LEFT_HAND: {
-                if (!(item.getItem() instanceof EtcItem) || (item.getItem().getType() != ARROW)) {
+            case L2Item.SLOT_L_HAND: {
+                if (!(item.getItem() instanceof L2EtcItem) || (item.getItem().getItemType() != L2EtcItemType.ARROW)) {
                     L2ItemInstance old1 = setPaperdollItem(PAPERDOLL_LRHAND, null);
 
                     if (old1 != null) {
@@ -997,7 +988,7 @@ public abstract class Inventory extends ItemContainer {
                 setPaperdollItem(PAPERDOLL_LHAND, item);
                 break;
             }
-            case RIGHT_HAND: {
+            case L2Item.SLOT_R_HAND: {
                 if (_paperdoll[PAPERDOLL_LRHAND] != null) {
                     setPaperdollItem(PAPERDOLL_LRHAND, null);
                     setPaperdollItem(PAPERDOLL_LHAND, null);
@@ -1009,9 +1000,9 @@ public abstract class Inventory extends ItemContainer {
                 setPaperdollItem(PAPERDOLL_RHAND, item);
                 break;
             }
-            case LEFT_EAR:
-            case RIGHT_EAR:
-            case EAR: {
+            case L2Item.SLOT_L_EAR:
+            case L2Item.SLOT_R_EAR:
+            case L2Item.SLOT_L_EAR | L2Item.SLOT_R_EAR: {
                 if (_paperdoll[PAPERDOLL_LEAR] == null) {
                     setPaperdollItem(PAPERDOLL_LEAR, item);
                 } else if (_paperdoll[PAPERDOLL_REAR] == null) {
@@ -1023,9 +1014,9 @@ public abstract class Inventory extends ItemContainer {
 
                 break;
             }
-            case LEFT_FINGER:
-            case RIGHT_FINGER:
-            case FINGER: {
+            case L2Item.SLOT_L_FINGER:
+            case L2Item.SLOT_R_FINGER:
+            case L2Item.SLOT_L_FINGER | L2Item.SLOT_R_FINGER: {
                 if (_paperdoll[PAPERDOLL_LFINGER] == null) {
                     setPaperdollItem(PAPERDOLL_LFINGER, item);
                 } else if (_paperdoll[PAPERDOLL_RFINGER] == null) {
@@ -1037,21 +1028,21 @@ public abstract class Inventory extends ItemContainer {
 
                 break;
             }
-            case NECK:
+            case L2Item.SLOT_NECK:
                 setPaperdollItem(PAPERDOLL_NECK, item);
                 break;
-            case FULL_ARMOR:
+            case L2Item.SLOT_FULL_ARMOR:
                 setPaperdollItem(PAPERDOLL_CHEST, null);
                 setPaperdollItem(PAPERDOLL_LEGS, null);
                 setPaperdollItem(PAPERDOLL_CHEST, item);
                 break;
-            case CHEST:
+            case L2Item.SLOT_CHEST:
                 setPaperdollItem(PAPERDOLL_CHEST, item);
                 break;
-            case LEGS: {
+            case L2Item.SLOT_LEGS: {
                 // handle full armor
                 L2ItemInstance chest = getPaperdollItem(PAPERDOLL_CHEST);
-                if ((chest != null) && (chest.getItem().getBodyPart() == FULL_ARMOR)) {
+                if ((chest != null) && (chest.getItem().getBodyPart() == L2Item.SLOT_FULL_ARMOR)) {
                     setPaperdollItem(PAPERDOLL_CHEST, null);
                 }
 
@@ -1059,16 +1050,16 @@ public abstract class Inventory extends ItemContainer {
                 setPaperdollItem(PAPERDOLL_LEGS, item);
                 break;
             }
-            case FEET:
+            case L2Item.SLOT_FEET:
                 setPaperdollItem(PAPERDOLL_FEET, item);
                 break;
-            case GLOVES:
+            case L2Item.SLOT_GLOVES:
                 setPaperdollItem(PAPERDOLL_GLOVES, item);
                 break;
-            case HEAD:
+            case L2Item.SLOT_HEAD:
                 setPaperdollItem(PAPERDOLL_HEAD, item);
                 break;
-            case HAIR:
+            case L2Item.SLOT_HAIR:
                 if (setPaperdollItem(PAPERDOLL_DHAIR, null) != null) {
                     setPaperdollItem(PAPERDOLL_DHAIR, null);
                     setPaperdollItem(PAPERDOLL_HAIR, null);
@@ -1078,7 +1069,7 @@ public abstract class Inventory extends ItemContainer {
                 }
                 setPaperdollItem(PAPERDOLL_HAIR, item);
                 break;
-            case FACE:
+            case L2Item.SLOT_FACE:
                 if (setPaperdollItem(PAPERDOLL_DHAIR, null) != null) {
                     setPaperdollItem(PAPERDOLL_DHAIR, null);
                     setPaperdollItem(PAPERDOLL_HAIR, null);
@@ -1088,7 +1079,7 @@ public abstract class Inventory extends ItemContainer {
                 }
                 setPaperdollItem(PAPERDOLL_FACE, item);
                 break;
-            case DHAIR:
+            case L2Item.SLOT_DHAIR:
                 if (setPaperdollItem(PAPERDOLL_HAIR, null) != null) {
                     setPaperdollItem(PAPERDOLL_HAIR, null);
                     setPaperdollItem(PAPERDOLL_FACE, null);
@@ -1097,10 +1088,10 @@ public abstract class Inventory extends ItemContainer {
                 }
                 setPaperdollItem(PAPERDOLL_DHAIR, item);
                 break;
-            case UNDERWEAR:
+            case L2Item.SLOT_UNDERWEAR:
                 setPaperdollItem(PAPERDOLL_UNDER, item);
                 break;
-            case BACK:
+            case L2Item.SLOT_BACK:
                 setPaperdollItem(PAPERDOLL_BACK, item);
                 break;
             default:
@@ -1140,27 +1131,27 @@ public abstract class Inventory extends ItemContainer {
      * @param bow : L2Item designating the bow
      * @return L2ItemInstance pointing out arrows for bow
      */
-    public L2ItemInstance findArrowForBow(ItemTemplate bow) {
+    public L2ItemInstance findArrowForBow(L2Item bow) {
         int arrowsId = 0;
 
         switch (bow.getCrystalType()) {
             default: // broken weapon.csv ??
-            case NONE:
+            case L2Item.CRYSTAL_NONE:
                 arrowsId = 17;
                 break; // Wooden arrow
-            case D:
+            case L2Item.CRYSTAL_D:
                 arrowsId = 1341;
                 break; // Bone arrow
-            case C:
+            case L2Item.CRYSTAL_C:
                 arrowsId = 1342;
                 break; // Fine steel arrow
-            case B:
+            case L2Item.CRYSTAL_B:
                 arrowsId = 1343;
                 break; // Silver arrow
-            case A:
+            case L2Item.CRYSTAL_A:
                 arrowsId = 1344;
                 break; // Mithril arrow
-            case S:
+            case L2Item.CRYSTAL_S:
                 arrowsId = 1345;
                 break; // Shining arrow
         }

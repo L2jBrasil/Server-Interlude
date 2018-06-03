@@ -26,12 +26,8 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ExVariationResult;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.CrystalType;
-import com.l2jbr.gameserver.templates.ItemTypeGroup;
 import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.util.Util;
-
-import static com.l2jbr.gameserver.templates.ItemTypeGroup.TYPE2_WEAPON;
 
 
 /**
@@ -121,8 +117,8 @@ public final class RequestRefine extends L2GameClientPacket
 			return false;
 		}
 		
-		CrystalType itemGrade = targetItem.getItem().getCrystalType();
-		ItemTypeGroup itemType = targetItem.getItem().getType2();
+		int itemGrade = targetItem.getItem().getItemGrade();
+		int itemType = targetItem.getItem().getType2();
 		int lifeStoneId = refinerItem.getItemId();
 		int gemstoneItemId = gemstoneItem.getItemId();
 		
@@ -134,7 +130,7 @@ public final class RequestRefine extends L2GameClientPacket
 		
 		// must be a weapon, must be > d grade
 		// TODO: can do better? : currently: using isdestroyable() as a check for hero / cursed weapons
-		if ((itemGrade.ordinal() < L2Item.CRYSTAL_C) || (itemType !=  TYPE2_WEAPON) || !targetItem.isDestroyable())
+		if ((itemGrade < L2Item.CRYSTAL_C) || (itemType != L2Item.TYPE2_WEAPON) || !targetItem.isDestroyable())
 		{
 			return false;
 		}
@@ -150,28 +146,28 @@ public final class RequestRefine extends L2GameClientPacket
 		int lifeStoneGrade = getLifeStoneGrade(lifeStoneId);
 		switch (itemGrade)
 		{
-			case C:
+			case L2Item.CRYSTAL_C:
 				if ((player.getLevel() < 46) || (gemstoneItemId != 2130))
 				{
 					return false;
 				}
 				modifyGemstoneCount = 20;
 				break;
-			case B:
+			case L2Item.CRYSTAL_B:
 				if ((lifeStoneLevel < 3) || (player.getLevel() < 52) || (gemstoneItemId != 2130))
 				{
 					return false;
 				}
 				modifyGemstoneCount = 30;
 				break;
-			case A:
+			case L2Item.CRYSTAL_A:
 				if ((lifeStoneLevel < 6) || (player.getLevel() < 61) || (gemstoneItemId != 2131))
 				{
 					return false;
 				}
 				modifyGemstoneCount = 20;
 				break;
-			case S:
+			case L2Item.CRYSTAL_S:
 				if ((lifeStoneLevel != 10) || (player.getLevel() < 76) || (gemstoneItemId != 2131))
 				{
 					return false;

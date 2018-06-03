@@ -22,13 +22,12 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.instancemanager.ItemsOnGroundManager;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2World;
+import com.l2jbr.gameserver.templates.L2EtcItemType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.LinkedList;
 import java.util.List;
-
-import static com.l2jbr.gameserver.templates.ItemType.HERB;
 
 
 public class ItemsAutoDestroy {
@@ -73,7 +72,7 @@ public class ItemsAutoDestroy {
             if ((item == null) || (item.getDropTime() == 0) || (item.getLocation() != L2ItemInstance.ItemLocation.VOID)) {
                 _items.remove(item);
             } else {
-                if (item.getItemType() == HERB) {
+                if (item.getItemType() == L2EtcItemType.HERB) {
                     if ((curtime - item.getDropTime()) > Config.HERB_AUTO_DESTROY_TIME) {
                         L2World.getInstance().removeVisibleObject(item, item.getWorldRegion());
                         L2World.getInstance().removeObject(item);

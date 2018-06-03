@@ -23,8 +23,8 @@ import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.handler.IAdminCommandHandler;
 import com.l2jbr.gameserver.model.GMAudit;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.ItemTemplate;
 import com.l2jbr.gameserver.serverpackets.ItemList;
+import com.l2jbr.gameserver.templates.L2Item;
 
 import java.util.StringTokenizer;
 
@@ -108,7 +108,7 @@ public class AdminCreateItem implements IAdminCommandHandler
 	{
 		if (num > 20)
 		{
-			ItemTemplate template = ItemTable.getInstance().getTemplate(id);
+			L2Item template = ItemTable.getInstance().getTemplate(id);
 			if (!template.isStackable())
 			{
 				activeChar.sendMessage("This item does not stack - Creation aborted.");

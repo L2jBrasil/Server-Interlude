@@ -25,11 +25,11 @@ import com.l2jbr.gameserver.model.actor.instance.L2BabyPetInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PetInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PlayableInstance;
-import com.l2jbr.gameserver.model.database.Weapon;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ExAutoSoulShot;
 import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import com.l2jbr.gameserver.templates.L2Weapon;
 import com.l2jbr.gameserver.util.Broadcast;
 
 
@@ -89,7 +89,7 @@ public class BeastSpiritShot implements IItemHandler
 		int shotConsumption = 1;
 		
 		L2ItemInstance weaponInst = null;
-		Weapon weaponItem = null;
+		L2Weapon weaponItem = null;
 		
 		if ((activePet instanceof L2PetInstance) && !(activePet instanceof L2BabyPetInstance))
 		{
@@ -109,7 +109,7 @@ public class BeastSpiritShot implements IItemHandler
 			}
 			
 			int shotCount = item.getCount();
-			shotConsumption = weaponItem.getSpiritshots();
+			shotConsumption = weaponItem.getSpiritShotCount();
 			
 			if (shotConsumption == 0)
 			{

@@ -25,9 +25,9 @@ import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.L2TradeList;
 import com.l2jbr.gameserver.model.actor.instance.*;
-import com.l2jbr.gameserver.model.database.ItemTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
+import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -220,7 +220,7 @@ public final class RequestBuyItem extends L2GameClientPacket
 				return;
 			}
 			
-			ItemTemplate template = ItemTable.getInstance().getTemplate(itemId);
+			L2Item template = ItemTable.getInstance().getTemplate(itemId);
 			
 			if (template == null)
 			{
