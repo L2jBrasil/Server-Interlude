@@ -20,8 +20,7 @@ package com.l2jbr.gameserver.serverpackets;
 
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.templates.L2Item;
-import com.l2jbr.gameserver.templates.L2Weapon;
+import com.l2jbr.gameserver.model.database.Weapon;
 
 
 /**
@@ -54,33 +53,33 @@ public class GMViewWarehouseWithdrawList extends L2GameServerPacket
 		
 		for (L2ItemInstance item : _items)
 		{
-			writeH(item.getItem().getType1());
+			writeH(item.getItem().getType1().getId());
 			
 			writeD(item.getObjectId());
 			writeD(item.getItemId());
 			writeD(item.getCount());
-			writeH(item.getItem().getType2());
+			writeH(item.getItem().getType2().getId());
 			writeH(item.getCustomType1());
 			
 			switch (item.getItem().getType2())
 			{
-				case L2Item.TYPE2_WEAPON:
+				case TYPE2_WEAPON:
 				{
-					writeD(item.getItem().getBodyPart());
+					writeD(item.getItem().getBodyPart().getId());
 					writeH(item.getEnchantLevel());
-					writeH(((L2Weapon) item.getItem()).getSoulShotCount());
-					writeH(((L2Weapon) item.getItem()).getSpiritShotCount());
+					writeH(((Weapon) item.getItem()).getSoulshots());
+					writeH(((Weapon) item.getItem()).getSpiritshots());
 					break;
 				}
 				
-				case L2Item.TYPE2_SHIELD_ARMOR:
-				case L2Item.TYPE2_ACCESSORY:
-				case L2Item.TYPE2_PET_WOLF:
-				case L2Item.TYPE2_PET_HATCHLING:
-				case L2Item.TYPE2_PET_STRIDER:
-				case L2Item.TYPE2_PET_BABY:
+				case TYPE2_SHIELD_ARMOR:
+				case TYPE2_ACCESSORY:
+				case TYPE2_PET_WOLF:
+				case TYPE2_PET_HATCHLING:
+				case TYPE2_PET_STRIDER:
+				case TYPE2_PET_BABY:
 				{
-					writeD(item.getItem().getBodyPart());
+					writeD(item.getItem().getBodyPart().getId());
 					writeH(item.getEnchantLevel());
 					writeH(0x00);
 					writeH(0x00);
@@ -92,7 +91,7 @@ public class GMViewWarehouseWithdrawList extends L2GameServerPacket
 			
 			switch (item.getItem().getType2())
 			{
-				case L2Item.TYPE2_WEAPON:
+				case TYPE2_WEAPON:
 				{
 					if (item.isAugmented())
 					{
@@ -108,12 +107,12 @@ public class GMViewWarehouseWithdrawList extends L2GameServerPacket
 					break;
 				}
 				
-				case L2Item.TYPE2_SHIELD_ARMOR:
-				case L2Item.TYPE2_ACCESSORY:
-				case L2Item.TYPE2_PET_WOLF:
-				case L2Item.TYPE2_PET_HATCHLING:
-				case L2Item.TYPE2_PET_STRIDER:
-				case L2Item.TYPE2_PET_BABY:
+				case TYPE2_SHIELD_ARMOR:
+				case TYPE2_ACCESSORY:
+				case TYPE2_PET_WOLF:
+				case TYPE2_PET_HATCHLING:
+				case TYPE2_PET_STRIDER:
+				case TYPE2_PET_BABY:
 				{
 					writeD(0);
 					writeD(0);

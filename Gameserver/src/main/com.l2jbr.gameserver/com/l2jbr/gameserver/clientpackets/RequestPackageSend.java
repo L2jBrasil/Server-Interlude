@@ -29,12 +29,13 @@ import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.ItemList;
 import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.L2EtcItemType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import static com.l2jbr.gameserver.templates.ItemType.QUEST;
 
 
 /**
@@ -112,7 +113,7 @@ public final class RequestPackageSend extends L2GameClientPacket {
                 continue;
             }
 
-            if (!item.isTradeable() || (item.getItemType() == L2EtcItemType.QUEST)) {
+            if (!item.isTradeable() || (item.getItemType() == QUEST)) {
                 return;
             }
 

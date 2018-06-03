@@ -2,13 +2,15 @@ package com.l2jbr.gameserver.model.database;
 
 import com.l2jbr.commons.database.annotation.Column;
 import com.l2jbr.commons.database.annotation.Table;
+import com.l2jbr.gameserver.model.L2Skill;
+import com.l2jbr.gameserver.templates.*;
 
 @Table("armor")
 public class Armor extends ItemTemplate {
 
-    private String bodyPart;
+    private Slot bodyPart;
     @Column("armor_type")
-    private String armorType;
+    private ItemType armorType;
     @Column("avoid_modify")
     private int avoidModify;
     @Column("p_def")
@@ -22,12 +24,57 @@ public class Armor extends ItemTemplate {
     @Column("item_skill_lvl")
     private int itemSkillLvl;
 
-    public String getArmorType() {
+    @Override
+    public void onLoad() {
+        super.onLoad();
+
+        switch (bodyPart) {
+            case NECK:
+            case HAIR:
+            case FACE:
+            case DHAIR:
+            case EAR:
+            case FINGER:
+                type1 = ItemTypeGroup.TYPE1_WEAPON_ACCESSORY;
+                type2 = ItemTypeGroup.TYPE2_ACCESSORY;
+                break;
+            default:
+                type1 = ItemTypeGroup.TYPE1_ARMOR_SHIELD;
+                type2 = ItemTypeGroup.TYPE2_SHIELD_ARMOR;
+        }
+
+        if(ItemType.PET_ARMOR == armorType) {
+            switch (bodyPart) {
+                case WOLF:
+                    type2 = ItemTypeGroup.TYPE2_PET_WOLF;
+                    break;
+                case HATCHLING:
+                    type2 = ItemTypeGroup.TYPE2_PET_HATCHLING;
+                    break;
+                case BABYPET:
+                    type2 = ItemTypeGroup.TYPE2_PET_BABY;
+                    break;
+                default:
+                    type2 = ItemTypeGroup.TYPE2_PET_STRIDER;
+            }
+            type1 = ItemTypeGroup.TYPE1_ARMOR_SHIELD;
+            bodyPart = Slot.CHEST;
+        }
+    }
+
+    @Override
+    public Slot getBodyPart() {
+        return bodyPart;
+    }
+
+    @Override
+    public ItemType getType() {
         return armorType;
     }
 
-    public String getBodyPart() {
-        return bodyPart;
+    @Override
+    public boolean isStackable() {
+        return false;
     }
 
     public int getItemSkillId() {
@@ -54,4 +101,8 @@ public class Armor extends ItemTemplate {
         return mpBonus;
     }
 
+    public L2Skill getSkill() {
+        // todo implement
+        return null;
+    }
 }

@@ -179,8 +179,8 @@ public class DoorTable {
         int rangeYMax = Integer.parseInt(st.nextToken());
         int rangeZMax = Integer.parseInt(st.nextToken());
         int hp = Integer.parseInt(st.nextToken());
-        short pdef = Short.parseShort(st.nextToken());
-        short mdef = Short.parseShort(st.nextToken());
+        int pdef = Integer.parseInt(st.nextToken());
+        int mdef = Integer.parseInt(st.nextToken());
         boolean unlockable = false;
 
         if (st.hasMoreTokens()) {

@@ -43,6 +43,7 @@ import com.l2jbr.gameserver.model.actor.stat.CharStat;
 import com.l2jbr.gameserver.model.actor.status.CharStatus;
 import com.l2jbr.gameserver.model.database.CharTemplate;
 import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.database.Weapon;
 import com.l2jbr.gameserver.model.entity.Duel;
 import com.l2jbr.gameserver.model.quest.Quest;
 import com.l2jbr.gameserver.model.quest.QuestState;
@@ -55,8 +56,6 @@ import com.l2jbr.gameserver.skills.Formulas;
 import com.l2jbr.gameserver.skills.Stats;
 import com.l2jbr.gameserver.skills.effects.EffectCharge;
 import com.l2jbr.gameserver.skills.funcs.Func;
-import com.l2jbr.gameserver.templates.L2Weapon;
-import com.l2jbr.gameserver.templates.L2WeaponType;
 import com.l2jbr.gameserver.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,6 +66,7 @@ import java.util.concurrent.Future;
 
 import static com.l2jbr.gameserver.ai.Intention.AI_INTENTION_ATTACK;
 import static com.l2jbr.gameserver.ai.Intention.AI_INTENTION_FOLLOW;
+import static com.l2jbr.gameserver.templates.ItemType.*;
 
 
 /**
@@ -766,9 +766,9 @@ public abstract class L2Character extends L2Object {
         L2ItemInstance weaponInst = getActiveWeaponInstance();
 
         // Get the active weapon item corresponding to the active weapon instance (always equiped in the right hand)
-        L2Weapon weaponItem = getActiveWeaponItem();
+        Weapon weaponItem = getActiveWeaponItem();
 
-        if ((weaponItem != null) && (weaponItem.getItemType() == L2WeaponType.ROD)) {
+        if ((weaponItem != null) && (weaponItem.getType() == ROD)) {
             // You can't make an attack with a fishing pole.
             ((L2PcInstance) this).sendPacket(new SystemMessage(SystemMessageId.CANNOT_ATTACK_WITH_FISHING_POLE));
             getAI().setIntention(Intention.AI_INTENTION_IDLE);
@@ -787,7 +787,7 @@ public abstract class L2Character extends L2Object {
         }
 
         // Check for a bow
-        if (((weaponItem != null) && (weaponItem.getItemType() == L2WeaponType.BOW))) {
+        if (((weaponItem != null) && (weaponItem.getType() == BOW))) {
             // Check for arrows and MP
             if (this instanceof L2PcInstance) {
                 // Checking if target has moved to peace zone - only for player-bow attacks at the moment
@@ -877,7 +877,7 @@ public abstract class L2Character extends L2Object {
         int ssGrade = 0;
 
         if (weaponItem != null) {
-            ssGrade = weaponItem.getCrystalType();
+            ssGrade = weaponItem.getCrystalType().ordinal();
         }
 
         // Create a Server->Client packet Attack
@@ -894,9 +894,9 @@ public abstract class L2Character extends L2Object {
         // Select the type of attack to start
         if (weaponItem == null) {
             hitted = doAttackHitSimple(attack, target, timeToHit);
-        } else if (weaponItem.getItemType() == L2WeaponType.BOW) {
+        } else if (weaponItem.getType() == BOW) {
             hitted = doAttackHitByBow(attack, target, timeAtk, reuse);
-        } else if (weaponItem.getItemType() == L2WeaponType.POLE) {
+        } else if (weaponItem.getType() == POLE) {
             hitted = doAttackHitByPole(attack, timeToHit);
         } else if (isUsingDualWeapon()) {
             hitted = doAttackHitByDual(attack, target, timeToHit);
@@ -5506,7 +5506,7 @@ public abstract class L2Character extends L2Object {
      *
      * @return the active weapon item
      */
-    public abstract L2Weapon getActiveWeaponItem();
+    public abstract Weapon getActiveWeaponItem();
 
     /**
      * Return the secondary weapon instance (always equiped in the left hand).<BR>
@@ -5530,7 +5530,7 @@ public abstract class L2Character extends L2Object {
      *
      * @return the secondary weapon item
      */
-    public abstract L2Weapon getSecondaryWeaponItem();
+    public abstract Weapon getSecondaryWeaponItem();
 
     /**
      * Manage hit process (called by Hit Task).<BR>
@@ -5627,8 +5627,8 @@ public abstract class L2Character extends L2Object {
             }
 
             if (!miss && (damage > 0)) {
-                L2Weapon weapon = getActiveWeaponItem();
-                boolean isBow = ((weapon != null) && weapon.getItemType().toString().equalsIgnoreCase("Bow"));
+                Weapon weapon = getActiveWeaponItem();
+                boolean isBow = ((weapon != null) && weapon.getType().toString().equalsIgnoreCase("Bow"));
 
                 if (!isBow) // Do not reflect or absorb if weapon is of type bow
                 {
@@ -5691,7 +5691,7 @@ public abstract class L2Character extends L2Object {
             }
 
             // Launch weapon Special ability effect if available
-            L2Weapon activeWeapon = getActiveWeaponItem();
+            Weapon activeWeapon = getActiveWeaponItem();
 
             if (activeWeapon != null) {
                 activeWeapon.getSkillEffects(this, target, crit);
@@ -5937,10 +5937,10 @@ public abstract class L2Character extends L2Object {
      * @param weapon the weapon
      * @return the int
      */
-    public int calculateTimeBetweenAttacks(L2Character target, L2Weapon weapon) {
+    public int calculateTimeBetweenAttacks(L2Character target, Weapon weapon) {
         double atkSpd = 0;
         if (weapon != null) {
-            switch (weapon.getItemType()) {
+            switch (weapon.getType()) {
                 case BOW:
                     atkSpd = getStat().getPAtkSpd();
                     return (int) ((1500 * 345) / atkSpd);
@@ -5965,7 +5965,7 @@ public abstract class L2Character extends L2Object {
      * @param weapon the weapon
      * @return the int
      */
-    public int calculateReuseTime(L2Character target, L2Weapon weapon) {
+    public int calculateReuseTime(L2Character target, Weapon weapon) {
         if (weapon == null) {
             return 0;
         }
@@ -5979,7 +5979,7 @@ public abstract class L2Character extends L2Object {
 
         reuse *= getStat().getReuseModifier(target);
         double atkSpd = getStat().getPAtkSpd();
-        switch (weapon.getItemType()) {
+        switch (weapon.getType()) {
             case BOW:
                 return (int) ((reuse * 345) / atkSpd);
             default:
@@ -6602,7 +6602,7 @@ public abstract class L2Character extends L2Object {
                     // Set some values inside target's instance for later use
                     L2Character player = (L2Character) target;
 
-                    L2Weapon activeWeapon = getActiveWeaponItem();
+                    Weapon activeWeapon = getActiveWeaponItem();
                     // Launch weapon Special ability skill effect if available
                     if ((activeWeapon != null) && !((L2Character) target).isDead()) {
                         if ((activeWeapon.getSkillEffects(this, player, skill).length > 0) && (this instanceof L2PcInstance)) {
@@ -6965,7 +6965,7 @@ public abstract class L2Character extends L2Object {
      * @return the random damage
      */
     public final int getRandomDamage(L2Character target) {
-        L2Weapon weaponItem = getActiveWeaponItem();
+        Weapon weaponItem = getActiveWeaponItem();
 
         if (weaponItem == null) {
             return 5 + (int) Math.sqrt(getLevel());

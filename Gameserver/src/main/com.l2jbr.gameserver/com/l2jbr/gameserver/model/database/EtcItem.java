@@ -1,28 +1,68 @@
 package com.l2jbr.gameserver.model.database;
 
+import com.l2jbr.commons.database.annotation.Column;
 import com.l2jbr.commons.database.annotation.Table;
+import com.l2jbr.gameserver.templates.ItemType;
+import com.l2jbr.gameserver.templates.ItemTypeGroup;
+import com.l2jbr.gameserver.templates.Slot;
+import org.springframework.data.annotation.Transient;
 
 @Table("etcitem")
 public class EtcItem extends ItemTemplate {
 
-    private String item_type;
-    private String consume_type;
-    private String oldname;
-    private String oldtype;
+    @Column("item_type")
+    private ItemType itemType;
+    @Column("consume_type")
+    private ConsumeType consumeType;
 
-    public String getItemType() {
-        return item_type;
+    @Transient
+    private Slot bodyPart = Slot.NONE;
+    @Transient
+    private boolean stackable = false;
+
+    public EtcItem() {
+        type1 = ItemTypeGroup.TYPE1_ITEM_QUEST;
+        type2 = ItemTypeGroup.TYPE2_OTHER;
     }
 
-    public String getConsumeType() {
-        return consume_type;
+    @Override
+    public void onLoad() {
+        super.onLoad();
+
+        switch (consumeType) {
+            case ASSET:
+                itemType = ItemType.MONEY;
+                type2 = ItemTypeGroup.TYPE2_MONEY;
+            case STACKABLE:
+                stackable = true;
+        }
+
+        switch (itemType) {
+            case ARROW:
+            case LURE:
+                bodyPart = Slot.LEFT_HAND;
+                break;
+            case QUEST:
+                type2 = ItemTypeGroup.TYPE2_QUEST;
+        }
     }
 
-    public String getOldname() {
-        return oldname;
+    @Override
+    public ItemType getType() { return itemType; }
+
+    @Override
+    public Slot getBodyPart() {
+        return bodyPart;
     }
 
-    public String getOldtype() {
-        return oldtype;
+    @Override
+    public boolean isStackable() {
+        return stackable;
+    }
+
+    enum ConsumeType {
+        NORMAL,
+        STACKABLE,
+        ASSET;
     }
 }

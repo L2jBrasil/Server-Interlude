@@ -79,7 +79,7 @@ public class ClanData extends Entity<Integer> {
     }
 
     public Integer getHasCastle() {
-        return hasCastle;
+        return hasCastle != null ? hasCastle : 0;
     }
 
     public void setHasCastle(Integer hasCastle) {
@@ -111,7 +111,7 @@ public class ClanData extends Entity<Integer> {
     }
 
     public Integer getCrestId() {
-        return crestId;
+        return crestId != null ? crestId : 0;
     }
 
     public void setCrestId(Integer crestId) {
@@ -119,7 +119,7 @@ public class ClanData extends Entity<Integer> {
     }
 
     public Integer getCrestLargeId() {
-        return crestLargeId;
+        return crestLargeId != null ? crestLargeId : 0;
     }
 
     public void setCrestLargeId(Integer crestLargeId) {
@@ -127,7 +127,7 @@ public class ClanData extends Entity<Integer> {
     }
 
     public Integer getAllyCrestId() {
-        return allyCrestId;
+        return allyCrestId != null ? allyCrestId : 0;
     }
 
     public void setAllyCrestId(Integer allyCrestId) {
@@ -135,7 +135,7 @@ public class ClanData extends Entity<Integer> {
     }
 
     public Integer getAuctionBidAt() {
-        return auctionBidAt;
+        return auctionBidAt != null ? auctionBidAt : 0;
     }
 
     public void setAuctionBidAt(Integer auctionBidAt) {

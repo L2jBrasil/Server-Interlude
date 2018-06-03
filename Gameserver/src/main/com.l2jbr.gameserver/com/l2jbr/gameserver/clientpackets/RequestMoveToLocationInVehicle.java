@@ -25,8 +25,9 @@ import com.l2jbr.gameserver.model.L2Position;
 import com.l2jbr.gameserver.model.actor.instance.L2BoatInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
-import com.l2jbr.gameserver.templates.L2WeaponType;
 import com.l2jbr.gameserver.util.Point3D;
+
+import static com.l2jbr.gameserver.templates.ItemType.BOW;
 
 
 public final class RequestMoveToLocationInVehicle extends L2GameClientPacket
@@ -64,7 +65,7 @@ public final class RequestMoveToLocationInVehicle extends L2GameClientPacket
 		{
 			return;
 		}
-		else if (activeChar.isAttackingNow() && (activeChar.getActiveWeaponItem() != null) && (activeChar.getActiveWeaponItem().getItemType() == L2WeaponType.BOW))
+		else if (activeChar.isAttackingNow() && (activeChar.getActiveWeaponItem() != null) && (activeChar.getActiveWeaponItem().getType() == BOW))
 		{
 			activeChar.sendPacket(new ActionFailed());
 		}

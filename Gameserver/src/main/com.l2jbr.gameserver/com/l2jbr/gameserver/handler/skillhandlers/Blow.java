@@ -29,7 +29,8 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.Env;
 import com.l2jbr.gameserver.skills.Formulas;
 import com.l2jbr.gameserver.skills.funcs.Func;
-import com.l2jbr.gameserver.templates.L2WeaponType;
+
+import static com.l2jbr.gameserver.templates.ItemType.DAGGER;
 
 
 /**
@@ -89,7 +90,7 @@ public class Blow implements ISkillHandler
 					}
 				}
 				L2ItemInstance weapon = activeChar.getActiveWeaponInstance();
-				boolean soul = ((weapon != null) && (weapon.getChargedSoulshot() == L2ItemInstance.CHARGED_SOULSHOT) && (weapon.getItemType() == L2WeaponType.DAGGER));
+				boolean soul = ((weapon != null) && (weapon.getChargedSoulshot() == L2ItemInstance.CHARGED_SOULSHOT) && (weapon.getItemType() == DAGGER));
 				boolean shld = Formulas.getInstance().calcShldUse(activeChar, target);
 				
 				// Crit rate base crit rate for skill, modified with STR bonus

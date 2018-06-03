@@ -35,6 +35,7 @@ import com.l2jbr.gameserver.skills.effects.EffectTemplate;
 import com.l2jbr.gameserver.skills.funcs.Func;
 import com.l2jbr.gameserver.skills.funcs.FuncTemplate;
 import com.l2jbr.gameserver.skills.l2skills.*;
+import com.l2jbr.gameserver.templates.ItemType;
 import com.l2jbr.gameserver.templates.L2WeaponType;
 import com.l2jbr.gameserver.templates.StatsSet;
 import com.l2jbr.gameserver.util.Util;
@@ -1051,15 +1052,14 @@ public abstract class L2Skill {
             return true;
         }
         if (activeChar.getActiveWeaponItem() != null) {
-            L2WeaponType playerWeapon;
-            playerWeapon = activeChar.getActiveWeaponItem().getItemType();
+            ItemType playerWeapon = activeChar.getActiveWeaponItem().getType();
             int mask = playerWeapon.mask();
             if ((mask & weaponsAllowed) != 0) {
                 return true;
             }
             // can be on the secondary weapon
             if (activeChar.getSecondaryWeaponItem() != null) {
-                playerWeapon = activeChar.getSecondaryWeaponItem().getItemType();
+                playerWeapon = activeChar.getSecondaryWeaponItem().getType();
                 mask = playerWeapon.mask();
                 if ((mask & weaponsAllowed) != 0) {
                     return true;

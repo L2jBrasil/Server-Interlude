@@ -6,7 +6,6 @@ import com.l2jbr.commons.util.Util;
 import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.model.base.PlayerClass;
 import com.l2jbr.gameserver.model.base.Race;
-import com.l2jbr.gameserver.templates.L2Item;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 
@@ -57,7 +56,7 @@ public class PlayerTemplate extends CharTemplate {
     private Integer item5;
 
     @Transient
-    private List<L2Item> items;
+    private List<ItemTemplate> items;
 
     @Override
     public void onLoad() {
@@ -76,13 +75,13 @@ public class PlayerTemplate extends CharTemplate {
     }
 
     private void addItem(int itemId) {
-        L2Item item = ItemTable.getInstance().getTemplate(itemId);
+        ItemTemplate item = ItemTable.getInstance().getTemplate(itemId);
         if(Util.isNotNull(item)) {
             items.add(item);
         }
     }
 
-    public List<L2Item> getItems() {
+    public List<ItemTemplate> getItems() {
         if(Util.isNull(items)){
             loadItems();
         }

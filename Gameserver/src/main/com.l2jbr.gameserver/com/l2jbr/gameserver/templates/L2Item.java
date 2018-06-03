@@ -79,30 +79,6 @@ public abstract class L2Item {
     public static final int SLOT_FACE = 0x040000;
     public static final int SLOT_DHAIR = 0x080000;
 
-    public static final int MATERIAL_STEEL = 0x00; // ??
-    public static final int MATERIAL_FINE_STEEL = 0x01; // ??
-    public static final int MATERIAL_BLOOD_STEEL = 0x02; // ??
-    public static final int MATERIAL_BRONZE = 0x03; // ??
-    public static final int MATERIAL_SILVER = 0x04; // ??
-    public static final int MATERIAL_GOLD = 0x05; // ??
-    public static final int MATERIAL_MITHRIL = 0x06; // ??
-    public static final int MATERIAL_ORIHARUKON = 0x07; // ??
-    public static final int MATERIAL_PAPER = 0x08; // ??
-    public static final int MATERIAL_WOOD = 0x09; // ??
-    public static final int MATERIAL_CLOTH = 0x0a; // ??
-    public static final int MATERIAL_LEATHER = 0x0b; // ??
-    public static final int MATERIAL_BONE = 0x0c; // ??
-    public static final int MATERIAL_HORN = 0x0d; // ??
-    public static final int MATERIAL_DAMASCUS = 0x0e; // ??
-    public static final int MATERIAL_ADAMANTAITE = 0x0f; // ??
-    public static final int MATERIAL_CHRYSOLITE = 0x10; // ??
-    public static final int MATERIAL_CRYSTAL = 0x11; // ??
-    public static final int MATERIAL_LIQUID = 0x12; // ??
-    public static final int MATERIAL_SCALE_OF_DRAGON = 0x13; // ??
-    public static final int MATERIAL_DYESTUFF = 0x14; // ??
-    public static final int MATERIAL_COBWEB = 0x15; // ??
-    public static final int MATERIAL_SEED = 0x15; // ??
-
     public static final int CRYSTAL_NONE = 0x00; // ??
     public static final int CRYSTAL_D = 0x01; // ??
     public static final int CRYSTAL_C = 0x02; // ??
@@ -119,8 +95,7 @@ public abstract class L2Item {
                     1461,
                     1462
             };
-    private static final int[] crystalEnchantBonusArmor =
-            {
+    private static final int[] crystalEnchantBonusArmor = {
                     0,
                     11,
                     6,

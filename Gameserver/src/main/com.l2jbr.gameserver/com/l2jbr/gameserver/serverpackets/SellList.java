@@ -82,19 +82,19 @@ public class SellList extends L2GameServerPacket {
         writeH(_selllist.size());
 
         for (L2ItemInstance item : _selllist) {
-            writeH(item.getItem().getType1());
+            writeH(item.getItem().getType1().getId());
             writeD(item.getObjectId());
             writeD(item.getItemId());
             writeD(item.getCount());
-            writeH(item.getItem().getType2());
+            writeH(item.getItem().getType2().getId());
             writeH(0x00);
-            writeD(item.getItem().getBodyPart());
+            writeD(item.getItem().getBodyPart().getId());
             writeH(item.getEnchantLevel());
             writeH(0x00);
             writeH(0x00);
 
             if (_lease == null) {
-                writeD(item.getItem().getReferencePrice() / 2); // wtf??? there is no conditional part in SellList!! this d should allways be here 0.o! fortunately the lease stuff are never ever use so the if allways exectues
+                writeD(item.getItem().getPrice() / 2); // wtf??? there is no conditional part in SellList!! this d should allways be here 0.o! fortunately the lease stuff are never ever use so the if allways exectues
             }
         }
     }

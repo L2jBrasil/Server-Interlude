@@ -26,12 +26,12 @@ import com.l2jbr.gameserver.model.L2ShortCut;
 import com.l2jbr.gameserver.model.L2SkillLearn;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.ItemTemplate;
 import com.l2jbr.gameserver.model.database.PlayerTemplate;
 import com.l2jbr.gameserver.network.L2GameClient;
 import com.l2jbr.gameserver.serverpackets.CharCreateFail;
 import com.l2jbr.gameserver.serverpackets.CharCreateOk;
 import com.l2jbr.gameserver.serverpackets.CharSelectInfo;
-import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,6 +40,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
+
+import static com.l2jbr.gameserver.templates.ItemTypeGroup.TYPE2_WEAPON;
 
 
 /**
@@ -191,10 +193,10 @@ public final class CharacterCreate extends L2GameClientPacket
 		newChar.registerShortCut(shortcut);
 		
 		ItemTable.getInstance();
-		List<L2Item> items = template.getItems();
-		for (L2Item item2 : items)
+		List<ItemTemplate> items = template.getItems();
+		for (ItemTemplate item2 : items)
 		{
-			L2ItemInstance item = newChar.getInventory().addItem("Init", item2.getItemId(), 1, newChar, null);
+			L2ItemInstance item = newChar.getInventory().addItem("Init", item2.getId(), 1, newChar, null);
 			if (item.getItemId() == 5588)
 			{
 				// add tutbook shortcut
@@ -203,7 +205,7 @@ public final class CharacterCreate extends L2GameClientPacket
 			}
 			if (item.isEquipable())
 			{
-				if ((newChar.getActiveWeaponItem() == null) || !(item.getItem().getType2() != L2Item.TYPE2_WEAPON))
+				if ((newChar.getActiveWeaponItem() == null) || !(item.getItem().getType2() != TYPE2_WEAPON))
 				{
 					newChar.getInventory().equipItemAndRecord(item);
 				}

@@ -24,7 +24,6 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ExVariationCancelResult;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.L2Item;
 
 
 /**
@@ -68,9 +67,9 @@ public final class RequestRefineCancel extends L2GameClientPacket
 		
 		// get the price
 		int price = 0;
-		switch (targetItem.getItem().getItemGrade())
+		switch (targetItem.getItem().getCrystalType())
 		{
-			case L2Item.CRYSTAL_C:
+			case C:
 				if (targetItem.getCrystalCount() < 1720)
 				{
 					price = 95000;
@@ -84,7 +83,7 @@ public final class RequestRefineCancel extends L2GameClientPacket
 					price = 210000;
 				}
 				break;
-			case L2Item.CRYSTAL_B:
+			case B:
 				if (targetItem.getCrystalCount() < 1746)
 				{
 					price = 240000;
@@ -94,7 +93,7 @@ public final class RequestRefineCancel extends L2GameClientPacket
 					price = 270000;
 				}
 				break;
-			case L2Item.CRYSTAL_A:
+			case A:
 				if (targetItem.getCrystalCount() < 2160)
 				{
 					price = 330000;
@@ -108,7 +107,7 @@ public final class RequestRefineCancel extends L2GameClientPacket
 					price = 420000;
 				}
 				break;
-			case L2Item.CRYSTAL_S:
+			case S:
 				price = 480000;
 				break;
 			// any other item type is not augmentable

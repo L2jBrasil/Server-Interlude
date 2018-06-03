@@ -32,13 +32,13 @@ import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2TradeList;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.database.DropList;
+import com.l2jbr.gameserver.model.database.ItemTemplate;
 import com.l2jbr.gameserver.model.database.MerchantBuyList;
 import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.model.database.repository.DropListRepository;
 import com.l2jbr.gameserver.model.database.repository.MerchantBuyListRepository;
 import com.l2jbr.gameserver.model.database.repository.NpcRepository;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
-import com.l2jbr.gameserver.templates.L2Item;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -227,7 +227,7 @@ public class AdminEditNpc implements IAdminCommandHandler {
         int itemID = Integer.parseInt(args[2]);
         L2TradeList tradeList = TradeController.getInstance().getBuyList(tradeListID);
 
-        L2Item item = ItemTable.getInstance().getTemplate(itemID);
+        ItemTemplate item = ItemTable.getInstance().getTemplate(itemID);
         if (tradeList.getPriceForItemId(itemID) < 0) {
             return;
         }

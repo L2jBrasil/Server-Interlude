@@ -316,7 +316,7 @@ public enum PlayerClass {
 		return parent;
 	}
 
-	public String humanize() { return Util.capitalize(toString()); }
+	public String humanize() { return Util.capitalize(toString().replace('_', ' ')); }
 
     public boolean isOfType(ClassType classType) {
         return  this.classType == classType;

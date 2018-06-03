@@ -25,9 +25,10 @@ import com.l2jbr.gameserver.model.L2Position;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.PartyMemberPosition;
-import com.l2jbr.gameserver.templates.L2WeaponType;
 
 import java.nio.BufferUnderflowException;
+
+import static com.l2jbr.gameserver.templates.ItemType.BOW;
 
 
 /**
@@ -113,7 +114,7 @@ public class MoveBackwardToLocation extends L2GameClientPacket
 		{
 			activeChar.sendPacket(new ActionFailed());
 		}
-		else if (activeChar.isAttackingNow() && (activeChar.getActiveWeaponItem() != null) && (activeChar.getActiveWeaponItem().getItemType() == L2WeaponType.BOW))
+		else if (activeChar.isAttackingNow() && (activeChar.getActiveWeaponItem() != null) && (activeChar.getActiveWeaponItem().getType() == BOW))
 		{
 			activeChar.sendPacket(new ActionFailed());
 		}

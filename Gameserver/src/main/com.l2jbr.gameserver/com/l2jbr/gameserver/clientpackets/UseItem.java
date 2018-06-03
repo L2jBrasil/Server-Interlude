@@ -24,16 +24,19 @@ import com.l2jbr.gameserver.handler.ItemHandler;
 import com.l2jbr.gameserver.model.Inventory;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.Weapon;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
-import com.l2jbr.gameserver.templates.L2Item;
-import com.l2jbr.gameserver.templates.L2Weapon;
-import com.l2jbr.gameserver.templates.L2WeaponType;
+import com.l2jbr.gameserver.templates.Slot;
 import com.l2jbr.gameserver.util.FloodProtector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
+
+import static com.l2jbr.gameserver.templates.ItemType.ROD;
+import static com.l2jbr.gameserver.templates.ItemTypeGroup.TYPE2_WEAPON;
+import static com.l2jbr.gameserver.templates.Slot.*;
 
 
 /**
@@ -156,9 +159,9 @@ public final class UseItem extends L2GameClientPacket
 				return;
 			}
 			
-			int bodyPart = item.getItem().getBodyPart();
+			Slot bodyPart = item.getItem().getBodyPart();
 			// Prevent player to remove the weapon on special conditions
-			if ((activeChar.isAttackingNow() || activeChar.isCastingNow() || activeChar.isMounted()) && ((bodyPart == L2Item.SLOT_LR_HAND) || (bodyPart == L2Item.SLOT_L_HAND) || (bodyPart == L2Item.SLOT_R_HAND)))
+			if ((activeChar.isAttackingNow() || activeChar.isCastingNow() || activeChar.isMounted()) && ((bodyPart == TWO_HAND) || (bodyPart == LEFT_HAND) || (bodyPart == RIGHT_HAND)))
 			{
 				return;
 			}
@@ -168,19 +171,19 @@ public final class UseItem extends L2GameClientPacket
 			 */
 			
 			// Don't allow weapon/shield equipment if a cursed weapon is equiped
-			if (activeChar.isCursedWeaponEquiped() && (((bodyPart == L2Item.SLOT_LR_HAND) || (bodyPart == L2Item.SLOT_L_HAND) || (bodyPart == L2Item.SLOT_R_HAND)) || (itemId == 6408))) // Don't allow to put formal wear
+			if (activeChar.isCursedWeaponEquiped() && (((bodyPart == TWO_HAND) || (bodyPart == LEFT_HAND) || (bodyPart == RIGHT_HAND)) || (itemId == 6408))) // Don't allow to put formal wear
 			{
 				return;
 			}
 			
 			// Don't allow weapon/shield hero equipment during Olympiads
-			if (activeChar.isInOlympiadMode() && ((bodyPart == L2Item.SLOT_LR_HAND) || (bodyPart == L2Item.SLOT_L_HAND) || (bodyPart == L2Item.SLOT_R_HAND)) && (((item.getItemId() >= 6611) && (item.getItemId() <= 6621)) || (item.getItemId() == 6842)))
+			if (activeChar.isInOlympiadMode() && ((bodyPart == TWO_HAND) || (bodyPart == LEFT_HAND) || (bodyPart == RIGHT_HAND)) && (((item.getItemId() >= 6611) && (item.getItemId() <= 6621)) || (item.getItemId() == 6842)))
 			{
 				return;
 			}
 			
 			// Don't allow weapon/shield hero equipment during Olympiads
-			if (activeChar.isInOlympiadMode() && ((bodyPart == L2Item.SLOT_LR_HAND) || (bodyPart == L2Item.SLOT_L_HAND) || (bodyPart == L2Item.SLOT_R_HAND)) && (((item.getItemId() >= 6611) && (item.getItemId() <= 6621)) || (item.getItemId() == 6842)))
+			if (activeChar.isInOlympiadMode() && ((bodyPart == TWO_HAND) || (bodyPart == LEFT_HAND) || (bodyPart == RIGHT_HAND)) && (((item.getItemId() >= 6611) && (item.getItemId() <= 6621)) || (item.getItemId() == 6842)))
 			{
 				return;
 			}
@@ -218,13 +221,13 @@ public final class UseItem extends L2GameClientPacket
 					item.getAugmentation().removeBoni(activeChar);
 				}
 				
-				int slot = activeChar.getInventory().getSlotFromItem(item);
+				Slot slot = activeChar.getInventory().getSlotFromItem(item);
 				items = activeChar.getInventory().unEquipItemInBodySlotAndRecord(slot);
 			}
 			else
 			{
-				int tempBodyPart = item.getItem().getBodyPart();
-				L2ItemInstance tempItem = activeChar.getInventory().getPaperdollItemByL2ItemId(tempBodyPart);
+				Slot tempBodyPart = item.getItem().getBodyPart();
+				L2ItemInstance tempItem = activeChar.getInventory().getPaperdollItemByL2ItemId(tempBodyPart.getId());
 				
 				// remove augmentation stats for replaced items
 				// currently weapons only..
@@ -232,7 +235,7 @@ public final class UseItem extends L2GameClientPacket
 				{
 					tempItem.getAugmentation().removeBoni(activeChar);
 				}
-				else if (tempBodyPart == 0x4000)
+				else if (tempBodyPart == TWO_HAND)
 				{
 					L2ItemInstance tempItem2 = activeChar.getInventory().getPaperdollItem(7);
 					if ((tempItem2 != null) && tempItem2.isAugmented())
@@ -252,7 +255,7 @@ public final class UseItem extends L2GameClientPacket
 					// dont allow an item to replace a wear-item
 					return;
 				}
-				else if (tempBodyPart == 0x4000) // left+right hand equipment
+				else if (tempBodyPart == TWO_HAND) // left+right hand equipment
 				{
 					// this may not remove left OR right hand equipment
 					tempItem = activeChar.getInventory().getPaperdollItem(7);
@@ -267,7 +270,7 @@ public final class UseItem extends L2GameClientPacket
 						return;
 					}
 				}
-				else if (tempBodyPart == 0x8000) // fullbody armor
+				else if (tempBodyPart == FULL_ARMOR) // fullbody armor
 				{
 					// this may not remove chest or leggins
 					tempItem = activeChar.getInventory().getPaperdollItem(10);
@@ -311,7 +314,7 @@ public final class UseItem extends L2GameClientPacket
 			
 			activeChar.refreshExpertisePenalty();
 			
-			if (item.getItem().getType2() == L2Item.TYPE2_WEAPON)
+			if (item.getItem().getType2() == TYPE2_WEAPON)
 			{
 				activeChar.checkIfWeaponIsAllowed();
 			}
@@ -324,14 +327,14 @@ public final class UseItem extends L2GameClientPacket
 		}
 		else
 		{
-			L2Weapon weaponItem = activeChar.getActiveWeaponItem();
+			Weapon weaponItem = activeChar.getActiveWeaponItem();
 			int itemid = item.getItemId();
 			// _log.debug("item not equipable id:"+ item.getId());
 			if (itemid == 4393)
 			{
 				activeChar.sendPacket(new ShowCalculator(4393));
 			}
-			else if (((weaponItem != null) && (weaponItem.getItemType() == L2WeaponType.ROD)) && (((itemid >= 6519) && (itemid <= 6527)) || ((itemid >= 7610) && (itemid <= 7613)) || ((itemid >= 7807) && (itemid <= 7809)) || ((itemid >= 8484) && (itemid <= 8486)) || ((itemid >= 8505) && (itemid <= 8513))))
+			else if (((weaponItem != null) && (weaponItem.getType() == ROD)) && (((itemid >= 6519) && (itemid <= 6527)) || ((itemid >= 7610) && (itemid <= 7613)) || ((itemid >= 7807) && (itemid <= 7809)) || ((itemid >= 8484) && (itemid <= 8486)) || ((itemid >= 8505) && (itemid <= 8513))))
 			{
 				activeChar.getInventory().setPaperdollItem(Inventory.PAPERDOLL_LHAND, item);
 				activeChar.broadcastUserInfo();

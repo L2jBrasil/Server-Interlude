@@ -26,8 +26,7 @@ import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.instancemanager.ItemsOnGroundManager;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.knownlist.NullKnownList;
-import com.l2jbr.gameserver.model.database.Augmentation;
-import com.l2jbr.gameserver.model.database.Items;
+import com.l2jbr.gameserver.model.database.*;
 import com.l2jbr.gameserver.model.database.repository.AugmentationsRepository;
 import com.l2jbr.gameserver.model.database.repository.ItemRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
@@ -36,9 +35,8 @@ import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.funcs.Func;
-import com.l2jbr.gameserver.templates.L2Armor;
-import com.l2jbr.gameserver.templates.L2EtcItem;
-import com.l2jbr.gameserver.templates.L2Item;
+import com.l2jbr.gameserver.templates.ItemType;
+import com.l2jbr.gameserver.templates.Slot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -85,7 +83,7 @@ public final class L2ItemInstance extends L2Object
 	private final int _itemId;
 	
 	/** Object L2Item associated to the item */
-	private final L2Item _item;
+	private final ItemTemplate _item;
 	
 	/** Location of the item : Inventory, PaperDoll, WareHouse */
 	private ItemLocation _loc;
@@ -172,11 +170,11 @@ public final class L2ItemInstance extends L2Object
 	 * @param objectId : int designating the ID of the object in the world
 	 * @param item : L2Item containing informations of the item
 	 */
-	public L2ItemInstance(int objectId, L2Item item)
+	public L2ItemInstance(int objectId, ItemTemplate item)
 	{
 		super(objectId);
 		super.setKnownList(new NullKnownList(this));
-		_itemId = item.getItemId();
+		_itemId = item.getId();
 		_item = item;
 		if ((_itemId == 0) || (_item == null))
 		{
@@ -347,7 +345,7 @@ public final class L2ItemInstance extends L2Object
 	 */
 	public boolean isEquipable()
 	{
-		return !((_item.getBodyPart() == 0) || (_item instanceof L2EtcItem));
+		return !((_item.getBodyPart() == Slot.NONE) || (_item instanceof EtcItem));
 	}
 	
 	/**
@@ -376,7 +374,7 @@ public final class L2ItemInstance extends L2Object
 	 * Returns the characteristics of the item
 	 * @return L2Item
 	 */
-	public L2Item getItem()
+	public ItemTemplate getItem()
 	{
 		return _item;
 	}
@@ -420,14 +418,10 @@ public final class L2ItemInstance extends L2Object
 	{
 		_wear = newwear;
 	}
-	
-	/**
-	 * Returns the type of item
-	 * @return Enum
-	 */
-	public Enum<?> getItemType()
+
+	public ItemType getItemType()
 	{
-		return _item.getItemType();
+		return _item.getType();
 	}
 	
 	/**
@@ -454,7 +448,7 @@ public final class L2ItemInstance extends L2Object
 	 */
 	public int getReferencePrice()
 	{
-		return _item.getReferencePrice();
+		return _item.getPrice();
 	}
 	
 	/**
@@ -576,8 +570,8 @@ public final class L2ItemInstance extends L2Object
 	public boolean isAvailable(L2PcInstance player, boolean allowAdena)
 	{
 		return ((!isEquipped()) // Not equipped
-			&& (getItem().getType2() != 3) // Not Quest Item
-			&& ((getItem().getType2() != 4) || (getItem().getType1() != 1)) // TODO: what does this mean?
+			&& (getItem().getType2().getId() != 3) // Not Quest Item
+			&& ((getItem().getType2().getId() != 4) || (getItem().getType1().getId() != 1)) // TODO: what does this mean?
 			&& ((player.getPet() == null) || (getObjectId() != player.getPet().getControlItemId())) // Not Control item of currently summoned pet
 			&& (player.getActiveEnchantItem() != this) // Not momentarily used enchant scroll
 			&& (allowAdena || (getItemId() != 57)) && ((player.getCurrentSkill() == null) || (player.getCurrentSkill().getSkill().getItemConsumeId() != getItemId())) && (isTradeable()));
@@ -636,16 +630,10 @@ public final class L2ItemInstance extends L2Object
 		_enchantLevel = enchantLevel;
 		_storedInDb = false;
 	}
-	
-	/**
-	 * Returns the physical defense of the item
-	 * @return int
-	 */
-	public int getPDef()
-	{
-		if (_item instanceof L2Armor)
-		{
-			return ((L2Armor) _item).getPDef();
+
+	public int getPDef() {
+		if (_item instanceof Armor) {
+			return ((Armor) _item).getPdef();
 		}
 		return 0;
 	}
@@ -991,7 +979,7 @@ public final class L2ItemInstance extends L2Object
         int price_buy = items.getPriceBuy();
         int manaLeft = items.getManaLeft();
 
-        L2Item item = ItemTable.getInstance().getTemplate(item_id);
+        ItemTemplate item = ItemTable.getInstance().getTemplate(item_id);
         if (item == null) {
             _log.error("Item item_id={} not known, object_id={}", item_id, objectId);
             return null;
