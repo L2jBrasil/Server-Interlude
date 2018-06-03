@@ -30,7 +30,7 @@ import com.l2jbr.gameserver.model.database.repository.CursedWeaponRepository;
 import com.l2jbr.gameserver.model.database.repository.ItemRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
-import com.l2jbr.gameserver.templates.L2Item;
+import com.l2jbr.gameserver.templates.BodyPart;
 import com.l2jbr.gameserver.util.Point3D;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -94,7 +94,7 @@ public class CursedWeapon
 				removeSkill();
 				
 				// Remove
-				_player.getInventory().unEquipItemInBodySlotAndRecord(L2Item.SLOT_LR_HAND);
+				_player.getInventory().unEquipItemInBodySlotAndRecord(BodyPart.TWO_HAND);
 				_player.store();
 				
 				// Destroy

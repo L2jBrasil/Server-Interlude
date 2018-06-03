@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.serverpackets;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.model.L2ItemInstance;
-import com.l2jbr.gameserver.templates.L2Item;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -53,49 +52,49 @@ public class EquipUpdate extends L2GameServerPacket
 		writeD(_item.getObjectId());
 		switch (_item.getItem().getBodyPart())
 		{
-			case L2Item.SLOT_L_EAR:
+			case LEFT_EAR:
 				bodypart = 0x01;
 				break;
-			case L2Item.SLOT_R_EAR:
+            case RIGHT_EAR:
 				bodypart = 0x02;
 				break;
-			case L2Item.SLOT_NECK:
+			case NECK:
 				bodypart = 0x03;
 				break;
-			case L2Item.SLOT_R_FINGER:
+            case RIGHT_FINGER:
 				bodypart = 0x04;
 				break;
-			case L2Item.SLOT_L_FINGER:
+            case LEFT_FINGER:
 				bodypart = 0x05;
 				break;
-			case L2Item.SLOT_HEAD:
+			case HEAD:
 				bodypart = 0x06;
 				break;
-			case L2Item.SLOT_R_HAND:
+            case RIGHT_HAND:
 				bodypart = 0x07;
 				break;
-			case L2Item.SLOT_L_HAND:
+            case LEFT_HAND:
 				bodypart = 0x08;
 				break;
-			case L2Item.SLOT_GLOVES:
+			case GLOVES:
 				bodypart = 0x09;
 				break;
-			case L2Item.SLOT_CHEST:
+			case CHEST:
 				bodypart = 0x0a;
 				break;
-			case L2Item.SLOT_LEGS:
+			case LEGS:
 				bodypart = 0x0b;
 				break;
-			case L2Item.SLOT_FEET:
+			case FEET:
 				bodypart = 0x0c;
 				break;
-			case L2Item.SLOT_BACK:
+			case BACK:
 				bodypart = 0x0d;
 				break;
-			case L2Item.SLOT_LR_HAND:
+            case TWO_HAND:
 				bodypart = 0x0e;
 				break;
-			case L2Item.SLOT_HAIR:
+			case HAIR:
 				bodypart = 0x0f;
 				break;
 		}

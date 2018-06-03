@@ -36,6 +36,7 @@ import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.funcs.Func;
+import com.l2jbr.gameserver.templates.BodyPart;
 import com.l2jbr.gameserver.templates.L2Armor;
 import com.l2jbr.gameserver.templates.L2EtcItem;
 import com.l2jbr.gameserver.templates.L2Item;
@@ -90,7 +91,7 @@ public final class L2ItemInstance extends L2Object
 	/** Location of the item : Inventory, PaperDoll, WareHouse */
 	private ItemLocation _loc;
 	
-	/** Slot where item is stored */
+	/** BodyPart where item is stored */
 	private int _locData;
 	
 	/** Level of enchantment of the item */
@@ -347,7 +348,7 @@ public final class L2ItemInstance extends L2Object
 	 */
 	public boolean isEquipable()
 	{
-		return !((_item.getBodyPart() == 0) || (_item instanceof L2EtcItem));
+		return !((_item.getBodyPart() == BodyPart.NONE) || (_item instanceof L2EtcItem));
 	}
 	
 	/**

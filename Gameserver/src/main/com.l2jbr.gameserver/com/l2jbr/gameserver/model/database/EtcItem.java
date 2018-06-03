@@ -2,9 +2,9 @@ package com.l2jbr.gameserver.model.database;
 
 import com.l2jbr.commons.database.annotation.Column;
 import com.l2jbr.commons.database.annotation.Table;
+import com.l2jbr.gameserver.templates.BodyPart;
 import com.l2jbr.gameserver.templates.ItemType;
 import com.l2jbr.gameserver.templates.ItemTypeGroup;
-import com.l2jbr.gameserver.templates.Slot;
 import org.springframework.data.annotation.Transient;
 
 @Table("etcitem")
@@ -16,7 +16,7 @@ public class EtcItem extends ItemTemplate {
     private ConsumeType consumeType;
 
     @Transient
-    private Slot bodyPart = Slot.NONE;
+    private BodyPart bodyPart = BodyPart.NONE;
     @Transient
     private boolean stackable = false;
 
@@ -40,7 +40,7 @@ public class EtcItem extends ItemTemplate {
         switch (itemType) {
             case ARROW:
             case LURE:
-                bodyPart = Slot.LEFT_HAND;
+                bodyPart = BodyPart.LEFT_HAND;
                 break;
             case QUEST:
                 type2 = ItemTypeGroup.TYPE2_QUEST;
@@ -51,7 +51,7 @@ public class EtcItem extends ItemTemplate {
     public ItemType getType() { return itemType; }
 
     @Override
-    public Slot getBodyPart() {
+    public BodyPart getBodyPart() {
         return bodyPart;
     }
 

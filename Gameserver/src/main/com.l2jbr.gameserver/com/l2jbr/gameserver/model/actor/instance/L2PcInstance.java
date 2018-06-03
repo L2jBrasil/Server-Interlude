@@ -6939,7 +6939,7 @@ public final class L2PcInstance extends L2PlayableInstance {
             int slot = characterHenna.getSlot();
 
             if ((slot < 1) || (slot > 3)) {
-                _log.warn("Invalid Henna Slot to character {} on classIndex {}", getName(), getClassIndex());
+                _log.warn("Invalid Henna BodyPart to character {} on classIndex {}", getName(), getClassIndex());
                 return;
             }
 

@@ -90,7 +90,7 @@ public class ItemList extends L2GameServerPacket
 			writeH(temp.getItem().getType2()); // item type2
 			writeH(temp.getCustomType1()); // item type3
 			writeH(temp.isEquipped() ? 0x01 : 0x00);
-			writeD(temp.getItem().getBodyPart());
+			writeD(temp.getItem().getBodyPart().getId());
 			
 			writeH(temp.getEnchantLevel()); // enchant level
 			// race tickets

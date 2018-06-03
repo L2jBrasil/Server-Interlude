@@ -24,7 +24,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.L2Item;
+import com.l2jbr.gameserver.templates.BodyPart;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -64,15 +64,17 @@ public class RequestUnEquipItem extends L2GameClientPacket
 		{
 			return;
 		}
+
+        BodyPart bodyPart = BodyPart.fromId(_slot);
 		
-		L2ItemInstance item = activeChar.getInventory().getPaperdollItemByL2ItemId(_slot);
+		L2ItemInstance item = activeChar.getInventory().getPaperdollItemByL2ItemId(bodyPart);
 		if ((item != null) && item.isWear())
 		{
 			// Wear-items are not to be unequipped
 			return;
 		}
 		// Prevent of unequiping a cursed weapon
-		if ((_slot == L2Item.SLOT_LR_HAND) && activeChar.isCursedWeaponEquiped())
+		if ((bodyPart == BodyPart.TWO_HAND) && activeChar.isCursedWeaponEquiped())
 		{
 			// Message ?
 			return;
@@ -95,7 +97,7 @@ public class RequestUnEquipItem extends L2GameClientPacket
 			item.getAugmentation().removeBoni(activeChar);
 		}
 		
-		L2ItemInstance[] unequiped = activeChar.getInventory().unEquipItemInBodySlotAndRecord(_slot);
+		L2ItemInstance[] unequiped = activeChar.getInventory().unEquipItemInBodySlotAndRecord(bodyPart);
 		
 		// show the update in the inventory
 		InventoryUpdate iu = new InventoryUpdate();

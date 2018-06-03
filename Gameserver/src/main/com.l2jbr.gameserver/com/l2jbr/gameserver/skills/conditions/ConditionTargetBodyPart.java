@@ -20,8 +20,8 @@ package com.l2jbr.gameserver.skills.conditions;
 
 import com.l2jbr.gameserver.model.Inventory;
 import com.l2jbr.gameserver.skills.Env;
+import com.l2jbr.gameserver.templates.BodyPart;
 import com.l2jbr.gameserver.templates.L2Armor;
-import com.l2jbr.gameserver.templates.L2Item;
 
 
 /**
@@ -46,19 +46,19 @@ public class ConditionTargetBodyPart extends Condition
 			return true;
 		}
 		int bodypart = env.target.getAttackingBodyPart();
-		int armor_part = _armor.getBodyPart();
+		BodyPart armorPart = _armor.getBodyPart();
 		switch (bodypart)
 		{
 			case Inventory.PAPERDOLL_CHEST:
-				return (armor_part & (L2Item.SLOT_CHEST | L2Item.SLOT_FULL_ARMOR | L2Item.SLOT_UNDERWEAR)) != 0;
+				return (armorPart == BodyPart.CHEST || armorPart == BodyPart.FULL_ARMOR || armorPart == BodyPart.UNDERWEAR);
 			case Inventory.PAPERDOLL_LEGS:
-				return (armor_part & (L2Item.SLOT_LEGS | L2Item.SLOT_FULL_ARMOR)) != 0;
+				return (armorPart == BodyPart.LEGS || armorPart == BodyPart.FULL_ARMOR);
 			case Inventory.PAPERDOLL_HEAD:
-				return (armor_part & L2Item.SLOT_HEAD) != 0;
+				return (armorPart == BodyPart.HEAD);
 			case Inventory.PAPERDOLL_FEET:
-				return (armor_part & L2Item.SLOT_FEET) != 0;
+				return (armorPart == BodyPart.FEET);
 			case Inventory.PAPERDOLL_GLOVES:
-				return (armor_part & L2Item.SLOT_GLOVES) != 0;
+				return (armorPart == BodyPart.GLOVES);
 			default:
 				return true;
 		}

@@ -32,6 +32,8 @@ import com.l2jbr.gameserver.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static com.l2jbr.gameserver.templates.BodyPart.FULL_ARMOR;
+
 
 public final class RequestEnchantItem extends L2GameClientPacket
 {
@@ -262,7 +264,7 @@ public final class RequestEnchantItem extends L2GameClientPacket
 			maxEnchantLevel = Config.ENCHANT_MAX_JEWELRY;
 		}
 		
-		if ((item.getEnchantLevel() < Config.ENCHANT_SAFE_MAX) || ((item.getItem().getBodyPart() == L2Item.SLOT_FULL_ARMOR) && (item.getEnchantLevel() < Config.ENCHANT_SAFE_MAX_FULL)))
+		if ((item.getEnchantLevel() < Config.ENCHANT_SAFE_MAX) || ((item.getItem().getBodyPart() == FULL_ARMOR) && (item.getEnchantLevel() < Config.ENCHANT_SAFE_MAX_FULL)))
 		{
 			chance = 100;
 		}

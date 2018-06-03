@@ -66,7 +66,7 @@ public class GMViewWarehouseWithdrawList extends L2GameServerPacket
 			{
 				case L2Item.TYPE2_WEAPON:
 				{
-					writeD(item.getItem().getBodyPart());
+					writeD(item.getItem().getBodyPart().getId());
 					writeH(item.getEnchantLevel());
 					writeH(((L2Weapon) item.getItem()).getSoulShotCount());
 					writeH(((L2Weapon) item.getItem()).getSpiritShotCount());
@@ -80,7 +80,7 @@ public class GMViewWarehouseWithdrawList extends L2GameServerPacket
 				case L2Item.TYPE2_PET_STRIDER:
 				case L2Item.TYPE2_PET_BABY:
 				{
-					writeD(item.getItem().getBodyPart());
+					writeD(item.getItem().getBodyPart().getId());
 					writeH(item.getEnchantLevel());
 					writeH(0x00);
 					writeH(0x00);

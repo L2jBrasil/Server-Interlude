@@ -10,9 +10,9 @@ import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.quest.Quest;
+import com.l2jbr.gameserver.templates.BodyPart;
 import com.l2jbr.gameserver.templates.ItemType;
 import com.l2jbr.gameserver.templates.ItemTypeGroup;
-import com.l2jbr.gameserver.templates.Slot;
 import org.springframework.data.annotation.Transient;
 
 import java.io.IOException;
@@ -22,7 +22,7 @@ import java.util.List;
 @Table("weapon")
 public class Weapon extends ItemTemplate {
 
-    private Slot bodypart;
+    private BodyPart bodypart;
     private Integer soulshots;
     private Integer spiritshots;
     @Column("p_dam")
@@ -96,7 +96,7 @@ public class Weapon extends ItemTemplate {
                 default:
                     type2 = ItemTypeGroup.TYPE2_PET_STRIDER;
             }
-            bodypart = Slot.RIGHT_HAND;
+            bodypart = BodyPart.RIGHT_HAND;
         } else {
             type1 = ItemTypeGroup.TYPE1_WEAPON_ACCESSORY;
             type2 = ItemTypeGroup.TYPE2_WEAPON;
@@ -114,7 +114,7 @@ public class Weapon extends ItemTemplate {
     }
 
     @Override
-    public Slot getBodyPart() {
+    public BodyPart getBodyPart() {
         return bodypart;
     }
 

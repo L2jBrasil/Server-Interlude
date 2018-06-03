@@ -10,10 +10,10 @@ import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.skills.Env;
 import com.l2jbr.gameserver.skills.funcs.Func;
 import com.l2jbr.gameserver.skills.funcs.FuncTemplate;
+import com.l2jbr.gameserver.templates.BodyPart;
 import com.l2jbr.gameserver.templates.CrystalType;
 import com.l2jbr.gameserver.templates.ItemType;
 import com.l2jbr.gameserver.templates.ItemTypeGroup;
-import com.l2jbr.gameserver.templates.Slot;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 
@@ -195,7 +195,7 @@ public abstract class ItemTemplate extends Entity<Integer> {
         return type2;
     }
 
-    public abstract Slot getBodyPart();
+    public abstract BodyPart getBodyPart();
     public abstract ItemType getType();
     public abstract boolean isStackable();
 

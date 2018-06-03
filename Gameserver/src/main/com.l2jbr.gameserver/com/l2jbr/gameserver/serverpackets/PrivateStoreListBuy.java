@@ -63,7 +63,7 @@ public class PrivateStoreListBuy extends L2GameServerPacket
 			writeD(item.getItem().getReferencePrice());
 			writeH(0);
 			
-			writeD(item.getItem().getBodyPart());
+			writeD(item.getItem().getBodyPart().getId());
 			writeH(item.getItem().getType2());
 			writeD(item.getPrice());// buyers price
 			

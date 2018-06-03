@@ -8,7 +8,7 @@ import com.l2jbr.gameserver.templates.*;
 @Table("armor")
 public class Armor extends ItemTemplate {
 
-    private Slot bodyPart;
+    private BodyPart bodyPart;
     @Column("armor_type")
     private ItemType armorType;
     @Column("avoid_modify")
@@ -58,12 +58,12 @@ public class Armor extends ItemTemplate {
                     type2 = ItemTypeGroup.TYPE2_PET_STRIDER;
             }
             type1 = ItemTypeGroup.TYPE1_ARMOR_SHIELD;
-            bodyPart = Slot.CHEST;
+            bodyPart = BodyPart.CHEST;
         }
     }
 
     @Override
-    public Slot getBodyPart() {
+    public BodyPart getBodyPart() {
         return bodyPart;
     }
 

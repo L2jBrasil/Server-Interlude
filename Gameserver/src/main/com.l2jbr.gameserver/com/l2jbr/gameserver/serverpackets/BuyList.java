@@ -93,7 +93,7 @@ public final class BuyList extends L2GameServerPacket
 				
 				if (item.getItem().getType1() != L2Item.TYPE1_ITEM_QUESTITEM_ADENA)
 				{
-					writeD(item.getItem().getBodyPart()); // rev 415 slot 0006-lr.ear 0008-neck 0030-lr.finger 0040-head 0080-?? 0100-l.hand 0200-gloves 0400-chest 0800-pants 1000-feet 2000-?? 4000-r.hand 8000-r.hand
+					writeD(item.getItem().getBodyPart().getId()); // rev 415 slot 0006-lr.ear 0008-neck 0030-lr.finger 0040-head 0080-?? 0100-l.hand 0200-gloves 0400-chest 0800-pants 1000-feet 2000-?? 4000-r.hand 8000-r.hand
 					writeH(item.getEnchantLevel()); // enchant level
 					writeH(0x00); // ?
 					writeH(0x00);

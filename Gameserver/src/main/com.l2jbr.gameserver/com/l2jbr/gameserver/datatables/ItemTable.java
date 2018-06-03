@@ -46,6 +46,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.ScheduledFuture;
 
+import static com.l2jbr.gameserver.templates.BodyPart.*;
+
 public class ItemTable {
     private static Logger _log = LoggerFactory.getLogger(ItemTable.class);
     private static Logger _logItems = LoggerFactory.getLogger("item");
@@ -90,30 +92,6 @@ public class ItemTable {
         _armorTypes.put("heavy", L2ArmorType.HEAVY);
         _armorTypes.put("magic", L2ArmorType.MAGIC);
         _armorTypes.put("petarmor", L2ArmorType.PET);
-
-        _slots.put("chest", L2Item.SLOT_CHEST);
-        _slots.put("fullarmor", L2Item.SLOT_FULL_ARMOR);
-        _slots.put("head", L2Item.SLOT_HEAD);
-        _slots.put("hair", L2Item.SLOT_HAIR);
-        _slots.put("face", L2Item.SLOT_FACE);
-        _slots.put("dhair", L2Item.SLOT_DHAIR);
-        _slots.put("underwear", L2Item.SLOT_UNDERWEAR);
-        _slots.put("back", L2Item.SLOT_BACK);
-        _slots.put("neck", L2Item.SLOT_NECK);
-        _slots.put("legs", L2Item.SLOT_LEGS);
-        _slots.put("feet", L2Item.SLOT_FEET);
-        _slots.put("gloves", L2Item.SLOT_GLOVES);
-        _slots.put("chest,legs", L2Item.SLOT_CHEST | L2Item.SLOT_LEGS);
-        _slots.put("rhand", L2Item.SLOT_R_HAND);
-        _slots.put("lhand", L2Item.SLOT_L_HAND);
-        _slots.put("lrhand", L2Item.SLOT_LR_HAND);
-        _slots.put("ear", L2Item.SLOT_R_EAR | L2Item.SLOT_L_EAR);
-        _slots.put("finger", L2Item.SLOT_R_FINGER | L2Item.SLOT_L_FINGER);
-        _slots.put("none", L2Item.SLOT_NONE);
-        _slots.put("wolf", L2Item.SLOT_WOLF); // for wolf
-        _slots.put("hatchling", L2Item.SLOT_HATCHLING); // for hatchling
-        _slots.put("strider", L2Item.SLOT_STRIDER); // for strider
-        _slots.put("babypet", L2Item.SLOT_BABYPET); // for babypet
     }
 
     private static ItemTable _instance;
@@ -204,7 +182,7 @@ public class ItemTable {
             item.set.set("type2", L2Item.TYPE2_WEAPON);
         }
 
-        item.set.set("bodypart", weapon.getBodyPart().getId());
+        item.set.set("bodypart", weapon.getBodyPart());
         item.set.set("crystal_type", weapon.getCrystalType().ordinal());
         item.set.set("crystallizable", Boolean.valueOf(weapon.isCrystallizable()));
         item.set.set("weight", weapon.getWeight());
@@ -244,17 +222,17 @@ public class ItemTable {
 
         if (item.type == L2WeaponType.PET) {
             item.set.set("type1", L2Item.TYPE1_WEAPON_RING_EARRING_NECKLACE);
-            if (item.set.getInteger("bodypart") == L2Item.SLOT_WOLF) {
+            if (item.set.getEnum("bodypart", BodyPart.class) == BodyPart.WOLF) {
                 item.set.set("type2", L2Item.TYPE2_PET_WOLF);
-            } else if (item.set.getInteger("bodypart") == L2Item.SLOT_HATCHLING) {
+            } else if (item.set.getEnum("bodypart", BodyPart.class) == BodyPart.HATCHLING) {
                 item.set.set("type2", L2Item.TYPE2_PET_HATCHLING);
-            } else if (item.set.getInteger("bodypart") == L2Item.SLOT_BABYPET) {
+            } else if (item.set.getEnum("bodypart", BodyPart.class) == BodyPart.BABYPET) {
                 item.set.set("type2", L2Item.TYPE2_PET_BABY);
             } else {
                 item.set.set("type2", L2Item.TYPE2_PET_STRIDER);
             }
 
-            item.set.set("bodypart", L2Item.SLOT_R_HAND);
+            item.set.set("bodypart", BodyPart.RIGHT_HAND);
         }
 
         return item;
@@ -276,7 +254,7 @@ public class ItemTable {
 
         item.set.set("item_id", item.id);
         item.set.set("name", item.name);
-        int bodypart = rset.getBodyPart().getId();
+        BodyPart bodypart = rset.getBodyPart();
         item.set.set("bodypart", bodypart);
         item.set.set("crystallizable", Boolean.valueOf(rset.isCrystallizable()));
         item.set.set("crystal_count", rset.getCrystalCount());
@@ -287,7 +265,7 @@ public class ItemTable {
         item.set.set("item_skill_id", rset.getItemSkillId());
         item.set.set("item_skill_lvl", rset.getItemSkillLevel());
 
-        if ((bodypart == L2Item.SLOT_NECK) || (bodypart == L2Item.SLOT_HAIR) || (bodypart == L2Item.SLOT_FACE) || (bodypart == L2Item.SLOT_DHAIR) || ((bodypart & L2Item.SLOT_L_EAR) != 0) || ((bodypart & L2Item.SLOT_L_FINGER) != 0)) {
+        if ((bodypart == NECK) || (bodypart ==  HAIR) || (bodypart == FACE) || (bodypart == DHAIR) || (bodypart == EAR) || (bodypart == FINGER)) {
             item.set.set("type1", L2Item.TYPE1_WEAPON_RING_EARRING_NECKLACE);
             item.set.set("type2", L2Item.TYPE2_ACCESSORY);
         } else {
@@ -306,17 +284,17 @@ public class ItemTable {
 
         if (item.type == L2ArmorType.PET) {
             item.set.set("type1", L2Item.TYPE1_SHIELD_ARMOR);
-            if (item.set.getInteger("bodypart") == L2Item.SLOT_WOLF) {
+            if (item.set.getEnum("bodypart", BodyPart.class) == WOLF) {
                 item.set.set("type2", L2Item.TYPE2_PET_WOLF);
-            } else if (item.set.getInteger("bodypart") == L2Item.SLOT_HATCHLING) {
+            } else if (item.set.getEnum("bodypart", BodyPart.class)== HATCHLING) {
                 item.set.set("type2", L2Item.TYPE2_PET_HATCHLING);
-            } else if (item.set.getInteger("bodypart") == L2Item.SLOT_BABYPET) {
+            } else if (item.set.getEnum("bodypart", BodyPart.class) == BABYPET) {
                 item.set.set("type2", L2Item.TYPE2_PET_BABY);
             } else {
                 item.set.set("type2", L2Item.TYPE2_PET_STRIDER);
             }
 
-            item.set.set("bodypart", L2Item.SLOT_CHEST);
+            item.set.set("bodypart", BodyPart.CHEST);
         }
 
         return item;
@@ -331,7 +309,7 @@ public class ItemTable {
         item.set.set("crystallizable", Boolean.valueOf(etcItem.isCrystallizable()));
         item.set.set("type1", L2Item.TYPE1_ITEM_QUESTITEM_ADENA);
         item.set.set("type2", L2Item.TYPE2_OTHER);
-        item.set.set("bodypart", 0);
+        item.set.set("bodypart", BodyPart.NONE);
         item.set.set("crystal_count", etcItem.getCrystalCount());
         item.set.set("sellable", Boolean.valueOf(etcItem.isSellable()));
         item.set.set("dropable", Boolean.valueOf(etcItem.isDropable()));
@@ -362,13 +340,13 @@ public class ItemTable {
             item.type = L2EtcItemType.HERB;
         } else if (itemType.equals("arrow")) {
             item.type = L2EtcItemType.ARROW;
-            item.set.set("bodypart", L2Item.SLOT_L_HAND);
+            item.set.set("bodypart", BodyPart.LEFT_HAND);
         } else if (itemType.equals("quest")) {
             item.type = L2EtcItemType.QUEST;
             item.set.set("type2", L2Item.TYPE2_QUEST);
         } else if (itemType.equals("lure")) {
             item.type = L2EtcItemType.OTHER;
-            item.set.set("bodypart", L2Item.SLOT_L_HAND);
+            item.set.set("bodypart", BodyPart.LEFT_HAND);
         } else {
             _log.debug("unknown etcitem type:" + itemType);
             item.type = L2EtcItemType.OTHER;

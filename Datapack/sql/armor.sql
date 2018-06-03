@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS `armor`;
 CREATE TABLE `armor` (
   `item_id` int(11) NOT NULL default '0',
   `name` varchar(70) default NULL,
-  `bodypart` ENUM('CHEST','LEGS','FEET','HEAD','GLOVES','UNDERWEAR','FULL_ARMOR','EAR','FINGER','NECK','WOLF','HATCHLING','STRIDER','FACE','HAIR','DHAIR','BABYPET') NOT NULL,
+  `bodypart` ENUM('CHEST','LEGS','FEET','HEAD','GLOVES','UNDERWEAR', 'BACK', 'FULL_ARMOR','EAR','FINGER','NECK','WOLF','HATCHLING','STRIDER','FACE','HAIR','DHAIR','BABYPET') NOT NULL,
   `crystallizable` BOOL NOT NULL DEFAULT TRUE,
   `armor_type` ENUM('NONE', 'LIGHT', 'HEAVY', 'MAGIC', 'PET_ARMOR') NOT NULL default 'NONE',
   `weight` int(5) NOT NULL default '0',
