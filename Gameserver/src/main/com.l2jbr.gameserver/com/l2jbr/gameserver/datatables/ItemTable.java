@@ -52,11 +52,8 @@ public class ItemTable {
     private static Logger _log = LoggerFactory.getLogger(ItemTable.class);
     private static Logger _logItems = LoggerFactory.getLogger("item");
 
-    private static final Map<String, Integer> _materials = new LinkedHashMap<>();
-    private static final Map<String, Integer> _crystalTypes = new LinkedHashMap<>();
     private static final Map<String, L2WeaponType> _weaponTypes = new LinkedHashMap<>();
     private static final Map<String, L2ArmorType> _armorTypes = new LinkedHashMap<>();
-    private static final Map<String, Integer> _slots = new LinkedHashMap<>();
 
     private L2Item[] _allTemplates;
     private final Map<Integer, L2EtcItem> _etcItems;
@@ -66,12 +63,6 @@ public class ItemTable {
     private final boolean _initialized = true;
 
     static {
-        _crystalTypes.put("s", L2Item.CRYSTAL_S);
-        _crystalTypes.put("a", L2Item.CRYSTAL_A);
-        _crystalTypes.put("b", L2Item.CRYSTAL_B);
-        _crystalTypes.put("c", L2Item.CRYSTAL_C);
-        _crystalTypes.put("d", L2Item.CRYSTAL_D);
-        _crystalTypes.put("none", L2Item.CRYSTAL_NONE);
 
         _weaponTypes.put("blunt", L2WeaponType.BLUNT);
         _weaponTypes.put("bow", L2WeaponType.BOW);
@@ -183,7 +174,7 @@ public class ItemTable {
         }
 
         item.set.set("bodypart", weapon.getBodyPart());
-        item.set.set("crystal_type", weapon.getCrystalType().ordinal());
+        item.set.set("crystal_type", weapon.getCrystalType());
         item.set.set("crystallizable", Boolean.valueOf(weapon.isCrystallizable()));
         item.set.set("weight", weapon.getWeight());
         item.set.set("soulshots", weapon.getSoulshots());
@@ -274,7 +265,7 @@ public class ItemTable {
         }
 
         item.set.set("weight", rset.getWeight());
-        item.set.set("crystal_type", rset.getCrystalType().ordinal());
+        item.set.set("crystal_type", rset.getCrystalType());
         item.set.set("avoid_modify", rset.getAvoidModify());
         item.set.set("duration", rset.getDuration());
         item.set.set("p_def", rset.getPdef());
@@ -363,8 +354,7 @@ public class ItemTable {
             item.set.set("stackable", false);
         }
 
-        int crystal = etcItem.getCrystalType().ordinal();
-        item.set.set("crystal_type", crystal);
+        item.set.set("crystal_type", etcItem.getCrystalType());
 
         int weight = etcItem.getWeight();
         item.set.set("weight", weight);

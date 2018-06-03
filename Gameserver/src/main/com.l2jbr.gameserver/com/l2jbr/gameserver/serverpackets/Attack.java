@@ -20,6 +20,7 @@ package com.l2jbr.gameserver.serverpackets;
 
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Object;
+import com.l2jbr.gameserver.templates.CrystalType;
 
 
 /**
@@ -40,7 +41,7 @@ public class Attack extends L2GameServerPacket
 			_damage = damage;
 			if (soulshot)
 			{
-				_flags |= 0x10 | _grade;
+				_flags |= 0x10 | _grade.ordinal();
 			}
 			if (crit)
 			{
@@ -63,7 +64,7 @@ public class Attack extends L2GameServerPacket
 	private static final String _S__06_ATTACK = "[S] 06 Attack";
 	protected final int _attackerObjId;
 	public final boolean soulshot;
-	protected int _grade;
+	protected CrystalType _grade;
 	private final int _x;
 	private final int _y;
 	private final int _z;
@@ -74,7 +75,7 @@ public class Attack extends L2GameServerPacket
 	 * @param ss true if using SoulShots
 	 * @param grade
 	 */
-	public Attack(L2Character attacker, boolean ss, int grade)
+	public Attack(L2Character attacker, boolean ss, CrystalType grade)
 	{
 		_attackerObjId = attacker.getObjectId();
 		soulshot = ss;

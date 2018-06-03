@@ -64,7 +64,7 @@ public class WearList extends L2GameServerPacket
 		int newlength = 0;
 		for (L2ItemInstance item : _list)
 		{
-			if ((item.getItem().getCrystalType() <= _expertise) && item.isEquipable())
+			if ((item.getItem().getCrystalType().ordinal() <= _expertise) && item.isEquipable())
 			{
 				newlength++;
 			}
@@ -73,7 +73,7 @@ public class WearList extends L2GameServerPacket
 		
 		for (L2ItemInstance item : _list)
 		{
-			if ((item.getItem().getCrystalType() <= _expertise) && item.isEquipable())
+			if ((item.getItem().getCrystalType().ordinal() <= _expertise) && item.isEquipable())
 			{
 				writeD(item.getItemId());
 				writeH(item.getItem().getType2()); // item type2

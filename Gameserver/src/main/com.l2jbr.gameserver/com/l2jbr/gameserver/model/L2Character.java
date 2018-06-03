@@ -55,6 +55,7 @@ import com.l2jbr.gameserver.skills.Formulas;
 import com.l2jbr.gameserver.skills.Stats;
 import com.l2jbr.gameserver.skills.effects.EffectCharge;
 import com.l2jbr.gameserver.skills.funcs.Func;
+import com.l2jbr.gameserver.templates.CrystalType;
 import com.l2jbr.gameserver.templates.L2Weapon;
 import com.l2jbr.gameserver.templates.L2WeaponType;
 import com.l2jbr.gameserver.util.Util;
@@ -874,7 +875,7 @@ public abstract class L2Character extends L2Object {
         _attackEndTime += (timeAtk / GameTimeController.MILLIS_IN_TICK);
         _attackEndTime -= 1;
 
-        int ssGrade = 0;
+        CrystalType ssGrade = CrystalType.NONE;
 
         if (weaponItem != null) {
             ssGrade = weaponItem.getCrystalType();

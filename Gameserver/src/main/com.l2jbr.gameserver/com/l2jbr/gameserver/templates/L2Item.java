@@ -54,40 +54,6 @@ public abstract class L2Item {
     public static final int TYPE2_PET_STRIDER = 8;
     public static final int TYPE2_PET_BABY = 9;
 
-    public static final int CRYSTAL_NONE = 0x00; // ??
-    public static final int CRYSTAL_D = 0x01; // ??
-    public static final int CRYSTAL_C = 0x02; // ??
-    public static final int CRYSTAL_B = 0x03; // ??
-    public static final int CRYSTAL_A = 0x04; // ??
-    public static final int CRYSTAL_S = 0x05; // ??
-
-    private static final int[] crystalItemId =
-            {
-                    0,
-                    1458,
-                    1459,
-                    1460,
-                    1461,
-                    1462
-            };
-    private static final int[] crystalEnchantBonusArmor = {
-                    0,
-                    11,
-                    6,
-                    11,
-                    19,
-                    25
-            };
-    private static final int[] crystalEnchantBonusWeapon =
-            {
-                    0,
-                    90,
-                    45,
-                    67,
-                    144,
-                    250
-            };
-
     private final int _itemId;
     private final String _name;
     private final int _type1; // needed for item list (inventory)
@@ -96,7 +62,7 @@ public abstract class L2Item {
     private final boolean _crystallizable;
     private final boolean _stackable;
     private final int _materialType = 0;
-    private final int _crystalType; // default to none-grade
+    private final CrystalType _crystalType; // default to none-grade
     private final int _duration;
     private final BodyPart _bodyPart;
     private final int _referencePrice;
@@ -133,7 +99,7 @@ public abstract class L2Item {
         _weight = set.getInteger("weight");
         _crystallizable = set.getBool("crystallizable");
         _stackable = set.getBool("stackable", false);
-        _crystalType = set.getInteger("crystal_type", CRYSTAL_NONE); // default to none-grade
+        _crystalType = set.getEnum("crystal_type", CrystalType.class); // default to none-grade
         _duration = set.getInteger("duration");
         _bodyPart = set.getEnum("bodypart", BodyPart.class);
         _referencePrice = set.getInteger("price");
@@ -214,7 +180,7 @@ public abstract class L2Item {
      *
      * @return int
      */
-    public final int getCrystalType() {
+    public final CrystalType getCrystalType() {
         return _crystalType;
     }
 
@@ -224,20 +190,9 @@ public abstract class L2Item {
      * @return int
      */
     public final int getCrystalItemId() {
-        return crystalItemId[_crystalType];
+        return _crystalType.getItemId();
     }
 
-    /**
-     * Returns the grade of the item.<BR>
-     * <BR>
-     * <U><I>Concept :</I></U><BR>
-     * In fact, this fucntion returns the type of crystal of the item.
-     *
-     * @return int
-     */
-    public final int getItemGrade() {
-        return getCrystalType();
-    }
 
     /**
      * Returns the quantity of crystals for crystallization
@@ -259,9 +214,9 @@ public abstract class L2Item {
             switch (_type2) {
                 case TYPE2_SHIELD_ARMOR:
                 case TYPE2_ACCESSORY:
-                    return _crystalCount + (crystalEnchantBonusArmor[getCrystalType()] * ((3 * enchantLevel) - 6));
+                    return _crystalCount + (_crystalType.getEnchantAddArmor() * ((3 * enchantLevel) - 6));
                 case TYPE2_WEAPON:
-                    return _crystalCount + (crystalEnchantBonusWeapon[getCrystalType()] * ((2 * enchantLevel) - 3));
+                    return _crystalCount + (_crystalType.getEnchantAddWeapon() * ((2 * enchantLevel) - 3));
                 default:
                     return _crystalCount;
             }
@@ -269,9 +224,9 @@ public abstract class L2Item {
             switch (_type2) {
                 case TYPE2_SHIELD_ARMOR:
                 case TYPE2_ACCESSORY:
-                    return _crystalCount + (crystalEnchantBonusArmor[getCrystalType()] * enchantLevel);
+                    return _crystalCount + (_crystalType.getEnchantAddArmor() * enchantLevel);
                 case TYPE2_WEAPON:
-                    return _crystalCount + (crystalEnchantBonusWeapon[getCrystalType()] * enchantLevel);
+                    return _crystalCount + (_crystalType.getEnchantAddWeapon() * enchantLevel);
                 default:
                     return _crystalCount;
             }

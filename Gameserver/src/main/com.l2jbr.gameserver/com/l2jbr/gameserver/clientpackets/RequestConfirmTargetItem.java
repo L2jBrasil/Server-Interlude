@@ -23,6 +23,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ExConfirmVariationItem;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import com.l2jbr.gameserver.templates.CrystalType;
 import com.l2jbr.gameserver.templates.L2Item;
 
 
@@ -59,16 +60,16 @@ public final class RequestConfirmTargetItem extends L2GameClientPacket
 		}
 		
 		// check if the item is augmentable
-		int itemGrade = item.getItem().getItemGrade();
+		CrystalType itemGrade = item.getItem().getCrystalType();
 		int itemType = item.getItem().getType2();
-		
+
 		if (item.isAugmented())
 		{
 			activeChar.sendPacket(new SystemMessage(SystemMessageId.ONCE_AN_ITEM_IS_AUGMENTED_IT_CANNOT_BE_AUGMENTED_AGAIN));
 			return;
 		}
 		// TODO: can do better? : currently: using isdestroyable() as a check for hero / cursed weapons
-		else if ((itemGrade < L2Item.CRYSTAL_C) || (itemType != L2Item.TYPE2_WEAPON) || !item.isDestroyable() || item.isShadowItem())
+		else if ((itemGrade.compareTo(CrystalType.C) < 0) || (itemType != L2Item.TYPE2_WEAPON) || !item.isDestroyable() || item.isShadowItem())
 		{
 			activeChar.sendPacket(new SystemMessage(SystemMessageId.THIS_IS_NOT_A_SUITABLE_ITEM));
 			return;

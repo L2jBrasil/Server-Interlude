@@ -27,7 +27,7 @@ import com.l2jbr.gameserver.serverpackets.ExAutoSoulShot;
 import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.Stats;
-import com.l2jbr.gameserver.templates.L2Item;
+import com.l2jbr.gameserver.templates.CrystalType;
 import com.l2jbr.gameserver.templates.L2Weapon;
 import com.l2jbr.gameserver.util.Broadcast;
 
@@ -88,8 +88,8 @@ public class SoulShots implements IItemHandler
 		}
 		
 		// Check for correct grade
-		int weaponGrade = weaponItem.getCrystalType();
-		if (((weaponGrade == L2Item.CRYSTAL_NONE) && (itemId != 5789) && (itemId != 1835)) || ((weaponGrade == L2Item.CRYSTAL_D) && (itemId != 1463)) || ((weaponGrade == L2Item.CRYSTAL_C) && (itemId != 1464)) || ((weaponGrade == L2Item.CRYSTAL_B) && (itemId != 1465)) || ((weaponGrade == L2Item.CRYSTAL_A) && (itemId != 1466)) || ((weaponGrade == L2Item.CRYSTAL_S) && (itemId != 1467)))
+		CrystalType weaponGrade = weaponItem.getCrystalType();
+		if (((weaponGrade == CrystalType.NONE) && (itemId != 5789) && (itemId != 1835)) || ((weaponGrade == CrystalType.D) && (itemId != 1463)) || ((weaponGrade == CrystalType.C) && (itemId != 1464)) || ((weaponGrade == CrystalType.B) && (itemId != 1465)) || ((weaponGrade == CrystalType.A) && (itemId != 1466)) || ((weaponGrade == CrystalType.S) && (itemId != 1467)))
 		{
 			if (!activeChar.getAutoSoulShot().containsKey(itemId))
 			{
@@ -139,7 +139,7 @@ public class SoulShots implements IItemHandler
 		
 		// Send message to client
 		activeChar.sendPacket(new SystemMessage(SystemMessageId.ENABLED_SOULSHOT));
-		Broadcast.toSelfAndKnownPlayersInRadius(activeChar, new MagicSkillUser(activeChar, activeChar, SKILL_IDS[weaponGrade], 1, 0, 0), 360000/* 600 */);
+		Broadcast.toSelfAndKnownPlayersInRadius(activeChar, new MagicSkillUser(activeChar, activeChar, SKILL_IDS[weaponGrade.ordinal()], 1, 0, 0), 360000/* 600 */);
 	}
 	
 	@Override
