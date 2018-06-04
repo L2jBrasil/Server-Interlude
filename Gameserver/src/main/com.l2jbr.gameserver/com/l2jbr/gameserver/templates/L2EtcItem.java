@@ -25,27 +25,18 @@ package com.l2jbr.gameserver.templates;
  */
 public final class L2EtcItem extends L2Item
 {
-	/**
-	 * Constructor for EtcItem.
-	 * @see L2Item constructor
-	 * @param type : L2EtcItemType designating the type of object Etc
-	 * @param set : StatsSet designating the set of couples (key,value) for description of the Etc
-	 */
-	public L2EtcItem(L2EtcItemType type, StatsSet set)
+
+	public L2EtcItem(ItemType type, StatsSet set)
 	{
 		super(type, set);
 	}
-	
-	/**
-	 * Returns the type of Etc Item
-	 * @return L2EtcItemType
-	 */
+
 	@Override
-	public L2EtcItemType getItemType()
+	public ItemType getItemType()
 	{
-		return (L2EtcItemType) super._type;
+		return (ItemType) super._type;
 	}
-	
+
 	/**
 	 * Returns if the item is consumable
 	 * @return boolean
@@ -53,7 +44,7 @@ public final class L2EtcItem extends L2Item
 	@Override
 	public final boolean isConsumable()
 	{
-		return ((getItemType() == L2EtcItemType.SHOT) || (getItemType() == L2EtcItemType.POTION)); // || (type == L2EtcItemType.SCROLL));
+		return ((getItemType() == ItemType.SHOT) || (getItemType() == ItemType.POTION));
 	}
 	
 	/**

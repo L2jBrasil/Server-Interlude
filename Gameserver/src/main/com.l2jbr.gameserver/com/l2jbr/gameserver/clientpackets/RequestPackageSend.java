@@ -29,7 +29,7 @@ import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.ItemList;
 import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.L2EtcItemType;
+import com.l2jbr.gameserver.templates.ItemType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -112,7 +112,7 @@ public final class RequestPackageSend extends L2GameClientPacket {
                 continue;
             }
 
-            if (!item.isTradeable() || (item.getItemType() == L2EtcItemType.QUEST)) {
+            if (!item.isTradeable() || (item.getItemType() == ItemType.QUEST)) {
                 return;
             }
 

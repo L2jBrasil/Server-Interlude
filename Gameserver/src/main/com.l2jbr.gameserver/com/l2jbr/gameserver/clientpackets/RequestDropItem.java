@@ -28,7 +28,7 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.ItemList;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.L2EtcItemType;
+import com.l2jbr.gameserver.templates.ItemType;
 import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.util.IllegalPlayerAction;
 import com.l2jbr.gameserver.util.Util;
@@ -76,7 +76,7 @@ public final class RequestDropItem extends L2GameClientPacket
 			activeChar.sendPacket(new SystemMessage(SystemMessageId.CANNOT_DISCARD_THIS_ITEM));
 			return;
 		}
-		if (item.getItemType() == L2EtcItemType.QUEST)
+		if (item.getItemType() == ItemType.QUEST)
 		{
 			return;
 		}

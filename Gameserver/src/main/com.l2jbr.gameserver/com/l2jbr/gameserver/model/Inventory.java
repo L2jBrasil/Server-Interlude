@@ -979,7 +979,7 @@ public abstract class Inventory extends ItemContainer {
                 break;
             }
             case LEFT_HAND: {
-                if (!(item.getItem() instanceof L2EtcItem) || (item.getItem().getItemType() != L2EtcItemType.ARROW)) {
+                if (!(item.getItem() instanceof L2EtcItem) || (item.getItem().getItemType() != ItemType.ARROW)) {
                     L2ItemInstance old1 = setPaperdollItem(PAPERDOLL_LRHAND, null);
 
                     if (old1 != null) {

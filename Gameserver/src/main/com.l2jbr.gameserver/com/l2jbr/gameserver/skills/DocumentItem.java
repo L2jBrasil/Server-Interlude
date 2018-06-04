@@ -129,10 +129,10 @@ final class DocumentItem extends DocumentBase {
         }
         if (_currentItem.type instanceof L2ArmorType) {
             _currentItem.item = new L2Armor((L2ArmorType) _currentItem.type, _currentItem.set);
-        } else if (_currentItem.type instanceof ItemType) {
+        } else if (ItemType.weapons().contains(_currentItem.type)) {
             _currentItem.item = new L2Weapon((ItemType) _currentItem.type, _currentItem.set);
-        } else if (_currentItem.type instanceof L2EtcItemType) {
-            _currentItem.item = new L2EtcItem((L2EtcItemType) _currentItem.type, _currentItem.set);
+        } else if (ItemType.items().contains(_currentItem.type)) {
+            _currentItem.item = new L2EtcItem((ItemType) _currentItem.type, _currentItem.set);
         } else {
             throw new Error("Unknown item type " + _currentItem.type);
         }

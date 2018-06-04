@@ -26,7 +26,7 @@ import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.ItemList;
 import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.L2EtcItemType;
+import com.l2jbr.gameserver.templates.ItemType;
 import com.l2jbr.gameserver.templates.L2Item;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -281,7 +281,7 @@ public class TradeList {
 
         L2ItemInstance item = (L2ItemInstance) o;
 
-        if (!item.isTradeable() || (item.getItemType() == L2EtcItemType.QUEST)) {
+        if (!item.isTradeable() || (item.getItemType() == ItemType.QUEST)) {
             return null;
         }
 
@@ -326,7 +326,7 @@ public class TradeList {
             return null;
         }
 
-        if (!item.isTradeable() || (item.getItemType() == L2EtcItemType.QUEST)) {
+        if (!item.isTradeable() || (item.getItemType() == ItemType.QUEST)) {
             return null;
         }
 

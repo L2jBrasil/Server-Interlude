@@ -22,7 +22,7 @@ import com.l2jbr.gameserver.model.L2ItemInstance.ItemLocation;
 import com.l2jbr.gameserver.model.TradeList.TradeItem;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.database.repository.ItemRepository;
-import com.l2jbr.gameserver.templates.L2EtcItemType;
+import com.l2jbr.gameserver.templates.ItemType;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -564,7 +564,7 @@ public class PcInventory extends Inventory {
     public boolean validateCapacity(L2ItemInstance item) {
         int slots = 0;
 
-        if (!(item.isStackable() && (getItemByItemId(item.getItemId()) != null)) && (item.getItemType() != L2EtcItemType.HERB)) {
+        if (!(item.isStackable() && (getItemByItemId(item.getItemId()) != null)) && (item.getItemType() != ItemType.HERB)) {
             slots++;
         }
 

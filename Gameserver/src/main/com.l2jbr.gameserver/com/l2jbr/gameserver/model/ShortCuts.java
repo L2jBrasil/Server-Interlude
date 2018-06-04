@@ -23,7 +23,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.database.repository.CharacterShortcutsRepository;
 import com.l2jbr.gameserver.serverpackets.ExAutoSoulShot;
 import com.l2jbr.gameserver.serverpackets.ShortCutInit;
-import com.l2jbr.gameserver.templates.L2EtcItemType;
+import com.l2jbr.gameserver.templates.ItemType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -102,7 +102,7 @@ public class ShortCuts
 		{
 			L2ItemInstance item = _owner.getInventory().getItemByObjectId(old.getId());
 			
-			if ((item != null) && (item.getItemType() == L2EtcItemType.SHOT))
+			if ((item != null) && (item.getItemType() == ItemType.SHOT))
 			{
 				_owner.removeAutoSoulShot(item.getItemId());
 				_owner.sendPacket(new ExAutoSoulShot(item.getItemId(), 0));

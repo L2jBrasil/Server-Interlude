@@ -26,7 +26,7 @@ import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.database.ItemsOnGround;
 import com.l2jbr.gameserver.model.database.repository.ItemsOnGroundRepository;
-import com.l2jbr.gameserver.templates.L2EtcItemType;
+import com.l2jbr.gameserver.templates.ItemType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -108,8 +108,8 @@ public class ItemsOnGroundManager {
             // add to ItemsAutoDestroy only items not protected
             if (!Config.LIST_PROTECTED_ITEMS.contains(item.getItemId())) {
                 if (itemsOnGround.getDropTime() > -1) {
-                    if (((Config.AUTODESTROY_ITEM_AFTER > 0) && (item.getItemType() != L2EtcItemType.HERB)) ||
-                            ((Config.HERB_AUTO_DESTROY_TIME > 0) && (item.getItemType() == L2EtcItemType.HERB))) {
+                    if (((Config.AUTODESTROY_ITEM_AFTER > 0) && (item.getItemType() != ItemType.HERB)) ||
+                            ((Config.HERB_AUTO_DESTROY_TIME > 0) && (item.getItemType() == ItemType.HERB))) {
                         ItemsAutoDestroy.getInstance().addItem(item);
                     }
                 }

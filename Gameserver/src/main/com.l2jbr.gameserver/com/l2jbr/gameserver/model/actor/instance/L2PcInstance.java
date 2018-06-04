@@ -3318,7 +3318,7 @@ public final class L2PcInstance extends L2PlayableInstance {
     public void addItem(String process, int itemId, int count, L2Object reference, boolean sendMessage) {
         if (count > 0) {
             // Sends message to client if requested
-            if (sendMessage && ((!isCastingNow() && (ItemTable.getInstance().createDummyItem(itemId).getItemType() == L2EtcItemType.HERB)) || (ItemTable.getInstance().createDummyItem(itemId).getItemType() != L2EtcItemType.HERB))) {
+            if (sendMessage && ((!isCastingNow() && (ItemTable.getInstance().createDummyItem(itemId).getItemType() == ItemType.HERB)) || (ItemTable.getInstance().createDummyItem(itemId).getItemType() != ItemType.HERB))) {
                 if (count > 1) {
                     if (process.equalsIgnoreCase("sweep") || process.equalsIgnoreCase("Quest")) {
                         SystemMessage sm = new SystemMessage(SystemMessageId.EARNED_S2_S1_S);
@@ -3344,7 +3344,7 @@ public final class L2PcInstance extends L2PlayableInstance {
                 }
             }
             // Auto use herbs - autoloot
-            if (ItemTable.getInstance().createDummyItem(itemId).getItemType() == L2EtcItemType.HERB) // If item is herb dont add it to iv :]
+            if (ItemTable.getInstance().createDummyItem(itemId).getItemType() == ItemType.HERB) // If item is herb dont add it to iv :]
             {
                 if (!isCastingNow()) {
                     L2ItemInstance herb = new L2ItemInstance(_charId, itemId);
@@ -4387,7 +4387,7 @@ public final class L2PcInstance extends L2PlayableInstance {
         }
 
         // Auto use herbs - pick up
-        if (target.getItemType() == L2EtcItemType.HERB) {
+        if (target.getItemType() == ItemType.HERB) {
             IItemHandler handler = ItemHandler.getInstance().getItemHandler(target.getItemId());
             if (handler == null) {
                 _log.debug("No item handler registered for item ID " + target.getItemId() + ".");

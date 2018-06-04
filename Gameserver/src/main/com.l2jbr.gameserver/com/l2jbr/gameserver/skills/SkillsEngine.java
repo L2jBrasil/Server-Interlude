@@ -115,7 +115,7 @@ public class SkillsEngine {
     public List<L2EtcItem> loadItems(Map<Integer, Item> itemData) {
         List<L2EtcItem> list = new LinkedList<>();
         for (Item item : itemData.values()) {
-            list.add(new L2EtcItem((L2EtcItemType) item.type, item.set));
+            list.add(new L2EtcItem((ItemType) item.type, item.set));
         }
         return list;
     }

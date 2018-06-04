@@ -53,6 +53,7 @@ public enum ItemType {
     LURE(41);
 
     private static Set<ItemType> weapons = EnumSet.range(SHIELD, BIG_BLUNT);
+    private static Set<ItemType> items = EnumSet.range(ARROW, LURE);
     private final int id;
 
     ItemType(int id) {
@@ -71,6 +72,9 @@ public enum ItemType {
     public static Set<ItemType> weapons() {
         return weapons;
     }
+    public static Set<ItemType> items() {
+        return items;
+    }
 
     @Override
     public String toString()
@@ -82,3 +86,4 @@ public enum ItemType {
         return name().replaceAll("_", "").toLowerCase();
     }
 }
+

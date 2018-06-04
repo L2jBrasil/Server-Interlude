@@ -290,46 +290,18 @@ public class ItemTable {
         item.set.set("dropable", Boolean.valueOf(etcItem.isDropable()));
         item.set.set("destroyable", Boolean.valueOf(etcItem.isDestroyable()));
         item.set.set("tradeable", Boolean.valueOf(etcItem.isTradeable()));
-        String itemType = etcItem.getType().name().toLowerCase();
-        if (itemType.equals("none")) {
-            item.type = L2EtcItemType.OTHER; // only for default
-        } else if (itemType.equals("castle_guard")) {
-            item.type = L2EtcItemType.SCROLL; // dummy
-        } else if (itemType.equals("material")) {
-            item.type = L2EtcItemType.MATERIAL;
-        } else if (itemType.equals("pet_collar")) {
-            item.type = L2EtcItemType.PET_COLLAR;
-        } else if (itemType.equals("potion")) {
-            item.type = L2EtcItemType.POTION;
-        } else if (itemType.equals("recipe")) {
-            item.type = L2EtcItemType.RECEIPE;
-        } else if (itemType.equals("scroll")) {
-            item.type = L2EtcItemType.SCROLL;
-        } else if (itemType.equals("seed")) {
-            item.type = L2EtcItemType.SEED;
-        } else if (itemType.equals("shot")) {
-            item.type = L2EtcItemType.SHOT;
-        } else if (itemType.equals("spellbook")) {
-            item.type = L2EtcItemType.SPELLBOOK; // Spellbook, Amulet, Blueprint
-        } else if (itemType.equals("herb")) {
-            item.type = L2EtcItemType.HERB;
-        } else if (itemType.equals("arrow")) {
-            item.type = L2EtcItemType.ARROW;
-            item.set.set("bodypart", BodyPart.LEFT_HAND);
-        } else if (itemType.equals("quest")) {
-            item.type = L2EtcItemType.QUEST;
+        item.type = etcItem.getType();
+
+        if(item.type == ItemType.QUEST) {
             item.set.set("type2", L2Item.TYPE2_QUEST);
-        } else if (itemType.equals("lure")) {
-            item.type = L2EtcItemType.OTHER;
+        } else if(item.type == ItemType.LURE) {
+            item.type =  ItemType.OTHER;
             item.set.set("bodypart", BodyPart.LEFT_HAND);
-        } else {
-            _log.debug("unknown etcitem type:" + itemType);
-            item.type = L2EtcItemType.OTHER;
         }
 
         String consume = etcItem.getConsumeType().name().toLowerCase();
         if (consume.equals("asset")) {
-            item.type = L2EtcItemType.MONEY;
+            item.type = ItemType.MONEY;
             item.set.set("stackable", true);
             item.set.set("type2", L2Item.TYPE2_MONEY);
         } else if (consume.equals("stackable")) {
