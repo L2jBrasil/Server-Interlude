@@ -422,7 +422,7 @@ abstract class DocumentBase {
                             break;
                         }
                     }
-                    for (L2ArmorType at : L2ArmorType.values()) {
+                    for (ItemType at : ItemType.armors()) {
                         if (at.toString().equals(item)) {
                             mask |= at.mask();
                             break;
@@ -460,7 +460,7 @@ abstract class DocumentBase {
                             break;
                         }
                     }
-                    for (L2ArmorType at : L2ArmorType.values()) {
+                    for (ItemType at : ItemType.armors()) {
                         if (at.toString().equals(item)) {
                             mask |= at.mask();
                             break;

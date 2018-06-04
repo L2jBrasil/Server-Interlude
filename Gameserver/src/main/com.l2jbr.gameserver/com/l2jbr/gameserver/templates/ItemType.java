@@ -53,12 +53,14 @@ public enum ItemType {
     LURE(41);
 
     private static Set<ItemType> weapons = EnumSet.range(SHIELD, BIG_BLUNT);
+    private static Set<ItemType> armors = EnumSet.range(NONE, PET_ARMOR);
     private static Set<ItemType> items = EnumSet.range(ARROW, LURE);
     private final int id;
 
     ItemType(int id) {
         this.id = id;
     }
+
 
     public int mask()
     {
@@ -75,6 +77,8 @@ public enum ItemType {
     public static Set<ItemType> items() {
         return items;
     }
+    public static Set<ItemType> armors() { return armors; }
+
 
     @Override
     public String toString()

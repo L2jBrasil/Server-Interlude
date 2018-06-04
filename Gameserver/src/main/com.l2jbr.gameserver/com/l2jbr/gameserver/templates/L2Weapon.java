@@ -65,16 +65,7 @@ public final class L2Weapon extends L2Item {
     protected L2Skill[] _skillsOnCast;
     protected L2Skill[] _skillsOnCrit;
 
-    /**
-     * Constructor for Weapon.<BR>
-     * <BR>
-     * <U><I>Variables filled :</I></U><BR>
-     * <LI>_soulShotCount & _spiritShotCount</LI> <LI>_pDam & _mDam & _rndDam</LI> <LI>_critical</LI> <LI>_hitModifier</LI> <LI>_avoidModifier</LI> <LI>_shieldDes & _shieldDefRate</LI> <LI>_atkSpeed & _AtkReuse</LI> <LI>_mpConsume</LI>
-     *
-     * @param type : L2ArmorType designating the type of armor
-     * @param set  : StatsSet designating the set of couples (key,value) caracterizing the armor
-     * @see L2Item constructor
-     */
+
     public L2Weapon(ItemType type, StatsSet set) {
         super(type, set);
         _soulShotCount = set.getInteger("soulshots");

@@ -4401,7 +4401,7 @@ public final class L2PcInstance extends L2PlayableInstance {
             addItem("Pickup", target, null, true);
         } else {
             // if item is instance of Armor or Weapon broadcast an "Attention" system message
-            if ((target.getItemType() instanceof L2ArmorType) || (ItemType.weapons().contains(target.getItemType()))) {
+            if ((ItemType.armors().contains(target.getItemType())) || (ItemType.weapons().contains(target.getItemType()))) {
                 if (target.getEnchantLevel() > 0) {
                     SystemMessage msg = new SystemMessage(SystemMessageId.ATTENTION_S1_PICKED_UP_S2_S3);
                     msg.addString(getName());
@@ -4545,7 +4545,7 @@ public final class L2PcInstance extends L2PlayableInstance {
     public boolean isWearingHeavyArmor() {
         L2ItemInstance armor = getChestArmorInstance();
 
-        if ((L2ArmorType) armor.getItemType() == L2ArmorType.HEAVY) {
+        if (armor.getItemType() == ItemType.HEAVY) {
             return true;
         }
 
@@ -4560,7 +4560,7 @@ public final class L2PcInstance extends L2PlayableInstance {
     public boolean isWearingLightArmor() {
         L2ItemInstance armor = getChestArmorInstance();
 
-        if ((L2ArmorType) armor.getItemType() == L2ArmorType.LIGHT) {
+        if (armor.getItemType() == ItemType.LIGHT) {
             return true;
         }
 
@@ -4575,7 +4575,7 @@ public final class L2PcInstance extends L2PlayableInstance {
     public boolean isWearingMagicArmor() {
         L2ItemInstance armor = getChestArmorInstance();
 
-        if ((L2ArmorType) armor.getItemType() == L2ArmorType.MAGIC) {
+        if (armor.getItemType() == ItemType.MAGIC) {
             return true;
         }
 

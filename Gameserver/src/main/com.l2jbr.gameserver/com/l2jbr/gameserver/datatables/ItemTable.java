@@ -51,23 +51,13 @@ import static com.l2jbr.gameserver.templates.BodyPart.*;
 public class ItemTable {
     private static Logger _log = LoggerFactory.getLogger(ItemTable.class);
     private static Logger _logItems = LoggerFactory.getLogger("item");
-
-    private static final Map<String, L2ArmorType> _armorTypes = new LinkedHashMap<>();
-
+    
     private L2Item[] _allTemplates;
     private final Map<Integer, L2EtcItem> _etcItems;
     private final Map<Integer, L2Armor> _armors;
     private final Map<Integer, L2Weapon> _weapons;
 
     private final boolean _initialized = true;
-
-    static {
-        _armorTypes.put("none", L2ArmorType.NONE);
-        _armorTypes.put("light", L2ArmorType.LIGHT);
-        _armorTypes.put("heavy", L2ArmorType.HEAVY);
-        _armorTypes.put("magic", L2ArmorType.MAGIC);
-        _armorTypes.put("petarmor", L2ArmorType.PET);
-    }
 
     private static ItemTable _instance;
 
@@ -223,7 +213,7 @@ public class ItemTable {
     private Item readArmor(Armor rset) {
         Item item = new Item();
         item.set = new StatsSet();
-        item.type = _armorTypes.get(rset.getType().getName());
+        item.type = rset.getType();
         item.id = rset.getId();
         item.name = rset.getName();
 
@@ -257,7 +247,7 @@ public class ItemTable {
         item.set.set("mp_bonus", rset.getMpBonus());
         item.set.set("price", rset.getPrice());
 
-        if (item.type == L2ArmorType.PET) {
+        if (item.type == ItemType.PET_ARMOR) {
             item.set.set("type1", L2Item.TYPE1_SHIELD_ARMOR);
             if (item.set.getEnum("bodypart", BodyPart.class) == WOLF) {
                 item.set.set("type2", L2Item.TYPE2_PET_WOLF);

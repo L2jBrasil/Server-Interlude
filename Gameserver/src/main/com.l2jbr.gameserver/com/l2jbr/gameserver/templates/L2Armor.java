@@ -43,17 +43,7 @@ public final class L2Armor extends L2Item {
     private final int _hpBonus;
     private L2Skill _itemSkill = null; // for passive skill
 
-    /**
-     * Constructor for Armor.<BR>
-     * <BR>
-     * <U><I>Variables filled :</I></U><BR>
-     * <LI>_avoidModifier</LI> <LI>_pDef & _mDef</LI> <LI>_mpBonus & _hpBonus</LI>
-     *
-     * @param type : L2ArmorType designating the type of armor
-     * @param set  : StatsSet designating the set of couples (key,value) caracterizing the armor
-     * @see L2Item constructor
-     */
-    public L2Armor(L2ArmorType type, StatsSet set) {
+    public L2Armor(ItemType type, StatsSet set) {
         super(type, set);
         _avoidModifier = set.getInteger("avoid_modify");
         _pDef = set.getInteger("p_def");
@@ -68,14 +58,9 @@ public final class L2Armor extends L2Item {
         }
     }
 
-    /**
-     * Returns the type of the armor.
-     *
-     * @return L2ArmorType
-     */
     @Override
-    public L2ArmorType getItemType() {
-        return (L2ArmorType) super._type;
+    public ItemType getItemType() {
+        return (ItemType) super._type;
     }
 
     /**
