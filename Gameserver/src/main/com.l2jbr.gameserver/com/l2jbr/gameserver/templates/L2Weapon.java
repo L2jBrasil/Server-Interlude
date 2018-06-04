@@ -75,7 +75,7 @@ public final class L2Weapon extends L2Item {
      * @param set  : StatsSet designating the set of couples (key,value) caracterizing the armor
      * @see L2Item constructor
      */
-    public L2Weapon(L2WeaponType type, StatsSet set) {
+    public L2Weapon(ItemType type, StatsSet set) {
         super(type, set);
         _soulShotCount = set.getInteger("soulshots");
         _spiritShotCount = set.getInteger("spiritshots");
@@ -87,7 +87,7 @@ public final class L2Weapon extends L2Item {
         _shieldDef = set.getInteger("shield_def");
         _shieldDefRate = set.getDouble("shield_def_rate");
         _atkSpeed = set.getInteger("atk_speed");
-        _atkReuse = set.getInteger("atk_reuse", type == L2WeaponType.BOW ? 1500 : 0);
+        _atkReuse = set.getInteger("atk_reuse", type == ItemType.BOW ? 1500 : 0);
         _mpConsume = set.getInteger("mp_consume");
         _mDam = set.getInteger("m_dam");
 
@@ -122,14 +122,9 @@ public final class L2Weapon extends L2Item {
         }
     }
 
-    /**
-     * Returns the type of Weapon
-     *
-     * @return L2WeaponType
-     */
     @Override
-    public L2WeaponType getItemType() {
-        return (L2WeaponType) super._type;
+    public ItemType getItemType() {
+        return (ItemType) super._type;
     }
 
     /**

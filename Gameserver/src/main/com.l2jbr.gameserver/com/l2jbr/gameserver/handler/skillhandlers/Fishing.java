@@ -30,8 +30,8 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.ItemList;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
+import com.l2jbr.gameserver.templates.ItemType;
 import com.l2jbr.gameserver.templates.L2Weapon;
-import com.l2jbr.gameserver.templates.L2WeaponType;
 import com.l2jbr.gameserver.util.Util;
 
 
@@ -142,7 +142,7 @@ public class Fishing implements ISkillHandler
 			}
 		}
 		L2Weapon weaponItem = player.getActiveWeaponItem();
-		if (((weaponItem == null) || (weaponItem.getItemType() != L2WeaponType.ROD)))
+		if (((weaponItem == null) || (weaponItem.getItemType() != ItemType.ROD)))
 		{
 			// Fishing poles are not installed
 			player.sendPacket(new SystemMessage(SystemMessageId.FISHING_POLE_NOT_EQUIPPED));

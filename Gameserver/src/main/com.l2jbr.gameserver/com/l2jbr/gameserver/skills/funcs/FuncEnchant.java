@@ -23,7 +23,7 @@ import com.l2jbr.gameserver.skills.Env;
 import com.l2jbr.gameserver.skills.Stats;
 import com.l2jbr.gameserver.templates.BodyPart;
 import com.l2jbr.gameserver.templates.CrystalType;
-import com.l2jbr.gameserver.templates.L2WeaponType;
+import com.l2jbr.gameserver.templates.ItemType;
 
 
 public class FuncEnchant extends Func
@@ -90,11 +90,11 @@ public class FuncEnchant extends Func
 		switch (item.getItem().getCrystalType())
 		{
 			case A:
-				if (itemType == L2WeaponType.BOW)
+				if (itemType == ItemType.BOW)
 				{
 					env.value += (8 * enchant) + (16 * overenchant);
 				}
-				else if ((itemType == L2WeaponType.DUALFIST) || (itemType == L2WeaponType.DUAL) || ((itemType == L2WeaponType.SWORD) && (item.getItem().getBodyPart() == BodyPart.TWO_HAND)))
+				else if ((itemType == ItemType.DUAL_FIST) || (itemType == ItemType.DUAL) || ((itemType == ItemType.SWORD) && (item.getItem().getBodyPart() == BodyPart.TWO_HAND)))
 				{
 					env.value += (5 * enchant) + (10 * overenchant);
 				}
@@ -104,11 +104,11 @@ public class FuncEnchant extends Func
 				}
 				break;
 			case B:
-				if (itemType == L2WeaponType.BOW)
+				if (itemType == ItemType.BOW)
 				{
 					env.value += (6 * enchant) + (12 * overenchant);
 				}
-				else if ((itemType == L2WeaponType.DUALFIST) || (itemType == L2WeaponType.DUAL) || ((itemType == L2WeaponType.SWORD) && (item.getItem().getBodyPart() == BodyPart.TWO_HAND)))
+				else if ((itemType == ItemType.DUAL_FIST) || (itemType == ItemType.DUAL) || ((itemType == ItemType.SWORD) && (item.getItem().getBodyPart() == BodyPart.TWO_HAND)))
 				{
 					env.value += (4 * enchant) + (8 * overenchant);
 				}
@@ -118,11 +118,11 @@ public class FuncEnchant extends Func
 				}
 				break;
 			case C:
-				if (itemType == L2WeaponType.BOW)
+				if (itemType == ItemType.BOW)
 				{
 					env.value += (6 * enchant) + (12 * overenchant);
 				}
-				else if ((itemType == L2WeaponType.DUALFIST) || (itemType == L2WeaponType.DUAL) || ((itemType == L2WeaponType.SWORD) && (item.getItem().getBodyPart() == BodyPart.TWO_HAND)))
+				else if ((itemType == ItemType.DUAL_FIST) || (itemType == ItemType.DUAL) || ((itemType == ItemType.SWORD) && (item.getItem().getBodyPart() == BodyPart.TWO_HAND)))
 				{
 					env.value += (4 * enchant) + (8 * overenchant);
 				}
@@ -133,7 +133,7 @@ public class FuncEnchant extends Func
 				
 				break;
 			case D:
-				if (itemType == L2WeaponType.BOW)
+				if (itemType == ItemType.BOW)
 				{
 					env.value += (4 * enchant) + (8 * overenchant);
 				}
@@ -143,11 +143,11 @@ public class FuncEnchant extends Func
 				}
 				break;
 			case S:
-				if (itemType == L2WeaponType.BOW)
+				if (itemType == ItemType.BOW)
 				{
 					env.value += (10 * enchant) + (20 * overenchant);
 				}
-				else if ((itemType == L2WeaponType.DUALFIST) || (itemType == L2WeaponType.DUAL) || ((itemType == L2WeaponType.SWORD) && (item.getItem().getBodyPart() == BodyPart.TWO_HAND)))
+				else if ((itemType == ItemType.DUAL_FIST) || (itemType == ItemType.DUAL) || ((itemType == ItemType.SWORD) && (item.getItem().getBodyPart() == BodyPart.TWO_HAND)))
 				{
 					env.value += (4 * enchant) + (12 * overenchant);
 				}

@@ -35,7 +35,7 @@ import com.l2jbr.gameserver.skills.effects.EffectTemplate;
 import com.l2jbr.gameserver.skills.funcs.Func;
 import com.l2jbr.gameserver.skills.funcs.FuncTemplate;
 import com.l2jbr.gameserver.skills.l2skills.*;
-import com.l2jbr.gameserver.templates.L2WeaponType;
+import com.l2jbr.gameserver.templates.ItemType;
 import com.l2jbr.gameserver.templates.StatsSet;
 import com.l2jbr.gameserver.util.Util;
 import org.slf4j.Logger;
@@ -1051,7 +1051,7 @@ public abstract class L2Skill {
             return true;
         }
         if (activeChar.getActiveWeaponItem() != null) {
-            L2WeaponType playerWeapon;
+            ItemType playerWeapon;
             playerWeapon = activeChar.getActiveWeaponItem().getItemType();
             int mask = playerWeapon.mask();
             if ((mask & weaponsAllowed) != 0) {
@@ -1069,7 +1069,7 @@ public abstract class L2Skill {
         StringBuilder skillmsg = new StringBuilder();
         skillmsg.append(getName());
         skillmsg.append(" can only be used with weapons of type ");
-        for (L2WeaponType wt : L2WeaponType.values()) {
+        for (ItemType wt : ItemType.weapons()) {
             if ((wt.mask() & weaponsAllowed) != 0) {
                 skillmsg.append(wt).append('/');
             }

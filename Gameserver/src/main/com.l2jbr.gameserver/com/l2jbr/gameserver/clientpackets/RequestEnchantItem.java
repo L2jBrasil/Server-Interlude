@@ -25,8 +25,8 @@ import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
+import com.l2jbr.gameserver.templates.ItemType;
 import com.l2jbr.gameserver.templates.L2Item;
-import com.l2jbr.gameserver.templates.L2WeaponType;
 import com.l2jbr.gameserver.util.IllegalPlayerAction;
 import com.l2jbr.gameserver.util.Util;
 import org.slf4j.Logger;
@@ -79,7 +79,7 @@ public final class RequestEnchantItem extends L2GameClientPacket
 		}
 		
 		// can't enchant rods, hero weapons and shadow items
-		if ((item.getItem().getItemType() == L2WeaponType.ROD) || ((item.getItemId() >= 6611) && (item.getItemId() <= 6621)) || item.isShadowItem())
+		if ((item.getItem().getItemType() == ItemType.ROD) || ((item.getItemId() >= 6611) && (item.getItemId() <= 6621)) || item.isShadowItem())
 		{
 			activeChar.sendPacket(new SystemMessage(SystemMessageId.INAPPROPRIATE_ENCHANT_CONDITION));
 			return;

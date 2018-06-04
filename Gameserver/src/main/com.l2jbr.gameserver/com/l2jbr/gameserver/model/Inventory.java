@@ -169,7 +169,7 @@ public abstract class Inventory extends ItemContainer {
             if (Config.ASSERT) {
                 assert null == getPaperdollItem(PAPERDOLL_LRHAND);
             }
-            if (item.getItemType() == L2WeaponType.BOW) {
+            if (item.getItemType() == ItemType.BOW) {
                 L2ItemInstance arrow = getPaperdollItem(PAPERDOLL_LHAND);
                 if (arrow != null) {
                     setPaperdollItem(PAPERDOLL_LHAND, null);
@@ -185,7 +185,7 @@ public abstract class Inventory extends ItemContainer {
             if (Config.ASSERT) {
                 assert item == getPaperdollItem(PAPERDOLL_LRHAND);
             }
-            if (item.getItemType() == L2WeaponType.BOW) {
+            if (item.getItemType() == ItemType.BOW) {
                 L2ItemInstance arrow = findArrowForBow(item.getItem());
                 if (arrow != null) {
                     setPaperdollItem(PAPERDOLL_LHAND, arrow);

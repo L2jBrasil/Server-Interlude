@@ -2,6 +2,9 @@ package com.l2jbr.gameserver.templates;
 
 import com.l2jbr.commons.util.Util;
 
+import java.util.EnumSet;
+import java.util.Set;
+
 public enum ItemType {
 
     //Weapon related
@@ -49,7 +52,7 @@ public enum ItemType {
     TICKET_OF_LORD(40),
     LURE(41);
 
-
+    private static Set<ItemType> weapons = EnumSet.range(SHIELD, BIG_BLUNT);
     private final int id;
 
     ItemType(int id) {
@@ -59,6 +62,14 @@ public enum ItemType {
     public int mask()
     {
         return 1 << id;
+    }
+
+    public boolean isWeapon() {
+        return weapons.contains(this);
+    }
+
+    public static Set<ItemType> weapons() {
+        return weapons;
     }
 
     @Override

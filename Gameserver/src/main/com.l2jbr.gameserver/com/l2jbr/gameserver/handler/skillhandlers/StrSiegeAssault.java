@@ -31,7 +31,7 @@ import com.l2jbr.gameserver.model.entity.Castle;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.Formulas;
-import com.l2jbr.gameserver.templates.L2WeaponType;
+import com.l2jbr.gameserver.templates.ItemType;
 
 
 /**
@@ -98,7 +98,7 @@ public class StrSiegeAssault implements ISkillHandler
 				boolean dual = activeChar.isUsingDualWeapon();
 				boolean shld = Formulas.getInstance().calcShldUse(activeChar, target);
 				boolean crit = Formulas.getInstance().calcCrit(activeChar.getCriticalHit(target, skill));
-				boolean soul = ((weapon != null) && (weapon.getChargedSoulshot() == L2ItemInstance.CHARGED_SOULSHOT) && (weapon.getItemType() != L2WeaponType.DAGGER));
+				boolean soul = ((weapon != null) && (weapon.getChargedSoulshot() == L2ItemInstance.CHARGED_SOULSHOT) && (weapon.getItemType() != ItemType.DAGGER));
 				
 				if (!crit && ((skill.getCondition() & L2Skill.COND_CRIT) != 0))
 				{

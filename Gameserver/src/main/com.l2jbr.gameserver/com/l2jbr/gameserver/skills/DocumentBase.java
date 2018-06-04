@@ -416,8 +416,8 @@ abstract class DocumentBase {
                 StringTokenizer st = new StringTokenizer(a.getNodeValue(), ",");
                 while (st.hasMoreTokens()) {
                     String item = st.nextToken().trim();
-                    for (L2WeaponType wt : L2WeaponType.values()) {
-                        if (wt.toString().equals(item)) {
+                    for (ItemType wt : ItemType.weapons()) {
+                        if (wt.toString().equalsIgnoreCase(item)) {
                             mask |= wt.mask();
                             break;
                         }
@@ -454,8 +454,8 @@ abstract class DocumentBase {
                 StringTokenizer st = new StringTokenizer(a.getNodeValue(), ",");
                 while (st.hasMoreTokens()) {
                     String item = st.nextToken().trim();
-                    for (L2WeaponType wt : L2WeaponType.values()) {
-                        if (wt.toString().equals(item)) {
+                    for (ItemType wt : ItemType.weapons()) {
+                        if (wt.toString().equalsIgnoreCase(item)) {
                             mask |= wt.mask();
                             break;
                         }

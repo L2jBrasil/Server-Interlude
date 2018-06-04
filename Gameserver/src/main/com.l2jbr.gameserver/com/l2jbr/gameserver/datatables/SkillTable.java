@@ -20,7 +20,7 @@ package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.skills.SkillsEngine;
-import com.l2jbr.gameserver.templates.L2WeaponType;
+import com.l2jbr.gameserver.templates.ItemType;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -98,19 +98,19 @@ public class SkillTable {
         return level;
     }
 
-    private static final L2WeaponType[] weaponDbMasks =
+    private static final ItemType[] weaponDbMasks =
             {
-                    L2WeaponType.ETC,
-                    L2WeaponType.BOW,
-                    L2WeaponType.POLE,
-                    L2WeaponType.DUALFIST,
-                    L2WeaponType.DUAL,
-                    L2WeaponType.BLUNT,
-                    L2WeaponType.SWORD,
-                    L2WeaponType.DAGGER,
-                    L2WeaponType.BIGSWORD,
-                    L2WeaponType.ROD,
-                    L2WeaponType.BIGBLUNT
+                    ItemType.ETC,
+                    ItemType.BOW,
+                    ItemType.POLE,
+                    ItemType.DUAL_FIST,
+                    ItemType.DUAL,
+                    ItemType.BLUNT,
+                    ItemType.SWORD,
+                    ItemType.DAGGER,
+                    ItemType.BIG_SWORD,
+                    ItemType.ROD,
+                    ItemType.BIG_BLUNT
             };
 
     public int calcWeaponsAllowed(int mask) {

@@ -56,8 +56,8 @@ import com.l2jbr.gameserver.skills.Stats;
 import com.l2jbr.gameserver.skills.effects.EffectCharge;
 import com.l2jbr.gameserver.skills.funcs.Func;
 import com.l2jbr.gameserver.templates.CrystalType;
+import com.l2jbr.gameserver.templates.ItemType;
 import com.l2jbr.gameserver.templates.L2Weapon;
-import com.l2jbr.gameserver.templates.L2WeaponType;
 import com.l2jbr.gameserver.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -769,7 +769,7 @@ public abstract class L2Character extends L2Object {
         // Get the active weapon item corresponding to the active weapon instance (always equiped in the right hand)
         L2Weapon weaponItem = getActiveWeaponItem();
 
-        if ((weaponItem != null) && (weaponItem.getItemType() == L2WeaponType.ROD)) {
+        if ((weaponItem != null) && (weaponItem.getItemType() == ItemType.ROD)) {
             // You can't make an attack with a fishing pole.
             ((L2PcInstance) this).sendPacket(new SystemMessage(SystemMessageId.CANNOT_ATTACK_WITH_FISHING_POLE));
             getAI().setIntention(Intention.AI_INTENTION_IDLE);
@@ -788,7 +788,7 @@ public abstract class L2Character extends L2Object {
         }
 
         // Check for a bow
-        if (((weaponItem != null) && (weaponItem.getItemType() == L2WeaponType.BOW))) {
+        if (((weaponItem != null) && (weaponItem.getItemType() == ItemType.BOW))) {
             // Check for arrows and MP
             if (this instanceof L2PcInstance) {
                 // Checking if target has moved to peace zone - only for player-bow attacks at the moment
@@ -895,9 +895,9 @@ public abstract class L2Character extends L2Object {
         // Select the type of attack to start
         if (weaponItem == null) {
             hitted = doAttackHitSimple(attack, target, timeToHit);
-        } else if (weaponItem.getItemType() == L2WeaponType.BOW) {
+        } else if (weaponItem.getItemType() == ItemType.BOW) {
             hitted = doAttackHitByBow(attack, target, timeAtk, reuse);
-        } else if (weaponItem.getItemType() == L2WeaponType.POLE) {
+        } else if (weaponItem.getItemType() == ItemType.POLE) {
             hitted = doAttackHitByPole(attack, timeToHit);
         } else if (isUsingDualWeapon()) {
             hitted = doAttackHitByDual(attack, target, timeToHit);

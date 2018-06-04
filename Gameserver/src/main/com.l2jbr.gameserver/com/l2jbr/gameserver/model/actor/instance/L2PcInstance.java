@@ -4400,8 +4400,8 @@ public final class L2PcInstance extends L2PlayableInstance {
         else if (CursedWeaponsManager.getInstance().isCursed(target.getItemId())) {
             addItem("Pickup", target, null, true);
         } else {
-            // if item is instance of L2ArmorType or L2WeaponType broadcast an "Attention" system message
-            if ((target.getItemType() instanceof L2ArmorType) || (target.getItemType() instanceof L2WeaponType)) {
+            // if item is instance of Armor or Weapon broadcast an "Attention" system message
+            if ((target.getItemType() instanceof L2ArmorType) || (ItemType.weapons().contains(target.getItemType()))) {
                 if (target.getEnchantLevel() > 0) {
                     SystemMessage msg = new SystemMessage(SystemMessageId.ATTENTION_S1_PICKED_UP_S2_S3);
                     msg.addString(getName());
@@ -5892,9 +5892,9 @@ public final class L2PcInstance extends L2PlayableInstance {
             return false;
         }
 
-        if (weaponItem.getItemType() == L2WeaponType.DUAL) {
+        if (weaponItem.getItemType() == ItemType.DUAL) {
             return true;
-        } else if (weaponItem.getItemType() == L2WeaponType.DUALFIST) {
+        } else if (weaponItem.getItemType() == ItemType.DUAL_FIST) {
             return true;
         } else if (weaponItem.getItemId() == 248) {
             return true;

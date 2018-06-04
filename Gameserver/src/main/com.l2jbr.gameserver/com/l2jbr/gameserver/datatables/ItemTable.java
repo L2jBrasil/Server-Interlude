@@ -52,7 +52,6 @@ public class ItemTable {
     private static Logger _log = LoggerFactory.getLogger(ItemTable.class);
     private static Logger _logItems = LoggerFactory.getLogger("item");
 
-    private static final Map<String, L2WeaponType> _weaponTypes = new LinkedHashMap<>();
     private static final Map<String, L2ArmorType> _armorTypes = new LinkedHashMap<>();
 
     private L2Item[] _allTemplates;
@@ -63,21 +62,6 @@ public class ItemTable {
     private final boolean _initialized = true;
 
     static {
-
-        _weaponTypes.put("blunt", L2WeaponType.BLUNT);
-        _weaponTypes.put("bow", L2WeaponType.BOW);
-        _weaponTypes.put("dagger", L2WeaponType.DAGGER);
-        _weaponTypes.put("dual", L2WeaponType.DUAL);
-        _weaponTypes.put("dualfist", L2WeaponType.DUALFIST);
-        _weaponTypes.put("etc", L2WeaponType.ETC);
-        _weaponTypes.put("fist", L2WeaponType.FIST);
-        _weaponTypes.put("none", L2WeaponType.NONE); // these are shields !
-        _weaponTypes.put("pole", L2WeaponType.POLE);
-        _weaponTypes.put("sword", L2WeaponType.SWORD);
-        _weaponTypes.put("bigsword", L2WeaponType.BIGSWORD); // Two-Handed Swords
-        _weaponTypes.put("petweapon", L2WeaponType.PET); // Pet Weapon
-        _weaponTypes.put("rod", L2WeaponType.ROD); // Fishing Rods
-        _weaponTypes.put("bigblunt", L2WeaponType.BIGBLUNT); // Two handed blunt
         _armorTypes.put("none", L2ArmorType.NONE);
         _armorTypes.put("light", L2ArmorType.LIGHT);
         _armorTypes.put("heavy", L2ArmorType.HEAVY);
@@ -157,7 +141,7 @@ public class ItemTable {
     private Item readWeapon(Weapon weapon) {
         Item item = new Item();
         item.set = new StatsSet();
-        item.type = _weaponTypes.get(weapon.getType().getName());
+        item.type = weapon.getType();
         item.id = weapon.getId();
         item.name = weapon.getName();
 
@@ -165,7 +149,7 @@ public class ItemTable {
         item.set.set("name", item.name);
 
         // lets see if this is a shield
-        if (item.type == L2WeaponType.NONE) {
+        if (item.type == ItemType.SHIELD) {
             item.set.set("type1", L2Item.TYPE1_SHIELD_ARMOR);
             item.set.set("type2", L2Item.TYPE2_SHIELD_ARMOR);
         } else {
@@ -175,7 +159,7 @@ public class ItemTable {
 
         item.set.set("bodypart", weapon.getBodyPart());
         item.set.set("crystal_type", weapon.getCrystalType());
-        item.set.set("crystallizable", Boolean.valueOf(weapon.isCrystallizable()));
+        item.set.set("crystallizable", weapon.isCrystallizable());
         item.set.set("weight", weapon.getWeight());
         item.set.set("soulshots", weapon.getSoulshots());
         item.set.set("spiritshots", weapon.getSpiritshots());
@@ -192,10 +176,10 @@ public class ItemTable {
         item.set.set("duration", weapon.getDuration());
         item.set.set("price", weapon.getPrice());
         item.set.set("crystal_count", weapon.getCrystalCount());
-        item.set.set("sellable", Boolean.valueOf(weapon.isSellable()));
-        item.set.set("dropable", Boolean.valueOf(weapon.isDropable()));
-        item.set.set("destroyable", Boolean.valueOf(weapon.isDestroyable()));
-        item.set.set("tradeable", Boolean.valueOf(weapon.isTradeable()));
+        item.set.set("sellable", weapon.isSellable());
+        item.set.set("dropable", weapon.isDropable());
+        item.set.set("destroyable", weapon.isDestroyable());
+        item.set.set("tradeable", weapon.isTradeable());
 
         item.set.set("item_skill_id", weapon.getItemSkillId());
         item.set.set("item_skill_lvl", weapon.getItemSkillLevel());
@@ -211,7 +195,7 @@ public class ItemTable {
         item.set.set("onCrit_skill_lvl", weapon.getOnCritSkillLevel());
         item.set.set("onCrit_skill_chance", weapon.getOnCritSkillChance());
 
-        if (item.type == L2WeaponType.PET) {
+        if (item.type == ItemType.PET_WEAPON) {
             item.set.set("type1", L2Item.TYPE1_WEAPON_RING_EARRING_NECKLACE);
             if (item.set.getEnum("bodypart", BodyPart.class) == BodyPart.WOLF) {
                 item.set.set("type2", L2Item.TYPE2_PET_WOLF);
@@ -247,12 +231,12 @@ public class ItemTable {
         item.set.set("name", item.name);
         BodyPart bodypart = rset.getBodyPart();
         item.set.set("bodypart", bodypart);
-        item.set.set("crystallizable", Boolean.valueOf(rset.isCrystallizable()));
+        item.set.set("crystallizable", rset.isCrystallizable());
         item.set.set("crystal_count", rset.getCrystalCount());
-        item.set.set("sellable", Boolean.valueOf(rset.isSellable()));
-        item.set.set("dropable", Boolean.valueOf(rset.isDropable()));
-        item.set.set("destroyable", Boolean.valueOf(rset.isDestroyable()));
-        item.set.set("tradeable", Boolean.valueOf(rset.isTradeable()));
+        item.set.set("sellable", rset.isSellable());
+        item.set.set("dropable", rset.isDropable());
+        item.set.set("destroyable", rset.isDestroyable());
+        item.set.set("tradeable", rset.isTradeable());
         item.set.set("item_skill_id", rset.getItemSkillId());
         item.set.set("item_skill_lvl", rset.getItemSkillLevel());
 
@@ -376,12 +360,6 @@ public class ItemTable {
         return _initialized;
     }
 
-    /*
-     * private void fillEtcItemsTable() { for (Item itemInfo : itemData.values()) { L2EtcItem item = SkillsEngine.getInstance().loadEtcItem(itemInfo.id, itemInfo.type, itemInfo.name, itemInfo.set); if (item == null) { item = new L2EtcItem((L2EtcItemType)itemInfo.type, itemInfo.set); }
-     * _etcItems.put(item.getId(), item); } } private void fillArmorsTable() { List<L2Armor> armorList = SkillsEngine.getInstance().loadArmors(armorData); /*for (Item itemInfo : armorData.values()) { L2Armor armor = SkillsEngine.getInstance().loadArmor(itemInfo.id, itemInfo.type, itemInfo.name,
-     * itemInfo.set); if (armor == null) armor = new L2Armor((L2ArmorType)itemInfo.type, itemInfo.set); _armors.put(armor.getId(), armor); }* } private void FillWeaponsTable() { for (Item itemInfo : weaponData.values()) { L2Weapon weapon = SkillsEngine.getInstance().loadWeapon(itemInfo.id,
-     * itemInfo.type, itemInfo.name, itemInfo.set); if (weapon == null) weapon = new L2Weapon((L2WeaponType)itemInfo.type, itemInfo.set); _weapons.put(weapon.getId(), weapon); } }
-     */
 
     /**
      * Builds a variable in which all items are putting in in function of their ID.
@@ -577,6 +555,7 @@ public class ItemTable {
     }
 
     public void reload() {
+        //FIXME  The player must relogin to get new item status
         synchronized (_instance) {
             _instance = null;
             _instance = new ItemTable();

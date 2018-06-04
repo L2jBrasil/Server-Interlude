@@ -40,9 +40,9 @@ import com.l2jbr.gameserver.skills.conditions.ConditionPlayerState;
 import com.l2jbr.gameserver.skills.conditions.ConditionPlayerState.CheckPlayerState;
 import com.l2jbr.gameserver.skills.conditions.ConditionUsingItemType;
 import com.l2jbr.gameserver.skills.funcs.Func;
+import com.l2jbr.gameserver.templates.ItemType;
 import com.l2jbr.gameserver.templates.L2Armor;
 import com.l2jbr.gameserver.templates.L2Weapon;
-import com.l2jbr.gameserver.templates.L2WeaponType;
 import com.l2jbr.gameserver.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -375,7 +375,7 @@ public final class Formulas
 		private FuncBowAtkRange()
 		{
 			super(Stats.POWER_ATTACK_RANGE, 0x10, null);
-			setCondition(new ConditionUsingItemType(L2WeaponType.BOW.mask()));
+			setCondition(new ConditionUsingItemType(ItemType.BOW.mask()));
 		}
 		
 		@Override
@@ -1364,7 +1364,7 @@ public final class Formulas
 					stat = Stats.BOW_WPN_VULN;
 					break;
 				case BLUNT:
-				case BIGBLUNT:
+				case BIG_BLUNT:
 					stat = Stats.BLUNT_WPN_VULN;
 					break;
 				case DAGGER:
@@ -1373,7 +1373,7 @@ public final class Formulas
 				case DUAL:
 					stat = Stats.DUAL_WPN_VULN;
 					break;
-				case DUALFIST:
+				case DUAL_FIST:
 					stat = Stats.DUALFIST_WPN_VULN;
 					break;
 				case ETC:
@@ -1388,7 +1388,7 @@ public final class Formulas
 				case SWORD:
 					stat = Stats.SWORD_WPN_VULN;
 					break;
-				case BIGSWORD: // TODO: have a proper resistance/vulnerability for Big swords
+				case BIG_SWORD: // TODO: have a proper resistance/vulnerability for Big swords
 					stat = Stats.SWORD_WPN_VULN;
 					break;
 			}
@@ -1655,7 +1655,7 @@ public final class Formulas
 		if (Config.ALT_GAME_CANCEL_BOW && target.isAttackingNow())
 		{
 			L2Weapon wpn = target.getActiveWeaponItem();
-			if ((wpn != null) && (wpn.getItemType() == L2WeaponType.BOW))
+			if ((wpn != null) && (wpn.getItemType() == ItemType.BOW))
 			{
 				init = 15;
 			}
@@ -1779,7 +1779,7 @@ public final class Formulas
 			}
 		}
 		// if attacker use bow and target wear shield, shield block rate is multiplied by 1.3 (30%)
-		if ((at_weapon != null) && (at_weapon.getItemType() == L2WeaponType.BOW))
+		if ((at_weapon != null) && (at_weapon.getItemType() == ItemType.BOW))
 		{
 			shldRate *= 1.3;
 		}
