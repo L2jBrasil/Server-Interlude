@@ -294,12 +294,12 @@ public class ItemTable {
             item.set.set("bodypart", BodyPart.LEFT_HAND);
         }
 
-        String consume = etcItem.getConsumeType().name().toLowerCase();
-        if (consume.equals("asset")) {
+        EtcItem.ConsumeType consume = etcItem.getConsumeType();
+        if (consume == EtcItem.ConsumeType.ASSET) {
             item.type = ItemType.MONEY;
             item.set.set("stackable", true);
             item.set.set("type2", ItemTypeGroup.TYPE2_MONEY);
-        } else if (consume.equals("stackable")) {
+        } else if (consume == EtcItem.ConsumeType.STACKABLE) {
             item.set.set("stackable", true);
         } else {
             item.set.set("stackable", false);

@@ -309,6 +309,7 @@ public abstract class Quest {
             res = onAdvEvent(event, npc, player);
         } catch (Exception e) {
             return showError(player, e);
+
         }
         return showResult(player, res);
     }
@@ -412,7 +413,7 @@ public abstract class Quest {
      * @return boolean
      */
     private boolean showError(L2PcInstance player, Throwable t) {
-        _log.warn( "", t);
+        _log.error(t.toString(), t);
         if (player.getAccessLevel() > 0) {
             StringWriter sw = new StringWriter();
             PrintWriter pw = new PrintWriter(sw);
