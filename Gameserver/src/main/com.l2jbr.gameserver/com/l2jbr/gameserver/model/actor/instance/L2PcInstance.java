@@ -2446,7 +2446,7 @@ public final class L2PcInstance extends L2PlayableInstance {
             return;
         }
 
-        if ((unequipped.getItem().getType2() == L2Item.TYPE2_WEAPON) && (equipped == null ? true : equipped.getItem().getCrystalType() != unequipped.getItem().getCrystalType())) {
+        if ((unequipped.getItem().getType2() == ItemTypeGroup.TYPE2_WEAPON) && (equipped == null ? true : equipped.getItem().getCrystalType() != unequipped.getItem().getCrystalType())) {
             for (L2ItemInstance ss : getInventory().getItems()) {
                 int _itemId = ss.getItemId();
 
@@ -4927,7 +4927,7 @@ public final class L2PcInstance extends L2PlayableInstance {
                     if (itemDrop.isAugmented() || // Dont drop augmented items
                             itemDrop.isShadowItem() || // Dont drop Shadow Items
                             (itemDrop.getItemId() == 57) || // Adena
-                            (itemDrop.getItem().getType2() == L2Item.TYPE2_QUEST) || // Quest Items
+                            (itemDrop.getItem().getType2() == ItemTypeGroup.TYPE2_QUEST) || // Quest Items
                             nonDroppableList.contains(itemDrop.getItemId()) || // Item listed in the non droppable item list
                             nonDroppableListPet.contains(itemDrop.getItemId()) || // Item listed in the non droppable pet item list
                             ((getPet() != null) && (getPet().getControlItemId() == itemDrop.getItemId() // Control Item of active pet
@@ -4937,7 +4937,7 @@ public final class L2PcInstance extends L2PlayableInstance {
 
                     if (itemDrop.isEquipped()) {
                         // Set proper chance according to Item type of equipped Item
-                        itemDropPercent = itemDrop.getItem().getType2() == L2Item.TYPE2_WEAPON ? dropEquipWeapon : dropEquip;
+                        itemDropPercent = itemDrop.getItem().getType2() == ItemTypeGroup.TYPE2_WEAPON ? dropEquipWeapon : dropEquip;
                         getInventory().unEquipItemInSlotAndRecord(itemDrop.getEquipSlot());
                     } else {
                         itemDropPercent = dropItem; // Item in inventory

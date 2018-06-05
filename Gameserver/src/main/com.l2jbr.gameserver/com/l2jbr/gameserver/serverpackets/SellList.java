@@ -82,11 +82,11 @@ public class SellList extends L2GameServerPacket {
         writeH(_selllist.size());
 
         for (L2ItemInstance item : _selllist) {
-            writeH(item.getItem().getType1());
+            writeH(item.getItem().getType1().getId());
             writeD(item.getObjectId());
             writeD(item.getItemId());
             writeD(item.getCount());
-            writeH(item.getItem().getType2());
+            writeH(item.getItem().getType2().getId());
             writeH(0x00);
             writeD(item.getItem().getBodyPart().getId());
             writeH(item.getEnchantLevel());

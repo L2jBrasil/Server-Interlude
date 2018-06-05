@@ -31,6 +31,7 @@ import com.l2jbr.gameserver.network.L2GameClient;
 import com.l2jbr.gameserver.serverpackets.CharCreateFail;
 import com.l2jbr.gameserver.serverpackets.CharCreateOk;
 import com.l2jbr.gameserver.serverpackets.CharSelectInfo;
+import com.l2jbr.gameserver.templates.ItemTypeGroup;
 import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.util.Util;
 import org.slf4j.Logger;
@@ -203,7 +204,7 @@ public final class CharacterCreate extends L2GameClientPacket
 			}
 			if (item.isEquipable())
 			{
-				if ((newChar.getActiveWeaponItem() == null) || !(item.getItem().getType2() != L2Item.TYPE2_WEAPON))
+				if ((newChar.getActiveWeaponItem() == null) || item.getItem().getType2() == ItemTypeGroup.TYPE2_WEAPON)
 				{
 					newChar.getInventory().equipItemAndRecord(item);
 				}

@@ -33,7 +33,7 @@ import com.l2jbr.gameserver.model.database.repository.PetsRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.taskmanager.DecayTaskManager;
-import com.l2jbr.gameserver.templates.L2Item;
+import com.l2jbr.gameserver.templates.ItemTypeGroup;
 import com.l2jbr.gameserver.templates.L2Weapon;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -298,7 +298,7 @@ public class L2PetInstance extends L2Summon
 	{
 		for (L2ItemInstance item : getInventory().getItems())
 		{
-			if ((item.getLocation() == L2ItemInstance.ItemLocation.PET_EQUIP) && (item.getItem().getType1() == L2Item.TYPE2_WEAPON))
+			if ((item.getLocation() == L2ItemInstance.ItemLocation.PET_EQUIP) && (item.getItem().getType1() == ItemTypeGroup.TYPE2_WEAPON))
 			{
 				return item;
 			}

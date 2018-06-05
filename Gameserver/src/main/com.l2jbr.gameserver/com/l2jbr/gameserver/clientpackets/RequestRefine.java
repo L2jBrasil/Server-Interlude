@@ -27,7 +27,7 @@ import com.l2jbr.gameserver.serverpackets.ExVariationResult;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.CrystalType;
-import com.l2jbr.gameserver.templates.L2Item;
+import com.l2jbr.gameserver.templates.ItemTypeGroup;
 import com.l2jbr.gameserver.util.Util;
 
 
@@ -119,7 +119,7 @@ public final class RequestRefine extends L2GameClientPacket
 		}
 		
 		CrystalType itemGrade = targetItem.getItem().getCrystalType();
-		int itemType = targetItem.getItem().getType2();
+		ItemTypeGroup itemType = targetItem.getItem().getType2();
 		int lifeStoneId = refinerItem.getItemId();
 		int gemstoneItemId = gemstoneItem.getItemId();
 		
@@ -131,7 +131,7 @@ public final class RequestRefine extends L2GameClientPacket
 		
 		// must be a weapon, must be > d grade
 		// TODO: can do better? : currently: using isdestroyable() as a check for hero / cursed weapons
-		if ((itemGrade.compareTo(CrystalType.C) < 0) || (itemType != L2Item.TYPE2_WEAPON) || !targetItem.isDestroyable())
+		if ((itemGrade.compareTo(CrystalType.C) < 0) || (itemType != ItemTypeGroup.TYPE2_WEAPON) || !targetItem.isDestroyable())
 		{
 			return false;
 		}

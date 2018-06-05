@@ -30,6 +30,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2RaidBossInstance;
 import com.l2jbr.gameserver.model.database.Armor;
 import com.l2jbr.gameserver.model.database.EtcItem;
+import com.l2jbr.gameserver.model.database.ItemTemplate;
 import com.l2jbr.gameserver.model.database.Weapon;
 import com.l2jbr.gameserver.model.database.repository.ArmorRepository;
 import com.l2jbr.gameserver.model.database.repository.EtcItemRepository;
@@ -56,6 +57,7 @@ public class ItemTable {
     private final Map<Integer, L2EtcItem> _etcItems;
     private final Map<Integer, L2Armor> _armors;
     private final Map<Integer, L2Weapon> _weapons;
+    private Map<Integer, ItemTemplate> items;
 
     private final boolean _initialized = true;
 
@@ -66,6 +68,7 @@ public class ItemTable {
     private static final Map<Integer, Item> weaponData = new LinkedHashMap<>();
 
     private static final Map<Integer, Item> armorData = new LinkedHashMap<>();
+
 
     public static ItemTable getInstance() {
         if (_instance == null) {
@@ -140,11 +143,11 @@ public class ItemTable {
 
         // lets see if this is a shield
         if (item.type == ItemType.SHIELD) {
-            item.set.set("type1", L2Item.TYPE1_SHIELD_ARMOR);
-            item.set.set("type2", L2Item.TYPE2_SHIELD_ARMOR);
+            item.set.set("type1", ItemTypeGroup.TYPE1_ARMOR_SHIELD);
+            item.set.set("type2", ItemTypeGroup.TYPE2_SHIELD_ARMOR);
         } else {
-            item.set.set("type1", L2Item.TYPE1_WEAPON_RING_EARRING_NECKLACE);
-            item.set.set("type2", L2Item.TYPE2_WEAPON);
+            item.set.set("type1", ItemTypeGroup.TYPE1_WEAPON_ACCESSORY);
+            item.set.set("type2", ItemTypeGroup.TYPE2_WEAPON);
         }
 
         item.set.set("bodypart", weapon.getBodyPart());
@@ -186,15 +189,15 @@ public class ItemTable {
         item.set.set("onCrit_skill_chance", weapon.getOnCritSkillChance());
 
         if (item.type == ItemType.PET_WEAPON) {
-            item.set.set("type1", L2Item.TYPE1_WEAPON_RING_EARRING_NECKLACE);
+            item.set.set("type1", ItemTypeGroup.TYPE1_WEAPON_ACCESSORY);
             if (item.set.getEnum("bodypart", BodyPart.class) == BodyPart.WOLF) {
-                item.set.set("type2", L2Item.TYPE2_PET_WOLF);
+                item.set.set("type2", ItemTypeGroup.TYPE2_PET_WOLF);
             } else if (item.set.getEnum("bodypart", BodyPart.class) == BodyPart.HATCHLING) {
-                item.set.set("type2", L2Item.TYPE2_PET_HATCHLING);
+                item.set.set("type2", ItemTypeGroup.TYPE2_PET_HATCHLING);
             } else if (item.set.getEnum("bodypart", BodyPart.class) == BodyPart.BABYPET) {
-                item.set.set("type2", L2Item.TYPE2_PET_BABY);
+                item.set.set("type2", ItemTypeGroup.TYPE2_PET_BABY);
             } else {
-                item.set.set("type2", L2Item.TYPE2_PET_STRIDER);
+                item.set.set("type2", ItemTypeGroup.TYPE2_PET_STRIDER);
             }
 
             item.set.set("bodypart", BodyPart.RIGHT_HAND);
@@ -231,11 +234,11 @@ public class ItemTable {
         item.set.set("item_skill_lvl", rset.getItemSkillLevel());
 
         if ((bodypart == NECK) || (bodypart ==  HAIR) || (bodypart == FACE) || (bodypart == DHAIR) || (bodypart == EAR) || (bodypart == FINGER)) {
-            item.set.set("type1", L2Item.TYPE1_WEAPON_RING_EARRING_NECKLACE);
-            item.set.set("type2", L2Item.TYPE2_ACCESSORY);
+            item.set.set("type1", ItemTypeGroup.TYPE1_WEAPON_ACCESSORY);
+            item.set.set("type2", ItemTypeGroup.TYPE2_ACCESSORY);
         } else {
-            item.set.set("type1", L2Item.TYPE1_SHIELD_ARMOR);
-            item.set.set("type2", L2Item.TYPE2_SHIELD_ARMOR);
+            item.set.set("type1", ItemTypeGroup.TYPE1_ARMOR_SHIELD);
+            item.set.set("type2", ItemTypeGroup.TYPE2_SHIELD_ARMOR);
         }
 
         item.set.set("weight", rset.getWeight());
@@ -248,15 +251,15 @@ public class ItemTable {
         item.set.set("price", rset.getPrice());
 
         if (item.type == ItemType.PET_ARMOR) {
-            item.set.set("type1", L2Item.TYPE1_SHIELD_ARMOR);
+            item.set.set("type1", ItemTypeGroup.TYPE1_ARMOR_SHIELD);
             if (item.set.getEnum("bodypart", BodyPart.class) == WOLF) {
-                item.set.set("type2", L2Item.TYPE2_PET_WOLF);
+                item.set.set("type2", ItemTypeGroup.TYPE2_PET_WOLF);
             } else if (item.set.getEnum("bodypart", BodyPart.class)== HATCHLING) {
-                item.set.set("type2", L2Item.TYPE2_PET_HATCHLING);
+                item.set.set("type2", ItemTypeGroup.TYPE2_PET_HATCHLING);
             } else if (item.set.getEnum("bodypart", BodyPart.class) == BABYPET) {
-                item.set.set("type2", L2Item.TYPE2_PET_BABY);
+                item.set.set("type2", ItemTypeGroup.TYPE2_PET_BABY);
             } else {
-                item.set.set("type2", L2Item.TYPE2_PET_STRIDER);
+                item.set.set("type2", ItemTypeGroup.TYPE2_PET_STRIDER);
             }
 
             item.set.set("bodypart", BodyPart.CHEST);
@@ -271,21 +274,23 @@ public class ItemTable {
         item.id = etcItem.getId();
 
         item.set.set("item_id", item.id);
-        item.set.set("crystallizable", Boolean.valueOf(etcItem.isCrystallizable()));
-        item.set.set("type1", L2Item.TYPE1_ITEM_QUESTITEM_ADENA);
-        item.set.set("type2", L2Item.TYPE2_OTHER);
+        item.set.set("crystallizable", etcItem.isCrystallizable());
+        item.set.set("type1", ItemTypeGroup.TYPE1_ITEM_QUEST);
+        item.set.set("type2", ItemTypeGroup.TYPE2_OTHER);
         item.set.set("bodypart", BodyPart.NONE);
         item.set.set("crystal_count", etcItem.getCrystalCount());
-        item.set.set("sellable", Boolean.valueOf(etcItem.isSellable()));
-        item.set.set("dropable", Boolean.valueOf(etcItem.isDropable()));
-        item.set.set("destroyable", Boolean.valueOf(etcItem.isDestroyable()));
-        item.set.set("tradeable", Boolean.valueOf(etcItem.isTradeable()));
+        item.set.set("sellable", etcItem.isSellable());
+        item.set.set("dropable", etcItem.isDropable());
+        item.set.set("destroyable", etcItem.isDestroyable());
+        item.set.set("tradeable", etcItem.isTradeable());
         item.type = etcItem.getType();
 
         if(item.type == ItemType.QUEST) {
-            item.set.set("type2", L2Item.TYPE2_QUEST);
+            item.set.set("type2", ItemTypeGroup.TYPE2_QUEST);
         } else if(item.type == ItemType.LURE) {
             item.type =  ItemType.OTHER;
+            item.set.set("bodypart", BodyPart.LEFT_HAND);
+        } else if(item.type == ItemType.ARROW) {
             item.set.set("bodypart", BodyPart.LEFT_HAND);
         }
 
@@ -293,7 +298,7 @@ public class ItemTable {
         if (consume.equals("asset")) {
             item.type = ItemType.MONEY;
             item.set.set("stackable", true);
-            item.set.set("type2", L2Item.TYPE2_MONEY);
+            item.set.set("type2", ItemTypeGroup.TYPE2_MONEY);
         } else if (consume.equals("stackable")) {
             item.set.set("stackable", true);
         } else {

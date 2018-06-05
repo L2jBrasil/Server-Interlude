@@ -29,7 +29,7 @@ import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.ItemList;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.ItemType;
-import com.l2jbr.gameserver.templates.L2Item;
+import com.l2jbr.gameserver.templates.ItemTypeGroup;
 import com.l2jbr.gameserver.util.IllegalPlayerAction;
 import com.l2jbr.gameserver.util.Util;
 import org.slf4j.Logger;
@@ -135,7 +135,7 @@ public final class RequestDropItem extends L2GameClientPacket
 			}
 		}
 		
-		if ((L2Item.TYPE2_QUEST == item.getItem().getType2()) && !activeChar.isGM())
+		if ((ItemTypeGroup.TYPE2_QUEST == item.getItem().getType2()) && !activeChar.isGM())
 		{
 			if (Config.DEBUG)
 			{

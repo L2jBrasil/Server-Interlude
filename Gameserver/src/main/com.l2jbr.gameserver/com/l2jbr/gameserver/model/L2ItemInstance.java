@@ -36,10 +36,7 @@ import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.funcs.Func;
-import com.l2jbr.gameserver.templates.BodyPart;
-import com.l2jbr.gameserver.templates.L2Armor;
-import com.l2jbr.gameserver.templates.L2EtcItem;
-import com.l2jbr.gameserver.templates.L2Item;
+import com.l2jbr.gameserver.templates.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -577,8 +574,8 @@ public final class L2ItemInstance extends L2Object
 	public boolean isAvailable(L2PcInstance player, boolean allowAdena)
 	{
 		return ((!isEquipped()) // Not equipped
-			&& (getItem().getType2() != 3) // Not Quest Item
-			&& ((getItem().getType2() != 4) || (getItem().getType1() != 1)) // TODO: what does this mean?
+			&& (getItem().getType2() != ItemTypeGroup.TYPE2_QUEST) // Not Quest Item
+			&& ((getItem().getType2() != ItemTypeGroup.TYPE2_MONEY) || (getItem().getType1() != ItemTypeGroup.TYPE1_ARMOR_SHIELD)) // TODO: what does this mean?
 			&& ((player.getPet() == null) || (getObjectId() != player.getPet().getControlItemId())) // Not Control item of currently summoned pet
 			&& (player.getActiveEnchantItem() != this) // Not momentarily used enchant scroll
 			&& (allowAdena || (getItemId() != 57)) && ((player.getCurrentSkill() == null) || (player.getCurrentSkill().getSkill().getItemConsumeId() != getItemId())) && (isTradeable()));

@@ -31,7 +31,6 @@ import com.l2jbr.gameserver.skills.funcs.FuncTemplate;
 import java.util.LinkedList;
 import java.util.List;
 
-
 /**
  * This class contains all informations concerning the item (weapon, armor, etc).<BR>
  * Mother class of : <LI>L2Armor</LI> <LI>L2EtcItem</LI> <LI>L2Weapon</LI>
@@ -39,25 +38,11 @@ import java.util.List;
  * @version $Revision: 1.7.2.2.2.5 $ $Date: 2005/04/06 18:25:18 $
  */
 public abstract class L2Item {
-    public static final int TYPE1_WEAPON_RING_EARRING_NECKLACE = 0;
-    public static final int TYPE1_SHIELD_ARMOR = 1;
-    public static final int TYPE1_ITEM_QUESTITEM_ADENA = 4;
-
-    public static final int TYPE2_WEAPON = 0;
-    public static final int TYPE2_SHIELD_ARMOR = 1;
-    public static final int TYPE2_ACCESSORY = 2;
-    public static final int TYPE2_QUEST = 3;
-    public static final int TYPE2_MONEY = 4;
-    public static final int TYPE2_OTHER = 5;
-    public static final int TYPE2_PET_WOLF = 6;
-    public static final int TYPE2_PET_HATCHLING = 7;
-    public static final int TYPE2_PET_STRIDER = 8;
-    public static final int TYPE2_PET_BABY = 9;
 
     private final int _itemId;
     private final String _name;
-    private final int _type1; // needed for item list (inventory)
-    private final int _type2; // different lists for armor, weapon, etc
+    private final ItemTypeGroup _type1; // needed for item list (inventory)
+    private final ItemTypeGroup _type2; // different lists for armor, weapon, etc
     private final int _weight;
     private final boolean _crystallizable;
     private final boolean _stackable;
@@ -94,8 +79,8 @@ public abstract class L2Item {
         _type = type;
         _itemId = set.getInteger("item_id");
         _name = set.getString("name");
-        _type1 = set.getInteger("type1"); // needed for item list (inventory)
-        _type2 = set.getInteger("type2"); // different lists for armor, weapon, etc
+        _type1 = set.getEnum("type1", ItemTypeGroup.class); // needed for item list (inventory)
+        _type2 = set.getEnum("type2", ItemTypeGroup.class); // different lists for armor, weapon, etc
         _weight = set.getInteger("weight");
         _crystallizable = set.getBool("crystallizable");
         _stackable = set.getBool("stackable", false);
@@ -153,7 +138,7 @@ public abstract class L2Item {
      *
      * @return int
      */
-    public final int getType2() {
+    public final ItemTypeGroup getType2() {
         return _type2;
     }
 
@@ -258,7 +243,7 @@ public abstract class L2Item {
      *
      * @return int
      */
-    public final int getType1() {
+    public final ItemTypeGroup getType1() {
         return _type1;
     }
 
@@ -331,7 +316,7 @@ public abstract class L2Item {
      * @return boolean
      */
     public boolean isForHatchling() {
-        return (_type2 == TYPE2_PET_HATCHLING);
+        return (_type2 == ItemTypeGroup.TYPE2_PET_HATCHLING);
     }
 
     /**
@@ -340,7 +325,7 @@ public abstract class L2Item {
      * @return boolean
      */
     public boolean isForStrider() {
-        return (_type2 == TYPE2_PET_STRIDER);
+        return (_type2 == ItemTypeGroup.TYPE2_PET_STRIDER);
     }
 
     /**
@@ -349,7 +334,7 @@ public abstract class L2Item {
      * @return boolean
      */
     public boolean isForWolf() {
-        return (_type2 == TYPE2_PET_WOLF);
+        return (_type2 == ItemTypeGroup.TYPE2_PET_WOLF);
     }
 
     /**
@@ -358,7 +343,7 @@ public abstract class L2Item {
      * @return boolean
      */
     public boolean isForBabyPet() {
-        return (_type2 == TYPE2_PET_BABY);
+        return (_type2 == ItemTypeGroup.TYPE2_PET_BABY);
     }
 
     /**

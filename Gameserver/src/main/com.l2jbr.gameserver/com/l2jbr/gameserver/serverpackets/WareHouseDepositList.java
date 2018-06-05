@@ -80,11 +80,11 @@ public class WareHouseDepositList extends L2GameServerPacket {
         writeH(count);
 
         for (L2ItemInstance item : _items) {
-            writeH(item.getItem().getType1()); // item type1 //unconfirmed, works
+            writeH(item.getItem().getType1().getId()); // item type1 //unconfirmed, works
             writeD(item.getObjectId()); // unconfirmed, works
             writeD(item.getItemId()); // unconfirmed, works
             writeD(item.getCount()); // unconfirmed, works
-            writeH(item.getItem().getType2()); // item type2 //unconfirmed, works
+            writeH(item.getItem().getType2().getId()); // item type2 //unconfirmed, works
             writeH(0x00); // ? 100
             writeD(item.getItem().getBodyPart().getId()); // ?
             writeH(item.getEnchantLevel()); // enchant level -confirmed

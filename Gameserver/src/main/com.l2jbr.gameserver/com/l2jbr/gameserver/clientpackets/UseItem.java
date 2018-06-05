@@ -26,10 +26,7 @@ import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
-import com.l2jbr.gameserver.templates.BodyPart;
-import com.l2jbr.gameserver.templates.ItemType;
-import com.l2jbr.gameserver.templates.L2Item;
-import com.l2jbr.gameserver.templates.L2Weapon;
+import com.l2jbr.gameserver.templates.*;
 import com.l2jbr.gameserver.util.FloodProtector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -312,7 +309,7 @@ public final class UseItem extends L2GameClientPacket
 			
 			activeChar.refreshExpertisePenalty();
 			
-			if (item.getItem().getType2() == L2Item.TYPE2_WEAPON)
+			if (item.getItem().getType2() == ItemTypeGroup.TYPE2_WEAPON)
 			{
 				activeChar.checkIfWeaponIsAllowed();
 			}
