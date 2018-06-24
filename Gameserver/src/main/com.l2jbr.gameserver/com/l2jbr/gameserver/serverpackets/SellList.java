@@ -94,7 +94,7 @@ public class SellList extends L2GameServerPacket {
             writeH(0x00);
 
             if (_lease == null) {
-                writeD(item.getItem().getReferencePrice() / 2); // wtf??? there is no conditional part in SellList!! this d should allways be here 0.o! fortunately the lease stuff are never ever use so the if allways exectues
+                writeD(item.getItem().getPrice() / 2); // wtf??? there is no conditional part in SellList!! this d should allways be here 0.o! fortunately the lease stuff are never ever use so the if allways exectues
             }
         }
     }

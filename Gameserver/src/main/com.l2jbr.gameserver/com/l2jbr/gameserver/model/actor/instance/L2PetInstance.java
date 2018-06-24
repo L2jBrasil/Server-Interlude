@@ -29,12 +29,12 @@ import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.stat.PetStat;
 import com.l2jbr.gameserver.model.database.NpcTemplate;
 import com.l2jbr.gameserver.model.database.Pets;
+import com.l2jbr.gameserver.model.database.Weapon;
 import com.l2jbr.gameserver.model.database.repository.PetsRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.taskmanager.DecayTaskManager;
 import com.l2jbr.gameserver.templates.ItemTypeGroup;
-import com.l2jbr.gameserver.templates.L2Weapon;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -311,7 +311,7 @@ public class L2PetInstance extends L2Summon
 	 * Returns the pet's currently equipped weapon (if any).
 	 */
 	@Override
-	public L2Weapon getActiveWeaponItem()
+	public Weapon getActiveWeaponItem()
 	{
 		L2ItemInstance weapon = getActiveWeaponInstance();
 		
@@ -320,7 +320,7 @@ public class L2PetInstance extends L2Summon
 			return null;
 		}
 		
-		return (L2Weapon) weapon.getItem();
+		return (Weapon) weapon.getItem();
 	}
 	
 	@Override
@@ -331,7 +331,7 @@ public class L2PetInstance extends L2Summon
 	}
 	
 	@Override
-	public L2Weapon getSecondaryWeaponItem()
+	public Weapon getSecondaryWeaponItem()
 	{
 		// temporary? unavailable
 		return null;

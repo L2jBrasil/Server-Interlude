@@ -8,8 +8,10 @@ import com.l2jbr.gameserver.model.L2Effect;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.skills.Env;
+import com.l2jbr.gameserver.skills.Stats;
 import com.l2jbr.gameserver.skills.funcs.Func;
 import com.l2jbr.gameserver.skills.funcs.FuncTemplate;
+import com.l2jbr.gameserver.skills.funcs.LambdaConst;
 import com.l2jbr.gameserver.templates.BodyPart;
 import com.l2jbr.gameserver.templates.CrystalType;
 import com.l2jbr.gameserver.templates.ItemType;
@@ -51,6 +53,13 @@ public abstract class ItemTemplate extends Entity<Integer> {
     protected L2Skill[] _skills;
     @Transient
     protected static final L2Effect[] _emptyEffectSet = new L2Effect[0];
+
+
+    public ItemTemplate() {
+        _funcTemplates =  new FuncTemplate[] {
+          new FuncTemplate(null, null, "Add", Stats.STAT_CON, 0x10, new LambdaConst(0))
+        };
+    }
 
 
     public Func[] getStatFuncs(L2ItemInstance instance, L2Character player) {

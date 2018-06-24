@@ -60,10 +60,6 @@ public class EtcItem extends ItemTemplate {
         return stackable;
     }
 
-    public ConsumeType getConsumeType() {
-        return consumeType;
-    }
-
     public enum ConsumeType {
         NORMAL,
         STACKABLE,

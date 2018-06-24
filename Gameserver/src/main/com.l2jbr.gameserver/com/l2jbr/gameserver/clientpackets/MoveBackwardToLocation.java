@@ -113,7 +113,7 @@ public class MoveBackwardToLocation extends L2GameClientPacket
 		{
 			activeChar.sendPacket(new ActionFailed());
 		}
-		else if (activeChar.isAttackingNow() && (activeChar.getActiveWeaponItem() != null) && (activeChar.getActiveWeaponItem().getItemType() == ItemType.BOW))
+		else if (activeChar.isAttackingNow() && (activeChar.getActiveWeaponItem() != null) && (activeChar.getActiveWeaponItem().getType() == ItemType.BOW))
 		{
 			activeChar.sendPacket(new ActionFailed());
 		}

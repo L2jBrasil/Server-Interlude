@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.gameserver.Item;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.*;
@@ -28,47 +27,27 @@ import com.l2jbr.gameserver.model.L2ItemInstance.ItemLocation;
 import com.l2jbr.gameserver.model.actor.instance.L2BossInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2RaidBossInstance;
-import com.l2jbr.gameserver.model.database.Armor;
-import com.l2jbr.gameserver.model.database.EtcItem;
 import com.l2jbr.gameserver.model.database.ItemTemplate;
-import com.l2jbr.gameserver.model.database.Weapon;
 import com.l2jbr.gameserver.model.database.repository.ArmorRepository;
 import com.l2jbr.gameserver.model.database.repository.EtcItemRepository;
 import com.l2jbr.gameserver.model.database.repository.PetsRepository;
 import com.l2jbr.gameserver.model.database.repository.WeaponRepository;
-import com.l2jbr.gameserver.skills.SkillsEngine;
-import com.l2jbr.gameserver.templates.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.ScheduledFuture;
-
-import static com.l2jbr.gameserver.templates.BodyPart.*;
 
 public class ItemTable {
     private static Logger _log = LoggerFactory.getLogger(ItemTable.class);
     private static Logger _logItems = LoggerFactory.getLogger("item");
-    
-    private L2Item[] _allTemplates;
-    private final Map<Integer, L2EtcItem> _etcItems;
-    private final Map<Integer, L2Armor> _armors;
-    private final Map<Integer, L2Weapon> _weapons;
+
     private Map<Integer, ItemTemplate> items;
 
     private final boolean _initialized = true;
 
     private static ItemTable _instance;
-
-    private static final Map<Integer, Item> itemData = new LinkedHashMap<>();
-
-    private static final Map<Integer, Item> weaponData = new LinkedHashMap<>();
-
-    private static final Map<Integer, Item> armorData = new LinkedHashMap<>();
-
 
     public static ItemTable getInstance() {
         if (_instance == null) {
@@ -77,245 +56,16 @@ public class ItemTable {
         return _instance;
     }
 
-    public Item newItem() {
-        return new Item();
-    }
-
     private ItemTable() {
+        items = new HashMap<>();
+        DatabaseAccess.getRepository(EtcItemRepository.class).findAll().forEach(this::addToItems);
+        DatabaseAccess.getRepository(ArmorRepository.class).findAll().forEach(this::addToItems);
+        DatabaseAccess.getRepository(WeaponRepository.class).findAll().forEach(this::addToItems);
 
-        _etcItems = new HashMap<>();
-        _armors = new HashMap<>();
-        _weapons = new HashMap<>();
-
-        EtcItemRepository etcItemRepository = DatabaseAccess.getRepository(EtcItemRepository.class);
-        etcItemRepository.findAll().forEach(item -> {
-            Item newItem = readItem(item);
-            itemData.put(newItem.id, newItem);
-        });
-
-        ArmorRepository armorRepository = DatabaseAccess.getRepository(ArmorRepository.class);
-        armorRepository.findAll().forEach( armor -> {
-            Item newItem = readArmor(armor);
-            armorData.put(newItem.id, newItem);
-        });
-
-        WeaponRepository weaponRepository = DatabaseAccess.getRepository(WeaponRepository.class);
-        weaponRepository.findAll().forEach(weapon -> {
-            Item newItem = readWeapon(weapon);
-            weaponData.put(newItem.id, newItem);
-        });
-
-
-        for (L2Armor armor : SkillsEngine.getInstance().loadArmors(armorData)) {
-            _armors.put(armor.getItemId(), armor);
-        }
-        _log.info("ItemTable: Loaded " + _armors.size() + " Armors.");
-
-        for (L2EtcItem item : SkillsEngine.getInstance().loadItems(itemData)) {
-            _etcItems.put(item.getItemId(), item);
-        }
-        _log.info("ItemTable: Loaded " + _etcItems.size() + " Items.");
-
-        for (L2Weapon weapon : SkillsEngine.getInstance().loadWeapons(weaponData)) {
-            _weapons.put(weapon.getItemId(), weapon);
-        }
-        _log.info("ItemTable: Loaded " + _weapons.size() + " Weapons.");
-
-        buildFastLookupTable();
     }
 
-    /**
-     * Returns object Item from the record of the database
-     *
-     * @param weapon : ResultSet designating a record of the [weapon] table of database
-     * @return Item : object created from the database record
-     * @throws SQLException
-     */
-    private Item readWeapon(Weapon weapon) {
-        Item item = new Item();
-        item.set = new StatsSet();
-        item.type = weapon.getType();
-        item.id = weapon.getId();
-        item.name = weapon.getName();
-
-        item.set.set("item_id", item.id);
-        item.set.set("name", item.name);
-
-        // lets see if this is a shield
-        if (item.type == ItemType.SHIELD) {
-            item.set.set("type1", ItemTypeGroup.TYPE1_ARMOR_SHIELD);
-            item.set.set("type2", ItemTypeGroup.TYPE2_SHIELD_ARMOR);
-        } else {
-            item.set.set("type1", ItemTypeGroup.TYPE1_WEAPON_ACCESSORY);
-            item.set.set("type2", ItemTypeGroup.TYPE2_WEAPON);
-        }
-
-        item.set.set("bodypart", weapon.getBodyPart());
-        item.set.set("crystal_type", weapon.getCrystalType());
-        item.set.set("crystallizable", weapon.isCrystallizable());
-        item.set.set("weight", weapon.getWeight());
-        item.set.set("soulshots", weapon.getSoulshots());
-        item.set.set("spiritshots", weapon.getSpiritshots());
-        item.set.set("p_dam", weapon.getPDam());
-        item.set.set("rnd_dam", weapon.getRandomDamage());
-        item.set.set("critical", weapon.getCritical());
-        item.set.set("hit_modify", weapon.getHitModify());
-        item.set.set("avoid_modify", weapon.getAvoidModify());
-        item.set.set("shield_def", weapon.getShieldDef());
-        item.set.set("shield_def_rate", weapon.getShieldDefRate());
-        item.set.set("atk_speed", weapon.getAtkSpeed());
-        item.set.set("mp_consume", weapon.getMpConsume());
-        item.set.set("m_dam", weapon.getMDam());
-        item.set.set("duration", weapon.getDuration());
-        item.set.set("price", weapon.getPrice());
-        item.set.set("crystal_count", weapon.getCrystalCount());
-        item.set.set("sellable", weapon.isSellable());
-        item.set.set("dropable", weapon.isDropable());
-        item.set.set("destroyable", weapon.isDestroyable());
-        item.set.set("tradeable", weapon.isTradeable());
-
-        item.set.set("item_skill_id", weapon.getItemSkillId());
-        item.set.set("item_skill_lvl", weapon.getItemSkillLevel());
-
-        item.set.set("enchant4_skill_id", weapon.getEnchant4SkillId());
-        item.set.set("enchant4_skill_lvl", weapon.getEnchant4SkillLevel());
-
-        item.set.set("onCast_skill_id", weapon.getOnCastSkillId());
-        item.set.set("onCast_skill_lvl", weapon.getOnCastSkillLevel());
-        item.set.set("onCast_skill_chance", weapon.getOnCastSkillChance());
-
-        item.set.set("onCrit_skill_id", weapon.getOnCritSkillId());
-        item.set.set("onCrit_skill_lvl", weapon.getOnCritSkillLevel());
-        item.set.set("onCrit_skill_chance", weapon.getOnCritSkillChance());
-
-        if (item.type == ItemType.PET_WEAPON) {
-            item.set.set("type1", ItemTypeGroup.TYPE1_WEAPON_ACCESSORY);
-            if (item.set.getEnum("bodypart", BodyPart.class) == BodyPart.WOLF) {
-                item.set.set("type2", ItemTypeGroup.TYPE2_PET_WOLF);
-            } else if (item.set.getEnum("bodypart", BodyPart.class) == BodyPart.HATCHLING) {
-                item.set.set("type2", ItemTypeGroup.TYPE2_PET_HATCHLING);
-            } else if (item.set.getEnum("bodypart", BodyPart.class) == BodyPart.BABYPET) {
-                item.set.set("type2", ItemTypeGroup.TYPE2_PET_BABY);
-            } else {
-                item.set.set("type2", ItemTypeGroup.TYPE2_PET_STRIDER);
-            }
-
-            item.set.set("bodypart", BodyPart.RIGHT_HAND);
-        }
-
-        return item;
-    }
-
-    /**
-     * Returns object Item from the record of the database
-     *
-     * @param rset : ResultSet designating a record of the [armor] table of database
-     * @return Item : object created from the database record
-     * @throws SQLException
-     */
-    private Item readArmor(Armor rset) {
-        Item item = new Item();
-        item.set = new StatsSet();
-        item.type = rset.getType();
-        item.id = rset.getId();
-        item.name = rset.getName();
-
-        item.set.set("item_id", item.id);
-        item.set.set("name", item.name);
-        BodyPart bodypart = rset.getBodyPart();
-        item.set.set("bodypart", bodypart);
-        item.set.set("crystallizable", rset.isCrystallizable());
-        item.set.set("crystal_count", rset.getCrystalCount());
-        item.set.set("sellable", rset.isSellable());
-        item.set.set("dropable", rset.isDropable());
-        item.set.set("destroyable", rset.isDestroyable());
-        item.set.set("tradeable", rset.isTradeable());
-        item.set.set("item_skill_id", rset.getItemSkillId());
-        item.set.set("item_skill_lvl", rset.getItemSkillLevel());
-
-        if ((bodypart == NECK) || (bodypart ==  HAIR) || (bodypart == FACE) || (bodypart == DHAIR) || (bodypart == EAR) || (bodypart == FINGER)) {
-            item.set.set("type1", ItemTypeGroup.TYPE1_WEAPON_ACCESSORY);
-            item.set.set("type2", ItemTypeGroup.TYPE2_ACCESSORY);
-        } else {
-            item.set.set("type1", ItemTypeGroup.TYPE1_ARMOR_SHIELD);
-            item.set.set("type2", ItemTypeGroup.TYPE2_SHIELD_ARMOR);
-        }
-
-        item.set.set("weight", rset.getWeight());
-        item.set.set("crystal_type", rset.getCrystalType());
-        item.set.set("avoid_modify", rset.getAvoidModify());
-        item.set.set("duration", rset.getDuration());
-        item.set.set("p_def", rset.getPdef());
-        item.set.set("m_def", rset.getMdef());
-        item.set.set("mp_bonus", rset.getMpBonus());
-        item.set.set("price", rset.getPrice());
-
-        if (item.type == ItemType.PET_ARMOR) {
-            item.set.set("type1", ItemTypeGroup.TYPE1_ARMOR_SHIELD);
-            if (item.set.getEnum("bodypart", BodyPart.class) == WOLF) {
-                item.set.set("type2", ItemTypeGroup.TYPE2_PET_WOLF);
-            } else if (item.set.getEnum("bodypart", BodyPart.class)== HATCHLING) {
-                item.set.set("type2", ItemTypeGroup.TYPE2_PET_HATCHLING);
-            } else if (item.set.getEnum("bodypart", BodyPart.class) == BABYPET) {
-                item.set.set("type2", ItemTypeGroup.TYPE2_PET_BABY);
-            } else {
-                item.set.set("type2", ItemTypeGroup.TYPE2_PET_STRIDER);
-            }
-
-            item.set.set("bodypart", BodyPart.CHEST);
-        }
-
-        return item;
-    }
-
-    private Item readItem(EtcItem etcItem) {
-        Item item = new Item();
-        item.set = new StatsSet();
-        item.id = etcItem.getId();
-
-        item.set.set("item_id", item.id);
-        item.set.set("crystallizable", etcItem.isCrystallizable());
-        item.set.set("type1", ItemTypeGroup.TYPE1_ITEM_QUEST);
-        item.set.set("type2", ItemTypeGroup.TYPE2_OTHER);
-        item.set.set("bodypart", BodyPart.NONE);
-        item.set.set("crystal_count", etcItem.getCrystalCount());
-        item.set.set("sellable", etcItem.isSellable());
-        item.set.set("dropable", etcItem.isDropable());
-        item.set.set("destroyable", etcItem.isDestroyable());
-        item.set.set("tradeable", etcItem.isTradeable());
-        item.type = etcItem.getType();
-
-        if(item.type == ItemType.QUEST) {
-            item.set.set("type2", ItemTypeGroup.TYPE2_QUEST);
-        } else if(item.type == ItemType.LURE) {
-            item.type =  ItemType.OTHER;
-            item.set.set("bodypart", BodyPart.LEFT_HAND);
-        } else if(item.type == ItemType.ARROW) {
-            item.set.set("bodypart", BodyPart.LEFT_HAND);
-        }
-
-        EtcItem.ConsumeType consume = etcItem.getConsumeType();
-        if (consume == EtcItem.ConsumeType.ASSET) {
-            item.type = ItemType.MONEY;
-            item.set.set("stackable", true);
-            item.set.set("type2", ItemTypeGroup.TYPE2_MONEY);
-        } else if (consume == EtcItem.ConsumeType.STACKABLE) {
-            item.set.set("stackable", true);
-        } else {
-            item.set.set("stackable", false);
-        }
-
-        item.set.set("crystal_type", etcItem.getCrystalType());
-
-        int weight = etcItem.getWeight();
-        item.set.set("weight", weight);
-        item.name = etcItem.getName();
-        item.set.set("name", item.name);
-
-        item.set.set("duration", etcItem.getDuration());
-        item.set.set("price", etcItem.getPrice());
-
-        return item;
+    private void addToItems(ItemTemplate item) {
+        items.put(item.getId(), item);
     }
 
     /**
@@ -327,73 +77,14 @@ public class ItemTable {
         return _initialized;
     }
 
-
-    /**
-     * Builds a variable in which all items are putting in in function of their ID.
-     */
-    private void buildFastLookupTable() {
-        int highestId = 0;
-
-        // Get highest ID of item in armor FastMap, then in weapon FastMap, and finally in etcitem FastMap
-        for (Integer id : _armors.keySet()) {
-            L2Armor item = _armors.get(id);
-            if (item.getItemId() > highestId) {
-                highestId = item.getItemId();
-            }
-        }
-        for (Integer id : _weapons.keySet()) {
-
-            L2Weapon item = _weapons.get(id);
-            if (item.getItemId() > highestId) {
-                highestId = item.getItemId();
-            }
-        }
-        for (Integer id : _etcItems.keySet()) {
-            L2EtcItem item = _etcItems.get(id);
-            if (item.getItemId() > highestId) {
-                highestId = item.getItemId();
-            }
-        }
-
-        // Create a FastLookUp Table called _allTemplates of size : value of the highest item ID
-        if (Config.DEBUG) {
-            _log.debug("highest item id used:" + highestId);
-        }
-        _allTemplates = new L2Item[highestId + 1];
-
-        // Insert armor item in Fast Look Up Table
-        for (Integer id : _armors.keySet()) {
-            L2Armor item = _armors.get(id);
-            assert _allTemplates[id.intValue()] == null;
-            _allTemplates[id.intValue()] = item;
-        }
-
-        // Insert weapon item in Fast Look Up Table
-        for (Integer id : _weapons.keySet()) {
-            L2Weapon item = _weapons.get(id);
-            assert _allTemplates[id.intValue()] == null;
-            _allTemplates[id.intValue()] = item;
-        }
-
-        // Insert etcItem item in Fast Look Up Table
-        for (Integer id : _etcItems.keySet()) {
-            L2EtcItem item = _etcItems.get(id);
-            assert _allTemplates[id.intValue()] == null;
-            _allTemplates[id.intValue()] = item;
-        }
-    }
-
     /**
      * Returns the item corresponding to the item ID
      *
      * @param id : int designating the item
      * @return L2Item
      */
-    public L2Item getTemplate(int id) {
-        if (id > _allTemplates.length) {
-            return null;
-        }
-        return _allTemplates[id];
+    public ItemTemplate getTemplate(int id) {
+        return items.get(id);
     }
 
     /**
@@ -468,7 +159,7 @@ public class ItemTable {
      * @return L2ItemInstance designating the dummy item created
      */
     public L2ItemInstance createDummyItem(int itemId) {
-        L2Item item = getTemplate(itemId);
+        ItemTemplate item = getTemplate(itemId);
         if (item == null) {
             return null;
         }

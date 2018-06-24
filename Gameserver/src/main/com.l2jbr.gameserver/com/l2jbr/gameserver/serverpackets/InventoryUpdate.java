@@ -125,7 +125,7 @@ public class InventoryUpdate extends L2GameServerPacket {
             writeH(item.getItem().getType1().getId()); // Item Type 1 : 00-weapon/ring/earring/necklace, 01-armor/shield, 04-item/questitem/adena
 
             writeD(item.getObjectId()); // ObjectId
-            writeD(item.getItem().getItemId()); // ItemId
+            writeD(item.getItem().getId()); // ItemId
             writeD(item.getCount()); // Quantity
             writeH(item.getItem().getType2().getId()); // Item Type 2 : 00-weapon, 01-shield/armor, 02-ring/earring/necklace, 03-questitem, 04-adena, 05-item
             writeH(item.getCustomType1()); // Filler (always 0)

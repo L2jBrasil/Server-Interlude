@@ -238,7 +238,7 @@ public class PcInventory extends Inventory {
      */
     public void adjustAvailableItem(TradeItem item) {
         for (L2ItemInstance adjItem : _items) {
-            if (adjItem.getItemId() == item.getItem().getItemId()) {
+            if (adjItem.getItemId() == item.getItem().getId()) {
                 item.setObjectId(adjItem.getObjectId());
                 item.setEnchant(adjItem.getEnchantLevel());
 

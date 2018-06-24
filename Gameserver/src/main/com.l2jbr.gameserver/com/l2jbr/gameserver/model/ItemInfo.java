@@ -17,7 +17,7 @@
  */
 package com.l2jbr.gameserver.model;
 
-import com.l2jbr.gameserver.templates.L2Item;
+import com.l2jbr.gameserver.model.database.ItemTemplate;
 
 
 /**
@@ -30,7 +30,7 @@ public class ItemInfo
 	private int _objectId;
 	
 	/** The L2Item template of the L2ItemInstance */
-	private L2Item _item;
+	private ItemTemplate _item;
 	
 	/** The level of enchant on the L2ItemInstance */
 	private int _enchant;
@@ -169,7 +169,7 @@ public class ItemInfo
 		return _objectId;
 	}
 	
-	public L2Item getItem()
+	public ItemTemplate getItem()
 	{
 		return _item;
 	}

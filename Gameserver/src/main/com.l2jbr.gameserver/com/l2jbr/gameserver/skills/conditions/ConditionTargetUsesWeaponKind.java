@@ -18,8 +18,8 @@
  */
 package com.l2jbr.gameserver.skills.conditions;
 
+import com.l2jbr.gameserver.model.database.Weapon;
 import com.l2jbr.gameserver.skills.Env;
-import com.l2jbr.gameserver.templates.L2Weapon;
 
 
 /**
@@ -44,13 +44,13 @@ public class ConditionTargetUsesWeaponKind extends Condition
 			return false;
 		}
 		
-		L2Weapon item = env.target.getActiveWeaponItem();
+		Weapon item = env.target.getActiveWeaponItem();
 		
 		if (item == null)
 		{
 			return false;
 		}
 		
-		return (item.getItemType().mask() & _weaponMask) != 0;
+		return (item.getType().mask() & _weaponMask) != 0;
 	}
 }

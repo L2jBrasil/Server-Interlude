@@ -117,7 +117,7 @@ public final class RequestCrystallizeItem extends L2GameClientPacket
 		}
 		if (!itemToRemove.getItem().isCrystallizable() || (itemToRemove.getItem().getCrystalCount() <= 0) || (itemToRemove.getItem().getCrystalType() == CrystalType.NONE))
 		{
-			_log.warn("" + activeChar.getObjectId() + " tried to crystallize " + itemToRemove.getItem().getItemId());
+			_log.warn("" + activeChar.getObjectId() + " tried to crystallize " + itemToRemove.getItem().getId());
 			return;
 		}
 		
@@ -189,7 +189,7 @@ public final class RequestCrystallizeItem extends L2GameClientPacket
 		L2ItemInstance removedItem = activeChar.getInventory().destroyItem("Crystalize", _objectId, _count, activeChar, null);
 		
 		// add crystals
-		int crystalId = itemToRemove.getItem().getCrystalItemId();
+		int crystalId = itemToRemove.getItem().getCrystalType().getItemId();
 		int crystalAmount = itemToRemove.getCrystalCount();
 		L2ItemInstance createditem = activeChar.getInventory().addItem("Crystalize", crystalId, crystalAmount, activeChar, itemToRemove);
 		

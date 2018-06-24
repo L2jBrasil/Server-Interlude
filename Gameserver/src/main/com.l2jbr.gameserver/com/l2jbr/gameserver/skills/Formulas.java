@@ -31,7 +31,9 @@ import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PetInstance;
 import com.l2jbr.gameserver.model.base.Race;
+import com.l2jbr.gameserver.model.database.Armor;
 import com.l2jbr.gameserver.model.database.PlayerTemplate;
+import com.l2jbr.gameserver.model.database.Weapon;
 import com.l2jbr.gameserver.model.entity.ClanHall;
 import com.l2jbr.gameserver.model.entity.Siege;
 import com.l2jbr.gameserver.network.SystemMessageId;
@@ -41,8 +43,6 @@ import com.l2jbr.gameserver.skills.conditions.ConditionPlayerState.CheckPlayerSt
 import com.l2jbr.gameserver.skills.conditions.ConditionUsingItemType;
 import com.l2jbr.gameserver.skills.funcs.Func;
 import com.l2jbr.gameserver.templates.ItemType;
-import com.l2jbr.gameserver.templates.L2Armor;
-import com.l2jbr.gameserver.templates.L2Weapon;
 import com.l2jbr.gameserver.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -1282,7 +1282,7 @@ public final class Formulas
 		// They were originally added in a late C4 rev (2289).
 		if (target instanceof L2PcInstance)
 		{
-			L2Armor armor = ((L2PcInstance) target).getActiveChestArmorItem();
+			Armor armor = ((L2PcInstance) target).getActiveChestArmorItem();
 			if (armor != null)
 			{
 				if (((L2PcInstance) target).isWearingHeavyArmor())
@@ -1354,11 +1354,11 @@ public final class Formulas
 		}
 		
 		// defence modifier depending of the attacker weapon
-		L2Weapon weapon = attacker.getActiveWeaponItem();
+		Weapon weapon = attacker.getActiveWeaponItem();
 		Stats stat = null;
 		if (weapon != null)
 		{
-			switch (weapon.getItemType())
+			switch (weapon.getType())
 			{
 				case BOW:
 					stat = Stats.BOW_WPN_VULN;
@@ -1654,8 +1654,8 @@ public final class Formulas
 		}
 		if (Config.ALT_GAME_CANCEL_BOW && target.isAttackingNow())
 		{
-			L2Weapon wpn = target.getActiveWeaponItem();
-			if ((wpn != null) && (wpn.getItemType() == ItemType.BOW))
+			Weapon wpn = target.getActiveWeaponItem();
+			if ((wpn != null) && (wpn.getType() == ItemType.BOW))
 			{
 				init = 15;
 			}
@@ -1764,7 +1764,7 @@ public final class Formulas
 	 */
 	public boolean calcShldUse(L2Character attacker, L2Character target)
 	{
-		L2Weapon at_weapon = attacker.getActiveWeaponItem();
+		Weapon at_weapon = attacker.getActiveWeaponItem();
 		double shldRate = target.calcStat(Stats.SHIELD_RATE, 0, attacker, null) * DEXbonus[target.getDEX()];
 		if (shldRate == 0.0)
 		{
@@ -1779,7 +1779,7 @@ public final class Formulas
 			}
 		}
 		// if attacker use bow and target wear shield, shield block rate is multiplied by 1.3 (30%)
-		if ((at_weapon != null) && (at_weapon.getItemType() == ItemType.BOW))
+		if ((at_weapon != null) && (at_weapon.getType() == ItemType.BOW))
 		{
 			shldRate *= 1.3;
 		}

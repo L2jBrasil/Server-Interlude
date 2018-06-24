@@ -20,7 +20,7 @@ package com.l2jbr.gameserver.serverpackets;
 
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.templates.L2Weapon;
+import com.l2jbr.gameserver.model.database.Weapon;
 
 
 /**
@@ -67,8 +67,8 @@ public class GMViewWarehouseWithdrawList extends L2GameServerPacket
 				{
 					writeD(item.getItem().getBodyPart().getId());
 					writeH(item.getEnchantLevel());
-					writeH(((L2Weapon) item.getItem()).getSoulShotCount());
-					writeH(((L2Weapon) item.getItem()).getSpiritShotCount());
+					writeH(((Weapon) item.getItem()).getSoulshots());
+					writeH(((Weapon) item.getItem()).getSpiritshots());
 					break;
 				}
 				

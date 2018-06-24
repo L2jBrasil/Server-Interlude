@@ -25,8 +25,13 @@ import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.L2ItemInstance.ItemLocation;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.Armor;
+import com.l2jbr.gameserver.model.database.EtcItem;
+import com.l2jbr.gameserver.model.database.ItemTemplate;
+import com.l2jbr.gameserver.model.database.Weapon;
 import com.l2jbr.gameserver.model.database.repository.ItemRepository;
-import com.l2jbr.gameserver.templates.*;
+import com.l2jbr.gameserver.templates.BodyPart;
+import com.l2jbr.gameserver.templates.ItemType;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -226,13 +231,13 @@ public abstract class Inventory extends ItemContainer {
             L2Skill passiveSkill = null;
             L2Skill enchant4Skill = null;
 
-            L2Item it = item.getItem();
+            ItemTemplate it = item.getItem();
 
-            if (it instanceof L2Weapon) {
-                passiveSkill = ((L2Weapon) it).getSkill();
-                enchant4Skill = ((L2Weapon) it).getEnchant4Skill();
-            } else if (it instanceof L2Armor) {
-                passiveSkill = ((L2Armor) it).getSkill();
+            if (it instanceof Weapon) {
+                passiveSkill = ((Weapon) it).getSkill();
+                enchant4Skill = ((Weapon) it).getEnchant4Skill();
+            } else if (it instanceof Armor) {
+                passiveSkill = ((Armor) it).getSkill();
             }
 
             if (passiveSkill != null) {
@@ -258,16 +263,16 @@ public abstract class Inventory extends ItemContainer {
             L2Skill passiveSkill = null;
             L2Skill enchant4Skill = null;
 
-            L2Item it = item.getItem();
+            ItemTemplate it = item.getItem();
 
-            if (it instanceof L2Weapon) {
-                passiveSkill = ((L2Weapon) it).getSkill();
+            if (it instanceof Weapon) {
+                passiveSkill = ((Weapon) it).getSkill();
 
                 if (item.getEnchantLevel() >= 4) {
-                    enchant4Skill = ((L2Weapon) it).getEnchant4Skill();
+                    enchant4Skill = ((Weapon) it).getEnchant4Skill();
                 }
-            } else if (it instanceof L2Armor) {
-                passiveSkill = ((L2Armor) it).getSkill();
+            } else if (it instanceof Armor) {
+                passiveSkill = ((Armor) it).getSkill();
             }
 
             if (passiveSkill != null) {
@@ -979,7 +984,7 @@ public abstract class Inventory extends ItemContainer {
                 break;
             }
             case LEFT_HAND: {
-                if (!(item.getItem() instanceof L2EtcItem) || (item.getItem().getItemType() != ItemType.ARROW)) {
+                if (!(item.getItem() instanceof EtcItem) || (item.getItem().getType() != ItemType.ARROW)) {
                     L2ItemInstance old1 = setPaperdollItem(PAPERDOLL_LRHAND, null);
 
                     if (old1 != null) {
@@ -1134,7 +1139,7 @@ public abstract class Inventory extends ItemContainer {
      * @param bow : L2Item designating the bow
      * @return L2ItemInstance pointing out arrows for bow
      */
-    public L2ItemInstance findArrowForBow(L2Item bow) {
+    public L2ItemInstance findArrowForBow(ItemTemplate bow) {
         int arrowsId = 0;
 
         switch (bow.getCrystalType()) {

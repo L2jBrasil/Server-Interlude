@@ -1052,14 +1052,14 @@ public abstract class L2Skill {
         }
         if (activeChar.getActiveWeaponItem() != null) {
             ItemType playerWeapon;
-            playerWeapon = activeChar.getActiveWeaponItem().getItemType();
+            playerWeapon = activeChar.getActiveWeaponItem().getType();
             int mask = playerWeapon.mask();
             if ((mask & weaponsAllowed) != 0) {
                 return true;
             }
             // can be on the secondary weapon
             if (activeChar.getSecondaryWeaponItem() != null) {
-                playerWeapon = activeChar.getSecondaryWeaponItem().getItemType();
+                playerWeapon = activeChar.getSecondaryWeaponItem().getType();
                 mask = playerWeapon.mask();
                 if ((mask & weaponsAllowed) != 0) {
                     return true;

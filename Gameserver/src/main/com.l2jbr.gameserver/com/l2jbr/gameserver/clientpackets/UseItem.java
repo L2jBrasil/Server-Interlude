@@ -24,9 +24,12 @@ import com.l2jbr.gameserver.handler.ItemHandler;
 import com.l2jbr.gameserver.model.Inventory;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.Weapon;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
-import com.l2jbr.gameserver.templates.*;
+import com.l2jbr.gameserver.templates.BodyPart;
+import com.l2jbr.gameserver.templates.ItemType;
+import com.l2jbr.gameserver.templates.ItemTypeGroup;
 import com.l2jbr.gameserver.util.FloodProtector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -322,14 +325,14 @@ public final class UseItem extends L2GameClientPacket
 		}
 		else
 		{
-			L2Weapon weaponItem = activeChar.getActiveWeaponItem();
+			Weapon weaponItem = activeChar.getActiveWeaponItem();
 			int itemid = item.getItemId();
 			// _log.debug("item not equipable id:"+ item.getId());
 			if (itemid == 4393)
 			{
 				activeChar.sendPacket(new ShowCalculator(4393));
 			}
-			else if (((weaponItem != null) && (weaponItem.getItemType() == ItemType.ROD)) && (((itemid >= 6519) && (itemid <= 6527)) || ((itemid >= 7610) && (itemid <= 7613)) || ((itemid >= 7807) && (itemid <= 7809)) || ((itemid >= 8484) && (itemid <= 8486)) || ((itemid >= 8505) && (itemid <= 8513))))
+			else if (((weaponItem != null) && (weaponItem.getType() == ItemType.ROD)) && (((itemid >= 6519) && (itemid <= 6527)) || ((itemid >= 7610) && (itemid <= 7613)) || ((itemid >= 7807) && (itemid <= 7809)) || ((itemid >= 8484) && (itemid <= 8486)) || ((itemid >= 8505) && (itemid <= 8513))))
 			{
 				activeChar.getInventory().setPaperdollItem(Inventory.PAPERDOLL_LHAND, item);
 				activeChar.broadcastUserInfo();

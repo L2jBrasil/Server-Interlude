@@ -68,15 +68,15 @@ public class PrivateStoreManageListBuy extends L2GameServerPacket
 		writeD(_buyList.length); // count for all items already added for buy
 		for (TradeList.TradeItem item : _buyList)
 		{
-			writeD(item.getItem().getItemId());
+			writeD(item.getItem().getId());
 			writeH(0);
 			writeD(item.getCount());
-			writeD(item.getItem().getReferencePrice());
+			writeD(item.getItem().getPrice());
 			writeH(0x00);
 			writeD(item.getItem().getBodyPart().getId());
 			writeH(item.getItem().getType2().getId());
 			writeD(item.getPrice());// your price
-			writeD(item.getItem().getReferencePrice());// fixed store price
+			writeD(item.getItem().getPrice());// fixed store price
 		}
 	}
 	

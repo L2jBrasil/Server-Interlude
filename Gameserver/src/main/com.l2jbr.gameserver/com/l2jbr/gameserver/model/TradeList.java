@@ -21,13 +21,13 @@ package com.l2jbr.gameserver.model;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.ItemTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.ItemList;
 import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.ItemType;
-import com.l2jbr.gameserver.templates.L2Item;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,7 +41,7 @@ import java.util.List;
 public class TradeList {
     public class TradeItem {
         private int _objectId;
-        private final L2Item _item;
+        private final ItemTemplate _item;
         private int _enchant;
         private int _count;
         private int _price;
@@ -54,7 +54,7 @@ public class TradeList {
             _price = price;
         }
 
-        public TradeItem(L2Item item, int count, int price) {
+        public TradeItem(ItemTemplate item, int count, int price) {
             _objectId = 0;
             _item = item;
             _enchant = 0;
@@ -78,7 +78,7 @@ public class TradeList {
             return _objectId;
         }
 
-        public L2Item getItem() {
+        public ItemTemplate getItem() {
             return _item;
         }
 
@@ -203,7 +203,7 @@ public class TradeList {
     public TradeItem adjustAvailableItem(L2ItemInstance item) {
         if (item.isStackable()) {
             for (TradeItem exclItem : _items) {
-                if (exclItem.getItem().getItemId() == item.getItemId()) {
+                if (exclItem.getItem().getId() == item.getItemId()) {
                     if (item.getCount() <= exclItem.getCount()) {
                         return null;
                     }
@@ -238,7 +238,7 @@ public class TradeList {
      */
     public void adjustItemRequestByItemId(ItemRequest item) {
         for (TradeItem filtItem : _items) {
-            if (filtItem.getItem().getItemId() == item.getItemId()) {
+            if (filtItem.getItem().getId() == item.getItemId()) {
                 if (filtItem.getCount() < item.getCount()) {
                     item.setCount(filtItem.getCount());
                 }
@@ -320,13 +320,13 @@ public class TradeList {
             return null;
         }
 
-        L2Item item = ItemTable.getInstance().getTemplate(itemId);
+        ItemTemplate item = ItemTable.getInstance().getTemplate(itemId);
         if (item == null) {
             _log.warn(_owner.getName() + ": Attempt to add invalid item to TradeList!");
             return null;
         }
 
-        if (!item.isTradeable() || (item.getItemType() == ItemType.QUEST)) {
+        if (!item.isTradeable() || (item.getType() == ItemType.QUEST)) {
             return null;
         }
 
@@ -358,7 +358,7 @@ public class TradeList {
         }
 
         for (TradeItem titem : _items) {
-            if ((titem.getObjectId() == objectId) || (titem.getItem().getItemId() == itemId)) {
+            if ((titem.getObjectId() == objectId) || (titem.getItem().getId() == itemId)) {
                 // If Partner has already confirmed this trade, invalidate the confirmation
                 if (_partner != null) {
                     TradeList partnerList = _partner.getActiveTradeList();
@@ -548,13 +548,13 @@ public class TradeList {
             if (item == null) {
                 continue;
             }
-            L2Item template = ItemTable.getInstance().getTemplate(item.getItem().getItemId());
+            ItemTemplate template = ItemTable.getInstance().getTemplate(item.getItem().getId());
             if (template == null) {
                 continue;
             }
             if (!template.isStackable()) {
                 slots += item.getCount();
-            } else if (partner.getInventory().getItemByItemId(item.getItem().getItemId()) == null) {
+            } else if (partner.getInventory().getItemByItemId(item.getItem().getId()) == null) {
                 slots++;
             }
         }
@@ -574,7 +574,7 @@ public class TradeList {
             if (item == null) {
                 continue;
             }
-            L2Item template = ItemTable.getInstance().getTemplate(item.getItem().getItemId());
+            ItemTemplate template = ItemTable.getInstance().getTemplate(item.getItem().getId());
             if (template == null) {
                 continue;
             }
@@ -659,7 +659,7 @@ public class TradeList {
             if (item == null) {
                 continue;
             }
-            L2Item template = ItemTable.getInstance().getTemplate(item.getItemId());
+            ItemTemplate template = ItemTable.getInstance().getTemplate(item.getItemId());
             if (template == null) {
                 continue;
             }

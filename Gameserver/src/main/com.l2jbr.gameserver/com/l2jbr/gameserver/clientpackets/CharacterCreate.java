@@ -26,13 +26,13 @@ import com.l2jbr.gameserver.model.L2ShortCut;
 import com.l2jbr.gameserver.model.L2SkillLearn;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.ItemTemplate;
 import com.l2jbr.gameserver.model.database.PlayerTemplate;
 import com.l2jbr.gameserver.network.L2GameClient;
 import com.l2jbr.gameserver.serverpackets.CharCreateFail;
 import com.l2jbr.gameserver.serverpackets.CharCreateOk;
 import com.l2jbr.gameserver.serverpackets.CharSelectInfo;
 import com.l2jbr.gameserver.templates.ItemTypeGroup;
-import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -192,10 +192,10 @@ public final class CharacterCreate extends L2GameClientPacket
 		newChar.registerShortCut(shortcut);
 		
 		ItemTable.getInstance();
-		List<L2Item> items = template.getItems();
-		for (L2Item item2 : items)
+		List<ItemTemplate> items = template.getItems();
+		for (ItemTemplate item2 : items)
 		{
-			L2ItemInstance item = newChar.getInventory().addItem("Init", item2.getItemId(), 1, newChar, null);
+			L2ItemInstance item = newChar.getInventory().addItem("Init", item2.getId(), 1, newChar, null);
 			if (item.getItemId() == 5588)
 			{
 				// add tutbook shortcut

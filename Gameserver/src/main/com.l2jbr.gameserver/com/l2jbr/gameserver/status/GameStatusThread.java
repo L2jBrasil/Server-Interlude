@@ -766,7 +766,7 @@ public class GameStatusThread extends Thread
 									list = player.getSellList();
 									for (TradeItem item : list.getItems())
 									{
-										content += item.getItem().getItemId() + ":" + item.getEnchant() + ":" + item.getPrice() + ":";
+										content += item.getItem().getId() + ":" + item.getEnchant() + ":" + item.getPrice() + ":";
 									}
 									content = player.getName() + ";" + "sell;" + player.getX() + ";" + player.getY() + ";" + content;
 									_print.println(content);
@@ -777,7 +777,7 @@ public class GameStatusThread extends Thread
 									list = player.getBuyList();
 									for (TradeItem item : list.getItems())
 									{
-										content += item.getItem().getItemId() + ":" + item.getEnchant() + ":" + item.getPrice() + ":";
+										content += item.getItem().getId() + ":" + item.getEnchant() + ":" + item.getPrice() + ":";
 									}
 									content = player.getName() + ";" + "buy;" + player.getX() + ";" + player.getY() + ";" + content;
 									_print.println(content);

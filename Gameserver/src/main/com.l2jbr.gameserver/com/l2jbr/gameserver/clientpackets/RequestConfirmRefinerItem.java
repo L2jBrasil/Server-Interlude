@@ -60,7 +60,7 @@ public class RequestConfirmRefinerItem extends L2GameClientPacket
 		}
 		
 
-		int refinerItemId = refinerItem.getItem().getItemId();
+		int refinerItemId = refinerItem.getItem().getId();
 		
 		// is the item a life stone?
 		if ((refinerItemId < 8723) || (refinerItemId > 8762))

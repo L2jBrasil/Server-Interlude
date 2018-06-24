@@ -22,13 +22,13 @@ import com.l2jbr.gameserver.handler.IItemHandler;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PlayableInstance;
+import com.l2jbr.gameserver.model.database.Weapon;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ExAutoSoulShot;
 import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.Stats;
 import com.l2jbr.gameserver.templates.CrystalType;
-import com.l2jbr.gameserver.templates.L2Weapon;
 import com.l2jbr.gameserver.util.Broadcast;
 
 
@@ -74,11 +74,11 @@ public class SoulShots implements IItemHandler
 		
 		L2PcInstance activeChar = (L2PcInstance) playable;
 		L2ItemInstance weaponInst = activeChar.getActiveWeaponInstance();
-		L2Weapon weaponItem = activeChar.getActiveWeaponItem();
+		Weapon weaponItem = activeChar.getActiveWeaponItem();
 		int itemId = item.getItemId();
 		
 		// Check if Soulshot can be used
-		if ((weaponInst == null) || (weaponItem.getSoulShotCount() == 0))
+		if ((weaponInst == null) || (weaponItem.getSoulshots() == 0))
 		{
 			if (!activeChar.getAutoSoulShot().containsKey(itemId))
 			{
@@ -109,7 +109,7 @@ public class SoulShots implements IItemHandler
 			
 			// Consume Soulshots if player has enough of them
 			int saSSCount = (int) activeChar.getStat().calcStat(Stats.SOULSHOT_COUNT, 0, null, null);
-			int SSCount = saSSCount == 0 ? weaponItem.getSoulShotCount() : saSSCount;
+			int SSCount = saSSCount == 0 ? weaponItem.getSoulshots() : saSSCount;
 			
 			if (!activeChar.destroyItemWithoutTrace("Consume", item.getObjectId(), SSCount, null, false))
 			{

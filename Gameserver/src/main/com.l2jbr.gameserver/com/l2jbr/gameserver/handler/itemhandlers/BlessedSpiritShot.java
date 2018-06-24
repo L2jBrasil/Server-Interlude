@@ -22,12 +22,12 @@ import com.l2jbr.gameserver.handler.IItemHandler;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PlayableInstance;
+import com.l2jbr.gameserver.model.database.Weapon;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ExAutoSoulShot;
 import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.CrystalType;
-import com.l2jbr.gameserver.templates.L2Weapon;
 import com.l2jbr.gameserver.util.Broadcast;
 
 
@@ -73,7 +73,7 @@ public class BlessedSpiritShot implements IItemHandler
 		
 		L2PcInstance activeChar = (L2PcInstance) playable;
 		L2ItemInstance weaponInst = activeChar.getActiveWeaponInstance();
-		L2Weapon weaponItem = activeChar.getActiveWeaponItem();
+		Weapon weaponItem = activeChar.getActiveWeaponItem();
 		int itemId = item.getItemId();
 		
 		if (activeChar.isInOlympiadMode())
@@ -86,7 +86,7 @@ public class BlessedSpiritShot implements IItemHandler
 		}
 		
 		// Check if Blessed Spiritshot can be used
-		if ((weaponInst == null) || (weaponItem.getSpiritShotCount() == 0))
+		if ((weaponInst == null) || (weaponItem.getSpiritshots() == 0))
 		{
 			if (!activeChar.getAutoSoulShot().containsKey(itemId))
 			{
@@ -113,7 +113,7 @@ public class BlessedSpiritShot implements IItemHandler
 		}
 		
 		// Consume Blessed Spiritshot if player has enough of them
-		if (!activeChar.destroyItemWithoutTrace("Consume", item.getObjectId(), weaponItem.getSpiritShotCount(), null, false))
+		if (!activeChar.destroyItemWithoutTrace("Consume", item.getObjectId(), weaponItem.getSpiritshots(), null, false))
 		{
 			if (activeChar.getAutoSoulShot().containsKey(itemId))
 			{

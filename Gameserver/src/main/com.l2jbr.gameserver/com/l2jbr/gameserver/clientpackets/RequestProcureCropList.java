@@ -29,12 +29,12 @@ import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.actor.instance.L2ManorManagerInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.database.ItemTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.L2Item;
 import com.l2jbr.gameserver.util.Util;
 
 
@@ -137,7 +137,7 @@ public class RequestProcureCropList extends L2GameClientPacket
 			{
 				CropProcure crop = CastleManager.getInstance().getCastleById(manorId).getCrop(itemId, CastleManorManager.PERIOD_CURRENT);
 				int rewardItemId = L2Manor.getInstance().getRewardItem(itemId, crop.getReward());
-				L2Item template = ItemTable.getInstance().getTemplate(rewardItemId);
+				ItemTemplate template = ItemTable.getInstance().getTemplate(rewardItemId);
 				weight += count * template.getWeight();
 				
 				if (!template.isStackable())
@@ -212,7 +212,7 @@ public class RequestProcureCropList extends L2GameClientPacket
 			}
 			
 			int sellPrice = (count * L2Manor.getInstance().getCropBasicPrice(cropId));
-			int rewardPrice = ItemTable.getInstance().getTemplate(rewardItem).getReferencePrice();
+			int rewardPrice = ItemTable.getInstance().getTemplate(rewardItem).getPrice();
 			
 			if (rewardPrice == 0)
 			{

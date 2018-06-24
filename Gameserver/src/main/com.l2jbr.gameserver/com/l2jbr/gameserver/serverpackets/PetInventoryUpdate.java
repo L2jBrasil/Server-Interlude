@@ -90,7 +90,7 @@ public class PetInventoryUpdate extends L2GameServerPacket {
             writeH(item.getChange());
             writeH(item.getItem().getType1().getId()); // item type1
             writeD(item.getObjectId());
-            writeD(item.getItem().getItemId());
+            writeD(item.getItem().getId());
             writeD(item.getCount());
             writeH(item.getItem().getType2().getId()); // item type2
             writeH(0x00); // ?

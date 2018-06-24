@@ -761,7 +761,7 @@ public final class L2PcInstance extends L2PlayableInstance {
     /**
      * The fists L2Weapon of the L2PcInstance (used when no weapon is equiped).
      */
-    private L2Weapon _fistsWeaponItem;
+    private Weapon _fistsWeaponItem;
 
     /**
      * The _chars.
@@ -2556,7 +2556,7 @@ public final class L2PcInstance extends L2PlayableInstance {
      *
      * @param weaponItem The fists L2Weapon to set to the L2PcInstance
      */
-    public void setFistsWeaponItem(L2Weapon weaponItem) {
+    public void setFistsWeaponItem(Weapon weaponItem) {
         _fistsWeaponItem = weaponItem;
     }
 
@@ -2565,7 +2565,7 @@ public final class L2PcInstance extends L2PlayableInstance {
      *
      * @return the fists weapon item
      */
-    public L2Weapon getFistsWeaponItem() {
+    public Weapon getFistsWeaponItem() {
         return _fistsWeaponItem;
     }
 
@@ -2575,44 +2575,45 @@ public final class L2PcInstance extends L2PlayableInstance {
      * @param classId the class id
      * @return the l2 weapon
      */
-    public L2Weapon findFistsWeaponItem(int classId) {
-        L2Weapon weaponItem = null;
+    public Weapon findFistsWeaponItem(int classId) {
+        Weapon weaponItem = null;
+        ItemTemplate temp = null;
         if ((classId >= 0x00) && (classId <= 0x09)) {
             // HUMAN FIGHTER fists
-            L2Item temp = ItemTable.getInstance().getTemplate(246);
-            weaponItem = (L2Weapon) temp;
+            temp = ItemTable.getInstance().getTemplate(246);
+            weaponItem = (Weapon) temp;
         } else if ((classId >= 0x0a) && (classId <= 0x11)) {
             // HUMAN MAGE fists
-            L2Item temp = ItemTable.getInstance().getTemplate(251);
-            weaponItem = (L2Weapon) temp;
+            temp = ItemTable.getInstance().getTemplate(251);
+            weaponItem = (Weapon) temp;
         } else if ((classId >= 0x12) && (classId <= 0x18)) {
             // elven FIGHTER fists
-            L2Item temp = ItemTable.getInstance().getTemplate(244);
-            weaponItem = (L2Weapon) temp;
+            temp = ItemTable.getInstance().getTemplate(244);
+            weaponItem = (Weapon) temp;
         } else if ((classId >= 0x19) && (classId <= 0x1e)) {
             // elven MAGE fists
-            L2Item temp = ItemTable.getInstance().getTemplate(249);
-            weaponItem = (L2Weapon) temp;
+            temp = ItemTable.getInstance().getTemplate(249);
+            weaponItem = (Weapon) temp;
         } else if ((classId >= 0x1f) && (classId <= 0x25)) {
             // dark elven FIGHTER fists
-            L2Item temp = ItemTable.getInstance().getTemplate(245);
-            weaponItem = (L2Weapon) temp;
+            temp = ItemTable.getInstance().getTemplate(245);
+            weaponItem = (Weapon) temp;
         } else if ((classId >= 0x26) && (classId <= 0x2b)) {
             // dark elven MAGE fists
-            L2Item temp = ItemTable.getInstance().getTemplate(250);
-            weaponItem = (L2Weapon) temp;
+            temp = ItemTable.getInstance().getTemplate(250);
+            weaponItem = (Weapon) temp;
         } else if ((classId >= 0x2c) && (classId <= 0x30)) {
             // ORC FIGHTER fists
-            L2Item temp = ItemTable.getInstance().getTemplate(248);
-            weaponItem = (L2Weapon) temp;
+            temp = ItemTable.getInstance().getTemplate(248);
+            weaponItem = (Weapon) temp;
         } else if ((classId >= 0x31) && (classId <= 0x34)) {
             // ORC MAGE fists
-            L2Item temp = ItemTable.getInstance().getTemplate(252);
-            weaponItem = (L2Weapon) temp;
+            temp = ItemTable.getInstance().getTemplate(252);
+            weaponItem = (Weapon) temp;
         } else if ((classId >= 0x35) && (classId <= 0x39)) {
             // dwarven fists
-            L2Item temp = ItemTable.getInstance().getTemplate(247);
-            weaponItem = (L2Weapon) temp;
+            temp = ItemTable.getInstance().getTemplate(247);
+            weaponItem = (Weapon) temp;
         }
 
         return weaponItem;
@@ -4503,14 +4504,14 @@ public final class L2PcInstance extends L2PlayableInstance {
      * @return the active weapon item
      */
     @Override
-    public L2Weapon getActiveWeaponItem() {
+    public Weapon getActiveWeaponItem() {
         L2ItemInstance weapon = getActiveWeaponInstance();
 
         if (weapon == null) {
             return getFistsWeaponItem();
         }
 
-        return (L2Weapon) weapon.getItem();
+        return (Weapon) weapon.getItem();
     }
 
     /**
@@ -4527,14 +4528,14 @@ public final class L2PcInstance extends L2PlayableInstance {
      *
      * @return the active chest armor item
      */
-    public L2Armor getActiveChestArmorItem() {
+    public Armor getActiveChestArmorItem() {
         L2ItemInstance armor = getChestArmorInstance();
 
         if (armor == null) {
             return null;
         }
 
-        return (L2Armor) armor.getItem();
+        return (Armor) armor.getItem();
     }
 
     /**
@@ -4759,17 +4760,17 @@ public final class L2PcInstance extends L2PlayableInstance {
      * @return the secondary weapon item
      */
     @Override
-    public L2Weapon getSecondaryWeaponItem() {
+    public Weapon getSecondaryWeaponItem() {
         L2ItemInstance weapon = getSecondaryWeaponInstance();
 
         if (weapon == null) {
             return getFistsWeaponItem();
         }
 
-        L2Item item = weapon.getItem();
+        ItemTemplate item = weapon.getItem();
 
-        if (item instanceof L2Weapon) {
-            return (L2Weapon) item;
+        if (item instanceof Weapon) {
+            return (Weapon) item;
         }
 
         return null;
@@ -5887,18 +5888,18 @@ public final class L2PcInstance extends L2PlayableInstance {
      */
     @Override
     public boolean isUsingDualWeapon() {
-        L2Weapon weaponItem = getActiveWeaponItem();
+        Weapon weaponItem = getActiveWeaponItem();
         if (weaponItem == null) {
             return false;
         }
 
-        if (weaponItem.getItemType() == ItemType.DUAL) {
+        if (weaponItem.getType() == ItemType.DUAL) {
             return true;
-        } else if (weaponItem.getItemType() == ItemType.DUAL_FIST) {
+        } else if (weaponItem.getType() == ItemType.DUAL_FIST) {
             return true;
-        } else if (weaponItem.getItemId() == 248) {
+        } else if (weaponItem.getId() == 248) {
             return true;
-        } else if (weaponItem.getItemId() == 252) {
+        } else if (weaponItem.getId() == 252) {
             return true;
         } else {
             return false;

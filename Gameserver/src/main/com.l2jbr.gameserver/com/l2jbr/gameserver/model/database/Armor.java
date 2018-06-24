@@ -2,8 +2,18 @@ package com.l2jbr.gameserver.model.database;
 
 import com.l2jbr.commons.database.annotation.Column;
 import com.l2jbr.commons.database.annotation.Table;
+import com.l2jbr.gameserver.model.L2Character;
+import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Skill;
-import com.l2jbr.gameserver.templates.*;
+import com.l2jbr.gameserver.skills.Env;
+import com.l2jbr.gameserver.skills.funcs.Func;
+import com.l2jbr.gameserver.skills.funcs.FuncTemplate;
+import com.l2jbr.gameserver.templates.BodyPart;
+import com.l2jbr.gameserver.templates.ItemType;
+import com.l2jbr.gameserver.templates.ItemTypeGroup;
+
+import java.util.LinkedList;
+import java.util.List;
 
 @Table("armor")
 public class Armor extends ItemTemplate {
@@ -101,8 +111,27 @@ public class Armor extends ItemTemplate {
         return mpBonus;
     }
 
+
+
     public L2Skill getSkill() {
         // todo implement
         return null;
+    }
+
+    @Override
+    public Func[] getStatFuncs(L2ItemInstance instance, L2Character player) {
+        List<Func> funcs = new LinkedList<>();
+        if (_funcTemplates != null) {
+            for (FuncTemplate t : _funcTemplates) {
+                Env env = new Env();
+                env.player = player;
+                env.item = instance;
+                Func f = t.getFunc(env, instance);
+                if (f != null) {
+                    funcs.add(f);
+                }
+            }
+        }
+        return funcs.toArray(new Func[funcs.size()]);
     }
 }

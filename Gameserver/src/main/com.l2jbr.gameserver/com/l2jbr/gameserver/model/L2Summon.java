@@ -32,6 +32,7 @@ import com.l2jbr.gameserver.model.actor.stat.SummonStat;
 import com.l2jbr.gameserver.model.actor.status.SummonStatus;
 import com.l2jbr.gameserver.model.base.Experience;
 import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.database.Weapon;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.taskmanager.DecayTaskManager;
@@ -444,7 +445,7 @@ public abstract class L2Summon extends L2PlayableInstance
 	}
 	
 	@Override
-	public L2Weapon getActiveWeaponItem()
+	public Weapon getActiveWeaponItem()
 	{
 		return null;
 	}
@@ -456,7 +457,7 @@ public abstract class L2Summon extends L2PlayableInstance
 	}
 	
 	@Override
-	public L2Weapon getSecondaryWeaponItem()
+	public Weapon getSecondaryWeaponItem()
 	{
 		return null;
 	}

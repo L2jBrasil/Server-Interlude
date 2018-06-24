@@ -26,8 +26,8 @@ import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.actor.knownlist.BoatKnownList;
 import com.l2jbr.gameserver.model.database.CharTemplate;
+import com.l2jbr.gameserver.model.database.Weapon;
 import com.l2jbr.gameserver.serverpackets.*;
-import com.l2jbr.gameserver.templates.L2Weapon;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -660,7 +660,7 @@ public class L2BoatInstance extends L2Character {
      * @see com.l2jbr.gameserver.model.L2Character#getActiveWeaponItem()
      */
     @Override
-    public L2Weapon getActiveWeaponItem() {
+    public Weapon getActiveWeaponItem() {
         // TODO Auto-generated method stub
         return null;
     }
@@ -680,7 +680,7 @@ public class L2BoatInstance extends L2Character {
      * @see com.l2jbr.gameserver.model.L2Character#getSecondaryWeaponItem()
      */
     @Override
-    public L2Weapon getSecondaryWeaponItem() {
+    public Weapon getSecondaryWeaponItem() {
         // TODO Auto-generated method stub
         return null;
     }

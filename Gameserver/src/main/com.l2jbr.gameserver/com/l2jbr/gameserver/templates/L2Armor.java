@@ -22,6 +22,7 @@ import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Skill;
+import com.l2jbr.gameserver.model.database.Armor;
 import com.l2jbr.gameserver.skills.Env;
 import com.l2jbr.gameserver.skills.funcs.Func;
 import com.l2jbr.gameserver.skills.funcs.FuncTemplate;
@@ -44,6 +45,21 @@ public final class L2Armor extends L2Item {
     private L2Skill _itemSkill = null; // for passive skill
 
     public L2Armor(ItemType type, StatsSet set) {
+        super(type, set);
+        _avoidModifier = set.getInteger("avoid_modify");
+        _pDef = set.getInteger("p_def");
+        _mDef = set.getInteger("m_def");
+        _mpBonus = set.getInteger("mp_bonus", 0);
+        _hpBonus = set.getInteger("hp_bonus", 0);
+
+        int sId = set.getInteger("item_skill_id");
+        int sLv = set.getInteger("item_skill_lvl");
+        if ((sId > 0) && (sLv > 0)) {
+            _itemSkill = SkillTable.getInstance().getInfo(sId, sLv);
+        }
+    }
+
+    public L2Armor(Enum<?> type, StatsSet set, Armor armor) {
         super(type, set);
         _avoidModifier = set.getInteger("avoid_modify");
         _pDef = set.getInteger("p_def");

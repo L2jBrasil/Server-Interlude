@@ -98,6 +98,7 @@ public class SkillsEngine {
 
     public List<L2Armor> loadArmors(Map<Integer, Item> armorData) {
         List<L2Armor> list = new LinkedList<>();
+
         for (L2Item item : loadData(armorData, _armorFiles)) {
             list.add((L2Armor) item);
         }
