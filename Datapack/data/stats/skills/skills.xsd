@@ -38,6 +38,7 @@
             <xs:element name="mpInitialConsume" type="xs:string" minOccurs="0"/>
             <xs:element name="baseCritRate" type="xs:integer" minOccurs="0"/>
             <xs:element name="SSBoost" type="xs:decimal" minOccurs="0"/>
+            <xs:element name="skillRadius" type="xs:integer" minOccurs="0"/>
             <xs:element name="coolTime" type="xs:duration" minOccurs="0"/>
             <xs:element name="enchant1" type="enchant" minOccurs="0"/>
             <xs:element name="enchant2" type="enchant" minOccurs="0"/>
@@ -46,6 +47,7 @@
             <xs:element name="condition" type="xs:integer" minOccurs="0"/>
             <xs:element name="effects" type="effectList" minOccurs="0"/>
             <xs:element name="charge" type="charge" minOccurs="0"/>
+            <xs:element name="consume" type="consume" minOccurs="0"/>
         </xs:all>
         <xs:attribute name="id" type="xs:positiveInteger" use="required"/>
         <xs:attribute name="name" type="xs:string" use="required"/>
@@ -54,6 +56,11 @@
         <xs:attribute name="isMagic" type="xs:boolean" default="false"/>
         <xs:attribute name="ignoreShield" type="xs:boolean" default="false"/>
         <xs:attribute name="overHit" type="xs:boolean" default="false"/>
+    </xs:complexType>
+
+    <xs:complexType name="consume">
+        <xs:attribute name="itemId" type="xs:integer" use="required"/>
+        <xs:attribute name="count" type="xs:integer" use="required"/>
     </xs:complexType>
 
     <xs:complexType name="charge">
