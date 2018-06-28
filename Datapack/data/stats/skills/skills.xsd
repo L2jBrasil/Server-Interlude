@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://la2j.org"
+            xmlns="http://la2j.org">
+
+    <xs:element name="skillList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="skill" type="skill" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="skill">
+        <xs:all>
+            <xs:element name="listMagicLevel" type="numberList"/>
+            <xs:element name="listMpConsume" type="numberList"/>
+            <xs:element name="listPower" type="numberList" />
+
+            <xs:element name="listMpInitialConsume" type="numberList" minOccurs="0"/>
+            <xs:element name="listEnchantMagicLevel" type="numberList" minOccurs="0"/>
+            <xs:element name="listEnchantMpConsume" type="numberList" minOccurs="0"/>
+            <xs:element name="listEnchantPower" type="numberList" minOccurs="0"/>
+
+            <xs:element name="skillType" type="skillType"/>
+            <xs:element name="operateType" type="operateType"/>
+            <xs:element name="target" type="targetType"/>
+            <xs:element name="power" type="xs:string"/>
+            <xs:element name="magicLevel" type="xs:string"/>
+            <xs:element name="mpConsume" type="xs:string"/>
+            <xs:element name="reuseDelay" type="xs:duration"/>
+            <xs:element name="hitTime" type="xs:duration"/>
+            <xs:element name="castRange" type="xs:integer"/>
+            <xs:element name="effectRange" type="xs:integer"/>
+
+            <xs:element name="weaponsAllowed" type="xs:integer" minOccurs="0"/>
+            <xs:element name="mpInitialConsume" type="xs:string" minOccurs="0"/>
+            <xs:element name="baseCritRate" type="xs:integer" minOccurs="0"/>
+            <xs:element name="SSBoost" type="xs:decimal" minOccurs="0"/>
+            <xs:element name="coolTime" type="xs:duration" minOccurs="0"/>
+            <xs:element name="enchant1" type="enchant" minOccurs="0"/>
+            <xs:element name="enchant2" type="enchant" minOccurs="0"/>
+            <xs:element name="cond" type="condition" minOccurs="0"/>
+            <xs:element name="conditionValue" type="xs:integer" minOccurs="0"/>
+            <xs:element name="condition" type="xs:integer" minOccurs="0"/>
+            <xs:element name="effects" type="effectList" minOccurs="0"/>
+            <xs:element name="charge" type="charge" minOccurs="0"/>
+        </xs:all>
+        <xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:attribute name="levels" type="xs:positiveInteger" use="required"/>
+        <xs:attribute name="enchants" type="xs:positiveInteger"/>
+        <xs:attribute name="isMagic" type="xs:boolean" default="false"/>
+        <xs:attribute name="ignoreShield" type="xs:boolean" default="false"/>
+        <xs:attribute name="overHit" type="xs:boolean" default="false"/>
+    </xs:complexType>
+
+    <xs:complexType name="charge">
+        <xs:attribute name="quantity" type="xs:integer"/>
+        <xs:attribute name="skillId" type="xs:integer"/>
+    </xs:complexType>
+
+    <xs:complexType name="enchant">
+        <xs:attribute name="stat" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="condition">
+        <xs:sequence>
+            <xs:element name="using" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="message"/>
+    </xs:complexType>
+
+    <xs:simpleType name="targetType">
+        <xs:restriction>
+            <xs:enumeration value="ONE"/>
+            <xs:enumeration value="SELF"/>
+            <xs:enumeration value="AREA"/>
+            <xs:enumeration value="MULTIFACE"/>
+            <xs:enumeration value="AURA"/>
+            <xs:enumeration value="UNLOCKABLE"/>
+            <xs:enumeration value="CORPSE_MOB"/>
+            <xs:enumeration value="UNDEAD"/>
+            <xs:enumeration value="AREA_UNDEAD"/>
+            <xs:enumeration value="AREA_CORPSE_MOB"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="skillType">
+        <xs:restriction>
+            <xs:enumeration value="PDAM"/>
+            <xs:enumeration value="CONFUSE_MOB_ONLY"/>
+            <xs:enumeration value="BUFF"/>
+            <xs:enumeration value="CHARGEDAM"/>
+            <xs:enumeration value="CHARGE"/>
+            <xs:enumeration value="SUMMON"/>
+            <xs:enumeration value="AGGREDUCE_CHAR"/>
+            <xs:enumeration value="AGGREDUCE"/>
+            <xs:enumeration value="BLOW"/>
+            <xs:enumeration value="UNPOISON"/>
+            <xs:enumeration value="UNLOCK"/>
+            <xs:enumeration value="AGGDAMAGE"/>
+            <xs:enumeration value="UNBLEED"/>
+            <xs:enumeration value="SWEEP"/>
+            <xs:enumeration value="HEAL"/>
+            <xs:enumeration value="DRAIN"/>
+            <xs:enumeration value="MDAM"/>
+            <xs:enumeration value="FAKE_DEATH"/>
+            <xs:enumeration value="FEAR"/>
+            <xs:enumeration value="REFLECT"/>
+            <xs:enumeration value="STUN"/>
+            <xs:enumeration value="DEBUFF"/>
+            <xs:enumeration value="BLEED"/>
+            <xs:enumeration value="POISON"/>
+            <xs:enumeration value="ROOT"/>
+            <xs:enumeration value="HEAL_PERCENT"/>
+            <xs:enumeration value="NOT_DONE"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="operateType">
+        <xs:restriction>
+            <xs:enumeration value="OP_ACTIVE"/>
+            <xs:enumeration value="OP_TOGGLE"/>
+            <xs:enumeration value="OP_PASSIVE"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="stat">
+        <xs:attribute name="order" type="xs:integer"/>
+        <xs:attribute name="type" type="xs:string"/>
+        <xs:attribute name="name" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="effect">
+        <xs:sequence>
+            <xs:element name="stat" type="stat" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:attribute name="time" type="xs:duration" use="required"/>
+        <xs:attribute name="count" type="xs:integer"/>
+        <xs:attribute name="stackType" type="xs:string"/>
+        <xs:attribute name="stackOrder" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:simpleType name="effectList">
+        <xs:list itemType="effect"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="numberList">
+        <xs:list itemType="xs:integer"/>
+    </xs:simpleType>
+
+</xs:schema>
