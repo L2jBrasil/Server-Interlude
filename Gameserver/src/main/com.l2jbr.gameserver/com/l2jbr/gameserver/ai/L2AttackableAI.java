@@ -27,7 +27,7 @@ import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.instancemanager.DimensionalRiftManager;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.*;
-import com.l2jbr.gameserver.model.database.Weapon;
+import com.l2jbr.gameserver.model.entity.database.Weapon;
 import com.l2jbr.gameserver.templates.ItemType;
 
 import java.util.concurrent.Future;

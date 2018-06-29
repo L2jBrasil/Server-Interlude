@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.model;
 
-import com.l2jbr.gameserver.model.database.DropList;
+import com.l2jbr.gameserver.model.entity.database.DropList;
 
 import java.util.Arrays;
 

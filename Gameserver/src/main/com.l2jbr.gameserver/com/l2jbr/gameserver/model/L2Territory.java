@@ -26,7 +26,7 @@
 package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.util.Rnd;
-import com.l2jbr.gameserver.model.database.Locations;
+import com.l2jbr.gameserver.model.entity.database.Locations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

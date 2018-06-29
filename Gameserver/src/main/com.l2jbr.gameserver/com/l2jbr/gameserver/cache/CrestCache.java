@@ -23,7 +23,7 @@ import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.datatables.ClanTable;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.L2Clan;
-import com.l2jbr.gameserver.model.database.repository.ClanRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.ClanRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

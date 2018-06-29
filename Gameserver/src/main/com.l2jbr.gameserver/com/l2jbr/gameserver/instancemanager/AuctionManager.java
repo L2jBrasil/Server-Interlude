@@ -18,8 +18,8 @@
 package com.l2jbr.gameserver.instancemanager;
 
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.gameserver.model.database.repository.AuctionRepository;
-import com.l2jbr.gameserver.model.database.repository.ClanHallRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.AuctionRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.ClanHallRepository;
 import com.l2jbr.gameserver.model.entity.Auction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

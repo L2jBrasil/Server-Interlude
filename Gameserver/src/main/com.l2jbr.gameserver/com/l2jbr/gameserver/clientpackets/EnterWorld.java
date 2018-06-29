@@ -29,7 +29,7 @@ import com.l2jbr.gameserver.handler.AdminCommandHandler;
 import com.l2jbr.gameserver.instancemanager.*;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.repository.CharacterFriendRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.CharacterFriendRepository;
 import com.l2jbr.gameserver.model.entity.*;
 import com.l2jbr.gameserver.model.quest.Quest;
 import com.l2jbr.gameserver.network.SystemMessageId;

@@ -25,7 +25,7 @@ import com.l2jbr.gameserver.datatables.NpcTable;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Skill;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 

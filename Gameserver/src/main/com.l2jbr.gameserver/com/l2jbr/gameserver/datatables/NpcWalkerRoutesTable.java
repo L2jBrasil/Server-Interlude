@@ -20,7 +20,7 @@ package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.model.L2NpcWalkerNode;
-import com.l2jbr.gameserver.model.database.repository.WalkerRoutesRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.WalkerRoutesRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

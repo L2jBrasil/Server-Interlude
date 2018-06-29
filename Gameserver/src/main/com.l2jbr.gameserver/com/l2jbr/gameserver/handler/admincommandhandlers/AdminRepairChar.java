@@ -23,10 +23,10 @@ import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.handler.IAdminCommandHandler;
 import com.l2jbr.gameserver.model.GMAudit;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.Character;
-import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
-import com.l2jbr.gameserver.model.database.repository.CharacterShortcutsRepository;
-import com.l2jbr.gameserver.model.database.repository.ItemRepository;
+import com.l2jbr.gameserver.model.entity.database.Character;
+import com.l2jbr.gameserver.model.entity.database.repository.CharacterRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.CharacterShortcutsRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.ItemRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

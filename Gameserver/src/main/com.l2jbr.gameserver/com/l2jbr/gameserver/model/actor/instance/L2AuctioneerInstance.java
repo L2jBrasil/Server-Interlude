@@ -24,7 +24,7 @@ import com.l2jbr.gameserver.datatables.MapRegionTable;
 import com.l2jbr.gameserver.instancemanager.AuctionManager;
 import com.l2jbr.gameserver.instancemanager.ClanHallManager;
 import com.l2jbr.gameserver.model.L2Clan;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.model.entity.Auction;
 import com.l2jbr.gameserver.model.entity.Auction.Bidder;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;

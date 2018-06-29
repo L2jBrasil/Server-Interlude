@@ -27,7 +27,7 @@ import com.l2jbr.gameserver.model.Inventory;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.L2World;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.model.entity.Couple;
 import com.l2jbr.gameserver.serverpackets.*;
 

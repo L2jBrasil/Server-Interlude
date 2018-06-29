@@ -10,9 +10,10 @@ module com.l2jbr.gameserver {
     requires spring.data.commons;
     requires spring.data.jdbc;
     requires spring.context;
+    requires java.xml.bind;
 
     exports com.l2jbr.gameserver;
-    exports com.l2jbr.gameserver.model.database.repository;
-    exports com.l2jbr.gameserver.model.database;
+    exports com.l2jbr.gameserver.model.entity.database.repository;
+    exports com.l2jbr.gameserver.model.entity.database;
 
 }

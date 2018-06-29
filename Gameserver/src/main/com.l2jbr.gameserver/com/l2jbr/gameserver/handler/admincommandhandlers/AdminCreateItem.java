@@ -23,7 +23,7 @@ import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.handler.IAdminCommandHandler;
 import com.l2jbr.gameserver.model.GMAudit;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.ItemTemplate;
+import com.l2jbr.gameserver.model.entity.database.ItemTemplate;
 import com.l2jbr.gameserver.serverpackets.ItemList;
 
 import java.util.StringTokenizer;

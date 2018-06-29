@@ -22,8 +22,8 @@ import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.util.Util;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.CharacterFriends;
-import com.l2jbr.gameserver.model.database.repository.CharacterFriendRepository;
+import com.l2jbr.gameserver.model.entity.database.CharacterFriends;
+import com.l2jbr.gameserver.model.entity.database.repository.CharacterFriendRepository;
 
 import java.util.List;
 

@@ -30,10 +30,10 @@ import com.l2jbr.gameserver.model.actor.instance.L2FestivalMonsterInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.base.Experience;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
-import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
-import com.l2jbr.gameserver.model.database.repository.SevenSignsFestivalRepository;
-import com.l2jbr.gameserver.model.database.repository.SevenSignsStatusRepository;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.repository.CharacterRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.SevenSignsFestivalRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.SevenSignsStatusRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.CreatureSay;
 import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
@@ -3370,7 +3370,7 @@ public class SevenSignsFestival implements SpawnListener {
                     continue;
                 }
 
-                com.l2jbr.gameserver.model.database.SevenSignsFestival festival = new com.l2jbr.gameserver.model.database.SevenSignsFestival(
+                com.l2jbr.gameserver.model.entity.database.SevenSignsFestival festival = new com.l2jbr.gameserver.model.entity.database.SevenSignsFestival(
                     festivalId, cabal, festivalCycle, Long.valueOf(festivalDat.getString("date")), festivalDat.getInteger("score"), festivalDat.getString("members"));
                 repository.save(festival);
 

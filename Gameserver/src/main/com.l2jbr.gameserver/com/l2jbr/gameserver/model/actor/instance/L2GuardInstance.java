@@ -25,7 +25,7 @@ import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.ai.L2AttackableAI;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.knownlist.GuardKnownList;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.MyTargetSelected;
 import com.l2jbr.gameserver.serverpackets.SocialAction;

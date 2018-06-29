@@ -22,7 +22,7 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.datatables.TeleportLocationTable;
 import com.l2jbr.gameserver.model.L2Position;
 import com.l2jbr.gameserver.model.L2TeleportLocation;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 

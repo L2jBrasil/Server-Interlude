@@ -22,7 +22,7 @@ import com.l2jbr.gameserver.ai.L2AttackableAI;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.L2WorldRegion;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 
 
 /**

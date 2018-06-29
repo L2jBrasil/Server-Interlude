@@ -26,7 +26,7 @@ import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.actor.instance.L2MonsterInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;

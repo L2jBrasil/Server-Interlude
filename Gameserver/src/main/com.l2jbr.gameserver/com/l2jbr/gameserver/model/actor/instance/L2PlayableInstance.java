@@ -24,7 +24,7 @@ import com.l2jbr.gameserver.model.L2Summon;
 import com.l2jbr.gameserver.model.actor.knownlist.PlayableKnownList;
 import com.l2jbr.gameserver.model.actor.stat.PlayableStat;
 import com.l2jbr.gameserver.model.actor.status.PlayableStatus;
-import com.l2jbr.gameserver.model.database.CharTemplate;
+import com.l2jbr.gameserver.model.entity.database.CharTemplate;
 
 
 /**

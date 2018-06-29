@@ -21,7 +21,7 @@ package com.l2jbr.gameserver.instancemanager;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.actor.instance.L2BoatInstance;
-import com.l2jbr.gameserver.model.database.CharTemplate;
+import com.l2jbr.gameserver.model.entity.database.CharTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -22,10 +22,10 @@ import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2TradeList;
-import com.l2jbr.gameserver.model.database.MerchantBuyList;
-import com.l2jbr.gameserver.model.database.MerchantShopIds;
-import com.l2jbr.gameserver.model.database.repository.MerchantBuyListRepository;
-import com.l2jbr.gameserver.model.database.repository.MerchantShopRepository;
+import com.l2jbr.gameserver.model.entity.database.MerchantBuyList;
+import com.l2jbr.gameserver.model.entity.database.MerchantShopIds;
+import com.l2jbr.gameserver.model.entity.database.repository.MerchantBuyListRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.MerchantShopRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

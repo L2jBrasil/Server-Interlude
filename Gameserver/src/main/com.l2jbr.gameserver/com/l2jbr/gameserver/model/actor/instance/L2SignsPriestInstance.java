@@ -24,7 +24,7 @@ import com.l2jbr.gameserver.cache.HtmCache;
 import com.l2jbr.gameserver.datatables.ClanTable;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.L2ItemInstance;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;

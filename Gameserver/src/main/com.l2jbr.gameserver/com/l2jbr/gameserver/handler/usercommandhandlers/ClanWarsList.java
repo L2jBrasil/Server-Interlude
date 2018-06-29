@@ -24,8 +24,8 @@ import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.handler.IUserCommandHandler;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.ClanData;
-import com.l2jbr.gameserver.model.database.repository.ClanRepository;
+import com.l2jbr.gameserver.model.entity.database.ClanData;
+import com.l2jbr.gameserver.model.entity.database.repository.ClanRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 

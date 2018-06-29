@@ -24,7 +24,7 @@ import com.l2jbr.gameserver.instancemanager.CastleManager;
 import com.l2jbr.gameserver.instancemanager.SiegeManager;
 import com.l2jbr.gameserver.instancemanager.TownManager;
 import com.l2jbr.gameserver.model.L2TeleportLocation;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;

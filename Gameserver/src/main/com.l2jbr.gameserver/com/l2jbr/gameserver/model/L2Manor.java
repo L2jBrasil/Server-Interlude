@@ -19,7 +19,7 @@ package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.datatables.ItemTable;
-import com.l2jbr.gameserver.model.database.ItemTemplate;
+import com.l2jbr.gameserver.model.entity.database.ItemTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

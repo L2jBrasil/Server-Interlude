@@ -33,7 +33,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2DoorInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2MonsterInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.CreatureSay;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;

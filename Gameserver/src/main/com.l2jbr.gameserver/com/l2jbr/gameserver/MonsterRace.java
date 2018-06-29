@@ -22,7 +22,7 @@ import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.datatables.NpcTable;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 
 import java.lang.reflect.Constructor;
 

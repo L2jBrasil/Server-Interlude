@@ -22,7 +22,7 @@ import com.l2jbr.gameserver.TradeController;
 import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.L2TradeList;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.*;
 
 import java.util.StringTokenizer;

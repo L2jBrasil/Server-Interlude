@@ -20,8 +20,8 @@ package com.l2jbr.gameserver.communitybbs.BB;
 
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.communitybbs.Manager.PostBBSManager;
-import com.l2jbr.gameserver.model.database.Posts;
-import com.l2jbr.gameserver.model.database.repository.PostRepository;
+import com.l2jbr.gameserver.model.entity.database.Posts;
+import com.l2jbr.gameserver.model.entity.database.repository.PostRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

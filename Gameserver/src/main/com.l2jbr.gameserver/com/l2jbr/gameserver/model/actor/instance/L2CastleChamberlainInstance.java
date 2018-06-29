@@ -27,7 +27,7 @@ import com.l2jbr.gameserver.instancemanager.CastleManorManager;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.L2TradeList;
 import com.l2jbr.gameserver.model.PcInventory;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.util.Util;

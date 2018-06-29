@@ -24,7 +24,7 @@ import com.l2jbr.gameserver.model.L2EnchantSkillLearn;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.L2SkillLearn;
 import com.l2jbr.gameserver.model.base.PlayerClass;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 

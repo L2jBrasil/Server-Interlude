@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://la2j.org"
+           xmlns="http://la2j.org">
+
+    <xs:complexType name="statType">
+        <xs:simpleContent>
+            <xs:extension base="enumStat">
+                <xs:attribute name="order" type="xs:int"/>
+                <xs:attribute name="function" type="xs:string"/>
+                <xs:attribute name="val" type="xs:int"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:simpleType name="enumStat">
+        <xs:restriction base="xs:string">
+            <xs:whiteSpace value="collapse"/>
+            <xs:enumeration value="MAX_HP"/>
+            <xs:enumeration value="MAX_MP"/>
+            <xs:enumeration value="MAX_CP"/>
+            <xs:enumeration value="REGENERATE_HP_RATE"/>
+            <xs:enumeration value="REGENERATE_CP_RATE"/>
+            <xs:enumeration value="REGENERATE_MP_RATE"/>
+            <xs:enumeration value="RECHARGE_MP_RATE"/>
+            <xs:enumeration value="HEAL_EFFECTIVNESS"/>
+            <xs:enumeration value="PHYSIC_DEFENCE"/>
+            <xs:enumeration value="MAGIC_DEFENCE"/>
+            <xs:enumeration value="PHYSIC_ATTACK"/>
+            <xs:enumeration value="MAGIC_ATTACK"/>
+            <xs:enumeration value="POWER_ATTACK_SPEED"/>
+            <xs:enumeration value="MAGIC_ATTACK_SPEED"/>
+            <xs:enumeration value="MAGIC_REUSE_RATE"/>
+            <xs:enumeration value="SHIELD_DEFENCE"/>
+            <xs:enumeration value="CRITICAL_DAMAGE"/>
+            <xs:enumeration value="PVP_PHYSICAL_DMG"/>
+            <xs:enumeration value="PVP_MAGICAL_DMG"/>
+            <xs:enumeration value="PVP_PHYS_SKILL_DMG"/>
+            <xs:enumeration value="EVASION_RATE"/>
+            <xs:enumeration value="SHIELD_RATE"/>
+            <xs:enumeration value="CRITICAL_RATE"/>
+            <xs:enumeration value="BLOW_RATE"/>
+            <xs:enumeration value="LETHAL_RATE"/>
+            <xs:enumeration value="MCRITICAL_RATE"/>
+            <xs:enumeration value="EXPSP_RATE"/>
+            <xs:enumeration value="ATTACK_CANCEL"/>
+            <xs:enumeration value="ACCURACY_COMBAT"/>
+            <xs:enumeration value="POWER_ATTACK_RANGE"/>
+            <xs:enumeration value="MAGIC_ATTACK_RANGE"/>
+            <xs:enumeration value="POWER_ATTACK_ANGLE"/>
+            <xs:enumeration value="ATTACK_COUNT_MAX"/>
+            <xs:enumeration value="RUN_SPEED"/>
+            <xs:enumeration value="WALK_SPEED"/>
+            <xs:enumeration value="STAT_STR"/>
+            <xs:enumeration value="STAT_CON"/>
+            <xs:enumeration value="STAT_DEX"/>
+            <xs:enumeration value="STAT_INT"/>
+            <xs:enumeration value="STAT_WIT"/>
+            <xs:enumeration value="STAT_MEN"/>
+            <xs:enumeration value="BREATH"/>
+            <xs:enumeration value="AGGRESSION"/>
+            <xs:enumeration value="BLEED"/>
+            <xs:enumeration value="POISON"/>
+            <xs:enumeration value="STUN"/>
+            <xs:enumeration value="ROOT"/>
+            <xs:enumeration value="MOVEMENT"/>
+            <xs:enumeration value="CONFUSION"/>
+            <xs:enumeration value="SLEEP"/>
+            <xs:enumeration value="FIRE"/>
+            <xs:enumeration value="WIND"/>
+            <xs:enumeration value="WATER"/>
+            <xs:enumeration value="EARTH"/>
+            <xs:enumeration value="HOLY"/>
+            <xs:enumeration value="DARK"/>
+            <xs:enumeration value="AGGRESSION_VULN"/>
+            <xs:enumeration value="BLEED_VULN"/>
+            <xs:enumeration value="POISON_VULN"/>
+            <xs:enumeration value="STUN_VULN"/>
+            <xs:enumeration value="PARALYZE_VULN"/>
+            <xs:enumeration value="ROOT_VULN"/>
+            <xs:enumeration value="SLEEP_VULN"/>
+            <xs:enumeration value="CONFUSION_VULN"/>
+            <xs:enumeration value="MOVEMENT_VULN"/>
+            <xs:enumeration value="FIRE_VULN"/>
+            <xs:enumeration value="WIND_VULN"/>
+            <xs:enumeration value="WATER_VULN"/>
+            <xs:enumeration value="EARTH_VULN"/>
+            <xs:enumeration value="HOLY_VULN"/>
+            <xs:enumeration value="DARK_VULN"/>
+            <xs:enumeration value="CANCEL_VULN"/>
+            <xs:enumeration value="DERANGEMENT_VULN"/>
+            <xs:enumeration value="DEBUFF_VULN"/>
+            <xs:enumeration value="NONE_WPN_VULN"/>
+            <xs:enumeration value="SWORD_WPN_VULN"/>
+            <xs:enumeration value="BLUNT_WPN_VULN"/>
+            <xs:enumeration value="DAGGER_WPN_VULN"/>
+            <xs:enumeration value="BOW_WPN_VULN"/>
+            <xs:enumeration value="POLE_WPN_VULN"/>
+            <xs:enumeration value="ETC_WPN_VULN"/>
+            <xs:enumeration value="FIST_WPN_VULN"/>
+            <xs:enumeration value="DUAL_WPN_VULN"/>
+            <xs:enumeration value="DUALFIST_WPN_VULN"/>
+            <xs:enumeration value="REFLECT_DAMAGE_PERCENT"/>
+            <xs:enumeration value="REFLECT_SKILL_MAGIC"/>
+            <xs:enumeration value="REFLECT_SKILL_PHYSIC"/>
+            <xs:enumeration value="ABSORB_DAMAGE_PERCENT"/>
+            <xs:enumeration value="TRANSFER_DAMAGE_PERCENT"/>
+            <xs:enumeration value="MAX_LOAD"/>
+            <xs:enumeration value="PATK_PLANTS"/>
+            <xs:enumeration value="PATK_INSECTS"/>
+            <xs:enumeration value="PATK_ANIMALS"/>
+            <xs:enumeration value="PATK_MONSTERS"/>
+            <xs:enumeration value="PATK_DRAGONS"/>
+            <xs:enumeration value="PATK_UNDEAD"/>
+            <xs:enumeration value="PDEF_UNDEAD"/>
+            <xs:enumeration value="ATK_REUSE"/>
+            <xs:enumeration value="INV_LIM"/>
+            <xs:enumeration value="WH_LIM"/>
+            <xs:enumeration value="FREIGHT_LIM"/>
+            <xs:enumeration value="P_SELL_LIM"/>
+            <xs:enumeration value="P_BUY_LIM"/>
+            <xs:enumeration value="REC_D_LIM"/>
+            <xs:enumeration value="REC_C_LIM"/>
+            <xs:enumeration value="MP_CONSUME_RATE"/>
+            <xs:enumeration value="HP_CONSUME_RATE"/>
+            <xs:enumeration value="MP_CONSUME"/>
+            <xs:enumeration value="SOULSHOT_COUNT"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

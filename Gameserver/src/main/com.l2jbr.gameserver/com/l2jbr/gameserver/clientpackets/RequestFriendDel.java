@@ -20,8 +20,8 @@ package com.l2jbr.gameserver.clientpackets;
 
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.repository.CharacterFriendRepository;
-import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.CharacterFriendRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import org.slf4j.Logger;

@@ -20,8 +20,8 @@ package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.model.base.PlayerClass;
-import com.l2jbr.gameserver.model.database.PlayerTemplate;
-import com.l2jbr.gameserver.model.database.repository.CharTemplateRepository;
+import com.l2jbr.gameserver.model.entity.database.PlayerTemplate;
+import com.l2jbr.gameserver.model.entity.database.repository.CharTemplateRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

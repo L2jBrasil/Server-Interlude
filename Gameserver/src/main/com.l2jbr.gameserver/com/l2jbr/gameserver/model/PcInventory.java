@@ -21,7 +21,7 @@ import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.model.L2ItemInstance.ItemLocation;
 import com.l2jbr.gameserver.model.TradeList.TradeItem;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.repository.ItemRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.ItemRepository;
 import com.l2jbr.gameserver.templates.ItemType;
 
 import java.util.LinkedList;

@@ -20,7 +20,7 @@ package com.l2jbr.gameserver.instancemanager;
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.datatables.ClanTable;
 import com.l2jbr.gameserver.model.L2Clan;
-import com.l2jbr.gameserver.model.database.repository.ClanHallRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.ClanHallRepository;
 import com.l2jbr.gameserver.model.entity.ClanHall;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

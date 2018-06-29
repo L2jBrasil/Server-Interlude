@@ -25,7 +25,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2BabyPetInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PetInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PlayableInstance;
-import com.l2jbr.gameserver.model.database.Weapon;
+import com.l2jbr.gameserver.model.entity.database.Weapon;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ExAutoSoulShot;
 import com.l2jbr.gameserver.serverpackets.MagicSkillUser;

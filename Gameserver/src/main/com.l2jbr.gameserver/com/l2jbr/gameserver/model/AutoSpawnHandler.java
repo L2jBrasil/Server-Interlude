@@ -27,9 +27,9 @@ import com.l2jbr.gameserver.datatables.NpcTable;
 import com.l2jbr.gameserver.datatables.SpawnTable;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
-import com.l2jbr.gameserver.model.database.RandomSpawn;
-import com.l2jbr.gameserver.model.database.repository.RandomSpawnRepository;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.RandomSpawn;
+import com.l2jbr.gameserver.model.entity.database.repository.RandomSpawnRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

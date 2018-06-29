@@ -27,7 +27,7 @@ import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.CharSelectInfoPackage;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.repository.*;
+import com.l2jbr.gameserver.model.entity.database.repository.*;
 import com.l2jbr.gameserver.model.entity.L2Event;
 import com.l2jbr.gameserver.serverpackets.L2GameServerPacket;
 import com.l2jbr.gameserver.serverpackets.ServerClose;

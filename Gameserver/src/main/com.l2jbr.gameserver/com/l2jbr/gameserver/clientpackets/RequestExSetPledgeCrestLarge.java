@@ -23,7 +23,7 @@ import com.l2jbr.gameserver.cache.CrestCache;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.repository.ClanRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.ClanRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import org.slf4j.Logger;

@@ -21,7 +21,7 @@ package com.l2jbr.gameserver.communitybbs.Manager;
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.communitybbs.BB.Forum;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.repository.ForumRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.ForumRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

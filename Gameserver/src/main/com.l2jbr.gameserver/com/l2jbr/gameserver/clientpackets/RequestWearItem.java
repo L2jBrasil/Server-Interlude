@@ -29,7 +29,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2MercManagerInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2MerchantInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.ItemTemplate;
+import com.l2jbr.gameserver.model.entity.database.ItemTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;

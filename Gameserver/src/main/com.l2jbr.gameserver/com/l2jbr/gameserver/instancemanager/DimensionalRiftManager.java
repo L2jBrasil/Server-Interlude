@@ -27,8 +27,8 @@ import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Spawn;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
-import com.l2jbr.gameserver.model.database.repository.DimensionalRiftRepository;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.repository.DimensionalRiftRepository;
 import com.l2jbr.gameserver.model.entity.DimensionalRift;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.util.Util;
@@ -317,7 +317,7 @@ public class DimensionalRiftManager {
         private final List<L2Spawn> _roomSpawns;
         protected final List<L2NpcInstance> _roomMobs;
 
-        public DimensionalRiftRoom(com.l2jbr.gameserver.model.database.DimensionalRift dimensionalRift) {
+        public DimensionalRiftRoom(com.l2jbr.gameserver.model.entity.database.DimensionalRift dimensionalRift) {
 
             _type = dimensionalRift.getType();
             _room = dimensionalRift.getRoomId();

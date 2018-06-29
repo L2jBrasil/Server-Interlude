@@ -27,11 +27,11 @@ import com.l2jbr.gameserver.model.L2ItemInstance.ItemLocation;
 import com.l2jbr.gameserver.model.actor.instance.L2BossInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2RaidBossInstance;
-import com.l2jbr.gameserver.model.database.ItemTemplate;
-import com.l2jbr.gameserver.model.database.repository.ArmorRepository;
-import com.l2jbr.gameserver.model.database.repository.EtcItemRepository;
-import com.l2jbr.gameserver.model.database.repository.PetsRepository;
-import com.l2jbr.gameserver.model.database.repository.WeaponRepository;
+import com.l2jbr.gameserver.model.entity.database.ItemTemplate;
+import com.l2jbr.gameserver.model.entity.database.repository.ArmorRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.EtcItemRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.PetsRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.WeaponRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,9 +58,14 @@ public class ItemTable {
 
     private ItemTable() {
         items = new HashMap<>();
+        loadItemsStat();
         DatabaseAccess.getRepository(EtcItemRepository.class).findAll().forEach(this::addToItems);
         DatabaseAccess.getRepository(ArmorRepository.class).findAll().forEach(this::addToItems);
         DatabaseAccess.getRepository(WeaponRepository.class).findAll().forEach(this::addToItems);
+
+    }
+
+    private void loadItemsStat() {
 
     }
 

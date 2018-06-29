@@ -13,7 +13,7 @@ import com.l2jbr.gameserver.instancemanager.CoupleManager;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.repository.CharacterFriendRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.CharacterFriendRepository;
 import com.l2jbr.gameserver.model.entity.TvTEvent;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;

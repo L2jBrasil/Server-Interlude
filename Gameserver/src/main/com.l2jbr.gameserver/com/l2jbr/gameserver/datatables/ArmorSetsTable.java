@@ -25,7 +25,7 @@ package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.model.L2ArmorSet;
-import com.l2jbr.gameserver.model.database.repository.ArmorSetRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.ArmorSetRepository;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

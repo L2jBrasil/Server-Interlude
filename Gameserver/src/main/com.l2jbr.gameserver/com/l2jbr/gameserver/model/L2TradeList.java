@@ -21,7 +21,7 @@ package com.l2jbr.gameserver.model;
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.repository.PetsRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.PetsRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.StatusUpdate;

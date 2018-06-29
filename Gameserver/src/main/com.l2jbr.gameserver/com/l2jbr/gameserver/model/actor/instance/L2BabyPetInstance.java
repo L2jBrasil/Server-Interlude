@@ -23,7 +23,7 @@ import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Skill;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 
 import java.util.LinkedHashMap;
 import java.util.concurrent.Future;

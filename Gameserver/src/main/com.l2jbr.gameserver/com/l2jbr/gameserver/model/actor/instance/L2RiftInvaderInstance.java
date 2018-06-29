@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.model.actor.instance;
 
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 
 
 public class L2RiftInvaderInstance extends L2MonsterInstance

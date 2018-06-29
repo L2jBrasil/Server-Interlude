@@ -20,7 +20,7 @@ package com.l2jbr.gameserver.communitybbs.BB;
 
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.communitybbs.Manager.TopicBBSManager;
-import com.l2jbr.gameserver.model.database.repository.TopicRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.TopicRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -72,7 +72,7 @@ public class Topic
 	}
 
 	public void insertindb() {
-        com.l2jbr.gameserver.model.database.Topic topic = new com.l2jbr.gameserver.model.database.Topic(_id, _forumId, _topicName, _date,
+        com.l2jbr.gameserver.model.entity.database.Topic topic = new com.l2jbr.gameserver.model.entity.database.Topic(_id, _forumId, _topicName, _date,
             _ownerName, _ownerId, _type, _cReply);
         TopicRepository repository = DatabaseAccess.getRepository(TopicRepository.class);
         repository.save(topic);

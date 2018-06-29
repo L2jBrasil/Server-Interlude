@@ -20,7 +20,7 @@ package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Skill;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 
 
 public class L2SiegeSummonInstance extends L2SummonInstance

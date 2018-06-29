@@ -21,7 +21,7 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.ai.AI;
 import com.l2jbr.gameserver.ai.L2NpcWalkerAI;
 import com.l2jbr.gameserver.model.L2Character;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.CreatureSay;
 
 import java.util.Map;

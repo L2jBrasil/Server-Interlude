@@ -21,7 +21,7 @@ package com.l2jbr.gameserver.model;
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.instancemanager.SiegeManager;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.CharacterRepository;
 
 
 /**

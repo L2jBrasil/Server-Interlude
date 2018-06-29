@@ -19,8 +19,8 @@
 package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.gameserver.model.database.HelperBuffList;
-import com.l2jbr.gameserver.model.database.repository.HelperBuffRepository;
+import com.l2jbr.gameserver.model.entity.database.HelperBuffList;
+import com.l2jbr.gameserver.model.entity.database.repository.HelperBuffRepository;
 import com.l2jbr.gameserver.templates.L2HelperBuff;
 import com.l2jbr.gameserver.templates.StatsSet;
 import org.slf4j.Logger;

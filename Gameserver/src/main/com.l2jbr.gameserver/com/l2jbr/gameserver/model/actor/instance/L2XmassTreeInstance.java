@@ -23,7 +23,7 @@ import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.L2Skill;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
 
 import java.util.concurrent.ScheduledFuture;

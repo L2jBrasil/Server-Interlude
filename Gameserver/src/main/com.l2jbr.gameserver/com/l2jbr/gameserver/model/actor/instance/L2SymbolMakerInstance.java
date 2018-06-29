@@ -17,7 +17,7 @@ package com.l2jbr.gameserver.model.actor.instance;
 import com.l2jbr.gameserver.datatables.HennaTreeTable;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2HennaInstance;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.HennaEquipList;
 
 

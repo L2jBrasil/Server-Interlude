@@ -25,7 +25,7 @@ import com.l2jbr.gameserver.instancemanager.FishingZoneManager;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.L2Skill.SkillType;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.Weapon;
+import com.l2jbr.gameserver.model.entity.database.Weapon;
 import com.l2jbr.gameserver.model.zone.type.L2FishingZone;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;

@@ -26,7 +26,7 @@ import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.Location;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.repository.SiegeClanRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.SiegeClanRepository;
 import com.l2jbr.gameserver.model.entity.Castle;
 import com.l2jbr.gameserver.model.entity.Siege;
 import com.l2jbr.gameserver.network.SystemMessageId;

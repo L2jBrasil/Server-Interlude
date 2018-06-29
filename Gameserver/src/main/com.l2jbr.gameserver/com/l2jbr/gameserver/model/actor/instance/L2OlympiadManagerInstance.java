@@ -21,7 +21,7 @@ package com.l2jbr.gameserver.model.actor.instance;
 import com.l2jbr.gameserver.Olympiad;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Multisell;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ExHeroList;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;

@@ -29,7 +29,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2SiegeSummonInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2SummonInstance;
 import com.l2jbr.gameserver.model.base.Experience;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.PetInfo;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;

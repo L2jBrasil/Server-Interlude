@@ -31,7 +31,7 @@ import com.l2jbr.gameserver.instancemanager.CursedWeaponsManager;
 import com.l2jbr.gameserver.model.actor.instance.*;
 import com.l2jbr.gameserver.model.actor.knownlist.AttackableKnownList;
 import com.l2jbr.gameserver.model.base.SoulCrystal;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.model.quest.Quest;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.CreatureSay;

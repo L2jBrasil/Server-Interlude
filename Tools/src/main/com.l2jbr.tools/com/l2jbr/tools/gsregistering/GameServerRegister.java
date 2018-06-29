@@ -24,7 +24,7 @@ import com.l2jbr.commons.database.GameserverRepository;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.commons.Server;
 import com.l2jbr.gameserver.LoginServerThread;
-import com.l2jbr.gameserver.model.database.Games;
+import com.l2jbr.gameserver.model.entity.database.Games;
 import com.l2jbr.loginserver.GameServerTable;
 
 import java.io.IOException;

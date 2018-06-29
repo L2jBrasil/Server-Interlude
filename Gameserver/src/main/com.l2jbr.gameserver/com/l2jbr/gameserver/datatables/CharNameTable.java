@@ -19,7 +19,7 @@
 package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.CharacterRepository;
 
 public class CharNameTable {
 	

@@ -24,8 +24,8 @@ import com.l2jbr.gameserver.model.L2ClanMember;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.repository.CastleRepository;
-import com.l2jbr.gameserver.model.database.repository.ItemRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.CastleRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.ItemRepository;
 import com.l2jbr.gameserver.model.entity.Castle;
 
 import java.util.LinkedList;

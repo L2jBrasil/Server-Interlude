@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.model;
 
-import com.l2jbr.gameserver.model.database.WalkerRoutes;
+import com.l2jbr.gameserver.model.entity.database.WalkerRoutes;
 
 
 /**

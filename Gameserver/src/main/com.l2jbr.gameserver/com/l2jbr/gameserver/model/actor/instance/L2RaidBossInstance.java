@@ -23,7 +23,7 @@ import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.instancemanager.RaidBossSpawnManager;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Spawn;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 

@@ -22,7 +22,7 @@ import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Skill;
-import com.l2jbr.gameserver.model.database.Armor;
+import com.l2jbr.gameserver.model.entity.database.Armor;
 import com.l2jbr.gameserver.skills.Env;
 import com.l2jbr.gameserver.skills.funcs.Func;
 import com.l2jbr.gameserver.skills.funcs.FuncTemplate;

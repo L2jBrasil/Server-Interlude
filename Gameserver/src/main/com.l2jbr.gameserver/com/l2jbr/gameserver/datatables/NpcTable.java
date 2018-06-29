@@ -19,8 +19,8 @@
 package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
-import com.l2jbr.gameserver.model.database.repository.NpcRepository;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.repository.NpcRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

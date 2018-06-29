@@ -20,7 +20,7 @@ package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.model.FishData;
-import com.l2jbr.gameserver.model.database.repository.FishRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.FishRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

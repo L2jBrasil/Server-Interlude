@@ -27,7 +27,7 @@ import com.l2jbr.gameserver.model.L2Attackable;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Position;
 import com.l2jbr.gameserver.model.actor.knownlist.SiegeGuardKnownList;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

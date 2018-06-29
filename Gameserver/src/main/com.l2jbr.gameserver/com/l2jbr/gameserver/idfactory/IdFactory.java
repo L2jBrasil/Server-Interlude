@@ -20,8 +20,8 @@ package com.l2jbr.gameserver.idfactory;
 
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.util.Util;
-import com.l2jbr.gameserver.model.database.repository.CharacterRepository;
-import com.l2jbr.gameserver.model.database.repository.IdFactoryRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.CharacterRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.IdFactoryRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

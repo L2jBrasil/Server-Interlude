@@ -22,7 +22,7 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.datatables.CharTemplateTable;
 import com.l2jbr.gameserver.model.base.PlayerClass;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.model.quest.Quest;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;

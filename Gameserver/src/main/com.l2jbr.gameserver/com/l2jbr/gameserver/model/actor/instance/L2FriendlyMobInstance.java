@@ -21,7 +21,7 @@ package com.l2jbr.gameserver.model.actor.instance;
 import com.l2jbr.gameserver.model.L2Attackable;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.actor.knownlist.FriendlyMobKnownList;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 
 
 /**

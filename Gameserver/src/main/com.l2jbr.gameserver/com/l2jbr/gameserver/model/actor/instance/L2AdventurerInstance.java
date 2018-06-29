@@ -20,7 +20,7 @@ package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.gameserver.instancemanager.RaidBossSpawnManager;
 import com.l2jbr.gameserver.model.L2Spawn;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.ExQuestInfo;
 import com.l2jbr.gameserver.serverpackets.RadarControl;
 

@@ -27,7 +27,7 @@ import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.Location;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.repository.MapRegionRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.MapRegionRepository;
 import com.l2jbr.gameserver.model.entity.Castle;
 import com.l2jbr.gameserver.model.entity.ClanHall;
 import com.l2jbr.gameserver.model.zone.type.L2ArenaZone;

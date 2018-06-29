@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.skills.conditions;
 
-import com.l2jbr.gameserver.model.database.Weapon;
+import com.l2jbr.gameserver.model.entity.database.Weapon;
 import com.l2jbr.gameserver.skills.Env;
 
 

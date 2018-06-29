@@ -20,7 +20,7 @@ package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.repository.CharacterShortcutsRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.CharacterShortcutsRepository;
 import com.l2jbr.gameserver.serverpackets.ExAutoSoulShot;
 import com.l2jbr.gameserver.serverpackets.ShortCutInit;
 import com.l2jbr.gameserver.templates.ItemType;

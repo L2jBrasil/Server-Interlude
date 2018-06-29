@@ -18,7 +18,7 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
-import com.l2jbr.gameserver.model.database.PlayerTemplate;
+import com.l2jbr.gameserver.model.entity.database.PlayerTemplate;
 
 import java.util.LinkedList;
 import java.util.List;

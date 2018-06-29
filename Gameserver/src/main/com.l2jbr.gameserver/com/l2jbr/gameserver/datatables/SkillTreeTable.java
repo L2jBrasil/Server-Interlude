@@ -26,11 +26,11 @@ import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.L2SkillLearn;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.base.PlayerClass;
-import com.l2jbr.gameserver.model.database.PlayerTemplate;
-import com.l2jbr.gameserver.model.database.repository.EnchantSkillTreesRepository;
-import com.l2jbr.gameserver.model.database.repository.FishingSkillTreeRepository;
-import com.l2jbr.gameserver.model.database.repository.PledgeSkillTreesRepository;
-import com.l2jbr.gameserver.model.database.repository.SkillTreeRepository;
+import com.l2jbr.gameserver.model.entity.database.PlayerTemplate;
+import com.l2jbr.gameserver.model.entity.database.repository.EnchantSkillTreesRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.FishingSkillTreeRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.PledgeSkillTreesRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.SkillTreeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

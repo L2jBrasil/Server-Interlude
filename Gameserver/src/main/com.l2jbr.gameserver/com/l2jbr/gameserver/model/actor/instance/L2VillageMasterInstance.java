@@ -34,7 +34,7 @@ import com.l2jbr.gameserver.model.base.PlayerClass;
 import com.l2jbr.gameserver.model.base.ClassType;
 import com.l2jbr.gameserver.model.base.Race;
 import com.l2jbr.gameserver.model.base.SubClass;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.model.entity.Castle;
 import com.l2jbr.gameserver.model.quest.QuestState;
 import com.l2jbr.gameserver.network.SystemMessageId;

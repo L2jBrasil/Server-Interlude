@@ -19,8 +19,8 @@
 package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.gameserver.model.database.Henna;
-import com.l2jbr.gameserver.model.database.repository.HennaRepository;
+import com.l2jbr.gameserver.model.entity.database.Henna;
+import com.l2jbr.gameserver.model.entity.database.repository.HennaRepository;
 import com.l2jbr.gameserver.templates.L2Henna;
 import com.l2jbr.gameserver.templates.StatsSet;
 import org.slf4j.Logger;

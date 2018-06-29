@@ -1,8 +1,11 @@
 <?xml version="1.0"?>
 
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
            targetNamespace="http://la2j.org"
-            xmlns="http://la2j.org">
+           xmlns="http://la2j.org"
+           elementFormDefault="qualified">
+
+    <xsd:include schemaLocation="../stat.xsd"/>
 
     <xs:element name="skillList">
         <xs:complexType>
@@ -80,7 +83,7 @@
     </xs:complexType>
 
     <xs:simpleType name="targetType">
-        <xs:restriction>
+        <xs:restriction base="xs:string">
             <xs:enumeration value="ONE"/>
             <xs:enumeration value="SELF"/>
             <xs:enumeration value="AREA"/>
@@ -95,7 +98,7 @@
     </xs:simpleType>
 
     <xs:simpleType name="skillType">
-        <xs:restriction>
+        <xs:restriction base="xs:string">
             <xs:enumeration value="PDAM"/>
             <xs:enumeration value="CONFUSE_MOB_ONLY"/>
             <xs:enumeration value="BUFF"/>
@@ -127,22 +130,16 @@
     </xs:simpleType>
 
     <xs:simpleType name="operateType">
-        <xs:restriction>
+        <xs:restriction base="xs:string">
             <xs:enumeration value="OP_ACTIVE"/>
             <xs:enumeration value="OP_TOGGLE"/>
             <xs:enumeration value="OP_PASSIVE"/>
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:complexType name="stat">
-        <xs:attribute name="order" type="xs:integer"/>
-        <xs:attribute name="type" type="xs:string"/>
-        <xs:attribute name="name" type="xs:string"/>
-    </xs:complexType>
-
     <xs:complexType name="effect">
         <xs:sequence>
-            <xs:element name="stat" type="stat" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="stat" type="statType" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attribute name="name" type="xs:string" use="required"/>
         <xs:attribute name="time" type="xs:duration" use="required"/>
@@ -151,9 +148,11 @@
         <xs:attribute name="stackOrder" type="xs:string"/>
     </xs:complexType>
 
-    <xs:simpleType name="effectList">
-        <xs:list itemType="effect"/>
-    </xs:simpleType>
+    <xs:complexType name="effectList">
+        <xs:sequence>
+            <xs:element name="effect" type="effect" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
 
     <xs:simpleType name="numberList">
         <xs:list itemType="xs:integer"/>

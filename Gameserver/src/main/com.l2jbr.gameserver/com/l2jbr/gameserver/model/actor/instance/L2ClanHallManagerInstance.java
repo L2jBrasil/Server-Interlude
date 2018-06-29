@@ -29,7 +29,7 @@ import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.L2Skill.SkillType;
 import com.l2jbr.gameserver.model.L2TeleportLocation;
 import com.l2jbr.gameserver.model.L2TradeList;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.model.entity.ClanHall;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;

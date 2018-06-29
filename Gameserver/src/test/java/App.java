@@ -1,5 +1,5 @@
-import com.l2jbr.gameserver.model.database.CastleData;
-import com.l2jbr.gameserver.model.database.repository.CastleRepository;
+import com.l2jbr.gameserver.model.entity.database.CastleData;
+import com.l2jbr.gameserver.model.entity.database.repository.CastleRepository;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class App {

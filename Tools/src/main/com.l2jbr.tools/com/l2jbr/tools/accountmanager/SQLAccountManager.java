@@ -24,7 +24,7 @@ import com.l2jbr.commons.Server;
 import com.l2jbr.commons.database.AccountRepository;
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.model.Account;
-import com.l2jbr.gameserver.model.database.repository.*;
+import com.l2jbr.gameserver.model.entity.database.repository.*;
 
 import java.io.IOException;
 import java.io.InputStreamReader;

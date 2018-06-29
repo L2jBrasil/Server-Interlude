@@ -25,7 +25,7 @@ import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.L2TradeList;
 import com.l2jbr.gameserver.model.actor.instance.*;
-import com.l2jbr.gameserver.model.database.ItemTemplate;
+import com.l2jbr.gameserver.model.entity.database.ItemTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.util.Util;

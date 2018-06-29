@@ -27,7 +27,7 @@ import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.actor.instance.L2ManorManagerInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.ItemTemplate;
+import com.l2jbr.gameserver.model.entity.database.ItemTemplate;
 import com.l2jbr.gameserver.model.entity.Castle;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;

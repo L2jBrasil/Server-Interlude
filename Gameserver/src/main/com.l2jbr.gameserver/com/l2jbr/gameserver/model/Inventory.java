@@ -25,11 +25,11 @@ import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.L2ItemInstance.ItemLocation;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.Armor;
-import com.l2jbr.gameserver.model.database.EtcItem;
-import com.l2jbr.gameserver.model.database.ItemTemplate;
-import com.l2jbr.gameserver.model.database.Weapon;
-import com.l2jbr.gameserver.model.database.repository.ItemRepository;
+import com.l2jbr.gameserver.model.entity.database.Armor;
+import com.l2jbr.gameserver.model.entity.database.EtcItem;
+import com.l2jbr.gameserver.model.entity.database.ItemTemplate;
+import com.l2jbr.gameserver.model.entity.database.Weapon;
+import com.l2jbr.gameserver.model.entity.database.repository.ItemRepository;
 import com.l2jbr.gameserver.templates.BodyPart;
 import com.l2jbr.gameserver.templates.ItemType;
 

@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 import java.util.Optional;
 
 @Configuration
-@EnableJdbcRepositories({"com.l2jbr.commons.database", "com.l2jbr.gameserver.model.database.repository"})
+@EnableJdbcRepositories({"com.l2jbr.commons.database", "com.l2jbr.gameserver.model.entity.database.repository"})
 public class DatabaseContextConfiguration {
 
     @Bean

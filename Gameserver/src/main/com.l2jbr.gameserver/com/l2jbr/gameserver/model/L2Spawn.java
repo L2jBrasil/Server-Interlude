@@ -25,7 +25,7 @@ import com.l2jbr.gameserver.Territory;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

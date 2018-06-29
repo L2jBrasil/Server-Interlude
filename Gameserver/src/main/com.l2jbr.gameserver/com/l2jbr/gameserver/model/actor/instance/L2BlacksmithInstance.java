@@ -19,7 +19,7 @@
 package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.gameserver.model.L2Multisell;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 
 
 /**

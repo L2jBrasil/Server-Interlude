@@ -20,7 +20,7 @@ package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.gameserver.model.database.repository.PetsRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.PetsRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

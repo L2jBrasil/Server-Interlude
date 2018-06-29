@@ -21,7 +21,7 @@ package com.l2jbr.gameserver.clientpackets;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.datatables.CharTemplateTable;
 import com.l2jbr.gameserver.model.base.PlayerClass;
-import com.l2jbr.gameserver.model.database.PlayerTemplate;
+import com.l2jbr.gameserver.model.entity.database.PlayerTemplate;
 import com.l2jbr.gameserver.serverpackets.CharTemplates;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

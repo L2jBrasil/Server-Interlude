@@ -28,10 +28,10 @@ import com.l2jbr.gameserver.instancemanager.ClanHallManager;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.AuctionBid;
-import com.l2jbr.gameserver.model.database.AuctionData;
-import com.l2jbr.gameserver.model.database.repository.AuctionBidRepository;
-import com.l2jbr.gameserver.model.database.repository.AuctionRepository;
+import com.l2jbr.gameserver.model.entity.database.AuctionBid;
+import com.l2jbr.gameserver.model.entity.database.AuctionData;
+import com.l2jbr.gameserver.model.entity.database.repository.AuctionBidRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.AuctionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

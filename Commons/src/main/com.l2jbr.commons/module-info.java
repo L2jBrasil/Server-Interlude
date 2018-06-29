@@ -8,6 +8,7 @@ module com.l2jbr.commons {
     requires spring.data.jdbc;
     requires spring.context;
     requires spring.jdbc;
+    requires java.xml.bind;
 
     exports com.l2jbr.commons.util;
     exports com.l2jbr.commons.xml;

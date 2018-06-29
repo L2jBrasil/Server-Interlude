@@ -22,7 +22,7 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.TradeController;
 import com.l2jbr.gameserver.model.L2Multisell;
 import com.l2jbr.gameserver.model.L2TradeList;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.network.L2GameClient;
 import com.l2jbr.gameserver.serverpackets.*;
 

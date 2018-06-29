@@ -21,7 +21,7 @@ package com.l2jbr.gameserver.model;
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.actor.instance.L2PetInstance;
-import com.l2jbr.gameserver.model.database.repository.PetStatsRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.PetStatsRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

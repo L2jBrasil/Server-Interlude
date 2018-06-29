@@ -23,9 +23,9 @@ import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.instancemanager.DayNightSpawnManager;
 import com.l2jbr.gameserver.model.L2Spawn;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
-import com.l2jbr.gameserver.model.database.Spawnlist;
-import com.l2jbr.gameserver.model.database.repository.SpawnListRepository;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.Spawnlist;
+import com.l2jbr.gameserver.model.entity.database.repository.SpawnListRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

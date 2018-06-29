@@ -26,8 +26,8 @@ import com.l2jbr.gameserver.model.AutoSpawnHandler;
 import com.l2jbr.gameserver.model.AutoSpawnHandler.AutoSpawnInstance;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.repository.SevenSignsRepository;
-import com.l2jbr.gameserver.model.database.repository.SevenSignsStatusRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.SevenSignsRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.SevenSignsStatusRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SignsSky;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
@@ -770,7 +770,7 @@ public class SevenSigns {
 
             _signsPlayerData.put(charObjId, currPlayerData);
 
-            com.l2jbr.gameserver.model.database.SevenSigns sevenSigns = new com.l2jbr.gameserver.model.database.SevenSigns(charObjId, getCabalShortName(chosenCabal), chosenSeal);
+            com.l2jbr.gameserver.model.entity.database.SevenSigns sevenSigns = new com.l2jbr.gameserver.model.entity.database.SevenSigns(charObjId, getCabalShortName(chosenCabal), chosenSeal);
             SevenSignsRepository repository = DatabaseAccess.getRepository(SevenSignsRepository.class);
             repository.save(sevenSigns);
 

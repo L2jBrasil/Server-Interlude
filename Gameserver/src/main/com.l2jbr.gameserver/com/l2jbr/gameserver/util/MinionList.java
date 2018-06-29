@@ -20,8 +20,8 @@ import com.l2jbr.gameserver.datatables.NpcTable;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.actor.instance.L2MinionInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2MonsterInstance;
-import com.l2jbr.gameserver.model.database.Minions;
-import com.l2jbr.gameserver.model.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.Minions;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -22,8 +22,8 @@ import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.database.ModsWedding;
-import com.l2jbr.gameserver.model.database.repository.ModsWeddingRepository;
+import com.l2jbr.gameserver.model.entity.database.ModsWedding;
+import com.l2jbr.gameserver.model.entity.database.repository.ModsWeddingRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

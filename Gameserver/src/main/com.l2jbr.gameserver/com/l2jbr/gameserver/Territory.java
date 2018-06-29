@@ -29,7 +29,7 @@ package com.l2jbr.gameserver;
 
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.model.L2Territory;
-import com.l2jbr.gameserver.model.database.repository.LocationRepository;
+import com.l2jbr.gameserver.model.entity.database.repository.LocationRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
