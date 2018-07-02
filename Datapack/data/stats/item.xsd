@@ -10,24 +10,18 @@
     <xs:element name="itemList">
         <xs:complexType>
             <xs:choice>
-                <xs:element name="item" type="itemType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="item" type="xmlTypeItemStat" minOccurs="0" maxOccurs="unbounded"/>
             </xs:choice>
         </xs:complexType>
 
     </xs:element>
 
-    <xs:complexType name="itemType">
+    <xs:complexType name="xmlTypeItemStat">
         <xs:sequence>
-            <xs:element name="stat" type="statType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="stat" type="xmlTypeStat" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attribute name="id" type="xs:int" use="required"/>
         <xs:attribute name="name" type="xs:string" use="required"/>
-    </xs:complexType>
-
-    <xs:complexType name="enchant">
-        <xs:sequence>
-            <xs:element name="stat" type="statType" maxOccurs="unbounded"/>
-        </xs:sequence>
     </xs:complexType>
 
 </xs:schema>

@@ -15,5 +15,6 @@ module com.l2jbr.gameserver {
     exports com.l2jbr.gameserver;
     exports com.l2jbr.gameserver.model.entity.database.repository;
     exports com.l2jbr.gameserver.model.entity.database;
+    opens com.l2jbr.gameserver.model.entity.xml to java.xml.bind;
 
 }

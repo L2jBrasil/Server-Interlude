@@ -5,17 +5,17 @@
            xmlns="http://la2j.org"
            elementFormDefault="qualified">
 
-    <xsd:include schemaLocation="../stat.xsd"/>
+    <xsd:include schemaLocation="stat.xsd"/>
 
     <xs:element name="skillList">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="skill" type="skill" maxOccurs="unbounded"/>
+                <xs:element name="skill" type="xmlTypeSkill" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <xs:complexType name="skill">
+    <xs:complexType name="xmlTypeSkill">
         <xs:all>
             <xs:element name="listMagicLevel" type="numberList"/>
             <xs:element name="listMpConsume" type="numberList"/>
@@ -26,9 +26,9 @@
             <xs:element name="listEnchantMpConsume" type="numberList" minOccurs="0"/>
             <xs:element name="listEnchantPower" type="numberList" minOccurs="0"/>
 
-            <xs:element name="skillType" type="skillType"/>
-            <xs:element name="operateType" type="operateType"/>
-            <xs:element name="target" type="targetType"/>
+            <xs:element name="skillType" type="xmlSkillType"/>
+            <xs:element name="operateType" type="xmlSkillOperateType"/>
+            <xs:element name="target" type="skillTargetType"/>
             <xs:element name="power" type="xs:string"/>
             <xs:element name="magicLevel" type="xs:string"/>
             <xs:element name="mpConsume" type="xs:string"/>
@@ -43,14 +43,14 @@
             <xs:element name="SSBoost" type="xs:decimal" minOccurs="0"/>
             <xs:element name="skillRadius" type="xs:integer" minOccurs="0"/>
             <xs:element name="coolTime" type="xs:duration" minOccurs="0"/>
-            <xs:element name="enchant1" type="enchant" minOccurs="0"/>
-            <xs:element name="enchant2" type="enchant" minOccurs="0"/>
-            <xs:element name="cond" type="condition" minOccurs="0"/>
+            <xs:element name="enchant1" type="xmlTypeEnchant" minOccurs="0"/>
+            <xs:element name="enchant2" type="xmlTypeEnchant" minOccurs="0"/>
+            <xs:element name="cond" type="skillCondition" minOccurs="0"/>
             <xs:element name="conditionValue" type="xs:integer" minOccurs="0"/>
             <xs:element name="condition" type="xs:integer" minOccurs="0"/>
             <xs:element name="effects" type="effectList" minOccurs="0"/>
-            <xs:element name="charge" type="charge" minOccurs="0"/>
-            <xs:element name="consume" type="consume" minOccurs="0"/>
+            <xs:element name="charge" type="xmlTypeCharge" minOccurs="0"/>
+            <xs:element name="consume" type="xmlTypeConsume" minOccurs="0"/>
         </xs:all>
         <xs:attribute name="id" type="xs:positiveInteger" use="required"/>
         <xs:attribute name="name" type="xs:string" use="required"/>
@@ -61,28 +61,28 @@
         <xs:attribute name="overHit" type="xs:boolean" default="false"/>
     </xs:complexType>
 
-    <xs:complexType name="consume">
+    <xs:complexType name="xmlTypeConsume">
         <xs:attribute name="itemId" type="xs:integer" use="required"/>
         <xs:attribute name="count" type="xs:integer" use="required"/>
     </xs:complexType>
 
-    <xs:complexType name="charge">
+    <xs:complexType name="xmlTypeCharge">
         <xs:attribute name="quantity" type="xs:integer"/>
         <xs:attribute name="skillId" type="xs:integer"/>
     </xs:complexType>
 
-    <xs:complexType name="enchant">
+    <xs:complexType name="xmlTypeEnchant">
         <xs:attribute name="stat" type="xs:string" use="required"/>
     </xs:complexType>
 
-    <xs:complexType name="condition">
+    <xs:complexType name="skillCondition">
         <xs:sequence>
             <xs:element name="using" type="xs:string"/>
         </xs:sequence>
         <xs:attribute name="message"/>
     </xs:complexType>
 
-    <xs:simpleType name="targetType">
+    <xs:simpleType name="skillTargetType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="ONE"/>
             <xs:enumeration value="SELF"/>
@@ -97,7 +97,7 @@
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:simpleType name="skillType">
+    <xs:simpleType name="xmlSkillType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="PDAM"/>
             <xs:enumeration value="CONFUSE_MOB_ONLY"/>
@@ -129,7 +129,7 @@
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:simpleType name="operateType">
+    <xs:simpleType name="xmlSkillOperateType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="OP_ACTIVE"/>
             <xs:enumeration value="OP_TOGGLE"/>
@@ -137,9 +137,9 @@
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:complexType name="effect">
+    <xs:complexType name="xmlTypeEffect">
         <xs:sequence>
-            <xs:element name="stat" type="statType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="stat" type="xmlTypeStat" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attribute name="name" type="xs:string" use="required"/>
         <xs:attribute name="time" type="xs:duration" use="required"/>
@@ -150,7 +150,7 @@
 
     <xs:complexType name="effectList">
         <xs:sequence>
-            <xs:element name="effect" type="effect" minOccurs="1" maxOccurs="unbounded"/>
+            <xs:element name="effect" type="xmlTypeEffect" minOccurs="1" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
 

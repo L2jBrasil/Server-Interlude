@@ -4,17 +4,17 @@
            targetNamespace="http://la2j.org"
            xmlns="http://la2j.org">
 
-    <xs:complexType name="statType">
+    <xs:complexType name="xmlTypeStat">
         <xs:simpleContent>
-            <xs:extension base="enumStat">
+            <xs:extension base="xs:decimal">
                 <xs:attribute name="order" type="xs:int"/>
                 <xs:attribute name="function" type="xs:string"/>
-                <xs:attribute name="val" type="xs:int"/>
+                <xs:attribute name="name" type="xmlTypeEnumStat"/>
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
 
-    <xs:simpleType name="enumStat">
+    <xs:simpleType name="xmlTypeEnumStat">
         <xs:restriction base="xs:string">
             <xs:whiteSpace value="collapse"/>
             <xs:enumeration value="MAX_HP"/>

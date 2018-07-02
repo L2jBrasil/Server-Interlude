@@ -12,22 +12,22 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java de anonymous complex type.
+ * <p>Classe Java de effectList complex type.
  * 
  * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
  * 
  * <pre>
- * &lt;complexType&gt;
+ * &lt;complexType name="effectList"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;choice&gt;
- *         &lt;element name="item" type="{http://la2j.org}xmlTypeItemStat" maxOccurs="unbounded" minOccurs="0"/&gt;
- *       &lt;/choice&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="effect" type="{http://la2j.org}xmlTypeEffect" maxOccurs="unbounded"/&gt;
+ *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -36,41 +36,41 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "item"
+@XmlType(name = "effectList", propOrder = {
+    "effect"
 })
-@XmlRootElement(name = "itemList")
-public class ItemList {
+public class EffectList {
 
-    protected List<XmlTypeItemStat> item;
+    @XmlElement(required = true)
+    protected List<XmlTypeEffect> effect;
 
     /**
-     * Gets the value of the item property.
+     * Gets the value of the effect property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the item property.
+     * This is why there is not a <CODE>set</CODE> method for the effect property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getItem().add(newItem);
+     *    getEffect().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link XmlTypeItemStat }
+     * {@link XmlTypeEffect }
      * 
      * 
      */
-    public List<XmlTypeItemStat> getItem() {
-        if (item == null) {
-            item = new ArrayList<XmlTypeItemStat>();
+    public List<XmlTypeEffect> getEffect() {
+        if (effect == null) {
+            effect = new ArrayList<XmlTypeEffect>();
         }
-        return this.item;
+        return this.effect;
     }
 
 }
