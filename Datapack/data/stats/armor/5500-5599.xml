@@ -1,13 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
-<list>
-<item id='5576' name="Sound Test Boots">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='5590' name="Squeaking Shoes">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-</list>
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
+
+    <item id='5576' name="Sound Test Boots">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5590' name="Squeaking Shoes">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+</itemList>

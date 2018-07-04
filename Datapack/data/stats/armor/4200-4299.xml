@@ -1,61 +1,64 @@
 <?xml version='1.0' encoding='utf-8'?>
-<list>
-<item id='4224' name="Dream Armor">
-  <for>
-    <add val='68' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='4225' name="Dream Stockings">
-  <for>
-    <add val='43' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='4226' name="Dream Gloves">
-  <for>
-    <add val='17' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='4227' name="Dream Boots">
-  <for>
-    <add val='17' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='4228' name="Ubiquitous Armor">
-  <for>
-    <add val='68' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='4229' name="Ubiquitous Stockings">
-  <for>
-    <add val='43' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='4230' name="Ubiquitous Gloves">
-  <for>
-    <add val='17' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='4231' name="Ubiquitous Boots">
-  <for>
-    <add val='17' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='4234' name="Hatchling's Level 65 Armor">
-  <for>
-    <add val='50' order='0x10' stat='pDef'/>
-    <add val='50' order='0x10' stat='mDef'/>
-  </for>
-</item>
-<item id='4235' name="Hatchling's Level 75 Armor">
-  <for>
-    <add val='58' order='0x10' stat='pDef'/>
-    <add val='58' order='0x10' stat='mDef'/>
-  </for>
-</item>
-<item id='4236' name="Gara Item">
-  <for>
-    <add val='58' order='0x10' stat='pDef'/>
-    <add val='58' order='0x10' stat='mDef'/>
-  </for>
-</item>
-</list>
+
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
+
+    <item id='4224' name="Dream Armor">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='68'/>
+
+    </item>
+    <item id='4225' name="Dream Stockings">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='43'/>
+
+    </item>
+    <item id='4226' name="Dream Gloves">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='17'/>
+
+    </item>
+    <item id='4227' name="Dream Boots">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='17'/>
+
+    </item>
+    <item id='4228' name="Ubiquitous Armor">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='68'/>
+
+    </item>
+    <item id='4229' name="Ubiquitous Stockings">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='43'/>
+
+    </item>
+    <item id='4230' name="Ubiquitous Gloves">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='17'/>
+
+    </item>
+    <item id='4231' name="Ubiquitous Boots">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='17'/>
+
+    </item>
+    <item id='4234' name="Hatchling's Level 65 Armor">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='50'/>
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='50'/>
+
+    </item>
+    <item id='4235' name="Hatchling's Level 75 Armor">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='58'/>
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='58'/>
+
+    </item>
+    <item id='4236' name="Gara Item">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='58'/>
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='58'/>
+
+    </item>
+</itemList>

@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ItemStatsReader extends XMLReader<XmlTypeItemStat> {
+public class ItemStatsReader extends XMLReader<ItemList> {
 
     private final Map<Integer, List<XmlTypeStat>> itemStats;
     private ItemStatsReader instance = null;
@@ -31,8 +31,10 @@ public class ItemStatsReader extends XMLReader<XmlTypeItemStat> {
     }
 
     @Override
-    protected void processEntity(XmlTypeItemStat entity) {
-        itemStats.put(entity.getId(), entity.getStat());
+    protected void processEntity(ItemList entity) {
+        entity.getItem().forEach(itemStat ->
+            itemStats.put(itemStat.getId(), itemStat.getStat())
+        );
     }
 
     @Override

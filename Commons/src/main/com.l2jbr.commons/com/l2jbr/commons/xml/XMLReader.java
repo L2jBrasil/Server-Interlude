@@ -64,13 +64,13 @@ public abstract class XMLReader<T> implements ValidationEventHandler {
         }
     }
 
-    private void readFile(String file) throws JAXBException{
+    protected void readFile(String file) throws JAXBException{
         T entity = processFile(file);
         processEntity(entity);
     }
 
     @SuppressWarnings("unchecked")
-    protected <T> T processFile(String filePath) throws JAXBException {
+    protected T processFile(String filePath) throws JAXBException {
         processingFile = filePath;
         return (T) unmarshaller.unmarshal(new File(filePath));
     }

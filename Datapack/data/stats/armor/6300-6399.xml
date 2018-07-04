@@ -1,123 +1,125 @@
 <?xml version='1.0' encoding='utf-8'?>
-<list>
-<item id='6323' name="Sealed Phoenix Necklace's_necklace">
-  <for>
-    <add val='76' order='0x10' stat='mDef'/>
-    <enchant val='0' order='0x0C' stat='mDef'/>
-  </for>
-</item>
-<item id='6324' name="Sealed Phoenix Earring">
-  <for>
-    <add val='57' order='0x10' stat='mDef'/>
-    <enchant val='0' order='0x0C' stat='mDef'/>
-  </for>
-</item>
-<item id='6325' name="Sealed Phoenix Ring">
-  <for>
-    <add val='38' order='0x10' stat='mDef'/>
-    <enchant val='0' order='0x0C' stat='mDef'/>
-  </for>
-</item>
-<item id='6326' name="Sealed Majestic Necklace">
-  <for>
-    <add val='80' order='0x10' stat='mDef'/>
-    <enchant val='0' order='0x0C' stat='mDef'/>
-  </for>
-</item>
-<item id='6327' name="Sealed Majestic Earring">
-  <for>
-    <add val='60' order='0x10' stat='mDef'/>
-    <enchant val='0' order='0x0C' stat='mDef'/>
-  </for>
-</item>
-<item id='6328' name="Sealed Majestic Ring">
-  <for>
-    <add val='40' order='0x10' stat='mDef'/>
-    <enchant val='0' order='0x0C' stat='mDef'/>
-  </for>
-</item>
-<item id='6373' name="Imperial Crusader Breastplate">
-  <for> 
-    <add val='205' order='0x10' stat='pDef'/> 
-    <enchant val='0' order='0x0C' stat='pDef'/> 
-  </for> 
-</item>
-<item id='6374' name="Imperial Crusader Gaiters">
-  <for>
-    <add val='128' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='6375' name="Imperial Crusader Gauntlets">
-  <for>
-    <add val='55' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='6376' name="Imperial Crusader Boots">
-  <for>
-    <add val='55' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='6378' name="Imperial Crusader Helmet">
-  <for>
-    <add val='83' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='6379' name="Draconic Leather Armor"> 
-  <for> 
-	<add val='249' order='0x10' stat='pDef'/> 
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for> 
-</item>
-<item id='6380' name="Draconic Leather Gloves">
-  <for>
-    <add val='55' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='6381' name="Draconic Leather Boots">
-  <for>
-    <add val='55' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='6382' name="Draconic Leather Helmet">
-  <for>
-    <add val='83' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='6383' name="Major Arcana Robe">
-  <for> 
-	<add val='166' order='0x10' stat='pDef'/> 
-	<add val='866' order='0x60' stat='maxMp'/> 
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for> 
-</item>
-<item id='6384' name="Major Arcana Gloves">
-  <for>
-    <add val='55' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='6385' name="Major Arcana Boots">
-  <for>
-    <add val='55' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='6386' name="Major Arcana Circlet">
-  <for>
-    <add val='83' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='6394' name="Red Party Mask">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-</list>
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
+
+    <item id='6323' name="Sealed Phoenix Necklace's_necklace">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='76'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='6324' name="Sealed Phoenix Earring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='57'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='6325' name="Sealed Phoenix Ring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='38'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='6326' name="Sealed Majestic Necklace">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='80'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='6327' name="Sealed Majestic Earring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='60'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='6328' name="Sealed Majestic Ring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='40'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='6373' name="Imperial Crusader Breastplate">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='205'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='6374' name="Imperial Crusader Gaiters">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='128'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='6375' name="Imperial Crusader Gauntlets">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='55'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='6376' name="Imperial Crusader Boots">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='55'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='6378' name="Imperial Crusader Helmet">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='83'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='6379' name="Draconic Leather Armor">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='249'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='6380' name="Draconic Leather Gloves">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='55'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='6381' name="Draconic Leather Boots">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='55'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='6382' name="Draconic Leather Helmet">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='83'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='6383' name="Major Arcana Robe">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='166'/>
+        <stat function='add' order='96' name='MAX_MP' value='866'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='6384' name="Major Arcana Gloves">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='55'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='6385' name="Major Arcana Boots">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='55'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='6386' name="Major Arcana Circlet">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='83'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='6394' name="Red Party Mask">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+</itemList>

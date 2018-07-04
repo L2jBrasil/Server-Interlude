@@ -1,651 +1,554 @@
 <?xml version='1.0' encoding='utf-8'?>
-<list>
-<item id='400' name="Theca Leather Armor">
-  <for>
-    <add stat='pDef' order='0x10'  val='106'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='401' name="Drake Leather Armor">
-  <for>
-    <add stat='pDef' order='0x10'  val='179'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='402' name="Chain Mail of Silence">
-  <for>
-    <add val='213' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='403' name="Gust Chain Mail">
-  <for>
-    <add val='225' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='404' name="Prairie Leather Armor">
-  <for>
-    <add val='131' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='405' name="Leather Armor of The Underworld">
-  <for>
-    <add val='139' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='406' name="Leather Suit of Concentration">
-  <for>
-    <add val='213' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='407' name="Ace's Leather Armor">
-  <for>
-    <add val='225' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='408' name="Guardian's Leather Armor">
-  <for>
-    <add val='131' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='409' name="Marksman's Leather Armor">
-  <for>
-    <add val='139' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='410' name="Unicorn Leather Armor">
-  <for>
-    <add val='238' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='411' name="Dragon Leather Armor">
-  <for>
-    <add val='237' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='412' name="Cotton Pants">
-  <for>
-    <add val='32' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='413' name="Puma Skin Gaiters">
-  <for>
-    <add val='36' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='414' name="Lion Skin Gaiters">
-  <for>
-    <add val='41' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='415' name="Mithril Banded Gaiters">
-  <for>
-    <add val='46' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='416' name="Reinforced Leather Gaiters">
-  <for>
-    <add val='46' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='417' name="Manticore Skin Gaiters">
-  <for>
-    <add val='51' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='418' name="Plated Leather Gaiters">
-  <for>
-    <add val='59' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='419' name="Rind Leather Gaiters">
-  <for>
-    <add val='60' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='420' name="Theca Leather Gaiters">
-  <for>
-    <add val='66' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='421' name="Prairie Leather Gaiters">
-  <for>
-    <add val='82' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='422' name="Gaiters of The Underworld">
-  <for>
-    <add val='87' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='423' name="Guardian's Leather Gaiters">
-  <for>
-    <add val='82' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='424' name="Marksman's Leather Gaiters">
-  <for>
-    <add val='87' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='425' name="Apprentice's Tunic">
-  <for>
-    <add val='17' order='0x10' stat='pDef'/>
-    <add val='19' order='0x60' stat='maxMp'/>
-  </for>
-</item>
-<item id='426' name="Tunic">
-  <for>
-    <add val='18' order='0x10' stat='pDef'/>
-    <add val='24' order='0x60' stat='maxMp'/>
-  </for>
-</item>
-<item id='427' name="Cotton Robe">
-  <for>
-    <add val='35' order='0x10' stat='pDef'/>
-    <add val='61' order='0x60' stat='maxMp'/>
-  </for>
-</item>
-<item id='428' name="Feriotic Tunic">
-  <for>
-    <add val='21' order='0x10' stat='pDef'/>
-    <add val='38' order='0x60' stat='maxMp'/>
-  </for>
-</item>
-<item id='429' name="Leather Tunic">
-  <for>
-    <add val='25' order='0x10' stat='pDef'/>
-    <add val='52' order='0x60' stat='maxMp'/>
-  </for>
-</item>
-<item id='430' name="Robe of Devotion">
-  <for>
-    <add val='49' order='0x10' stat='pDef'/>
-    <add val='109' order='0x60' stat='maxMp'/>
-  </for>
-</item>
-<item id='431' name="Robe of Magic">
-  <for>
-    <add val='56' order='0x10' stat='pDef'/>
-    <add val='140' order='0x60' stat='maxMp'/>
-  </for>
-</item>
-<item id='432' name="Cursed Tunic">
-  <for>
-    <add val='39' order='0x10' stat='pDef'/>
-    <add val='106' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='433' name="Elven Tunic">
-  <for>
-    <add val='43' order='0x10' stat='pDef'/>
-    <add val='126' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='434' name="White Tunic">
-  <for>
-    <add val='43' order='0x10' stat='pDef'/>
-    <add val='126' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='435' name="Mystic's Tunic">
-  <for>
-    <add val='43' order='0x10' stat='pDef'/>
-    <add val='126' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='436' name="Tunic of Knowledge">
-  <for>
-    <add val='49' order='0x10' stat='pDef'/>
-    <add val='147' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='437' name="Mithril Tunic">
-  <for>
-    <add val='52' order='0x10' stat='pDef'/>
-    <add val='169' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='438' name="Sage's Rag">
-  <for>
-    <add val='90' order='0x10' stat='pDef'/>
-    <add val='320' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='439' name="Karmian Tunic">
-  <for>
-    <add val='60' order='0x10' stat='pDef'/>
-    <add val='225' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='440' name="Robe of Seal">
-  <for>
-    <add val='105' order='0x10' stat='pDef'/>
-    <add val='413' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='441' name="Demon's Tunic">
-  <for>
-    <add val='69' order='0x10' stat='pDef'/>
-    <add val='284' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='442' name="Divine Tunic">
-  <for>
-    <add val='74' order='0x10' stat='pDef'/>
-    <add val='314' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='443' name="Tunic of Mana">
-  <for>
-    <add val='87' order='0x10' stat='pDef'/>
-    <add val='377' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='444' name="Sage's Robe">
-  <for>
-    <add val='150' order='0x10' stat='pDef'/>
-    <add val='665' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='445' name="Paradia Tunic">
-  <for>
-    <add val='87' order='0x10' stat='pDef'/>
-    <add val='377' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='446' name="Inferno Tunic">
-  <for>
-    <add val='92' order='0x10' stat='pDef'/>
-    <add val='409' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='447' name="Tunic of Solar Eclipse">
-  <for>
-    <add val='87' order='0x10' stat='pDef'/>
-    <add val='377' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='448' name="Robe of Black Ore">
-  <for>
-    <add val='150' order='0x10' stat='pDef'/>
-    <add val='665' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='449' name="Tunic of Summoning">
-  <for>
-    <add val='87' order='0x10' stat='pDef'/>
-    <add val='377' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='450' name="Otherworldly Robe">
-  <for>
-    <add val='150' order='0x10' stat='pDef'/>
-    <add val='665' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='451' name="Elemental Tunic">
-  <for>
-    <add val='87' order='0x10' stat='pDef'/>
-    <add val='377' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='452' name="Tunic of Phantom">
-  <for>
-    <add val='92' order='0x10' stat='pDef'/>
-    <add val='409' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='453' name="Tunic of Grace">
-  <for>
-    <add val='87' order='0x10' stat='pDef'/>
-    <add val='377' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='454' name="Robe of Holy Spirit">
-  <for>
-    <add val='150' order='0x10' stat='pDef'/>
-    <add val='665' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='455' name="Phoenix Tunic">
-  <for>
-    <add val='87' order='0x10' stat='pDef'/>
-    <add val='377' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='456' name="Cerberus Tunic">
-  <for>
-    <add val='92' order='0x10' stat='pDef'/>
-    <add val='409' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='457' name="Tunic of Aid">
-  <for>
-    <add val='87' order='0x10' stat='pDef'/>
-    <add val='377' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='458' name="Robe of Blessing">
-  <for>
-    <add val='150' order='0x10' stat='pDef'/>
-    <add val='665' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='459' name="Dasparion's Robe">
-  <for>
-    <add val='158' order='0x10' stat='pDef'/>
-    <add val='718' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='460' name="The Robe">
-  <for>
-    <add val='158' order='0x10' stat='pDef'/>
-    <add val='773' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='461' name="Apprentice's Stockings">
-  <for>
-    <add val='10' order='0x10' stat='pDef'/>
-    <add val='10' order='0x60' stat='maxMp'/>
-  </for>
-</item>
-<item id='462' name="Stockings">
-  <for>
-    <add val='11' order='0x10' stat='pDef'/>
-    <add val='15' order='0x60' stat='maxMp'/>
-  </for>
-</item>
-<item id='463' name="Feriotic Stockings">
-  <for>
-    <add val='13' order='0x10' stat='pDef'/>
-    <add val='23' order='0x60' stat='maxMp'/>
-  </for>
-</item>
-<item id='464' name="Leather Stockings">
-  <for>
-    <add val='16' order='0x10' stat='pDef'/>
-    <add val='33' order='0x60' stat='maxMp'/>
-  </for>
-</item>
-<item id='465' name="Cursed Stockings">
-  <for>
-    <add val='24' order='0x10' stat='pDef'/>
-    <add val='66' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='466' name="Elven Stockings">
-  <for>
-    <add val='27' order='0x10' stat='pDef'/>
-    <add val='79' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='467' name="Dark Stockings">
-  <for>
-    <add val='27' order='0x10' stat='pDef'/>
-    <add val='79' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='468' name="Mystic's Stockings">
-  <for>
-    <add val='27' order='0x10' stat='pDef'/>
-    <add val='79' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='469' name="Stockings of Knowledge">
-  <for>
-    <add val='30' order='0x10' stat='pDef'/>
-    <add val='92' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='470' name="Mithril Stockings">
-  <for>
-    <add val='32' order='0x10' stat='pDef'/>
-    <add val='105' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='471' name="Karmian Stockings">
-  <for>
-    <add val='37' order='0x10' stat='pDef'/>
-    <add val='141' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='472' name="Demon's Stockings">
-  <for>
-    <add val='43' order='0x10' stat='pDef'/>
-    <add val='177' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='473' name="Divine Stockings">
-  <for>
-    <add val='46' order='0x10' stat='pDef'/>
-    <add val='196' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='474' name="Stockings of Mana">
-  <for>
-    <add val='55' order='0x10' stat='pDef'/>
-    <add val='236' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='475' name="Paradia Stockings">
-  <for>
-    <add val='55' order='0x10' stat='pDef'/>
-    <add val='236' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='476' name="Inferno Stockings">
-  <for>
-    <add val='58' order='0x10' stat='pDef'/>
-    <add val='256' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='477' name="Stockings of Solar Eclipse">
-  <for>
-    <add val='55' order='0x10' stat='pDef'/>
-    <add val='236' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='478' name="Stockings of Summoning">
-  <for>
-    <add val='55' order='0x10' stat='pDef'/>
-    <add val='236' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='479' name="Elemental Stockings">
-  <for>
-    <add val='55' order='0x10' stat='pDef'/>
-    <add val='236' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='480' name="Stockings of Phantom">
-  <for>
-    <add val='58' order='0x10' stat='pDef'/>
-    <add val='256' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='481' name="Stockings of Grace">
-  <for>
-    <add val='55' order='0x10' stat='pDef'/>
-    <add val='236' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='482' name="Phoenix Stockings">
-  <for>
-    <add val='55' order='0x10' stat='pDef'/>
-    <add val='236' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='483' name="Cerberus Stockings">
-  <for>
-    <add val='58' order='0x10' stat='pDef'/>
-    <add val='256' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='484' name="Stockings of Aid">
-  <for>
-    <add val='55' order='0x10' stat='pDef'/>
-    <add val='236' order='0x60' stat='maxMp'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='485' name="Tattoo of Power">
-  <for>
-    <add val='53' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='486' name="Tattoo of Fire">
-  <for>
-    <add val='73' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='487' name="Tattoo of Resolve">
-  <for>
-    <add val='73' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='488' name="Tattoo of Flame">
-  <for>
-    <add val='139' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='489' name="Tattoo of Bravery">
-  <for>
-    <add val='110' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='490' name="Tattoo of Blood">
-  <for>
-    <add val='132' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='491' name="Tattoo of Absolute">
-  <for>
-    <add val='146' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='492' name="Tattoo of Soul">
-  <for>
-    <add val='65' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='493' name="Tattoo of Avadon">
-  <for>
-    <add val='117' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='494' name="Tattoo of Doom">
-  <for>
-    <add val='125' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='495' name="Tattoo of Pledge">
-  <for>
-    <add val='124' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='496' name="Tattoo of Divine">
-  <for>
-    <add val='131' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='497' name="Chain Helmet">
-  <for>
-    <add val='45' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='498' name="Steel Plate Helmet">
-  <for>
-    <add val='49' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-<item id='499' name="Mithril Helmet">
-  <for>
-    <add val='58' order='0x10' stat='pDef'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
-</item>
-</list>
+
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
+
+    <item id='400' name="Theca Leather Armor">
+        <stat function='add' name='PHYSIC_DEFENCE' order='16' value='106'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='401' name="Drake Leather Armor">
+        <stat function='add' name='PHYSIC_DEFENCE' order='16' value='179'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='402' name="Chain Mail of Silence">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='213'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='403' name="Gust Chain Mail">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='225'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='404' name="Prairie Leather Armor">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='131'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='405' name="Leather Armor of The Underworld">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='139'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='406' name="Leather Suit of Concentration">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='213'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='407' name="Ace's Leather Armor">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='225'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='408' name="Guardian's Leather Armor">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='131'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='409' name="Marksman's Leather Armor">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='139'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='410' name="Unicorn Leather Armor">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='238'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='411' name="Dragon Leather Armor">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='237'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='412' name="Cotton Pants">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='32'/>
+    </item>
+
+    <item id='413' name="Puma Skin Gaiters">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='36'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='414' name="Lion Skin Gaiters">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='41'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='415' name="Mithril Banded Gaiters">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='46'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='416' name="Reinforced Leather Gaiters">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='46'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='417' name="Manticore Skin Gaiters">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='51'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='418' name="Plated Leather Gaiters">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='59'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='419' name="Rind Leather Gaiters">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='60'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='420' name="Theca Leather Gaiters">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='66'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='421' name="Prairie Leather Gaiters">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='82'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='422' name="Gaiters of The Underworld">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='87'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='423' name="Guardian's Leather Gaiters">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='82'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='424' name="Marksman's Leather Gaiters">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='87'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='425' name="Apprentice's Tunic">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='17'/>
+        <stat function='add' order='96' name='MAX_MP' value='19'/>
+    </item>
+
+    <item id='426' name="Tunic">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='18'/>
+        <stat function='add' order='96' name='MAX_MP' value='24'/>
+    </item>
+
+    <item id='427' name="Cotton Robe">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='35'/>
+        <stat function='add' order='96' name='MAX_MP' value='61'/>
+    </item>
+
+    <item id='428' name="Feriotic Tunic">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='21'/>
+        <stat function='add' order='96' name='MAX_MP' value='38'/>
+    </item>
+
+    <item id='429' name="Leather Tunic">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='25'/>
+        <stat function='add' order='96' name='MAX_MP' value='52'/>
+    </item>
+
+    <item id='430' name="Robe of Devotion">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='49'/>
+        <stat function='add' order='96' name='MAX_MP' value='109'/>
+    </item>
+
+    <item id='431' name="Robe of Magic">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='56'/>
+        <stat function='add' order='96' name='MAX_MP' value='140'/>
+    </item>
+
+    <item id='432' name="Cursed Tunic">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='39'/>
+        <stat function='add' order='96' name='MAX_MP' value='106'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='433' name="Elven Tunic">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='43'/>
+        <stat function='add' order='96' name='MAX_MP' value='126'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='434' name="White Tunic">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='43'/>
+        <stat function='add' order='96' name='MAX_MP' value='126'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='435' name="Mystic's Tunic">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='43'/>
+        <stat function='add' order='96' name='MAX_MP' value='126'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='436' name="Tunic of Knowledge">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='49'/>
+        <stat function='add' order='96' name='MAX_MP' value='147'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='437' name="Mithril Tunic">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='52'/>
+        <stat function='add' order='96' name='MAX_MP' value='169'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='438' name="Sage's Rag">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='90'/>
+        <stat function='add' order='96' name='MAX_MP' value='320'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='439' name="Karmian Tunic">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='60'/>
+        <stat function='add' order='96' name='MAX_MP' value='225'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='440' name="Robe of Seal">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='105'/>
+        <stat function='add' order='96' name='MAX_MP' value='413'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='441' name="Demon's Tunic">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='69'/>
+        <stat function='add' order='96' name='MAX_MP' value='284'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='442' name="Divine Tunic">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='74'/>
+        <stat function='add' order='96' name='MAX_MP' value='314'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='443' name="Tunic of Mana">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='87'/>
+        <stat function='add' order='96' name='MAX_MP' value='377'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='444' name="Sage's Robe">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='150'/>
+        <stat function='add' order='96' name='MAX_MP' value='665'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='445' name="Paradia Tunic">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='87'/>
+        <stat function='add' order='96' name='MAX_MP' value='377'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='446' name="Inferno Tunic">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='92'/>
+        <stat function='add' order='96' name='MAX_MP' value='409'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='447' name="Tunic of Solar Eclipse">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='87'/>
+        <stat function='add' order='96' name='MAX_MP' value='377'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='448' name="Robe of Black Ore">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='150'/>
+        <stat function='add' order='96' name='MAX_MP' value='665'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='449' name="Tunic of Summoning">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='87'/>
+        <stat function='add' order='96' name='MAX_MP' value='377'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='450' name="Otherworldly Robe">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='150'/>
+        <stat function='add' order='96' name='MAX_MP' value='665'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='451' name="Elemental Tunic">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='87'/>
+        <stat function='add' order='96' name='MAX_MP' value='377'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='452' name="Tunic of Phantom">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='92'/>
+        <stat function='add' order='96' name='MAX_MP' value='409'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='453' name="Tunic of Grace">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='87'/>
+        <stat function='add' order='96' name='MAX_MP' value='377'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='454' name="Robe of Holy Spirit">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='150'/>
+        <stat function='add' order='96' name='MAX_MP' value='665'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='455' name="Phoenix Tunic">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='87'/>
+        <stat function='add' order='96' name='MAX_MP' value='377'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='456' name="Cerberus Tunic">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='92'/>
+        <stat function='add' order='96' name='MAX_MP' value='409'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='457' name="Tunic of Aid">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='87'/>
+        <stat function='add' order='96' name='MAX_MP' value='377'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='458' name="Robe of Blessing">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='150'/>
+        <stat function='add' order='96' name='MAX_MP' value='665'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='459' name="Dasparion's Robe">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='158'/>
+        <stat function='add' order='96' name='MAX_MP' value='718'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='460' name="The Robe">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='158'/>
+        <stat function='add' order='96' name='MAX_MP' value='773'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='461' name="Apprentice's Stockings">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='10'/>
+        <stat function='add' order='96' name='MAX_MP' value='10'/>
+    </item>
+
+    <item id='462' name="Stockings">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='11'/>
+        <stat function='add' order='96' name='MAX_MP' value='15'/>
+    </item>
+
+    <item id='463' name="Feriotic Stockings">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='13'/>
+        <stat function='add' order='96' name='MAX_MP' value='23'/>
+    </item>
+
+    <item id='464' name="Leather Stockings">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='16'/>
+        <stat function='add' order='96' name='MAX_MP' value='33'/>
+    </item>
+
+    <item id='465' name="Cursed Stockings">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='24'/>
+        <stat function='add' order='96' name='MAX_MP' value='66'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='466' name="Elven Stockings">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='27'/>
+        <stat function='add' order='96' name='MAX_MP' value='79'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='467' name="Dark Stockings">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='27'/>
+        <stat function='add' order='96' name='MAX_MP' value='79'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='468' name="Mystic's Stockings">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='27'/>
+        <stat function='add' order='96' name='MAX_MP' value='79'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='469' name="Stockings of Knowledge">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='30'/>
+        <stat function='add' order='96' name='MAX_MP' value='92'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='470' name="Mithril Stockings">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='32'/>
+        <stat function='add' order='96' name='MAX_MP' value='105'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='471' name="Karmian Stockings">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='37'/>
+        <stat function='add' order='96' name='MAX_MP' value='141'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='472' name="Demon's Stockings">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='43'/>
+        <stat function='add' order='96' name='MAX_MP' value='177'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='473' name="Divine Stockings">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='46'/>
+        <stat function='add' order='96' name='MAX_MP' value='196'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='474' name="Stockings of Mana">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='55'/>
+        <stat function='add' order='96' name='MAX_MP' value='236'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='475' name="Paradia Stockings">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='55'/>
+        <stat function='add' order='96' name='MAX_MP' value='236'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='476' name="Inferno Stockings">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='58'/>
+        <stat function='add' order='96' name='MAX_MP' value='256'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='477' name="Stockings of Solar Eclipse">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='55'/>
+        <stat function='add' order='96' name='MAX_MP' value='236'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='478' name="Stockings of Summoning">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='55'/>
+        <stat function='add' order='96' name='MAX_MP' value='236'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='479' name="Elemental Stockings">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='55'/>
+        <stat function='add' order='96' name='MAX_MP' value='236'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='480' name="Stockings of Phantom">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='58'/>
+        <stat function='add' order='96' name='MAX_MP' value='256'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='481' name="Stockings of Grace">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='55'/>
+        <stat function='add' order='96' name='MAX_MP' value='236'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='482' name="Phoenix Stockings">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='55'/>
+        <stat function='add' order='96' name='MAX_MP' value='236'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='483' name="Cerberus Stockings">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='58'/>
+        <stat function='add' order='96' name='MAX_MP' value='256'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='484' name="Stockings of Aid">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='55'/>
+        <stat function='add' order='96' name='MAX_MP' value='236'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='485' name="Tattoo of Power">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='53'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='486' name="Tattoo of Fire">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='73'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='487' name="Tattoo of Resolve">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='73'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='488' name="Tattoo of Flame">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='139'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='489' name="Tattoo of Bravery">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='110'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='490' name="Tattoo of Blood">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='132'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='491' name="Tattoo of Absolute">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='146'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='492' name="Tattoo of Soul">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='65'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='493' name="Tattoo of Avadon">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='117'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='494' name="Tattoo of Doom">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='125'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='495' name="Tattoo of Pledge">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='124'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='496' name="Tattoo of Divine">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='131'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='497' name="Chain Helmet">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='45'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='498' name="Steel Plate Helmet">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='49'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+    <item id='499' name="Mithril Helmet">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='58'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+
+</itemList>

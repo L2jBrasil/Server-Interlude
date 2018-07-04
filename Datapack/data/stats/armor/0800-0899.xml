@@ -1,332 +1,335 @@
 <?xml version='1.0' encoding='utf-8'?>
-<list>
-<item id='845' name="Cat's Eye Earring">
-  <for>
-    <add val='19' order='0x10' stat='mDef'/>
-  </for>
-</item>
-<item id='846' name="Coral Earring">
-  <for>
-    <add val='21' order='0x10' stat='mDef'/>
-  </for>
-</item>
-<item id='847' name="Red Crescent Earring">
-  <for>
-    <add val='24' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='848' name="Enchanted Earring">
-  <for>
-    <add val='27' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='849' name="Tiger's Eye Earring">
-  <for>
-    <add val='30' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='850' name="Elven Earring">
-  <for>
-    <add val='34' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='851' name="Omen Beast's Eye Earring">
-  <for>
-    <add val='36' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='852' name="Moonstone Earring">
-  <for>
-    <add val='39' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='853' name="Earring of Protection">
-  <for>
-    <add val='42' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='854' name="Earring of Binding">
-  <for>
-    <add val='45' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='855' name="Nassen's Earring">
-  <for>
-    <add val='48' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='856' name="Adamantite Earring">
-  <for>
-    <add val='51' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='857' name="Blessed Earring">
-  <for>
-    <add val='48' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='858' name="Tateossian Earring">
-  <for>
-    <add val='71' order='0x10' stat='mDef'/>
-    <add val='31' order='0x60' stat='maxMp'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='859' name="Earring of Mana">
-  <for>
-    <add val='51' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='860' name="Sage's Earring">
-  <for>
-    <add val='54' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='861' name="Paradia Earring">
-  <for>
-    <add val='54' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='862' name="Majestic Earring">
-  <for>
-    <add val='63' order='0x10' stat='mDef'/>
-    <add val='25' order='0x60' stat='maxMp'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='863' name="Earring of Solar Eclipse">
-  <for>
-    <add val='51' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='864' name="Earring of Black Ore">
-  <for>
-    <add val='54' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='865' name="Earring of Summoning">
-  <for>
-    <add val='51' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='866' name="Otherworldly Earring">
-  <for>
-    <add val='54' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='867' name="Elemental Earring">
-  <for>
-    <add val='54' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='868' name="Earring of Phantom">
-  <for>
-    <add val='60' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='869' name="Earring of Grace">
-  <for>
-    <add val='51' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='870' name="Earring of Holy Spirit">
-  <for>
-    <add val='54' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='871' name="Phoenix Earring">
-  <for>
-    <add val='60' order='0x10' stat='mDef'/>
-    <add val='20' order='0x60' stat='maxMp'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='872' name="Cerberus Earring">
-  <for>
-    <add val='60' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='873' name="Earring of Aid">
-  <for>
-    <add val='51' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='874' name="Earring of Blessing">
-  <for>
-    <add val='51' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='875' name="Ring of Knowledge">
-  <for>
-    <add val='9' order='0x10' stat='mDef'/>
-  </for>
-</item>
-<item id='876' name="Ring of Anguish">
-  <for>
-    <add val='11' order='0x10' stat='mDef'/>
-  </for>
-</item>
-<item id='877' name="Ring of Wisdom">
-  <for>
-    <add val='12' order='0x10' stat='mDef'/>
-  </for>
-</item>
-<item id='878' name="Blue Coral Ring">
-  <for>
-    <add val='14' order='0x10' stat='mDef'/>
-  </for>
-</item>
-<item id='879' name="Enchanted Ring">
-  <for>
-    <add val='18' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='880' name="Black Pearl Ring">
-  <for>
-    <add val='20' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='881' name="Elven Ring">
-  <for>
-    <add val='22' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='882' name="Mithril Ring">
-  <for>
-    <add val='24' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='883' name="Aquastone Ring">
-  <for>
-    <add val='26' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='884' name="Ring of Protection">
-  <for>
-    <add val='28' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='885' name="Ring of Ages">
-  <for>
-    <add val='30' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='886' name="Ring of Binding">
-  <for>
-    <add val='32' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='887' name="Adamantite Ring">
-  <for>
-    <add val='34' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='888' name="Blessed Ring">
-  <for>
-    <add val='32' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='889' name="Tateossian Ring">
-  <for>
-    <add val='48' order='0x10' stat='mDef'/>
-    <add val='21' order='0x60' stat='maxMp'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='890' name="Ring of Devotion">
-  <for>
-    <add val='16' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='891' name="Sage's Ring">
-  <for>
-    <add val='36' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='892' name="Paradia Ring">
-  <for>
-    <add val='36' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='893' name="Majestic Ring">
-  <for>
-    <add val='42' order='0x10' stat='mDef'/>
-    <add val='17' order='0x60' stat='maxMp'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='894' name="Ring of Solar Eclipse">
-  <for>
-    <add val='34' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='895' name="Ring of Black Ore">
-  <for>
-    <add val='36' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='896' name="Ring of Summoning">
-  <for>
-    <add val='34' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='897' name="Otherworldly Ring">
-  <for>
-    <add val='36' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='898' name="Elemental Ring">
-  <for>
-    <add val='36' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-<item id='899' name="Ring of Phantom">
-  <for>
-    <add val='40' order='0x10' stat='mDef'/>
-  <enchant val='0' order='0x0C' stat='mDef'/>
-</for>
-</item>
-</list>
+
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
+
+    <item id='845' name="Cat's Eye Earring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='19'/>
+
+    </item>
+    <item id='846' name="Coral Earring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='21'/>
+
+    </item>
+    <item id='847' name="Red Crescent Earring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='24'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='848' name="Enchanted Earring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='27'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='849' name="Tiger's Eye Earring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='30'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='850' name="Elven Earring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='34'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='851' name="Omen Beast's Eye Earring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='36'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='852' name="Moonstone Earring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='39'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='853' name="Earring of Protection">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='42'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='854' name="Earring of Binding">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='45'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='855' name="Nassen's Earring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='48'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='856' name="Adamantite Earring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='51'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='857' name="Blessed Earring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='48'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='858' name="Tateossian Earring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='71'/>
+        <stat function='add' order='96' name='MAX_MP' value='31'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='859' name="Earring of Mana">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='51'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='860' name="Sage's Earring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='54'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='861' name="Paradia Earring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='54'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='862' name="Majestic Earring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='63'/>
+        <stat function='add' order='96' name='MAX_MP' value='25'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='863' name="Earring of Solar Eclipse">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='51'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='864' name="Earring of Black Ore">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='54'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='865' name="Earring of Summoning">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='51'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='866' name="Otherworldly Earring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='54'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='867' name="Elemental Earring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='54'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='868' name="Earring of Phantom">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='60'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='869' name="Earring of Grace">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='51'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='870' name="Earring of Holy Spirit">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='54'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='871' name="Phoenix Earring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='60'/>
+        <stat function='add' order='96' name='MAX_MP' value='20'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='872' name="Cerberus Earring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='60'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='873' name="Earring of Aid">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='51'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='874' name="Earring of Blessing">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='51'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='875' name="Ring of Knowledge">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='9'/>
+
+    </item>
+    <item id='876' name="Ring of Anguish">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='11'/>
+
+    </item>
+    <item id='877' name="Ring of Wisdom">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='12'/>
+
+    </item>
+    <item id='878' name="Blue Coral Ring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='14'/>
+
+    </item>
+    <item id='879' name="Enchanted Ring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='18'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='880' name="Black Pearl Ring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='20'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='881' name="Elven Ring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='22'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='882' name="Mithril Ring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='24'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='883' name="Aquastone Ring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='26'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='884' name="Ring of Protection">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='28'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='885' name="Ring of Ages">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='30'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='886' name="Ring of Binding">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='32'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='887' name="Adamantite Ring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='34'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='888' name="Blessed Ring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='32'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='889' name="Tateossian Ring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='48'/>
+        <stat function='add' order='96' name='MAX_MP' value='21'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='890' name="Ring of Devotion">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='16'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='891' name="Sage's Ring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='36'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='892' name="Paradia Ring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='36'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='893' name="Majestic Ring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='42'/>
+        <stat function='add' order='96' name='MAX_MP' value='17'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='894' name="Ring of Solar Eclipse">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='34'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='895' name="Ring of Black Ore">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='36'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='896' name="Ring of Summoning">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='34'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='897' name="Otherworldly Ring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='36'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='898' name="Elemental Ring">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='36'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='899' name="Ring of Phantom">
+
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='40'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
+
+    </item>
+</itemList>

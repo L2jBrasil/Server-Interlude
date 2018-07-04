@@ -1,23 +1,18 @@
 <?xml version='1.0' encoding='utf-8'?>
-<list>
-<item id='1506' name="Necklace of Courage">
-  <for>
-    <add val='15' order='0x10' stat='mDef'/>
-  </for>
-</item>
-<item id='1507' name="Necklace of Valor">
-  <for>
-    <add val='21' order='0x10' stat='mDef'/>
-  </for>
-</item>
-<item id='1508' name="Ring of Raccoon">
-  <for>
-    <add val='11' order='0x10' stat='mDef'/>
-  </for>
-</item>
-<item id='1509' name="Ring of Firefly">
-  <for>
-    <add val='11' order='0x10' stat='mDef'/>
-  </for>
-</item>
-</list>
+
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
+
+    <item id='1506' name="Necklace of Courage">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='15'/>
+    </item>
+    <item id='1507' name="Necklace of Valor">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='21'/>
+    </item>
+    <item id='1508' name="Ring of Raccoon">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='11'/>
+    </item>
+    <item id='1509' name="Ring of Firefly">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='11'/>
+    </item>
+</itemList>

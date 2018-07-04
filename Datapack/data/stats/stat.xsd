@@ -2,17 +2,48 @@
 
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            targetNamespace="http://la2j.org"
-           xmlns="http://la2j.org">
+           xmlns="http://la2j.org"
+           elementFormDefault="qualified">
 
     <xs:complexType name="xmlTypeStat">
-        <xs:simpleContent>
-            <xs:extension base="xs:decimal">
-                <xs:attribute name="order" type="xs:int"/>
-                <xs:attribute name="function" type="xs:string"/>
-                <xs:attribute name="name" type="xmlTypeEnumStat"/>
-            </xs:extension>
-        </xs:simpleContent>
+        <xs:sequence>
+            <xs:element name="condition" type="xmlStatCondition" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="order" type="xs:int" use="required"/>
+        <xs:attribute name="function" type="xs:string" use="required"/>
+        <xs:attribute name="name" type="xmlTypeEnumStat" use="required"/>
+        <xs:attribute name="value" type="xs:int" use="required"/>
     </xs:complexType>
+
+
+    <xs:complexType name="xmlStatCondition">
+        <xs:choice>
+            <xs:element name="logic" type="xmlStatConditionOperator" minOccurs="0"/>
+            <xs:element name="type" type="xmlStatConditionType" minOccurs="0"/>
+        </xs:choice>
+    </xs:complexType>
+    
+    <xs:complexType name="xmlStatConditionOperator">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="operator" type="xmlStatConditionOperator" />
+            <xs:element name="type" type="xmlStatConditionType" />
+        </xs:choice>
+        <xs:attribute name="type" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="xmlStatConditionType">
+
+    </xs:complexType>
+    
+    <xs:complexType name="xmlStatPlayerCondition">
+        <xs:complexContent>
+            <xs:extension base="xmlStatConditionType">
+                <xs:attribute name="level" type="xs:int"/>
+            </xs:extension>
+        </xs:complexContent>
+
+    </xs:complexType>
+
 
     <xs:simpleType name="xmlTypeEnumStat">
         <xs:restriction base="xs:string">

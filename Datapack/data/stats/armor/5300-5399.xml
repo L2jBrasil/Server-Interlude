@@ -1,194 +1,197 @@
 <?xml version='1.0' encoding='utf-8'?>
-<list>
-<item id='5300' name="Sealed Boots of The Underworld">
-  <for>
-    <add val='45' order='0x10' stat='pDef'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5301' name="Sealed Tallum Leather Armor">
-  <for>
-    <add val='209' order='0x10' stat='pDef'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5302' name="Sealed Gust Bracer">
-  <for>
-    <add val='45' order='0x10' stat='pDef'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5303' name="Sealed Gust Boots">
-  <for>
-    <add val='45' order='0x10' stat='pDef'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5304' name="Sealed Tallum Tunic">
-  <for>
-    <add val='86' order='0x10' stat='pDef'/>
-    <add val='409' order='0x60' stat='maxMp'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5305' name="Sealed Tallum Stockings">
-  <for>
-    <add val='53' order='0x10' stat='pDef'/>
-    <add val='256' order='0x60' stat='maxMp'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5306' name="Sealed Gloves of Black Ore">
-  <for>
-    <add val='45' order='0x10' stat='pDef'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5307' name="Sealed Red Flame Boots">
-  <for>
-    <add val='45' order='0x10' stat='pDef'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5308' name="Sealed Dark Crystal Robe">
-  <for>
-    <add val='139' order='0x10' stat='pDef'/>
-    <add val='665' order='0x60' stat='maxMp'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5309' name="Sealed Phoenix Gloves's_gloves">
-  <for>
-    <add val='45' order='0x10' stat='pDef'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5310' name="Sealed Phoenix Boots's_boots">
-  <for>
-    <add val='45' order='0x10' stat='pDef'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5311' name="Sealed Armor of Nightmare">
-  <for>
-    <add val='293' order='0x10' stat='pDef'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5312' name="Sealed Helm of Nightmare">
-  <for>
-    <add val='73' order='0x10' stat='pDef'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5313' name="Sealed Gloves of Nightmare">
-  <for>
-    <add val='49' order='0x10' stat='pDef'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5314' name="Sealed Boots of Nightmare">
-  <for>
-    <add val='49' order='0x10' stat='pDef'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5316' name="Sealed Majestic Plate Armor">
-  <for>
-    <add val='293' order='0x10' stat='pDef'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5317' name="Sealed Majestic Circlet">
-  <for>
-    <add val='73' order='0x10' stat='pDef'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5318' name="Sealed Majestic Gloves">
-  <for>
-    <add val='49' order='0x10' stat='pDef'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5319' name="Sealed Majestic Boots">
-  <for>
-    <add val='49' order='0x10' stat='pDef'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5320' name="Sealed Leather Armor of Nightmare">
-  <for>
-    <add val='220' order='0x10' stat='pDef'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5321' name="Sealed Dark Legion Gloves">
-  <for>
-    <add val='48' order='0x10' stat='pDef'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5322' name="Sealed Dark Legion Boots">
-  <for>
-    <add val='48' order='0x10' stat='pDef'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5323' name="Sealed Majestic Leather Armor">
-  <for>
-    <add val='220' order='0x10' stat='pDef'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5324' name="Sealed Gloves of Phantom">
-  <for>
-    <add val='48' order='0x10' stat='pDef'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5325' name="Sealed Boots of Phantom">
-  <for>
-    <add val='48' order='0x10' stat='pDef'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5326' name="Sealed Robe of Nightmare">
-  <for>
-    <add val='147' order='0x10' stat='pDef'/>
-    <add val='718' order='0x60' stat='maxMp'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5327' name="Sealed Cerberus Gloves">
-  <for>
-    <add val='48' order='0x10' stat='pDef'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5328' name="Sealed Cerberus Boots">
-  <for>
-    <add val='48' order='0x10' stat='pDef'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5329' name="Sealed Majestic Robe">
-  <for>
-    <add val='147' order='0x10' stat='pDef'/>
-    <add val='718' order='0x60' stat='maxMp'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5330' name="Sealed Dasparion's Gloves">
-  <for>
-    <add val='48' order='0x10' stat='pDef'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-<item id='5331' name="Sealed Dasparion's Boots">
-  <for>
-    <add val='48' order='0x10' stat='pDef'/>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-</list>
+
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
+
+    <item id='5300' name="Sealed Boots of The Underworld">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='45'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5301' name="Sealed Tallum Leather Armor">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='209'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5302' name="Sealed Gust Bracer">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='45'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5303' name="Sealed Gust Boots">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='45'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5304' name="Sealed Tallum Tunic">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='86'/>
+        <stat function='add' order='96' name='MAX_MP' value='409'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5305' name="Sealed Tallum Stockings">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='53'/>
+        <stat function='add' order='96' name='MAX_MP' value='256'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5306' name="Sealed Gloves of Black Ore">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='45'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5307' name="Sealed Red Flame Boots">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='45'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5308' name="Sealed Dark Crystal Robe">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='139'/>
+        <stat function='add' order='96' name='MAX_MP' value='665'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5309' name="Sealed Phoenix Gloves's_gloves">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='45'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5310' name="Sealed Phoenix Boots's_boots">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='45'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5311' name="Sealed Armor of Nightmare">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='293'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5312' name="Sealed Helm of Nightmare">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='73'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5313' name="Sealed Gloves of Nightmare">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='49'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5314' name="Sealed Boots of Nightmare">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='49'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5316' name="Sealed Majestic Plate Armor">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='293'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5317' name="Sealed Majestic Circlet">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='73'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5318' name="Sealed Majestic Gloves">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='49'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5319' name="Sealed Majestic Boots">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='49'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5320' name="Sealed Leather Armor of Nightmare">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='220'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5321' name="Sealed Dark Legion Gloves">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='48'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5322' name="Sealed Dark Legion Boots">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='48'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5323' name="Sealed Majestic Leather Armor">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='220'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5324' name="Sealed Gloves of Phantom">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='48'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5325' name="Sealed Boots of Phantom">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='48'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5326' name="Sealed Robe of Nightmare">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='147'/>
+        <stat function='add' order='96' name='MAX_MP' value='718'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5327' name="Sealed Cerberus Gloves">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='48'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5328' name="Sealed Cerberus Boots">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='48'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5329' name="Sealed Majestic Robe">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='147'/>
+        <stat function='add' order='96' name='MAX_MP' value='718'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5330' name="Sealed Dasparion's Gloves">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='48'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+    <item id='5331' name="Sealed Dasparion's Boots">
+
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='48'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
+</itemList>

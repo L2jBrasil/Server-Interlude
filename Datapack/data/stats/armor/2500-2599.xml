@@ -1,9 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<list>
-<item id='2506' name="Wolf's Leather Armor">
-  <for>
-    <add val='9' order='0x10' stat='pDef'/>
-    <add val='14' order='0x10' stat='mDef'/>
-  </for>
-</item>
-</list>
+
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
+
+    <item id='2506' name="Wolf's Leather Armor">
+        <stat function="add" order='16' name='PHYSIC_DEFENCE' value='9'/>
+        <stat function="add" order='16' name='PHYSIC_DEFENCE' value='14'/>
+    </item>
+
+</itemList>

@@ -1,14 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
-<list>
-<item id='6408' name="Formal Wear">
-  <for>
-   <add stat='pDef' order='0x10' val='0'/>
-   <add stat='maxHp' order='0x40' val='0'>
-     <and>
-       <using slotitem="2414;6"/>
-     </and>
-   </add>
-  <enchant val='0' order='0x0C' stat='pDef'/>
-</for>
-</item>
-</list>
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
+
+    <item id='6408' name="Formal Wear">
+        <stat function="add" name='PHYSIC_DEFENCE' order='16' value='0'/>
+        <stat function="add" name='MAX_HP' order='64' value="0">
+            <condition>
+            </condition>
+        </stat>
+        <stat function="enchant" order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+</itemList>
