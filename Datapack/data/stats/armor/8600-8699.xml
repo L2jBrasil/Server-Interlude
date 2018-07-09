@@ -1,18 +1,19 @@
 <?xml version='1.0' encoding='utf-8'?>
-<list>
-<item id='8660' name="Demon Horns">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='8661' name="Mask of Spirits">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='8662' name="Fairy Antennae - For Event">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-</list>
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
+    <item id='8660' name="Demon Horns">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='8661' name="Mask of Spirits">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='8662' name="Fairy Antennae - For Event">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+</itemList>

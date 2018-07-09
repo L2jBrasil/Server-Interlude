@@ -5,8 +5,9 @@
     <item id='6408' name="Formal Wear">
         <stat function="add" name='PHYSIC_DEFENCE' order='16' value='0'/>
         <stat function="add" name='MAX_HP' order='64' value="0">
-            <condition>
-            </condition>
+            <conditions>
+                <using kind="slotitem" item="2414" slot="6"/>
+            </conditions>
         </stat>
         <stat function="enchant" order='12' name='PHYSIC_DEFENCE' value='0'/>
     </item>

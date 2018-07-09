@@ -1,33 +1,34 @@
 <?xml version='1.0' encoding='utf-8'?>
-<list>
-<item id='9200' name="Jester Hat - Firework">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='9201' name="Wizard\'s Hat - Firework">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='9202' name="Dapper Hat - Firework">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='9203' name="Romantic Chapeau - Firework">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='9204' name="Iron Circlet - Firework">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='9208' name="Phantom Mask - For Events Only">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-</list>
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
+    <item id='9200' name="Jester Hat - Firework">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='9201' name="Wizard\'s Hat - Firework">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='9202' name="Dapper Hat - Firework">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='9203' name="Romantic Chapeau - Firework">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='9204' name="Iron Circlet - Firework">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='9208' name="Phantom Mask - For Events Only">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+</itemList>

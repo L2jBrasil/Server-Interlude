@@ -1,103 +1,105 @@
 <?xml version='1.0' encoding='utf-8'?>
-<list>
-<item id='8910' name="Black Feather Mask - For Event">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='8911' name="Black Half-Mask - For Event">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='8912' name="Single Stem Flower">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='8913' name="Butterfly Hairpin">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='8914' name="Luxurious Gold Circlet">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='8915' name="Luxurious Silver Circlet">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='8916' name="Eye Patch">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='8917' name="Goddess Circlet">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='8918' name="Leather Cap">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='8919' name="Commodore\'s Hat - Event Use">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='8920' name="Angel Halo">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='8921' name="Demon Circlet">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='8922' name="Pirate Hat">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='8923' name="Scar">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='8936' name="Santa\'s Antlers">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='8947' name="L2 Day: Rabbit Ears">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='8948' name="L2 Day: Little Angel Wings">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='8949' name="L2 Day: Fairy Antennae">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='8950' name="L2 Day: Feathered Hat">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-<item id='8951' name="L2 Day: Artisan\'s Goggles">
-  <for>
-    <add val='0' order='0x10' stat='pDef'/>
-  </for>
-</item>
-</list>
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
+
+    <item id='8910' name="Black Feather Mask - For Event">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='8911' name="Black Half-Mask - For Event">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='8912' name="Single Stem Flower">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='8913' name="Butterfly Hairpin">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='8914' name="Luxurious Gold Circlet">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='8915' name="Luxurious Silver Circlet">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='8916' name="Eye Patch">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='8917' name="Goddess Circlet">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='8918' name="Leather Cap">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='8919' name="Commodore\'s Hat - Event Use">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='8920' name="Angel Halo">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='8921' name="Demon Circlet">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='8922' name="Pirate Hat">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='8923' name="Scar">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='8936' name="Santa\'s Antlers">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='8947' name="L2 Day: Rabbit Ears">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='8948' name="L2 Day: Little Angel Wings">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='8949' name="L2 Day: Fairy Antennae">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='8950' name="L2 Day: Feathered Hat">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='8951' name="L2 Day: Artisan\'s Goggles">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+</itemList>
