@@ -1,30 +1,30 @@
 <?xml version='1.0' encoding='utf-8'?>
-<list>
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"           xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
 <item id='7014' name="monster_only_(shield_of_dark_dragon)">
-  <for>
-    <sub val='8' order='0x10' stat='rEvas'/>
-    <set val='230' order='0x08' stat='sDef'/>
-    <set val='20' order='0x08' stat='rShld'/>
-    <enchant val='0' order='0x0C' stat='sDef'/>
-  </for>
+
+    <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
+    <stat function='add' value='230' order='8' name='SHIELD_DEFENCE'/>
+    <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
+    <stat function='enchant' value='0' order='12' name='SHIELD_DEFENCE'/>
+
 </item>
 <item id='7015' name="shield_of_castle_pledge">
-  <for>
-    <sub val='8' order='0x10' stat='rEvas'/>
-    <set val='90' order='0x08' stat='sDef'/>
-    <set val='20' order='0x08' stat='rShld'/>
-    <enchant val='0' order='0x0C' stat='sDef'/>
-  </for>
+
+    <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
+    <stat function='add' value='90' order='8' name='SHIELD_DEFENCE'/>
+    <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
+    <stat function='enchant' value='0' order='12' name='SHIELD_DEFENCE'/>
+
 </item>
 <item id='7058' name="chrono_darbuka">
-  <for>
-    <set val='1' order='0x08' stat='pAtk'/>
-    <set val='1' order='0x08' stat='mAtk'/>
-    <set val='4' order='0x08' stat='rCrit'/>
-    <add val='4' order='0x10' stat='accCombat'/>
-    <set val='325' order='0x08' stat='pAtkSpd'/>
-    <enchant val='0' order='0x0C' stat='pAtk'/>
-    <enchant val='0' order='0x0C' stat='mAtk'/>
-  </for>
+
+    <stat function='add' value='1' order='8' name='PHYSIC_ATTACK'/>
+    <stat function='add' value='1' order='8' name='MAGIC_ATTACK'/>
+    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+    <stat function='add' value='4' order='16' name='ACCURACY'/>
+    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
 </item>
-</list>
+</itemList>

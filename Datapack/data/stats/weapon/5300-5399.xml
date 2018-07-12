@@ -1,11 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
-<list>
-<item id='5315' name="sealed_shield_of_nightmare">
-  <for>
-    <sub val='8' order='0x10' stat='rEvas'/>
-    <set val='256' order='0x08' stat='sDef'/>
-    <set val='20' order='0x08' stat='rShld'/>
-    <enchant val='0' order='0x0C' stat='sDef'/>
-  </for>
-</item>
-</list>
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://la2j.org"
+          xsi:schemaLocation="http://la2j.org ../item.xsd">
+    <item id='5315' name="sealed_shield_of_nightmare">
+
+        <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
+        <stat function='add' value='256' order='8' name='SHIELD_DEFENCE'/>
+        <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
+        <stat function='enchant' value='0' order='12' name='SHIELD_DEFENCE'/>
+
+    </item>
+</itemList>

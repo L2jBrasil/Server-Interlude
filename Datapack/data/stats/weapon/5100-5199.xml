@@ -1,168 +1,169 @@
 <?xml version='1.0' encoding='utf-8'?>
-<list>
-<item id='5127' name="dailaon_knife">
-  <for>
-    <set val='5' order='0x08' stat='pAtk'/>
-    <set val='5' order='0x08' stat='mAtk'/>
-    <set val='12' order='0x08' stat='rCrit'/>
-    <add val='-3' order='0x10' stat='accCombat'/>
-    <set val='433' order='0x08' stat='pAtkSpd'/>
-    <enchant val='0' order='0x0C' stat='pAtk'/>
-    <enchant val='0' order='0x0C' stat='mAtk'/>
-  </for>
-</item>
-<item id='5128' name="crokian_blade">
-  <for>
-    <set val='5' order='0x08' stat='pAtk'/>
-    <set val='5' order='0x08' stat='mAtk'/>
-    <set val='12' order='0x08' stat='rCrit'/>
-    <add val='-3' order='0x10' stat='accCombat'/>
-    <set val='433' order='0x08' stat='pAtkSpd'/>
-    <enchant val='0' order='0x0C' stat='pAtk'/>
-    <enchant val='0' order='0x0C' stat='mAtk'/>
-  </for>
-</item>
-<item id='5129' name="doll_knife">
-  <for>
-    <set val='200' order='0x08' stat='pAtk'/>
-    <set val='6' order='0x08' stat='mAtk'/>
-    <set val='8' order='0x08' stat='rCrit'/>
-    <add val='0' order='0x10' stat='accCombat'/>
-    <set val='325' order='0x08' stat='pAtkSpd'/>
-    <enchant val='0' order='0x0C' stat='pAtk'/>
-    <enchant val='0' order='0x0C' stat='mAtk'/>
-  </for>
-</item>
-<item id='5130' name="nos_sword">
-  <for>
-    <set val='5' order='0x08' stat='pAtk'/>
-    <set val='5' order='0x08' stat='mAtk'/>
-    <set val='12' order='0x08' stat='rCrit'/>
-    <add val='-3' order='0x10' stat='accCombat'/>
-    <set val='433' order='0x08' stat='pAtkSpd'/>
-    <enchant val='0' order='0x0C' stat='pAtk'/>
-    <enchant val='0' order='0x0C' stat='mAtk'/>
-  </for>
-</item>
-<item id='5131' name="parhit_staff">
-  <for>
-    <set val='5' order='0x08' stat='pAtk'/>
-    <set val='5' order='0x08' stat='mAtk'/>
-    <set val='12' order='0x08' stat='rCrit'/>
-    <add val='-3' order='0x10' stat='accCombat'/>
-    <set val='433' order='0x08' stat='pAtkSpd'/>
-    <enchant val='0' order='0x0C' stat='pAtk'/>
-    <enchant val='0' order='0x0C' stat='mAtk'/>
-  </for>
-</item>
-<item id='5132' name="giant_trident">
-  <for>
-    <set val='5' order='0x08' stat='pAtk'/>
-    <set val='5' order='0x08' stat='mAtk'/>
-    <set val='12' order='0x08' stat='rCrit'/>
-    <add val='-3' order='0x10' stat='accCombat'/>
-    <set val='433' order='0x08' stat='pAtkSpd'/>
-    <enchant val='0' order='0x0C' stat='pAtk'/>
-    <enchant val='0' order='0x0C' stat='mAtk'/>
-  </for>
-</item>
-<item id='5133' name="chrono_unitus">
-  <for>
-    <set val='1' order='0x08' stat='pAtk'/>
-    <set val='1' order='0x08' stat='mAtk'/>
-    <set val='4' order='0x08' stat='rCrit'/>
-    <add val='4' order='0x10' stat='accCombat'/>
-    <set val='325' order='0x08' stat='pAtkSpd'/>
-    <enchant val='0' order='0x0C' stat='pAtk'/>
-    <enchant val='0' order='0x0C' stat='mAtk'/>
-  </for>
-</item>
-<item id='5176' name="serpentine_spike">
-  <for>
-    <add val='17' order='0x10' stat='pAtk'/>
-    <add val='21' order='0x10' stat='mAtk'/>
-    <set val='80' order='0x08' stat='rCrit'/>
-    <set val='304' order='0x08' stat='pAtkSpd'/>
-  </for>
-</item>
-<item id='5177' name="drake_horn">
-  <for>
-    <add val='19' order='0x10' stat='pAtk'/>
-    <add val='24' order='0x10' stat='mAtk'/>
-    <set val='80' order='0x08' stat='rCrit'/>
-    <set val='304' order='0x08' stat='pAtkSpd'/>
-  </for>
-</item>
-<item id='5178' name="assult_alicorn">
-  <for>
-    <add val='21' order='0x10' stat='pAtk'/>
-    <add val='27' order='0x10' stat='mAtk'/>
-    <set val='80' order='0x08' stat='rCrit'/>
-    <set val='304' order='0x08' stat='pAtkSpd'/>
-  </for>
-</item>
-<item id='5179' name="draconic_slicer">
-  <for>
-    <add val='23' order='0x10' stat='pAtk'/>
-    <add val='30' order='0x10' stat='mAtk'/>
-    <set val='80' order='0x08' stat='rCrit'/>
-    <set val='304' order='0x08' stat='pAtkSpd'/>
-  </for>
-</item>
-<item id='5180' name="ohpdian_lance">
-  <for>
-    <add val='25' order='0x10' stat='pAtk'/>
-    <add val='34' order='0x10' stat='mAtk'/>
-    <set val='80' order='0x08' stat='rCrit'/>
-    <set val='304' order='0x08' stat='pAtkSpd'/>
-  </for>
-</item>
-<item id='5181' name="diamond_drill">
-  <for>
-    <add val='27' order='0x10' stat='pAtk'/>
-    <add val='37' order='0x10' stat='mAtk'/>
-    <set val='80' order='0x08' stat='rCrit'/>
-    <set val='304' order='0x08' stat='pAtkSpd'/>
-  </for>
-</item>
-<item id='5187' name="serpentine_grinder">
-  <for>
-    <add val='19' order='0x10' stat='pAtk'/>
-    <add val='24' order='0x10' stat='mAtk'/>
-    <set val='80' order='0x08' stat='rCrit'/>
-    <set val='304' order='0x08' stat='pAtkSpd'/>
-  </for>
-</item>
-<item id='5188' name="fang_of_dahak">
-  <for>
-    <add val='21' order='0x10' stat='pAtk'/>
-    <add val='27' order='0x10' stat='mAtk'/>
-    <set val='80' order='0x08' stat='rCrit'/>
-    <set val='304' order='0x08' stat='pAtkSpd'/>
-  </for>
-</item>
-<item id='5189' name="crimson_blood_fang">
-  <for>
-    <add val='23' order='0x10' stat='pAtk'/>
-    <add val='30' order='0x10' stat='mAtk'/>
-    <set val='80' order='0x08' stat='rCrit'/>
-    <set val='304' order='0x08' stat='pAtkSpd'/>
-  </for>
-</item>
-<item id='5190' name="draconic_chopper">
-  <for>
-    <add val='25' order='0x10' stat='pAtk'/>
-    <add val='34' order='0x10' stat='mAtk'/>
-    <set val='80' order='0x08' stat='rCrit'/>
-    <set val='304' order='0x08' stat='pAtkSpd'/>
-  </for>
-</item>
-<item id='5191' name="diabolic_grinder">
-  <for>
-    <add val='27' order='0x10' stat='pAtk'/>
-    <add val='37' order='0x10' stat='mAtk'/>
-    <set val='80' order='0x08' stat='rCrit'/>
-    <set val='304' order='0x08' stat='pAtkSpd'/>
-  </for>
-</item>
-</list>
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://la2j.org"
+          xsi:schemaLocation="http://la2j.org ../item.xsd">
+    <item id='5127' name="dailaon_knife">
+
+        <stat function='add' value='5' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='5' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='433' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
+    </item>
+    <item id='5128' name="crokian_blade">
+
+        <stat function='add' value='5' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='5' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='433' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
+    </item>
+    <item id='5129' name="doll_knife">
+
+        <stat function='add' value='200' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='6' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
+    </item>
+    <item id='5130' name="nos_sword">
+
+        <stat function='add' value='5' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='5' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='433' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
+    </item>
+    <item id='5131' name="parhit_staff">
+
+        <stat function='add' value='5' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='5' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='433' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
+    </item>
+    <item id='5132' name="giant_trident">
+
+        <stat function='add' value='5' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='5' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='433' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
+    </item>
+    <item id='5133' name="chrono_unitus">
+
+        <stat function='add' value='1' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='1' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
+    </item>
+    <item id='5176' name="serpentine_spike">
+
+        <stat function='add' value='17' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='21' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='5177' name="drake_horn">
+
+        <stat function='add' value='19' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='24' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='5178' name="assult_alicorn">
+
+        <stat function='add' value='21' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='27' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='5179' name="draconic_slicer">
+
+        <stat function='add' value='23' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='30' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='5180' name="ohpdian_lance">
+
+        <stat function='add' value='25' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='34' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='5181' name="diamond_drill">
+
+        <stat function='add' value='27' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='37' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='5187' name="serpentine_grinder">
+
+        <stat function='add' value='19' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='24' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='5188' name="fang_of_dahak">
+
+        <stat function='add' value='21' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='27' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='5189' name="crimson_blood_fang">
+
+        <stat function='add' value='23' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='30' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='5190' name="draconic_chopper">
+
+        <stat function='add' value='25' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='34' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='5191' name="diabolic_grinder">
+
+        <stat function='add' value='27' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='37' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+</itemList>

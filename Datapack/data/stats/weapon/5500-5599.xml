@@ -1,58 +1,59 @@
 <?xml version='1.0' encoding='utf-8'?>
-<list>
-<item id='5596' name="dasparions_staff_mana_up">
-  <for>
-    <set val='207' order='0x08' stat='pAtk'/>
-    <set val='143' order='0x08' stat='mAtk'/>
-    <set val='4' order='0x08' stat='rCrit'/>
-    <add val='4' order='0x10' stat='accCombat'/>
-    <set val='325' order='0x08' stat='pAtkSpd'/>
-    <enchant val='0' order='0x0C' stat='pAtk'/>
-    <enchant val='0' order='0x0C' stat='mAtk'/>
-  </for>
-</item>
-<item id='5597' name="dasparions_staff_conversion">
-  <for>
-    <set val='207' order='0x08' stat='pAtk'/>
-    <set val='143' order='0x08' stat='mAtk'/>
-    <set val='4' order='0x08' stat='rCrit'/>
-    <add val='4' order='0x10' stat='accCombat'/>
-    <set val='325' order='0x08' stat='pAtkSpd'/>
-    <enchant val='0' order='0x0C' stat='pAtk'/>
-    <enchant val='0' order='0x0C' stat='mAtk'/>
-    <!-- SA: Conversion -->
-    <mul val='0.6' order='0x30' stat='maxHp'/>
-    <mul val='1.6' order='0x30' stat='maxMp'/>
-    <!-- Enhances damage to target during PvP -->
-    <mul val='1.05' order='0x30' stat='pvpPhysDmg'/>
-    <mul val='1.05' order='0x30' stat='pvpMagicalDmg'/>
-  </for>
-</item>
-<item id='5598' name="dasparions_staff_acumen">
-  <for>
-    <set val='207' order='0x08' stat='pAtk'/>
-    <set val='143' order='0x08' stat='mAtk'/>
-    <set val='4' order='0x08' stat='rCrit'/>
-    <add val='4' order='0x10' stat='accCombat'/>
-    <set val='325' order='0x08' stat='pAtkSpd'/>
-    <enchant val='0' order='0x0C' stat='pAtk'/>
-    <enchant val='0' order='0x0C' stat='mAtk'/>
-  </for>
-</item>
-<item id='5599' name="meteor_shower_focus">
-  <for>
-    <set val='213' order='0x08' stat='pAtk'/>
-    <set val='107' order='0x08' stat='mAtk'/>
-    <set val='4' order='0x08' stat='rCrit'/>
-    <add val='4' order='0x10' stat='accCombat'/>
-    <set val='379' order='0x08' stat='pAtkSpd'/>
-    <enchant val='0' order='0x0C' stat='pAtk'/>
-    <enchant val='0' order='0x0C' stat='mAtk'/>
-    <!-- SA: Focus -->
-    <add val='61' order='0x40' stat='rCrit'/>
-    <!-- Enhances damage to target during PvP -->
-    <mul val='1.05' order='0x30' stat='pvpPhysDmg'/>
-    <mul val='1.05' order='0x30' stat='pvpMagicalDmg'/>
-  </for>
-</item>
-</list>
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://la2j.org"
+          xsi:schemaLocation="http://la2j.org ../item.xsd">
+    <item id='5596' name="dasparions_staff_mana_up">
+
+        <stat function='add' value='207' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='143' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
+    </item>
+    <item id='5597' name="dasparions_staff_conversion">
+
+        <stat function='add' value='207' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='143' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Conversion -->
+        <stat function='mul' value='0.6' order='48' name='MAX_HP'/>
+        <stat function='mul' value='1.6' order='48' name='MAX_MP'/>
+        <!-- Enhances damage to target during PvP -->
+        <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
+        <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
+
+    </item>
+    <item id='5598' name="dasparions_staff_acumen">
+
+        <stat function='add' value='207' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='143' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
+    </item>
+    <item id='5599' name="meteor_shower_focus">
+
+        <stat function='add' value='213' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Focus -->
+        <stat function='add' value='61' order='64' name='CRITICAL_RATE'/>
+        <!-- Enhances damage to target during PvP -->
+        <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
+        <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
+
+    </item>
+</itemList>

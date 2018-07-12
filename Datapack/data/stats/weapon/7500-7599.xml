@@ -1,77 +1,77 @@
 <?xml version='1.0' encoding='utf-8'?>
-<list>
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"           xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
 <item id='7560' name="monster_only_(fishing_rod)">
-  <for>
-    <set val='1' order='0x08' stat='pAtk'/>
-    <set val='1' order='0x08' stat='mAtk'/>
-    <set val='0' order='0x08' stat='rCrit'/>
-    <add val='-3' order='0x10' stat='accCombat'/>
-    <set val='325' order='0x08' stat='pAtkSpd'/>
-    <enchant val='0' order='0x0C' stat='pAtk'/>
-    <enchant val='0' order='0x0C' stat='mAtk'/>
-  </for>
+
+    <stat function='add' value='1' order='8' name='PHYSIC_ATTACK'/>
+    <stat function='add' value='1' order='8' name='MAGIC_ATTACK'/>
+    <stat function='add' value='0' order='8' name='CRITICAL_RATE'/>
+    <stat function='add' value='-3' order='16' name='ACCURACY'/>
+    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
 </item>
 <item id='7575' name="draconic_bow">
-  <for>
-    <set val='581' order='0x08' stat='pAtk'/>
-    <set val='132' order='0x08' stat='mAtk'/>
-    <set val='12' order='0x08' stat='rCrit'/>
-    <add val='-3' order='0x10' stat='accCombat'/>
-    <set val='293' order='0x08' stat='pAtkSpd'/>
-    <enchant val='0' order='0x0C' stat='pAtk'/>
-    <enchant val='0' order='0x0C' stat='mAtk'/>
-  </for>
+
+    <stat function='add' value='581' order='8' name='PHYSIC_ATTACK'/>
+    <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
+    <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+    <stat function='add' value='-3' order='16' name='ACCURACY'/>
+    <stat function='add' value='293' order='8' name='PHYSIC_ATTACK_SPEED'/>
+    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
 </item>
 <item id='7576' name="draconic_bow_cheap_shot">
-  <for>
-    <set val='581' order='0x08' stat='pAtk'/>
-    <set val='132' order='0x08' stat='mAtk'/>
-    <set val='12' order='0x08' stat='rCrit'/>
-    <add val='-3' order='0x10' stat='accCombat'/>
-    <set val='293' order='0x08' stat='pAtkSpd'/>
-    <enchant val='0' order='0x0C' stat='pAtk'/>
-    <enchant val='0' order='0x0C' stat='mAtk'/>
+
+    <stat function='add' value='581' order='8' name='PHYSIC_ATTACK'/>
+    <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
+    <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+    <stat function='add' value='-3' order='16' name='ACCURACY'/>
+    <stat function='add' value='293' order='8' name='PHYSIC_ATTACK_SPEED'/>
+    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
     <!-- SA: Cheap Shot -->
-    <set val='1' order='0x08' stat='MpConsume'> 
+    <stat function='add' value='1' order='8' name='MP_CONSUME'>
        <and>
           <game skill="false" chance="26"/> 
        </and> 
     </set>
     <!-- Enhances damage to target during PvP -->
-    <mul val='1.05' order='0x30' stat='pvpPhysDmg'/>
-    <mul val='1.05' order='0x30' stat='pvpMagicalDmg'/>
-  </for>
+    <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
+    <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
+
 </item>
 <item id='7577' name="draconic_bow_focus">
-  <for>
-    <set val='581' order='0x08' stat='pAtk'/>
-    <set val='132' order='0x08' stat='mAtk'/>
-    <set val='12' order='0x08' stat='rCrit'/>
-    <add val='-3' order='0x10' stat='accCombat'/>
-    <set val='293' order='0x08' stat='pAtkSpd'/>
-    <enchant val='0' order='0x0C' stat='pAtk'/>
-    <enchant val='0' order='0x0C' stat='mAtk'/>
+
+    <stat function='add' value='581' order='8' name='PHYSIC_ATTACK'/>
+    <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
+    <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+    <stat function='add' value='-3' order='16' name='ACCURACY'/>
+    <stat function='add' value='293' order='8' name='PHYSIC_ATTACK_SPEED'/>
+    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
     <!-- SA: Focus -->
-    <add val='88' order='0x40' stat='rCrit'/>
+    <stat function='add' value='88' order='64' name='CRITICAL_RATE'/>
     <!-- Enhances damage to target during PvP -->
-    <mul val='1.05' order='0x30' stat='pvpPhysDmg'/>
-    <mul val='1.05' order='0x30' stat='pvpMagicalDmg'/>
-  </for>
+    <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
+    <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
+
 </item>
 <item id='7578' name="draconic_bow_critical_slow">
-  <for>
-    <set val='581' order='0x08' stat='pAtk'/>
-    <set val='132' order='0x08' stat='mAtk'/>
-    <set val='12' order='0x08' stat='rCrit'/>
-    <add val='-3' order='0x10' stat='accCombat'/>
-    <set val='293' order='0x08' stat='pAtkSpd'/>
-    <enchant val='0' order='0x0C' stat='pAtk'/>
-    <enchant val='0' order='0x0C' stat='mAtk'/>
+
+    <stat function='add' value='581' order='8' name='PHYSIC_ATTACK'/>
+    <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
+    <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+    <stat function='add' value='-3' order='16' name='ACCURACY'/>
+    <stat function='add' value='293' order='8' name='PHYSIC_ATTACK_SPEED'/>
+    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
     <!-- SA: Critical Slow -->
-    <skill onCrit='1' id='3594' lvl='1' chance='7'/> 
+    <skill triggerType='onCrit' id='3594' level='1' chance='7'/>
     <!-- Enhances damage to target during PvP -->
-    <mul val='1.05' order='0x30' stat='pvpPhysDmg'/>
-    <mul val='1.05' order='0x30' stat='pvpMagicalDmg'/>
-  </for>
+    <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
+    <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
+
 </item>
-</list>
+</itemList>

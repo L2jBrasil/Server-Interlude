@@ -12,7 +12,7 @@
         <xs:attribute name="order" type="xs:int" use="required"/>
         <xs:attribute name="function" type="xs:string" use="required"/>
         <xs:attribute name="name" type="xmlTypeEnumStat" use="required"/>
-        <xs:attribute name="value" type="xs:int" use="required"/>
+        <xs:attribute name="value" type="xs:decimal" use="required"/>
     </xs:complexType>
 
     <xs:element name="logic" type="xmlStatConditionOperator"/>
@@ -22,6 +22,8 @@
 
     <xs:element name="condition" type="xmlStatConditionType"/>
     <xs:element name="using" type="xmlStatUsingCondition" substitutionGroup="condition"/>
+    <xs:element name="player" type="xmlStatPlayerCondition" substitutionGroup="condition"/>
+    <xs:element name="game" type="xmlStatGameCondition" substitutionGroup="condition"/>
 
     <xs:complexType name="xmlStatCondition">
         <xs:choice>
@@ -41,6 +43,24 @@
                 <xs:attribute name="slot" type="xs:int"/>
                 <xs:attribute name="item" type="xs:int"/>
                 <xs:attribute name="enchantment" type="xs:int"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="xmlStatPlayerCondition">
+        <xs:complexContent>
+            <xs:extension base="xmlStatConditionType">
+                <xs:attribute name="kind" type="xs:string" use="required"/>
+                <xs:attribute name="value" type="xs:anyType" use="required"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="xmlStatGameCondition">
+        <xs:complexContent>
+            <xs:extension base="xmlStatConditionType">
+                <xs:attribute name="kind" type="xs:string" use="required"/>
+                <xs:attribute name="value" type="xs:anyType" use="required"/>
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
@@ -96,13 +116,13 @@
             <xs:enumeration value="MAGIC_DEFENCE"/>
             <xs:enumeration value="PHYSIC_ATTACK"/>
             <xs:enumeration value="MAGIC_ATTACK"/>
-            <xs:enumeration value="POWER_ATTACK_SPEED"/>
+            <xs:enumeration value="PHYSIC_ATTACK_SPEED"/>
             <xs:enumeration value="MAGIC_ATTACK_SPEED"/>
             <xs:enumeration value="MAGIC_REUSE_RATE"/>
             <xs:enumeration value="SHIELD_DEFENCE"/>
             <xs:enumeration value="CRITICAL_DAMAGE"/>
-            <xs:enumeration value="PVP_PHYSICAL_DMG"/>
-            <xs:enumeration value="PVP_MAGICAL_DMG"/>
+            <xs:enumeration value="PVP_PHYSIC_DAMAGE"/>
+            <xs:enumeration value="PVP_MAGIC_DAMAGE"/>
             <xs:enumeration value="PVP_PHYS_SKILL_DMG"/>
             <xs:enumeration value="EVASION_RATE"/>
             <xs:enumeration value="SHIELD_RATE"/>
@@ -112,10 +132,10 @@
             <xs:enumeration value="MCRITICAL_RATE"/>
             <xs:enumeration value="EXPSP_RATE"/>
             <xs:enumeration value="ATTACK_CANCEL"/>
-            <xs:enumeration value="ACCURACY_COMBAT"/>
-            <xs:enumeration value="POWER_ATTACK_RANGE"/>
+            <xs:enumeration value="ACCURACY"/>
+            <xs:enumeration value="PHYSIC_ATTACK_RANGE"/>
             <xs:enumeration value="MAGIC_ATTACK_RANGE"/>
-            <xs:enumeration value="POWER_ATTACK_ANGLE"/>
+            <xs:enumeration value="PHYSIC_ATTACK_ANGLE"/>
             <xs:enumeration value="ATTACK_COUNT_MAX"/>
             <xs:enumeration value="RUN_SPEED"/>
             <xs:enumeration value="WALK_SPEED"/>
@@ -181,7 +201,7 @@
             <xs:enumeration value="PATK_DRAGONS"/>
             <xs:enumeration value="PATK_UNDEAD"/>
             <xs:enumeration value="PDEF_UNDEAD"/>
-            <xs:enumeration value="ATK_REUSE"/>
+            <xs:enumeration value="ATTACK_REUSE"/>
             <xs:enumeration value="INV_LIM"/>
             <xs:enumeration value="WH_LIM"/>
             <xs:enumeration value="FREIGHT_LIM"/>

@@ -1,55 +1,57 @@
 <?xml version='1.0' encoding='utf-8'?>
-<list>
-<item id='945' name="skeleton_buckler">
-  <for>
-    <sub val='8' order='0x10' stat='rEvas'/>
-    <set val='69' order='0x08' stat='sDef'/>
-    <set val='20' order='0x08' stat='rShld'/>
-    <enchant val='0' order='0x0C' stat='pDef'/>
-  </for>
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
+
+  <item id='945' name="skeleton_buckler">
+
+    <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
+    <stat function='add' value='69' order='8' name='SHIELD_DEFENCE'/>
+    <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
+    <stat function='enchant' value='0' order='12' name='PHYSIC_DEFENCE'/>
+
 </item>
 <item id='946' name="skeleton_dagger">
-  <for>
-    <set val='16' order='0x08' stat='pAtk'/>
-    <set val='13' order='0x08' stat='mAtk'/>
-    <set val='12' order='0x08' stat='rCrit'/>
-    <add val='-3' order='0x10' stat='accCombat'/>
-    <set val='433' order='0x08' stat='pAtkSpd'/>
-    <enchant val='0' order='0x0C' stat='pAtk'/>
-    <enchant val='0' order='0x0C' stat='mAtk'/>
-  </for>
+
+    <stat function='add' value='16' order='8' name='PHYSIC_ATTACK'/>
+    <stat function='add' value='13' order='8' name='MAGIC_ATTACK'/>
+    <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+    <stat function='add' value='-3' order='16' name='ACCURACY'/>
+    <stat function='add' value='433' order='8' name='PHYSIC_ATTACK_SPEED'/>
+    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
 </item>
 <item id='975' name="blood_saber">
-  <for>
-    <set val='14' order='0x08' stat='pAtk'/>
-    <set val='11' order='0x08' stat='mAtk'/>
-    <set val='8' order='0x08' stat='rCrit'/>
-    <add val='0' order='0x10' stat='accCombat'/>
-    <set val='379' order='0x08' stat='pAtkSpd'/>
-    <enchant val='0' order='0x0C' stat='pAtk'/>
-    <enchant val='0' order='0x0C' stat='mAtk'/>
-  </for>
+
+    <stat function='add' value='14' order='8' name='PHYSIC_ATTACK'/>
+    <stat function='add' value='11' order='8' name='MAGIC_ATTACK'/>
+    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+    <stat function='add' value='0' order='16' name='ACCURACY'/>
+    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
 </item>
 <item id='981' name="red_sunset_sword">
-  <for>
-    <set val='16' order='0x08' stat='pAtk'/>
-    <set val='10' order='0x08' stat='mAtk'/>
-    <set val='8' order='0x08' stat='rCrit'/>
-    <add val='0' order='0x10' stat='accCombat'/>
-    <set val='325' order='0x08' stat='pAtkSpd'/>
-    <enchant val='0' order='0x0C' stat='pAtk'/>
-    <enchant val='0' order='0x0C' stat='mAtk'/>
-  </for>
+
+    <stat function='add' value='16' order='8' name='PHYSIC_ATTACK'/>
+    <stat function='add' value='10' order='8' name='MAGIC_ATTACK'/>
+    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+    <stat function='add' value='0' order='16' name='ACCURACY'/>
+    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
 </item>
 <item id='989' name="eldritch_dagger">
-  <for>
-    <set val='11' order='0x08' stat='pAtk'/>
-    <set val='10' order='0x08' stat='mAtk'/>
-    <set val='12' order='0x08' stat='rCrit'/>
-    <add val='-3' order='0x10' stat='accCombat'/>
-    <set val='433' order='0x08' stat='pAtkSpd'/>
-    <enchant val='0' order='0x0C' stat='pAtk'/>
-    <enchant val='0' order='0x0C' stat='mAtk'/>
-  </for>
+
+    <stat function='add' value='11' order='8' name='PHYSIC_ATTACK'/>
+    <stat function='add' value='10' order='8' name='MAGIC_ATTACK'/>
+    <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+    <stat function='add' value='-3' order='16' name='ACCURACY'/>
+    <stat function='add' value='433' order='8' name='PHYSIC_ATTACK_SPEED'/>
+    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
 </item>
-</list>
+</itemList>

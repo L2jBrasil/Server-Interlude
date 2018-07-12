@@ -1,71 +1,72 @@
 <?xml version='1.0' encoding='utf-8'?>
-<list>
-<item id='5217' name="wolf_level_75_weapon">
-  <for>
-    <add val='194' order='0x10' stat='pAtk'/>
-    <add val='136' order='0x10' stat='mAtk'/>
-    <set val='80' order='0x08' stat='rCrit'/>
-    <set val='304' order='0x08' stat='pAtkSpd'/>
-  </for>
-</item>
-<item id='5233' name="keshanberk*keshanberk">
-  <for>
-    <set val='259' order='0x08' stat='pAtk'/>
-    <set val='107' order='0x08' stat='mAtk'/>
-    <set val='8' order='0x08' stat='rCrit'/>
-    <add val='0' order='0x10' stat='accCombat'/>
-    <set val='325' order='0x08' stat='pAtkSpd'/>
-    <enchant val='0' order='0x0C' stat='pAtk'/>
-    <enchant val='0' order='0x0C' stat='mAtk'/>
-    <mul val='1.08' order='0x30' stat='pAtkSpd'>
-      <and>
-  	    <using slotitem="5233;14;4"/>
-  	  </and>
-  	</mul>
-  	<!-- Enhances damage to target during PvP -->
-    <mul val='1.05' order='0x30' stat='pvpPhysDmg'/>
-    <mul val='1.05' order='0x30' stat='pvpMagicalDmg'/>
-  </for>
-</item>
-<item id='5284' name="zweihander">
-  <for>
-    <set val='38' order='0x08' stat='pAtk'/>
-    <set val='21' order='0x08' stat='mAtk'/>
-    <set val='8' order='0x08' stat='rCrit'/>
-    <add val='0' order='0x10' stat='accCombat'/>
-    <set val='325' order='0x08' stat='pAtkSpd'/>
-    <enchant val='0' order='0x0C' stat='pAtk'/>
-    <enchant val='0' order='0x0C' stat='mAtk'/>
-  </for>
-</item>
-<item id='5285' name="heavy_sword">
-  <for>
-    <set val='49' order='0x08' stat='pAtk'/>
-    <set val='26' order='0x08' stat='mAtk'/>
-    <set val='8' order='0x08' stat='rCrit'/>
-    <add val='0' order='0x10' stat='accCombat'/>
-    <set val='325' order='0x08' stat='pAtkSpd'/>
-    <enchant val='0' order='0x0C' stat='pAtk'/>
-    <enchant val='0' order='0x0C' stat='mAtk'/>
-  </for>
-</item>
-<item id='5286' name="berserker_blade">
-  <for>
-    <set val='190' order='0x08' stat='pAtk'/>
-    <set val='83' order='0x08' stat='mAtk'/>
-    <set val='8' order='0x08' stat='rCrit'/>
-    <add val='0' order='0x10' stat='accCombat'/>
-    <set val='325' order='0x08' stat='pAtkSpd'/>
-    <enchant val='0' order='0x0C' stat='pAtk'/>
-    <enchant val='0' order='0x0C' stat='mAtk'/>
-  </for>
-</item>
-<item id='5292' name="sealed_dark_crystal_shield">
-  <for>
-    <sub val='8' order='0x10' stat='rEvas'/>
-    <set val='243' order='0x08' stat='sDef'/>
-    <set val='20' order='0x08' stat='rShld'/>
-    <enchant val='0' order='0x0C' stat='sDef'/>
-  </for>
-</item>
-</list>
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://la2j.org"
+          xsi:schemaLocation="http://la2j.org ../item.xsd">
+    <item id='5217' name="wolf_level_75_weapon">
+
+        <stat function='add' value='194' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='136' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='5233' name="keshanberk*keshanberk">
+
+        <stat function='add' value='259' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <stat function='mul' value='1.08' order='48' name='PHYSIC_ATTACK_SPEED'>
+            <conditions>
+                <using kind='slotitem' item='5233' slot='14' enchantment='4'/>
+            </conditions>
+        </stat>
+        <!-- Enhances damage to target during PvP -->
+        <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
+        <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
+
+    </item>
+    <item id='5284' name="zweihander">
+
+        <stat function='add' value='38' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='21' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
+    </item>
+    <item id='5285' name="heavy_sword">
+
+        <stat function='add' value='49' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='26' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
+    </item>
+    <item id='5286' name="berserker_blade">
+
+        <stat function='add' value='190' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='83' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
+    </item>
+    <item id='5292' name="sealed_dark_crystal_shield">
+
+        <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
+        <stat function='add' value='243' order='8' name='SHIELD_DEFENCE'/>
+        <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
+        <stat function='enchant' value='0' order='12' name='SHIELD_DEFENCE'/>
+
+    </item>
+</itemList>
