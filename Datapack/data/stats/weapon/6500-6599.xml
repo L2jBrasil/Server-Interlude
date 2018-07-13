@@ -1,401 +1,402 @@
 <?xml version='1.0' encoding='utf-8'?>
-<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"           xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
-<item id='6529' name="baby_duck_rod">
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://la2j.org"
+          xsi:schemaLocation="http://la2j.org ../item.xsd">
+    <item id='6529' name="baby_duck_rod">
 
-    <stat function='add' value='1' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='1' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='0' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <stat function='add' value='1' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='1' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='0' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
 
-</item>
-<item id='6530' name="albatross_rod">
+    </item>
+    <item id='6530' name="albatross_rod">
 
-    <stat function='add' value='1' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='1' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='0' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <stat function='add' value='1' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='1' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='0' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
 
-</item>
-<item id='6531' name="pelican_rod">
+    </item>
+    <item id='6531' name="pelican_rod">
 
-    <stat function='add' value='1' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='1' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='0' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <stat function='add' value='1' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='1' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='0' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
 
-</item>
-<item id='6532' name="kingfisher_rod">
+    </item>
+    <item id='6532' name="kingfisher_rod">
 
-    <stat function='add' value='1' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='1' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='0' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <stat function='add' value='1' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='1' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='0' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
 
-</item>
-<item id='6533' name="cygnus_pole">
+    </item>
+    <item id='6533' name="cygnus_pole">
 
-    <stat function='add' value='1' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='1' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='0' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <stat function='add' value='1' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='1' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='0' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
 
-</item>
-<item id='6534' name="triton_pole">
+    </item>
+    <item id='6534' name="triton_pole">
 
-    <stat function='add' value='1' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='1' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='0' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <stat function='add' value='1' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='1' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='0' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
 
-</item>
-<item id='6579' name="arcana_mace">
+    </item>
+    <item id='6579' name="arcana_mace">
 
-    <stat function='add' value='225' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='175' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <stat function='add' value='225' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='175' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
 
-</item>
-<item id='6580' name="tallum_blade*dark_legions_edge">
+    </item>
+    <item id='6580' name="tallum_blade*dark_legions_edge">
 
-    <stat function='add' value='342' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <stat function='mul' value='1.15' order='48' name='MAX_HP'>
-		<and>
-			<conditions> <using kind='slotitem' item='6580' slot='14' enchantment='4'/> </conditions>
-		</and>
-	</mul>
-	<stat function='mul' value='1.2' order='48' name='MAX_MP'>
-		<and>
-			<conditions> <using kind='slotitem' item='6580' slot='14' enchantment='4'/> </conditions>
-		</and>
-	</mul>
-    <stat function='mul' value='1.3' order='48' stat='maxCp'>
-		<and>
-			<conditions> <using kind='slotitem' item='6580' slot='14' enchantment='4'/> </conditions>
-		</and>
-	</mul>
-	<!-- Enhances damage to target during PvP -->
-    <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
-    <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
+        <stat function='add' value='342' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <stat function='mul' value='1.15' order='48' name='MAX_HP'>
+            <conditions>
+                <using kind='slotitem' item='6580' slot='14' enchantment='4'/>
+            </conditions>
+        </stat>
+        <stat function='mul' value='1.2' order='48' name='MAX_MP'>
+            <conditions>
+                <using kind='slotitem' item='6580' slot='14' enchantment='4'/>
+            </conditions>
+        </stat>
+        <stat function='mul' value='1.3' order='48' name='MAX_CP'>
+            <conditions>
+                <using kind='slotitem' item='6580' slot='14' enchantment='4'/>
+            </conditions>
+        </stat>
+        <!-- Enhances damage to target during PvP -->
+        <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
+        <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
 
-</item>
-<item id='6581' name="forgotten_blade_haste">
+    </item>
+    <item id='6581' name="forgotten_blade_haste">
 
-    <stat function='add' value='281' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Haste -->
-    <stat function='mul' value='1.07' order='48' name='PHYSIC_ATTACK_SPEED'/>
-    <!-- Enhances damage to target during PvP -->
-    <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
-    <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
+        <stat function='add' value='281' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Haste -->
+        <stat function='mul' value='1.07' order='48' name='PHYSIC_ATTACK_SPEED'/>
+        <!-- Enhances damage to target during PvP -->
+        <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
+        <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
 
-</item>
-<item id='6582' name="forgotten_blade_health">
+    </item>
+    <item id='6582' name="forgotten_blade_health">
 
-    <stat function='add' value='281' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Health -->
-    <stat function='mul' value='1.25' order='48' name='MAX_HP'/>
-    <!-- Enhances damage to target during PvP -->
-    <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
-    <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
+        <stat function='add' value='281' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Health -->
+        <stat function='mul' value='1.25' order='48' name='MAX_HP'/>
+        <!-- Enhances damage to target during PvP -->
+        <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
+        <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
 
-</item>
-<item id='6583' name="forgotten_blade_focus">
+    </item>
+    <item id='6583' name="forgotten_blade_focus">
 
-    <stat function='add' value='281' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Focus -->
-    <stat function='add' value='84' order='64' name='CRITICAL_RATE'/>
-    <!-- Enhances damage to target during PvP -->
-    <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
-    <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
+        <stat function='add' value='281' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Focus -->
+        <stat function='add' value='84' order='64' name='CRITICAL_RATE'/>
+        <!-- Enhances damage to target during PvP -->
+        <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
+        <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
 
-</item>
-<item id='6584' name="basalt_battlehammer_hp_drain">
+    </item>
+    <item id='6584' name="basalt_battlehammer_hp_drain">
 
-    <stat function='add' value='281' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: HP Drain -->
-    <stat function='add' value='3' order='64' stat='absorbDam'/>
-    <!-- Enhances damage to target during PvP -->
-    <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
-    <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
+        <stat function='add' value='281' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: HP Drain -->
+        <stat function='add' value='3' order='64' name='ABSORB_DAMAGE_PERCENT'/>
+        <!-- Enhances damage to target during PvP -->
+        <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
+        <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
 
-</item>
-<item id='6585' name="basalt_battlehammer_health">
+    </item>
+    <item id='6585' name="basalt_battlehammer_health">
 
-    <stat function='add' value='281' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Health -->
-    <stat function='mul' value='1.25' order='48' name='MAX_HP'/>
-    <!-- Enhances damage to target during PvP -->
-    <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
-    <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
+        <stat function='add' value='281' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Health -->
+        <stat function='mul' value='1.25' order='48' name='MAX_HP'/>
+        <!-- Enhances damage to target during PvP -->
+        <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
+        <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
 
-</item>
-<item id='6586' name="basalt_battlehammer_hp_regeneration">
+    </item>
+    <item id='6586' name="basalt_battlehammer_hp_regeneration">
 
-    <stat function='add' value='281' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: HP Regeneration -->
-    <stat function='add' value='2.04' order='64' stat='regHp'/>
-    <!-- Enhances damage to target during PvP -->
-    <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
-    <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
+        <stat function='add' value='281' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: HP Regeneration -->
+        <stat function='add' value='2.04' order='64' name='REGENERATE_HP_RATE'/>
+        <!-- Enhances damage to target during PvP -->
+        <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
+        <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
 
-</item>
-<item id='6587' name="imperial_staff_empower">
+    </item>
+    <item id='6587' name="imperial_staff_empower">
 
-    <stat function='add' value='274' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='175' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Empower -->
-    <stat function='add' value='60' order='64' name='MAGIC_ATTACK'/>
-    <!-- Enhances damage to target during PvP -->
-    <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
-    <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
+        <stat function='add' value='274' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='175' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Empower -->
+        <stat function='add' value='60' order='64' name='MAGIC_ATTACK'/>
+        <!-- Enhances damage to target during PvP -->
+        <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
+        <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
 
-</item>
-<item id='6588' name="imperial_staff_mp_regeneration">
+    </item>
+    <item id='6588' name="imperial_staff_mp_regeneration">
 
-    <stat function='add' value='274' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='175' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: MP Regeneration -->
-    <stat function='add' value='0.54' order='64' stat='regMp'/>
-    <!-- Enhances damage to target during PvP -->
-    <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
-    <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
+        <stat function='add' value='274' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='175' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: MP Regeneration -->
+        <stat function='add' value='0.54' order='64' name='REGENERATE_MP_RATE'/>
+        <!-- Enhances damage to target during PvP -->
+        <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
+        <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
 
-</item>
-<item id='6589' name="imperial_staff_magic_hold">
+    </item>
+    <item id='6589' name="imperial_staff_magic_hold">
 
-    <stat function='add' value='274' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='175' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- Magic Hold -->
-    <skill triggerType='onCast' id='1201' level='1' chance='10'/>
-    <!-- Enhances damage to target during PvP -->
-    <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
-    <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
+        <stat function='add' value='274' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='175' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- Enhances damage to target during PvP -->
+        <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
+        <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
+        <!-- Magic Hold -->
+        <skill triggerType='onCast' id='1201' chance='10'/>
 
-</item>
-<item id='6590' name="angel_slayer__crt._damage">
+    </item>
+    <item id='6590' name="angel_slayer__crt._damage">
 
-    <stat function='add' value='246' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='433' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Critical Damage -->
-    <stat function='add' value='265' order='64' name='CRITICAL_DAMAGE'/>
-    <!-- Enhances damage to target during PvP -->
-    <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
-    <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
+        <stat function='add' value='246' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='433' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Critical Damage -->
+        <stat function='add' value='265' order='64' name='CRITICAL_DAMAGE'/>
+        <!-- Enhances damage to target during PvP -->
+        <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
+        <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
 
-</item>
-<item id='6591' name="angel_slayer__hp_drain">
+    </item>
+    <item id='6591' name="angel_slayer__hp_drain">
 
-    <stat function='add' value='246' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='433' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: HP Drain -->
-    <stat function='add' value='3' order='64' stat='absorbDam'/>
-    <!-- Enhances damage to target during PvP -->
-    <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
-    <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
+        <stat function='add' value='246' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='433' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: HP Drain -->
+        <stat function='add' value='3' order='64' name='ABSORB_DAMAGE_PERCENT'/>
+        <!-- Enhances damage to target during PvP -->
+        <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
+        <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
 
-</item>
-<item id='6592' name="angel_slayer__haste">
+    </item>
+    <item id='6592' name="angel_slayer__haste">
 
-    <stat function='add' value='246' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='433' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Haste -->
-    <stat function='mul' value='1.07' order='48' name='PHYSIC_ATTACK_SPEED'/>
-    <!-- Enhances damage to target during PvP -->
-    <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
-    <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
+        <stat function='add' value='246' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='433' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Haste -->
+        <stat function='mul' value='1.07' order='48' name='PHYSIC_ATTACK_SPEED'/>
+        <!-- Enhances damage to target during PvP -->
+        <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
+        <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
 
-</item>
-<item id='6593' name="shining_bow_cheap_shot">
+    </item>
+    <item id='6593' name="shining_bow_cheap_shot">
 
-    <stat function='add' value='581' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='293' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <stat function='add' value='581' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='293' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
 
-</item>
-<item id='6594' name="shining_bow_focus">
+    </item>
+    <item id='6594' name="shining_bow_focus">
 
-    <stat function='add' value='581' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='293' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Focus -->
-    <stat function='add' value='87' order='64' name='CRITICAL_RATE'/>
+        <stat function='add' value='581' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='293' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Focus -->
+        <stat function='add' value='87' order='64' name='CRITICAL_RATE'/>
 
-</item>
-<item id='6595' name="shining_bow_crt._slow">
+    </item>
+    <item id='6595' name="shining_bow_crt._slow">
 
-    <stat function='add' value='581' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='293' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <stat function='add' value='581' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='293' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
 
-</item>
-<item id='6596' name="dragon_hunter_axe_hp_regeneration">
+    </item>
+    <item id='6596' name="dragon_hunter_axe_hp_regeneration">
 
-    <stat function='add' value='342' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: HP Regeneration -->
-    <stat function='add' value='2.04' order='64' stat='regHp'/>
-    <!-- Enhances damage to target during PvP -->
-    <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
-    <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
+        <stat function='add' value='342' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: HP Regeneration -->
+        <stat function='add' value='2.04' order='64' name='REGENERATE_HP_RATE'/>
+        <!-- Enhances damage to target during PvP -->
+        <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
+        <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
 
-</item>
-<item id='6597' name="dragon_hunter_axe_health">
+    </item>
+    <item id='6597' name="dragon_hunter_axe_health">
 
-    <stat function='add' value='342' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Health -->
-    <stat function='mul' value='1.25' order='48' name='MAX_HP'/>
-    <!-- Enhances damage to target during PvP -->
-    <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
-    <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
+        <stat function='add' value='342' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Health -->
+        <stat function='mul' value='1.25' order='48' name='MAX_HP'/>
+        <!-- Enhances damage to target during PvP -->
+        <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
+        <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
 
-</item>
-<item id='6598' name="dragon_hunter_axe_hp_drain">
+    </item>
+    <item id='6598' name="dragon_hunter_axe_hp_drain">
 
-    <stat function='add' value='342' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: HP Drain -->
-    <stat function='add' value='3' order='64' stat='absorbDam'/>
-    <!-- Enhances damage to target during PvP -->
-    <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
-    <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
+        <stat function='add' value='342' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: HP Drain -->
+        <stat function='add' value='3' order='64' name='ABSORB_DAMAGE_PERCENT'/>
+        <!-- Enhances damage to target during PvP -->
+        <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
+        <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
 
-</item>
-<item id='6599' name="saint_spear__health">
+    </item>
+    <item id='6599' name="saint_spear__health">
 
-    <stat function='add' value='281' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='66' order='8' name='PHYSIC_ATTACK_RANGE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Health -->
-    <stat function='mul' value='1.25' order='48' name='MAX_HP'/>
-    <!-- Enhances damage to target during PvP -->
-    <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
-    <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
+        <stat function='add' value='281' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='66' order='8' name='PHYSIC_ATTACK_RANGE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Health -->
+        <stat function='mul' value='1.25' order='48' name='MAX_HP'/>
+        <!-- Enhances damage to target during PvP -->
+        <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
+        <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
 
-</item>
+    </item>
 </itemList>

@@ -1,22 +1,23 @@
 <?xml version='1.0' encoding='utf-8'?>
-<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"           xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
-<item id='3439' name="shining_canine">
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://la2j.org"
+          xsi:schemaLocation="http://la2j.org ../item.xsd">
+    <item id='3439' name="shining_canine">
 
-    <stat function='add' value='7' order='16' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='8' order='16' name='MAGIC_ATTACK'/>
-    <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='add' value='7' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='8' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
 
-</item>
-<item id='3471' name="cybellins_dagger">
+    </item>
+    <item id='3471' name="cybellins_dagger">
 
-    <stat function='add' value='10' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='9' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='433' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <stat function='add' value='10' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='9' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='433' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
 
-</item>
+    </item>
 </itemList>

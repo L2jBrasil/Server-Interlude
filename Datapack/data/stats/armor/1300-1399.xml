@@ -2,109 +2,109 @@
 
 <itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
-    
-<item id='1308' name="Compound Scale Mail">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='51'/>
+    <item id='1308' name="Compound Scale Mail">
 
-</item>
-<item id='1309' name="Mithril Breastplate">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='51'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='51'/>
+    </item>
+    <item id='1309' name="Mithril Breastplate">
 
-</item>
-<item id='1310' name="Tunic of Magic">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='51'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='51'/>
-    <stat function='add'  order='96' name='MAX_MP' value='96'/>
+    </item>
+    <item id='1310' name="Tunic of Magic">
 
-</item>
-<item id='1311' name="Puma Skin Shirt">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='51'/>
+        <stat function='add' order='96' name='MAX_MP' value='96'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='51'/>
+    </item>
+    <item id='1311' name="Puma Skin Shirt">
 
-</item>
-<item id='1312' name="White Tunic">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='51'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='51'/>
-    <stat function='add'  order='96' name='MAX_MP' value='142'/>
+    </item>
+    <item id='1312' name="White Tunic">
 
-</item>
-<item id='1313' name="Compound Scale Gaiters">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='51'/>
+        <stat function='add' order='96' name='MAX_MP' value='142'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='32'/>
+    </item>
+    <item id='1313' name="Compound Scale Gaiters">
 
-</item>
-<item id='1314' name="Mithril Gaiters">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='32'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='32'/>
+    </item>
+    <item id='1314' name="Mithril Gaiters">
 
-</item>
-<item id='1315' name="Stockings of Magic">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='32'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='32'/>
-    <stat function='add'  order='96' name='MAX_MP' value='60'/>
+    </item>
+    <item id='1315' name="Stockings of Magic">
 
-</item>
-<item id='1316' name="Puma Skin Gaiters">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='32'/>
+        <stat function='add' order='96' name='MAX_MP' value='60'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='32'/>
+    </item>
+    <item id='1316' name="Puma Skin Gaiters">
 
-</item>
-<item id='1317' name="Dark Stockings">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='32'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='32'/>
-    <stat function='add'  order='96' name='MAX_MP' value='79'/>
+    </item>
+    <item id='1317' name="Dark Stockings">
 
-</item>
-<item id='1318' name="Gloves">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='32'/>
+        <stat function='add' order='96' name='MAX_MP' value='79'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='14'/>
+    </item>
+    <item id='1318' name="Gloves">
 
-</item>
-<item id='1319' name="Leather Gloves">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='14'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='14'/>
+    </item>
+    <item id='1319' name="Leather Gloves">
 
-</item>
-<item id='1320' name="Excellent Leather Gloves">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='14'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='14'/>
+    </item>
+    <item id='1320' name="Excellent Leather Gloves">
 
-</item>
-<item id='1321' name="Rip Gauntlets">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='14'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='14'/>
+    </item>
+    <item id='1321' name="Rip Gauntlets">
 
-</item>
-<item id='1322' name="Bracer">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='14'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='14'/>
+    </item>
+    <item id='1322' name="Bracer">
 
-</item>
-<item id='1323' name="Leather Shoes">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='14'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='14'/>
+    </item>
+    <item id='1323' name="Leather Shoes">
 
-</item>
-<item id='1324' name="Low Boots">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='14'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='14'/>
+    </item>
+    <item id='1324' name="Low Boots">
 
-</item>
-<item id='1325' name="Leather Boots">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='14'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='14'/>
+    </item>
+    <item id='1325' name="Leather Boots">
 
-</item>
-<item id='1326' name="Iron Boots">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='14'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='14'/>
+    </item>
+    <item id='1326' name="Iron Boots">
 
-</item>
-<item id='1327' name="Boots">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='14'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='14'/>
+    </item>
+    <item id='1327' name="Boots">
 
-</item>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='14'/>
+
+    </item>
 </itemList>

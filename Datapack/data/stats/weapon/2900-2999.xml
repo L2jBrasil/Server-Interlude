@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
-<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"           xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
-<item id='2915' name="old_knight_sword">
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://la2j.org"
+          xsi:schemaLocation="http://la2j.org ../item.xsd">
+    <item id='2915' name="old_knight_sword">
 
-    <stat function='add' value='24' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='17' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <stat function='add' value='24' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='17' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
 
-</item>
+    </item>
 </itemList>

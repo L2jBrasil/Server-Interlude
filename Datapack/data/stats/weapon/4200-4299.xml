@@ -1,90 +1,91 @@
 <?xml version='1.0' encoding='utf-8'?>
-<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"           xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
-<item id='4202' name="chrono_cithara">
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://la2j.org"
+          xsi:schemaLocation="http://la2j.org ../item.xsd">
+    <item id='4202' name="chrono_cithara">
 
-    <stat function='add' value='1' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='1' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <stat function='add' value='1' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='1' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
 
-</item>
-<item id='4219' name="dream_sword">
+    </item>
+    <item id='4219' name="dream_sword">
 
-    <stat function='add' value='31' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='21' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <stat function='add' value='31' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='21' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
 
-</item>
-<item id='4220' name="dream_knife">
+    </item>
+    <item id='4220' name="dream_knife">
 
-    <stat function='add' value='27' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='21' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='433' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <stat function='add' value='27' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='21' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='433' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
 
-</item>
-<item id='4221' name="ubiquitous_axe">
+    </item>
+    <item id='4221' name="ubiquitous_axe">
 
-    <stat function='add' value='31' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='21' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <stat function='add' value='31' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='21' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
 
-</item>
-<item id='4222' name="dream_shield">
+    </item>
+    <item id='4222' name="dream_shield">
 
-    <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
-    <stat function='add' value='90' order='8' name='SHIELD_DEFENCE'/>
-    <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_DEFENCE'/>
+        <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
+        <stat function='add' value='90' order='8' name='SHIELD_DEFENCE'/>
+        <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_DEFENCE'/>
 
-</item>
-<item id='4223' name="ubiquitous_shield">
+    </item>
+    <item id='4223' name="ubiquitous_shield">
 
-    <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
-    <stat function='add' value='90' order='8' name='SHIELD_DEFENCE'/>
-    <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_DEFENCE'/>
+        <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
+        <stat function='add' value='90' order='8' name='SHIELD_DEFENCE'/>
+        <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_DEFENCE'/>
 
-</item>
-<item id='4233' name="knuckle_duster">
+    </item>
+    <item id='4233' name="knuckle_duster">
 
-    <stat function='add' value='148' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='68' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <stat function='add' value='148' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='68' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
 
-</item>
-<item id='4237' name="hatchlings_level_65_weapon">
+    </item>
+    <item id='4237' name="hatchlings_level_65_weapon">
 
-    <stat function='add' value='24' order='16' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='32' order='16' name='MAGIC_ATTACK'/>
-    <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='add' value='24' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='32' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
 
-</item>
-<item id='4238' name="hatchlings_level_75_weapon">
+    </item>
+    <item id='4238' name="hatchlings_level_75_weapon">
 
-    <stat function='add' value='31' order='16' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='43' order='16' name='MAGIC_ATTACK'/>
-    <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='add' value='31' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='43' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
 
-</item>
+    </item>
 </itemList>

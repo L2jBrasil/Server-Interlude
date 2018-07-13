@@ -1,46 +1,47 @@
 <?xml version='1.0' encoding='utf-8'?>
-<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"           xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
-<item id='9129' name="Shadow Weapon: Shield of Nightmare">
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://la2j.org"
+          xsi:schemaLocation="http://la2j.org ../item.xsd">
+    <item id='9129' name="Shadow Weapon: Shield of Nightmare">
 
-    <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
-    <stat function='add' value='256' order='8' name='SHIELD_DEFENCE'/>
-    <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
+        <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
+        <stat function='add' value='256' order='8' name='SHIELD_DEFENCE'/>
+        <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
 
-</item>
-<item id='9136' name="Sword of Valakas (1-Handed)">
+    </item>
+    <item id='9136' name="Sword of Valakas (1-Handed)">
 
-    <stat function='add' value='156' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='83' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='add' value='156' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='83' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
 
-</item>
-<item id='9137' name="Sword of Valakas (2-Handed)">
+    </item>
+    <item id='9137' name="Sword of Valakas (2-Handed)">
 
-    <stat function='add' value='78' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='39' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='add' value='78' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='39' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
 
-</item>
-<item id='9140' name="Cupid\'s Bow">
+    </item>
+    <item id='9140' name="Cupid\'s Bow">
 
-    <stat function='add' value='1' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='1' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='293' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='add' value='1' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='1' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='293' order='8' name='PHYSIC_ATTACK_SPEED'/>
 
-</item>
-<item id='9141' name="Cupid\'s Bow - Event Use">
+    </item>
+    <item id='9141' name="Cupid\'s Bow - Event Use">
 
-    <stat function='add' value='1' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='1' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='293' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='add' value='1' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='1' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='293' order='8' name='PHYSIC_ATTACK_SPEED'/>
 
-</item>
+    </item>
 </itemList>

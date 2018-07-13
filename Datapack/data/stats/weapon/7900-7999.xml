@@ -1,45 +1,46 @@
 <?xml version='1.0' encoding='utf-8'?>
-<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"           xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
-<item id='7900' name="ice_storm_hammer">
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://la2j.org"
+          xsi:schemaLocation="http://la2j.org ../item.xsd">
+    <item id='7900' name="ice_storm_hammer">
 
-    <stat function='add' value='213' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='91' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <stat function='add' value='213' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='91' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
 
-</item>
-<item id='7901' name="star_buster">
+    </item>
+    <item id='7901' name="star_buster">
 
-    <stat function='add' value='236' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='99' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <stat function='add' value='236' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='99' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
 
-</item>
-<item id='7902' name="doom_crusher">
+    </item>
+    <item id='7902' name="doom_crusher">
 
-    <stat function='add' value='282' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='114' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <stat function='add' value='282' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='114' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
 
-</item>
-<item id='7903' name="(monster_only)frintessa_follower_calibur">
+    </item>
+    <item id='7903' name="(monster_only)frintessa_follower_calibur">
 
-    <stat function='add' value='78' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='39' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='add' value='78' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='39' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
 
-</item>
+    </item>
 </itemList>

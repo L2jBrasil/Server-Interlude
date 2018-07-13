@@ -3,136 +3,136 @@
 <itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
 
-<item id='6656' name="Earring of Antharas">
-  
-    <stat function='add' value='71' order='16' name='MAGIC_DEFENCE'/>
-    <stat function='add' value='31' order='64' name='MAX_MP'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_DEFENCE'/>
-   
-</item>
-<item id='6657' name="Necklace of Valakas">
-  
-    <stat function='add' value='95' order='16' name='MAGIC_DEFENCE'/>
-    <stat function='add' value='42' order='64' name='MAX_MP'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_DEFENCE'/>
-  
-</item>
-<item id='6658' name="Ring of Baium">
-  
-    <stat function='add' value='48' order='16' name='MAGIC_DEFENCE'/>
-    <stat function='add' value='21' order='64' name='MAX_MP'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_DEFENCE'/>
-  
-</item>
-<item id='6659' name="Zaken's Earring">
-  
-    <stat function='add' value='71' order='16' name='MAGIC_DEFENCE'/>
-    <stat function='add' value='31' order='64' name='MAX_MP'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_DEFENCE'/>
-  
-</item>
-<item id='6660' name="Ring of Queen Ant">
-  
-    <stat function='add' value='48' order='16' name='MAGIC_DEFENCE'/>
-    <stat function='add' value='21' order='64' name='MAX_MP'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_DEFENCE'/>
-  
-</item>
-<item id='6661' name="Earring of Orfen">
-  
-    <stat function='add' value='71' order='16' name='MAGIC_DEFENCE'/>
-    <stat function='add' value='31' order='64' name='MAX_MP'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_DEFENCE'/>
-  
-</item>
-<item id='6662' name="Ring of Core">
-  
-    <stat function='add' value='48' order='16' name='MAGIC_DEFENCE'/>
-    <stat function='add' value='21' order='64' name='MAX_MP'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_DEFENCE'/>
-  
-</item>
-<item id='6674' name="Sealed Imperial Crusader Breastplate">
-  
-    <stat function='add' value='193' order='16' name='PHYSIC_DEFENCE'/>
-  
-</item>
-<item id='6675' name="Sealed Imperial Crusader Gaiters">
-  
-    <stat function='add' value='121' order='16' name='PHYSIC_DEFENCE'/>
-  
-</item>
-<item id='6676' name="Sealed Imperial Crusader Gauntlet">
-  
-    <stat function='add' value='55' order='16' name='PHYSIC_DEFENCE'/>
-  
-</item>
-<item id='6677' name="Sealed Imperial Crusader Boots">
-  
-    <stat function='add' value='55' order='16' name='PHYSIC_DEFENCE'/>
-  
-</item>
-<item id='6679' name="Sealed Imperial Crusader Helmet">
-  
-    <stat function='add' value='83' order='16' name='PHYSIC_DEFENCE'/>
-  
-</item>
-<item id='6680' name="Sealed Draconic Leather Armor">
-  
-    <stat function='add' value='236' order='16' name='PHYSIC_DEFENCE'/>
-  
-</item>
-<item id='6681' name="Sealed Draconic Leather Glove">
-  
-    <stat function='add' value='55' order='16' name='PHYSIC_DEFENCE'/>
-  
-</item>
-<item id='6682' name="Sealed Draconic Leather Boots">
-  
-    <stat function='add' value='55' order='16' name='PHYSIC_DEFENCE'/>
-  
-</item>
-<item id='6683' name="Sealed Draconic Leather Helmet">
-  
-    <stat function='add' value='83' order='16' name='PHYSIC_DEFENCE'/>
-  
-</item>
-<item id='6684' name="Sealed Major Arcana Robe">
-  
-    <stat function='add' value='157' order='16' name='PHYSIC_DEFENCE'/>
-  
-</item>
-<item id='6685' name="Sealed Major Arcana Glove">
-  
-    <stat function='add' value='55' order='16' name='PHYSIC_DEFENCE'/>
-  
-</item>
-<item id='6686' name="Sealed Major Arcana Boots">
-  
-    <stat function='add' value='55' order='16' name='PHYSIC_DEFENCE'/>
-  
-</item>
-<item id='6687' name="Sealed Major Arcana Circlet">
-  
-    <stat function='add' value='83' order='16' name='PHYSIC_DEFENCE'/>
-  
-</item>
-<item id='6724' name="Sealed Tateossian Earring">
-  
-    <stat function='add' value='68' order='16' name='MAGIC_DEFENCE'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_DEFENCE'/>
-  
-</item>
-<item id='6725' name="Sealed Tateossian Ring">
-  
-    <stat function='add' value='46' order='16' name='MAGIC_DEFENCE'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_DEFENCE'/>
-  
-</item>
-<item id='6726' name="Sealed Tateossian Necklace">
-  
-    <stat function='add' value='91' order='16' name='MAGIC_DEFENCE'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_DEFENCE'/>
-  
-</item>
+    <item id='6656' name="Earring of Antharas">
+
+        <stat function='add' value='71' order='16' name='MAGIC_DEFENCE'/>
+        <stat function='add' value='31' order='64' name='MAX_MP'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_DEFENCE'/>
+
+    </item>
+    <item id='6657' name="Necklace of Valakas">
+
+        <stat function='add' value='95' order='16' name='MAGIC_DEFENCE'/>
+        <stat function='add' value='42' order='64' name='MAX_MP'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_DEFENCE'/>
+
+    </item>
+    <item id='6658' name="Ring of Baium">
+
+        <stat function='add' value='48' order='16' name='MAGIC_DEFENCE'/>
+        <stat function='add' value='21' order='64' name='MAX_MP'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_DEFENCE'/>
+
+    </item>
+    <item id='6659' name="Zaken's Earring">
+
+        <stat function='add' value='71' order='16' name='MAGIC_DEFENCE'/>
+        <stat function='add' value='31' order='64' name='MAX_MP'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_DEFENCE'/>
+
+    </item>
+    <item id='6660' name="Ring of Queen Ant">
+
+        <stat function='add' value='48' order='16' name='MAGIC_DEFENCE'/>
+        <stat function='add' value='21' order='64' name='MAX_MP'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_DEFENCE'/>
+
+    </item>
+    <item id='6661' name="Earring of Orfen">
+
+        <stat function='add' value='71' order='16' name='MAGIC_DEFENCE'/>
+        <stat function='add' value='31' order='64' name='MAX_MP'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_DEFENCE'/>
+
+    </item>
+    <item id='6662' name="Ring of Core">
+
+        <stat function='add' value='48' order='16' name='MAGIC_DEFENCE'/>
+        <stat function='add' value='21' order='64' name='MAX_MP'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_DEFENCE'/>
+
+    </item>
+    <item id='6674' name="Sealed Imperial Crusader Breastplate">
+
+        <stat function='add' value='193' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='6675' name="Sealed Imperial Crusader Gaiters">
+
+        <stat function='add' value='121' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='6676' name="Sealed Imperial Crusader Gauntlet">
+
+        <stat function='add' value='55' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='6677' name="Sealed Imperial Crusader Boots">
+
+        <stat function='add' value='55' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='6679' name="Sealed Imperial Crusader Helmet">
+
+        <stat function='add' value='83' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='6680' name="Sealed Draconic Leather Armor">
+
+        <stat function='add' value='236' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='6681' name="Sealed Draconic Leather Glove">
+
+        <stat function='add' value='55' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='6682' name="Sealed Draconic Leather Boots">
+
+        <stat function='add' value='55' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='6683' name="Sealed Draconic Leather Helmet">
+
+        <stat function='add' value='83' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='6684' name="Sealed Major Arcana Robe">
+
+        <stat function='add' value='157' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='6685' name="Sealed Major Arcana Glove">
+
+        <stat function='add' value='55' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='6686' name="Sealed Major Arcana Boots">
+
+        <stat function='add' value='55' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='6687' name="Sealed Major Arcana Circlet">
+
+        <stat function='add' value='83' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='6724' name="Sealed Tateossian Earring">
+
+        <stat function='add' value='68' order='16' name='MAGIC_DEFENCE'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_DEFENCE'/>
+
+    </item>
+    <item id='6725' name="Sealed Tateossian Ring">
+
+        <stat function='add' value='46' order='16' name='MAGIC_DEFENCE'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_DEFENCE'/>
+
+    </item>
+    <item id='6726' name="Sealed Tateossian Necklace">
+
+        <stat function='add' value='91' order='16' name='MAGIC_DEFENCE'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_DEFENCE'/>
+
+    </item>
 </itemList>

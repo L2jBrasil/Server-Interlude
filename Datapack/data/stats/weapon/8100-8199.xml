@@ -1,674 +1,674 @@
 <?xml version='1.0' encoding='utf-8'?>
-<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"           xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
-<item id='8102' name="sword_of_paagrio_focus">
-
-    <stat function='add' value='169' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='76' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Focus -->
-    <stat function='add' value='77' order='64' name='CRITICAL_RATE'/>
-
-</item>
-<item id='8103' name="sword_of_paagrio_health">
-
-    <stat function='add' value='169' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='76' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Health -->
-    <stat function='mul' value='1.25' order='48' name='MAX_HP'/>
-
-</item>
-<item id='8104' name="sword_of_paagrio_crt._drain">
-
-    <stat function='add' value='169' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='76' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- Critical Drain -->
-    <skill triggerType='onCrit' id='3022' level='1'/>
-
-</item>
-<item id='8105' name="guardian_sword_crt._bleed">
-
-    <stat function='add' value='236' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='99' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- Critical Bleed -->
-    <skill triggerType='onCrit' id='96' level='4' chance='24'/>
-
-</item>
-<item id='8106' name="guardian_sword_health">
-
-    <stat function='add' value='236' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='99' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Health -->
-    <stat function='mul' value='1.25' order='48' name='MAX_HP'/>
-
-</item>
-<item id='8107' name="guardian_sword_crt._drain">
-
-    <stat function='add' value='236' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='99' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- Critical Drain -->
-    <skill triggerType='onCrit' id='3022' level='1'/>
-
-</item>
-<item id='8108' name="infernal_master_haste">
-
-    <stat function='add' value='259' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Haste -->
-    <stat function='mul' value='1.06' order='48' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='8109' name="infernal_master_crt._damage">
-
-    <stat function='add' value='259' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Critical Damage -->
-    <stat function='add' value='297' order='8' name='CRITICAL_DAMAGE'/>
-
-</item>
-<item id='8110' name="infernal_master_focus">
-
-    <stat function='add' value='259' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Focus -->
-    <stat function='add' value='61' order='64' name='CRITICAL_RATE'/>
-
-</item>
-<item id='8111' name="mysterious_sword_acumen">
-
-    <stat function='add' value='85' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='81' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-
-</item>
-<item id='8112' name="mysterious_sword_magic_power">
-
-    <stat function='add' value='85' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='81' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-	<!-- SA: Magic Power -->
-    <stat function='add' value='75' order='64' name='MAGIC_ATTACK'/>
-    <stat function='mul' value='1.15' order='48' name='MP_CONSUME'/>
-
-</item>
-<item id='8113' name="mysterious_sword_magic_weakness">
-
-    <stat function='add' value='85' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='81' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-
-</item>
-<item id='8114' name="ecliptic_sword_empower">
-
-    <stat function='add' value='125' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='111' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Empower -->
-    <stat function='add' value='26' order='64' name='MAGIC_ATTACK'/>
-
-</item>
-<item id='8115' name="ecliptic_sword_magic_power">
-
-    <stat function='add' value='125' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='111' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-	<!-- SA: Magic Power -->
-    <stat function='add' value='112' order='64' name='MAGIC_ATTACK'/>
-    <stat function='mul' value='1.15' order='48' name='MP_CONSUME'/>
-
-</item>
-<item id='8116' name="ecliptic_sword_magic_silence">
-
-    <stat function='add' value='125' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='111' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- Magic Silence -->
-    <skill triggerType='onCast' id='1064' level='1' chance='10'/>
-
-</item>
-<item id='8117' name="wizards_tear_acumen">
-
-    <stat function='add' value='155' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-
-</item>
-<item id='8118' name="wizards_tear_magic_power">
-
-    <stat function='add' value='155' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-	<!-- SA: Magic Power -->
-    <stat function='add' value='139' order='64' name='MAGIC_ATTACK'/>
-    <stat function='mul' value='1.15' order='48' name='MP_CONSUME'/>
-
-</item>
-<item id='8119' name="wizards_tear_conversion">
-
-    <stat function='add' value='155' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Conversion -->
-    <stat function='mul' value='0.6' order='48' name='MAX_HP'/>
-    <stat function='mul' value='1.6' order='48' name='MAX_MP'/>
-
-</item>
-<item id='8120' name="dwarven_hammer_health">
-
-    <stat function='add' value='190' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='83' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Health -->
-    <stat function='mul' value='1.25' order='48' name='MAX_HP'/>
-
-</item>
-<item id='8121' name="dwarven_hammer_anger">
-
-    <stat function='add' value='190' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='83' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Anger -->
-    <stat function='add' value='26' order='64' name='PHYSIC_ATTACK'/>
-    <stat function='mul' value='0.85' order='48' name='MAX_HP'/>
-
-</item>
-<item id='8122' name="dwarven_hammer_crt._bleed">
-
-    <stat function='add' value='190' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='83' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Critical Bleed -->
-    <skill triggerType='onCrit' id='96' level='5' chance='42'/>
-
-</item>
-<item id='8123' name="karik_horn_focus">
-
-    <stat function='add' value='169' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='76' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Focus -->
-    <stat function='add' value='77' order='64' name='CRITICAL_RATE'/>
-
-</item>
-<item id='8124' name="karik_horn_haste">
-
-    <stat function='add' value='169' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='76' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Haste -->
-    <stat function='mul' value='1.07' order='48' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='8125' name="karik_horn_crt.drain">
-
-    <stat function='add' value='169' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='76' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Critical Drain -->
-    <skill triggerType='onCrit' id='3022' level='4'/>
-
-</item>
-<item id='8126' name="destroyer_hammer_health">
-
-    <stat function='add' value='259' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Health -->
-    <stat function='mul' value='1.25' order='48' name='MAX_HP'/>
-
-</item>
-<item id='8127' name="destroyer_hammer_haste">
-
-    <stat function='add' value='259' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Haste -->
-    <stat function='mul' value='1.06' order='48' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='8128' name="destroyer_hammer_crt._drain">
-
-    <stat function='add' value='259' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Critical Drain -->
-    <skill triggerType='onCrit' id='3022' level='4'/>
-
-</item>
-<item id='8129' name="ice_storm_hammer_focus">
-
-    <stat function='add' value='213' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='91' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Focus -->
-    <stat function='add' value='68' order='64' name='CRITICAL_RATE'/>
-
-</item>
-<item id='8130' name="ice_storm_hammer_anger">
-
-    <stat function='add' value='213' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='91' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Anger -->
-    <stat function='add' value='28' order='64' name='PHYSIC_ATTACK'/>
-    <stat function='mul' value='0.85' order='48' name='MAX_HP'/>
-
-</item>
-<item id='8131' name="ice_storm_hammer_crt._bleed">
-
-    <stat function='add' value='213' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='91' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- Critical Bleed -->
-    <skill triggerType='onCrit' id='96' level='5' chance='41'/>
-
-</item>
-<item id='8132' name="star_buster_health">
-
-    <stat function='add' value='236' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='99' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Health -->
-    <stat function='mul' value='1.25' order='48' name='MAX_HP'/>
-
-</item>
-<item id='8133' name="star_buster_haste">
-
-    <stat function='add' value='236' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='99' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Haste -->
-    <stat function='mul' value='1.06' order='48' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='8134' name="star_buster_rsk._focus">
-
-    <stat function='add' value='236' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='99' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Rsk. Focus -->
-    <stat function='add' order='64' name='CRITICAL_RATE' value='99'>
-      <and>        
-        <conditions> <player kind='hp' value='60'/> </conditions>
-      </and>
-    </add>
-
-</item>
-<item id='8135' name="doom_crusher_health">
-
-    <stat function='add' value='282' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='114' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Health -->
-    <stat function='mul' value='1.25' order='48' name='MAX_HP'/>
-
-</item>
-<item id='8136' name="doom_crusher_anger">
-
-    <stat function='add' value='282' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='114' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Anger -->
-    <stat function='mul' value='1.11' order='48' name='PHYSIC_ATTACK'/>
-    <stat function='mul' value='0.85' order='48' name='MAX_HP'/>
-
-</item>
-<item id='8137' name="doom_crusher_rsk._haste">
-
-    <stat function='add' value='282' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='114' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Rsk. Haste -->
-    <stat function='mul' order='48' name='PHYSIC_ATTACK_SPEED' value='1.11'>
-      <and>
-        <conditions> <player kind='hp' value='60'/> </conditions>
-      </and>
-    </mul>
-
-</item>
-<item id='8138' name="ecliptic_axe_conversion">
-
-    <stat function='add' value='125' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='111' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Conversion -->
-    <stat function='mul' value='0.6' order='48' name='MAX_HP'/>
-    <stat function='mul' value='1.6' order='48' name='MAX_MP'/>
-
-</item>
-<item id='8139' name="ecliptic_axe_magic_power">
-
-    <stat function='add' value='125' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='111' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-	<!-- SA: Magic Power -->
-    <stat function='add' value='112' order='64' name='MAGIC_ATTACK'/>
-    <stat function='mul' value='1.15' order='48' name='MP_CONSUME'/>
-
-</item>
-<item id='8140' name="ecliptic_axe_magic_hold">
-
-    <stat function='add' value='125' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='111' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-
-</item>
-<item id='8141' name="spell_breaker_acumen">
-
-    <stat function='add' value='140' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='122' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-
-</item>
-<item id='8142' name="spell_breaker_mental_shield">
-
-    <stat function='add' value='140' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='122' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- Mental Shield -->
-    <skill triggerType='onCast' id='1035' level='2' chance='50'/>
-
-</item>
-<item id='8143' name="spell_breaker_magic_hold">
-
-    <stat function='add' value='140' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='122' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-
-</item>
-<item id='8144' name="kaim_vanuls_bone_mana_up">
-
-    <stat function='add' value='155' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-
-</item>
-<item id='8145' name="kaim_vanuls_bone_magic_silence">
-
-    <stat function='add' value='155' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- Magic Silence -->
-    <skill triggerType='onCast' id='1064' level='1' chance='10'/>
-
-</item>
-<item id='8146' name="kaim_vanuls_bone_conversion">
-
-    <stat function='add' value='155' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- SA: Conversion -->
-    <stat function='mul' value='0.6' order='48' name='MAX_HP'/>
-    <stat function='mul' value='1.6' order='48' name='MAX_MP'/>
-
-</item>
-<item id='8147' name="spiritual_eye_mana_up">
-
-    <stat function='add' value='170' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='143' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-
-</item>
-<item id='8148' name="spiritual_eye_magic_poison">
-
-    <stat function='add' value='170' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='143' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-
-</item>
-<item id='8149' name="spiritual_eye_acumen">
-
-    <stat function='add' value='170' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='143' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-
-</item>
-<item id='8150' name="flaming_dragon_skull_acumen">
-
-    <stat function='add' value='186' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='152' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-
-</item>
-<item id='8151' name="flaming_dragon_skull_magic_power">
-
-    <stat function='add' value='186' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='152' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-	<!-- SA: Magic Power -->
-    <stat function='add' value='167' order='64' name='MAGIC_ATTACK'/>
-    <stat function='mul' value='1.15' order='48' name='MP_CONSUME'/>
-
-</item>
-<item id='8152' name="flaming_dragon_skull_magic_silence">
-
-    <stat function='add' value='186' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='152' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-    <!-- Magic Silence -->
-    <skill triggerType='onCast' id='1064' level='1' chance='10'/>
-
-</item>
-<item id='8190' name="demonic_sword_zariche">
-
-    <stat function='add' value='361' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='137' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-
-</item>
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://la2j.org"
+          xsi:schemaLocation="http://la2j.org ../item.xsd">
+    <item id='8102' name="sword_of_paagrio_focus">
+
+        <stat function='add' value='169' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='76' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Focus -->
+        <stat function='add' value='77' order='64' name='CRITICAL_RATE'/>
+
+    </item>
+    <item id='8103' name="sword_of_paagrio_health">
+
+        <stat function='add' value='169' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='76' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Health -->
+        <stat function='mul' value='1.25' order='48' name='MAX_HP'/>
+
+    </item>
+    <item id='8104' name="sword_of_paagrio_crt._drain">
+
+        <stat function='add' value='169' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='76' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- Critical Drain -->
+        <skill triggerType='onCrit' id='3022'/>
+
+    </item>
+    <item id='8105' name="guardian_sword_crt._bleed">
+
+        <stat function='add' value='236' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='99' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- Critical Bleed -->
+        <skill triggerType='onCrit' id='96' level='4' chance='24'/>
+
+    </item>
+    <item id='8106' name="guardian_sword_health">
+
+        <stat function='add' value='236' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='99' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Health -->
+        <stat function='mul' value='1.25' order='48' name='MAX_HP'/>
+
+    </item>
+    <item id='8107' name="guardian_sword_crt._drain">
+
+        <stat function='add' value='236' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='99' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- Critical Drain -->
+        <skill triggerType='onCrit' id='3022'/>
+
+    </item>
+    <item id='8108' name="infernal_master_haste">
+
+        <stat function='add' value='259' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Haste -->
+        <stat function='mul' value='1.06' order='48' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='8109' name="infernal_master_crt._damage">
+
+        <stat function='add' value='259' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Critical Damage -->
+        <stat function='add' value='297' order='8' name='CRITICAL_DAMAGE'/>
+
+    </item>
+    <item id='8110' name="infernal_master_focus">
+
+        <stat function='add' value='259' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Focus -->
+        <stat function='add' value='61' order='64' name='CRITICAL_RATE'/>
+
+    </item>
+    <item id='8111' name="mysterious_sword_acumen">
+
+        <stat function='add' value='85' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='81' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
+    </item>
+    <item id='8112' name="mysterious_sword_magic_power">
+
+        <stat function='add' value='85' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='81' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Magic Power -->
+        <stat function='add' value='75' order='64' name='MAGIC_ATTACK'/>
+        <stat function='mul' value='1.15' order='48' name='MP_CONSUME'/>
+
+    </item>
+    <item id='8113' name="mysterious_sword_magic_weakness">
+
+        <stat function='add' value='85' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='81' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
+    </item>
+    <item id='8114' name="ecliptic_sword_empower">
+
+        <stat function='add' value='125' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='111' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Empower -->
+        <stat function='add' value='26' order='64' name='MAGIC_ATTACK'/>
+
+    </item>
+    <item id='8115' name="ecliptic_sword_magic_power">
+
+        <stat function='add' value='125' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='111' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Magic Power -->
+        <stat function='add' value='112' order='64' name='MAGIC_ATTACK'/>
+        <stat function='mul' value='1.15' order='48' name='MP_CONSUME'/>
+
+    </item>
+    <item id='8116' name="ecliptic_sword_magic_silence">
+
+        <stat function='add' value='125' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='111' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- Magic Silence -->
+        <skill triggerType='onCast' id='1064' chance='10'/>
+
+    </item>
+    <item id='8117' name="wizards_tear_acumen">
+
+        <stat function='add' value='155' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
+    </item>
+    <item id='8118' name="wizards_tear_magic_power">
+
+        <stat function='add' value='155' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Magic Power -->
+        <stat function='add' value='139' order='64' name='MAGIC_ATTACK'/>
+        <stat function='mul' value='1.15' order='48' name='MP_CONSUME'/>
+
+    </item>
+    <item id='8119' name="wizards_tear_conversion">
+
+        <stat function='add' value='155' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Conversion -->
+        <stat function='mul' value='0.6' order='48' name='MAX_HP'/>
+        <stat function='mul' value='1.6' order='48' name='MAX_MP'/>
+
+    </item>
+    <item id='8120' name="dwarven_hammer_health">
+
+        <stat function='add' value='190' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='83' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Health -->
+        <stat function='mul' value='1.25' order='48' name='MAX_HP'/>
+
+    </item>
+    <item id='8121' name="dwarven_hammer_anger">
+
+        <stat function='add' value='190' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='83' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Anger -->
+        <stat function='add' value='26' order='64' name='PHYSIC_ATTACK'/>
+        <stat function='mul' value='0.85' order='48' name='MAX_HP'/>
+
+    </item>
+    <item id='8122' name="dwarven_hammer_crt._bleed">
+
+        <stat function='add' value='190' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='83' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Critical Bleed -->
+        <skill triggerType='onCrit' id='96' level='5' chance='42'/>
+
+    </item>
+    <item id='8123' name="karik_horn_focus">
+
+        <stat function='add' value='169' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='76' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Focus -->
+        <stat function='add' value='77' order='64' name='CRITICAL_RATE'/>
+
+    </item>
+    <item id='8124' name="karik_horn_haste">
+
+        <stat function='add' value='169' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='76' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Haste -->
+        <stat function='mul' value='1.07' order='48' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='8125' name="karik_horn_crt.drain">
+
+        <stat function='add' value='169' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='76' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Critical Drain -->
+        <skill triggerType='onCrit' id='3022' level='4'/>
+
+    </item>
+    <item id='8126' name="destroyer_hammer_health">
+
+        <stat function='add' value='259' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Health -->
+        <stat function='mul' value='1.25' order='48' name='MAX_HP'/>
+
+    </item>
+    <item id='8127' name="destroyer_hammer_haste">
+
+        <stat function='add' value='259' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Haste -->
+        <stat function='mul' value='1.06' order='48' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='8128' name="destroyer_hammer_crt._drain">
+
+        <stat function='add' value='259' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Critical Drain -->
+        <skill triggerType='onCrit' id='3022' level='4'/>
+
+    </item>
+    <item id='8129' name="ice_storm_hammer_focus">
+
+        <stat function='add' value='213' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='91' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Focus -->
+        <stat function='add' value='68' order='64' name='CRITICAL_RATE'/>
+
+    </item>
+    <item id='8130' name="ice_storm_hammer_anger">
+
+        <stat function='add' value='213' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='91' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Anger -->
+        <stat function='add' value='28' order='64' name='PHYSIC_ATTACK'/>
+        <stat function='mul' value='0.85' order='48' name='MAX_HP'/>
+
+    </item>
+    <item id='8131' name="ice_storm_hammer_crt._bleed">
+
+        <stat function='add' value='213' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='91' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- Critical Bleed -->
+        <skill triggerType='onCrit' id='96' level='5' chance='41'/>
+
+    </item>
+    <item id='8132' name="star_buster_health">
+
+        <stat function='add' value='236' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='99' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Health -->
+        <stat function='mul' value='1.25' order='48' name='MAX_HP'/>
+
+    </item>
+    <item id='8133' name="star_buster_haste">
+
+        <stat function='add' value='236' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='99' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Haste -->
+        <stat function='mul' value='1.06' order='48' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='8134' name="star_buster_rsk._focus">
+
+        <stat function='add' value='236' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='99' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Rsk. Focus -->
+        <stat function='add' order='64' name='CRITICAL_RATE' value='99'>
+            <conditions>
+                <player kind='hp' value='60'/>
+            </conditions>
+        </stat>
+    </item>
+    <item id='8135' name="doom_crusher_health">
+
+        <stat function='add' value='282' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='114' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Health -->
+        <stat function='mul' value='1.25' order='48' name='MAX_HP'/>
+
+    </item>
+    <item id='8136' name="doom_crusher_anger">
+
+        <stat function='add' value='282' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='114' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Anger -->
+        <stat function='mul' value='1.11' order='48' name='PHYSIC_ATTACK'/>
+        <stat function='mul' value='0.85' order='48' name='MAX_HP'/>
+
+    </item>
+    <item id='8137' name="doom_crusher_rsk._haste">
+
+        <stat function='add' value='282' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='114' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Rsk. Haste -->
+        <stat function='mul' order='48' name='PHYSIC_ATTACK_SPEED' value='1.11'>
+            <conditions>
+                <player kind='hp' value='60'/>
+            </conditions>
+        </stat>
+
+    </item>
+    <item id='8138' name="ecliptic_axe_conversion">
+
+        <stat function='add' value='125' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='111' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Conversion -->
+        <stat function='mul' value='0.6' order='48' name='MAX_HP'/>
+        <stat function='mul' value='1.6' order='48' name='MAX_MP'/>
+
+    </item>
+    <item id='8139' name="ecliptic_axe_magic_power">
+
+        <stat function='add' value='125' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='111' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Magic Power -->
+        <stat function='add' value='112' order='64' name='MAGIC_ATTACK'/>
+        <stat function='mul' value='1.15' order='48' name='MP_CONSUME'/>
+
+    </item>
+    <item id='8140' name="ecliptic_axe_magic_hold">
+
+        <stat function='add' value='125' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='111' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
+    </item>
+    <item id='8141' name="spell_breaker_acumen">
+
+        <stat function='add' value='140' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='122' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
+    </item>
+    <item id='8142' name="spell_breaker_mental_shield">
+
+        <stat function='add' value='140' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='122' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- Mental Shield -->
+        <skill triggerType='onCast' id='1035' level='2' chance='50'/>
+
+    </item>
+    <item id='8143' name="spell_breaker_magic_hold">
+
+        <stat function='add' value='140' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='122' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
+    </item>
+    <item id='8144' name="kaim_vanuls_bone_mana_up">
+
+        <stat function='add' value='155' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
+    </item>
+    <item id='8145' name="kaim_vanuls_bone_magic_silence">
+
+        <stat function='add' value='155' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- Magic Silence -->
+        <skill triggerType='onCast' id='1064' chance='10'/>
+
+    </item>
+    <item id='8146' name="kaim_vanuls_bone_conversion">
+
+        <stat function='add' value='155' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='132' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Conversion -->
+        <stat function='mul' value='0.6' order='48' name='MAX_HP'/>
+        <stat function='mul' value='1.6' order='48' name='MAX_MP'/>
+
+    </item>
+    <item id='8147' name="spiritual_eye_mana_up">
+
+        <stat function='add' value='170' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='143' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
+    </item>
+    <item id='8148' name="spiritual_eye_magic_poison">
+
+        <stat function='add' value='170' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='143' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
+    </item>
+    <item id='8149' name="spiritual_eye_acumen">
+
+        <stat function='add' value='170' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='143' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
+    </item>
+    <item id='8150' name="flaming_dragon_skull_acumen">
+
+        <stat function='add' value='186' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='152' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
+    </item>
+    <item id='8151' name="flaming_dragon_skull_magic_power">
+
+        <stat function='add' value='186' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='152' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- SA: Magic Power -->
+        <stat function='add' value='167' order='64' name='MAGIC_ATTACK'/>
+        <stat function='mul' value='1.15' order='48' name='MP_CONSUME'/>
+
+    </item>
+    <item id='8152' name="flaming_dragon_skull_magic_silence">
+
+        <stat function='add' value='186' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='152' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <!-- Magic Silence -->
+        <skill triggerType='onCast' id='1064' chance='10'/>
+
+    </item>
+    <item id='8190' name="demonic_sword_zariche">
+
+        <stat function='add' value='361' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='137' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+
+    </item>
 </itemList>

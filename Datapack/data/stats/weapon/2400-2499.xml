@@ -1,62 +1,63 @@
 <?xml version='1.0' encoding='utf-8'?>
-<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"           xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
-<item id='2493' name="brigandine_shield">
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://la2j.org"
+          xsi:schemaLocation="http://la2j.org ../item.xsd">
+    <item id='2493' name="brigandine_shield">
 
-    <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
-    <stat function='add' value='142' order='8' name='SHIELD_DEFENCE'/>
-    <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
-    <stat function='enchant' value='0' order='12' name='SHIELD_DEFENCE'/>
+        <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
+        <stat function='add' value='142' order='8' name='SHIELD_DEFENCE'/>
+        <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
+        <stat function='enchant' value='0' order='12' name='SHIELD_DEFENCE'/>
 
-</item>
-<item id='2494' name="plate_shield">
+    </item>
+    <item id='2494' name="plate_shield">
 
-    <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
-    <stat function='add' value='154' order='8' name='SHIELD_DEFENCE'/>
-    <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
-    <stat function='enchant' value='0' order='12' name='SHIELD_DEFENCE'/>
+        <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
+        <stat function='add' value='154' order='8' name='SHIELD_DEFENCE'/>
+        <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
+        <stat function='enchant' value='0' order='12' name='SHIELD_DEFENCE'/>
 
-</item>
-<item id='2495' name="chain_shield">
+    </item>
+    <item id='2495' name="chain_shield">
 
-    <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
-    <stat function='add' value='166' order='8' name='SHIELD_DEFENCE'/>
-    <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
-    <stat function='enchant' value='0' order='12' name='SHIELD_DEFENCE'/>
+        <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
+        <stat function='add' value='166' order='8' name='SHIELD_DEFENCE'/>
+        <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
+        <stat function='enchant' value='0' order='12' name='SHIELD_DEFENCE'/>
 
-</item>
-<item id='2496' name="dwarven_chain_shield">
+    </item>
+    <item id='2496' name="dwarven_chain_shield">
 
-    <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
-    <stat function='add' value='174' order='8' name='SHIELD_DEFENCE'/>
-    <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
-    <stat function='enchant' value='0' order='12' name='SHIELD_DEFENCE'/>
+        <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
+        <stat function='add' value='174' order='8' name='SHIELD_DEFENCE'/>
+        <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
+        <stat function='enchant' value='0' order='12' name='SHIELD_DEFENCE'/>
 
-</item>
-<item id='2497' name="full_plate_shield">
+    </item>
+    <item id='2497' name="full_plate_shield">
 
-    <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
-    <stat function='add' value='203' order='8' name='SHIELD_DEFENCE'/>
-    <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
-    <stat function='enchant' value='0' order='12' name='SHIELD_DEFENCE'/>
+        <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
+        <stat function='add' value='203' order='8' name='SHIELD_DEFENCE'/>
+        <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
+        <stat function='enchant' value='0' order='12' name='SHIELD_DEFENCE'/>
 
-</item>
-<item id='2498' name="shield_of_nightmare">
+    </item>
+    <item id='2498' name="shield_of_nightmare">
 
-    <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
-    <stat function='add' value='256' order='8' name='SHIELD_DEFENCE'/>
-    <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
-    <stat function='enchant' value='0' order='12' name='SHIELD_DEFENCE'/>
+        <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
+        <stat function='add' value='256' order='8' name='SHIELD_DEFENCE'/>
+        <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
+        <stat function='enchant' value='0' order='12' name='SHIELD_DEFENCE'/>
 
-</item>
-<item id='2499' name="elven_long_sword">
+    </item>
+    <item id='2499' name="elven_long_sword">
 
-    <stat function='add' value='92' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='54' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <stat function='add' value='92' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='54' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
 
-</item>
+    </item>
 </itemList>

@@ -2,49 +2,49 @@
 
 <itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
-<item id='7680' name="Raccoon Ear">
-  
-    <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
-  
-</item>
-<item id='7681' name="Outlaw's Eyepatch">
-  
-    <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
-  
-</item>
-<item id='7682' name="Maiden's Hairpin">
-  
-    <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
-  
-</item>
-<item id='7683' name="Rabbit Ear">
-  
-    <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
-  
-</item>
-<item id='7694' name="Noblesse Tiara">
-  
-    <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
-  
-</item>
-<item id='7695' name="Forget-me-not Hairpin">
-  
-    <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
-  
-</item>
-<item id='7696' name="Daisy Hairpin">
-  
-    <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
-  
-</item>
-<item id='7836' name="Santa's Hat">
-  
-    <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
-  
-</item>
-<item id='7837' name="Gold-line Mask">
-  
-    <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
-  
-</item>
+    <item id='7680' name="Raccoon Ear">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='7681' name="Outlaw's Eyepatch">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='7682' name="Maiden's Hairpin">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='7683' name="Rabbit Ear">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='7694' name="Noblesse Tiara">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='7695' name="Forget-me-not Hairpin">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='7696' name="Daisy Hairpin">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='7836' name="Santa's Hat">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='7837' name="Gold-line Mask">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
 </itemList>

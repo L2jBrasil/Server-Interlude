@@ -1,278 +1,278 @@
 <?xml version='1.0' encoding='utf-8'?>
 <itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
-  
-<item id='900' name="Ring of Grace">
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='34'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    <item id='900' name="Ring of Grace">
 
-</item>
-<item id='901' name="Ring of Holy Spirit">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='34'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='36'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='901' name="Ring of Holy Spirit">
 
-</item>
-<item id='902' name="Phoenix Ring">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='36'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='40'/>
-    <stat function='add'  order='96' name='MAX_MP' value='13'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='902' name="Phoenix Ring">
 
-</item>
-<item id='903' name="Cerberus Ring">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='40'/>
+        <stat function='add' order='96' name='MAX_MP' value='13'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='40'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='903' name="Cerberus Ring">
 
-</item>
-<item id='904' name="Ring of Aid">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='40'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='34'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='904' name="Ring of Aid">
 
-</item>
-<item id='905' name="Ring of Blessing">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='34'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='34'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='905' name="Ring of Blessing">
 
-</item>
-<item id='906' name="Necklace of Knowledge">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='34'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='18'/>
+    </item>
+    <item id='906' name="Necklace of Knowledge">
 
-</item>
-<item id='907' name="Necklace of Anguish">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='18'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='21'/>
+    </item>
+    <item id='907' name="Necklace of Anguish">
 
-</item>
-<item id='908' name="Necklace of Wisdom">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='21'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='25'/>
+    </item>
+    <item id='908' name="Necklace of Wisdom">
 
-</item>
-<item id='909' name="Blue Diamond Necklace">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='25'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='28'/>
+    </item>
+    <item id='909' name="Blue Diamond Necklace">
 
-</item>
-<item id='910' name="Necklace of Devotion">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='28'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='32'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='910' name="Necklace of Devotion">
 
-</item>
-<item id='911' name="Enchanted Necklace">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='32'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='36'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='911' name="Enchanted Necklace">
 
-</item>
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='36'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-  <item id='912' name="Near Forest Necklace">
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='40'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
 
+    <item id='912' name="Near Forest Necklace">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='40'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-</item>
-<item id='913' name="Elven Necklace">
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='45'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='913' name="Elven Necklace">
 
-</item>
-<item id='914' name="Necklace of Darkness">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='45'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='48'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='914' name="Necklace of Darkness">
 
-</item>
-<item id='915' name="Aquastone Necklace">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='48'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='52'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='915' name="Aquastone Necklace">
 
-</item>
-<item id='916' name="Necklace of Protection">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='52'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='56'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='916' name="Necklace of Protection">
 
-</item>
-<item id='917' name="Necklace of Mermaid">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='56'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='60'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='917' name="Necklace of Mermaid">
 
-</item>
-<item id='918' name="Adamantite Necklace">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='60'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='68'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='918' name="Adamantite Necklace">
 
-</item>
-<item id='919' name="Blessed Necklace">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='68'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='64'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='919' name="Blessed Necklace">
 
-</item>
-<item id='920' name="Tateossian Necklace">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='64'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='95'/>
-    <stat function='add'  order='96' name='MAX_MP' value='42'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='920' name="Tateossian Necklace">
 
-</item>
-<item id='921' name="Necklace of Mana">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='95'/>
+        <stat function='add' order='96' name='MAX_MP' value='42'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='72'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='921' name="Necklace of Mana">
 
-</item>
-<item id='922' name="Sage's Necklace">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='72'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='72'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='922' name="Sage's Necklace">
 
-</item>
-<item id='923' name="Paradia Necklace">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='72'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='72'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='923' name="Paradia Necklace">
 
-</item>
-<item id='924' name="Majestic Necklace">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='72'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='85'/>
-    <stat function='add'  order='96' name='MAX_MP' value='33'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='924' name="Majestic Necklace">
 
-</item>
-<item id='925' name="Necklace of Solar Eclipse">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='85'/>
+        <stat function='add' order='96' name='MAX_MP' value='33'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='68'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='925' name="Necklace of Solar Eclipse">
 
-</item>
-<item id='926' name="Necklace of Black Ore">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='68'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='72'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='926' name="Necklace of Black Ore">
 
-</item>
-<item id='927' name="Necklace of Summoning">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='72'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='68'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='927' name="Necklace of Summoning">
 
-</item>
-<item id='928' name="Otherworldly Necklace">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='68'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='72'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='928' name="Otherworldly Necklace">
 
-</item>
-<item id='929' name="Elemental Necklace">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='72'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='72'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='929' name="Elemental Necklace">
 
-</item>
-<item id='930' name="Necklace of Phantom">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='72'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='80'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='930' name="Necklace of Phantom">
 
-</item>
-<item id='931' name="Necklace of Grace">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='80'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='68'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='931' name="Necklace of Grace">
 
-</item>
-<item id='932' name="Necklace of Holy Spirit">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='68'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='72'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='932' name="Necklace of Holy Spirit">
 
-</item>
-<item id='933' name="Phoenix Necklace">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='72'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='80'/>
-    <stat function='add'  order='96' name='MAX_MP' value='26'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='933' name="Phoenix Necklace">
 
-</item>
-<item id='934' name="Cerberus Necklace">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='80'/>
+        <stat function='add' order='96' name='MAX_MP' value='26'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='80'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='934' name="Cerberus Necklace">
 
-</item>
-<item id='935' name="Necklace of Aid">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='80'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='68'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='935' name="Necklace of Aid">
 
-</item>
-<item id='936' name="Necklace of Blessing">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='68'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='MAGIC_DEFENCE' value='68'/>
-  <stat function='enchant'  order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
+    <item id='936' name="Necklace of Blessing">
 
-</item>
-<item id='990' name="Mandragora Essence">
+        <stat function='add' order='16' name='MAGIC_DEFENCE' value='68'/>
+        <stat function='enchant' order='12' name='MAGIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='9'/>
+    </item>
+    <item id='990' name="Mandragora Essence">
 
-</item>
-<item id='991' name="Royen's Key">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='9'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='9'/>
+    </item>
+    <item id='991' name="Royen's Key">
 
-</item>
-<item id='992' name="Shilen's 1st Mark">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='9'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='9'/>
+    </item>
+    <item id='992' name="Shilen's 1st Mark">
 
-</item>
-<item id='993' name="Shilen's 2nd Mark">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='9'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='9'/>
+    </item>
+    <item id='993' name="Shilen's 2nd Mark">
 
-</item>
-<item id='994' name="Eye of Abyss">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='9'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='9'/>
+    </item>
+    <item id='994' name="Eye of Abyss">
 
-</item>
-<item id='995' name="Wanted Poster">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='9'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='9'/>
+    </item>
+    <item id='995' name="Wanted Poster">
 
-</item>
-<item id='996' name="Alex's Dagger">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='9'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='9'/>
+    </item>
+    <item id='996' name="Alex's Dagger">
 
-</item>
-<item id='997' name="Pinter's Bill">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='9'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='9'/>
+    </item>
+    <item id='997' name="Pinter's Bill">
 
-</item>
-<item id='998' name="Book of Aklantoth - Part 1">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='9'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='9'/>
+    </item>
+    <item id='998' name="Book of Aklantoth - Part 1">
 
-</item>
-<item id='999' name="Book of Aklantoth - Part 2">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='9'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='9'/>
+    </item>
+    <item id='999' name="Book of Aklantoth - Part 2">
 
-</item>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='9'/>
+
+    </item>
 </itemList>

@@ -2,15 +2,15 @@
 
 <itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
-  
-<item id='7059' name="Hair Accessory for Events">
-  
-    <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
-  
-</item>
-<item id='7060' name="Tateossian Hairband">
-  
-    <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
-  
-</item>
+
+    <item id='7059' name="Hair Accessory for Events">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
+    <item id='7060' name="Tateossian Hairband">
+
+        <stat function='add' value='0' order='16' name='PHYSIC_DEFENCE'/>
+
+    </item>
 </itemList>

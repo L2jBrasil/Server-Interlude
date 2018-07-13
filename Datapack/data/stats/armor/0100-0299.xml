@@ -2,39 +2,39 @@
 
 <itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
-  
-  <item id='112' name="Apprentice's Earring">
-      <stat function="add" order='16' name='MAGIC_DEFENCE' value='11'/>
-  </item>
 
-  <item id='113' name="Mystic's Earring">
-      <stat function="add" order='16' name='MAGIC_DEFENCE' value='13'/>
-  </item>
+    <item id='112' name="Apprentice's Earring">
+        <stat function="add" order='16' name='MAGIC_DEFENCE' value='11'/>
+    </item>
 
-  <item id='114' name="Earring of Strength">
-      <stat function="add" order='16' name='MAGIC_DEFENCE' value='16'/>
-  </item>
+    <item id='113' name="Mystic's Earring">
+        <stat function="add" order='16' name='MAGIC_DEFENCE' value='13'/>
+    </item>
 
-  <item id='115' name="Earring of Wisdom">
-      <stat function="add" order='16' name='MAGIC_DEFENCE' value='16'/>
-  </item>
+    <item id='114' name="Earring of Strength">
+        <stat function="add" order='16' name='MAGIC_DEFENCE' value='16'/>
+    </item>
 
-  <item id='116' name="Magic Ring">
-      <stat function="add" order='16' name='MAGIC_DEFENCE' value='7'/>
-  </item>
+    <item id='115' name="Earring of Wisdom">
+        <stat function="add" order='16' name='MAGIC_DEFENCE' value='16'/>
+    </item>
 
-  <item id='117' name="Ring of Mana">
-      <stat function="add" order='16' name='MAGIC_DEFENCE' value='34'/>
-      <stat function="enchant"  order='12' name='MAGIC_DEFENCE' value='0'/>
-  </item>
+    <item id='116' name="Magic Ring">
+        <stat function="add" order='16' name='MAGIC_DEFENCE' value='7'/>
+    </item>
 
-  <item id='118' name="Necklace of Magic">
-      <stat function="add" order='16' name='MAGIC_DEFENCE' value='15'/>
-  </item>
+    <item id='117' name="Ring of Mana">
+        <stat function="add" order='16' name='MAGIC_DEFENCE' value='34'/>
+        <stat function="enchant" order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
 
-  <item id='119' name="Necklace of Binding">
-      <stat function="add" order='16' name='MAGIC_DEFENCE' value='64'/>
-      <stat function="enchant"  order='12' name='MAGIC_DEFENCE' value='0'/>
-  </item>
+    <item id='118' name="Necklace of Magic">
+        <stat function="add" order='16' name='MAGIC_DEFENCE' value='15'/>
+    </item>
+
+    <item id='119' name="Necklace of Binding">
+        <stat function="add" order='16' name='MAGIC_DEFENCE' value='64'/>
+        <stat function="enchant" order='12' name='MAGIC_DEFENCE' value='0'/>
+    </item>
 
 </itemList>

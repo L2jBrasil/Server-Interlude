@@ -1,310 +1,311 @@
 <?xml version='1.0' encoding='utf-8'?>
-<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"           xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
-<item id='9000' name="Shadow Item: Stormbringer*Stormbringer">
-
-    <stat function='add' value='175' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='78' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9001' name="Shadow Item: Great Sword">
-
-    <stat function='add' value='213' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='91' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9002' name="Shadow Item: Heavy War Axe">
-
-    <stat function='add' value='175' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='91' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9003' name="Shadow Item: Sprite\'s Staff">
-
-    <stat function='add' value='170' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='122' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9004' name="Shadow Item: Keshanberk">
-
-    <stat function='add' value='175' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='91' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9005' name="Shadow Item: Sword of Valhalla">
-
-    <stat function='add' value='140' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='122' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9006' name="Shadow Item: Kris">
-
-    <stat function='add' value='153' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='91' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='433' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9007' name="Shadow Item: Arthro Nail">
-
-    <stat function='add' value='213' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='91' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9008' name="Shadow Item: Dark Elven Long Bow">
-
-    <stat function='add' value='397' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='100' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='227' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9009' name="Shadow Item: Sword of Delusion*Sword of Delusion">
-
-    <stat function='add' value='213' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='91' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9010' name="Shadow Item: Great Axe">
-
-    <stat function='add' value='175' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='91' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='add' value='66' order='8' name='PHYSIC_ATTACK_RANGE'/>
-
-</item>
-<item id='9011' name="Shadow Item: Tallum Blade">
-
-    <stat function='add' value='213' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9012' name="Shadow Item: Halberd">
-
-    <stat function='add' value='213' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9013' name="Shadow Item: Dasparion\'s Staff">
-
-    <stat function='add' value='207' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='143' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9014' name="Shadow Item: Bloody Orchid">
-
-    <stat function='add' value='186' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='433' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9015' name="Shadow Item: Blood Tornado">
-
-    <stat function='add' value='259' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9016' name="Shadow Item: Carnage Bow">
-
-    <stat function='add' value='440' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='293' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9017' name="Shadow Item: Keshanberk*Keshanberk">
-
-    <stat function='add' value='259' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9018' name="Shadow Item: Meteor Shower">
-
-    <stat function='add' value='213' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9019' name="Shadow Item: Inferno Master">
-
-    <stat function='add' value='259' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9020' name="Shadow Item: Keshanberk*Damascus">
-
-    <stat function='add' value='275' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='112' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9021' name="Shadow Item: Dragon Slayer">
-
-    <stat function='add' value='282' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='114' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9022' name="Shadow Item: Sword of Miracles">
-
-    <stat function='add' value='186' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='152' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9023' name="Shadow Item: Elysian">
-
-    <stat function='add' value='232' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='114' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9024' name="Shadow Item: Branch of the Mother Tree">
-
-    <stat function='add' value='226' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='152' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9025' name="Shadow Item: Soul Separator">
-
-    <stat function='add' value='203' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='114' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='433' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9026' name="Shadow Item: Dragon Grinder">
-
-    <stat function='add' value='282' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='114' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='4' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9027' name="Shadow Item: Soul Bow">
-
-    <stat function='add' value='528' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='125' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='227' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9028' name="Shadow Item: Tallum Glaive">
-
-    <stat function='add' value='232' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='114' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='add' value='66' order='8' name='PHYSIC_ATTACK_RANGE'/>
-
-</item>
-<item id='9029' name="Shadow Item: Dark Legion">
-
-    <stat function='add' value='232' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='114' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='0' order='16' name='ACCURACY'/>
-    <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
-
-</item>
-<item id='9036' name="Shadow Item: Bone Shield">
-
-    <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
-    <stat function='add' value='90' order='8' name='SHIELD_DEFENCE'/>
-    <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
-
-</item>
-<item id='9044' name="Shadow Item: Hoplon">
-
-    <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
-    <stat function='add' value='128' order='8' name='SHIELD_DEFENCE'/>
-    <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
-
-</item>
-<item id='9056' name="Shadow Item: Composite Shield">
-
-    <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
-    <stat function='add' value='190' order='8' name='SHIELD_DEFENCE'/>
-    <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
-
-</item>
-<item id='9070' name="Shadow Item: Zubei\'s Shield">
-
-    <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
-    <stat function='add' value='216' order='8' name='SHIELD_DEFENCE'/>
-    <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
-
-</item>
-<item id='9084' name="Shadow Item: Dark Crystal Shield">
-
-    <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
-    <stat function='add' value='243' order='8' name='SHIELD_DEFENCE'/>
-    <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
-
-</item>
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://la2j.org"
+          xsi:schemaLocation="http://la2j.org ../item.xsd">
+    <item id='9000' name="Shadow Item: Stormbringer*Stormbringer">
+
+        <stat function='add' value='175' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='78' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9001' name="Shadow Item: Great Sword">
+
+        <stat function='add' value='213' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='91' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9002' name="Shadow Item: Heavy War Axe">
+
+        <stat function='add' value='175' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='91' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9003' name="Shadow Item: Sprite\'s Staff">
+
+        <stat function='add' value='170' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='122' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9004' name="Shadow Item: Keshanberk">
+
+        <stat function='add' value='175' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='91' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9005' name="Shadow Item: Sword of Valhalla">
+
+        <stat function='add' value='140' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='122' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9006' name="Shadow Item: Kris">
+
+        <stat function='add' value='153' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='91' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='433' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9007' name="Shadow Item: Arthro Nail">
+
+        <stat function='add' value='213' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='91' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9008' name="Shadow Item: Dark Elven Long Bow">
+
+        <stat function='add' value='397' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='100' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='227' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9009' name="Shadow Item: Sword of Delusion*Sword of Delusion">
+
+        <stat function='add' value='213' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='91' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9010' name="Shadow Item: Great Axe">
+
+        <stat function='add' value='175' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='91' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='add' value='66' order='8' name='PHYSIC_ATTACK_RANGE'/>
+
+    </item>
+    <item id='9011' name="Shadow Item: Tallum Blade">
+
+        <stat function='add' value='213' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9012' name="Shadow Item: Halberd">
+
+        <stat function='add' value='213' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9013' name="Shadow Item: Dasparion\'s Staff">
+
+        <stat function='add' value='207' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='143' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9014' name="Shadow Item: Bloody Orchid">
+
+        <stat function='add' value='186' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='433' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9015' name="Shadow Item: Blood Tornado">
+
+        <stat function='add' value='259' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9016' name="Shadow Item: Carnage Bow">
+
+        <stat function='add' value='440' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='293' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9017' name="Shadow Item: Keshanberk*Keshanberk">
+
+        <stat function='add' value='259' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9018' name="Shadow Item: Meteor Shower">
+
+        <stat function='add' value='213' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9019' name="Shadow Item: Inferno Master">
+
+        <stat function='add' value='259' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='107' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9020' name="Shadow Item: Keshanberk*Damascus">
+
+        <stat function='add' value='275' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='112' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9021' name="Shadow Item: Dragon Slayer">
+
+        <stat function='add' value='282' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='114' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9022' name="Shadow Item: Sword of Miracles">
+
+        <stat function='add' value='186' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='152' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9023' name="Shadow Item: Elysian">
+
+        <stat function='add' value='232' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='114' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9024' name="Shadow Item: Branch of the Mother Tree">
+
+        <stat function='add' value='226' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='152' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9025' name="Shadow Item: Soul Separator">
+
+        <stat function='add' value='203' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='114' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='433' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9026' name="Shadow Item: Dragon Grinder">
+
+        <stat function='add' value='282' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='114' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='4' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='4' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9027' name="Shadow Item: Soul Bow">
+
+        <stat function='add' value='528' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='125' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='12' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='227' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9028' name="Shadow Item: Tallum Glaive">
+
+        <stat function='add' value='232' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='114' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='add' value='66' order='8' name='PHYSIC_ATTACK_RANGE'/>
+
+    </item>
+    <item id='9029' name="Shadow Item: Dark Legion">
+
+        <stat function='add' value='232' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='114' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='0' order='16' name='ACCURACY'/>
+        <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
+
+    </item>
+    <item id='9036' name="Shadow Item: Bone Shield">
+
+        <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
+        <stat function='add' value='90' order='8' name='SHIELD_DEFENCE'/>
+        <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
+
+    </item>
+    <item id='9044' name="Shadow Item: Hoplon">
+
+        <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
+        <stat function='add' value='128' order='8' name='SHIELD_DEFENCE'/>
+        <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
+
+    </item>
+    <item id='9056' name="Shadow Item: Composite Shield">
+
+        <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
+        <stat function='add' value='190' order='8' name='SHIELD_DEFENCE'/>
+        <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
+
+    </item>
+    <item id='9070' name="Shadow Item: Zubei\'s Shield">
+
+        <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
+        <stat function='add' value='216' order='8' name='SHIELD_DEFENCE'/>
+        <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
+
+    </item>
+    <item id='9084' name="Shadow Item: Dark Crystal Shield">
+
+        <stat function='sub' value='8' order='16' name='EVASION_RATE'/>
+        <stat function='add' value='243' order='8' name='SHIELD_DEFENCE'/>
+        <stat function='add' value='20' order='8' name='SHIELD_RATE'/>
+
+    </item>
 </itemList>

@@ -2,569 +2,569 @@
 
 <itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
-  
-<item id='2400' name="Tallum Tunic">
-  <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='86'/>
-  <stat function='add'  order='96' name='MAX_MP' value='409'/>
-  <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
-</item>
 
-<item id='2401' name="Elven Mithril Stockings">
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='34'/>
-    <stat function='add'  order='96' name='MAX_MP' value='105'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
-</item>
+    <item id='2400' name="Tallum Tunic">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='86'/>
+        <stat function='add' order='96' name='MAX_MP' value='409'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
 
-<item id='2402' name="Stockings of Zubei">
+    <item id='2401' name="Elven Mithril Stockings">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='34'/>
+        <stat function='add' order='96' name='MAX_MP' value='105'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='49'/>
-    <stat function='add'  order='96' name='MAX_MP' value='216'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+    <item id='2402' name="Stockings of Zubei">
 
-</item>
-<item id='2403' name="Blue Wolf Stockings">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='49'/>
+        <stat function='add' order='96' name='MAX_MP' value='216'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='52'/>
-    <stat function='add'  order='96' name='MAX_MP' value='236'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+    <item id='2403' name="Blue Wolf Stockings">
 
-</item>
-<item id='2404' name="Stockings of Doom">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='52'/>
+        <stat function='add' order='96' name='MAX_MP' value='236'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='52'/>
-    <stat function='add'  order='96' name='MAX_MP' value='236'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+    <item id='2404' name="Stockings of Doom">
 
-</item>
-<item id='2405' name="Tallum Stockings">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='52'/>
+        <stat function='add' order='96' name='MAX_MP' value='236'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='53'/>
-    <stat function='add'  order='96' name='MAX_MP' value='256'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+    <item id='2405' name="Tallum Stockings">
 
-</item>
-<item id='2406' name="Avadon Robe">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='53'/>
+        <stat function='add' order='96' name='MAX_MP' value='256'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='127'/>
-    <stat function='add'  order='96' name='MAX_MP' value='561'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+    <item id='2406' name="Avadon Robe">
 
-</item>
-<item id='2407' name="Dark Crystal Robe">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='127'/>
+        <stat function='add' order='96' name='MAX_MP' value='561'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='139'/>
-    <stat function='add'  order='96' name='MAX_MP' value='665'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+    <item id='2407' name="Dark Crystal Robe">
 
-</item>
-<item id='2408' name="Robe of Nightmare">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='139'/>
+        <stat function='add' order='96' name='MAX_MP' value='665'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='147'/>
-    <stat function='add'  order='96' name='MAX_MP' value='718'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+    <item id='2408' name="Robe of Nightmare">
 
-</item>
-<item id='2409' name="Majestic Robe">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='147'/>
+        <stat function='add' order='96' name='MAX_MP' value='718'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='147'/>
-    <stat function='add'  order='96' name='MAX_MP' value='718'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+    <item id='2409' name="Majestic Robe">
 
-</item>
-<item id='2410' name="Nightmarish Tattoo">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='147'/>
+        <stat function='add' order='96' name='MAX_MP' value='718'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='139'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+    <item id='2410' name="Nightmarish Tattoo">
 
-</item>
-<item id='2411' name="Brigandine Helmet">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='139'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='41'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+    <item id='2411' name="Brigandine Helmet">
 
-</item>
-<item id='2412' name="Plate Helmet">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='41'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='44'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+    <item id='2412' name="Plate Helmet">
 
-</item>
-<item id='2413' name="Chain Hood">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='44'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='47'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+    <item id='2413' name="Chain Hood">
 
-</item>
-<item id='2414' name="Full Plate Helmet">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='47'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='58'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+    <item id='2414' name="Full Plate Helmet">
 
-</item>
-<item id='2415' name="Avadon Circlet">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='58'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='62'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+    <item id='2415' name="Avadon Circlet">
 
-</item>
-<item id='2416' name="Blue Wolf Helmet">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='62'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='66'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+    <item id='2416' name="Blue Wolf Helmet">
 
-</item>
-<item id='2417' name="Doom Helmet">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='66'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='66'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+    <item id='2417' name="Doom Helmet">
 
-</item>
-<item id='2418' name="Helm of Nightmare">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='66'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='73'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+    <item id='2418' name="Helm of Nightmare">
 
-</item>
-<item id='2419' name="Majestic Circlet">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='73'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='73'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+    <item id='2419' name="Majestic Circlet">
 
-</item>
-<item id='2420' name="Dragon Headgear">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='73'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='77'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+    <item id='2420' name="Dragon Headgear">
 
-</item>
-<item id='2421' name="The Hood">
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='77'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='77'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+    </item>
+    <item id='2421' name="The Hood">
 
-</item>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='77'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
+
+    </item>
 
     <item id='2422' name="Reinforced Leather Boots">
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='24'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='24'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2423' name="Boots of Knowledge">
+    </item>
+    <item id='2423' name="Boots of Knowledge">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='24'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='24'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2424' name="Manticore Skin Boots">
+    </item>
+    <item id='2424' name="Manticore Skin Boots">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='27'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='27'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2425' name="Brigandine Boots">
+    </item>
+    <item id='2425' name="Brigandine Boots">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='27'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='27'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2426' name="Elven Mithril Boots">
+    </item>
+    <item id='2426' name="Elven Mithril Boots">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='27'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='27'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2427' name="Salamander Skin Boots">
+    </item>
+    <item id='2427' name="Salamander Skin Boots">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='29'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='29'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2428' name="Plate Boots">
+    </item>
+    <item id='2428' name="Plate Boots">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='29'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='29'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2429' name="Chain Boots">
+    </item>
+    <item id='2429' name="Chain Boots">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='32'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='32'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2430' name="Karmian Boots">
+    </item>
+    <item id='2430' name="Karmian Boots">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='32'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='32'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2431' name="Plated Leather Boots">
+    </item>
+    <item id='2431' name="Plated Leather Boots">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='32'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='32'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2432' name="Dwarven Chain Boots">
+    </item>
+    <item id='2432' name="Dwarven Chain Boots">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='32'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='32'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2433' name="Boots of Seal">
+    </item>
+    <item id='2433' name="Boots of Seal">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='32'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='32'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2434' name="Rind Leather Boots">
+    </item>
+    <item id='2434' name="Rind Leather Boots">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='34'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='34'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2435' name="Demon's Boots">
+    </item>
+    <item id='2435' name="Demon's Boots">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='36'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='36'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2436' name="Theca Leather Boots">
+    </item>
+    <item id='2436' name="Theca Leather Boots">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='37'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='37'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2437' name="Drake Leather Boots">
+    </item>
+    <item id='2437' name="Drake Leather Boots">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='39'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='39'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2438' name="Full Plate Boots">
+    </item>
+    <item id='2438' name="Full Plate Boots">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='39'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='39'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2439' name="Blue Wolf Boots">
+    </item>
+    <item id='2439' name="Blue Wolf Boots">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='44'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='44'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2440' name="Boots of Nightmare">
+    </item>
+    <item id='2440' name="Boots of Nightmare">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='48'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='48'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2441' name="Dark Legion Boots">
+    </item>
+    <item id='2441' name="Dark Legion Boots">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='48'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='48'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2442' name="Dasparion's Boots">
+    </item>
+    <item id='2442' name="Dasparion's Boots">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='48'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='48'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2443' name="Dragon Leather Boots">
+    </item>
+    <item id='2443' name="Dragon Leather Boots">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='51'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='51'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2444' name="The Boots">
+    </item>
+    <item id='2444' name="The Boots">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='51'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='51'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2445' name="Dragon Scale Boots">
+    </item>
+    <item id='2445' name="Dragon Scale Boots">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='48'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='48'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
+    </item>
 
     <item id='2446' name="Reinforced Leather Gloves">
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='24'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='24'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2447' name="Gloves of Knowledge">
+    </item>
+    <item id='2447' name="Gloves of Knowledge">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='24'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='24'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2448' name="Manticore Skin Gloves">
+    </item>
+    <item id='2448' name="Manticore Skin Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='27'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='27'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2449' name="Brigandine Gauntlets">
+    </item>
+    <item id='2449' name="Brigandine Gauntlets">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='27'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='27'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2450' name="Elven Mithril Gloves">
+    </item>
+    <item id='2450' name="Elven Mithril Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='27'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='27'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2451' name="Sage's Worn Gloves">
+    </item>
+    <item id='2451' name="Sage's Worn Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='29'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='29'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
+    </item>
 
     <item id='2452' name="Reinforced Mithril Gloves">
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='32'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='32'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2453' name="Chain Gloves">
+    </item>
+    <item id='2453' name="Chain Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='32'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='32'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2454' name="Karmian Gloves">
+    </item>
+    <item id='2454' name="Karmian Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='32'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='32'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2455' name="Plated Leather Gloves">
+    </item>
+    <item id='2455' name="Plated Leather Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='33'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='33'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2456' name="Dwarven Chain Gloves">
+    </item>
+    <item id='2456' name="Dwarven Chain Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='34'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='34'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2457' name="Gloves of Seal">
+    </item>
+    <item id='2457' name="Gloves of Seal">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='34'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='34'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2458' name="Rind Leather Gloves">
+    </item>
+    <item id='2458' name="Rind Leather Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='34'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='34'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2459' name="Demon's Gloves">
+    </item>
+    <item id='2459' name="Demon's Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='36'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='36'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2460' name="Theca Leather Gloves">
+    </item>
+    <item id='2460' name="Theca Leather Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='37'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='37'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2461' name="Drake Leather Gloves">
+    </item>
+    <item id='2461' name="Drake Leather Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='39'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='39'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2462' name="Full Plate Gauntlets">
+    </item>
+    <item id='2462' name="Full Plate Gauntlets">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='39'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='39'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2463' name="Divine Gloves">
+    </item>
+    <item id='2463' name="Divine Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='39'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='39'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2464' name="Avadon Gloves">
+    </item>
+    <item id='2464' name="Avadon Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='41'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='41'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2465' name="Chain Gloves of Silence">
+    </item>
+    <item id='2465' name="Chain Gloves of Silence">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='41'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='41'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2466' name="Guardian's Gloves">
+    </item>
+    <item id='2466' name="Guardian's Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='41'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='41'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2467' name="Gloves of Blessing">
+    </item>
+    <item id='2467' name="Gloves of Blessing">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='41'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='41'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2468' name="Blessed Gloves">
+    </item>
+    <item id='2468' name="Blessed Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='39'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='39'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2469' name="Gloves of The Underworld">
+    </item>
+    <item id='2469' name="Gloves of The Underworld">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='45'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='45'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2470' name="Gloves of Phantom">
+    </item>
+    <item id='2470' name="Gloves of Phantom">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='48'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='48'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2471' name="Dark Legion Gloves">
+    </item>
+    <item id='2471' name="Dark Legion Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='48'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='48'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2472' name="Dark Crystal Gloves">
+    </item>
+    <item id='2472' name="Dark Crystal Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='45'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='45'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2473' name="The Gloves">
+    </item>
+    <item id='2473' name="The Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='51'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='51'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2474' name="Dasparion's Gloves">
+    </item>
+    <item id='2474' name="Dasparion's Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='48'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='48'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2475' name="Doom Gloves">
+    </item>
+    <item id='2475' name="Doom Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='44'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='44'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2476' name="Dragon Gauntlets">
+    </item>
+    <item id='2476' name="Dragon Gauntlets">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='52'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='52'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2477' name="Dragon Leather Gloves">
+    </item>
+    <item id='2477' name="Dragon Leather Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='51'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='51'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2478' name="Tallum Gloves">
+    </item>
+    <item id='2478' name="Tallum Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='45'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='45'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2479' name="Gloves of Nightmare">
+    </item>
+    <item id='2479' name="Gloves of Nightmare">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='48'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='48'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2480' name="Elemental Gloves">
+    </item>
+    <item id='2480' name="Elemental Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='44'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='44'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2481' name="Gloves of Grace">
+    </item>
+    <item id='2481' name="Gloves of Grace">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='44'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='44'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2482' name="Majestic Gloves">
+    </item>
+    <item id='2482' name="Majestic Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='48'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='48'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2483' name="Gust Bracer">
+    </item>
+    <item id='2483' name="Gust Bracer">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='45'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='45'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2484' name="Cerberus Gloves">
+    </item>
+    <item id='2484' name="Cerberus Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='48'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='48'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2485' name="Implosion Gauntlets">
+    </item>
+    <item id='2485' name="Implosion Gauntlets">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='44'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='44'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2486' name="Paradia Gloves">
+    </item>
+    <item id='2486' name="Paradia Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='44'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='44'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2487' name="Blue Wolf Gloves">
+    </item>
+    <item id='2487' name="Blue Wolf Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='44'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='44'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2488' name="Phoenix Gloves">
+    </item>
+    <item id='2488' name="Phoenix Gloves">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='45'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='45'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2489' name="Gloves of Black Ore">
+    </item>
+    <item id='2489' name="Gloves of Black Ore">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='45'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='45'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
-<item id='2490' name="Cloak of Silence">
+    </item>
+    <item id='2490' name="Cloak of Silence">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='5'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='5'/>
 
-</item>
-<item id='2491' name="Golden Yarn Cloak">
+    </item>
+    <item id='2491' name="Golden Yarn Cloak">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='5'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='5'/>
 
-</item>
-<item id='2492' name="Shadow Cloak">
+    </item>
+    <item id='2492' name="Shadow Cloak">
 
-    <stat function='add'  order='16' name='PHYSIC_DEFENCE' value='12'/>
-    <stat function='enchant'  order='12' name='PHYSIC_DEFENCE' value='0'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='12'/>
+        <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
 
-</item>
+    </item>
 </itemList>

@@ -1,175 +1,176 @@
 <?xml version='1.0' encoding='utf-8'?>
-<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"           xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
-<item id='3902' name="ghost_canine">
+<itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://la2j.org"
+          xsi:schemaLocation="http://la2j.org ../item.xsd">
+    <item id='3902' name="ghost_canine">
 
-    <stat function='add' value='11' order='16' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='10' order='16' name='MAGIC_ATTACK'/>
-    <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='add' value='11' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='10' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
 
-</item>
-<item id='3903' name="mithril_canine">
+    </item>
+    <item id='3903' name="mithril_canine">
 
-    <stat function='add' value='16' order='16' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='14' order='16' name='MAGIC_ATTACK'/>
-    <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='add' value='16' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='14' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
 
-</item>
-<item id='3904' name="sylvan_canine">
+    </item>
+    <item id='3904' name="sylvan_canine">
 
-    <stat function='add' value='23' order='16' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='18' order='16' name='MAGIC_ATTACK'/>
-    <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='add' value='23' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='18' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
 
-</item>
-<item id='3905' name="orikarukon_canine">
+    </item>
+    <item id='3905' name="orikarukon_canine">
 
-    <stat function='add' value='31' order='16' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='24' order='16' name='MAGIC_ATTACK'/>
-    <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='add' value='31' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='24' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
 
-</item>
-<item id='3906' name="fang_of_saltydog">
+    </item>
+    <item id='3906' name="fang_of_saltydog">
 
-    <stat function='add' value='40' order='16' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='30' order='16' name='MAGIC_ATTACK'/>
-    <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='add' value='40' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='30' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
 
-</item>
-<item id='3907' name="fang_of_cerberus">
+    </item>
+    <item id='3907' name="fang_of_cerberus">
 
-    <stat function='add' value='49' order='16' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='36' order='16' name='MAGIC_ATTACK'/>
-    <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='add' value='49' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='36' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
 
-</item>
-<item id='3908' name="fang_of_coyote">
+    </item>
+    <item id='3908' name="fang_of_coyote">
 
-    <stat function='add' value='58' order='16' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='42' order='16' name='MAGIC_ATTACK'/>
-    <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='add' value='58' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='42' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
 
-</item>
-<item id='3909' name="crystalized_ice_canine">
+    </item>
+    <item id='3909' name="crystalized_ice_canine">
 
-    <stat function='add' value='69' order='16' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='50' order='16' name='MAGIC_ATTACK'/>
-    <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='add' value='69' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='50' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
 
-</item>
-<item id='3910' name="fang_of_the_blue_wolf">
+    </item>
+    <item id='3910' name="fang_of_the_blue_wolf">
 
-    <stat function='add' value='80' order='16' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='58' order='16' name='MAGIC_ATTACK'/>
-    <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='add' value='80' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='58' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
 
-</item>
-<item id='3911' name="fang_of_fenril">
+    </item>
+    <item id='3911' name="fang_of_fenril">
 
-    <stat function='add' value='93' order='16' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='66' order='16' name='MAGIC_ATTACK'/>
-    <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='add' value='93' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='66' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
 
-</item>
-<item id='3919' name="serpent_fang">
+    </item>
+    <item id='3919' name="serpent_fang">
 
-    <stat function='add' value='8' order='16' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='7' order='16' name='MAGIC_ATTACK'/>
-    <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='add' value='8' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='7' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
 
-</item>
-<item id='3920' name="viperbite">
+    </item>
+    <item id='3920' name="viperbite">
 
-    <stat function='add' value='9' order='16' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='10' order='16' name='MAGIC_ATTACK'/>
-    <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='add' value='9' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='10' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
 
-</item>
-<item id='3921' name="shadow_fang">
+    </item>
+    <item id='3921' name="shadow_fang">
 
-    <stat function='add' value='10' order='16' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='11' order='16' name='MAGIC_ATTACK'/>
-    <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='add' value='10' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='11' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
 
-</item>
-<item id='3922' name="alya_fang">
+    </item>
+    <item id='3922' name="alya_fang">
 
-    <stat function='add' value='12' order='16' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='13' order='16' name='MAGIC_ATTACK'/>
-    <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='add' value='12' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='13' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
 
-</item>
-<item id='3923' name="torturer">
+    </item>
+    <item id='3923' name="torturer">
 
-    <stat function='add' value='13' order='16' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='16' order='16' name='MAGIC_ATTACK'/>
-    <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='add' value='13' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='16' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
 
-</item>
-<item id='3924' name="unuk_alhay_fang">
+    </item>
+    <item id='3924' name="unuk_alhay_fang">
 
-    <stat function='add' value='15' order='16' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='18' order='16' name='MAGIC_ATTACK'/>
-    <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='add' value='15' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='18' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
 
-</item>
-<item id='3925' name="antiplague">
+    </item>
+    <item id='3925' name="antiplague">
 
-    <stat function='add' value='17' order='16' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='21' order='16' name='MAGIC_ATTACK'/>
-    <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='add' value='17' order='16' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='21' order='16' name='MAGIC_ATTACK'/>
+        <stat function='add' value='80' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='304' order='8' name='PHYSIC_ATTACK_SPEED'/>
 
-</item>
-<item id='3937' name="giant_bar">
+    </item>
+    <item id='3937' name="giant_bar">
 
-    <stat function='add' value='50' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='26' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='66' order='8' name='PHYSIC_ATTACK_RANGE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <stat function='add' value='50' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='26' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='66' order='8' name='PHYSIC_ATTACK_RANGE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
 
-</item>
-<item id='3938' name="giant_rod">
+    </item>
+    <item id='3938' name="giant_rod">
 
-    <stat function='add' value='50' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='26' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='66' order='8' name='PHYSIC_ATTACK_RANGE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <stat function='add' value='50' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='26' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='66' order='8' name='PHYSIC_ATTACK_RANGE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
 
-</item>
-<item id='3939' name="ladys_fan">
+    </item>
+    <item id='3939' name="ladys_fan">
 
-    <stat function='add' value='50' order='8' name='PHYSIC_ATTACK'/>
-    <stat function='add' value='26' order='8' name='MAGIC_ATTACK'/>
-    <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
-    <stat function='add' value='66' order='8' name='PHYSIC_ATTACK_RANGE'/>
-    <stat function='add' value='-3' order='16' name='ACCURACY'/>
-    <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
-    <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
-    <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <stat function='add' value='50' order='8' name='PHYSIC_ATTACK'/>
+        <stat function='add' value='26' order='8' name='MAGIC_ATTACK'/>
+        <stat function='add' value='8' order='8' name='CRITICAL_RATE'/>
+        <stat function='add' value='66' order='8' name='PHYSIC_ATTACK_RANGE'/>
+        <stat function='add' value='-3' order='16' name='ACCURACY'/>
+        <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
+        <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
+        <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
 
-</item>
+    </item>
 </itemList>
