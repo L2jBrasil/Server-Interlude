@@ -2,7 +2,7 @@
 // Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.3.0-b170531.0717 
 // Consulte <a href="https://jaxb.java.net/">https://jaxb.java.net/</a> 
 // Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
-// Gerado em: 2018.07.02 às 10:41:24 AM BRT 
+// Gerado em: 2018.07.18 às 02:22:37 PM BRT 
 //
 
 
@@ -33,13 +33,13 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;enumeration value="MAGIC_DEFENCE"/&gt;
  *     &lt;enumeration value="PHYSIC_ATTACK"/&gt;
  *     &lt;enumeration value="MAGIC_ATTACK"/&gt;
- *     &lt;enumeration value="POWER_ATTACK_SPEED"/&gt;
+ *     &lt;enumeration value="PHYSIC_ATTACK_SPEED"/&gt;
  *     &lt;enumeration value="MAGIC_ATTACK_SPEED"/&gt;
  *     &lt;enumeration value="MAGIC_REUSE_RATE"/&gt;
  *     &lt;enumeration value="SHIELD_DEFENCE"/&gt;
  *     &lt;enumeration value="CRITICAL_DAMAGE"/&gt;
- *     &lt;enumeration value="PVP_PHYSICAL_DMG"/&gt;
- *     &lt;enumeration value="PVP_MAGICAL_DMG"/&gt;
+ *     &lt;enumeration value="PVP_PHYSIC_DAMAGE"/&gt;
+ *     &lt;enumeration value="PVP_MAGIC_DAMAGE"/&gt;
  *     &lt;enumeration value="PVP_PHYS_SKILL_DMG"/&gt;
  *     &lt;enumeration value="EVASION_RATE"/&gt;
  *     &lt;enumeration value="SHIELD_RATE"/&gt;
@@ -49,10 +49,10 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;enumeration value="MCRITICAL_RATE"/&gt;
  *     &lt;enumeration value="EXPSP_RATE"/&gt;
  *     &lt;enumeration value="ATTACK_CANCEL"/&gt;
- *     &lt;enumeration value="ACCURACY_COMBAT"/&gt;
- *     &lt;enumeration value="POWER_ATTACK_RANGE"/&gt;
+ *     &lt;enumeration value="ACCURACY"/&gt;
+ *     &lt;enumeration value="PHYSIC_ATTACK_RANGE"/&gt;
  *     &lt;enumeration value="MAGIC_ATTACK_RANGE"/&gt;
- *     &lt;enumeration value="POWER_ATTACK_ANGLE"/&gt;
+ *     &lt;enumeration value="PHYSIC_ATTACK_ANGLE"/&gt;
  *     &lt;enumeration value="ATTACK_COUNT_MAX"/&gt;
  *     &lt;enumeration value="RUN_SPEED"/&gt;
  *     &lt;enumeration value="WALK_SPEED"/&gt;
@@ -118,7 +118,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;enumeration value="PATK_DRAGONS"/&gt;
  *     &lt;enumeration value="PATK_UNDEAD"/&gt;
  *     &lt;enumeration value="PDEF_UNDEAD"/&gt;
- *     &lt;enumeration value="ATK_REUSE"/&gt;
+ *     &lt;enumeration value="ATTACK_REUSE"/&gt;
  *     &lt;enumeration value="INV_LIM"/&gt;
  *     &lt;enumeration value="WH_LIM"/&gt;
  *     &lt;enumeration value="FREIGHT_LIM"/&gt;
@@ -151,13 +151,13 @@ public enum XmlTypeEnumStat {
     MAGIC_DEFENCE,
     PHYSIC_ATTACK,
     MAGIC_ATTACK,
-    POWER_ATTACK_SPEED,
+    PHYSIC_ATTACK_SPEED,
     MAGIC_ATTACK_SPEED,
     MAGIC_REUSE_RATE,
     SHIELD_DEFENCE,
     CRITICAL_DAMAGE,
-    PVP_PHYSICAL_DMG,
-    PVP_MAGICAL_DMG,
+    PVP_PHYSIC_DAMAGE,
+    PVP_MAGIC_DAMAGE,
     PVP_PHYS_SKILL_DMG,
     EVASION_RATE,
     SHIELD_RATE,
@@ -167,10 +167,10 @@ public enum XmlTypeEnumStat {
     MCRITICAL_RATE,
     EXPSP_RATE,
     ATTACK_CANCEL,
-    ACCURACY_COMBAT,
-    POWER_ATTACK_RANGE,
+    ACCURACY,
+    PHYSIC_ATTACK_RANGE,
     MAGIC_ATTACK_RANGE,
-    POWER_ATTACK_ANGLE,
+    PHYSIC_ATTACK_ANGLE,
     ATTACK_COUNT_MAX,
     RUN_SPEED,
     WALK_SPEED,
@@ -236,7 +236,7 @@ public enum XmlTypeEnumStat {
     PATK_DRAGONS,
     PATK_UNDEAD,
     PDEF_UNDEAD,
-    ATK_REUSE,
+    ATTACK_REUSE,
     INV_LIM,
     WH_LIM,
     FREIGHT_LIM,

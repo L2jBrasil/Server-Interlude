@@ -15,10 +15,10 @@
         <xs:attribute name="value" type="xs:decimal" use="required"/>
     </xs:complexType>
 
-    <xs:element name="logic" type="xmlStatConditionOperator"/>
-    <xs:element name="and" type="xmlStatConditionAND" substitutionGroup="logic"/>
-    <xs:element name="or" type="xmlStatConditionOR" substitutionGroup="logic"/>
-    <xs:element name="not" type="xmlStatConditionNOT" substitutionGroup="logic"/>
+    <xs:element name="operator" type="xmlStatConditionOperator"/>
+    <xs:element name="and" type="xmlStatConditionAND" substitutionGroup="operator"/>
+    <xs:element name="or" type="xmlStatConditionOR" substitutionGroup="operator"/>
+    <xs:element name="not" type="xmlStatConditionNOT" substitutionGroup="operator"/>
 
     <xs:element name="condition" type="xmlStatConditionType"/>
     <xs:element name="using" type="xmlStatUsingCondition" substitutionGroup="condition"/>
@@ -27,7 +27,7 @@
 
     <xs:complexType name="xmlStatCondition">
         <xs:choice>
-            <xs:element ref="logic"/>
+            <xs:element ref="operator"/>
             <xs:element ref="condition"/>
         </xs:choice>
     </xs:complexType>
@@ -51,7 +51,7 @@
         <xs:complexContent>
             <xs:extension base="xmlStatConditionType">
                 <xs:attribute name="kind" type="xs:string" use="required"/>
-                <xs:attribute name="value" type="xs:anyType" use="required"/>
+                <xs:attribute name="value" type="xs:string" use="required"/>
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
@@ -60,7 +60,7 @@
         <xs:complexContent>
             <xs:extension base="xmlStatConditionType">
                 <xs:attribute name="kind" type="xs:string" use="required"/>
-                <xs:attribute name="value" type="xs:anyType" use="required"/>
+                <xs:attribute name="value" type="xs:string" use="required"/>
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
@@ -72,7 +72,7 @@
         <xs:complexContent>
             <xs:extension base="xmlStatConditionOperator">
                 <xs:choice maxOccurs="unbounded">
-                    <xs:element ref="logic"/>
+                    <xs:element ref="operator"/>
                     <xs:element ref="condition"/>
                 </xs:choice>
             </xs:extension>
@@ -83,7 +83,7 @@
         <xs:complexContent>
             <xs:extension base="xmlStatConditionOperator">
                 <xs:choice maxOccurs="unbounded">
-                    <xs:element ref="logic" />
+                    <xs:element ref="operator" />
                     <xs:element ref="condition"/>
                 </xs:choice>
             </xs:extension>
@@ -94,7 +94,7 @@
         <xs:complexContent>
             <xs:extension base="xmlStatConditionOperator">
                 <xs:choice>
-                    <xs:element ref="logic" minOccurs="0"/>
+                    <xs:element ref="operator"/>
                     <xs:element ref="condition"/>
                 </xs:choice>
             </xs:extension>

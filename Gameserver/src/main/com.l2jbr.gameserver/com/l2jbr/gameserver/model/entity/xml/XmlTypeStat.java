@@ -2,7 +2,7 @@
 // Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.3.0-b170531.0717 
 // Consulte <a href="https://jaxb.java.net/">https://jaxb.java.net/</a> 
 // Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
-// Gerado em: 2018.07.02 às 10:41:24 AM BRT 
+// Gerado em: 2018.07.18 às 02:22:37 PM BRT 
 //
 
 
@@ -13,7 +13,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
 
 
 /**
@@ -23,13 +22,17 @@ import javax.xml.bind.annotation.XmlValue;
  * 
  * <pre>
  * &lt;complexType name="xmlTypeStat"&gt;
- *   &lt;simpleContent&gt;
- *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema&gt;decimal"&gt;
- *       &lt;attribute name="order" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
- *       &lt;attribute name="function" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="name" type="{http://la2j.org}xmlTypeEnumStat" /&gt;
- *     &lt;/extension&gt;
- *   &lt;/simpleContent&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="conditions" type="{http://la2j.org}xmlStatCondition" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
+ *       &lt;attribute name="order" use="required" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *       &lt;attribute name="function" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="name" use="required" type="{http://la2j.org}xmlTypeEnumStat" /&gt;
+ *       &lt;attribute name="value" use="required" type="{http://www.w3.org/2001/XMLSchema}decimal" /&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
  * 
@@ -37,64 +40,57 @@ import javax.xml.bind.annotation.XmlValue;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "xmlTypeStat", propOrder = {
-    "value"
+    "conditions"
 })
 public class XmlTypeStat {
 
-    @XmlValue
-    protected BigDecimal value;
-    @XmlAttribute(name = "order")
-    protected Integer order;
-    @XmlAttribute(name = "function")
+    protected XmlStatCondition conditions;
+    @XmlAttribute(name = "order", required = true)
+    protected int order;
+    @XmlAttribute(name = "function", required = true)
     protected String function;
-    @XmlAttribute(name = "name")
+    @XmlAttribute(name = "name", required = true)
     protected XmlTypeEnumStat name;
+    @XmlAttribute(name = "value", required = true)
+    protected BigDecimal value;
 
     /**
-     * Obtém o valor da propriedade value.
+     * Obtém o valor da propriedade conditions.
      * 
      * @return
      *     possible object is
-     *     {@link BigDecimal }
+     *     {@link XmlStatCondition }
      *     
      */
-    public BigDecimal getValue() {
-        return value;
+    public XmlStatCondition getConditions() {
+        return conditions;
     }
 
     /**
-     * Define o valor da propriedade value.
+     * Define o valor da propriedade conditions.
      * 
      * @param value
      *     allowed object is
-     *     {@link BigDecimal }
+     *     {@link XmlStatCondition }
      *     
      */
-    public void setValue(BigDecimal value) {
-        this.value = value;
+    public void setConditions(XmlStatCondition value) {
+        this.conditions = value;
     }
 
     /**
      * Obtém o valor da propriedade order.
      * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
      */
-    public Integer getOrder() {
+    public int getOrder() {
         return order;
     }
 
     /**
      * Define o valor da propriedade order.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
      */
-    public void setOrder(Integer value) {
+    public void setOrder(int value) {
         this.order = value;
     }
 
@@ -144,6 +140,30 @@ public class XmlTypeStat {
      */
     public void setName(XmlTypeEnumStat value) {
         this.name = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade value.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public BigDecimal getValue() {
+        return value;
+    }
+
+    /**
+     * Define o valor da propriedade value.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public void setValue(BigDecimal value) {
+        this.value = value;
     }
 
 }

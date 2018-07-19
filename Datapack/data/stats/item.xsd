@@ -10,13 +10,13 @@
     <xs:element name="itemList">
         <xs:complexType>
             <xs:choice>
-                <xs:element name="item" type="xmlTypeItemStat" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="item" type="ItemStat" minOccurs="0" maxOccurs="unbounded"/>
             </xs:choice>
         </xs:complexType>
 
     </xs:element>
 
-    <xs:complexType name="xmlTypeItemStat">
+    <xs:complexType name="ItemStat">
         <xs:sequence>
             <xs:element name="stat" type="xmlTypeStat" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="skill" type="xmlItemSkill" minOccurs="0" maxOccurs="unbounded"/>

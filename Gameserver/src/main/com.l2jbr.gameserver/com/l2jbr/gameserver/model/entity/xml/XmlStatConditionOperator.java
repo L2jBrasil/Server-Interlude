@@ -10,20 +10,19 @@ package com.l2jbr.gameserver.model.entity.xml;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java de xmlTypeEnchant complex type.
+ * <p>Classe Java de xmlStatConditionOperator complex type.
  * 
  * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
  * 
  * <pre>
- * &lt;complexType name="xmlTypeEnchant"&gt;
+ * &lt;complexType name="xmlStatConditionOperator"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;attribute name="stat" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -32,34 +31,13 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "xmlTypeEnchant")
-public class XmlTypeEnchant {
+@XmlType(name = "xmlStatConditionOperator")
+@XmlSeeAlso({
+    XmlStatConditionAND.class,
+    XmlStatConditionOR.class,
+    XmlStatConditionNOT.class
+})
+public abstract class XmlStatConditionOperator {
 
-    @XmlAttribute(name = "stat", required = true)
-    protected String stat;
-
-    /**
-     * Obtém o valor da propriedade stat.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getStat() {
-        return stat;
-    }
-
-    /**
-     * Define o valor da propriedade stat.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setStat(String value) {
-        this.stat = value;
-    }
 
 }

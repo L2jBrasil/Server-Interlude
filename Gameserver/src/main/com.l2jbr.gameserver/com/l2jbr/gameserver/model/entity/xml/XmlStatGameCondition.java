@@ -11,25 +11,21 @@ package com.l2jbr.gameserver.model.entity.xml;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java de skillCondition complex type.
+ * <p>Classe Java de xmlStatGameCondition complex type.
  * 
  * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
  * 
  * <pre>
- * &lt;complexType name="skillCondition"&gt;
+ * &lt;complexType name="xmlStatGameCondition"&gt;
  *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="using" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *       &lt;/sequence&gt;
- *       &lt;attribute name="message" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" /&gt;
- *     &lt;/restriction&gt;
+ *     &lt;extension base="{http://la2j.org}xmlStatConditionType"&gt;
+ *       &lt;attribute name="kind" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="value" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
@@ -37,63 +33,62 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "skillCondition", propOrder = {
-    "using"
-})
-public class SkillCondition {
+@XmlType(name = "xmlStatGameCondition")
+public class XmlStatGameCondition
+    extends XmlStatConditionType
+{
 
-    @XmlElement(required = true)
-    protected String using;
-    @XmlAttribute(name = "message")
-    @XmlSchemaType(name = "anySimpleType")
-    protected String message;
+    @XmlAttribute(name = "kind", required = true)
+    protected String kind;
+    @XmlAttribute(name = "value", required = true)
+    protected String value;
 
     /**
-     * Obtém o valor da propriedade using.
+     * Obtém o valor da propriedade kind.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getUsing() {
-        return using;
+    public String getKind() {
+        return kind;
     }
 
     /**
-     * Define o valor da propriedade using.
+     * Define o valor da propriedade kind.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setUsing(String value) {
-        this.using = value;
+    public void setKind(String value) {
+        this.kind = value;
     }
 
     /**
-     * Obtém o valor da propriedade message.
+     * Obtém o valor da propriedade value.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getMessage() {
-        return message;
+    public String getValue() {
+        return value;
     }
 
     /**
-     * Define o valor da propriedade message.
+     * Define o valor da propriedade value.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setMessage(String value) {
-        this.message = value;
+    public void setValue(String value) {
+        this.value = value;
     }
 
 }

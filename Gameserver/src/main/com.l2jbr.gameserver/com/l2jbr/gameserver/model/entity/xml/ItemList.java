@@ -2,7 +2,7 @@
 // Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.3.0-b170531.0717 
 // Consulte <a href="https://jaxb.java.net/">https://jaxb.java.net/</a> 
 // Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
-// Gerado em: 2018.07.02 às 10:41:24 AM BRT 
+// Gerado em: 2018.07.18 às 02:22:37 PM BRT 
 //
 
 
@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;choice&gt;
- *         &lt;element name="item" type="{http://la2j.org}xmlTypeItemStat" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *         &lt;element name="item" type="{http://la2j.org}ItemStat" maxOccurs="unbounded" minOccurs="0"/&gt;
  *       &lt;/choice&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -42,7 +42,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "itemList")
 public class ItemList {
 
-    protected List<XmlTypeItemStat> item;
+    protected List<ItemStat> item;
 
     /**
      * Gets the value of the item property.
@@ -62,13 +62,13 @@ public class ItemList {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link XmlTypeItemStat }
+     * {@link ItemStat }
      * 
      * 
      */
-    public List<XmlTypeItemStat> getItem() {
+    public List<ItemStat> getItem() {
         if (item == null) {
-            item = new ArrayList<XmlTypeItemStat>();
+            item = new ArrayList<ItemStat>();
         }
         return this.item;
     }

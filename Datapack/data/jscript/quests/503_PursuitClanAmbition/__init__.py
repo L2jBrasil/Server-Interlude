@@ -10,8 +10,8 @@ from com.l2jbr.gameserver.model.quest               import QuestState
 from com.l2jbr.gameserver.model.quest.jython        import QuestJython as JQuest
 from com.l2jbr.commons.database                     import L2DatabaseFactory
 from com.l2jbr.commons.database                     import DatabaseAccess
-from com.l2jbr.gameserver.model.database.repository import CharacterQuestsRepository
-from com.l2jbr.gameserver.model.database            import CharacterQuests
+from com.l2jbr.gameserver.model.entity.database.repository import CharacterQuestsRepository
+from com.l2jbr.gameserver.model.entity.database            import CharacterQuests
 
 qn = "503_PursuitClanAmbition"
 qd = "Pursuit Clan Ambition"
