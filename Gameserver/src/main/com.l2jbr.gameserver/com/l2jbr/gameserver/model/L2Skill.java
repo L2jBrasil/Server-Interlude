@@ -2038,14 +2038,12 @@ public abstract class L2Skill {
         return targets[0];
     }
 
-    public final Func[] getStatFuncs(L2Effect effect, L2Character player) {
-        if (!(player instanceof L2PcInstance) && !(player instanceof L2Attackable) && !(player instanceof L2Summon)) {
-            return _emptyFunctionSet;
-        }
-        if (_funcTemplates == null) {
-            return _emptyFunctionSet;
-        }
+    public final List<Func> getStatFuncs(L2Effect effect, L2Character player) {
         List<Func> funcs = new LinkedList<>();
+        if (_funcTemplates == null || !(player instanceof L2PcInstance) && !(player instanceof L2Attackable) && !(player instanceof L2Summon)) {
+            return funcs;
+        }
+
         for (FuncTemplate t : _funcTemplates) {
             Env env = new Env();
             env.player = player;
@@ -2055,10 +2053,8 @@ public abstract class L2Skill {
                 funcs.add(f);
             }
         }
-        if (funcs.size() == 0) {
-            return _emptyFunctionSet;
-        }
-        return funcs.toArray(new Func[funcs.size()]);
+
+        return funcs;
     }
 
     public boolean hasEffects() {

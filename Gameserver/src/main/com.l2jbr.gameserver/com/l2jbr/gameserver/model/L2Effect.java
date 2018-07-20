@@ -432,11 +432,11 @@ public abstract class L2Effect {
         }
     }
 
-    public Func[] getStatFuncs() {
-        if (_funcTemplates == null) {
-            return _emptyFunctionSet;
-        }
+    public List<Func> getStatFuncs() {
         List<Func> funcs = new LinkedList<>();
+        if (_funcTemplates == null) {
+            return funcs;
+        }
         for (FuncTemplate t : _funcTemplates) {
             Env env = new Env();
             env.player = getEffector();
@@ -447,10 +447,7 @@ public abstract class L2Effect {
                 funcs.add(f);
             }
         }
-        if (funcs.size() == 0) {
-            return _emptyFunctionSet;
-        }
-        return funcs.toArray(new Func[funcs.size()]);
+        return funcs;
     }
 
     public final void addIcon(MagicEffectIcons mi) {

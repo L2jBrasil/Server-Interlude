@@ -2,7 +2,7 @@
 // Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.3.0-b170531.0717 
 // Consulte <a href="https://jaxb.java.net/">https://jaxb.java.net/</a> 
 // Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
-// Gerado em: 2018.07.18 às 02:22:37 PM BRT 
+// Gerado em: 2018.07.20 às 02:06:11 PM BRT 
 //
 
 
@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;attribute name="kind" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="slot" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
  *       &lt;attribute name="item" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
- *       &lt;attribute name="enchantment" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *       &lt;attribute name="enchantment" type="{http://www.w3.org/2001/XMLSchema}int" default="0" /&gt;
  *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -129,8 +129,12 @@ public class XmlStatUsingCondition
      *     {@link Integer }
      *     
      */
-    public Integer getEnchantment() {
-        return enchantment;
+    public int getEnchantment() {
+        if (enchantment == null) {
+            return  0;
+        } else {
+            return enchantment;
+        }
     }
 
     /**

@@ -12,7 +12,7 @@
         <xs:attribute name="order" type="xs:int" use="required"/>
         <xs:attribute name="function" type="xs:string" use="required"/>
         <xs:attribute name="name" type="xmlTypeEnumStat" use="required"/>
-        <xs:attribute name="value" type="xs:decimal" use="required"/>
+        <xs:attribute name="value" type="xs:float" use="required"/>
     </xs:complexType>
 
     <xs:element name="operator" type="xmlStatConditionOperator"/>
@@ -42,7 +42,7 @@
                 <xs:attribute name="kind" type="xs:string" use="required"/>
                 <xs:attribute name="slot" type="xs:int"/>
                 <xs:attribute name="item" type="xs:int"/>
-                <xs:attribute name="enchantment" type="xs:int"/>
+                <xs:attribute name="enchantment" type="xs:int" default="0"/>
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
@@ -71,10 +71,10 @@
     <xs:complexType name="xmlStatConditionAND">
         <xs:complexContent>
             <xs:extension base="xmlStatConditionOperator">
-                <xs:choice maxOccurs="unbounded">
-                    <xs:element ref="operator"/>
-                    <xs:element ref="condition"/>
-                </xs:choice>
+                <xs:sequence>
+                    <xs:element ref="operator" maxOccurs="unbounded" minOccurs="0"/>
+                    <xs:element ref="condition" maxOccurs="unbounded" minOccurs="0"/>
+                </xs:sequence>
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
@@ -82,10 +82,10 @@
     <xs:complexType name="xmlStatConditionOR">
         <xs:complexContent>
             <xs:extension base="xmlStatConditionOperator">
-                <xs:choice maxOccurs="unbounded">
-                    <xs:element ref="operator" />
-                    <xs:element ref="condition"/>
-                </xs:choice>
+                <xs:sequence>
+                    <xs:element ref="operator" maxOccurs="unbounded" minOccurs="0"/>
+                    <xs:element ref="condition" maxOccurs="unbounded" minOccurs="0"/>
+                </xs:sequence>
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>

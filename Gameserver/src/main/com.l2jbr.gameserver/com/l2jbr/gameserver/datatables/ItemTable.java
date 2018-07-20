@@ -32,13 +32,10 @@ import com.l2jbr.gameserver.model.entity.database.repository.ArmorRepository;
 import com.l2jbr.gameserver.model.entity.database.repository.EtcItemRepository;
 import com.l2jbr.gameserver.model.entity.database.repository.PetsRepository;
 import com.l2jbr.gameserver.model.entity.database.repository.WeaponRepository;
-import com.l2jbr.gameserver.model.entity.xml.*;
-import com.l2jbr.gameserver.skills.conditions.Condition;
-import com.l2jbr.gameserver.skills.conditions.ConditionLogicAnd;
+import com.l2jbr.gameserver.model.entity.xml.ItemStatsReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import java.util.HashMap;
 import java.util.Map;
@@ -84,47 +81,9 @@ public class ItemTable {
 
     private void addToItems(ItemTemplate item) {
         if(!isNull(statsReader)) {
-            ItemStat itemStat = statsReader.getItemStat(item.getId());
-            attach(item, itemStat);
+            statsReader.attach(item);
         }
         items.put(item.getId(), item);
-    }
-
-    private void attach(ItemTemplate item, ItemStat itemStat) {
-        for(XmlTypeStat statType : itemStat.getStat()) {
-            Condition condition = parseConditions(statType.getConditions());
-        }
-    }
-
-    private Condition parseConditions(XmlStatCondition conditions) {
-        if(!isNull(conditions.getOperator())) {
-            return constructConditionWithOperator(conditions.getOperator());
-        }
-        return constructCondition(conditions.getCondition());
-    }
-
-    private Condition constructConditionWithOperator(JAXBElement<? extends XmlStatConditionOperator> conditionOperator) {
-        XmlStatConditionOperator operator = conditionOperator.getValue();
-        if(operator instanceof XmlStatConditionAND) {
-            return new ConditionLogicAnd();
-        }
-        return null;
-    }
-
-    private Condition constructCondition(JAXBElement<? extends XmlStatConditionType> condition) {
-        XmlStatConditionType conditionValue = condition.getValue();
-        if(conditionValue instanceof XmlStatUsingCondition) {
-            return parseUsingCondition((XmlStatUsingCondition)conditionValue);
-        }
-        return null;
-    }
-
-    private Condition parseUsingCondition(XmlStatUsingCondition condition) {
-        switch (condition.getKind()) {
-            case "slotitem":
-                break;
-        }
-        return null;
     }
 
     /**

@@ -35,10 +35,12 @@ import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.funcs.Func;
-import com.l2jbr.gameserver.templates.*;
+import com.l2jbr.gameserver.templates.BodyPart;
+import com.l2jbr.gameserver.templates.ItemTypeGroup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ScheduledFuture;
 
@@ -924,7 +926,7 @@ public final class L2ItemInstance extends L2Object
 	 * @param player : L2Character designating the player
 	 * @return Func[]
 	 */
-	public Func[] getStatFuncs(L2Character player)
+	public List<Func> getStatFuncs(L2Character player)
 	{
 		return getItem().getStatFuncs(this, player);
 	}

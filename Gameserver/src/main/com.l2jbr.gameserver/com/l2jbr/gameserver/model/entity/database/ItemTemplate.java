@@ -8,10 +8,8 @@ import com.l2jbr.gameserver.model.L2Effect;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.skills.Env;
-import com.l2jbr.gameserver.skills.Stats;
 import com.l2jbr.gameserver.skills.funcs.Func;
 import com.l2jbr.gameserver.skills.funcs.FuncTemplate;
-import com.l2jbr.gameserver.skills.funcs.LambdaConst;
 import com.l2jbr.gameserver.templates.BodyPart;
 import com.l2jbr.gameserver.templates.CrystalType;
 import com.l2jbr.gameserver.templates.ItemType;
@@ -19,6 +17,7 @@ import com.l2jbr.gameserver.templates.ItemTypeGroup;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -46,7 +45,7 @@ public abstract class ItemTemplate extends Entity<Integer> {
     @Transient
     protected ItemTypeGroup type2;
     @Transient
-    protected FuncTemplate[] _funcTemplates;
+    protected List<FuncTemplate> _funcTemplates;
     @Transient
     private static final Func[] _emptyFunctionSet = new Func[0];
     @Transient
@@ -56,31 +55,26 @@ public abstract class ItemTemplate extends Entity<Integer> {
 
 
     public ItemTemplate() {
-        _funcTemplates =  new FuncTemplate[] {
-          new FuncTemplate(null, null, "Add", Stats.STAT_CON, 0x10, new LambdaConst(0))
-        };
+        _funcTemplates = new ArrayList<>();
+    }
+
+    public void addFunction(FuncTemplate funcTemplate) {
+        _funcTemplates.add(funcTemplate);
     }
 
 
-    public Func[] getStatFuncs(L2ItemInstance instance, L2Character player) {
-        if (_funcTemplates == null) {
-            return _emptyFunctionSet;
-        }
+    public List<Func> getStatFuncs(L2ItemInstance instance, L2Character player) {
         List<Func> funcs = new LinkedList<>();
         for (FuncTemplate t : _funcTemplates) {
             Env env = new Env();
             env.player = player;
-            env.target = player;
             env.item = instance;
-            Func f = t.getFunc(env, this); // skill is owner
+            Func f = t.getFunc(env, instance);
             if (f != null) {
                 funcs.add(f);
             }
         }
-        if (funcs.size() == 0) {
-            return _emptyFunctionSet;
-        }
-        return funcs.toArray(new Func[funcs.size()]);
+        return funcs;
     }
 
     public L2Effect[] getSkillEffects(L2Character caster, L2Character target) {
@@ -224,4 +218,6 @@ public abstract class ItemTemplate extends Entity<Integer> {
     public boolean isForBabyPet() {
         return type2 == ItemTypeGroup.TYPE2_PET_BABY;
     }
+
+
 }

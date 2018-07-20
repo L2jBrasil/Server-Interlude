@@ -4086,7 +4086,7 @@ public abstract class L2Character extends L2Object {
      *
      * @param funcs The list of Func objects to add to the Calculator corresponding to the state affected
      */
-    public final synchronized void addStatFuncs(Func[] funcs) {
+    public final synchronized void addStatFuncs(List<Func> funcs) {
 
         List<Stats> modifiedStats = new LinkedList<>();
 

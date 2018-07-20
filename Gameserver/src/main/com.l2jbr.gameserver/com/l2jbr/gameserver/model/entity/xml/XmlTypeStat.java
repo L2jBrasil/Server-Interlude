@@ -2,13 +2,12 @@
 // Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.3.0-b170531.0717 
 // Consulte <a href="https://jaxb.java.net/">https://jaxb.java.net/</a> 
 // Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
-// Gerado em: 2018.07.18 às 02:22:37 PM BRT 
+// Gerado em: 2018.07.20 às 02:06:11 PM BRT 
 //
 
 
 package com.l2jbr.gameserver.model.entity.xml;
 
-import java.math.BigDecimal;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -30,7 +29,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;attribute name="order" use="required" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
  *       &lt;attribute name="function" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="name" use="required" type="{http://la2j.org}xmlTypeEnumStat" /&gt;
- *       &lt;attribute name="value" use="required" type="{http://www.w3.org/2001/XMLSchema}decimal" /&gt;
+ *       &lt;attribute name="value" use="required" type="{http://www.w3.org/2001/XMLSchema}float" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -52,7 +51,7 @@ public class XmlTypeStat {
     @XmlAttribute(name = "name", required = true)
     protected XmlTypeEnumStat name;
     @XmlAttribute(name = "value", required = true)
-    protected BigDecimal value;
+    protected float value;
 
     /**
      * Obtém o valor da propriedade conditions.
@@ -145,24 +144,16 @@ public class XmlTypeStat {
     /**
      * Obtém o valor da propriedade value.
      * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
      */
-    public BigDecimal getValue() {
+    public float getValue() {
         return value;
     }
 
     /**
      * Define o valor da propriedade value.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
      */
-    public void setValue(BigDecimal value) {
+    public void setValue(float value) {
         this.value = value;
     }
 
