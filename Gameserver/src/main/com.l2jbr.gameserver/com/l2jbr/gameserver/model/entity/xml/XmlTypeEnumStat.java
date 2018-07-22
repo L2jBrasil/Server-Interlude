@@ -40,7 +40,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;enumeration value="CRITICAL_DAMAGE"/&gt;
  *     &lt;enumeration value="PVP_PHYSIC_DAMAGE"/&gt;
  *     &lt;enumeration value="PVP_MAGIC_DAMAGE"/&gt;
- *     &lt;enumeration value="PVP_PHYS_SKILL_DMG"/&gt;
+ *     &lt;enumeration value="PVP_PHYS_SKILL_DAMAGE"/&gt;
  *     &lt;enumeration value="EVASION_RATE"/&gt;
  *     &lt;enumeration value="SHIELD_RATE"/&gt;
  *     &lt;enumeration value="CRITICAL_RATE"/&gt;

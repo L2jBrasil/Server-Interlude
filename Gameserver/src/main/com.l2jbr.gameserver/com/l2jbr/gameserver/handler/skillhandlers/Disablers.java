@@ -481,7 +481,7 @@ public class Disablers implements ISkillHandler
 						{
 							for (Func f : e.getStatFuncs())
 							{
-								if ((f.stat == Stats.RUN_SPEED) || (f.stat == Stats.POWER_ATTACK_SPEED))
+								if ((f.stat == Stats.RUN_SPEED) || (f.stat == Stats.PHYSIC_ATTACK_SPEED))
 								{
 									e.exit();
 									break;

@@ -36,6 +36,9 @@ public class ItemStatsReader extends XMLReader<ItemList> {
 
     public void attach(ItemTemplate item) {
         ItemStat itemStat = getItemStat(item.getId());
+        if(isNull(itemStat)) {
+            return;
+        }
         for(XmlTypeStat statType : itemStat.getStat()) {
             Condition condition = parseConditions(statType.getConditions());
             Lambda lambda = new LambdaConst(statType.getValue());
@@ -46,6 +49,9 @@ public class ItemStatsReader extends XMLReader<ItemList> {
     }
 
     private Condition parseConditions(XmlStatCondition conditions) {
+        if(isNull(conditions)) {
+            return null;
+        }
         if(!isNull(conditions.getOperator())) {
             return constructConditionWithOperator(conditions.getOperator().getValue());
         }

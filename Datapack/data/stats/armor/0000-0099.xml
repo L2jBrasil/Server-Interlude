@@ -111,7 +111,7 @@
 
     <item id='46' name="Bronze Helmet">
         <stat function="add" name='PHYSIC_DEFENCE' order='16' value='33'/>
-        <stat function="" name='PHYSIC_DEFENCE' order='12' value='0'/>
+        <stat function="enchant" name='PHYSIC_DEFENCE' order='12' value='0'/>
     </item>
 
     <item id='47' name="Helmet">

@@ -90,7 +90,7 @@ public class CharStat
 		c.calc(env);
 		// avoid some troubles with negative stats (some stats should never be
 		// negative)
-		if ((env.value <= 0) && ((stat == Stats.MAX_HP) || (stat == Stats.MAX_MP) || (stat == Stats.MAX_CP) || (stat == Stats.MAGIC_DEFENCE) || (stat == Stats.POWER_DEFENCE) || (stat == Stats.POWER_ATTACK) || (stat == Stats.MAGIC_ATTACK) || (stat == Stats.POWER_ATTACK_SPEED) || (stat == Stats.MAGIC_ATTACK_SPEED) || (stat == Stats.SHIELD_DEFENCE) || (stat == Stats.STAT_CON) || (stat == Stats.STAT_DEX) || (stat == Stats.STAT_INT) || (stat == Stats.STAT_MEN) || (stat == Stats.STAT_STR) || (stat == Stats.STAT_WIT)))
+		if ((env.value <= 0) && ((stat == Stats.MAX_HP) || (stat == Stats.MAX_MP) || (stat == Stats.MAX_CP) || (stat == Stats.MAGIC_DEFENCE) || (stat == Stats.PHYSIC_DEFENCE) || (stat == Stats.PHYSIC_ATTACK) || (stat == Stats.MAGIC_ATTACK) || (stat == Stats.PHYSIC_ATTACK_SPEED) || (stat == Stats.MAGIC_ATTACK_SPEED) || (stat == Stats.SHIELD_DEFENCE) || (stat == Stats.STAT_CON) || (stat == Stats.STAT_DEX) || (stat == Stats.STAT_INT) || (stat == Stats.STAT_MEN) || (stat == Stats.STAT_STR) || (stat == Stats.STAT_WIT)))
 		{
 			env.value = 1;
 		}
@@ -114,7 +114,7 @@ public class CharStat
 			return 0;
 		}
 		
-		return (int) (calcStat(Stats.ACCURACY_COMBAT, 0, null, null) / _activeChar.getWeaponExpertisePenalty());
+		return (int) (calcStat(Stats.ACCURACY, 0, null, null) / _activeChar.getWeaponExpertisePenalty());
 	}
 	
 	public L2Character getActiveChar()
@@ -519,7 +519,7 @@ public class CharStat
 		{
 			bonusAtk = Config.L2JMOD_CHAMPION_ATK;
 		}
-		return (int) calcStat(Stats.POWER_ATTACK, _activeChar.getTemplate().getpAtk() * bonusAtk, target, null);
+		return (int) calcStat(Stats.PHYSIC_ATTACK, _activeChar.getTemplate().getpAtk() * bonusAtk, target, null);
 	}
 	
 	/**
@@ -587,7 +587,7 @@ public class CharStat
 		{
 			bonusAtk = Config.L2JMOD_CHAMPION_SPD_ATK;
 		}
-		return (int) (calcStat(Stats.POWER_ATTACK_SPEED, _activeChar.getTemplate().getPAtkSpd() * bonusAtk, null, null) / _activeChar.getArmourExpertisePenalty());
+		return (int) (calcStat(Stats.PHYSIC_ATTACK_SPEED, _activeChar.getTemplate().getPAtkSpd() * bonusAtk, null, null) / _activeChar.getArmourExpertisePenalty());
 	}
 	
 	/**
@@ -617,7 +617,7 @@ public class CharStat
 			return 1;
 		}
 		
-		return (int) calcStat(Stats.POWER_DEFENCE, (_activeChar.isRaid()) ? _activeChar.getTemplate().getpDef() * Config.RAID_DEFENCE_MULTIPLIER : _activeChar.getTemplate().getpDef(), target, null);
+		return (int) calcStat(Stats.PHYSIC_DEFENCE, (_activeChar.isRaid()) ? _activeChar.getTemplate().getpDef() * Config.RAID_DEFENCE_MULTIPLIER : _activeChar.getTemplate().getpDef(), target, null);
 	}
 	
 	/**
@@ -631,7 +631,7 @@ public class CharStat
 			return 1;
 		}
 		
-		return (int) calcStat(Stats.POWER_ATTACK_RANGE, _activeChar.getTemplate().getAtkRange(), null, null);
+		return (int) calcStat(Stats.PHYSIC_ATTACK_RANGE, _activeChar.getTemplate().getAtkRange(), null, null);
 	}
 	
 	/**
@@ -641,7 +641,7 @@ public class CharStat
 	 */
 	public final double getReuseModifier(L2Character target)
 	{
-		return calcStat(Stats.ATK_REUSE, 1, target, null);
+		return calcStat(Stats.ATTACK_REUSE, 1, target, null);
 	}
 	
 	/**

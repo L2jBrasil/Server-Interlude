@@ -1105,8 +1105,8 @@ public abstract class L2Character extends L2Object {
         boolean hitted = false;
 
         double angleChar, angleTarget;
-        int maxRadius = (int) getStat().calcStat(Stats.POWER_ATTACK_RANGE, 66, null, null);
-        int maxAngleDiff = (int) getStat().calcStat(Stats.POWER_ATTACK_ANGLE, 120, null, null);
+        int maxRadius = (int) getStat().calcStat(Stats.PHYSIC_ATTACK_RANGE, 66, null, null);
+        int maxAngleDiff = (int) getStat().calcStat(Stats.PHYSIC_ATTACK_ANGLE, 120, null, null);
 
         if (getTarget() == null) {
             return false;
@@ -3953,7 +3953,7 @@ public abstract class L2Character extends L2Object {
     private int _disableBowAttackEndTime;
 
     /**
-     * Table of calculators containing all standard NPC calculator (ex : ACCURACY_COMBAT, EVASION_RATE.
+     * Table of calculators containing all standard NPC calculator (ex : ACCURACY, EVASION_RATE.
      */
     private static final Calculator[] NPC_STD_CALCULATOR;
 
@@ -4256,7 +4256,7 @@ public abstract class L2Character extends L2Object {
         StatusUpdate su = null;
 
         for (Stats stat : stats) {
-            if (stat == Stats.POWER_ATTACK_SPEED) {
+            if (stat == Stats.PHYSIC_ATTACK_SPEED) {
                 if (su == null) {
                     su = new StatusUpdate(getObjectId());
                 }

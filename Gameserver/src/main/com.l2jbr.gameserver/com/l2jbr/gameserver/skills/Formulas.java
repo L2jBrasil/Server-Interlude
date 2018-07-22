@@ -240,7 +240,7 @@ public final class Formulas
 		
 		private FuncPAtkMod()
 		{
-			super(Stats.POWER_ATTACK, 0x30, null);
+			super(Stats.PHYSIC_ATTACK, 0x30, null);
 		}
 		
 		@Override
@@ -329,7 +329,7 @@ public final class Formulas
 		
 		private FuncPDefMod()
 		{
-			super(Stats.POWER_DEFENCE, 0x20, null);
+			super(Stats.PHYSIC_DEFENCE, 0x20, null);
 		}
 		
 		@Override
@@ -374,7 +374,7 @@ public final class Formulas
 		
 		private FuncBowAtkRange()
 		{
-			super(Stats.POWER_ATTACK_RANGE, 0x10, null);
+			super(Stats.PHYSIC_ATTACK_RANGE, 0x10, null);
 			setCondition(new ConditionUsingItemType(ItemType.BOW.mask()));
 		}
 		
@@ -400,7 +400,7 @@ public final class Formulas
 		
 		private FuncAtkAccuracy()
 		{
-			super(Stats.ACCURACY_COMBAT, 0x10, null);
+			super(Stats.ACCURACY, 0x10, null);
 		}
 		
 		@Override
@@ -512,7 +512,7 @@ public final class Formulas
 		
 		private FuncPAtkSpeed()
 		{
-			super(Stats.POWER_ATTACK_SPEED, 0x20, null);
+			super(Stats.PHYSIC_ATTACK_SPEED, 0x20, null);
 		}
 		
 		@Override
@@ -873,7 +873,7 @@ public final class Formulas
 	}
 	
 	/**
-	 * Return the standard NPC Calculator set containing ACCURACY_COMBAT and EVASION_RATE.<BR>
+	 * Return the standard NPC Calculator set containing ACCURACY and EVASION_RATE.<BR>
 	 * <BR>
 	 * <B><U> Concept</U> :</B><BR>
 	 * <BR>
@@ -889,9 +889,9 @@ public final class Formulas
 	{
 		Calculator[] std = new Calculator[Stats.NUM_STATS];
 		
-		// Add the FuncAtkAccuracy to the Standard Calculator of ACCURACY_COMBAT
-		std[Stats.ACCURACY_COMBAT.ordinal()] = new Calculator();
-		std[Stats.ACCURACY_COMBAT.ordinal()].addFunc(FuncAtkAccuracy.getInstance());
+		// Add the FuncAtkAccuracy to the Standard Calculator of ACCURACY
+		std[Stats.ACCURACY.ordinal()] = new Calculator();
+		std[Stats.ACCURACY.ordinal()].addFunc(FuncAtkAccuracy.getInstance());
 		
 		// Add the FuncAtkEvasion to the Standard Calculator of EVASION_RATE
 		std[Stats.EVASION_RATE.ordinal()] = new Calculator();
@@ -925,8 +925,8 @@ public final class Formulas
 			// cha.addStatFunc(FuncMultRegenResting.getInstance(Stats.REGENERATE_CP_RATE));
 			// cha.addStatFunc(FuncMultRegenResting.getInstance(Stats.REGENERATE_MP_RATE));
 			cha.addStatFunc(FuncBowAtkRange.getInstance());
-			// cha.addStatFunc(FuncMultLevelMod.getInstance(Stats.POWER_ATTACK));
-			// cha.addStatFunc(FuncMultLevelMod.getInstance(Stats.POWER_DEFENCE));
+			// cha.addStatFunc(FuncMultLevelMod.getInstance(Stats.PHYSIC_ATTACK));
+			// cha.addStatFunc(FuncMultLevelMod.getInstance(Stats.PHYSIC_DEFENCE));
 			// cha.addStatFunc(FuncMultLevelMod.getInstance(Stats.MAGIC_DEFENCE));
 			cha.addStatFunc(FuncPAtkMod.getInstance());
 			cha.addStatFunc(FuncMAtkMod.getInstance());
@@ -1491,11 +1491,11 @@ public final class Formulas
 		{
 			if (skill == null)
 			{
-				damage *= attacker.calcStat(Stats.PVP_PHYSICAL_DMG, 1, null, null);
+				damage *= attacker.calcStat(Stats.PVP_PHYSIC_DAMAGE, 1, null, null);
 			}
 			else
 			{
-				damage *= attacker.calcStat(Stats.PVP_PHYS_SKILL_DMG, 1, null, null);
+				damage *= attacker.calcStat(Stats.PVP_PHYS_SKILL_DAMAGE, 1, null, null);
 			}
 		}
 		
@@ -1589,11 +1589,11 @@ public final class Formulas
 		{
 			if (skill.isMagic())
 			{
-				damage *= attacker.calcStat(Stats.PVP_MAGICAL_DMG, 1, null, null);
+				damage *= attacker.calcStat(Stats.PVP_MAGIC_DAMAGE, 1, null, null);
 			}
 			else
 			{
-				damage *= attacker.calcStat(Stats.PVP_PHYS_SKILL_DMG, 1, null, null);
+				damage *= attacker.calcStat(Stats.PVP_PHYS_SKILL_DAMAGE, 1, null, null);
 			}
 		}
 		return damage;

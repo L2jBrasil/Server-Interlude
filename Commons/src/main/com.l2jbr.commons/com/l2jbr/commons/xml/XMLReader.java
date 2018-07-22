@@ -23,20 +23,20 @@ public abstract class XMLReader<T> implements ValidationEventHandler {
         createUnmarshaller();
     }
 
-    protected void createUnmarshaller() throws JAXBException {
-        JAXBContext context = getJAXBContext();
-        unmarshaller = context.createUnmarshaller();
-        unmarshaller.setSchema(schema);
-        unmarshaller.setEventHandler(this);
-    }
-
     private void loadSchema()  {
         try {
             SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
             schema = factory.newSchema(new File(getSchemaFilePath()));
         } catch (SAXException e) {
-           logger.warn(e.getLocalizedMessage(), e);
+            logger.warn(e.getLocalizedMessage(), e);
         }
+    }
+
+    private void createUnmarshaller() throws JAXBException {
+        JAXBContext context = getJAXBContext();
+        unmarshaller = context.createUnmarshaller();
+        unmarshaller.setSchema(schema);
+        unmarshaller.setEventHandler(this);
     }
 
     public void readAll() {
@@ -45,17 +45,17 @@ public abstract class XMLReader<T> implements ValidationEventHandler {
         }
     }
 
-    private String[] getDirectoryFiles(String directory) {
+    private File[] getDirectoryFiles(String directory) {
         File fileDir = new File(Config.DATAPACK_ROOT, directory);
-        return fileDir.list((dir, name) -> name.endsWith(".xml"));
+        return fileDir.listFiles((dir, name) -> name.endsWith(".xml"));
     }
 
-    private void read(String... files) {
+    private void read(File... files) {
         if(files == null || files.length < 1) {
             return;
         }
 
-        for (String file : files) {
+        for (File file : files) {
             try {
                 readFile(file);
             } catch (JAXBException e) {
@@ -64,15 +64,15 @@ public abstract class XMLReader<T> implements ValidationEventHandler {
         }
     }
 
-    protected void readFile(String file) throws JAXBException{
+    private void readFile(File file) throws JAXBException{
         T entity = processFile(file);
         processEntity(entity);
     }
 
     @SuppressWarnings("unchecked")
-    protected T processFile(String filePath) throws JAXBException {
-        processingFile = filePath;
-        return (T) unmarshaller.unmarshal(new File(filePath));
+    private T processFile(File file) throws JAXBException {
+        processingFile = file.getAbsolutePath();
+        return (T) unmarshaller.unmarshal(file);
     }
 
     @Override

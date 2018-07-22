@@ -30,7 +30,6 @@ public enum Stats
 	//
 	// Base stats, for each in Calculator a slot is allocated
 	//
-	
 	// HP & MP
 	MAX_HP("maxHp"),
 	MAX_MP("maxMp"),
@@ -42,18 +41,18 @@ public enum Stats
 	HEAL_EFFECTIVNESS("gainHp"),
 	
 	// Atk & Def
-	POWER_DEFENCE("pDef"),
+	PHYSIC_DEFENCE("pDef"),
 	MAGIC_DEFENCE("mDef"),
-	POWER_ATTACK("pAtk"),
+	PHYSIC_ATTACK("pAtk"),
 	MAGIC_ATTACK("mAtk"),
-	POWER_ATTACK_SPEED("pAtkSpd"),
+	PHYSIC_ATTACK_SPEED("pAtkSpd"),
 	MAGIC_ATTACK_SPEED("mAtkSpd"), // how fast a spell is casted (including animation)
 	MAGIC_REUSE_RATE("mReuse"), // how fast spells becomes ready to reuse
 	SHIELD_DEFENCE("sDef"),
 	CRITICAL_DAMAGE("cAtk"),
-	PVP_PHYSICAL_DMG("pvpPhysDmg"),
-	PVP_MAGICAL_DMG("pvpMagicalDmg"),
-	PVP_PHYS_SKILL_DMG("pvpPhysSkillsDmg"),
+	PVP_PHYSIC_DAMAGE("pvpPhysDmg"),
+	PVP_MAGIC_DAMAGE("pvpMagicalDmg"),
+	PVP_PHYS_SKILL_DAMAGE("pvpPhysSkillsDmg"),
 	
 	// Atk & Def rates
 	EVASION_RATE("rEvas"),
@@ -66,10 +65,10 @@ public enum Stats
 	ATTACK_CANCEL("cancel"),
 	
 	// Accuracy and range
-	ACCURACY_COMBAT("accCombat"),
-	POWER_ATTACK_RANGE("pAtkRange"),
+	ACCURACY("accCombat"),
+	PHYSIC_ATTACK_RANGE("pAtkRange"),
 	MAGIC_ATTACK_RANGE("mAtkRange"),
-	POWER_ATTACK_ANGLE("pAtkAngle"),
+	PHYSIC_ATTACK_ANGLE("pAtkAngle"),
 	ATTACK_COUNT_MAX("atkCountMax"),
 	// Run speed,
 	// walk & escape speed are calculated proportionally,
@@ -156,7 +155,7 @@ public enum Stats
 	
 	PDEF_UNDEAD("pDef-undead"),
 	
-	ATK_REUSE("atkReuse"),
+	ATTACK_REUSE("atkReuse"),
 	
 	// ExSkill :)
 	INV_LIM("inventoryLimit"),

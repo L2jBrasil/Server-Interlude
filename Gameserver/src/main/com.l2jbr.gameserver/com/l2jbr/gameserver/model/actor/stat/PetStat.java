@@ -245,19 +245,19 @@ public class PetStat extends SummonStat
 	@Override
 	public int getPAtk(L2Character target)
 	{
-		return (int) calcStat(Stats.POWER_ATTACK, getActiveChar().getPetData().getPetPAtk(), target, null);
+		return (int) calcStat(Stats.PHYSIC_ATTACK, getActiveChar().getPetData().getPetPAtk(), target, null);
 	}
 	
 	@Override
 	public int getPDef(L2Character target)
 	{
-		return (int) calcStat(Stats.POWER_DEFENCE, getActiveChar().getPetData().getPetPDef(), target, null);
+		return (int) calcStat(Stats.PHYSIC_DEFENCE, getActiveChar().getPetData().getPetPDef(), target, null);
 	}
 	
 	@Override
 	public int getAccuracy()
 	{
-		return (int) calcStat(Stats.ACCURACY_COMBAT, getActiveChar().getPetData().getPetAccuracy(), null, null);
+		return (int) calcStat(Stats.ACCURACY, getActiveChar().getPetData().getPetAccuracy(), null, null);
 	}
 	
 	@Override
@@ -281,7 +281,7 @@ public class PetStat extends SummonStat
 	@Override
 	public int getPAtkSpd()
 	{
-		return (int) calcStat(Stats.POWER_ATTACK_SPEED, getActiveChar().getPetData().getPetAtkSpeed(), null, null);
+		return (int) calcStat(Stats.PHYSIC_ATTACK_SPEED, getActiveChar().getPetData().getPetAtkSpeed(), null, null);
 	}
 	
 	@Override

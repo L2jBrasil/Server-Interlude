@@ -67,7 +67,6 @@ public class ItemTable {
         DatabaseAccess.getRepository(EtcItemRepository.class).findAll().forEach(this::addToItems);
         DatabaseAccess.getRepository(ArmorRepository.class).findAll().forEach(this::addToItems);
         DatabaseAccess.getRepository(WeaponRepository.class).findAll().forEach(this::addToItems);
-
     }
 
     private void loadItemsStat() {
