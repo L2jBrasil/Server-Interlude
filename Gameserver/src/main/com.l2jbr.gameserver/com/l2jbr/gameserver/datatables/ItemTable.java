@@ -98,7 +98,7 @@ public class ItemTable {
      * Returns the item corresponding to the item ID
      *
      * @param id : int designating the item
-     * @return L2Item
+     * @return ItemTemplate
      */
     public ItemTemplate getTemplate(int id) {
         return items.get(id);

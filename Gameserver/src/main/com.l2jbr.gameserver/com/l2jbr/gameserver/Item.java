@@ -14,7 +14,7 @@
  */
 package com.l2jbr.gameserver;
 
-import com.l2jbr.gameserver.templates.L2Item;
+import com.l2jbr.gameserver.model.entity.database.ItemTemplate;
 import com.l2jbr.gameserver.templates.StatsSet;
 
 
@@ -29,5 +29,5 @@ public class Item
 	public String name;
 	public StatsSet set;
 	public int currentLevel;
-	public L2Item item;
+	public ItemTemplate item;
 }

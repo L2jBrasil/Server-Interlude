@@ -164,7 +164,7 @@ public final class UseItem extends L2GameClientPacket
 				return;
 			}
 			/*
-			 * Since c5 you can equip weapon again // Don't allow weapon/shield equipment if wearing formal wear if (activeChar.isWearingFormalWear() && (bodyPart == L2Item.SLOT_LR_HAND || bodyPart == L2Item.SLOT_L_HAND || bodyPart == L2Item.SLOT_R_HAND)) { SystemMessage sm = new
+			 * Since c5 you can equip weapon again // Don't allow weapon/shield equipment if wearing formal wear if (activeChar.isWearingFormalWear() && (bodyPart == ItemTemplate.SLOT_LR_HAND || bodyPart == ItemTemplate.SLOT_L_HAND || bodyPart == ItemTemplate.SLOT_R_HAND)) { SystemMessage sm = new
 			 * SystemMessage(SystemMessageId.CANNOT_USE_ITEMS_SKILLS_WITH_FORMALWEAR); activeChar.sendPacket(sm); return; }
 			 */
 			

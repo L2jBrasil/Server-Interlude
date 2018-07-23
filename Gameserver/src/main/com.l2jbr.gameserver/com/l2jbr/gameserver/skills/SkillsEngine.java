@@ -19,10 +19,8 @@
 package com.l2jbr.gameserver.skills;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.gameserver.Item;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.L2Skill;
-import com.l2jbr.gameserver.templates.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,8 +35,6 @@ public class SkillsEngine {
 
     private static final SkillsEngine _instance = new SkillsEngine();
 
-    private final List<File> _armorFiles = new LinkedList<>();
-    private final List<File> _weaponFiles = new LinkedList<>();
     private final List<File> _skillFiles = new LinkedList<>();
 
     public static SkillsEngine getInstance() {
@@ -46,8 +42,6 @@ public class SkillsEngine {
     }
 
     private SkillsEngine() {
-        hashFiles("data/stats/armor", _armorFiles);
-        hashFiles("data/stats/weapon", _weaponFiles);
         hashFiles("data/stats/skills", _skillFiles);
     }
 
@@ -94,24 +88,5 @@ public class SkillsEngine {
             }
         }
         _log.info("SkillsEngine: Loaded " + count + " Skill templates from XML files.");
-    }
-    
-
-    public List<L2EtcItem> loadItems(Map<Integer, Item> itemData) {
-        List<L2EtcItem> list = new LinkedList<>();
-        for (Item item : itemData.values()) {
-            list.add(new L2EtcItem((ItemType) item.type, item.set));
-        }
-        return list;
-    }
-
-    public List<L2Item> loadData(Map<Integer, Item> itemData, List<File> files) {
-        List<L2Item> list = new LinkedList<>();
-        for (File f : files) {
-            DocumentItem document = new DocumentItem(itemData, f);
-            document.parse();
-            list.addAll(document.getItemList());
-        }
-        return list;
     }
 }

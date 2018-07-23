@@ -83,7 +83,7 @@ public final class L2ItemInstance extends L2Object
 	/** ID of the item */
 	private final int _itemId;
 	
-	/** Object L2Item associated to the item */
+	/** Object ItemTemplate associated to the item */
 	private final ItemTemplate _item;
 	
 	/** Location of the item : Inventory, PaperDoll, WareHouse */
@@ -167,9 +167,9 @@ public final class L2ItemInstance extends L2Object
 	}
 	
 	/**
-	 * Constructor of the L2ItemInstance from the objetId and the description of the item given by the L2Item.
+	 * Constructor of the L2ItemInstance from the objetId and the description of the item given by the ItemTemplate.
 	 * @param objectId : int designating the ID of the object in the world
-	 * @param item : L2Item containing informations of the item
+	 * @param item : ItemTemplate containing informations of the item
 	 */
 	public L2ItemInstance(int objectId, ItemTemplate item)
 	{
@@ -373,7 +373,7 @@ public final class L2ItemInstance extends L2Object
 	
 	/**
 	 * Returns the characteristics of the item
-	 * @return L2Item
+	 * @return ItemTemplate
 	 */
 	public ItemTemplate getItem()
 	{
@@ -922,7 +922,7 @@ public final class L2ItemInstance extends L2Object
 	}
 	
 	/**
-	 * This function basically returns a set of functions from L2Item/Armor/Weapon, but may add additional functions, if this particular item instance is enhanched for a particular player.
+	 * This function basically returns a set of functions from ItemTemplate/Armor/Weapon, but may add additional functions, if this particular item instance is enhanched for a particular player.
 	 * @param player : L2Character designating the player
 	 * @return Func[]
 	 */

@@ -60,7 +60,7 @@ public class EtcItem extends ItemTemplate {
         return stackable;
     }
 
-    public enum ConsumeType {
+    enum ConsumeType {
         NORMAL,
         STACKABLE,
         ASSET;

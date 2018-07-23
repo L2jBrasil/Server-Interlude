@@ -565,7 +565,7 @@ public abstract class Inventory extends ItemContainer {
     }
 
     /**
-     * Returns the item in the paperdoll L2Item slot
+     * Returns the item in the paperdoll ItemTemplate slot
      *
      * @param slot
      * @return L2ItemInstance
@@ -1136,7 +1136,7 @@ public abstract class Inventory extends ItemContainer {
      * Return the L2ItemInstance of the arrows needed for this bow.<BR>
      * <BR>
      *
-     * @param bow : L2Item designating the bow
+     * @param bow : ItemTemplate designating the bow
      * @return L2ItemInstance pointing out arrows for bow
      */
     public L2ItemInstance findArrowForBow(ItemTemplate bow) {

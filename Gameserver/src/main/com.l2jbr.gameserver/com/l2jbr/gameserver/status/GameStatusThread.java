@@ -333,8 +333,8 @@ public class GameStatusThread extends Thread
 					_print.println("  --->  Player Count: " + playerCount + "/" + max);
 					_print.println("  +-->  Object Count: " + objectCount);
 					_print.println("  +-->      AI Count: " + AICount);
-					_print.println("  +.... L2Item(Void): " + itemVoidCount);
-					_print.println("  +.......... L2Item: " + itemCount);
+					_print.println("  +...... Item(Void): " + itemVoidCount);
+					_print.println("  +............ Item: " + itemCount);
 					_print.println("  +....... L2Monster: " + monsterCount);
 					_print.println("  +......... Minions: " + minionCount);
 					_print.println("  +.. Minions Groups: " + minionsGroupCount);

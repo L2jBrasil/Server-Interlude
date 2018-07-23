@@ -104,8 +104,6 @@ public abstract class L2Effect {
     // the skill that was used.
     private final L2Skill _skill;
 
-    // or the items that was used.
-    // private final L2Item _item;
 
     // the value of an update
     private final Lambda _lambda;

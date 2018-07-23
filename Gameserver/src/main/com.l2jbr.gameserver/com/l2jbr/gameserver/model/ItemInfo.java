@@ -29,7 +29,7 @@ public class ItemInfo
 	/** Identifier of the L2ItemInstance */
 	private int _objectId;
 	
-	/** The L2Item template of the L2ItemInstance */
+	/** The ItemTemplate template of the L2ItemInstance */
 	private ItemTemplate _item;
 	
 	/** The level of enchant on the L2ItemInstance */
@@ -71,7 +71,7 @@ public class ItemInfo
 		// Get the Identifier of the L2ItemInstance
 		_objectId = item.getObjectId();
 		
-		// Get the L2Item of the L2ItemInstance
+		// Get the ItemTemplate of the L2ItemInstance
 		_item = item.getItem();
 		
 		// Get the enchant level of the L2ItemInstance
@@ -131,7 +131,7 @@ public class ItemInfo
 		// Get the Identifier of the L2ItemInstance
 		_objectId = item.getObjectId();
 		
-		// Get the L2Item of the L2ItemInstance
+		// Get the ItemTemplate of the L2ItemInstance
 		_item = item.getItem();
 		
 		// Get the enchant level of the L2ItemInstance

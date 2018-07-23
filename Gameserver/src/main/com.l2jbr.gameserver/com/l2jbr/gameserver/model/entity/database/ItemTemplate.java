@@ -8,6 +8,7 @@ import com.l2jbr.gameserver.model.L2Effect;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.skills.Env;
+import com.l2jbr.gameserver.skills.effects.EffectTemplate;
 import com.l2jbr.gameserver.skills.funcs.Func;
 import com.l2jbr.gameserver.skills.funcs.FuncTemplate;
 import com.l2jbr.gameserver.templates.BodyPart;
@@ -52,6 +53,8 @@ public abstract class ItemTemplate extends Entity<Integer> {
     protected List<L2Skill> _skills;
     @Transient
     protected static final L2Effect[] _emptyEffectSet = new L2Effect[0];
+    @Transient
+    private EffectTemplate[] _effectTemplates;
 
 
     public ItemTemplate() {
@@ -87,6 +90,45 @@ public abstract class ItemTemplate extends Entity<Integer> {
         }
         return funcs;
     }
+
+    public L2Effect[] getEffects(L2ItemInstance instance, L2Character player) {
+        if (_effectTemplates == null) {
+            return _emptyEffectSet;
+        }
+        List<L2Effect> effects = new LinkedList<>();
+        for (EffectTemplate et : _effectTemplates) {
+            Env env = new Env();
+            env.player = player;
+            env.target = player;
+            env.item = instance;
+            L2Effect e = et.getEffect(env);
+            if (e != null) {
+                effects.add(e);
+            }
+        }
+        if (effects.size() == 0) {
+            return _emptyEffectSet;
+        }
+        return effects.toArray(new L2Effect[effects.size()]);
+    }
+
+    public void attach(EffectTemplate effect) {
+        if (_effectTemplates == null) {
+            _effectTemplates = new EffectTemplate[]
+                    {
+                            effect
+                    };
+        } else {
+            int len = _effectTemplates.length;
+            EffectTemplate[] tmp = new EffectTemplate[len + 1];
+            // Definition : arraycopy(array source, begins copy at this position of source, array destination, begins copy at this position in dest,
+            // number of components to be copied)
+            System.arraycopy(_effectTemplates, 0, tmp, 0, len);
+            tmp[len] = effect;
+            _effectTemplates = tmp;
+        }
+    }
+
 
     public L2Effect[] getSkillEffects(L2Character caster, L2Character target) {
         if (_skills == null) {
@@ -228,5 +270,14 @@ public abstract class ItemTemplate extends Entity<Integer> {
 
     public boolean isForBabyPet() {
         return type2 == ItemTypeGroup.TYPE2_PET_BABY;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    public void attach(FuncTemplate ft) {
+
     }
 }
