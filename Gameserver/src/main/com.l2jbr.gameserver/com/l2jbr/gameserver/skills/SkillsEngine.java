@@ -95,15 +95,7 @@ public class SkillsEngine {
         }
         _log.info("SkillsEngine: Loaded " + count + " Skill templates from XML files.");
     }
-
-    public List<L2Armor> loadArmors(Map<Integer, Item> armorData) {
-        List<L2Armor> list = new LinkedList<>();
-
-        for (L2Item item : loadData(armorData, _armorFiles)) {
-            list.add((L2Armor) item);
-        }
-        return list;
-    }
+    
 
     public List<L2EtcItem> loadItems(Map<Integer, Item> itemData) {
         List<L2EtcItem> list = new LinkedList<>();

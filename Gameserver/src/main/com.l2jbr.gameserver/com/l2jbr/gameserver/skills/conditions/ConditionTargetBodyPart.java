@@ -19,9 +19,9 @@
 package com.l2jbr.gameserver.skills.conditions;
 
 import com.l2jbr.gameserver.model.Inventory;
+import com.l2jbr.gameserver.model.entity.database.Armor;
 import com.l2jbr.gameserver.skills.Env;
 import com.l2jbr.gameserver.templates.BodyPart;
-import com.l2jbr.gameserver.templates.L2Armor;
 
 
 /**
@@ -30,9 +30,9 @@ import com.l2jbr.gameserver.templates.L2Armor;
 public class ConditionTargetBodyPart extends Condition
 {
 	
-	private final L2Armor _armor;
+	private final Armor _armor;
 	
-	public ConditionTargetBodyPart(L2Armor armor)
+	public ConditionTargetBodyPart(Armor armor)
 	{
 		_armor = armor;
 	}

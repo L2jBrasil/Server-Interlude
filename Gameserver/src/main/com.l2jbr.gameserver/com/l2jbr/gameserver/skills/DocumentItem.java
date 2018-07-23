@@ -127,9 +127,7 @@ final class DocumentItem extends DocumentBase {
         if (_currentItem.item != null) {
             return;
         }
-        if (ItemType.armors().contains(_currentItem.type)) {
-            _currentItem.item = new L2Armor((ItemType) _currentItem.type, _currentItem.set);
-        }  else if (ItemType.items().contains(_currentItem.type)) {
+        if (ItemType.items().contains(_currentItem.type)) {
             _currentItem.item = new L2EtcItem((ItemType) _currentItem.type, _currentItem.set);
         } else {
             throw new Error("Unknown item type " + _currentItem.type);

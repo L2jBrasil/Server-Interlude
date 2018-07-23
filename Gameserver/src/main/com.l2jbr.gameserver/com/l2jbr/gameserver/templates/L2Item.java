@@ -33,7 +33,7 @@ import java.util.List;
 
 /**
  * This class contains all informations concerning the item (weapon, armor, etc).<BR>
- * Mother class of : <LI>L2Armor</LI> <LI>L2EtcItem</LI> <LI>Weapon</LI>
+ * Mother class of : <LI>Armor</LI> <LI>L2EtcItem</LI> <LI>Weapon</LI>
  *
  * @version $Revision: 1.7.2.2.2.5 $ $Date: 2005/04/06 18:25:18 $
  */

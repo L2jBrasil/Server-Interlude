@@ -1080,7 +1080,7 @@ public abstract class L2Skill {
     public boolean checkCondition(L2Character activeChar, L2Object target, boolean itemOrWeapon) {
         if ((getCondition() & L2Skill.COND_SHIELD) != 0) {
             /*
-             * L2Armor armorPiece; L2ItemInstance dummy; dummy = activeChar.getInventory().getPaperdollItem(Inventory.PAPERDOLL_RHAND); armorPiece = (L2Armor) dummy.getItem();
+             * Armor armorPiece; L2ItemInstance dummy; dummy = activeChar.getInventory().getPaperdollItem(Inventory.PAPERDOLL_RHAND); armorPiece = (Armor) dummy.getItem();
              */
             // TODO add checks for shield here.
         }

@@ -2,10 +2,14 @@ package com.l2jbr.gameserver.model.entity.database;
 
 import com.l2jbr.commons.database.annotation.Column;
 import com.l2jbr.commons.database.annotation.Table;
+import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.templates.BodyPart;
 import com.l2jbr.gameserver.templates.ItemType;
 import com.l2jbr.gameserver.templates.ItemTypeGroup;
+import org.springframework.data.annotation.Transient;
+
+import static java.util.Objects.isNull;
 
 @Table("armor")
 public class Armor extends ItemTemplate {
@@ -25,6 +29,8 @@ public class Armor extends ItemTemplate {
     private int itemSkillId;
     @Column("item_skill_lvl")
     private int itemSkillLvl;
+
+    @Transient private L2Skill skill;
 
     @Override
     public void onLoad() {
@@ -61,6 +67,10 @@ public class Armor extends ItemTemplate {
             }
             type1 = ItemTypeGroup.TYPE1_ARMOR_SHIELD;
             bodyPart = BodyPart.CHEST;
+        }
+
+        if(! isNull(itemSkillId)) {
+            skill = SkillTable.getInstance().getInfo(itemSkillId, itemSkillLvl);
         }
     }
 
@@ -103,11 +113,8 @@ public class Armor extends ItemTemplate {
         return mpBonus;
     }
 
-
-
     public L2Skill getSkill() {
-        // todo implement
-        return null;
+        return skill;
     }
 
 }
