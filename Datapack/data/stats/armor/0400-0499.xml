@@ -88,7 +88,7 @@
     </item>
 
     <item id='417' name="Manticore Skin Gaiters">
-        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='51'/>
+        <stat function='add' order='16' name='PHYSIC_DEFENCE' value='48'/>
         <stat function='enchant' order='12' name='PHYSIC_DEFENCE' value='0'/>
     </item>
 

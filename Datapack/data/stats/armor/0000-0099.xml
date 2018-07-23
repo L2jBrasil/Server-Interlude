@@ -3,10 +3,6 @@
 <itemList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xmlns="http://la2j.org" xsi:schemaLocation="http://la2j.org ../item.xsd">
 
-    <item id="21" name="Shirt">
-        <stat function="add" order="10" name='PHYSIC_DEFENCE' value='36'/>
-    </item>
-
     <item id='21' name="Shirt">
         <stat function="add" name='PHYSIC_DEFENCE' order='16' value='36'/>
     </item>

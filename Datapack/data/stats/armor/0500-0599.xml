@@ -40,7 +40,7 @@
     </item>
     <item id='506' name="Shining Dragon Helmet">
 
-        <stat function="add" order='16' name='PHYSIC_DEFENCE' value='69'/>
+        <stat function="add" order='16' name='PHYSIC_DEFENCE' value='67'/>
         <stat function="enchant" order='12' name='PHYSIC_DEFENCE' value='0'/>
 
     </item>
