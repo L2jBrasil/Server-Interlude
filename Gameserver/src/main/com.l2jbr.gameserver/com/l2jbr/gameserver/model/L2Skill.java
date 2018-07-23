@@ -1039,11 +1039,6 @@ public abstract class L2Skill {
         }
     }
 
-    // int weapons[] = {L2Weapon.WEAPON_TYPE_ETC, L2Weapon.WEAPON_TYPE_BOW,
-    // L2Weapon.WEAPON_TYPE_POLE, L2Weapon.WEAPON_TYPE_DUALFIST,
-    // L2Weapon.WEAPON_TYPE_DUAL, L2Weapon.WEAPON_TYPE_BLUNT,
-    // L2Weapon.WEAPON_TYPE_SWORD, L2Weapon.WEAPON_TYPE_DAGGER};
-
     public final boolean getWeaponDependancy(L2Character activeChar) {
         int weaponsAllowed = getWeaponsAllowed();
         // check to see if skill has a weapon dependency.

@@ -759,7 +759,7 @@ public final class L2PcInstance extends L2PlayableInstance {
     private long _recentFakeDeathEndTime = 0;
 
     /**
-     * The fists L2Weapon of the L2PcInstance (used when no weapon is equiped).
+     * The fists Weapon of the L2PcInstance (used when no weapon is equiped).
      */
     private Weapon _fistsWeaponItem;
 
@@ -2554,7 +2554,7 @@ public final class L2PcInstance extends L2PlayableInstance {
     /**
      * Set the fists weapon of the L2PcInstance (used when no weapon is equiped).
      *
-     * @param weaponItem The fists L2Weapon to set to the L2PcInstance
+     * @param weaponItem The fists Weapon to set to the L2PcInstance
      */
     public void setFistsWeaponItem(Weapon weaponItem) {
         _fistsWeaponItem = weaponItem;

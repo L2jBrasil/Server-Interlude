@@ -2,6 +2,8 @@ package com.l2jbr.gameserver.model.entity.xml;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.xml.XMLReader;
+import com.l2jbr.gameserver.datatables.SkillTable;
+import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.entity.database.ItemTemplate;
 import com.l2jbr.gameserver.skills.Stats;
 import com.l2jbr.gameserver.skills.conditions.*;
@@ -45,6 +47,12 @@ public class ItemStatsReader extends XMLReader<ItemList> {
             Stats stat = Stats.valueOf(statType.getName().name());
             FuncTemplate funcTemplate = new FuncTemplate(condition, null, statType.getFunction(), stat, statType.getOrder(), lambda);
             item.addFunction(funcTemplate);
+        }
+
+        for(XmlItemSkill itemSkill : itemStat.getSkill()) {
+            L2Skill skill = SkillTable.getInstance().getInfo(itemSkill.getId(), itemSkill.getLevel());
+            skill.attach(new ConditionGameChance(itemSkill.getChance()), true);
+            item.attach(skill, itemSkill.getTriggerType());
         }
     }
 

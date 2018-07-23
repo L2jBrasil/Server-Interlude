@@ -889,7 +889,7 @@ public abstract class L2Character extends L2Object {
         // Set the Attacking Body part to CHEST
         setAttackingBodypart();
 
-        // Get the Attack Reuse Delay of the L2Weapon
+        // Get the Attack Reuse Delay of the Weapon
         int reuse = calculateReuseTime(target, weaponItem);
 
         // Select the type of attack to start
@@ -6606,7 +6606,7 @@ public abstract class L2Character extends L2Object {
                     Weapon activeWeapon = getActiveWeaponItem();
                     // Launch weapon Special ability skill effect if available
                     if ((activeWeapon != null) && !((L2Character) target).isDead()) {
-                        if ((activeWeapon.getSkillEffects(this, player, skill).length > 0) && (this instanceof L2PcInstance)) {
+                        if ((! activeWeapon.getSkillEffects(this, player, skill).isEmpty()) && (this instanceof L2PcInstance)) {
                             sendPacket(SystemMessage.sendString("Target affected by weapon special ability!"));
                         }
                     }

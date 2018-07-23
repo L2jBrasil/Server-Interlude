@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import static java.util.Objects.isNull;
+
 public abstract class ItemTemplate extends Entity<Integer> {
 
     @Id
@@ -47,9 +49,7 @@ public abstract class ItemTemplate extends Entity<Integer> {
     @Transient
     protected List<FuncTemplate> _funcTemplates;
     @Transient
-    private static final Func[] _emptyFunctionSet = new Func[0];
-    @Transient
-    protected L2Skill[] _skills;
+    protected List<L2Skill> _skills;
     @Transient
     protected static final L2Effect[] _emptyEffectSet = new L2Effect[0];
 
@@ -60,6 +60,17 @@ public abstract class ItemTemplate extends Entity<Integer> {
 
     public void addFunction(FuncTemplate funcTemplate) {
         _funcTemplates.add(funcTemplate);
+    }
+
+    public void attach(L2Skill skill, String triggerType) {
+        attach(skill);
+    }
+
+    public void attach(L2Skill skill) {
+        if (isNull(_skills)) {
+            _skills = new ArrayList<>();
+        }
+        _skills.add(skill);
     }
 
 
@@ -218,6 +229,4 @@ public abstract class ItemTemplate extends Entity<Integer> {
     public boolean isForBabyPet() {
         return type2 == ItemTypeGroup.TYPE2_PET_BABY;
     }
-
-
 }

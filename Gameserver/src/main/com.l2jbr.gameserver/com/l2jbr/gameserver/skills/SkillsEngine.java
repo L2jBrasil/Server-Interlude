@@ -105,14 +105,6 @@ public class SkillsEngine {
         return list;
     }
 
-    public List<L2Weapon> loadWeapons(Map<Integer, Item> weaponData) {
-        List<L2Weapon> list = new LinkedList<>();
-        for (L2Item item : loadData(weaponData, _weaponFiles)) {
-            list.add((L2Weapon) item);
-        }
-        return list;
-    }
-
     public List<L2EtcItem> loadItems(Map<Integer, Item> itemData) {
         List<L2EtcItem> list = new LinkedList<>();
         for (Item item : itemData.values()) {

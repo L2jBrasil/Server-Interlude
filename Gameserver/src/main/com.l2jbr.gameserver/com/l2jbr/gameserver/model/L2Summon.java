@@ -36,7 +36,6 @@ import com.l2jbr.gameserver.model.entity.database.Weapon;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.taskmanager.DecayTaskManager;
-import com.l2jbr.gameserver.templates.L2Weapon;
 
 
 public abstract class L2Summon extends L2PlayableInstance
@@ -413,8 +412,7 @@ public abstract class L2Summon extends L2PlayableInstance
 		return 0;
 	}
 	
-	public L2Weapon getActiveWeapon()
-	{
+	public Weapon getActiveWeapon() {
 		return null;
 	}
 	

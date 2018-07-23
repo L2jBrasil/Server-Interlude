@@ -218,23 +218,13 @@ abstract class DocumentBase {
         }
         L2Skill skill = SkillTable.getInstance().getInfo(id, lvl);
         if (attrs.getNamedItem("chance") != null) {
-            if ((template instanceof L2Weapon) || (template instanceof L2Item)) {
+            if ( (template instanceof L2Item)) {
                 skill.attach(new ConditionGameChance(Integer.decode(getValue(attrs.getNamedItem("chance").getNodeValue(), template))), true);
             } else {
                 skill.attach(new ConditionGameChance(Integer.decode(getValue(attrs.getNamedItem("chance").getNodeValue(), template))), false);
             }
         }
-        if (template instanceof L2Weapon) {
-            if ((attrs.getNamedItem("onUse") != null) || ((attrs.getNamedItem("onCrit") == null) && (attrs.getNamedItem("onCast") == null))) {
-                ((L2Weapon) template).attach(skill); // Attach as skill triggered on use
-            }
-            if (attrs.getNamedItem("onCrit") != null) {
-                ((L2Weapon) template).attachOnCrit(skill); // Attach as skill triggered on critical hit
-            }
-            if (attrs.getNamedItem("onCast") != null) {
-                ((L2Weapon) template).attachOnCast(skill); // Attach as skill triggered on cast
-            }
-        } else if (template instanceof L2Item) {
+        if (template instanceof L2Item) {
             ((L2Item) template).attach(skill); // Attach as skill triggered on use
         }
     }

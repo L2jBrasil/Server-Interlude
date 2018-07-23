@@ -922,7 +922,7 @@ public final class L2ItemInstance extends L2Object
 	}
 	
 	/**
-	 * This function basically returns a set of functions from L2Item/L2Armor/L2Weapon, but may add additional functions, if this particular item instance is enhanched for a particular player.
+	 * This function basically returns a set of functions from L2Item/L2Armor/Weapon, but may add additional functions, if this particular item instance is enhanched for a particular player.
 	 * @param player : L2Character designating the player
 	 * @return Func[]
 	 */
