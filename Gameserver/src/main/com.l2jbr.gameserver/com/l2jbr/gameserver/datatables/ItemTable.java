@@ -50,7 +50,7 @@ public class ItemTable {
     private Map<Integer, ItemTemplate> items;
     private ItemStatsReader statsReader;
 
-    private final boolean _initialized = true;
+    private final boolean _initialized;
 
     private static ItemTable _instance;
 
@@ -67,6 +67,7 @@ public class ItemTable {
         DatabaseAccess.getRepository(EtcItemRepository.class).findAll().forEach(this::addToItems);
         DatabaseAccess.getRepository(ArmorRepository.class).findAll().forEach(this::addToItems);
         DatabaseAccess.getRepository(WeaponRepository.class).findAll().forEach(this::addToItems);
+        _initialized = true;
     }
 
     private void loadItemsStat() {

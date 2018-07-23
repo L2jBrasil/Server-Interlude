@@ -17,8 +17,6 @@ public class Armor extends ItemTemplate {
     private BodyPart bodyPart;
     @Column("armor_type")
     private ItemType armorType;
-    @Column("avoid_modify")
-    private int avoidModify;
     @Column("p_def")
     private int pDef;
     @Column("m_def")
@@ -87,18 +85,6 @@ public class Armor extends ItemTemplate {
     @Override
     public boolean isStackable() {
         return false;
-    }
-
-    public int getItemSkillId() {
-        return itemSkillId;
-    }
-
-    public int getItemSkillLevel() {
-        return itemSkillLvl;
-    }
-
-    public int getAvoidModify() {
-        return avoidModify;
     }
 
     public int getPdef() {
