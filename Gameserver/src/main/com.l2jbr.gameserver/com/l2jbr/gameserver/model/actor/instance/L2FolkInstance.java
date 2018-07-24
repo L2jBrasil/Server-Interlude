@@ -20,14 +20,15 @@ package com.l2jbr.gameserver.model.actor.instance;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.datatables.SkillTreeTable;
-import com.l2jbr.gameserver.model.L2EnchantSkillLearn;
 import com.l2jbr.gameserver.model.L2Skill;
-import com.l2jbr.gameserver.model.L2SkillLearn;
 import com.l2jbr.gameserver.model.base.PlayerClass;
+import com.l2jbr.gameserver.model.entity.database.EnchantSkillInfo;
 import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.SkillInfo;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 
+import java.util.List;
 import java.util.Set;
 
 
@@ -82,11 +83,11 @@ public class L2FolkInstance extends L2NpcInstance {
             return;
         }
 
-        L2SkillLearn[] skills = SkillTreeTable.getInstance().getAvailableSkills(player, playerClass);
+        List<SkillInfo> skills = SkillTreeTable.getInstance().getAvailableSkills(player, playerClass);
         AquireSkillList asl = new AquireSkillList(AquireSkillList.skillType.Usual);
         int counts = 0;
 
-        for (L2SkillLearn s : skills) {
+        for (SkillInfo s : skills) {
             L2Skill sk = SkillTable.getInstance().getInfo(s.getId(), s.getLevel());
 
             if ((sk == null) || !sk.getCanLearn(player.getPlayerClass()) || !sk.canTeachBy(npcId)) {
@@ -164,17 +165,17 @@ public class L2FolkInstance extends L2NpcInstance {
             return;
         }
 
-        L2EnchantSkillLearn[] skills = SkillTreeTable.getInstance().getAvailableEnchantSkills(player);
+        List<EnchantSkillInfo> skills = SkillTreeTable.getInstance().getAvailableEnchantSkills(player);
         ExEnchantSkillList esl = new ExEnchantSkillList();
         int counts = 0;
 
-        for (L2EnchantSkillLearn s : skills) {
+        for (EnchantSkillInfo s : skills) {
             L2Skill sk = SkillTable.getInstance().getInfo(s.getId(), s.getLevel());
             if (sk == null) {
                 continue;
             }
             counts++;
-            esl.addSkill(s.getId(), s.getLevel(), s.getSpCost(), s.getExp());
+            esl.addSkill(s.getId(), s.getLevel(), s.getSp(), s.getExp());
         }
         if (counts == 0) {
             player.sendPacket(new SystemMessage(SystemMessageId.THERE_IS_NO_SKILL_THAT_ENABLES_ENCHANT));
@@ -239,7 +240,7 @@ public class L2FolkInstance extends L2NpcInstance {
                                     continue;
                                 }
 
-                                if (SkillTreeTable.getInstance().getAvailableSkills(player, cid).length == 0) {
+                                if (SkillTreeTable.getInstance().getAvailableSkills(player, cid).isEmpty()) {
                                     continue;
                                 }
 

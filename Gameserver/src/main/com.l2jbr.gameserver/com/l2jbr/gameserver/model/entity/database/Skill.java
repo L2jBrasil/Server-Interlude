@@ -5,13 +5,13 @@ import com.l2jbr.commons.database.annotation.Table;
 import org.springframework.data.annotation.Id;
 
 @Table("skill_trees")
-public class SkillTrees  {
+public class Skill implements SkillInfo {
 
     @Id
     @Column("class_id")
     private int classId;
     @Column("skill_id")
-    private int skillId;
+    private int id;
     private int level;
     private String name;
     private int sp;
@@ -22,8 +22,8 @@ public class SkillTrees  {
         return classId;
     }
 
-    public int getSkillId() {
-        return skillId;
+    public int getId() {
+        return id;
     }
 
     public int getLevel() {

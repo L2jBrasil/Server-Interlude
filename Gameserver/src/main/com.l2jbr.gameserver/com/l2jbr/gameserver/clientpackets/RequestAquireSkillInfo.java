@@ -22,15 +22,17 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.datatables.SkillSpellbookTable;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.datatables.SkillTreeTable;
-import com.l2jbr.gameserver.model.L2PledgeSkillLearn;
 import com.l2jbr.gameserver.model.L2Skill;
-import com.l2jbr.gameserver.model.L2SkillLearn;
 import com.l2jbr.gameserver.model.actor.instance.L2FolkInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.entity.database.ClanSkillInfo;
+import com.l2jbr.gameserver.model.entity.database.SkillInfo;
 import com.l2jbr.gameserver.serverpackets.AquireSkillInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 
 /**
@@ -91,9 +93,9 @@ public class RequestAquireSkillInfo extends L2GameClientPacket
 				return; // cheater
 			}
 			
-			L2SkillLearn[] skills = SkillTreeTable.getInstance().getAvailableSkills(activeChar, activeChar.getSkillLearningClassId());
+			List<SkillInfo> skills = SkillTreeTable.getInstance().getAvailableSkills(activeChar, activeChar.getSkillLearningClassId());
 			
-			for (L2SkillLearn s : skills)
+			for (SkillInfo s : skills)
 			{
 				if ((s.getId() == _id) && (s.getLevel() == _level))
 				{
@@ -126,9 +128,9 @@ public class RequestAquireSkillInfo extends L2GameClientPacket
 		{
 			int requiredRep = 0;
 			int itemId = 0;
-			L2PledgeSkillLearn[] skills = SkillTreeTable.getInstance().getAvailablePledgeSkills(activeChar);
+			List<ClanSkillInfo> skills = SkillTreeTable.getInstance().getAvailablePledgeSkills(activeChar);
 			
-			for (L2PledgeSkillLearn s : skills)
+			for (ClanSkillInfo s : skills)
 			{
 				if ((s.getId() == _id) && (s.getLevel() == _level))
 				{
@@ -160,9 +162,9 @@ public class RequestAquireSkillInfo extends L2GameClientPacket
 			int costcount = 0;
 			int spcost = 0;
 			
-			L2SkillLearn[] skillsc = SkillTreeTable.getInstance().getAvailableSkills(activeChar);
+			List<SkillInfo> skillsc = SkillTreeTable.getInstance().getAvailableSkills(activeChar);
 			
-			for (L2SkillLearn s : skillsc)
+			for (SkillInfo s : skillsc)
 			{
 				L2Skill sk = SkillTable.getInstance().getInfo(s.getId(), s.getLevel());
 				

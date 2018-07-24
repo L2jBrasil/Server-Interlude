@@ -2730,9 +2730,9 @@ public final class L2PcInstance extends L2PlayableInstance {
         int skillCounter = 0;
 
         // Get available skills
-        L2SkillLearn[] skills = SkillTreeTable.getInstance().getAvailableSkills(this, getPlayerClass());
-        while (skills.length > unLearnable) {
-            for (L2SkillLearn s : skills) {
+        List<SkillInfo> skills = SkillTreeTable.getInstance().getAvailableSkills(this, getPlayerClass());
+        while (skills.size()> unLearnable) {
+            for (SkillInfo s : skills) {
                 L2Skill sk = SkillTable.getInstance().getInfo(s.getId(), s.getLevel());
                 if ((sk == null) || !sk.getCanLearn(getPlayerClass())) {
                     unLearnable++;
@@ -9011,7 +9011,7 @@ public final class L2PcInstance extends L2PlayableInstance {
         }
 
         PlayerClass subTemplate = PlayerClass.values()[classId];
-        Collection<L2SkillLearn> skillTree = SkillTreeTable.getInstance().getAllowedSkills(subTemplate);
+        Collection<SkillInfo> skillTree = SkillTreeTable.getInstance().getAllowedSkills(subTemplate);
 
         if (skillTree == null) {
             return true;
@@ -9019,7 +9019,7 @@ public final class L2PcInstance extends L2PlayableInstance {
 
         Map<Integer, L2Skill> prevSkillList = new LinkedHashMap<>();
 
-        for (L2SkillLearn skillInfo : skillTree) {
+        for (SkillInfo skillInfo : skillTree) {
             if (skillInfo.getMinLevel() <= 40) {
                 L2Skill prevSkill = prevSkillList.get(skillInfo.getId());
                 L2Skill newSkill = SkillTable.getInstance().getInfo(skillInfo.getId(), skillInfo.getLevel());

@@ -23,12 +23,13 @@ import com.l2jbr.gameserver.TradeController;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.datatables.SkillTreeTable;
 import com.l2jbr.gameserver.model.L2Skill;
-import com.l2jbr.gameserver.model.L2SkillLearn;
 import com.l2jbr.gameserver.model.L2TradeList;
 import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.SkillInfo;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 
+import java.util.List;
 import java.util.StringTokenizer;
 
 
@@ -114,12 +115,12 @@ public class L2FishermanInstance extends L2FolkInstance {
     }
 
     public void showSkillList(L2PcInstance player) {
-        L2SkillLearn[] skills = SkillTreeTable.getInstance().getAvailableSkills(player);
+        List<SkillInfo> skills = SkillTreeTable.getInstance().getAvailableSkills(player);
         AquireSkillList asl = new AquireSkillList(AquireSkillList.skillType.Fishing);
 
         int counts = 0;
 
-        for (L2SkillLearn s : skills) {
+        for (SkillInfo s : skills) {
             L2Skill sk = SkillTable.getInstance().getInfo(s.getId(), s.getLevel());
 
             if (sk == null) {

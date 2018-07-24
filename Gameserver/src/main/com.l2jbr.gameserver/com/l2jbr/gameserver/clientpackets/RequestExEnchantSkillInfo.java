@@ -21,12 +21,14 @@ package com.l2jbr.gameserver.clientpackets;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.datatables.SkillTreeTable;
-import com.l2jbr.gameserver.model.L2EnchantSkillLearn;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.actor.instance.L2FolkInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.entity.database.EnchantSkillInfo;
 import com.l2jbr.gameserver.serverpackets.ExEnchantSkillInfo;
+
+import java.util.List;
 
 
 /**
@@ -83,10 +85,10 @@ public final class RequestExEnchantSkillInfo extends L2GameClientPacket
 		{
 			return; // cheater
 		}
+
+		List<EnchantSkillInfo> skills = SkillTreeTable.getInstance().getAvailableEnchantSkills(activeChar);
 		
-		L2EnchantSkillLearn[] skills = SkillTreeTable.getInstance().getAvailableEnchantSkills(activeChar);
-		
-		for (L2EnchantSkillLearn s : skills)
+		for (EnchantSkillInfo s : skills)
 		{
 			if ((s.getId() == _skillId) && (s.getLevel() == _skillLvl))
 			{

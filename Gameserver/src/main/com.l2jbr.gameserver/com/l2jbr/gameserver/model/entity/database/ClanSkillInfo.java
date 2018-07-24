@@ -5,7 +5,7 @@ import com.l2jbr.commons.database.annotation.Table;
 import org.springframework.data.annotation.Id;
 
 @Table("pledge_skill_trees")
-public class PledgeSkillTrees  {
+public class ClanSkillInfo {
 
     @Id
     @Column("skill_id")
@@ -18,13 +18,11 @@ public class PledgeSkillTrees  {
     private int repCost;
     private int itemId;
 
-    public int getSkillId() {
+    public int getId() {
         return skillId;
     }
 
-    public int getLevel() {
-        return level;
-    }
+    public int getLevel() { return  level; }
 
     public String getName() {
         return name;
@@ -45,4 +43,5 @@ public class PledgeSkillTrees  {
     public int getItemId() {
         return itemId;
     }
+
 }

@@ -29,19 +29,20 @@ import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.L2Clan.SubPledge;
 import com.l2jbr.gameserver.model.L2ClanMember;
-import com.l2jbr.gameserver.model.L2PledgeSkillLearn;
-import com.l2jbr.gameserver.model.base.PlayerClass;
 import com.l2jbr.gameserver.model.base.ClassType;
+import com.l2jbr.gameserver.model.base.PlayerClass;
 import com.l2jbr.gameserver.model.base.Race;
 import com.l2jbr.gameserver.model.base.SubClass;
-import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.model.entity.Castle;
+import com.l2jbr.gameserver.model.entity.database.ClanSkillInfo;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.model.quest.QuestState;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.util.Util;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 
@@ -680,11 +681,11 @@ public final class L2VillageMasterInstance extends L2FolkInstance {
             return;
         }
 
-        L2PledgeSkillLearn[] skills = SkillTreeTable.getInstance().getAvailablePledgeSkills(player);
+        List<ClanSkillInfo> skills = SkillTreeTable.getInstance().getAvailablePledgeSkills(player);
         AquireSkillList asl = new AquireSkillList(AquireSkillList.skillType.Clan);
         int counts = 0;
 
-        for (L2PledgeSkillLearn s : skills) {
+        for (ClanSkillInfo s : skills) {
             int cost = s.getRepCost();
             counts++;
 

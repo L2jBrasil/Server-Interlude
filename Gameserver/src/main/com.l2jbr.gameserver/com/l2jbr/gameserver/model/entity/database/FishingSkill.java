@@ -5,11 +5,11 @@ import com.l2jbr.commons.database.annotation.Table;
 import org.springframework.data.annotation.Id;
 
 @Table("fishing_skill_trees")
-public class FishingSkillTrees  {
+public class FishingSkill implements SkillInfo {
 
     @Id
     @Column("skill_id")
-    private int skillId;
+    private int id;
     private int level;
     private String name;
     private int sp;
@@ -19,12 +19,22 @@ public class FishingSkillTrees  {
     private int cost;
     private int isForDwarf;
 
-    public int getSkillId() {
-        return skillId;
+    @Override
+    public int getId() {
+        return id;
     }
 
+    @Override
     public int getLevel() {
         return level;
+    }
+
+    @Override
+    public int getSpCost() { return 0; }
+
+    @Override
+    public int getMinLevel() {
+        return minLevel;
     }
 
     public String getName() {
@@ -33,10 +43,6 @@ public class FishingSkillTrees  {
 
     public int getSp() {
         return sp;
-    }
-
-    public int getMinLevel() {
-        return minLevel;
     }
 
     public int getCostId() {

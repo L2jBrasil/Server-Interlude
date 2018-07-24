@@ -23,11 +23,11 @@ import com.l2jbr.gameserver.datatables.*;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2ShortCut;
-import com.l2jbr.gameserver.model.L2SkillLearn;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.entity.database.ItemTemplate;
 import com.l2jbr.gameserver.model.entity.database.PlayerTemplate;
+import com.l2jbr.gameserver.model.entity.database.SkillInfo;
 import com.l2jbr.gameserver.network.L2GameClient;
 import com.l2jbr.gameserver.serverpackets.CharCreateFail;
 import com.l2jbr.gameserver.serverpackets.CharCreateOk;
@@ -210,8 +210,8 @@ public final class CharacterCreate extends L2GameClientPacket
 			}
 		}
 		
-		L2SkillLearn[] startSkills = SkillTreeTable.getInstance().getAvailableSkills(newChar, newChar.getPlayerClass());
-		for (L2SkillLearn startSkill : startSkills)
+		List<SkillInfo> startSkills = SkillTreeTable.getInstance().getAvailableSkills(newChar, newChar.getPlayerClass());
+		for (SkillInfo startSkill : startSkills)
 		{
 			newChar.addSkill(SkillTable.getInstance().getInfo(startSkill.getId(), startSkill.getLevel()), true);
 			if ((startSkill.getId() == 1001) || (startSkill.getId() == 1177))

@@ -24,12 +24,16 @@ import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.datatables.SkillTreeTable;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.*;
+import com.l2jbr.gameserver.model.entity.database.ClanSkillInfo;
+import com.l2jbr.gameserver.model.entity.database.SkillInfo;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.util.IllegalPlayerAction;
 import com.l2jbr.gameserver.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 
 /**
@@ -98,9 +102,9 @@ public class RequestAquireSkill extends L2GameClientPacket
 		if (_skillType == 0)
 		{
 			
-			L2SkillLearn[] skills = SkillTreeTable.getInstance().getAvailableSkills(player, player.getSkillLearningClassId());
+			List<SkillInfo> skills = SkillTreeTable.getInstance().getAvailableSkills(player, player.getSkillLearningClassId());
 			
-			for (L2SkillLearn s : skills)
+			for (SkillInfo s : skills)
 			{
 				L2Skill sk = SkillTable.getInstance().getInfo(s.getId(), s.getLevel());
 				if ((sk == null) || (sk != skill) || !sk.getCanLearn(player.getSkillLearningClassId()) || !sk.canTeachBy(npcid))
@@ -154,9 +158,9 @@ public class RequestAquireSkill extends L2GameClientPacket
 			int costid = 0;
 			int costcount = 0;
 			// Skill Learn bug Fix
-			L2SkillLearn[] skillsc = SkillTreeTable.getInstance().getAvailableSkills(player);
+			List<SkillInfo> skillsc = SkillTreeTable.getInstance().getAvailableSkills(player);
 			
-			for (L2SkillLearn s : skillsc)
+			for (SkillInfo s : skillsc)
 			{
 				L2Skill sk = SkillTable.getInstance().getInfo(s.getId(), s.getLevel());
 				
@@ -213,9 +217,9 @@ public class RequestAquireSkill extends L2GameClientPacket
 			int itemId = 0;
 			int repCost = 100000000;
 			// Skill Learn bug Fix
-			L2PledgeSkillLearn[] skills = SkillTreeTable.getInstance().getAvailablePledgeSkills(player);
+			List<ClanSkillInfo> skills = SkillTreeTable.getInstance().getAvailablePledgeSkills(player);
 			
-			for (L2PledgeSkillLearn s : skills)
+			for (ClanSkillInfo s : skills)
 			{
 				L2Skill sk = SkillTable.getInstance().getInfo(s.getId(), s.getLevel());
 				
