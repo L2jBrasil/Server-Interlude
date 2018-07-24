@@ -4,8 +4,8 @@
 
     <item id='8541' name="Little Harness">
 
-        <stat function='add' value='10' order='16' name='MAGIC_DEFENCE'/>
-        <stat function='add' value='25' order='16' name='PHYSIC_DEFENCE'/>
+        <stat function='add' value='25' order='16' name='MAGIC_DEFENCE'/>
+        <stat function='add' value='10' order='16' name='PHYSIC_DEFENCE'/>
 
     </item>
     <item id='8552' name="Mask of Spirits">

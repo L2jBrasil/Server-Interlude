@@ -635,19 +635,6 @@ public final class L2ItemInstance extends L2Object
 		_enchantLevel = enchantLevel;
 		_storedInDb = false;
 	}
-
-	/**
-	 * Returns the physical defense of the item
-	 * @return int
-	 */
-	public int getPDef()
-	{
-		if (_item instanceof Armor)
-		{
-			return ((Armor) _item).getPdef();
-		}
-		return 0;
-	}
 	
 	/**
 	 * Returns whether this item is augmented or not
