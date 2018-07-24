@@ -33,7 +33,6 @@ public class Weapon extends ItemTemplate {
     private Integer rndDam;
     @Column("weaponType")
     private ItemType type;
-    private Integer critical;
     @Column("hit_modify")
     private Double hitModify;
     @Column("avoid_modify")
@@ -254,10 +253,6 @@ public class Weapon extends ItemTemplate {
 
     public int getRandomDamage() {
         return rndDam;
-    }
-
-    public int getCritical() {
-        return critical;
     }
 
     public double getHitModify() {
