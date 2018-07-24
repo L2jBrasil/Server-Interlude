@@ -255,10 +255,6 @@ public class Weapon extends ItemTemplate {
         return rndDam;
     }
 
-    public double getHitModify() {
-        return hitModify;
-    }
-
     public int getAvoidModify() {
         return avoidModify;
     }
