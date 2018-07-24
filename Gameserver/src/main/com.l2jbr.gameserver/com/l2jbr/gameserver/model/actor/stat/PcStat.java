@@ -26,8 +26,11 @@ import com.l2jbr.gameserver.model.actor.instance.L2PetInstance;
 import com.l2jbr.gameserver.model.base.Experience;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
+import com.l2jbr.gameserver.skills.Stats;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import static java.util.Objects.isNull;
 
 
 public class PcStat extends PlayableStat
@@ -260,7 +263,25 @@ public class PcStat extends PlayableStat
 	
 	// =========================================================
 	// Method - Private
-	
+
+	@Override
+	public int getAccuracy() {
+		if (isNull(getActiveChar())) {
+			return 0;
+		}
+
+		return (int) (calcStat(Stats.ACCURACY, getActiveChar().getTemplate().getAccuracy(), null, null) / getActiveChar().getWeaponExpertisePenalty());
+	}
+
+	@Override
+	public int getEvasionRate(L2Character target) {
+        if (isNull(getActiveChar())) {
+            return 1;
+        }
+
+        return (int) (calcStat(Stats.EVASION_RATE, getActiveChar().getTemplate().getEvasion(), target, null) / getActiveChar().getArmourExpertisePenalty());
+	}
+
 	// =========================================================
 	// Property - Public
 	@Override

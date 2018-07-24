@@ -71,7 +71,6 @@ public class GameServer {
     private static Logger _log;
     private final SelectorThread<L2GameClient> _selectorThread;
     private final SkillTable _skillTable;
-    private final ItemTable _itemTable;
     private final NpcTable _npcTable;
     private final HennaTable _hennaTable;
     public static GameServer gameServer;
@@ -125,12 +124,8 @@ public class GameServer {
 
         // start game time control early
         GameTimeController.getInstance();
-
-        _itemTable = ItemTable.getInstance();
-        if (!_itemTable.isInitialized()) {
-            _log.error(getMessage(ERROR_EXTRACTED_FILE_NOT_FOUND));
-            throw new Exception( getMessage(ERROR_INITIALIZE_TABLE, "Item"));
-        }
+        SkillTreeTable.getInstance();
+        ItemTable.getInstance();
 
         ExtractableItemsData.getInstance();
         SummonItemsData.getInstance();
@@ -149,7 +144,7 @@ public class GameServer {
 
         RecipeController.getInstance();
 
-        SkillTreeTable.getInstance();
+
         ArmorSetsTable.getInstance();
         FishTable.getInstance();
         SkillSpellbookTable.getInstance();

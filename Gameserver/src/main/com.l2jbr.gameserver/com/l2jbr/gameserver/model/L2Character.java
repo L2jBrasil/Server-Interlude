@@ -41,10 +41,9 @@ import com.l2jbr.gameserver.model.actor.knownlist.CharKnownList;
 import com.l2jbr.gameserver.model.actor.knownlist.ObjectKnownList.KnownListAsynchronousUpdateTask;
 import com.l2jbr.gameserver.model.actor.stat.CharStat;
 import com.l2jbr.gameserver.model.actor.status.CharStatus;
-import com.l2jbr.gameserver.model.entity.database.CharTemplate;
-import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
-import com.l2jbr.gameserver.model.entity.database.Weapon;
 import com.l2jbr.gameserver.model.entity.Duel;
+import com.l2jbr.gameserver.model.entity.database.CharTemplate;
+import com.l2jbr.gameserver.model.entity.database.Weapon;
 import com.l2jbr.gameserver.model.quest.Quest;
 import com.l2jbr.gameserver.model.quest.QuestState;
 import com.l2jbr.gameserver.network.SystemMessageId;
@@ -247,15 +246,9 @@ public abstract class L2Character extends L2Object {
      */
     private boolean _champion = false;
 
-    /**
-     * Table of Calculators containing all used calculator.
-     */
-    private Calculator[] _calculators;
 
-    /**
-     * FastMap(Integer, L2Skill) containing all skills of the L2Character.
-     */
-    protected final Map<Integer, L2Skill> _skills;
+    protected Calculator[] _calculators;
+    protected  Map<Integer, L2Skill> _skills;
 
     /**
      * Zone system.
@@ -360,30 +353,18 @@ public abstract class L2Character extends L2Object {
         super(objectId);
         getKnownList();
 
-        // Set its template to the new L2Character
         _template = template;
 
-        if ((template != null) && (this instanceof L2NpcInstance)) {
-            // Copy the Standard Calcultors of the L2NPCInstance in _calculators
-            _calculators = NPC_STD_CALCULATOR;
+        initSkillsStat(template);
+    }
 
-            // Copy the skills of the L2NPCInstance from its template to the L2Character Instance
-            // The skills list can be affected by spell effects so it's necessary to make a copy
-            // to avoid that a spell affecting a L2NPCInstance, affects others L2NPCInstance of the same type too.
-            _skills = ((NpcTemplate) template).getSkills();
-            if (_skills != null) {
-                for (Map.Entry<Integer, L2Skill> skill : _skills.entrySet()) {
-                    addStatFuncs(skill.getValue().getStatFuncs(null, this));
-                }
-            }
-        } else {
-            // Initialize the FastMap _skills to null
-            _skills = new ConcurrentHashMap<>();
+    protected void initSkillsStat(CharTemplate template) {
+        // Initialize the FastMap _skills to null
+        _skills = new ConcurrentHashMap<>();
 
-            // If L2Character is a L2PcInstance or a L2Summon, create the basic calculator set
-            _calculators = new Calculator[Stats.NUM_STATS];
-            Formulas.getInstance().addFuncsToNewCharacter(this);
-        }
+        // If L2Character is a L2PcInstance or a L2Summon, create the basic calculator set
+        _calculators = new Calculator[Stats.NUM_STATS];
+        Formulas.getInstance().addFuncsToNewCharacter(this);
     }
 
     /**
@@ -3955,7 +3936,7 @@ public abstract class L2Character extends L2Object {
     /**
      * Table of calculators containing all standard NPC calculator (ex : ACCURACY, EVASION_RATE.
      */
-    private static final Calculator[] NPC_STD_CALCULATOR;
+    protected static final Calculator[] NPC_STD_CALCULATOR;
 
     static {
         NPC_STD_CALCULATOR = Formulas.getInstance().getStdNPCCalculators();

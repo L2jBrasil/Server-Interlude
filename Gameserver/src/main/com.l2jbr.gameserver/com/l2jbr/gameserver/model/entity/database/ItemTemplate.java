@@ -271,11 +271,6 @@ public abstract class ItemTemplate extends Entity<Integer> {
     public abstract ItemType getType();
     public abstract boolean isStackable();
 
-    @Deprecated(forRemoval = true)
-    public void attach(FuncTemplate ft) {
-
-    }
-
     @Override
     public String toString() {
         return name;

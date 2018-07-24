@@ -56,7 +56,6 @@ public class SkillTreeTable {
         if (_instance == null) {
             _instance = new SkillTreeTable();
         }
-
         return _instance;
     }
 
@@ -117,6 +116,7 @@ public class SkillTreeTable {
     private SkillTreeTable() {
         int count = 0;
         SkillTreeRepository skillTreeRepository = DatabaseAccess.getRepository(SkillTreeRepository.class);
+
         for (PlayerTemplate charTemplate : CharTemplateTable.getInstance().all()) {
             Map<Integer, L2SkillLearn>  map = new LinkedHashMap<>();
             PlayerClass playerClass = charTemplate.getPlayerClass();

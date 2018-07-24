@@ -136,7 +136,7 @@ abstract class DocumentBase {
         Condition applayCond = parseCondition(n.getFirstChild(), template);
         FuncTemplate ft = new FuncTemplate(attachCond, applayCond, name, stat, ord, lambda);
         if (template instanceof ItemTemplate) {
-           ((ItemTemplate) template).attach(ft);
+
         } else if (template instanceof L2Skill) {
             ((L2Skill) template).attach(ft);
         } else if (template instanceof EffectTemplate) {

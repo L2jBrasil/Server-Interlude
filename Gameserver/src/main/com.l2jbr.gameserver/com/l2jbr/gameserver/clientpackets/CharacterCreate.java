@@ -42,7 +42,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-
 /**
  * This class ...
  * @version $Revision: 1.9.2.3.2.8 $ $Date: 2005/03/27 15:29:30 $

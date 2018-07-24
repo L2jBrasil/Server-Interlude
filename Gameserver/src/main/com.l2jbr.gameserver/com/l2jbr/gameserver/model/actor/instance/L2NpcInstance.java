@@ -38,11 +38,12 @@ import com.l2jbr.gameserver.model.L2Skill.SkillType;
 import com.l2jbr.gameserver.model.actor.knownlist.NpcKnownList;
 import com.l2jbr.gameserver.model.actor.stat.NpcStat;
 import com.l2jbr.gameserver.model.actor.status.NpcStatus;
+import com.l2jbr.gameserver.model.entity.Castle;
+import com.l2jbr.gameserver.model.entity.L2Event;
+import com.l2jbr.gameserver.model.entity.database.CharTemplate;
 import com.l2jbr.gameserver.model.entity.database.ItemTemplate;
 import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.model.entity.database.Weapon;
-import com.l2jbr.gameserver.model.entity.Castle;
-import com.l2jbr.gameserver.model.entity.L2Event;
 import com.l2jbr.gameserver.model.quest.Quest;
 import com.l2jbr.gameserver.model.quest.QuestState;
 import com.l2jbr.gameserver.model.zone.type.L2TownZone;
@@ -56,6 +57,7 @@ import com.l2jbr.gameserver.templates.L2HelperBuff;
 import java.text.DateFormat;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import static com.l2jbr.gameserver.ai.Intention.AI_INTENTION_ACTIVE;
 
@@ -259,6 +261,22 @@ public class L2NpcInstance extends L2Character {
         // Set the name of the L2Character
         setName(template.getName());
 
+    }
+
+    @Override
+    protected void initSkillsStat(CharTemplate template) {
+        // Copy the Standard Calcultors of the L2NPCInstance in _calculators
+        _calculators = NPC_STD_CALCULATOR;
+
+        // Copy the skills of the L2NPCInstance from its template to the L2Character Instance
+        // The skills list can be affected by spell effects so it's necessary to make a copy
+        // to avoid that a spell affecting a L2NPCInstance, affects others L2NPCInstance of the same type too.
+        _skills = ((NpcTemplate) template).getSkills();
+        if (_skills != null) {
+            for (Map.Entry<Integer, L2Skill> skill : _skills.entrySet()) {
+                addStatFuncs(skill.getValue().getStatFuncs(null, this));
+            }
+        }
     }
 
     @Override
