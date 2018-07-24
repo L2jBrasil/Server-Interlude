@@ -33,8 +33,6 @@ public class Weapon extends ItemTemplate {
     private Integer rndDam;
     @Column("weaponType")
     private ItemType type;
-    @Column("atk_speed")
-    private Integer atkSpeed;
     @Column("mp_consume")
     private Integer mpConsume;
     @Column("m_dam")
@@ -249,10 +247,6 @@ public class Weapon extends ItemTemplate {
 
     public int getRandomDamage() {
         return rndDam;
-    }
-
-    public int getAtkSpeed() {
-        return atkSpeed;
     }
 
     public int getMpConsume() {
