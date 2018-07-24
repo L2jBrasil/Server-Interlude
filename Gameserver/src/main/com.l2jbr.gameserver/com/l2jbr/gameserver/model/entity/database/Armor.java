@@ -17,8 +17,6 @@ public class Armor extends ItemTemplate {
     private BodyPart bodyPart;
     @Column("armor_type")
     private ItemType armorType;
-    @Column("mp_bonus")
-    private int mpBonus;
     @Column("item_skill_id")
     private int itemSkillId;
     @Column("item_skill_lvl")
@@ -81,10 +79,6 @@ public class Armor extends ItemTemplate {
     @Override
     public boolean isStackable() {
         return false;
-    }
-
-    public int getMpBonus() {
-        return mpBonus;
     }
 
     public L2Skill getSkill() {
