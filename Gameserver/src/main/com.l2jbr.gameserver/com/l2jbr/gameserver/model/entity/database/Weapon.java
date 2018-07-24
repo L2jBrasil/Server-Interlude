@@ -35,8 +35,6 @@ public class Weapon extends ItemTemplate {
     private ItemType type;
     @Column("mp_consume")
     private Integer mpConsume;
-    @Column("m_dam")
-    private Integer mDam;
     @Column("item_skill_id")
     private Integer itemSkillId;
     @Column("item_skill_lvl")
@@ -251,10 +249,6 @@ public class Weapon extends ItemTemplate {
 
     public int getMpConsume() {
         return mpConsume;
-    }
-
-    public int getMDam() {
-        return mDam;
     }
 
     public int getItemSkillId() {
