@@ -203,7 +203,7 @@
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
         <!-- chance of Curse Discord effect on a critical hit -->
-        <skill triggerType='onCrit' id='3581' chance='5'/>
+        <skill triggerType='onCrit' id='3581' chance='4'/>
 
 
     </item>
@@ -229,7 +229,7 @@
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
         <!-- 25% chance to stun target on a critical hit (CON resists it) -->
-        <skill triggerType='onCrit' id='3584' chance='25'/>
+        <skill triggerType='onCrit' id='3584' chance='5'/>
 
     </item>
     <item id='6616' name="infinity_scepter">
@@ -293,7 +293,7 @@
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
         <!-- 10% chance to inflict Physical Skill Silence on a critical hit (MEN resists it) -->
-        <skill triggerType='onCrit' id='3586' chance='10'/>
+        <skill triggerType='onCrit' id='3586' chance='7'/>
 
     </item>
     <item id='6621' name="infinity_spear">
@@ -306,6 +306,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="3592" triggerType="onCrit" chance="5"/>
 
     </item>
     <item id='6678' name="sealed_imperial_crusader_shield">

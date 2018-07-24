@@ -11,7 +11,6 @@ import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.quest.Quest;
-import com.l2jbr.gameserver.skills.conditions.ConditionGameChance;
 import com.l2jbr.gameserver.templates.BodyPart;
 import com.l2jbr.gameserver.templates.ItemType;
 import com.l2jbr.gameserver.templates.ItemTypeGroup;
@@ -39,12 +38,6 @@ public class Weapon extends ItemTemplate {
     private Integer itemSkillId;
     @Column("item_skill_lvl")
     private Integer itemSkillLvl;
-    @Column("onCrit_skill_id")
-    private Integer onCritSkillId;
-    @Column("onCrit_skill_lvl")
-    private Integer onCritSkillLvl;
-    @Column("onCrit_skill_chance")
-    private Integer onCritSkillChance;
 
     @Transient private L2Skill skill;
     @Transient protected List<L2Skill> skillsOnCast;
@@ -190,12 +183,6 @@ public class Weapon extends ItemTemplate {
 
         if(! isNull(itemSkillId)) {
             skill = SkillTable.getInstance().getInfo(itemSkillId, itemSkillLvl);
-        }
-
-        if(! isNull(onCritSkillId)) {
-            L2Skill tmpSkill = SkillTable.getInstance().getInfo(onCritSkillId, onCritSkillLvl);
-            tmpSkill.attach(new ConditionGameChance(onCritSkillChance), true);
-            attachOnCrit(tmpSkill);
         }
     }
 
