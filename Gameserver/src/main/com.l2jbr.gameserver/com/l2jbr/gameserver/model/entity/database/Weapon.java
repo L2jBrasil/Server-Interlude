@@ -29,8 +29,6 @@ public class Weapon extends ItemTemplate {
     private BodyPart bodypart;
     private Integer soulshots;
     private Integer spiritshots;
-    @Column("p_dam")
-    private Integer pDam;
     @Column("rnd_dam")
     private Integer rndDam;
     @Column("weaponType")
@@ -252,10 +250,6 @@ public class Weapon extends ItemTemplate {
 
     public int getSpiritshots() {
         return spiritshots;
-    }
-
-    public int getPDam() {
-        return pDam;
     }
 
     public int getRandomDamage() {

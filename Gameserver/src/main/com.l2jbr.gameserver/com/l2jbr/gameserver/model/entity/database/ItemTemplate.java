@@ -251,11 +251,6 @@ public abstract class ItemTemplate extends Entity<Integer> {
         return type2;
     }
 
-    public abstract BodyPart getBodyPart();
-    public abstract ItemType getType();
-    public abstract boolean isStackable();
-
-
     public boolean isForWolf() {
         return type2 == ItemTypeGroup.TYPE2_PET_WOLF;
     }
@@ -272,12 +267,19 @@ public abstract class ItemTemplate extends Entity<Integer> {
         return type2 == ItemTypeGroup.TYPE2_PET_BABY;
     }
 
+    public abstract BodyPart getBodyPart();
+    public abstract ItemType getType();
+    public abstract boolean isStackable();
+
+    @Deprecated(forRemoval = true)
+    public void attach(FuncTemplate ft) {
+
+    }
+
     @Override
     public String toString() {
         return name;
     }
 
-    public void attach(FuncTemplate ft) {
 
-    }
 }
