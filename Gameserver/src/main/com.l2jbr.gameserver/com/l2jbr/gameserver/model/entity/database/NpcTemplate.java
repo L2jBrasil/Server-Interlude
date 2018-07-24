@@ -22,6 +22,8 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
+import static java.util.Objects.isNull;
+
 @Table("npc")
 public class NpcTemplate extends CharTemplate {
 
@@ -133,7 +135,7 @@ public class NpcTemplate extends CharTemplate {
     }
 
     public void addDropData(L2DropData dropDat, int category) {
-        if(Util.isNull(dropCategories)) {
+        if(isNull(dropCategories)) {
           loadDrops();
         }
         L2DropCategory dropCategory = dropCategories.getOrDefault(category, new L2DropCategory(category));
@@ -151,13 +153,13 @@ public class NpcTemplate extends CharTemplate {
             int skillLevel = npcSkill.getLevel();
 
             //TODO implement RACE skill
-            if (Util.isNull(race) && (skillId == SkillConstants.RACES)) {
+            if (isNull(race) && (skillId == SkillConstants.RACES)) {
                 race = Race.fromRaceSkillLevel(skillLevel);
             }
 
             L2Skill skill = SkillTable.getInstance().getInfo(skillId, skillLevel);
 
-            if (Util.isNull(skill)) {
+            if (isNull(skill)) {
                 continue;
             }
 
@@ -309,7 +311,7 @@ public class NpcTemplate extends CharTemplate {
     }
 
     public Map<Integer, L2Skill> getSkills() {
-        if(Util.isNull(skills)) {
+        if(isNull(skills)) {
             loadSkills();
         }
         return skills;
@@ -320,14 +322,14 @@ public class NpcTemplate extends CharTemplate {
     }
 
     public Map<Integer, L2DropCategory> getDropCategories() {
-        if(Util.isNull(dropCategories)) {
+        if(isNull(dropCategories)) {
             loadDrops();
         }
         return dropCategories;
     }
 
     public Set<PlayerClass> getTeachInfo() {
-        if(Util.isNull(teachInfo)) {
+        if(isNull(teachInfo)) {
             loadTeachInfo();
         }
         return teachInfo;

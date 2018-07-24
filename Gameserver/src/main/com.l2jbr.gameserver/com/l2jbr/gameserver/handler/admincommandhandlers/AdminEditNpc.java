@@ -46,6 +46,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import static java.util.Objects.isNull;
+
 
 /**
  * @author terry Window - Preferences - Java - Code Style - Code Templates
@@ -572,7 +574,7 @@ public class AdminEditNpc implements IAdminCommandHandler {
         final String statValue = value;
 
         Util.getField(statToSet, NpcTemplate.class).ifPresent(f -> {
-            if(Util.isNull(npc)) {
+            if(isNull(npc)) {
                 return;
             }
             try {
@@ -751,7 +753,7 @@ public class AdminEditNpc implements IAdminCommandHandler {
 
     private void reLoadNpcDropList(int npcId) {
         NpcTemplate npcData = NpcTable.getInstance().getTemplate(npcId);
-        if (Util.isNull(npcData)) {
+        if (isNull(npcData)) {
             return;
         }
 

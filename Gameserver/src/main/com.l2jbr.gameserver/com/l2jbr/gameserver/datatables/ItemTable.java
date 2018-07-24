@@ -41,24 +41,23 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ScheduledFuture;
 
+import static com.l2jbr.gameserver.util.GameserverMessages.getMessage;
 import static java.util.Objects.isNull;
 
 public class ItemTable {
     private static Logger _log = LoggerFactory.getLogger(ItemTable.class);
     private static Logger _logItems = LoggerFactory.getLogger("item");
 
+    private static ItemTable INSTANCE;
+
     private Map<Integer, ItemTemplate> items;
     private ItemStatsReader statsReader;
 
-    private final boolean _initialized;
-
-    private static ItemTable _instance;
-
     public static ItemTable getInstance() {
-        if (_instance == null) {
-            _instance = new ItemTable();
+        if (INSTANCE == null) {
+            INSTANCE = new ItemTable();
         }
-        return _instance;
+        return INSTANCE;
     }
 
     private ItemTable() {
@@ -67,7 +66,7 @@ public class ItemTable {
         DatabaseAccess.getRepository(EtcItemRepository.class).findAll().forEach(this::addToItems);
         DatabaseAccess.getRepository(ArmorRepository.class).findAll().forEach(this::addToItems);
         DatabaseAccess.getRepository(WeaponRepository.class).findAll().forEach(this::addToItems);
-        _initialized = true;
+        _log.info(getMessage("info.items.loaded"), items.size());
     }
 
     private void loadItemsStat() {
@@ -84,15 +83,6 @@ public class ItemTable {
             statsReader.attach(item);
         }
         items.put(item.getId(), item);
-    }
-
-    /**
-     * Returns if ItemTable initialized
-     *
-     * @return boolean
-     */
-    public boolean isInitialized() {
-        return _initialized;
     }
 
     /**
@@ -232,9 +222,9 @@ public class ItemTable {
 
     public void reload() {
         //FIXME  The player must relogin to get new item status
-        synchronized (_instance) {
-            _instance = null;
-            _instance = new ItemTable();
+        synchronized (INSTANCE) {
+            INSTANCE = null;
+            INSTANCE = new ItemTable();
         }
     }
 

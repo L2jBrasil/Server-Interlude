@@ -1,6 +1,5 @@
 package com.l2jbr.commons.database;
 
-import com.l2jbr.commons.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.repository.Repository;
@@ -8,6 +7,8 @@ import org.springframework.data.repository.Repository;
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import static java.util.Objects.nonNull;
 
 public class DatabaseAccess {
 
@@ -22,7 +23,7 @@ public class DatabaseAccess {
         T repository = null;
         try {
             repository = L2DatabaseFactory.getInstance().getRepository(repositoryClass);
-            if(Util.isNotNull(repository)) {
+            if(nonNull(repository)) {
                 repositories.put(repositoryClass, repository);
             }
         } catch (Exception e) {

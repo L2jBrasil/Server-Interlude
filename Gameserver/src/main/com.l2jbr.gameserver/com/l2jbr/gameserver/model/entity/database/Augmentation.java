@@ -3,9 +3,10 @@ package com.l2jbr.gameserver.model.entity.database;
 import com.l2jbr.commons.database.annotation.Column;
 import com.l2jbr.commons.database.annotation.Table;
 import com.l2jbr.commons.database.model.Entity;
-import com.l2jbr.commons.util.Util;
 import com.l2jbr.gameserver.model.L2Skill;
 import org.springframework.data.annotation.Id;
+
+import static java.util.Objects.nonNull;
 
 @Table("augmentations")
 public class Augmentation extends Entity<Integer> {
@@ -22,7 +23,7 @@ public class Augmentation extends Entity<Integer> {
     public Augmentation(int objectId, int effectsId, L2Skill skill) {
         this.itemId = objectId;
         this.attributes = effectsId;
-        if(Util.isNotNull(skill)) {
+        if(nonNull(skill)) {
             this.skill = skill.getId();
             this.level = skill.getLevel();
         }

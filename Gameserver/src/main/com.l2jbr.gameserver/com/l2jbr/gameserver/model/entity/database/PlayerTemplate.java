@@ -2,7 +2,6 @@ package com.l2jbr.gameserver.model.entity.database;
 
 import com.l2jbr.commons.database.annotation.Column;
 import com.l2jbr.commons.database.annotation.Table;
-import com.l2jbr.commons.util.Util;
 import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.model.base.PlayerClass;
 import com.l2jbr.gameserver.model.base.Race;
@@ -11,6 +10,9 @@ import org.springframework.data.annotation.Transient;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 
 @Table("player_templates")
 public class PlayerTemplate extends CharTemplate {
@@ -76,13 +78,13 @@ public class PlayerTemplate extends CharTemplate {
 
     private void addItem(int itemId) {
         ItemTemplate item = ItemTable.getInstance().getTemplate(itemId);
-        if(Util.isNotNull(item)) {
+        if(nonNull(item)) {
             items.add(item);
         }
     }
 
     public List<ItemTemplate> getItems() {
-        if(Util.isNull(items)){
+        if(isNull(items)){
             loadItems();
         }
         return items;

@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.clientpackets;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.util.Util;
 import com.l2jbr.gameserver.Olympiad;
 import com.l2jbr.gameserver.SevenSignsFestival;
 import com.l2jbr.gameserver.communitybbs.Manager.RegionBBSManager;
@@ -28,8 +27,8 @@ import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.L2Party;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.entity.database.repository.CharacterFriendRepository;
 import com.l2jbr.gameserver.model.entity.TvTEvent;
+import com.l2jbr.gameserver.model.entity.database.repository.CharacterFriendRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.FriendList;
@@ -37,6 +36,8 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.taskmanager.AttackStanceTaskManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import static java.util.Objects.nonNull;
 
 
 /**
@@ -124,7 +125,7 @@ public final class Logout extends L2GameClientPacket
         CharacterFriendRepository repository = DatabaseAccess.getRepository(CharacterFriendRepository.class);
         repository.findAllByCharacterId(cha.getObjectId()).forEach(characterFriends -> {
             L2PcInstance friend = L2World.getInstance().getPlayer(characterFriends.getFriendName());
-            if(Util.isNotNull(friend)) {
+            if(nonNull(friend)) {
                 friend.sendPacket(new FriendList(friend));
             }
         });

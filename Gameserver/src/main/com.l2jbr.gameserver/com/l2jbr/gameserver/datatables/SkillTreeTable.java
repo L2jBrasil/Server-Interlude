@@ -19,7 +19,6 @@
 package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.util.Util;
 import com.l2jbr.gameserver.model.L2EnchantSkillLearn;
 import com.l2jbr.gameserver.model.L2PledgeSkillLearn;
 import com.l2jbr.gameserver.model.L2Skill;
@@ -117,11 +116,11 @@ public class SkillTreeTable {
         int count = 0;
         SkillTreeRepository skillTreeRepository = DatabaseAccess.getRepository(SkillTreeRepository.class);
 
-        for (PlayerTemplate charTemplate : CharTemplateTable.getInstance().all()) {
+        for (PlayerTemplate playerTemplate : CharTemplateTable.getInstance().all()) {
             Map<Integer, L2SkillLearn>  map = new LinkedHashMap<>();
-            PlayerClass playerClass = charTemplate.getPlayerClass();
+            PlayerClass playerClass = playerTemplate.getPlayerClass();
 
-            if (Util.isNotNull(playerClass.getParent())) {
+            if (Objects.nonNull(playerClass.getParent())) {
                 Map<Integer, L2SkillLearn> parentMap = getSkillTrees().get(playerClass.getParent());
                 map.putAll(parentMap);
             }

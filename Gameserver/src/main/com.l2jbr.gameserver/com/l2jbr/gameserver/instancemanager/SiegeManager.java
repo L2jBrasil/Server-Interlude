@@ -19,16 +19,15 @@ package com.l2jbr.gameserver.instancemanager;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.util.Util;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.Location;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.entity.database.repository.SiegeClanRepository;
 import com.l2jbr.gameserver.model.entity.Castle;
 import com.l2jbr.gameserver.model.entity.Siege;
+import com.l2jbr.gameserver.model.entity.database.repository.SiegeClanRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import org.slf4j.Logger;
@@ -38,6 +37,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.*;
+
+import static java.util.Objects.isNull;
 
 
 public class SiegeManager {
@@ -121,7 +122,7 @@ public class SiegeManager {
      * Return true if the clan is registered or owner of a castle<BR>
      */
     public final boolean checkIsRegistered(L2Clan clan, int castleid) {
-        if (Util.isNull(clan)) {
+        if (isNull(clan)) {
             return false;
         }
 

@@ -19,6 +19,9 @@ import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.Optional;
 
+import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
+
 /**
  * This class ...
  *
@@ -92,19 +95,18 @@ public class Util {
     }
 
     public static String fillHex(int data, int digits) {
-        String number = Integer.toHexString(data);
+        StringBuilder builder = new StringBuilder(Integer.toHexString(data));
 
-        for (int i = number.length(); i < digits; i++) {
-            number = "0" + number;
+        for (int i = builder.length(); i < digits; i++) {
+            builder.insert(0, "0");
         }
-
-        return number;
+        return builder.toString();
     }
 
     public static Optional<Field> getField(String fieldName, Class<?> clazz) {
         Class<?> searchClass = clazz;
         Field f = null;
-        while(Util.isNotNull(searchClass)) {
+        while(nonNull(searchClass)) {
             try {
                 f = searchClass.getDeclaredField(fieldName);
                 break;
@@ -115,21 +117,12 @@ public class Util {
         return Optional.of(f);
     }
 
-
-    public static boolean isNull(Object obj) {
-        return obj == null;
-    }
-
-    public static boolean isNotNull(Object obj) {
-        return obj != null;
-    }
-
     public static boolean isNullOrEmpty(String value) {
         return isNull(value) || value.isEmpty();
     }
 
     public static boolean isNullOrEmpty(Collection<?> collection) {
-        return collection == null || collection.isEmpty();
+        return isNull(collection) || collection.isEmpty();
     }
 
     public static String capitalize(String text) {
