@@ -207,6 +207,10 @@ public class Weapon extends ItemTemplate {
             skill = SkillTable.getInstance().getInfo(itemSkillId, itemSkillLvl);
         }
 
+        if(! isNull(enchant4SkillId)) {
+            enchant4Skill = SkillTable.getInstance().getInfo(enchant4SkillId, enchant4SkillLvl);
+        }
+
         if(! isNull(onCastSkillId)) {
             L2Skill tmpSkill = SkillTable.getInstance().getInfo(onCastSkillId, onCastSkillLvl);
             tmpSkill.attach(new ConditionGameChance(onCastSkillChance), true);
