@@ -33,8 +33,6 @@ public class Weapon extends ItemTemplate {
     private Integer rndDam;
     @Column("weaponType")
     private ItemType type;
-    @Column("shield_def")
-    private Integer shieldDef;
     @Column("shield_def_rate")
     private Integer shieldDefRate;
     @Column("atk_speed")
@@ -249,10 +247,6 @@ public class Weapon extends ItemTemplate {
 
     public int getRandomDamage() {
         return rndDam;
-    }
-
-    public int getShieldDef() {
-        return shieldDef;
     }
 
     public int getShieldDefRate() {
