@@ -3,7 +3,7 @@
 --
 DROP TABLE IF EXISTS `weapon`;
 CREATE TABLE `weapon` (
-  `item_id` decimal(11,0) NOT NULL default '0',
+  `item_id` int NOT NULL default '0',
   `name` varchar(70) default NULL,
   `bodypart` ENUM('RIGHT_HAND','TWO_HAND','LEFT_HAND','WOLF','HATCHLING','STRIDER') NOT NULL,
   `crystallizable` BOOL NOT NULL DEFAULT TRUE,
@@ -21,8 +21,8 @@ CREATE TABLE `weapon` (
   `dropable` BOOL NOT NULL DEFAULT TRUE,
   `destroyable` BOOL NOT NULL DEFAULT TRUE,
   `tradeable` BOOL NOT NULL DEFAULT TRUE,
-  `item_skill_id` decimal(11,0) NOT NULL default '0',
-  `item_skill_lvl` decimal(11,0) NOT NULL default '0',
+  `item_skill_id` int NOT NULL default '0',
+  `item_skill_lvl` int NOT NULL default '0',
   PRIMARY KEY  (`item_id`)
 );
 

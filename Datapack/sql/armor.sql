@@ -4,22 +4,22 @@
 
 DROP TABLE IF EXISTS `armor`;
 CREATE TABLE `armor` (
-  `item_id` int(11) NOT NULL default '0',
+  `item_id` int NOT NULL default '0',
   `name` varchar(70) default NULL,
   `bodypart` ENUM('CHEST','LEGS','FEET','HEAD','GLOVES','UNDERWEAR', 'BACK', 'FULL_ARMOR','EAR','FINGER','NECK','WOLF','HATCHLING','STRIDER','FACE','HAIR','DHAIR','BABYPET') NOT NULL,
   `crystallizable` BOOL NOT NULL DEFAULT TRUE,
   `armor_type` ENUM('NONE', 'LIGHT', 'HEAVY', 'MAGIC', 'PET_ARMOR') NOT NULL default 'NONE',
-  `weight` int(5) NOT NULL default '0',
+  `weight` int NOT NULL default '0',
   `crystal_type` ENUM('NONE', 'D', 'C', 'B', 'A', 'S') NOT NULL,
-  `duration` int(3) NOT NULL default '0',
-  `price` int(11) NOT NULL default '0',
+  `duration` int NOT NULL default '0',
+  `price` int NOT NULL default '0',
   `crystal_count` int(4) default NULL,
   `sellable` BOOL NOT NULL DEFAULT TRUE,
   `dropable` BOOL NOT NULL DEFAULT TRUE,
   `destroyable` BOOL NOT NULL DEFAULT TRUE,
   `tradeable` BOOL NOT NULL DEFAULT TRUE,
-  `item_skill_id` decimal(11,0) NOT NULL default '0',
-  `item_skill_lvl` decimal(11,0) NOT NULL default '0',
+  `item_skill_id` int NOT NULL default '0',
+  `item_skill_lvl` int NOT NULL default '0',
   PRIMARY KEY  (`item_id`)
 );
 
