@@ -5,7 +5,7 @@
 
     <item id='2506' name="Wolf's Leather Armor">
         <stat function="add" order='16' name='PHYSIC_DEFENCE' value='9'/>
-        <stat function="add" order='16' name='PHYSIC_DEFENCE' value='14'/>
+        <stat function="add" order='16' name='MAGIC_DEFENCE' value='14'/>
     </item>
 
 </itemList>
