@@ -216,6 +216,7 @@
         <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill triggerType="onCast" id="3598" chance="15" />
 
     </item>
     <item id='6615' name="infinity_crusher">
@@ -240,6 +241,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="3596" triggerType="onCast" chance="15"/>
 
     </item>
     <item id='6617' name="infinity_stinger">

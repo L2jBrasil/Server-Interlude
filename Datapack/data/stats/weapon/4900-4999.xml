@@ -36,6 +36,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1168" triggerType="onCast" level="6" chance="6"/>
 
     </item>
     <item id='4903' name="dasparions_staff">

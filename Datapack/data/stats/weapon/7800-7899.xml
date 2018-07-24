@@ -21,6 +21,7 @@
         <stat function='add' value='433' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1201" triggerType="onCast" level="23" chance="10"/>
 
     </item>
     <item id='7812' name="soulfire_dirk_magic_silence">
@@ -58,6 +59,7 @@
         <stat function='add' value='433' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1035" triggerType="onCast" level="4" chance="50"/>
 
     </item>
     <item id='7815' name="hell_knife_magic_weakness">
@@ -69,6 +71,7 @@
         <stat function='add' value='433' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1164" triggerType="onCast" level="3" chance="7"/>
 
     </item>
     <item id='7816' name="apprentice_adventurers_staff">

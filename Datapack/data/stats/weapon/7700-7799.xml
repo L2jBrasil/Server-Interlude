@@ -21,6 +21,7 @@
         <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1201" triggerType="onCast" level="23" chance="10"/>
 
     </item>
     <item id='7703' name="stick_of_faith_magic_shield">
@@ -32,6 +33,7 @@
         <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1035" triggerType="onCast" level="2" chance="50"/>
 
     </item>
     <item id='7704' name="stick_of_eternity_empower">
@@ -100,6 +102,7 @@
         <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1168" triggerType="onCast" level="6" chance="7"/>
 
     </item>
     <item id='7709' name="nirvana_axe_magic_weakness">
@@ -111,6 +114,7 @@
         <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1164" triggerType="onCast" level="6" chance="7"/>
 
     </item>
     <item id='7710' name="club_of_nature_acumen">
@@ -133,6 +137,7 @@
         <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1035" triggerType="onCast" level="3" chance="50"/>
 
     </item>
     <item id='7712' name="club_of_nature_magic_hold">
@@ -144,6 +149,7 @@
         <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1201" triggerType="onCast" level="23" chance="10"/>
 
     </item>
     <item id='7713' name="mace_of_the_underworld_mana_up">
@@ -282,6 +288,7 @@
         <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1164" triggerType="onCast" level="6" chance="7"/>
 
     </item>
     <item id='7724' name="sword_of_valhalla_magic_regeneration">
@@ -293,6 +300,7 @@
         <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1044" triggerType="onCast" level="3" chance="30"/>
 
     </item>
 </itemList>

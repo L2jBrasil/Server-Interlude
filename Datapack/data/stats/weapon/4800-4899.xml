@@ -918,6 +918,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1044" triggerType="onCast" chance="30"/>
 
     </item>
     <item id='4865' name="heavy_doom_hammer_mental_shield">
@@ -929,6 +930,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1035" triggerType="onCast" level="2" chance="50"/>
 
     </item>
     <item id='4866' name="heavy_doom_hammer_magic_hold">
@@ -940,6 +942,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1201" triggerType="onCast" level="23" chance="10"/>
 
     </item>
     <item id='4867' name="crystal_staff_rsk._evasion">
@@ -992,6 +995,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1168" triggerType="onCast" level="6" chance="8"/>
 
     </item>
     <item id='4871' name="heavy_doom_axe_magic_weakness">
@@ -1003,6 +1007,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1164" triggerType="onCast" level="6" chance="8"/>
 
     </item>
     <item id='4872' name="heavy_doom_axe_magic_chaos">
@@ -1014,6 +1019,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1222" triggerType="onCast" level="2" chance="8"/>
 
     </item>
     <item id='4873' name="cursed_staff_magic_hold">
@@ -1025,6 +1031,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1201" triggerType="onCast" level="23" chance="10"/>
 
     </item>
     <item id='4874' name="cursed_staff_magic_poison">
@@ -1036,6 +1043,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1168" triggerType="onCast" level="6" chance="8"/>
 
     </item>
     <item id='4875' name="cursed_staff_magic_weakness">
@@ -1047,6 +1055,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1164" triggerType="onCast" level="6" chance="8"/>
 
     </item>
     <item id='4876' name="paradia_staff_magic_regeneration">
@@ -1058,6 +1067,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1044" triggerType="onCast" level="2" chance="30"/>
 
     </item>
     <item id='4877' name="paradia_staff_mental_shield">
@@ -1069,6 +1079,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1035" triggerType="onCast" level="3" chance="50"/>
 
     </item>
     <item id='4878' name="paradia_staff_magic_hold">
@@ -1080,6 +1091,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1201" triggerType="onCast" level="23" chance="10"/>
 
     </item>
     <item id='4879' name="paagrio_hammer_rsk._evasion">
@@ -1108,6 +1120,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1168" triggerType="onCast" level="6" chance="7"/>
 
     </item>
     <item id='4881' name="paagrio_hammer_magic_weakness">
@@ -1119,6 +1132,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1164" triggerType="onCast" level="6" chance="7"/>
 
     </item>
     <item id='4882' name="sages_staff_magic_hold">
@@ -1130,6 +1144,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1201" triggerType="onCast" level="23" chance="10"/>
 
     </item>
     <item id='4883' name="sages_staff_magic_poison">
@@ -1141,6 +1156,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1168" triggerType="onCast" level="6" chance="7"/>
 
     </item>
     <item id='4884' name="sages_staff_magic_weakness">
@@ -1152,6 +1168,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1164" triggerType="onCast" level="6" chance="7"/>
 
     </item>
     <item id='4885' name="paagrio_axe_mana_up">
@@ -1174,6 +1191,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1164" triggerType="onCast" level="6" chance="7"/>
 
     </item>
     <item id='4887' name="paagrio_axe_magic_chaos">
@@ -1185,6 +1203,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1222" triggerType="onCast" level="2" chance="7"/>
 
     </item>
     <item id='4888' name="deadmans_staff_magic_regeneration">
@@ -1196,6 +1215,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1044" triggerType="onCast" chance="30"/>
 
     </item>
     <item id='4889' name="deadmans_staff_mental_shield">
@@ -1207,6 +1227,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1035" triggerType="onCast" level="3" chance="50"/>
 
     </item>
     <item id='4890' name="deadmans_staff_magic_hold">
@@ -1218,6 +1239,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1201" triggerType="onCast" level="23" chance="10"/>
 
     </item>
     <item id='4891' name="ghouls_staff_rsk._evasion">
@@ -1270,6 +1292,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1168" triggerType="onCast" level="6" chance="7"/>
 
     </item>
     <item id='4895' name="demons_staff_magic_weakness">
@@ -1281,6 +1304,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1164" triggerType="onCast" level="6" chance="7"/>
 
     </item>
     <item id='4896' name="demons_staff_magic_chaos">
@@ -1292,6 +1316,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1222" triggerType="onCast" level="2" chance="7"/>
 
     </item>
     <item id='4897' name="sprites_staff_magic_regeneration">
@@ -1303,6 +1328,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1044" triggerType="onCast" level="3" chance="30"/>
 
     </item>
     <item id='4898' name="sprites_staff_mental_shield">
@@ -1314,6 +1340,7 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1035" triggerType="onCast" level="4" chance="50"/>
 
     </item>
     <item id='4899' name="sprites_staff_magic_hold">
@@ -1325,6 +1352,6 @@
         <stat function='add' value='325' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-
+        <skill id="1201" triggerType="onCast" level="23" chance="10"/>
     </item>
 </itemList>

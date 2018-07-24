@@ -39,12 +39,6 @@ public class Weapon extends ItemTemplate {
     private Integer itemSkillId;
     @Column("item_skill_lvl")
     private Integer itemSkillLvl;
-    @Column("onCast_skill_id")
-    private Integer onCastSkillId;
-    @Column("onCast_skill_lvl")
-    private Integer onCastSkillLvl;
-    @Column("onCast_skill_chance")
-    private Integer onCastSkillChance;
     @Column("onCrit_skill_id")
     private Integer onCritSkillId;
     @Column("onCrit_skill_lvl")
@@ -196,12 +190,6 @@ public class Weapon extends ItemTemplate {
 
         if(! isNull(itemSkillId)) {
             skill = SkillTable.getInstance().getInfo(itemSkillId, itemSkillLvl);
-        }
-
-        if(! isNull(onCastSkillId)) {
-            L2Skill tmpSkill = SkillTable.getInstance().getInfo(onCastSkillId, onCastSkillLvl);
-            tmpSkill.attach(new ConditionGameChance(onCastSkillChance), true);
-            attachOnCast(tmpSkill);
         }
 
         if(! isNull(onCritSkillId)) {

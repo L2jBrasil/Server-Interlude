@@ -152,6 +152,7 @@
         <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1164" triggerType="onCast" level="6" chance="8"/>
 
     </item>
     <item id='8114' name="ecliptic_sword_empower">
@@ -514,6 +515,7 @@
         <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1201" triggerType="onCast" level="23" chance="10"/>
 
     </item>
     <item id='8141' name="spell_breaker_acumen">
@@ -537,7 +539,7 @@
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
         <!-- Mental Shield -->
-        <skill triggerType='onCast' id='1035' level='2' chance='50'/>
+        <skill triggerType='onCast' id='1035' level='4' chance='50'/>
 
     </item>
     <item id='8143' name="spell_breaker_magic_hold">
@@ -549,6 +551,7 @@
         <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1035" triggerType="onCast" level="23" chance="10"/>
 
     </item>
     <item id='8144' name="kaim_vanuls_bone_mana_up">
@@ -609,6 +612,7 @@
         <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
+        <skill id="1168" triggerType="onCast" level="6" chance="10"/>
 
     </item>
     <item id='8149' name="spiritual_eye_acumen">

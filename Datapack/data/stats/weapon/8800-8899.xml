@@ -235,6 +235,7 @@
         <!-- Enhances damage to target during PvP -->
         <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
         <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
+        <skill id="1035" triggerType="onCast" level="3" chance="50"/>
 
     </item>
     <item id='8814' name="Themis\' Tongue - Magic Focus">
@@ -331,6 +332,7 @@
         <!-- Enhances damage to target during PvP -->
         <stat function='mul' value='1.05' order='48' name='PVP_PHYSIC_DAMAGE'/>
         <stat function='mul' value='1.05' order='48' name='PVP_MAGIC_DAMAGE'/>
+        <skill id="1035" triggerType="onCast" level="3" chance="50"/>
 
     </item>
     <item id='8821' name="Shadow Item: Two Handed Sword">
