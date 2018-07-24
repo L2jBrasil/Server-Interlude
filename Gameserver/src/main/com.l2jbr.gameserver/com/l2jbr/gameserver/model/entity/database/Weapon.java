@@ -39,10 +39,6 @@ public class Weapon extends ItemTemplate {
     private Integer itemSkillId;
     @Column("item_skill_lvl")
     private Integer itemSkillLvl;
-    @Column("enchant4_skill_id")
-    private Integer enchant4SkillId;
-    @Column("enchant4_skill_lvl")
-    private Integer enchant4SkillLvl;
     @Column("onCast_skill_id")
     private Integer onCastSkillId;
     @Column("onCast_skill_lvl")
@@ -56,10 +52,9 @@ public class Weapon extends ItemTemplate {
     @Column("onCrit_skill_chance")
     private Integer onCritSkillChance;
 
-    @Transient  private L2Skill skill;
-    @Transient  private L2Skill enchant4Skill;
-    @Transient  protected List<L2Skill> skillsOnCast;
-    @Transient  protected List<L2Skill> skillsOnCrit;
+    @Transient private L2Skill skill;
+    @Transient protected List<L2Skill> skillsOnCast;
+    @Transient protected List<L2Skill> skillsOnCrit;
 
 
     @Override
@@ -203,10 +198,6 @@ public class Weapon extends ItemTemplate {
             skill = SkillTable.getInstance().getInfo(itemSkillId, itemSkillLvl);
         }
 
-        if(! isNull(enchant4SkillId)) {
-            enchant4Skill = SkillTable.getInstance().getInfo(enchant4SkillId, enchant4SkillLvl);
-        }
-
         if(! isNull(onCastSkillId)) {
             L2Skill tmpSkill = SkillTable.getInstance().getInfo(onCastSkillId, onCastSkillLvl);
             tmpSkill.attach(new ConditionGameChance(onCastSkillChance), true);
@@ -247,56 +238,10 @@ public class Weapon extends ItemTemplate {
         return rndDam;
     }
 
-    public int getMpConsume() {
-        return mpConsume;
-    }
-
-    public int getItemSkillId() {
-        return itemSkillId;
-    }
-
-    public int getItemSkillLevel() {
-        return itemSkillLvl;
-    }
-
-    public int getEnchant4SkillId() {
-        return enchant4SkillId;
-    }
-
-    public int getEnchant4SkillLevel() {
-        return enchant4SkillLvl;
-    }
-
-    public int getOnCastSkillId() {
-        return onCastSkillId;
-    }
-
-    public int getOnCastSkillLevel() {
-        return onCastSkillLvl;
-    }
-
-    public int getOnCastSkillChance() {
-        return onCastSkillChance;
-    }
-
-    public int getOnCritSkillId() {
-        return onCritSkillId;
-    }
-
-    public int getOnCritSkillLevel() {
-        return onCritSkillLvl;
-    }
-
-    public int getOnCritSkillChance() {
-        return onCritSkillChance;
-    }
+    public int getMpConsume() { return mpConsume; }
 
     public L2Skill getSkill() {
         return skill;
-    }
-
-    public L2Skill getEnchant4Skill() {
-        return  enchant4Skill;
     }
 
     public int getAttackReuseDelay() {

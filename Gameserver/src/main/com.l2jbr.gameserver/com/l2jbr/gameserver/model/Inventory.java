@@ -229,23 +229,17 @@ public abstract class Inventory extends ItemContainer {
             }
 
             L2Skill passiveSkill = null;
-            L2Skill enchant4Skill = null;
 
             ItemTemplate it = item.getItem();
 
             if (it instanceof Weapon) {
                 passiveSkill = ((Weapon) it).getSkill();
-                enchant4Skill = ((Weapon) it).getEnchant4Skill();
             } else if (it instanceof Armor) {
                 passiveSkill = ((Armor) it).getSkill();
             }
 
             if (passiveSkill != null) {
                 player.removeSkill(passiveSkill, false);
-                player.sendSkillList();
-            }
-            if (enchant4Skill != null) {
-                player.removeSkill(enchant4Skill, false);
                 player.sendSkillList();
             }
         }
@@ -261,16 +255,12 @@ public abstract class Inventory extends ItemContainer {
             }
 
             L2Skill passiveSkill = null;
-            L2Skill enchant4Skill = null;
 
             ItemTemplate it = item.getItem();
 
             if (it instanceof Weapon) {
                 passiveSkill = ((Weapon) it).getSkill();
 
-                if (item.getEnchantLevel() >= 4) {
-                    enchant4Skill = ((Weapon) it).getEnchant4Skill();
-                }
             } else if (it instanceof Armor) {
                 passiveSkill = ((Armor) it).getSkill();
             }
@@ -279,11 +269,6 @@ public abstract class Inventory extends ItemContainer {
                 player.addSkill(passiveSkill, false);
                 player.sendSkillList();
             }
-            if (enchant4Skill != null) {
-                player.addSkill(enchant4Skill, false);
-                player.sendSkillList();
-            }
-
         }
     }
 
