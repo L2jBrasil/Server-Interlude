@@ -2,7 +2,7 @@
 // Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.3.0-b170531.0717 
 // Consulte <a href="https://jaxb.java.net/">https://jaxb.java.net/</a> 
 // Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
-// Gerado em: 2018.07.20 às 02:06:11 PM BRT 
+// Gerado em: 2018.07.24 às 11:36:10 AM BRT 
 //
 
 

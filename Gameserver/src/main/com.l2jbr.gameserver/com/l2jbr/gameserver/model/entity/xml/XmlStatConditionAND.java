@@ -2,7 +2,7 @@
 // Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.3.0-b170531.0717 
 // Consulte <a href="https://jaxb.java.net/">https://jaxb.java.net/</a> 
 // Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
-// Gerado em: 2018.07.20 às 02:06:11 PM BRT 
+// Gerado em: 2018.07.24 às 11:36:10 AM BRT 
 //
 
 
@@ -69,9 +69,9 @@ public class XmlStatConditionAND
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link JAXBElement }{@code <}{@link XmlStatConditionAND }{@code >}
-     * {@link JAXBElement }{@code <}{@link XmlStatConditionNOT }{@code >}
      * {@link JAXBElement }{@code <}{@link XmlStatConditionOR }{@code >}
+     * {@link JAXBElement }{@code <}{@link XmlStatConditionNOT }{@code >}
+     * {@link JAXBElement }{@code <}{@link XmlStatConditionAND }{@code >}
      * {@link JAXBElement }{@code <}{@link XmlStatConditionOperator }{@code >}
      * 
      * 
@@ -102,8 +102,8 @@ public class XmlStatConditionAND
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link JAXBElement }{@code <}{@link XmlStatPlayerCondition }{@code >}
-     * {@link JAXBElement }{@code <}{@link XmlStatGameCondition }{@code >}
      * {@link JAXBElement }{@code <}{@link XmlStatUsingCondition }{@code >}
+     * {@link JAXBElement }{@code <}{@link XmlStatGameCondition }{@code >}
      * {@link JAXBElement }{@code <}{@link XmlStatConditionType }{@code >}
      * 
      * 

@@ -43,6 +43,8 @@
                 <xs:attribute name="slot" type="xs:int"/>
                 <xs:attribute name="item" type="xs:int"/>
                 <xs:attribute name="enchantment" type="xs:int" default="0"/>
+                <xs:attribute name="types" type="xs:string" />
+                <xs:attribute name="skill" type="xs:int"/>
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>

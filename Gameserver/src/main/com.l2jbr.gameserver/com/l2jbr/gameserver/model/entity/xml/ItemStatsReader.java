@@ -11,11 +11,13 @@ import com.l2jbr.gameserver.skills.conditions.ConditionPlayerState.CheckPlayerSt
 import com.l2jbr.gameserver.skills.funcs.FuncTemplate;
 import com.l2jbr.gameserver.skills.funcs.Lambda;
 import com.l2jbr.gameserver.skills.funcs.LambdaConst;
+import com.l2jbr.gameserver.templates.ItemType;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import static java.util.Objects.isNull;
 
@@ -139,11 +141,30 @@ public class ItemStatsReader extends XMLReader<ItemList> {
     }
 
     private Condition parseUsingCondition(XmlStatUsingCondition condition) {
-        switch (condition.getKind()) {
+        switch (condition.getKind().toLowerCase()) {
             case "slotitem":
                 return new ConditionSlotItemId(condition.getSlot(), condition.getItem(), condition.getEnchantment());
+            case "itemtype":
+                return new ConditionUsingItemType(createItemTypesMask(condition.getTypes()));
+            case "skill":
+                return new ConditionUsingSkill(condition.getSkill());
         }
         return null;
+    }
+
+    private int createItemTypesMask(String types) {
+        int mask = 0;
+        StringTokenizer tokens = new StringTokenizer(types, ",");
+        while (tokens.hasMoreElements()) {
+            try {
+                String type = tokens.nextToken().toUpperCase().trim();
+                mask |= ItemType.valueOf(type).mask();
+            } catch (IllegalArgumentException | NullPointerException e) {
+                logger.error("Error parsing Condition");
+                logger.error(e.getLocalizedMessage(), e);
+            }
+        }
+        return mask;
     }
 
     @Override

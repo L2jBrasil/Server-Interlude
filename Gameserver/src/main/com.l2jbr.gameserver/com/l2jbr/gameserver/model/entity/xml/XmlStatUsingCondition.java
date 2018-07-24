@@ -2,7 +2,7 @@
 // Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.3.0-b170531.0717 
 // Consulte <a href="https://jaxb.java.net/">https://jaxb.java.net/</a> 
 // Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
-// Gerado em: 2018.07.20 às 02:06:11 PM BRT 
+// Gerado em: 2018.07.24 às 11:36:10 AM BRT 
 //
 
 
@@ -27,6 +27,8 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;attribute name="slot" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
  *       &lt;attribute name="item" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
  *       &lt;attribute name="enchantment" type="{http://www.w3.org/2001/XMLSchema}int" default="0" /&gt;
+ *       &lt;attribute name="types" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="skill" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
  *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -48,6 +50,10 @@ public class XmlStatUsingCondition
     protected Integer item;
     @XmlAttribute(name = "enchantment")
     protected Integer enchantment;
+    @XmlAttribute(name = "types")
+    protected String types;
+    @XmlAttribute(name = "skill")
+    protected Integer skill;
 
     /**
      * Obtém o valor da propriedade kind.
@@ -147,6 +153,54 @@ public class XmlStatUsingCondition
      */
     public void setEnchantment(Integer value) {
         this.enchantment = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade types.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getTypes() {
+        return types;
+    }
+
+    /**
+     * Define o valor da propriedade types.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setTypes(String value) {
+        this.types = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade skill.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getSkill() {
+        return skill;
+    }
+
+    /**
+     * Define o valor da propriedade skill.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setSkill(Integer value) {
+        this.skill = value;
     }
 
 }
