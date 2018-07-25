@@ -22,8 +22,8 @@ import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2TradeList;
-import com.l2jbr.gameserver.model.entity.database.MerchantBuyList;
-import com.l2jbr.gameserver.model.entity.database.MerchantShopIds;
+import com.l2jbr.gameserver.model.entity.database.MerchantItem;
+import com.l2jbr.gameserver.model.entity.database.MerchantShop;
 import com.l2jbr.gameserver.model.entity.database.repository.MerchantBuyListRepository;
 import com.l2jbr.gameserver.model.entity.database.repository.MerchantShopRepository;
 import org.slf4j.Logger;
@@ -31,19 +31,14 @@ import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
+import static java.util.Objects.isNull;
 
-/**
- * This class ...
- *
- * @version $Revision: 1.5.4.13 $ $Date: 2005/04/06 16:13:38 $
- */
 public class TradeController {
     private static Logger _log = LoggerFactory.getLogger(TradeController.class.getName());
-    private static TradeController _instance;
+    private static TradeController INSTANCE;
 
     private int _nextListId;
-    private final Map<Integer, L2TradeList> _lists;
-    private final Map<Integer, L2TradeList> _listsTaskItem;
+    private final Map<Integer, MerchantShop> shopList;
 
     /**
      * Task launching the function for restore count of Item (Clan Hall)
@@ -53,6 +48,10 @@ public class TradeController {
 
         public RestoreCount(int time) {
             _timer = time;
+        }
+
+        public RestoreCount(Integer time, RestoreInfo restoreInfo) {
+            _timer =time;
         }
 
         @Override
@@ -66,77 +65,58 @@ public class TradeController {
         }
     }
 
-    public static TradeController getInstance() {
-        if (_instance == null) {
-            _instance = new TradeController();
+
+    private class RestoreInfo {
+        Map<Integer, Set<Integer>> shopIds;
+        long saveTimer;
+
+        RestoreInfo(int shopId, int itemId, long saveTimer) {
+            shopIds = new HashMap<>();
+            this.saveTimer = saveTimer;
+            add(shopId, itemId);
         }
-        return _instance;
+
+        public void add(int shopId, int itemId) {
+            if(!shopIds.containsKey(shopId)) {
+                shopIds.put(shopId, new HashSet<>());
+            }
+            shopIds.get(shopId).add(itemId);
+        }
+    }
+
+    public static TradeController getInstance() {
+        if (isNull(INSTANCE)) {
+            INSTANCE = new TradeController();
+        }
+        return INSTANCE;
     }
 
     private TradeController() {
-        _lists = new LinkedHashMap<>();
-        _listsTaskItem = new LinkedHashMap<>();
-        LinkedHashMap<Integer, Long> timers = new LinkedHashMap<>();
-        int dummyItemCount = 0;
-        boolean LimitedItem = false;
-        MerchantShopRepository repository = DatabaseAccess.getRepository(MerchantShopRepository.class);
-        for (MerchantShopIds merchantShopIds : repository.findAll()) {
+        shopList = new HashMap<>();
+        Map<Integer, RestoreInfo> timers = new HashMap<>();
 
-            L2TradeList tradeList = new L2TradeList(merchantShopIds.getShopId());
-            tradeList.setNpcId(merchantShopIds.getNpcId());
+        DatabaseAccess.getRepository(MerchantShopRepository.class).findAll().forEach(shop -> {
+            shopList.put(shop.getId(), shop);
 
-            for (MerchantBuyList merchantBuyList : merchantShopIds.getBuyLists()) {
-                LimitedItem = false;
-                dummyItemCount++;
-                L2ItemInstance item = ItemTable.getInstance().createDummyItem(merchantBuyList.getItemId());
-                if (item == null) {
-                    continue;
-                }
-
-                if (merchantBuyList.getCount() > -1) {
-                    item.setCountDecrease(true);
-                    LimitedItem = true;
-                    if(!timers.containsKey(merchantBuyList.getTime())) {
-                        timers.put(merchantBuyList.getTime(), merchantBuyList.getSavetimer());
-                    }
-                }
-
-                item.setPriceToSell(merchantBuyList.getPrice());
-                item.setTime(merchantBuyList.getTime());
-                item.setInitCount(merchantBuyList.getCount());
-
-                if (merchantBuyList.getCurrentCount() > -1) {
-                    item.setCount(merchantBuyList.getCurrentCount());
+            shop.getItems().stream().filter(MerchantItem::isLimited).forEach(item -> {
+                if(!timers.containsKey(item.getTime())) {
+                    timers.put(item.getTime(), new RestoreInfo(shop.getId(), item.getItemId(), item.getSavetimer()));
                 } else {
-                    item.setCount(merchantBuyList.getCount());
+                    timers.get(item.getCount()).add(shop.getId(), item.getItemId());
                 }
-
-                tradeList.addItem(item);
-            }
-
-            if (LimitedItem) {
-                _listsTaskItem.put(tradeList.getListId(), tradeList);
-            } else {
-                _lists.put(tradeList.getListId(), tradeList);
-            }
-            _nextListId = Math.max(_nextListId, tradeList.getListId() + 1);
-        }
-
-        _log.debug("created {} Dummy-Items for buylists", dummyItemCount);
-
-        _log.info("TradeController: Loaded {} Buylists.", _lists.size());
-        _log.info("TradeController: Loaded {} Limited Buylists.", _listsTaskItem.size());
-
+            });
+        });
 
         long currentMillis = System.currentTimeMillis();
-        timers.forEach((time, saveTimer) -> {
-            if((saveTimer - currentMillis)  > 0) {
-                ThreadPoolManager.getInstance().scheduleGeneral(new RestoreCount(time), saveTimer - System.currentTimeMillis());
+        timers.forEach((time, restoreInfo) -> {
+            if((restoreInfo.saveTimer - currentMillis)  > 0) {
+                ThreadPoolManager.getInstance().scheduleGeneral(new RestoreCount(time, restoreInfo), restoreInfo.saveTimer - currentMillis);
             } else {
-                ThreadPoolManager.getInstance().scheduleGeneral(new RestoreCount(time), 0);
+                ThreadPoolManager.getInstance().scheduleGeneral(new RestoreCount(time, restoreInfo), 0);
             }
         });
 
+        _log.info("TradeController: Loaded {} Buylists.", shopList.size());
     }
 
     private int parseList(String line) {
@@ -154,13 +134,13 @@ public class TradeController {
             itemCreated++;
         }
 
-        _lists.put(buy1.getListId(), buy1);
+        shopList.put(buy1.getListId(), buy1);
         return itemCreated;
     }
 
     public L2TradeList getBuyList(int listId) {
-        if (_lists.get(listId) != null) {
-            return _lists.get(listId);
+        if (shopList.get(listId) != null) {
+            return shopList.get(listId);
         }
         return _listsTaskItem.get(listId);
     }
@@ -168,7 +148,7 @@ public class TradeController {
     public List<L2TradeList> getBuyListByNpcId(int npcId) {
         List<L2TradeList> lists = new LinkedList<>();
 
-        for (L2TradeList list : _lists.values()) {
+        for (L2TradeList list : shopList.values()) {
             if (list.getNpcId().startsWith("gm")) {
                 continue;
             }

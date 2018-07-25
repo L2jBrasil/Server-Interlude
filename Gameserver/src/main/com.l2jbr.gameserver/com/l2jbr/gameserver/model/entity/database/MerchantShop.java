@@ -7,25 +7,25 @@ import org.springframework.data.annotation.Id;
 import java.util.Set;
 
 @Table("merchant_shopids")
-public class MerchantShopIds  {
+public class MerchantShop {
 
     @Id
     @Column("shop_id")
-    private int shopId;
+    private int id;
     @Column("npc_id")
     private String npcId;
     @Column("shop_id")
-    private Set<MerchantBuyList> buyLists;
+    private Set<MerchantItem> items;
 
-    public int getShopId() {
-        return shopId;
+    public int getId() {
+        return id;
     }
 
     public String getNpcId() {
         return npcId;
     }
 
-    public Set<MerchantBuyList> getBuyLists() {
-        return buyLists;
+    public Set<MerchantItem> getItems() {
+        return items;
     }
 }

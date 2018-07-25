@@ -33,22 +33,23 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import static java.util.Objects.isNull;
+
 
 public class SummonItemsData {
     private static final Logger _log = LoggerFactory.getLogger(SummonItemsData.class.getName());
     private Map<Integer, L2SummonItem> _summonitems;
 
-    private static SummonItemsData _instance;
+    private static SummonItemsData INSTANCE;
 
     public static SummonItemsData getInstance() {
-        if (_instance == null) {
-            _instance = new SummonItemsData();
+        if (isNull(INSTANCE)) {
+            INSTANCE = new SummonItemsData();
         }
-
-        return _instance;
+        return INSTANCE;
     }
 
-    public SummonItemsData() {
+    private SummonItemsData() {
         _summonitems = new LinkedHashMap<>();
 
         Scanner s;

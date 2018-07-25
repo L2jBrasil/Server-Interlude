@@ -54,7 +54,7 @@ public class ItemTable {
     private ItemStatsReader statsReader;
 
     public static ItemTable getInstance() {
-        if (INSTANCE == null) {
+        if (isNull(INSTANCE)) {
             INSTANCE = new ItemTable();
         }
         return INSTANCE;
@@ -169,20 +169,10 @@ public class ItemTable {
     public L2ItemInstance createDummyItem(int itemId) {
         ItemTemplate item = getTemplate(itemId);
         if (item == null) {
+            _log.warn("ItemTable: Item Template missing for Id: " + itemId);
             return null;
         }
-        L2ItemInstance temp = new L2ItemInstance(0, item);
-        try {
-            temp = new L2ItemInstance(0, itemId);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            // this can happen if the item templates were not initialized
-        }
-
-        if (temp.getItem() == null) {
-            _log.warn("ItemTable: Item Template missing for Id: " + itemId);
-        }
-
-        return temp;
+        return new L2ItemInstance(0, item);
     }
 
     /**

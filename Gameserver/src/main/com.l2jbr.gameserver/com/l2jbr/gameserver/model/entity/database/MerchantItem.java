@@ -6,7 +6,7 @@ import com.l2jbr.commons.database.model.Entity;
 import org.springframework.data.annotation.Id;
 
 @Table("merchant_buylists")
-public class MerchantBuyList extends Entity<Integer> {
+public class MerchantItem extends Entity<Integer> {
 
     @Id
     @Column("shop_id")
@@ -20,9 +20,9 @@ public class MerchantBuyList extends Entity<Integer> {
     private int time;
     private long savetimer;
 
-    public MerchantBuyList() {}
+    public MerchantItem() {}
 
-    public MerchantBuyList(int itemId, int price, int shopId, int ordering) {
+    public MerchantItem(int itemId, int price, int shopId, int ordering) {
         this.itemId =itemId;
         this.price = price;
         this.shopId = shopId;
@@ -30,13 +30,17 @@ public class MerchantBuyList extends Entity<Integer> {
     }
 
     @Override
+    public void onLoad() {
+        super.onLoad();
+
+    }
+
+    @Override
     public Integer getId() {
         return shopId;
     }
 
-    public int getItemId() {
-        return itemId;
-    }
+    public int getItemId() { return itemId; }
 
     public int getPrice() {
         return price;
@@ -46,9 +50,7 @@ public class MerchantBuyList extends Entity<Integer> {
         return ordering;
     }
 
-    public int getCount() {
-        return count;
-    }
+    public int getCount() { return count; }
 
     public int getCurrentCount() {
         return currentCount;
@@ -58,7 +60,8 @@ public class MerchantBuyList extends Entity<Integer> {
         return time;
     }
 
-    public long getSavetimer() {
-        return savetimer;
-    }
+    public long getSavetimer() {  return savetimer; }
+
+    public boolean isLimited() { return count > -1; }
+
 }

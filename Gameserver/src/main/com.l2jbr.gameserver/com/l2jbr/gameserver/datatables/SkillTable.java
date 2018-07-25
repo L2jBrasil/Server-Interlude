@@ -22,41 +22,34 @@ import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.skills.SkillsEngine;
 import com.l2jbr.gameserver.templates.ItemType;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 
+import static java.util.Objects.isNull;
 
-/**
- * This class ...
- *
- * @version $Revision: 1.8.2.6.2.18 $ $Date: 2005/04/06 16:13:25 $
- */
 public class SkillTable {
-    // private static Logger _log = LoggerFactory.getLogger(SkillTable.class.getName());
-    private static SkillTable _instance;
+
+    private static SkillTable INSTANCE;
 
     private final Map<Integer, L2Skill> _skills;
-    private final boolean _initialized = true;
 
     public static SkillTable getInstance() {
-        if (_instance == null) {
-            _instance = new SkillTable();
+        if (isNull(INSTANCE)) {
+            INSTANCE = new SkillTable();
         }
-        return _instance;
+        return INSTANCE;
     }
 
     private SkillTable() {
-        _skills = new LinkedHashMap<>();
+        _skills = new HashMap<>();
         SkillsEngine.getInstance().loadAllSkills(_skills);
     }
 
     public void reload() {
-        _instance = new SkillTable();
+        INSTANCE = new SkillTable();
     }
 
-    public boolean isInitialized() {
-        return _initialized;
-    }
+
 
     /**
      * Provides the skill hash

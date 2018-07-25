@@ -32,19 +32,18 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
+import static java.util.Objects.isNull;
 
 public class ExtractableItemsData {
-    // Map<itemid, L2ExtractableItem>
     private LinkedHashMap<Integer, L2ExtractableItem> _items;
 
-    private static ExtractableItemsData _instance = null;
+    private static ExtractableItemsData INSTANCE = null;
 
     public static ExtractableItemsData getInstance() {
-        if (_instance == null) {
-            _instance = new ExtractableItemsData();
+        if (isNull(INSTANCE )) {
+            INSTANCE = new ExtractableItemsData();
         }
-
-        return _instance;
+        return INSTANCE;
     }
 
     public ExtractableItemsData() {

@@ -38,7 +38,7 @@ import java.util.List;
  *
  * @version $Revision: 1.4.2.1.2.5 $ $Date: 2005/03/27 15:29:33 $
  */
-public class L2TradeList {
+public class  L2TradeList {
     private static Logger _log = LoggerFactory.getLogger(L2TradeList.class.getName());
 
     private final List<L2ItemInstance> _items;

@@ -1,6 +1,6 @@
 package com.l2jbr.gameserver.model.entity.database.repository;
 
-import com.l2jbr.gameserver.model.entity.database.MerchantBuyList;
+import com.l2jbr.gameserver.model.entity.database.MerchantItem;
 import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
-public interface MerchantBuyListRepository extends CrudRepository<MerchantBuyList, Integer> {
+public interface MerchantBuyListRepository extends CrudRepository<MerchantItem, Integer> {
 
     @Modifying
     @Query("UPDATE merchant_buylists SET savetimer=:saveTimer WHERE time=:time")

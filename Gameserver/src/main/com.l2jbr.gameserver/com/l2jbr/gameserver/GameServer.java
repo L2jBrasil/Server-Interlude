@@ -70,7 +70,6 @@ public class GameServer {
 
     private static Logger _log;
     private final SelectorThread<L2GameClient> _selectorThread;
-    private final SkillTable _skillTable;
     private final NpcTable _npcTable;
     private final HennaTable _hennaTable;
     public static GameServer gameServer;
@@ -124,18 +123,13 @@ public class GameServer {
 
         // start game time control early
         GameTimeController.getInstance();
-        SkillTreeTable.getInstance();
+        SkillTable.getInstance();
         ItemTable.getInstance();
-
         ExtractableItemsData.getInstance();
         SummonItemsData.getInstance();
-
         TradeController.getInstance();
-        _skillTable = SkillTable.getInstance();
-        if (!_skillTable.isInitialized()) {
-            _log.error(getMessage(ERROR_EXTRACTED_FILE_NOT_FOUND));
-            throw new Exception(getMessage(ERROR_INITIALIZE_TABLE, "Skill"));
-        }
+
+
 
         // L2EMU_ADD by Rayan. L2J - BigBro
         // if(Config.ALLOW_NPC_WALKERS)
@@ -144,7 +138,7 @@ public class GameServer {
 
         RecipeController.getInstance();
 
-
+        SkillTreeTable.getInstance();
         ArmorSetsTable.getInstance();
         FishTable.getInstance();
         SkillSpellbookTable.getInstance();

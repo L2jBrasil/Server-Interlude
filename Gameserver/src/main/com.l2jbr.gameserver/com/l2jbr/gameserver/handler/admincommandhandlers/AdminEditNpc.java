@@ -33,7 +33,7 @@ import com.l2jbr.gameserver.model.L2TradeList;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.entity.database.DropList;
 import com.l2jbr.gameserver.model.entity.database.ItemTemplate;
-import com.l2jbr.gameserver.model.entity.database.MerchantBuyList;
+import com.l2jbr.gameserver.model.entity.database.MerchantItem;
 import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.model.entity.database.repository.DropListRepository;
 import com.l2jbr.gameserver.model.entity.database.repository.MerchantBuyListRepository;
@@ -441,7 +441,7 @@ public class AdminEditNpc implements IAdminCommandHandler {
 
     private void storeTradeList(int itemID, int price, int tradeListID, int order) {
         MerchantBuyListRepository repository = DatabaseAccess.getRepository(MerchantBuyListRepository.class);
-        MerchantBuyList buyList = new MerchantBuyList(itemID, price, tradeListID, order);
+        MerchantItem buyList = new MerchantItem(itemID, price, tradeListID, order);
         repository.save(buyList);
     }
 
