@@ -26,5 +26,4 @@ public abstract class Entity<ID> implements Persistable<ID> {
     }
 
     public void setPersisted() { isNew = false;}
-
 }

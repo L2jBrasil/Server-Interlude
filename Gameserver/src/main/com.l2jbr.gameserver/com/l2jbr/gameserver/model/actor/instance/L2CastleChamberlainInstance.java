@@ -25,8 +25,8 @@ import com.l2jbr.gameserver.datatables.ClanTable;
 import com.l2jbr.gameserver.instancemanager.CastleManager;
 import com.l2jbr.gameserver.instancemanager.CastleManorManager;
 import com.l2jbr.gameserver.model.L2Clan;
-import com.l2jbr.gameserver.model.L2TradeList;
 import com.l2jbr.gameserver.model.PcInventory;
+import com.l2jbr.gameserver.model.entity.database.MerchantShop;
 import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
@@ -201,7 +201,7 @@ public class L2CastleChamberlainInstance extends L2FolkInstance {
                         buy = (Integer.parseInt(val + "2"));
                     }
                 }
-                L2TradeList list = TradeController.getInstance().getBuyList(buy);
+                MerchantShop list = TradeController.getInstance().getBuyList(buy);
                 if ((list != null) && list.getNpcId().equals(String.valueOf(getNpcId()))) {
                     BuyList bl = new BuyList(list, player.getAdena(), 0);
                     player.sendPacket(bl);

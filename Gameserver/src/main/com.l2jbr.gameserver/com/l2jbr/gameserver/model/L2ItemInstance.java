@@ -26,7 +26,9 @@ import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.instancemanager.ItemsOnGroundManager;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.knownlist.NullKnownList;
-import com.l2jbr.gameserver.model.entity.database.*;
+import com.l2jbr.gameserver.model.entity.database.Augmentation;
+import com.l2jbr.gameserver.model.entity.database.ItemTemplate;
+import com.l2jbr.gameserver.model.entity.database.Items;
 import com.l2jbr.gameserver.model.entity.database.repository.AugmentationsRepository;
 import com.l2jbr.gameserver.model.entity.database.repository.ItemRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
@@ -35,7 +37,6 @@ import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.StatusUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.skills.funcs.Func;
-import com.l2jbr.gameserver.templates.BodyPart;
 import com.l2jbr.gameserver.templates.ItemTypeGroup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -344,9 +345,8 @@ public final class L2ItemInstance extends L2Object
 	 * Returns if item is equipable
 	 * @return boolean
 	 */
-	public boolean isEquipable()
-	{
-		return !((_item.getBodyPart() == BodyPart.NONE) || (_item instanceof EtcItem));
+	public boolean isEquipable() {
+		return  _item.isEquipable();
 	}
 	
 	/**

@@ -30,7 +30,13 @@ public class FishingSkill implements SkillInfo {
     }
 
     @Override
-    public int getSpCost() { return 0; }
+    public int getSpCost() { return sp; }
+
+    @Override
+    public int getCostId() {  return costId; }
+
+    @Override
+    public int getCostCount() { return cost; }
 
     @Override
     public int getMinLevel() {
@@ -39,21 +45,5 @@ public class FishingSkill implements SkillInfo {
 
     public String getName() {
         return name;
-    }
-
-    public int getSp() {
-        return sp;
-    }
-
-    public int getCostId() {
-        return costId;
-    }
-
-    public int getCost() {
-        return cost;
-    }
-
-    public int getIsForDwarf() {
-        return isForDwarf;
     }
 }

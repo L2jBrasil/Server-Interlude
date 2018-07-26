@@ -270,11 +270,13 @@ public abstract class ItemTemplate extends Entity<Integer> {
     public abstract BodyPart getBodyPart();
     public abstract ItemType getType();
     public abstract boolean isStackable();
+    public abstract boolean isEquipable();
 
     @Override
     public String toString() {
         return name;
     }
+
 
 
 }

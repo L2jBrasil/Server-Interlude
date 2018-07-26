@@ -53,6 +53,10 @@ public class ItemStatsReader extends XMLReader<ItemList> {
 
         for(XmlItemSkill itemSkill : itemStat.getSkill()) {
             L2Skill skill = SkillTable.getInstance().getInfo(itemSkill.getId(), itemSkill.getLevel());
+            if(isNull(skill)) {
+                logger.warn("Skill not found {} attached on XML item {} ({}).", itemSkill.getId(), itemStat.getName(), itemStat.getId());
+                continue;
+            }
             skill.attach(new ConditionGameChance(itemSkill.getChance()), true);
             item.attach(skill, itemSkill.getTriggerType());
         }

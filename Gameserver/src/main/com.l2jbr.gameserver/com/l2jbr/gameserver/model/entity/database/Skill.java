@@ -30,12 +30,23 @@ public class Skill implements SkillInfo {
         return level;
     }
 
-    public String getName() {
-        return name;
+    @Override
+    public int getSpCost() {
+        return sp;
     }
 
-    public int getSp() {
-        return sp;
+    @Override
+    public int getCostId() {
+        return 0;
+    }
+
+    @Override
+    public int getCostCount() {
+        return 0;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getMinLevel() {

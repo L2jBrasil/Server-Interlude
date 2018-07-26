@@ -60,6 +60,11 @@ public class EtcItem extends ItemTemplate {
         return stackable;
     }
 
+    @Override
+    public boolean isEquipable() {
+        return false;
+    }
+
     enum ConsumeType {
         NORMAL,
         STACKABLE,

@@ -21,7 +21,7 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.TradeController;
 import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.model.L2Clan;
-import com.l2jbr.gameserver.model.L2TradeList;
+import com.l2jbr.gameserver.model.entity.database.MerchantShop;
 import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.*;
 
@@ -126,7 +126,7 @@ public final class L2MercManagerInstance extends L2FolkInstance
 		{
 			_log.debug("Showing buylist");
 		}
-		L2TradeList list = TradeController.getInstance().getBuyList(val);
+		MerchantShop list = TradeController.getInstance().getBuyList(val);
 		if ((list != null) && (list.getNpcId().equals(String.valueOf(getNpcId()))))
 		{
 			BuyList bl = new BuyList(list, player.getAdena(), 0);

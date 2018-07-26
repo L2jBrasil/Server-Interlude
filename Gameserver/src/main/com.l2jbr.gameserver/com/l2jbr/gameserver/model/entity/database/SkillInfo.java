@@ -10,7 +10,7 @@ public interface SkillInfo {
 
     int getSpCost();
 
-    int getIdCost();
+    int getCostId();
 
     int getCostCount();
 }

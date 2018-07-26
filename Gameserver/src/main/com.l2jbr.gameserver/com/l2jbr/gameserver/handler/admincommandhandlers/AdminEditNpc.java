@@ -28,13 +28,8 @@ import com.l2jbr.gameserver.datatables.NpcTable;
 import com.l2jbr.gameserver.handler.IAdminCommandHandler;
 import com.l2jbr.gameserver.model.L2DropCategory;
 import com.l2jbr.gameserver.model.L2DropData;
-import com.l2jbr.gameserver.model.L2ItemInstance;
-import com.l2jbr.gameserver.model.L2TradeList;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.entity.database.DropList;
-import com.l2jbr.gameserver.model.entity.database.ItemTemplate;
-import com.l2jbr.gameserver.model.entity.database.MerchantItem;
-import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.*;
 import com.l2jbr.gameserver.model.entity.database.repository.DropListRepository;
 import com.l2jbr.gameserver.model.entity.database.repository.MerchantBuyListRepository;
 import com.l2jbr.gameserver.model.entity.database.repository.NpcRepository;
@@ -227,7 +222,7 @@ public class AdminEditNpc implements IAdminCommandHandler {
     private void editShopItem(L2PcInstance activeChar, String[] args) {
         int tradeListID = Integer.parseInt(args[1]);
         int itemID = Integer.parseInt(args[2]);
-        L2TradeList tradeList = TradeController.getInstance().getBuyList(tradeListID);
+        MerchantShop tradeList = TradeController.getInstance().getBuyList(tradeListID);
 
         ItemTemplate item = ItemTable.getInstance().getTemplate(itemID);
         if (tradeList.getPriceForItemId(itemID) < 0) {
@@ -238,10 +233,10 @@ public class AdminEditNpc implements IAdminCommandHandler {
             int price = Integer.parseInt(args[3]);
             int order = findOrderTradeList(itemID, tradeList.getPriceForItemId(itemID), tradeListID);
 
-            tradeList.replaceItem(itemID, Integer.parseInt(args[3]));
+            tradeList.changePrice(itemID, Integer.parseInt(args[3]));
             updateTradeList(itemID, price, tradeListID, order);
 
-            activeChar.sendMessage("Updated price for " + item.getName() + " in Trade List " + tradeListID);
+            activeChar.sendMessage("Updated price for {} " + item.getName() + " in Trade List {}" + tradeListID);
             showShopList(activeChar, tradeListID, 1);
             return;
         }
@@ -271,7 +266,7 @@ public class AdminEditNpc implements IAdminCommandHandler {
     private void delShopItem(L2PcInstance activeChar, String[] args) {
         int tradeListID = Integer.parseInt(args[1]);
         int itemID = Integer.parseInt(args[2]);
-        L2TradeList tradeList = TradeController.getInstance().getBuyList(tradeListID);
+        MerchantShop tradeList = TradeController.getInstance().getBuyList(tradeListID);
 
         if (tradeList.getPriceForItemId(itemID) < 0) {
             return;
@@ -311,9 +306,9 @@ public class AdminEditNpc implements IAdminCommandHandler {
     }
 
     private void addShopItem(L2PcInstance activeChar, String[] args) {
-        int tradeListID = Integer.parseInt(args[1]);
+        int tradeListId = Integer.parseInt(args[1]);
 
-        L2TradeList tradeList = TradeController.getInstance().getBuyList(tradeListID);
+        MerchantShop tradeList = TradeController.getInstance().getBuyList(tradeListId);
         if (tradeList == null) {
             activeChar.sendMessage("TradeList not found!");
             return;
@@ -321,17 +316,18 @@ public class AdminEditNpc implements IAdminCommandHandler {
 
         if (args.length > 3) {
             int order = tradeList.getItems().size() + 1; // last item order + 1
-            int itemID = Integer.parseInt(args[2]);
+            int itemId = Integer.parseInt(args[2]);
             int price = Integer.parseInt(args[3]);
 
-            L2ItemInstance newItem = ItemTable.getInstance().createDummyItem(itemID);
-            newItem.setPriceToSell(price);
-            newItem.setCount(-1);
-            tradeList.addItem(newItem);
-            storeTradeList(itemID, price, tradeListID, order);
+            MerchantItem item = new MerchantItem(itemId, price, tradeListId, order);
+            item.setPrice(price);
+            item.setCount(-1);
+            tradeList.addItem(item);
+            storeTradeList(itemId, price, tradeListId, order);
 
-            activeChar.sendMessage("Added " + newItem.getItem().getName() + " to Trade List " + tradeList.getListId());
-            showShopList(activeChar, tradeListID, 1);
+            ItemTemplate itemTemplate = ItemTable.getInstance().getTemplate(itemId);
+            activeChar.sendMessage("Added " + itemTemplate.getName() + " to Trade List " + tradeList.getId());
+            showShopList(activeChar, tradeListId, 1);
             return;
         }
 
@@ -348,8 +344,8 @@ public class AdminEditNpc implements IAdminCommandHandler {
         replyMSG.append("<tr><td>Price</td><td><edit var=\"price\" width=80></td></tr>");
         replyMSG.append("</table>");
         replyMSG.append("<center><br><br><br>");
-        replyMSG.append("<button value=\"Save\" action=\"bypass -h admin_addShopItem " + tradeListID + " $itemID $price\"  width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\">");
-        replyMSG.append("<br><button value=\"Back\" action=\"bypass -h admin_showShopList " + tradeListID + " 1\"  width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\">");
+        replyMSG.append("<button value=\"Save\" action=\"bypass -h admin_addShopItem " + tradeListId + " $itemID $price\"  width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\">");
+        replyMSG.append("<br><button value=\"Back\" action=\"bypass -h admin_showShopList " + tradeListId + " 1\"  width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\">");
         replyMSG.append("</center>");
         replyMSG.append("</body></html>");
 
@@ -358,7 +354,7 @@ public class AdminEditNpc implements IAdminCommandHandler {
     }
 
     private void showShopList(L2PcInstance activeChar, int tradeListID, int page) {
-        L2TradeList tradeList = TradeController.getInstance().getBuyList(tradeListID);
+        MerchantShop tradeList = TradeController.getInstance().getBuyList(tradeListID);
         if ((page > ((tradeList.getItems().size() / PAGE_LIMIT) + 1)) || (page < 1)) {
             return;
         }
@@ -371,7 +367,7 @@ public class AdminEditNpc implements IAdminCommandHandler {
 
     }
 
-    private StringBuilder itemListHtml(L2TradeList tradeList, int page) {
+    private StringBuilder itemListHtml(MerchantShop tradeList, int page) {
         StringBuilder replyMSG = new StringBuilder();
 
         replyMSG.append("<html><title>Merchant Shop List Page: " + page + "</title>");
@@ -381,28 +377,32 @@ public class AdminEditNpc implements IAdminCommandHandler {
         replyMSG.append("<tr><td width=150>Item Name</td><td width=60>Price</td><td width=40>Delete</td></tr>");
         int start = ((page - 1) * PAGE_LIMIT);
         int end = Math.min(((page - 1) * PAGE_LIMIT) + (PAGE_LIMIT - 1), tradeList.getItems().size() - 1);
-        for (L2ItemInstance item : tradeList.getItems(start, end + 1)) {
-            replyMSG.append("<tr><td><a action=\"bypass -h admin_editShopItem " + tradeList.getListId() + " " + item.getItemId() + "\">" + item.getItem().getName() + "</a></td>");
-            replyMSG.append("<td>" + item.getPriceToSell() + "</td>");
-            replyMSG.append("<td><button value=\"Del\" action=\"bypass -h admin_delShopItem " + tradeList.getListId() + " " + item.getItemId() + "\" width=40 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\"></td>");
+        for (MerchantItem item : tradeList.getItems(start, end + 1)) {
+            ItemTemplate template = ItemTable.getInstance().getTemplate(item.getItemId());
+            if(isNull(template)) {
+                continue;
+            }
+            replyMSG.append("<tr><td><a action=\"bypass -h admin_editShopItem " + tradeList.getId() + " " + item.getItemId() + "\">" + template.getName() + "</a></td>");
+            replyMSG.append("<td>" + item.getPrice() + "</td>");
+            replyMSG.append("<td><button value=\"Del\" action=\"bypass -h admin_delShopItem " + tradeList.getId() + " " + item.getItemId() + "\" width=40 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\"></td>");
             replyMSG.append("</tr>");
         }// */
         replyMSG.append("<tr>");
         int min = 1;
         int max = (tradeList.getItems().size() / PAGE_LIMIT) + 1;
         if (page > 1) {
-            replyMSG.append("<td><button value=\"Page" + (page - 1) + "\" action=\"bypass -h admin_showShopList " + tradeList.getListId() + " " + (page - 1) + "\" width=40 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\"></td>");
+            replyMSG.append("<td><button value=\"Page" + (page - 1) + "\" action=\"bypass -h admin_showShopList " + tradeList.getId() + " " + (page - 1) + "\" width=40 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\"></td>");
         }
         if (page < max) {
             if (page <= min) {
                 replyMSG.append("<td></td>");
             }
-            replyMSG.append("<td><button value=\"Page" + (page + 1) + "\" action=\"bypass -h admin_showShopList " + tradeList.getListId() + " " + (page + 1) + "\" width=40 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\"></td>");
+            replyMSG.append("<td><button value=\"Page" + (page + 1) + "\" action=\"bypass -h admin_showShopList " + tradeList.getId() + " " + (page + 1) + "\" width=40 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\"></td>");
         }
         replyMSG.append("</tr><tr><td>.</td></tr>");
         replyMSG.append("</table>");
         replyMSG.append("<center>");
-        replyMSG.append("<button value=\"Add\" action=\"bypass -h admin_addShopItem " + tradeList.getListId() + "\" width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\">");
+        replyMSG.append("<button value=\"Add\" action=\"bypass -h admin_addShopItem " + tradeList.getId() + "\" width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\">");
         replyMSG.append("<button value=\"Close\" action=\"bypass -h admin_close_window\" width=100 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\">");
         replyMSG.append("</center></body></html>");
 
@@ -410,7 +410,7 @@ public class AdminEditNpc implements IAdminCommandHandler {
     }
 
     private void showShop(L2PcInstance activeChar, int merchantID) {
-        List<L2TradeList> tradeLists = getTradeLists(merchantID);
+        List<MerchantShop> tradeLists = getTradeLists(merchantID);
         if (tradeLists == null) {
             activeChar.sendMessage("Unknown npc template ID" + merchantID);
             return;
@@ -424,9 +424,9 @@ public class AdminEditNpc implements IAdminCommandHandler {
         replyMSG.append("<table>");
         replyMSG.append("<tr><td>Mecrchant List ID</td></tr>");
 
-        for (L2TradeList tradeList : tradeLists) {
+        for (MerchantShop tradeList : tradeLists) {
             if (tradeList != null) {
-                replyMSG.append("<tr><td><a action=\"bypass -h admin_showShopList " + tradeList.getListId() + " 1\">Trade List " + tradeList.getListId() + "</a></td></tr>");
+                replyMSG.append("<tr><td><a action=\"bypass -h admin_showShopList " + tradeList.getId() + " 1\">Trade List " + tradeList.getId() + "</a></td></tr>");
             }
         }
 
@@ -460,7 +460,7 @@ public class AdminEditNpc implements IAdminCommandHandler {
         return repository.findOrderByItemAndPrice(tradeListID, itemID, price).orElse(0);
     }
 
-    private List<L2TradeList> getTradeLists(int merchantID) {
+    private List<MerchantShop> getTradeLists(int merchantID) {
         String target = "npc_%objectId%_Buy";
 
         String content = HtmCache.getInstance().getHtm("data/html/merchant/" + merchantID + ".htm");
@@ -472,7 +472,7 @@ public class AdminEditNpc implements IAdminCommandHandler {
             }
         }
 
-        List<L2TradeList> tradeLists = new LinkedList<>();
+        List<MerchantShop> tradeLists = new LinkedList<>();
 
         String[] lines = content.split("\n");
         int pos = 0;

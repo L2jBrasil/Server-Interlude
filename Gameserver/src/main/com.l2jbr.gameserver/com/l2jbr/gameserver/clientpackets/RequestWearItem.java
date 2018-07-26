@@ -24,12 +24,12 @@ import com.l2jbr.gameserver.TradeController;
 import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Object;
-import com.l2jbr.gameserver.model.L2TradeList;
 import com.l2jbr.gameserver.model.actor.instance.L2MercManagerInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2MerchantInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.entity.database.ItemTemplate;
+import com.l2jbr.gameserver.model.entity.database.MerchantShop;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
@@ -149,12 +149,12 @@ public final class RequestWearItem extends L2GameClientPacket
 			return;
 		}
 		
-		L2TradeList list = null;
+		MerchantShop list = null;
 		
 		// Get the current merchant targeted by the player
 		L2MerchantInstance merchant = ((target != null) && (target instanceof L2MerchantInstance)) ? (L2MerchantInstance) target : null;
 		
-		List<L2TradeList> lists = TradeController.getInstance().getBuyListByNpcId(merchant.getNpcId());
+		List<MerchantShop> lists = TradeController.getInstance().getBuyListByNpcId(merchant.getNpcId());
 		
 		if (lists == null)
 		{
@@ -162,9 +162,9 @@ public final class RequestWearItem extends L2GameClientPacket
 			return;
 		}
 		
-		for (L2TradeList tradeList : lists)
+		for (MerchantShop tradeList : lists)
 		{
-			if (tradeList.getListId() == _listId)
+			if (tradeList.getId() == _listId)
 			{
 				list = tradeList;
 			}
@@ -176,7 +176,7 @@ public final class RequestWearItem extends L2GameClientPacket
 			return;
 		}
 		
-		_listId = list.getListId();
+		_listId = list.getId();
 		
 		// Check if the quantity of Item to Wear
 		if ((_count < 1) || (_listId >= 1000000))

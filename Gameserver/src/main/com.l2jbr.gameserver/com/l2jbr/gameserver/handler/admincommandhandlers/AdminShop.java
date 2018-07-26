@@ -22,8 +22,8 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.TradeController;
 import com.l2jbr.gameserver.handler.IAdminCommandHandler;
 import com.l2jbr.gameserver.model.GMAudit;
-import com.l2jbr.gameserver.model.L2TradeList;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.entity.database.MerchantShop;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.BuyList;
 import org.slf4j.Logger;
@@ -99,7 +99,7 @@ public class AdminShop implements IAdminCommandHandler
 			_log.warn("admin buylist failed:" + command);
 		}
 		
-		L2TradeList list = TradeController.getInstance().getBuyList(val);
+		MerchantShop list = TradeController.getInstance().getBuyList(val);
 		
 		if (list != null)
 		{

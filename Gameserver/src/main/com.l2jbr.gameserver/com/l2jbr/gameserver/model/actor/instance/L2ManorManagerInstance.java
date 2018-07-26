@@ -20,12 +20,11 @@ package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.gameserver.TradeController;
 import com.l2jbr.gameserver.ai.Intention;
-import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.instancemanager.CastleManager;
 import com.l2jbr.gameserver.instancemanager.CastleManorManager;
 import com.l2jbr.gameserver.instancemanager.CastleManorManager.SeedProduction;
-import com.l2jbr.gameserver.model.L2ItemInstance;
-import com.l2jbr.gameserver.model.L2TradeList;
+import com.l2jbr.gameserver.model.entity.database.MerchantItem;
+import com.l2jbr.gameserver.model.entity.database.MerchantShop;
 import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
@@ -93,10 +92,10 @@ public class L2ManorManagerInstance extends L2MerchantInstance {
         double taxRate = 0;
         player.tempInvetoryDisable();
 
-        L2TradeList list = TradeController.getInstance().getBuyList(Integer.parseInt(val));
+        MerchantShop list = TradeController.getInstance().getBuyList(Integer.parseInt(val));
 
         if (list != null) {
-            list.getItems().get(0).setCount(1);
+            // TODO verify this -> list.getItems().get(0).setCount(1);
             BuyList bl = new BuyList(list, player.getAdena(), taxRate);
             player.sendPacket(bl);
         } else {
@@ -142,19 +141,19 @@ public class L2ManorManagerInstance extends L2MerchantInstance {
                     if (castleId != getCastle().getCastleId()) {
                         player.sendPacket(new SystemMessage(SystemMessageId.HERE_YOU_CAN_BUY_ONLY_SEEDS_OF_S1_MANOR));
                     } else {
-                        L2TradeList tradeList = new L2TradeList(0);
+
+                        MerchantShop shop = new MerchantShop();
                         List<SeedProduction> seeds = getCastle().getSeedProduction(CastleManorManager.PERIOD_CURRENT);
 
                         for (SeedProduction s : seeds) {
-                            L2ItemInstance item = ItemTable.getInstance().createDummyItem(s.getId());
-                            item.setPriceToSell(s.getPrice());
+                            MerchantItem item = new MerchantItem(s.getId(), s.getPrice(), 0, 0);
                             item.setCount(s.getCanProduce());
-                            if ((item.getCount() > 0) && (item.getPriceToSell() > 0)) {
-                                tradeList.addItem(item);
+                            if ((item.getCount() > 0) && (item.getPrice() > 0)) {
+                                shop.addItem(item);
                             }
                         }
 
-                        BuyListSeed bl = new BuyListSeed(tradeList, castleId, player.getAdena());
+                        BuyListSeed bl = new BuyListSeed(shop, castleId, player.getAdena());
                         player.sendPacket(bl);
                     }
                     break;

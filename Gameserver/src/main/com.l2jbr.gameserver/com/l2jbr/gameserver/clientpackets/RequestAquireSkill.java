@@ -170,7 +170,7 @@ public class RequestAquireSkill extends L2GameClientPacket
 				}
 				
 				counts++;
-				costid = s.getIdCost();
+				costid = s.getCostId();
 				costcount = s.getCostCount();
 				_requiredSp = s.getSpCost();
 			}

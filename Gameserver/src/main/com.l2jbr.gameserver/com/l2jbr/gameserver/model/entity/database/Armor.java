@@ -81,6 +81,11 @@ public class Armor extends ItemTemplate {
         return false;
     }
 
+    @Override
+    public boolean isEquipable() {
+        return BodyPart.NONE != bodyPart;
+    }
+
     public L2Skill getSkill() {
         return skill;
     }

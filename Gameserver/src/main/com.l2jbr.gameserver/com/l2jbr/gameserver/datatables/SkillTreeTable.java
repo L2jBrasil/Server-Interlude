@@ -98,12 +98,12 @@ public class SkillTreeTable {
         _fishingSkillTrees = fishingSkillTreeRepository.findForNonDwarf();
         _expandDwarfCraftSkillTrees = fishingSkillTreeRepository.findForDwarf();
         _log.info("FishingSkillTreeTable: Loaded {} general skills.", _fishingSkillTrees.size());
-        _log.info("FishingSkillTreeTable: Loaded {} dwarven skills.", _expandDwarfCraftSkillTrees);
+        _log.info("FishingSkillTreeTable: Loaded {} dwarven skills.", _expandDwarfCraftSkillTrees.size());
     }
 
     private void loadEnchantSkills() {
         _enchantSkillTrees = DatabaseAccess.getRepository(EnchantSkillTreesRepository.class).findAllOrderBySkillAndLevel();
-        _log.info("EnchantSkillTreeTable: Loaded {} enchant skills.", _enchantSkillTrees);
+        _log.info("EnchantSkillTreeTable: Loaded {} enchant skills.", _enchantSkillTrees.size());
     }
 
     private void loadClanSkills() {

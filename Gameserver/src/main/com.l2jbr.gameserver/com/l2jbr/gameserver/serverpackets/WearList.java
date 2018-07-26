@@ -19,35 +19,28 @@
 package com.l2jbr.gameserver.serverpackets;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.gameserver.model.L2ItemInstance;
-import com.l2jbr.gameserver.model.L2TradeList;
+import com.l2jbr.gameserver.datatables.ItemTable;
+import com.l2jbr.gameserver.model.entity.database.ItemTemplate;
+import com.l2jbr.gameserver.model.entity.database.MerchantItem;
+import com.l2jbr.gameserver.model.entity.database.MerchantShop;
 import com.l2jbr.gameserver.templates.ItemTypeGroup;
 
-import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import static java.util.Objects.nonNull;
 
-public class WearList extends L2GameServerPacket
-{
+public class WearList extends L2GameServerPacket {
+
 	private static final String _S__EF_WEARLIST = "[S] EF WearList";
-	private final int _listId;
-	private final L2ItemInstance[] _list;
 	private final int _money;
+	private final MerchantShop shop;
 	private int _expertise;
 	
-	public WearList(L2TradeList list, int currentMoney, int expertiseIndex)
-	{
-		_listId = list.getListId();
-		List<L2ItemInstance> lst = list.getItems();
-		_list = lst.toArray(new L2ItemInstance[lst.size()]);
+	public WearList(MerchantShop list, int currentMoney, int expertiseIndex) {
+		this.shop = list;
 		_money = currentMoney;
 		_expertise = expertiseIndex;
-	}
-	
-	public WearList(List<L2ItemInstance> lst, int listId, int currentMoney)
-	{
-		_listId = listId;
-		_list = lst.toArray(new L2ItemInstance[lst.size()]);
-		_money = currentMoney;
 	}
 	
 	@Override
@@ -59,44 +52,31 @@ public class WearList extends L2GameServerPacket
 		writeC(0x00); // ?
 		writeC(0x00); // ?
 		writeD(_money); // current money
-		writeD(_listId);
+		writeD(shop.getId());
+
+        Set<MerchantItem> wearList = shop.getItems().stream().filter(this::showItem).collect(Collectors.toSet());
+
+		writeH(wearList.size());
 		
-		int newlength = 0;
-		for (L2ItemInstance item : _list)
-		{
-			if ((item.getItem().getCrystalType().ordinal() <= _expertise) && item.isEquipable())
-			{
-				newlength++;
-			}
-		}
-		writeH(newlength);
-		
-		for (L2ItemInstance item : _list)
-		{
-			if ((item.getItem().getCrystalType().ordinal() <= _expertise) && item.isEquipable())
-			{
-				writeD(item.getItemId());
-				writeH(item.getItem().getType2().getId()); // item type2
-				
-				if (item.getItem().getType1() != ItemTypeGroup.TYPE1_ITEM_QUEST)
-				{
-					writeH(item.getItem().getBodyPart().getId()); // rev 415 slot 0006-lr.ear 0008-neck 0030-lr.finger 0040-head 0080-?? 0100-l.hand 0200-gloves 0400-chest 0800-pants 1000-feet 2000-?? 4000-r.hand 8000-r.hand
-				}
-				else
-				{
-					writeH(0x00); // rev 415 slot 0006-lr.ear 0008-neck 0030-lr.finger 0040-head 0080-?? 0100-l.hand 0200-gloves 0400-chest 0800-pants 1000-feet 2000-?? 4000-r.hand 8000-r.hand
-				}
-				
-				writeD(Config.WEAR_PRICE);
-				
-			}
+		for (MerchantItem item : wearList) {
+		    ItemTemplate template = ItemTable.getInstance().getTemplate(item.getItemId());
+            writeD(item.getItemId());
+            writeH(template.getType2().getId()); // item type2
+
+            if (template.getType1() != ItemTypeGroup.TYPE1_ITEM_QUEST) {
+                writeH(template.getBodyPart().getId()); // rev 415 slot 0006-lr.ear 0008-neck 0030-lr.finger 0040-head 0080-?? 0100-l.hand 0200-gloves 0400-chest 0800-pants 1000-feet 2000-?? 4000-r.hand 8000-r.hand
+            } else {
+                writeH(0x00); // rev 415 slot 0006-lr.ear 0008-neck 0030-lr.finger 0040-head 0080-?? 0100-l.hand 0200-gloves 0400-chest 0800-pants 1000-feet 2000-?? 4000-r.hand 8000-r.hand
+            }
+            writeD(Config.WEAR_PRICE);
 		}
 	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.l2jbr.gameserver.serverpackets.ServerBasePacket#getType()
-	 */
+
+    private boolean showItem(MerchantItem merchantItem) {
+        ItemTemplate template = ItemTable.getInstance().getTemplate(merchantItem.getItemId());
+        return nonNull(template) && template.isEquipable() && template.getCrystalType().ordinal() <= _expertise;
+    }
+
 	@Override
 	public String getType()
 	{

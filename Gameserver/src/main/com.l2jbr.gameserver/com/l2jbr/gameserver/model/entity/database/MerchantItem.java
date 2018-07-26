@@ -46,12 +46,19 @@ public class MerchantItem extends Entity<Integer> {
         return price;
     }
 
+    public void setPrice(int price) {
+        this.price=price;
+    }
+
     public int getOrdering() {
         return ordering;
     }
 
     public int getCount() { return count; }
 
+    public void setCount(int count) {
+        this.count = count;
+    }
     public int getCurrentCount() {
         return currentCount;
     }
@@ -63,5 +70,17 @@ public class MerchantItem extends Entity<Integer> {
     public long getSavetimer() {  return savetimer; }
 
     public boolean isLimited() { return count > -1; }
+
+    public void restoreCount() {
+        currentCount = count;
+    }
+
+    public void decreaseCount(int count) {
+       this.currentCount -= count > currentCount  ? currentCount : count;
+
+    }
+
+
+
 
 }

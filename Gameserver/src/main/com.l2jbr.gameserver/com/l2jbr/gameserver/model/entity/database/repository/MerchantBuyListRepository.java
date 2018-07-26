@@ -16,7 +16,7 @@ public interface MerchantBuyListRepository extends CrudRepository<MerchantItem, 
 
     @Modifying
     @Query("UPDATE merchant_buylists SET currentCount=:count WHERE item_id=:item AND shop_id=:shop")
-    int updateCurrentCountByItem(@Param("shop") int shopId, @Param("item") int itemId, @Param("count") int count);
+    int updateCurrentCountByItem(@Param("shop") Integer shopId, @Param("item") int itemId, @Param("count") int count);
 
     @Modifying
     @Query("UPDATE merchant_buylists SET price=:price WHERE shop_id=:shop AND item_id=:item AND order=:order")

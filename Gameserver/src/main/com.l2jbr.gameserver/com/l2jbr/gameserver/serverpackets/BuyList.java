@@ -19,66 +19,56 @@
 package com.l2jbr.gameserver.serverpackets;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.gameserver.model.L2ItemInstance;
-import com.l2jbr.gameserver.model.L2TradeList;
+import com.l2jbr.gameserver.datatables.ItemTable;
+import com.l2jbr.gameserver.model.entity.database.ItemTemplate;
+import com.l2jbr.gameserver.model.entity.database.MerchantItem;
+import com.l2jbr.gameserver.model.entity.database.MerchantShop;
 import com.l2jbr.gameserver.templates.ItemTypeGroup;
 
-import java.util.List;
+import static java.util.Objects.isNull;
 
 
 /**
  * sample 1d 1e 00 00 00 // ?? 5c 4a a0 7c // buy list id 02 00 // item count 04 00 // itemType1 0-weapon/ring/earring/necklace 1-armor/shield 4-item/questitem/adena 00 00 00 00 // objectid 32 04 00 00 // itemid 00 00 00 00 // count 05 00 // itemType2 0-weapon 1-shield/armor 2-ring/earring/necklace
  * 3-questitem 4-adena 5-item 00 00 60 09 00 00 // price 00 00 00 00 00 00 b6 00 00 00 00 00 00 00 00 00 00 00 80 00 // body slot these 4 values are only used if itemtype1 = 0 or 1 00 00 // 00 00 // 00 00 // 50 c6 0c 00 format dd h (h dddhh hhhh d) revision 377 format dd h (h dddhh dhhh d) revision
  * 377
- * @version $Revision: 1.4.2.1.2.3 $ $Date: 2005/03/27 15:29:57 $
  */
 public final class BuyList extends L2GameServerPacket
 {
 	private static final String _S__1D_BUYLIST = "[S] 11 BuyList";
-	private final int _listId;
-	private final L2ItemInstance[] _list;
+	private final MerchantShop shop;
 	private final int _money;
-	private double _taxRate = 0;
+	private double _taxRate;
 	
-	public BuyList(L2TradeList list, int currentMoney)
-	{
-		_listId = list.getListId();
-		List<L2ItemInstance> lst = list.getItems();
-		_list = lst.toArray(new L2ItemInstance[lst.size()]);
-		_money = currentMoney;
-	}
+	public BuyList(MerchantShop shop, int currentMoney) {
+        this(shop, currentMoney, 0);
+    }
 	
-	public BuyList(L2TradeList list, int currentMoney, double taxRate)
-	{
-		_listId = list.getListId();
-		List<L2ItemInstance> lst = list.getItems();
-		_list = lst.toArray(new L2ItemInstance[lst.size()]);
+	public BuyList(MerchantShop shop, int currentMoney, double taxRate) {
+		this.shop = shop;
 		_money = currentMoney;
 		_taxRate = taxRate;
 	}
-	
-	public BuyList(List<L2ItemInstance> lst, int listId, int currentMoney)
-	{
-		_listId = listId;
-		_list = lst.toArray(new L2ItemInstance[lst.size()]);
-		_money = currentMoney;
-	}
-	
+
 	@Override
 	protected final void writeImpl()
 	{
 		writeC(0x11);
 		writeD(_money); // current money
-		writeD(_listId);
+		writeD(shop.getId());
 		
-		writeH(_list.length);
+		writeH(shop.getItems().size());
 		
-		for (L2ItemInstance item : _list)
-		{
-			if ((item.getCount() > 0) || (item.getCount() == -1))
-			{
-				writeH(item.getItem().getType1().getId()); // item type1
-				writeD(item.getObjectId());
+		for (MerchantItem item : shop.getItems()) {
+
+			if ((item.getCount() > 0) || (item.getCount() == -1)) {
+                ItemTemplate template = ItemTable.getInstance().getTemplate(item.getItemId());
+                if(isNull(template)) {
+                    continue;
+                }
+
+				writeH(template.getType1().getId()); // item type1
+				writeD(0);
 				writeD(item.getItemId());
 				if (item.getCount() < 0)
 				{
@@ -88,13 +78,13 @@ public final class BuyList extends L2GameServerPacket
 				{
 					writeD(item.getCount());
 				}
-				writeH(item.getItem().getType2().getId()); // item type2
+				writeH(template.getType2().getId()); // item type2
 				writeH(0x00); // ?
 				
-				if (item.getItem().getType1() != ItemTypeGroup.TYPE1_ITEM_QUEST)
+				if (template.getType1() != ItemTypeGroup.TYPE1_ITEM_QUEST)
 				{
-					writeD(item.getItem().getBodyPart().getId()); // rev 415 slot 0006-lr.ear 0008-neck 0030-lr.finger 0040-head 0080-?? 0100-l.hand 0200-gloves 0400-chest 0800-pants 1000-feet 2000-?? 4000-r.hand 8000-r.hand
-					writeH(item.getEnchantLevel()); // enchant level
+					writeD(template.getBodyPart().getId()); // rev 415 slot 0006-lr.ear 0008-neck 0030-lr.finger 0040-head 0080-?? 0100-l.hand 0200-gloves 0400-chest 0800-pants 1000-feet 2000-?? 4000-r.hand 8000-r.hand
+					writeH(0); // enchant level
 					writeH(0x00); // ?
 					writeH(0x00);
 				}
@@ -108,16 +98,16 @@ public final class BuyList extends L2GameServerPacket
 				
 				if ((item.getItemId() >= 3960) && (item.getItemId() <= 4026))
 				{
-					writeD((int) (item.getPriceToSell() * Config.RATE_SIEGE_GUARDS_PRICE * (1 + _taxRate)));
+					writeD((int) (item.getPrice() * Config.RATE_SIEGE_GUARDS_PRICE * (1 + _taxRate)));
 				}
 				else
 				{
-					writeD((int) (item.getPriceToSell() * (1 + _taxRate)));
+					writeD((int) (item.getPrice() * (1 + _taxRate)));
 				}
 			}
 		}
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.l2jbr.gameserver.serverpackets.ServerBasePacket#getType()

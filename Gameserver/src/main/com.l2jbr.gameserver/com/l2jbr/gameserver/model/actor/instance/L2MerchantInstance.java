@@ -21,7 +21,7 @@ package com.l2jbr.gameserver.model.actor.instance;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.TradeController;
 import com.l2jbr.gameserver.model.L2Multisell;
-import com.l2jbr.gameserver.model.L2TradeList;
+import com.l2jbr.gameserver.model.entity.database.MerchantShop;
 import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.network.L2GameClient;
 import com.l2jbr.gameserver.serverpackets.*;
@@ -63,7 +63,7 @@ public class L2MerchantInstance extends L2FolkInstance {
             _log.debug("Showing wearlist");
         }
 
-        L2TradeList list = TradeController.getInstance().getBuyList(val);
+        MerchantShop list = TradeController.getInstance().getBuyList(val);
 
         if (list != null) {
             WearList bl = new WearList(list, player.getAdena(), player.getExpertiseIndex());
@@ -87,7 +87,7 @@ public class L2MerchantInstance extends L2FolkInstance {
             _log.debug("Showing buylist");
         }
 
-        L2TradeList list = TradeController.getInstance().getBuyList(val);
+        MerchantShop list = TradeController.getInstance().getBuyList(val);
 
         if ((list != null) && list.getNpcId().equals(String.valueOf(getNpcId()))) {
             BuyList bl = new BuyList(list, player.getAdena(), taxRate);

@@ -197,6 +197,11 @@ public class Weapon extends ItemTemplate {
     }
 
     @Override
+    public boolean isEquipable() {
+        return BodyPart.NONE != bodypart;
+    }
+
+    @Override
     public BodyPart getBodyPart() {
         return bodypart;
     }

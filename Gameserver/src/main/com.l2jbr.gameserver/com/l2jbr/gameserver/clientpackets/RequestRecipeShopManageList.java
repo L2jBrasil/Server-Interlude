@@ -71,19 +71,8 @@ public final class RequestRecipeShopManageList extends L2GameClientPacket
 		
 		player.sendPacket(new RecipeShopManageList(player, true));
 		
-		/*
-		 * int privatetype=player.getPrivateStoreType(); if (privatetype == 0) { if (player.getWaitType() !=1) { player.setWaitType(1); player.sendPacket(new ChangeWaitType (player,1)); player.broadcastPacket(new ChangeWaitType (player,1)); } if (player.getTradeList() == null) {
-		 * player.setTradeList(new L2TradeList(0)); } if (player.getSellList() == null) { player.setSellList(new ArrayList()); } player.getTradeList().updateSellList(player,player.getSellList()); player.setPrivateStoreType(2); player.sendPacket(new PrivateSellListSell(client.getActiveChar()));
-		 * player.sendPacket(new UserInfo(player)); player.broadcastPacket(new UserInfo(player)); } if (privatetype == 1) { player.setPrivateStoreType(2); player.sendPacket(new PrivateSellListSell(client.getActiveChar())); player.sendPacket(new ChangeWaitType (player,1)); player.broadcastPacket(new
-		 * ChangeWaitType (player,1)); }
-		 */
-		
 	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.l2jbr.gameserver.clientpackets.ClientBasePacket#getType()
-	 */
+
 	@Override
 	public String getType()
 	{

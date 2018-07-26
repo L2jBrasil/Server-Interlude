@@ -18,11 +18,8 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
-import com.l2jbr.gameserver.model.L2ItemInstance;
-import com.l2jbr.gameserver.model.L2TradeList;
-
-import java.util.LinkedList;
-import java.util.List;
+import com.l2jbr.gameserver.model.entity.database.MerchantItem;
+import com.l2jbr.gameserver.model.entity.database.MerchantShop;
 
 
 /**
@@ -35,13 +32,13 @@ public final class BuyListSeed extends L2GameServerPacket {
     private static final String _S__E8_BUYLISTSEED = "[S] E8 BuyListSeed";
 
     private final int _manorId;
-    private List<L2ItemInstance> _list = new LinkedList<>();
     private final int _money;
+    private final MerchantShop shop;
 
-    public BuyListSeed(L2TradeList list, int manorId, int currentMoney) {
+    public BuyListSeed(MerchantShop shop, int manorId, int currentMoney) {
+        this.shop = shop;
         _money = currentMoney;
         _manorId = manorId;
-        _list = list.getItems();
     }
 
     @Override
@@ -51,16 +48,16 @@ public final class BuyListSeed extends L2GameServerPacket {
         writeD(_money); // current money
         writeD(_manorId); // manor id
 
-        writeH(_list.size()); // list length
+        writeH(shop.getItems().size()); // list length
 
-        for (L2ItemInstance item : _list) {
+        for (MerchantItem item : shop.getItems()) {
             writeH(0x04); // item->type1
             writeD(0x00); // objectId
             writeD(item.getItemId()); // item id
             writeD(item.getCount()); // item count
             writeH(0x04); // item->type2
             writeH(0x00); // unknown :)
-            writeD(item.getPriceToSell()); // price
+            writeD(item.getPrice()); // price
         }
     }
 

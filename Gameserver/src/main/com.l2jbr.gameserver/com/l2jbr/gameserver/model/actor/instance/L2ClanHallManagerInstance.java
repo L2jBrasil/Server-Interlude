@@ -28,9 +28,9 @@ import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.L2Skill.SkillType;
 import com.l2jbr.gameserver.model.L2TeleportLocation;
-import com.l2jbr.gameserver.model.L2TradeList;
-import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.model.entity.ClanHall;
+import com.l2jbr.gameserver.model.entity.database.MerchantShop;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 
@@ -958,7 +958,7 @@ public class L2ClanHallManagerInstance extends L2FolkInstance
 			_log.debug("Showing buylist :" + player.getName() + " List ID :" + val);
 		}
 		
-		L2TradeList list = TradeController.getInstance().getBuyList(val);
+		MerchantShop list = TradeController.getInstance().getBuyList(val);
 		
 		if ((list != null) && list.getNpcId().equals(String.valueOf(getNpcId())))
 		{

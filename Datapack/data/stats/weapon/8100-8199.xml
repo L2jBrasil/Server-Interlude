@@ -551,7 +551,7 @@
         <stat function='add' value='379' order='8' name='PHYSIC_ATTACK_SPEED'/>
         <stat function='enchant' value='0' order='12' name='PHYSIC_ATTACK'/>
         <stat function='enchant' value='0' order='12' name='MAGIC_ATTACK'/>
-        <skill id="1035" triggerType="onCast" level="23" chance="10"/>
+        <skill id="1201" triggerType="onCast" level="23" chance="10"/>
 
     </item>
     <item id='8144' name="kaim_vanuls_bone_mana_up">

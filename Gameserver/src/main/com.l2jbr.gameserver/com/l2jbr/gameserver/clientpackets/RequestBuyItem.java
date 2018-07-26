@@ -23,9 +23,9 @@ import com.l2jbr.gameserver.TradeController;
 import com.l2jbr.gameserver.cache.HtmCache;
 import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.model.L2Object;
-import com.l2jbr.gameserver.model.L2TradeList;
 import com.l2jbr.gameserver.model.actor.instance.*;
 import com.l2jbr.gameserver.model.entity.database.ItemTemplate;
+import com.l2jbr.gameserver.model.entity.database.MerchantShop;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.util.Util;
@@ -146,11 +146,11 @@ public final class RequestBuyItem extends L2GameClientPacket
 			return;
 		}
 		
-		L2TradeList list = null;
+		MerchantShop list = null;
 		
 		if (merchant != null)
 		{
-			List<L2TradeList> lists = TradeController.getInstance().getBuyListByNpcId(merchant.getNpcId());
+			List<MerchantShop> lists = TradeController.getInstance().getBuyListByNpcId(merchant.getNpcId());
 			
 			if (!player.isGM())
 			{
@@ -159,9 +159,9 @@ public final class RequestBuyItem extends L2GameClientPacket
 					Util.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " sent a false BuyList list_id.", Config.DEFAULT_PUNISH);
 					return;
 				}
-				for (L2TradeList tradeList : lists)
+				for (MerchantShop tradeList : lists)
 				{
-					if (tradeList.getListId() == _listId)
+					if (tradeList.getId() == _listId)
 					{
 						list = tradeList;
 					}
@@ -182,7 +182,7 @@ public final class RequestBuyItem extends L2GameClientPacket
 			return;
 		}
 		
-		_listId = list.getListId();
+		_listId = list.getId();
 		
 		if (_listId > 1000000) // lease
 		{
@@ -310,7 +310,7 @@ public final class RequestBuyItem extends L2GameClientPacket
 		// Proceed the purchase
 		for (int i = 0; i < _count; i++)
 		{
-			int itemId = _items[(i * 2) + 0];
+			int itemId = _items[(i * 2)];
 			int count = _items[(i * 2) + 1];
 			if (count < 0)
 			{
@@ -322,7 +322,7 @@ public final class RequestBuyItem extends L2GameClientPacket
 				Util.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " sent a false BuyList list_id.", Config.DEFAULT_PUNISH);
 				return;
 			}
-			if (list.countDecrease(itemId))
+			if (list.isLimited(itemId))
 			{
 				list.decreaseCount(itemId, count);
 			}
