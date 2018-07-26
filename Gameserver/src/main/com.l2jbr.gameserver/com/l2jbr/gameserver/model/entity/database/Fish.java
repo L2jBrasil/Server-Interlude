@@ -5,7 +5,8 @@ import com.l2jbr.commons.database.annotation.Table;
 import org.springframework.data.annotation.Id;
 
 @Table("fish")
-public class Fish  {
+public class Fish implements Cloneable {
+
     @Id
     private int id;
     private int level;
@@ -24,6 +25,15 @@ public class Fish  {
     private int waitTime;
     @Column("combat_time")
     private int combatTime;
+
+
+    public static Fish from(Fish fish) {
+        try {
+            return (Fish) fish.clone();
+        } catch (CloneNotSupportedException e) {
+            return null;
+        }
+    }
 
     public int getId() {
         return id;
@@ -45,11 +55,15 @@ public class Fish  {
         return hpregen;
     }
 
-    public int getFishType() {
+    public int getType() {
         return fishType;
     }
 
-    public int getFishGroup() {
+    public void setType(int fishType) {
+        this.fishType = fishType;
+    }
+
+    public int getGroup() {
         return fishGroup;
     }
 

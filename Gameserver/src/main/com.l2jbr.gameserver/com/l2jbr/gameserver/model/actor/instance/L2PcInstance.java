@@ -10218,7 +10218,7 @@ public final class L2PcInstance extends L2PlayableInstance {
     /**
      * The _fish.
      */
-    private FishData _fish;
+    private Fish _fish;
 
     /*
      * startFishing() was stripped of any pre-fishing related checks, namely the fishing zone check. Also worthy of note is the fact the code to find the hook landing position was also striped. The stripped code was moved into fishing.java. In my opinion it makes more sense for it to be there since
@@ -10245,7 +10245,7 @@ public final class L2PcInstance extends L2PlayableInstance {
         int lvl = GetRandomFishLvl();
         int group = GetRandomGroup();
         int type = GetRandomFishType(group);
-        List<FishData> fishs = FishTable.getInstance().getfish(lvl, type, group);
+        List<Fish> fishs = FishTable.getInstance().getfish(lvl, type, group);
         if ((fishs == null) || (fishs.size() == 0)) {
             sendMessage("Error - Fishes are not definied");
             EndFishing(false);
@@ -10253,7 +10253,10 @@ public final class L2PcInstance extends L2PlayableInstance {
         }
         int check = Rnd.get(fishs.size());
         // Use a copy constructor else the fish data may be over-written below
-        _fish = new FishData(fishs.get(check));
+
+        var fish = fishs.get(check);
+
+        _fish = Fish.from(fishs.get(check));
         fishs.clear();
         fishs = null;
         sendPacket(new SystemMessage(SystemMessageId.CAST_LINE_AND_START_FISHING));
