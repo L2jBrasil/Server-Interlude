@@ -44,27 +44,27 @@ public class Henna  {
         return price;
     }
 
-    public int getStat_INT() {
+    public int getStatINT() {
         return stat_INT;
     }
 
-    public int getStat_STR() {
+    public int getStatSTR() {
         return stat_STR;
     }
 
-    public int getStat_CON() {
+    public int getStatCON() {
         return stat_CON;
     }
 
-    public int getStat_MEM() {
+    public int getStatMEM() {
         return stat_MEM;
     }
 
-    public int getStat_DEX() {
+    public int getStatDEX() {
         return stat_DEX;
     }
 
-    public int getStat_WIT() {
+    public int getStatWIT() {
         return stat_WIT;
     }
 }

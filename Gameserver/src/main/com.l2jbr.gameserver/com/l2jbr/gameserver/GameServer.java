@@ -70,7 +70,6 @@ public class GameServer {
 
     private static Logger _log;
     private final SelectorThread<L2GameClient> _selectorThread;
-    private final HennaTable _hennaTable;
     public static GameServer gameServer;
     private static ClanHallManager _cHManager;
     private final ItemHandler _itemHandler;
@@ -135,9 +134,11 @@ public class GameServer {
         RecipeController.getInstance();
         ExtractableItemsData.getInstance();
         SummonItemsData.getInstance();
-        TradeController.getInstance();
+
+        HennaTable.getInstance();
 
         NpcTable.getInstance();
+        TradeController.getInstance();
         NpcWalkerRoutesTable.getInstance();
         FishTable.getInstance();
 
@@ -147,11 +148,7 @@ public class GameServer {
         ClanTable.getInstance();
 
 
-        _hennaTable = HennaTable.getInstance();
 
-        if (!_hennaTable.isInitialized()) {
-            throw new Exception(getMessage(ERROR_INITIALIZE_TABLE, "Henna"));
-        }
 
         _hennaTreeTable = HennaTreeTable.getInstance();
 

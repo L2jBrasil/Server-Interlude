@@ -22,10 +22,10 @@ import com.l2jbr.gameserver.datatables.HennaTable;
 import com.l2jbr.gameserver.model.L2HennaInstance;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.entity.database.Henna;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.L2Henna;
 
 
 /**
@@ -58,7 +58,7 @@ public final class RequestHennaEquip extends L2GameClientPacket
 			return;
 		}
 		
-		L2Henna template = HennaTable.getInstance().getTemplate(_symbolId);
+		Henna template = HennaTable.getInstance().getTemplate(_symbolId);
 		
 		if (template == null)
 		{

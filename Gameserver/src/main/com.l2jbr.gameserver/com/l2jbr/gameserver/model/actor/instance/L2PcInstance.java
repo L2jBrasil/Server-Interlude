@@ -6947,7 +6947,7 @@ public final class L2PcInstance extends L2PlayableInstance {
             int symbol_id = characterHenna.getSymbolId();
 
             if (symbol_id != 0) {
-                L2Henna tpl = HennaTable.getInstance().getTemplate(symbol_id);
+                Henna tpl = HennaTable.getInstance().getTemplate(symbol_id);
 
                 if (tpl != null) {
                     _henna[slot - 1] = new L2HennaInstance(tpl);

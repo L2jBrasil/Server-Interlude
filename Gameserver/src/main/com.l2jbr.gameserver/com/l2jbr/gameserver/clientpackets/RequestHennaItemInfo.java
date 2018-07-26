@@ -21,8 +21,8 @@ package com.l2jbr.gameserver.clientpackets;
 import com.l2jbr.gameserver.datatables.HennaTable;
 import com.l2jbr.gameserver.model.L2HennaInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.entity.database.Henna;
 import com.l2jbr.gameserver.serverpackets.HennaItemInfo;
-import com.l2jbr.gameserver.templates.L2Henna;
 
 
 /**
@@ -51,7 +51,7 @@ public final class RequestHennaItemInfo extends L2GameClientPacket
 		{
 			return;
 		}
-		L2Henna template = HennaTable.getInstance().getTemplate(_symbolId);
+		Henna template = HennaTable.getInstance().getTemplate(_symbolId);
 		if (template == null)
 		{
 			return;

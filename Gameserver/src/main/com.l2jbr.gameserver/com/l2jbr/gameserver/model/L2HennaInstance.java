@@ -18,203 +18,120 @@
  */
 package com.l2jbr.gameserver.model;
 
-import com.l2jbr.gameserver.templates.L2Henna;
+import com.l2jbr.gameserver.model.entity.database.Henna;
 
+public class L2HennaInstance {
 
-/**
- * This class represents a Non-Player-Character in the world. it can be a monster or a friendly character. it also uses a template to fetch some static values. the templates are hardcoded in the client, so we can rely on them.
- * @version $Revision$ $Date$
- */
-
-public class L2HennaInstance
-{
-	// private static Logger _log = LoggerFactory.getLogger(L2HennaInstance.class.getName());
+	private final Henna template;
 	
-	private final L2Henna _template;
-	private int _symbolId;
-	private int _itemIdDye;
-	private int _price;
-	private int _statINT;
-	private int _statSTR;
-	private int _statCON;
-	private int _statMEM;
-	private int _statDEX;
-	private int _statWIT;
-	private int _amountDyeRequire;
-	
-	public L2HennaInstance(L2Henna template)
-	{
-		_template = template;
-		_symbolId = _template.symbolId;
-		_itemIdDye = _template.dye;
-		_amountDyeRequire = _template.amount;
-		_price = _template.price;
-		_statINT = _template.statINT;
-		_statSTR = _template.statSTR;
-		_statCON = _template.statCON;
-		_statMEM = _template.statMEM;
-		_statDEX = _template.statDEX;
-		_statWIT = _template.statWIT;
+	public L2HennaInstance(Henna template) {
+		this.template = template;
 	}
 	
 	public String getName()
 	{
 		String res = "";
-		if (_statINT > 0)
+		if (getStatINT() > 0)
 		{
-			res = res + "INT +" + _statINT;
+			res = res + "INT +" + getStatINT();
 		}
-		else if (_statSTR > 0)
+		else if (getStatSTR() > 0)
 		{
-			res = res + "STR +" + _statSTR;
+			res = res + "STR +" + getStatSTR();
 		}
-		else if (_statCON > 0)
+		else if (getStatCON() > 0)
 		{
-			res = res + "CON +" + _statCON;
+			res = res + "CON +" + getStatCON();
 		}
-		else if (_statMEM > 0)
+		else if (getStatMEM() > 0)
 		{
-			res = res + "MEN +" + _statMEM;
+			res = res + "MEN +" + getStatMEM();
 		}
-		else if (_statDEX > 0)
+		else if (getStatDEX() > 0)
 		{
-			res = res + "DEX +" + _statDEX;
+			res = res + "DEX +" + getStatDEX();
 		}
-		else if (_statWIT > 0)
+		else if (getStatWIT() > 0)
 		{
-			res = res + "WIT +" + _statWIT;
+			res = res + "WIT +" + getStatWIT();
 		}
 		
-		if (_statINT < 0)
+		if (getStatINT() < 0)
 		{
-			res = res + ", INT " + _statINT;
+			res = res + ", INT " + getStatINT();
 		}
-		else if (_statSTR < 0)
+		else if (getStatSTR() < 0)
 		{
-			res = res + ", STR " + _statSTR;
+			res = res + ", STR " + getStatSTR();
 		}
-		else if (_statCON < 0)
+		else if (getStatCON() < 0)
 		{
-			res = res + ", CON " + _statCON;
+			res = res + ", CON " + getStatCON();
 		}
-		else if (_statMEM < 0)
+		else if (getStatMEM() < 0)
 		{
-			res = res + ", MEN " + _statMEM;
+			res = res + ", MEN " + getStatMEM();
 		}
-		else if (_statDEX < 0)
+		else if (getStatDEX() < 0)
 		{
-			res = res + ", DEX " + _statDEX;
+			res = res + ", DEX " + getStatDEX();
 		}
-		else if (_statWIT < 0)
+		else if (getStatWIT() < 0)
 		{
-			res = res + ", WIT " + _statWIT;
+			res = res + ", WIT " + getStatWIT();
 		}
 		
 		return res;
 	}
-	
-	public L2Henna getTemplate()
-	{
-		return _template;
+
+	public int getSymbolId() {
+		return template.getSymbolId();
 	}
-	
-	public int getSymbolId()
-	{
-		return _symbolId;
-	}
-	
-	public void setSymbolId(int SymbolId)
-	{
-		_symbolId = SymbolId;
-	}
-	
+
 	public int getItemIdDye()
 	{
-		return _itemIdDye;
+		return template.getDyeId();
 	}
-	
-	public void setItemIdDye(int ItemIdDye)
-	{
-		_itemIdDye = ItemIdDye;
-	}
+
 	
 	public int getAmountDyeRequire()
 	{
-		return _amountDyeRequire;
+		return template.getDyeAmount();
 	}
-	
-	public void setAmountDyeRequire(int AmountDyeRequire)
-	{
-		_amountDyeRequire = AmountDyeRequire;
-	}
+
 	
 	public int getPrice()
 	{
-		return _price;
-	}
-	
-	public void setPrice(int Price)
-	{
-		_price = Price;
+		return template.getPrice();
 	}
 	
 	public int getStatINT()
 	{
-		return _statINT;
-	}
-	
-	public void setStatINT(int StatINT)
-	{
-		_statINT = StatINT;
+		return template.getStatINT();
 	}
 	
 	public int getStatSTR()
 	{
-		return _statSTR;
-	}
-	
-	public void setStatSTR(int StatSTR)
-	{
-		_statSTR = StatSTR;
+		return template.getStatSTR();
 	}
 	
 	public int getStatCON()
 	{
-		return _statCON;
+		return template.getStatCON();
 	}
-	
-	public void setStatCON(int StatCON)
-	{
-		_statCON = StatCON;
-	}
-	
+
 	public int getStatMEM()
 	{
-		return _statMEM;
-	}
-	
-	public void setStatMEM(int StatMEM)
-	{
-		_statMEM = StatMEM;
+		return template.getStatMEM();
 	}
 	
 	public int getStatDEX()
 	{
-		return _statDEX;
-	}
-	
-	public void setStatDEX(int StatDEX)
-	{
-		_statDEX = StatDEX;
+		return template.getStatDEX();
 	}
 	
 	public int getStatWIT()
 	{
-		return _statWIT;
-	}
-	
-	public void setStatWIT(int StatWIT)
-	{
-		_statWIT = StatWIT;
+		return template.getStatWIT();
 	}
 }

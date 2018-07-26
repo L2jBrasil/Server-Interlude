@@ -21,9 +21,9 @@ package com.l2jbr.gameserver.datatables;
 import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.model.L2HennaInstance;
 import com.l2jbr.gameserver.model.base.PlayerClass;
+import com.l2jbr.gameserver.model.entity.database.Henna;
 import com.l2jbr.gameserver.model.entity.database.HennaTrees;
 import com.l2jbr.gameserver.model.entity.database.repository.HennaTreeRepository;
-import com.l2jbr.gameserver.templates.L2Henna;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,7 +58,7 @@ public class HennaTreeTable {
             int id = hennaTrees.getSymbolId();
             int classId = hennaTrees.getClassId();
 
-            L2Henna template = HennaTable.getInstance().getTemplate(id);
+            Henna template = HennaTable.getInstance().getTemplate(id);
             if (template == null) {
                 continue;
             }
