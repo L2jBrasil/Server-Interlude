@@ -4,7 +4,7 @@ plugins {
     id "eclipse"
 }
 
-version '1.3.0'
+version '1.4'
 
 ext.moduleName = 'com.l2jbr.mmocore'
 
