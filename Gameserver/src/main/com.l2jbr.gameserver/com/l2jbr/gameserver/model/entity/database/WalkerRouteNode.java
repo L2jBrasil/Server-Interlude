@@ -5,7 +5,7 @@ import com.l2jbr.commons.database.annotation.Table;
 import org.springframework.data.annotation.Id;
 
 @Table("walker_routes")
-public class WalkerRoutes  {
+public class WalkerRouteNode {
     @Id
     @Column("route_id")
     private int routeId;

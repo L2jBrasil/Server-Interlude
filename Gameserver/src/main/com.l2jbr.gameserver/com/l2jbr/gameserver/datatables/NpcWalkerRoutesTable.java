@@ -19,14 +19,15 @@
 package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.gameserver.model.L2NpcWalkerNode;
+import com.l2jbr.gameserver.model.entity.database.WalkerRouteNode;
 import com.l2jbr.gameserver.model.entity.database.repository.WalkerRoutesRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 /**
  * Main Table to Load NpcTemplate Walkers Routes and Chat SQL Table.<br>
@@ -39,39 +40,33 @@ public class NpcWalkerRoutesTable {
 
     private static NpcWalkerRoutesTable _instance;
 
-    private List<L2NpcWalkerNode> _routes;
+    private Map<Integer, List<WalkerRouteNode>> routes;
 
     public static NpcWalkerRoutesTable getInstance() {
         if (_instance == null) {
             _instance = new NpcWalkerRoutesTable();
-            _log.info("Initializing Walkers Routes Table.");
         }
         return _instance;
     }
 
     private NpcWalkerRoutesTable() {
+        load();
     }
 
     public void load() {
-        _routes = new LinkedList<>();
-        WalkerRoutesRepository repository = DatabaseAccess.getRepository(WalkerRoutesRepository.class);
-        repository.findAll().forEach(walkerRoutes -> {
-            L2NpcWalkerNode route = new L2NpcWalkerNode(walkerRoutes);
-            _routes.add(route);
+        _log.info("Initializing Walkers Routes Table.");
+        routes = new HashMap<>();
+        DatabaseAccess.getRepository(WalkerRoutesRepository.class).findAll().forEach(node ->{
+            if(routes.containsKey(node.getNpcId())) {
+                routes.put(node.getNpcId(), new ArrayList<>());
+            }
+            routes.get(node.getNpcId()).add(node);
         });
 
-        _log.info("WalkerRoutesTable: Loaded {} NpcTemplate Walker Routes.", _routes.size());
+        _log.info("WalkerRoutesTable: Loaded {} NpcTemplate Walker Routes.", routes.size());
     }
 
-    public List<L2NpcWalkerNode> getRouteForNpc(int id) {
-        List<L2NpcWalkerNode> _return = new LinkedList<>();
-
-        for (L2NpcWalkerNode n : _routes) {
-            if (n.getNpcId() == id) {
-                _return.add(n);
-            }
-        }
-        return _return;
-
+    public List<WalkerRouteNode> getRouteForNpc(int npcId) {
+        return routes.get(npcId);
     }
 }

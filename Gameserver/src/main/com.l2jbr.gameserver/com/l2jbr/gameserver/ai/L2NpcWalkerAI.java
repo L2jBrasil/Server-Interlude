@@ -20,10 +20,10 @@ package com.l2jbr.gameserver.ai;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.datatables.NpcWalkerRoutesTable;
-import com.l2jbr.gameserver.model.L2NpcWalkerNode;
 import com.l2jbr.gameserver.model.L2Position;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcWalkerInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcWalkerInstance.L2NpcWalkerAIAccessor;
+import com.l2jbr.gameserver.model.entity.database.WalkerRouteNode;
 
 import java.util.List;
 
@@ -36,7 +36,7 @@ public class L2NpcWalkerAI extends MovableAI<L2NpcWalkerAIAccessor> implements R
 
     int _homeX, _homeY, _homeZ;
 
-    private final List<L2NpcWalkerNode> _route;
+    private final List<WalkerRouteNode> _route;
 
     private int _currentPos;
 

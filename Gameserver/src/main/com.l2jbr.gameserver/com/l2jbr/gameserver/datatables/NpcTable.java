@@ -27,20 +27,20 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 
 import static com.l2jbr.gameserver.util.GameserverMessages.getMessage;
+import static java.util.Objects.isNull;
 
 public class NpcTable {
     private static Logger _log = LoggerFactory.getLogger(NpcTable.class);
 
-    private static NpcTable _instance;
+    private static NpcTable INSTANCE;
 
     private final Map<Integer, NpcTemplate> npcs;
-    private boolean _initialized = false;
 
     public static NpcTable getInstance() {
-        if (_instance == null) {
-            _instance = new NpcTable();
+        if (isNull(INSTANCE)) {
+            INSTANCE = new NpcTable();
         }
-        return _instance;
+        return INSTANCE;
     }
 
     private NpcTable() {
@@ -52,7 +52,6 @@ public class NpcTable {
         NpcRepository npcRepository = DatabaseAccess.getRepository(NpcRepository.class);
         npcRepository.findAll().forEach(this::addToNpcMap);
         _log.info(getMessage("info.npc.loaded"), npcs.size());
-        _initialized = true;
     }
 
     public void reloadNpc(int id) {
@@ -66,10 +65,6 @@ public class NpcTable {
 
     public void reloadAllNpc() {
         restoreNpcData();
-    }
-
-    public boolean isInitialized() {
-        return _initialized;
     }
 
     public NpcTemplate getTemplate(int id) {

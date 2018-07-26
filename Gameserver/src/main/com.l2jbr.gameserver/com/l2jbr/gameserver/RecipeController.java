@@ -35,18 +35,20 @@ import java.io.FileReader;
 import java.io.LineNumberReader;
 import java.util.*;
 
+import static java.util.Objects.isNull;
+
 public class RecipeController {
     protected static final Logger _log = LoggerFactory.getLogger(RecipeController.class.getName());
 
-    private static RecipeController _instance;
+    private static RecipeController INSTANCE;
     private final Map<Integer, L2RecipeList> _lists;
     protected static final Map<L2PcInstance, RecipeItemMaker> _activeMakers = Collections.synchronizedMap(new WeakHashMap<>());
 
     public static RecipeController getInstance() {
-        return _instance == null ? _instance = new RecipeController() : _instance;
+        return isNull(INSTANCE) ? INSTANCE = new RecipeController() : INSTANCE;
     }
 
-    public RecipeController() {
+    private RecipeController() {
         _lists = new LinkedHashMap<>();
         File recipesData = new File(Config.DATAPACK_ROOT, "data/recipes.csv");
         try (LineNumberReader lnr = new LineNumberReader(new BufferedReader(new FileReader(recipesData)))) {

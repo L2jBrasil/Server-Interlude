@@ -70,7 +70,6 @@ public class GameServer {
 
     private static Logger _log;
     private final SelectorThread<L2GameClient> _selectorThread;
-    private final NpcTable _npcTable;
     private final HennaTable _hennaTable;
     public static GameServer gameServer;
     private static ClanHallManager _cHManager;
@@ -130,38 +129,23 @@ public class GameServer {
         NobleSkillTable.getInstance();
         HeroSkillTable.getInstance();
 
-
         ItemTable.getInstance();
+        SkillSpellbookTable.getInstance();
         ArmorSetsTable.getInstance();
-
+        RecipeController.getInstance();
         ExtractableItemsData.getInstance();
         SummonItemsData.getInstance();
         TradeController.getInstance();
 
-
-
-        // L2EMU_ADD by Rayan. L2J - BigBro
-        // if(Config.ALLOW_NPC_WALKERS)
-        NpcWalkerRoutesTable.getInstance().load();
-        // L2EMU_ADD by Rayan. L2J - BigBro
-
-        RecipeController.getInstance();
-
-
+        NpcTable.getInstance();
+        NpcWalkerRoutesTable.getInstance();
         FishTable.getInstance();
-        SkillSpellbookTable.getInstance();
-
 
         // Call to load caches
         HtmCache.getInstance();
         CrestCache.getInstance();
         ClanTable.getInstance();
-        _npcTable = NpcTable.getInstance();
 
-        if (!_npcTable.isInitialized()) {
-            _log.error(getMessage(ERROR_EXTRACTED_FILE_NOT_FOUND));
-            throw new Exception(getMessage(ERROR_INITIALIZE_TABLE, "NpcTemplate"));
-        }
 
         _hennaTable = HennaTable.getInstance();
 
