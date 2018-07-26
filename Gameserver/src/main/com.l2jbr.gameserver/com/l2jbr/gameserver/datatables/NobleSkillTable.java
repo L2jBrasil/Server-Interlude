@@ -19,17 +19,16 @@ package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.gameserver.model.L2Skill;
 
+import static java.util.Objects.isNull;
 
 /**
  * @author -Nemesiss-
  */
-public class NobleSkillTable
-{
+public class NobleSkillTable {
 	private static NobleSkillTable _instance;
 	private static L2Skill[] _nobleSkills;
 	
-	private NobleSkillTable()
-	{
+	private NobleSkillTable() {
 		_nobleSkills = new L2Skill[8];
 		_nobleSkills[0] = SkillTable.getInstance().getInfo(1323, 1);
 		_nobleSkills[1] = SkillTable.getInstance().getInfo(325, 1);
@@ -41,10 +40,8 @@ public class NobleSkillTable
 		_nobleSkills[7] = SkillTable.getInstance().getInfo(1327, 1);
 	}
 	
-	public static NobleSkillTable getInstance()
-	{
-		if (_instance == null)
-		{
+	public static NobleSkillTable getInstance() {
+		if (isNull(_instance)) {
 			_instance = new NobleSkillTable();
 		}
 		return _instance;

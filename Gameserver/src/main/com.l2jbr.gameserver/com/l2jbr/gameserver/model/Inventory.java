@@ -25,10 +25,7 @@ import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.L2ItemInstance.ItemLocation;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.entity.database.Armor;
-import com.l2jbr.gameserver.model.entity.database.EtcItem;
-import com.l2jbr.gameserver.model.entity.database.ItemTemplate;
-import com.l2jbr.gameserver.model.entity.database.Weapon;
+import com.l2jbr.gameserver.model.entity.database.*;
 import com.l2jbr.gameserver.model.entity.database.repository.ItemRepository;
 import com.l2jbr.gameserver.templates.BodyPart;
 import com.l2jbr.gameserver.templates.ItemType;
@@ -288,7 +285,7 @@ public abstract class Inventory extends ItemContainer {
             }
 
             // checks if there is armorset for chest item that player worns
-            L2ArmorSet armorSet = ArmorSetsTable.getInstance().getSet(chestItem.getItemId());
+            ArmorSet armorSet = ArmorSetsTable.getInstance().getSet(chestItem.getItemId());
             if (armorSet == null) {
                 return;
             }
@@ -316,14 +313,14 @@ public abstract class Inventory extends ItemContainer {
                     }
                     if (armorSet.isEnchanted6(player)) // has all parts of set enchanted to 6 or more
                     {
-                        int skillId = armorSet.getEnchant6skillId();
+                        int skillId = armorSet.getEnchant6Skill();
                         if (skillId > 0) {
                             L2Skill skille = SkillTable.getInstance().getInfo(skillId, 1);
                             if (skille != null) {
                                 player.addSkill(skille, false);
                                 player.sendSkillList();
                             } else {
-                                _log.warn("Inventory.ArmorSetListener: Incorrect skill: " + armorSet.getEnchant6skillId() + ".");
+                                _log.warn("Inventory.ArmorSetListener: Incorrect skill: " + armorSet.getEnchant6Skill() + ".");
                             }
                         }
                     }
@@ -355,7 +352,7 @@ public abstract class Inventory extends ItemContainer {
             int removeSkillId3 = 0; // enchant +6 skill
 
             if (slot == PAPERDOLL_CHEST) {
-                L2ArmorSet armorSet = ArmorSetsTable.getInstance().getSet(item.getItemId());
+                ArmorSet armorSet = ArmorSetsTable.getInstance().getSet(item.getItemId());
                 if (armorSet == null) {
                     return;
                 }
@@ -363,14 +360,14 @@ public abstract class Inventory extends ItemContainer {
                 remove = true;
                 removeSkillId1 = armorSet.getSkillId();
                 removeSkillId2 = armorSet.getShieldSkillId();
-                removeSkillId3 = armorSet.getEnchant6skillId();
+                removeSkillId3 = armorSet.getEnchant6Skill();
             } else {
                 L2ItemInstance chestItem = getPaperdollItem(PAPERDOLL_CHEST);
                 if (chestItem == null) {
                     return;
                 }
 
-                L2ArmorSet armorSet = ArmorSetsTable.getInstance().getSet(chestItem.getItemId());
+                ArmorSet armorSet = ArmorSetsTable.getInstance().getSet(chestItem.getItemId());
                 if (armorSet == null) {
                     return;
                 }
@@ -380,7 +377,7 @@ public abstract class Inventory extends ItemContainer {
                     remove = true;
                     removeSkillId1 = armorSet.getSkillId();
                     removeSkillId2 = armorSet.getShieldSkillId();
-                    removeSkillId3 = armorSet.getEnchant6skillId();
+                    removeSkillId3 = armorSet.getEnchant6Skill();
                 } else if (armorSet.containShield(item.getItemId())) // removed shield
                 {
                     remove = true;

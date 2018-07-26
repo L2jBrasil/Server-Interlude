@@ -19,17 +19,17 @@ package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.gameserver.model.L2Skill;
 
+import static java.util.Objects.isNull;
 
 /**
  * @author BiTi
  */
-public class HeroSkillTable
-{
+public class HeroSkillTable {
 	private static HeroSkillTable _instance;
 	private static L2Skill[] _heroSkills;
+
 	
-	private HeroSkillTable()
-	{
+	private HeroSkillTable() {
 		_heroSkills = new L2Skill[5];
 		_heroSkills[0] = SkillTable.getInstance().getInfo(395, 1);
 		_heroSkills[1] = SkillTable.getInstance().getInfo(396, 1);
@@ -38,10 +38,8 @@ public class HeroSkillTable
 		_heroSkills[4] = SkillTable.getInstance().getInfo(1376, 1);
 	}
 	
-	public static HeroSkillTable getInstance()
-	{
-		if (_instance == null)
-		{
+	public static HeroSkillTable getInstance() {
+		if (isNull(_instance)) {
 			_instance = new HeroSkillTable();
 		}
 		return _instance;
@@ -52,10 +50,8 @@ public class HeroSkillTable
 		return _heroSkills;
 	}
 	
-	public static boolean isHeroSkill(int skillid)
-	{
-		Integer[] _HeroSkillsId = new Integer[]
-		{
+	public static boolean isHeroSkill(int skillid) {
+		Integer[] _HeroSkillsId = new Integer[] {
 			395,
 			396,
 			1374,

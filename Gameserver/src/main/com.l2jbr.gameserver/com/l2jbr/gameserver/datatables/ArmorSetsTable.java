@@ -24,18 +24,15 @@
 package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.gameserver.model.L2ArmorSet;
+import com.l2jbr.gameserver.model.entity.database.ArmorSet;
 import com.l2jbr.gameserver.model.entity.database.repository.ArmorSetRepository;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author Luno
- */
 public class ArmorSetsTable {
     private static ArmorSetsTable _instance;
-    private final Map<Integer, L2ArmorSet> _armorSets;
+    private final Map<Integer, ArmorSet> _armorSets;
 
     public static ArmorSetsTable getInstance() {
         if (_instance == null) {
@@ -45,32 +42,18 @@ public class ArmorSetsTable {
     }
 
     private ArmorSetsTable() {
-        _armorSets = new LinkedHashMap<>();
+        _armorSets = new HashMap<>();
         loadData();
     }
 
     private void loadData() {
         ArmorSetRepository repository = DatabaseAccess.getRepository(ArmorSetRepository.class);
         repository.findAll().forEach(armorSet -> {
-            int chest = armorSet.getChest();
-            int legs = armorSet.getLegs();
-            int head = armorSet.getHead();
-            int gloves = armorSet.getGloves();
-            int feet = armorSet.getFeet();
-            int skill_id = armorSet.getSkillId();
-            int shield = armorSet.getShield();
-            int shield_skill_id = armorSet.getShieldSkillId();
-            int enchant6skill = armorSet.getEnchant6Skill();
-            _armorSets.put(chest, new L2ArmorSet(chest, legs, head, gloves, feet, skill_id, shield, shield_skill_id, enchant6skill));
-
+            _armorSets.put(armorSet.getChest(), armorSet);
         });
     }
 
-    public boolean setExists(int chestId) {
-        return _armorSets.containsKey(chestId);
-    }
-
-    public L2ArmorSet getSet(int chestId) {
+    public ArmorSet getSet(int chestId) {
         return _armorSets.get(chestId);
     }
 }

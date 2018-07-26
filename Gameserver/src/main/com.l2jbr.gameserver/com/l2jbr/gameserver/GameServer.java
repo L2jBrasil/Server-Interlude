@@ -123,8 +123,17 @@ public class GameServer {
 
         // start game time control early
         GameTimeController.getInstance();
+        CharTemplateTable.getInstance();
+
         SkillTable.getInstance();
+        SkillTreeTable.getInstance();
+        NobleSkillTable.getInstance();
+        HeroSkillTable.getInstance();
+
+
         ItemTable.getInstance();
+        ArmorSetsTable.getInstance();
+
         ExtractableItemsData.getInstance();
         SummonItemsData.getInstance();
         TradeController.getInstance();
@@ -138,13 +147,10 @@ public class GameServer {
 
         RecipeController.getInstance();
 
-        SkillTreeTable.getInstance();
-        ArmorSetsTable.getInstance();
+
         FishTable.getInstance();
         SkillSpellbookTable.getInstance();
-        CharTemplateTable.getInstance();
-        NobleSkillTable.getInstance();
-        HeroSkillTable.getInstance();
+
 
         // Call to load caches
         HtmCache.getInstance();

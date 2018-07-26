@@ -32,17 +32,12 @@ import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
-
-/**
- * This class ...
- *
- * @version $Revision: 1.13.2.2.2.8 $ $Date: 2005/04/06 16:13:25 $
- */
 public class SkillTreeTable {
     private static Logger _log = LoggerFactory.getLogger(SkillTreeTable.class.getName());
-    private static SkillTreeTable _instance;
+    private static SkillTreeTable INSTANCE;
 
     private Map<PlayerClass, Map<Integer, SkillInfo>> _skillTrees;
     private List<FishingSkill> _fishingSkillTrees; // all common skills (teached by Fisherman)
@@ -51,10 +46,10 @@ public class SkillTreeTable {
     private List<EnchantSkillInfo> _enchantSkillTrees; // enchant skill list
 
     public static SkillTreeTable getInstance() {
-        if (_instance == null) {
-            _instance = new SkillTreeTable();
+        if (isNull(INSTANCE)) {
+            INSTANCE = new SkillTreeTable();
         }
-        return _instance;
+        return INSTANCE;
     }
 
     private SkillTreeTable() {
@@ -90,7 +85,7 @@ public class SkillTreeTable {
             _log.debug("SkillTreeTable: skill tree for class {} has {} skills.", playerClass.getId(), map.size());
         }
 
-        _log.info("SkillTreeTable: Loaded " + count + " skills.");
+        _log.info("SkillTreeTable: Loaded {} skills.", count);
     }
 
     private void loadFishingSkills() {
