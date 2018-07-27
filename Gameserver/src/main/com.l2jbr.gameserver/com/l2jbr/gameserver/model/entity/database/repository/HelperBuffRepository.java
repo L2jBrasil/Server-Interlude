@@ -1,7 +1,12 @@
 package com.l2jbr.gameserver.model.entity.database.repository;
 
-import com.l2jbr.gameserver.model.entity.database.HelperBuffList;
+import com.l2jbr.gameserver.model.entity.database.HelperBuff;
 import org.springframework.data.repository.CrudRepository;
 
-public interface HelperBuffRepository extends CrudRepository<HelperBuffList, Integer> {
+import java.util.List;
+
+public interface HelperBuffRepository extends CrudRepository<HelperBuff, Integer> {
+
+    @Override
+    List<HelperBuff> findAll();
 }

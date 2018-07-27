@@ -63,7 +63,7 @@ import java.util.Locale;
 import static com.l2jbr.gameserver.util.GameserverMessages.getMessage;
 
 public class GameServer {
-    private static final String ERROR_INITIALIZE_TABLE = "error.initialize.table";
+
     private static final String INFO_LOADED_HANDLERS = "info.loaded.handlers";
     private static final String LOG4J_CONFIGURATION_FILE = "log4j.configurationFile";
 
@@ -81,11 +81,8 @@ public class GameServer {
     private final AutoChatHandler _autoChatHandler;
     private final AutoSpawnHandler _autoSpawnHandler;
     private final LoginServerThread _loginThread;
-    private final HelperBuffTable _helperBuffTable;
 
     private static Status _statusServer;
-    @SuppressWarnings("unused")
-    private final ThreadPoolManager _threadpools;
 
     public static final Calendar dateTimeServerStarted = Calendar.getInstance();
 
@@ -105,17 +102,10 @@ public class GameServer {
         gameServer = this;
         _log.debug(getMessage("debug.used.memory", getUsedMemoryMB()));
 
-        IdFactory _idFactory = IdFactory.getInstance();
-        if (!_idFactory.isInitialized()) {
-            _log.error(getMessage("error.read.object.id"));
-            throw new Exception(getMessage("error.initialize.id.factory"));
-        }
+        makeDataDirectories();
 
-        _threadpools = ThreadPoolManager.getInstance();
-
-        new File(Config.DATAPACK_ROOT, "data/clans").mkdirs();
-        new File(Config.DATAPACK_ROOT, "data/crests").mkdirs();
-        new File("pathnode").mkdirs();
+        ThreadPoolManager.getInstance();
+        IdFactory.getInstance();
 
         // start game time control early
         GameTimeController.getInstance();
@@ -132,14 +122,15 @@ public class GameServer {
         RecipeController.getInstance();
         ExtractableItemsData.getInstance();
         SummonItemsData.getInstance();
-
         HennaTable.getInstance();
         HennaTreeTable.getInstance();
 
         NpcTable.getInstance();
-        TradeController.getInstance();
         NpcWalkerRoutesTable.getInstance();
+        HelperBuffTable.getInstance();
+        TradeController.getInstance();
         FishTable.getInstance();
+
 
         // Call to load caches
         HtmCache.getInstance();
@@ -148,11 +139,6 @@ public class GameServer {
 
 
 
-        _helperBuffTable = HelperBuffTable.getInstance();
-
-        if (!_helperBuffTable.isInitialized()) {
-            throw new Exception(getMessage(ERROR_INITIALIZE_TABLE, "HelperBuff"));
-        }
 
         GeoData.getInstance();
         if (Config.GEODATA == 2) {
@@ -465,6 +451,12 @@ public class GameServer {
         _selectorThread.start();
 
         _log.info(getMessage("info.max.connected.players", Config.MAXIMUM_ONLINE_USERS));
+    }
+
+    private void makeDataDirectories() {
+        new File(Config.DATAPACK_ROOT, "data/clans").mkdirs();
+        new File(Config.DATAPACK_ROOT, "data/crests").mkdirs();
+        new File("pathnode").mkdirs();
     }
 
     public static void main(String[] args) throws Exception {

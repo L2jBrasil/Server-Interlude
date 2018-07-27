@@ -41,12 +41,11 @@ public class BitSetIDFactory extends IdFactory {
 			_freeIdCount = new AtomicInteger(FREE_OBJECT_ID_SIZE);
 			markUsedIds();
 			_nextFreeId = new AtomicInteger(_freeIds.nextClearBit(0));
-			_initialized = true;
 		}
 		catch (Exception e) {
-			_initialized = false;
 			_log.error("BitSet ID Factory could not be initialized correctly");
 			_log.error(e.getLocalizedMessage(), e);
+			throw e;
 		}
 	}
 

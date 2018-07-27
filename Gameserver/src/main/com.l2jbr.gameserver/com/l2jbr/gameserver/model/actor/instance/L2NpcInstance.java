@@ -40,10 +40,7 @@ import com.l2jbr.gameserver.model.actor.stat.NpcStat;
 import com.l2jbr.gameserver.model.actor.status.NpcStatus;
 import com.l2jbr.gameserver.model.entity.Castle;
 import com.l2jbr.gameserver.model.entity.L2Event;
-import com.l2jbr.gameserver.model.entity.database.CharTemplate;
-import com.l2jbr.gameserver.model.entity.database.ItemTemplate;
-import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
-import com.l2jbr.gameserver.model.entity.database.Weapon;
+import com.l2jbr.gameserver.model.entity.database.*;
 import com.l2jbr.gameserver.model.quest.Quest;
 import com.l2jbr.gameserver.model.quest.QuestState;
 import com.l2jbr.gameserver.model.zone.type.L2TownZone;
@@ -52,7 +49,6 @@ import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.skills.Stats;
 import com.l2jbr.gameserver.taskmanager.DecayTaskManager;
-import com.l2jbr.gameserver.templates.L2HelperBuff;
 
 import java.text.DateFormat;
 import java.util.LinkedList;
@@ -1614,10 +1610,10 @@ public class L2NpcInstance extends L2Character {
 
         L2Skill skill = null;
         // Go through the Helper Buff list define in sql table helper_buff_list and cast skill
-        for (L2HelperBuff helperBuffItem : HelperBuffTable.getInstance().getHelperBuffTable()) {
-            if (helperBuffItem.isMagicClassBuff() == player.isMageClass()) {
+        for (var helperBuffItem : HelperBuffTable.getInstance().getHelperBuffTable()) {
+            if (helperBuffItem.isMagicClass() == player.isMageClass()) {
                 if ((player_level >= helperBuffItem.getLowerLevel()) && (player_level <= helperBuffItem.getUpperLevel())) {
-                    skill = SkillTable.getInstance().getInfo(helperBuffItem.getSkillID(), helperBuffItem.getSkillLevel());
+                    skill = SkillTable.getInstance().getInfo(helperBuffItem.getSkillId(), helperBuffItem.getSkillLevel());
                     if (skill.getSkillType() == SkillType.SUMMON) {
                         player.doCast(skill);
                     } else {

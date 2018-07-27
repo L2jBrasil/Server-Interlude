@@ -5,7 +5,7 @@ import com.l2jbr.commons.database.annotation.Table;
 import org.springframework.data.annotation.Id;
 
 @Table("helper_buff_list")
-public class HelperBuffList  {
+public class HelperBuff {
 
     @Id
     private int id;
@@ -19,7 +19,7 @@ public class HelperBuffList  {
     @Column("upper_level")
     private int upperLevel;
     @Column("is_magic_class")
-    private String isMagicClass;
+    private boolean isMagicClass;
 
     public int getId() {
         return id;
@@ -45,7 +45,5 @@ public class HelperBuffList  {
         return upperLevel;
     }
 
-    public String getIsMagicClass() {
-        return isMagicClass;
-    }
+    public boolean isMagicClass() { return isMagicClass; }
 }

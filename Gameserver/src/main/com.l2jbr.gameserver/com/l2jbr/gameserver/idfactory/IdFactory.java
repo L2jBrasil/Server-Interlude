@@ -28,14 +28,19 @@ import static java.util.Objects.isNull;
 
 public abstract class IdFactory {
 	private static Logger _log = LoggerFactory.getLogger(IdFactory.class.getName());
-	
-	protected boolean _initialized;
-	
+
 	static final int FIRST_OID = 0x10000000;
 	protected static final int LAST_OID = 0x7FFFFFFF;
 	protected static final int FREE_OBJECT_ID_SIZE = LAST_OID - FIRST_OID;
 	
 	protected static IdFactory _instance = null;
+
+    public static IdFactory getInstance() {
+        if(isNull(_instance)) {
+            _instance = new BitSetIDFactory();
+        }
+        return _instance;
+    }
 	
 	protected IdFactory() {
 		setAllCharacterOffline();
@@ -91,18 +96,6 @@ public abstract class IdFactory {
         IdFactoryRepository repository = DatabaseAccess.getRepository(IdFactoryRepository.class);
         repository.deleteItemsOnGroundDuplicated();
         return repository.findAllIds();
-	}
-	
-	public boolean isInitialized()
-	{
-		return _initialized;
-	}
-	
-	public static IdFactory getInstance() {
-	    if(isNull(_instance)) {
-	        _instance = new BitSetIDFactory();
-        }
-        return _instance;
 	}
 	
 	public abstract int getNextId();

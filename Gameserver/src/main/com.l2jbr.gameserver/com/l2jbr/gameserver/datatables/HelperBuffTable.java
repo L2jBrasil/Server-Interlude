@@ -19,16 +19,12 @@
 package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.gameserver.model.entity.database.HelperBuffList;
+import com.l2jbr.gameserver.model.entity.database.HelperBuff;
 import com.l2jbr.gameserver.model.entity.database.repository.HelperBuffRepository;
-import com.l2jbr.gameserver.templates.L2HelperBuff;
-import com.l2jbr.gameserver.templates.StatsSet;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.util.LinkedList;
 import java.util.List;
 
+import static java.util.Objects.isNull;
 
 /**
  * This class represents the Newbie Helper Buff list.
@@ -37,16 +33,9 @@ import java.util.List;
  */
 public class HelperBuffTable {
 
-    private static Logger _log = LoggerFactory.getLogger(HennaTable.class.getName());
-
     private static HelperBuffTable _instance;
 
-    /**
-     * The table containing all Buff of the Newbie Helper
-     */
-    private final List<L2HelperBuff> _helperBuff;
-
-    private final boolean _initialized = true;
+    private final List<HelperBuff> helperBuffs;
 
     /**
      * The player level since Newbie Helper can give the fisrt buff <BR>
@@ -63,130 +52,54 @@ public class HelperBuffTable {
     private int _physicClassHighestLevel = 1;
 
     public static HelperBuffTable getInstance() {
-        if (_instance == null) {
+        if (isNull(_instance)) {
             _instance = new HelperBuffTable();
         }
         return _instance;
     }
 
-    /**
-     * Create and Load the Newbie Helper Buff list from SQL Table helper_buff_list
-     */
     private HelperBuffTable() {
-        _helperBuff = new LinkedList<>();
-        restoreHelperBuffData();
+        helperBuffs = DatabaseAccess.getRepository(HelperBuffRepository.class).findAll();
+        processTable();
     }
 
-    private void restoreHelperBuffData() {
-        HelperBuffRepository repository = DatabaseAccess.getRepository(HelperBuffRepository.class);
-        repository.findAll().forEach(helperBuffList -> {
-            fillHelperBuffTable(helperBuffList);
+    private void processTable() {
+        helperBuffs.forEach(helperBuff -> {
+            if(helperBuff.isMagicClass()) {
+                if (helperBuff.getLowerLevel() < _magicClassLowestLevel) {
+                    _magicClassLowestLevel = helperBuff.getLowerLevel();
+                }
+
+                if (helperBuff.getUpperLevel() > _magicClassHighestLevel) {
+                    _magicClassHighestLevel = helperBuff.getUpperLevel();
+                }
+            } else {
+                if (helperBuff.getLowerLevel() < _physicClassLowestLevel) {
+                    _physicClassLowestLevel = helperBuff.getLowerLevel();
+                }
+
+                if (helperBuff.getUpperLevel() > _physicClassHighestLevel) {
+                    _physicClassHighestLevel = helperBuff.getUpperLevel();
+                }
+            }
         });
     }
 
-    private void fillHelperBuffTable(HelperBuffList helperBuffList) {
-        StatsSet helperBuffDat = new StatsSet();
-        int id = helperBuffList.getId();
+    public List<HelperBuff> getHelperBuffTable() { return helperBuffs; }
 
-        helperBuffDat.set("id", id);
-        helperBuffDat.set("skillID", helperBuffList.getSkillId());
-        helperBuffDat.set("skillLevel", helperBuffList.getSkillLevel());
-        helperBuffDat.set("lowerLevel", helperBuffList.getLowerLevel());
-        helperBuffDat.set("upperLevel", helperBuffList.getUpperLevel());
-        helperBuffDat.set("isMagicClass", helperBuffList.getIsMagicClass());
-
-        // Calulate the range level in wich player must be to obtain buff from Newbie Helper
-        if ("false".equals(helperBuffList.getIsMagicClass())) {
-            if (helperBuffList.getLowerLevel() < _physicClassLowestLevel) {
-                _physicClassLowestLevel = helperBuffList.getLowerLevel();
-            }
-
-            if (helperBuffList.getUpperLevel() > _physicClassHighestLevel) {
-                _physicClassHighestLevel = helperBuffList.getUpperLevel();
-            }
-        } else {
-            if (helperBuffList.getLowerLevel() < _magicClassLowestLevel) {
-                _magicClassLowestLevel = helperBuffList.getLowerLevel();
-            }
-
-            if (helperBuffList.getUpperLevel() > _magicClassHighestLevel) {
-                _magicClassHighestLevel = helperBuffList.getUpperLevel();
-            }
-        }
-
-        L2HelperBuff template = new L2HelperBuff(helperBuffDat);
-        _helperBuff.add(template);
-    }
-
-    public boolean isInitialized() {
-        return _initialized;
-    }
-
-    public L2HelperBuff getHelperBuffTableItem(int id) {
-        return _helperBuff.get(id);
-    }
-
-    /**
-     * @return the Helper Buff List.
-     */
-    public List<L2HelperBuff> getHelperBuffTable() {
-        return _helperBuff;
-    }
-
-    /**
-     * @return Returns the magicClassHighestLevel.
-     */
     public int getMagicClassHighestLevel() {
         return _magicClassHighestLevel;
     }
 
-    /**
-     * @param magicClassHighestLevel The magicClassHighestLevel to set.
-     */
-    public void setMagicClassHighestLevel(int magicClassHighestLevel) {
-        _magicClassHighestLevel = magicClassHighestLevel;
-    }
-
-    /**
-     * @return Returns the magicClassLowestLevel.
-     */
     public int getMagicClassLowestLevel() {
         return _magicClassLowestLevel;
     }
 
-    /**
-     * @param magicClassLowestLevel The magicClassLowestLevel to set.
-     */
-    public void setMagicClassLowestLevel(int magicClassLowestLevel) {
-        _magicClassLowestLevel = magicClassLowestLevel;
-    }
-
-    /**
-     * @return Returns the physicClassHighestLevel.
-     */
     public int getPhysicClassHighestLevel() {
         return _physicClassHighestLevel;
     }
 
-    /**
-     * @param physicClassHighestLevel The physicClassHighestLevel to set.
-     */
-    public void setPhysicClassHighestLevel(int physicClassHighestLevel) {
-        _physicClassHighestLevel = physicClassHighestLevel;
-    }
-
-    /**
-     * @return Returns the physicClassLowestLevel.
-     */
     public int getPhysicClassLowestLevel() {
         return _physicClassLowestLevel;
     }
-
-    /**
-     * @param physicClassLowestLevel The physicClassLowestLevel to set.
-     */
-    public void setPhysicClassLowestLevel(int physicClassLowestLevel) {
-        _physicClassLowestLevel = physicClassLowestLevel;
-    }
-
 }
