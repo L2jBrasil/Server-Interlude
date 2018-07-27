@@ -109,6 +109,7 @@ public class GameServer {
 
         // start game time control early
         GameTimeController.getInstance();
+
         CharTemplateTable.getInstance();
 
         SkillTable.getInstance();
@@ -131,8 +132,6 @@ public class GameServer {
         TradeController.getInstance();
         FishTable.getInstance();
 
-
-        // Call to load caches
         HtmCache.getInstance();
         CrestCache.getInstance();
         ClanTable.getInstance();

@@ -19,62 +19,55 @@
 package com.l2jbr.gameserver.cache;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.commons.util.FilterUtils;
 import com.l2jbr.gameserver.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileFilter;
-import java.io.FileInputStream;
-import java.util.LinkedHashMap;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.util.HashMap;
 import java.util.Map;
 
+import static com.l2jbr.commons.util.FilterUtils.htmlFilter;
+import static java.util.Objects.isNull;
 
 /**
  * @author Layane
  */
-public class HtmCache
-{
+public class HtmCache {
 	private static Logger _log = LoggerFactory.getLogger(HtmCache.class.getName());
-	private static HtmCache _instance;
+	private static HtmCache INSTANCE;
 	
 	private final Map<Integer, String> _cache;
 	
 	private int _loadedFiles;
 	private long _bytesBuffLen;
 	
-	public static HtmCache getInstance()
-	{
-		if (_instance == null)
-		{
-			_instance = new HtmCache();
+	public static HtmCache getInstance() {
+		if (isNull(INSTANCE)) {
+			INSTANCE = new HtmCache();
 		}
-		
-		return _instance;
+		return INSTANCE;
 	}
 	
-	public HtmCache()
-	{
-		_cache = new LinkedHashMap<>();
+	public HtmCache() {
+		_cache = new HashMap<>();
 		reload();
 	}
 	
-	public void reload()
-	{
+	public void reload() {
 		reload(Config.DATAPACK_ROOT);
 	}
 	
-	public void reload(File f)
-	{
-		if (!Config.LAZY_CACHE)
-		{
+	public void reload(File f) {
+		if (!Config.LAZY_CACHE) {
 			_log.info("Html cache start...");
 			parseDir(f);
-			_log.info("Cache[HTML]: " + String.format("%.3f", getMemoryUsage()) + " megabytes on " + getLoadedFiles() + " files loaded");
-		}
-		else
-		{
+			_log.info("Cache[HTML]: {} megabytes on {} files loaded", getMemoryUsage(), getLoadedFiles());
+		} else {
 			_cache.clear();
 			_loadedFiles = 0;
 			_bytesBuffLen = 0;
@@ -82,8 +75,7 @@ public class HtmCache
 		}
 	}
 	
-	public void reloadPath(File f)
-	{
+	public void reloadPath(File f) {
 		parseDir(f);
 		_log.info("Cache[HTML]: Reloaded specified path.");
 	}
@@ -98,97 +90,47 @@ public class HtmCache
 		return _loadedFiles;
 	}
 	
-	class HtmFilter implements FileFilter
-	{
-		@Override
-		public boolean accept(File file)
-		{
-			if (!file.isDirectory())
-			{
-				return (file.getName().endsWith(".htm") || file.getName().endsWith(".html"));
-			}
-			return true;
-		}
-	}
-	
-	private void parseDir(File dir)
-	{
-		FileFilter filter = new HtmFilter();
-		File[] files = dir.listFiles(filter);
-		
-		for (File file : files)
-		{
-			if (!file.isDirectory())
-			{
+	private void parseDir(File dir) {
+		var files = dir.listFiles(FilterUtils::htmlFilter);
+
+		for (File file : files) {
+			if (!file.isDirectory()) {
 				loadFile(file);
-			}
-			else
-			{
+			} else {
 				parseDir(file);
 			}
 		}
 	}
 	
-	public String loadFile(File file)
-	{
-		HtmFilter filter = new HtmFilter();
-		
-		if (file.exists() && filter.accept(file) && !file.isDirectory())
-		{
-			String content;
-			FileInputStream fis = null;
-			
-			try
-			{
-				fis = new FileInputStream(file);
-				BufferedInputStream bis = new BufferedInputStream(fis);
-				int bytes = bis.available();
-				byte[] raw = new byte[bytes];
-				
-				bis.read(raw);
-				content = new String(raw, "UTF-8");
-				content = content.replaceAll("\r\n", "\n");
-				
-				String relpath = Util.getRelativePath(Config.DATAPACK_ROOT, file);
-				int hashcode = relpath.hashCode();
-				
-				String oldContent = _cache.get(hashcode);
-				
-				if (oldContent == null)
-				{
-					_bytesBuffLen += bytes;
-					_loadedFiles++;
-				}
-				else
-				{
-					_bytesBuffLen = (_bytesBuffLen - oldContent.length()) + bytes;
-				}
-				
-				_cache.put(hashcode, content);
-				
-				return content;
-			}
-			catch (Exception e)
-			{
-				_log.warn("problem with htm file " + e);
-			}
-			finally
-			{
-				try
-				{
-					fis.close();
-				}
-				catch (Exception e1)
-				{
-					
-				}
-			}
+	public String loadFile(final File file) {
+		if (file.exists() && htmlFilter(file) && !file.isDirectory()) {
+			try {
+                var content = Files.lines(file.toPath(), Charset.forName("UTF-8")).
+                        reduce("", String::concat).replaceAll("\r\n", "\n");
+
+                int hash = Util.getRelativePath(Config.DATAPACK_ROOT, file).hashCode();
+                updateContent(content, hash);
+                return content;
+            } catch (IOException e) {
+                _log.warn("problem with htm file " + e);
+            }
 		}
-		
-		return null;
+        return "";
 	}
-	
-	public String getHtmForce(String path)
+
+    private void updateContent(String content, int hash) {
+        var old = _cache.get(hash);
+
+        if(isNull(old)) {
+            _bytesBuffLen += content.length();
+            _loadedFiles++;
+        } else {
+            _bytesBuffLen += content.length() - old.length();
+        }
+        _cache.put(hash, content);
+    }
+
+    public String getHtmForce(String path)
 	{
 		String content = getHtm(path);
 		
@@ -226,9 +168,8 @@ public class HtmCache
 	public boolean isLoadable(String path)
 	{
 		File file = new File(path);
-		HtmFilter filter = new HtmFilter();
 		
-		if (file.exists() && filter.accept(file) && !file.isDirectory())
+		if (file.exists() && htmlFilter(file) && !file.isDirectory())
 		{
 			return true;
 		}
