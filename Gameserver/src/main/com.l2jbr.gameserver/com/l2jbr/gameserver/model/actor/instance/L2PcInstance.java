@@ -71,6 +71,8 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
+import static java.util.Objects.nonNull;
+
 
 /**
  * This class represents all player characters in the world.<br>
@@ -541,7 +543,7 @@ public final class L2PcInstance extends L2PlayableInstance {
     /**
      * The _henna.
      */
-    private final L2HennaInstance[] _henna = new L2HennaInstance[3];
+    private final Henna[] _henna = new Henna[3];
 
     /**
      * The _henna str.
@@ -6949,8 +6951,8 @@ public final class L2PcInstance extends L2PlayableInstance {
             if (symbol_id != 0) {
                 Henna tpl = HennaTable.getInstance().getTemplate(symbol_id);
 
-                if (tpl != null) {
-                    _henna[slot - 1] = new L2HennaInstance(tpl);
+                if (nonNull(tpl)) {
+                    _henna[slot - 1] = tpl ;
                 }
             }
         });
@@ -7008,10 +7010,8 @@ public final class L2PcInstance extends L2PlayableInstance {
             return false;
         }
 
-        L2HennaInstance henna = _henna[slot];
+        Henna henna = _henna[slot];
         _henna[slot] = null;
-
-        java.sql.Connection con = null;
 
         CharacterHennasRepository repository = DatabaseAccess.getRepository(CharacterHennasRepository.class);
         repository.deleteByClassindexAndSlot(getObjectId(), getClassIndex(), slot+1);
@@ -7026,11 +7026,11 @@ public final class L2PcInstance extends L2PlayableInstance {
         sendPacket(new UserInfo(this));
 
         // Add the recovered dyes to the player's inventory and notify them.
-        getInventory().addItem("Henna", henna.getItemIdDye(), henna.getAmountDyeRequire() / 2, this, null);
+        getInventory().addItem("Henna", henna.getDyeId(), henna.getDyeAmount() / 2, this, null);
 
         SystemMessage sm = new SystemMessage(SystemMessageId.EARNED_S2_S1_S);
-        sm.addItemName(henna.getItemIdDye());
-        sm.addNumber(henna.getAmountDyeRequire() / 2);
+        sm.addItemName(henna.getDyeId());
+        sm.addNumber(henna.getDyeAmount() / 2);
         sendPacket(sm);
 
         return true;
@@ -7043,7 +7043,7 @@ public final class L2PcInstance extends L2PlayableInstance {
      * @param henna the henna
      * @return true, if successful
      */
-    public boolean addHenna(L2HennaInstance henna) {
+    public boolean addHenna(Henna henna) {
         if (getHennaEmptySlots() == 0) {
             sendMessage("You may not have more than three equipped symbols at a time.");
             return false;
@@ -7125,7 +7125,7 @@ public final class L2PcInstance extends L2PlayableInstance {
      * @param slot the slot
      * @return the henna
      */
-    public L2HennaInstance getHenna(int slot) {
+    public Henna getHenna(int slot) {
         if ((slot < 1) || (slot > 3)) {
             return null;
         }

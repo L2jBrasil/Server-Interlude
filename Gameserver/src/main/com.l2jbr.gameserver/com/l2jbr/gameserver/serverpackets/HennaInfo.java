@@ -14,8 +14,8 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
-import com.l2jbr.gameserver.model.L2HennaInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.entity.database.Henna;
 
 
 public final class HennaInfo extends L2GameServerPacket
@@ -23,7 +23,7 @@ public final class HennaInfo extends L2GameServerPacket
 	private static final String _S__E4_HennaInfo = "[S] E4 HennaInfo";
 	
 	private final L2PcInstance _activeChar;
-	private final L2HennaInstance[] _hennas = new L2HennaInstance[3];
+	private final Henna[] _hennas = new Henna[3];
 	private final int _count;
 	
 	public HennaInfo(L2PcInstance player)
@@ -33,7 +33,7 @@ public final class HennaInfo extends L2GameServerPacket
 		int j = 0;
 		for (int i = 0; i < 3; i++)
 		{
-			L2HennaInstance h = _activeChar.getHenna(i + 1);
+			Henna h = _activeChar.getHenna(i + 1);
 			if (h != null)
 			{
 				_hennas[j++] = h;

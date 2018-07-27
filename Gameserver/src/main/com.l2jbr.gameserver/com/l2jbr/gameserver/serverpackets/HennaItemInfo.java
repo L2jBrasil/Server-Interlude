@@ -14,8 +14,8 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
-import com.l2jbr.gameserver.model.L2HennaInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.entity.database.Henna;
 
 
 public class HennaItemInfo extends L2GameServerPacket
@@ -23,9 +23,9 @@ public class HennaItemInfo extends L2GameServerPacket
 	private static final String _S__E3_HennaItemInfo = "[S] E3 HennaItemInfo";
 	
 	private final L2PcInstance _activeChar;
-	private final L2HennaInstance _henna;
+	private final Henna _henna;
 	
-	public HennaItemInfo(L2HennaInstance henna, L2PcInstance player)
+	public HennaItemInfo(Henna henna, L2PcInstance player)
 	{
 		_henna = henna;
 		_activeChar = player;
@@ -37,8 +37,8 @@ public class HennaItemInfo extends L2GameServerPacket
 		
 		writeC(0xe3);
 		writeD(_henna.getSymbolId()); // symbol Id
-		writeD(_henna.getItemIdDye()); // item id of dye
-		writeD(_henna.getAmountDyeRequire()); // total amount of dye require
+		writeD(_henna.getDyeId()); // item id of dye
+		writeD(_henna.getDyeAmount()); // total amount of dye require
 		writeD(_henna.getPrice()); // total amount of aden require to draw symbol
 		writeD(1); // able to draw or not 0 is false and 1 is true
 		writeD(_activeChar.getAdena());
@@ -56,11 +56,7 @@ public class HennaItemInfo extends L2GameServerPacket
 		writeD(_activeChar.getWIT()); // current WIT
 		writeC(_activeChar.getWIT() + _henna.getStatWIT()); // equip WIT
 	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.l2jbr.gameserver.serverpackets.ServerBasePacket#getType()
-	 */
+
 	@Override
 	public String getType()
 	{

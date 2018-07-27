@@ -50,8 +50,7 @@ public class HennaTable {
     }
 
     private void restoreHennaData() {
-        HennaRepository repository = DatabaseAccess.getRepository(HennaRepository.class);
-        repository.findAll().forEach(this::fillHennaTable);
+        DatabaseAccess.getRepository(HennaRepository.class).findAll().forEach(this::fillHennaTable);
         _log.info(getMessage("info.henna.loaded"),  hennas.size());
     }
 

@@ -14,8 +14,10 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
-import com.l2jbr.gameserver.model.L2HennaInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.entity.database.Henna;
+
+import java.util.List;
 
 
 public class HennaEquipList extends L2GameServerPacket
@@ -23,9 +25,9 @@ public class HennaEquipList extends L2GameServerPacket
 	private static final String _S__E2_HennaEquipList = "[S] E2 HennaEquipList";
 	
 	private final L2PcInstance _player;
-	private final L2HennaInstance[] _hennaEquipList;
+	private final List<Henna> _hennaEquipList;
 	
-	public HennaEquipList(L2PcInstance player, L2HennaInstance[] hennaEquipList)
+	public HennaEquipList(L2PcInstance player, List<Henna> hennaEquipList)
 	{
 		_player = player;
 		_hennaEquipList = hennaEquipList;
@@ -38,18 +40,17 @@ public class HennaEquipList extends L2GameServerPacket
 		writeD(_player.getAdena()); // activeChar current amount of aden
 		writeD(3); // available equip slot
 		// writeD(10); // total amount of symbol available which depends on difference classes
-		writeD(_hennaEquipList.length);
+		writeD(_hennaEquipList.size());
 		
-		for (L2HennaInstance element : _hennaEquipList)
-		{
+		for (Henna element : _hennaEquipList) {
 			/*
 			 * Player must have at least one dye in inventory to be able to see the henna that can be applied with it.
 			 */
-			if ((_player.getInventory().getItemByItemId(element.getItemIdDye())) != null)
+			if ((_player.getInventory().getItemByItemId(element.getDyeId())) != null)
 			{
 				writeD(element.getSymbolId()); // symbolid
-				writeD(element.getItemIdDye()); // itemid of dye
-				writeD(element.getAmountDyeRequire()); // amount of dye require
+				writeD(element.getDyeId()); // itemid of dye
+				writeD(element.getDyeAmount()); // amount of dye require
 				writeD(element.getPrice()); // amount of aden require
 				writeD(1); // meet the requirement or not
 			}

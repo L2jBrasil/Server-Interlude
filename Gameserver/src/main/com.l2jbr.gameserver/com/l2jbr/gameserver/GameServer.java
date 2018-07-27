@@ -63,7 +63,6 @@ import java.util.Locale;
 import static com.l2jbr.gameserver.util.GameserverMessages.getMessage;
 
 public class GameServer {
-    private static final String ERROR_EXTRACTED_FILE_NOT_FOUND = "error.extracted.file.not.found";
     private static final String ERROR_INITIALIZE_TABLE = "error.initialize.table";
     private static final String INFO_LOADED_HANDLERS = "info.loaded.handlers";
     private static final String LOG4J_CONFIGURATION_FILE = "log4j.configurationFile";
@@ -89,7 +88,6 @@ public class GameServer {
     private final ThreadPoolManager _threadpools;
 
     public static final Calendar dateTimeServerStarted = Calendar.getInstance();
-    private final HennaTreeTable _hennaTreeTable;
 
     public long getUsedMemoryMB() {
         return (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1048576; // 1024 * 1024 = 1048576;
@@ -136,6 +134,7 @@ public class GameServer {
         SummonItemsData.getInstance();
 
         HennaTable.getInstance();
+        HennaTreeTable.getInstance();
 
         NpcTable.getInstance();
         TradeController.getInstance();
@@ -148,13 +147,6 @@ public class GameServer {
         ClanTable.getInstance();
 
 
-
-
-        _hennaTreeTable = HennaTreeTable.getInstance();
-
-        if (!_hennaTreeTable.isInitialized()) {
-            throw new Exception(getMessage(ERROR_INITIALIZE_TABLE, "HennaTree"));
-        }
 
         _helperBuffTable = HelperBuffTable.getInstance();
 

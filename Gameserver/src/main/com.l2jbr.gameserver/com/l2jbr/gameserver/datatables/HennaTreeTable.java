@@ -19,76 +19,58 @@
 package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.gameserver.model.L2HennaInstance;
 import com.l2jbr.gameserver.model.base.PlayerClass;
 import com.l2jbr.gameserver.model.entity.database.Henna;
-import com.l2jbr.gameserver.model.entity.database.HennaTrees;
 import com.l2jbr.gameserver.model.entity.database.repository.HennaTreeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+import static java.util.Objects.isNull;
 
-/**
- * This class ...
- *
- * @version $Revision$ $Date$
- */
 public class HennaTreeTable {
     private static Logger _log = LoggerFactory.getLogger(HennaTreeTable.class.getName());
-    private static final HennaTreeTable _instance = new HennaTreeTable();
-    private Map<PlayerClass, List<L2HennaInstance>> _hennaTrees;
-    private final boolean _initialized = true;
+    private static HennaTreeTable INSTANCE;
+    private Map<PlayerClass, List<Henna>> _hennaTrees;
 
     public static HennaTreeTable getInstance() {
-        return _instance;
+        if(isNull(INSTANCE)) {
+            INSTANCE = new HennaTreeTable();
+        }
+        return INSTANCE;
     }
 
     private HennaTreeTable() {
-        _hennaTrees = new LinkedHashMap<>();
+        _hennaTrees = new HashMap<>();
 
-        int count = 0;
-        List<L2HennaInstance> list;
-        HennaTreeRepository repository = DatabaseAccess.getRepository(HennaTreeRepository.class);
-        for (HennaTrees hennaTrees : repository.findAll()) {
-            int id = hennaTrees.getSymbolId();
-            int classId = hennaTrees.getClassId();
+        var count = 0;
+        for (var hennaTrees : DatabaseAccess.getRepository(HennaTreeRepository.class).findAll()) {
+            var id = hennaTrees.getSymbolId();
+            var classId = hennaTrees.getClassId();
 
-            Henna template = HennaTable.getInstance().getTemplate(id);
-            if (template == null) {
+            var template = HennaTable.getInstance().getTemplate(id);
+            if (isNull(template)) {
                 continue;
             }
-            list = _hennaTrees.getOrDefault(PlayerClass.values()[classId], new LinkedList<>());
-            list.add(new L2HennaInstance(template));
+
+            var playerClass = PlayerClass.values()[classId];
+            if(! _hennaTrees.containsKey(playerClass)) {
+                _hennaTrees.put(playerClass, new ArrayList<>());
+            }
+            _hennaTrees.get(playerClass).add(template);
             count++;
         }
-        _log.info("HennaTreeTable: Loaded " + count + " Henna Tree Templates.");
-
+        _log.info("HennaTreeTable: Loaded {} Henna Tree Templates.", count);
     }
 
-    public L2HennaInstance[] getAvailableHenna(PlayerClass playerClass) {
-        List<L2HennaInstance> result = new LinkedList<>();
-        List<L2HennaInstance> henna = _hennaTrees.get(playerClass);
-        if (henna == null) {
-            // the hennatree for this class is undefined, so we give an empty list
-            _log.warn("Hennatree for class " + playerClass + " is not defined !");
-            return new L2HennaInstance[0];
+    public List<Henna> getAvailableHenna(PlayerClass playerClass) {
+        var hennas = _hennaTrees.get(playerClass);
+        if (isNull(hennas)) {
+            _log.warn("Hennatree for class  {} is not defined !",  playerClass);
+            return Collections.emptyList();
         }
-
-        for (int i = 0; i < henna.size(); i++) {
-            L2HennaInstance temp = henna.get(i);
-            result.add(temp);
-        }
-
-        return result.toArray(new L2HennaInstance[result.size()]);
-    }
-
-    public boolean isInitialized() {
-        return _initialized;
+        return hennas;
     }
 
 }

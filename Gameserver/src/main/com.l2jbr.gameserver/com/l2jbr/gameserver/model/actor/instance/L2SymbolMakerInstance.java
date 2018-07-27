@@ -16,7 +16,7 @@ package com.l2jbr.gameserver.model.actor.instance;
 
 import com.l2jbr.gameserver.datatables.HennaTreeTable;
 import com.l2jbr.gameserver.model.L2Character;
-import com.l2jbr.gameserver.model.L2HennaInstance;
+import com.l2jbr.gameserver.model.entity.database.Henna;
 import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.HennaEquipList;
 
@@ -32,8 +32,8 @@ public class L2SymbolMakerInstance extends L2FolkInstance {
     @Override
     public void onBypassFeedback(L2PcInstance player, String command) {
         if (command.equals("Draw")) {
-            L2HennaInstance[] henna = HennaTreeTable.getInstance().getAvailableHenna(player.getPlayerClass());
-            HennaEquipList hel = new HennaEquipList(player, henna);
+            var hennas = HennaTreeTable.getInstance().getAvailableHenna(player.getPlayerClass());
+            HennaEquipList hel = new HennaEquipList(player, hennas);
             player.sendPacket(hel);
         } else if (command.equals("RemoveList")) {
             showRemoveChat(player);
@@ -51,11 +51,11 @@ public class L2SymbolMakerInstance extends L2FolkInstance {
         boolean hasHennas = false;
 
         for (int i = 1; i <= 3; i++) {
-            L2HennaInstance henna = player.getHenna(i);
+            Henna henna = player.getHenna(i);
 
             if (henna != null) {
                 hasHennas = true;
-                html1.append("<a action=\"bypass -h npc_%objectId%_Remove " + i + "\">" + henna.getName() + "</a><br>");
+                html1.append("<a action=\"bypass -h npc_%objectId%_Remove " + i + "\">" + henna.getSymbolName() + "</a><br>");
             }
         }
         if (!hasHennas) {

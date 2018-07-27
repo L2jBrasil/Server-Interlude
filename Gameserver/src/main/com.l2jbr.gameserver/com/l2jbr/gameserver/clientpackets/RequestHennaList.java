@@ -19,20 +19,17 @@
 package com.l2jbr.gameserver.clientpackets;
 
 import com.l2jbr.gameserver.datatables.HennaTreeTable;
-import com.l2jbr.gameserver.model.L2HennaInstance;
-import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.HennaEquipList;
 
+import static java.util.Objects.isNull;
 
 /**
  * RequestHennaList - 0xba
  * @author Tempy
  */
-public final class RequestHennaList extends L2GameClientPacket
-{
+public final class RequestHennaList extends L2GameClientPacket {
 	private static final String _C__BA_RequestHennaList = "[C] ba RequestHennaList";
-	
-	// This is just a trigger packet...
+
 	@SuppressWarnings("unused")
 	private int _unknown;
 	
@@ -43,23 +40,16 @@ public final class RequestHennaList extends L2GameClientPacket
 	}
 	
 	@Override
-	protected void runImpl()
-	{
-		L2PcInstance activeChar = getClient().getActiveChar();
-		if (activeChar == null)
-		{
+	protected void runImpl() {
+		var activeChar = getClient().getActiveChar();
+		if (isNull(activeChar)) {
 			return;
 		}
 		
-		L2HennaInstance[] henna = HennaTreeTable.getInstance().getAvailableHenna(activeChar.getPlayerClass());
-		HennaEquipList he = new HennaEquipList(activeChar, henna);
-		activeChar.sendPacket(he);
+		var hennas = HennaTreeTable.getInstance().getAvailableHenna(activeChar.getPlayerClass());
+		activeChar.sendPacket(new HennaEquipList(activeChar, hennas));
 	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.l2jbr.gameserver.clientpackets.ClientBasePacket#getType()
-	 */
+
 	@Override
 	public String getType()
 	{
