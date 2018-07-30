@@ -109,7 +109,7 @@ public final class RequestRestartPoint extends L2GameClientPacket
 								isInDefense = true;
 							}
 						}
-						if ((activeChar.getClan().getHasCastle() == 0) && !isInDefense)
+						if ((activeChar.getClan().getCastle() == 0) && !isInDefense)
 						{
 							// cheater
 							activeChar.sendMessage("You may not use this respawn point!");

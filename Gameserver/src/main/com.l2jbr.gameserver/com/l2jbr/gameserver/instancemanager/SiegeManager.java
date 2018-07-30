@@ -126,7 +126,7 @@ public class SiegeManager {
             return false;
         }
 
-        if (clan.getHasCastle() > 0) {
+        if (clan.getCastle() > 0) {
             return true;
         }
 

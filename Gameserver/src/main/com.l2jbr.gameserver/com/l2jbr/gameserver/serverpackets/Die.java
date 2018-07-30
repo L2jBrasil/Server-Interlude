@@ -100,7 +100,7 @@ public class Die extends L2GameServerPacket
 			}
 			
 			writeD(_clan.getHasHideout() > 0 ? 0x01 : 0x00); // 6d 01 00 00 00 - to hide away
-			writeD((_clan.getHasCastle() > 0) || isInDefense ? 0x01 : 0x00); // 6d 02 00 00 00 - to castle
+			writeD((_clan.getCastle() > 0) || isInDefense ? 0x01 : 0x00); // 6d 02 00 00 00 - to castle
 			writeD((siegeClan != null) && !isInDefense && (siegeClan.getFlag().size() > 0) ? 0x01 : 0x00); // 6d 03 00 00 00 - to siege HQ
 		}
 		else

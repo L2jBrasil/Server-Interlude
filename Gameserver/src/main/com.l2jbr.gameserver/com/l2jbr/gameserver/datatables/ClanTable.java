@@ -19,25 +19,26 @@
 package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.instancemanager.SiegeManager;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.L2ClanMember;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.entity.database.repository.*;
 import com.l2jbr.gameserver.model.entity.Siege;
+import com.l2jbr.gameserver.model.entity.database.repository.*;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 import com.l2jbr.gameserver.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 
+import static com.l2jbr.commons.database.DatabaseAccess.getRepository;
 import static com.l2jbr.gameserver.util.GameserverMessages.getMessage;
+import static java.util.Objects.isNull;
 
 
 /**
@@ -53,7 +54,7 @@ public class ClanTable {
     private final Map<Integer, L2Clan> _clans;
 
     public static ClanTable getInstance() {
-        if (_instance == null) {
+        if (isNull(_instance)) {
             _instance = new ClanTable();
         }
         return _instance;
@@ -64,15 +65,14 @@ public class ClanTable {
     }
 
     private ClanTable() {
-        _clans = new LinkedHashMap<>();
-        ClanRepository repository = DatabaseAccess.getRepository(ClanRepository.class);
-        repository.findAll().forEach(clanData -> {
-            _clans.put(clanData.getId(), new L2Clan(clanData));
-            if(clanData.getDissolvingExpiryTime() !=0) {
-                if(clanData.getDissolvingExpiryTime() <= System.currentTimeMillis()) {
-                    destroyClan(clanData.getId());
+        _clans = new HashMap<>();
+        getRepository(ClanRepository.class).findAll().forEach(clan -> {
+            _clans.put(clan.getId(), new L2Clan(clan));
+            if(clan.getDissolvingExpiryTime() !=0) {
+                if(clan.getDissolvingExpiryTime() <= System.currentTimeMillis()) {
+                    destroyClan(clan.getId());
                 } else {
-                    scheduleRemoveClan(clanData.getId());
+                    scheduleRemoveClan(clan.getId());
                 }
             }
         });
@@ -171,14 +171,14 @@ public class ClanTable {
         return clan;
     }
 
-    public synchronized void destroyClan(int clanId) {
+    public synchronized void destroyClan(Integer clanId) {
         L2Clan clan = getClan(clanId);
         if (clan == null) {
             return;
         }
 
         clan.broadcastToOnlineMembers(new SystemMessage(SystemMessageId.CLAN_HAS_DISPERSED));
-        int castleId = clan.getHasCastle();
+        int castleId = clan.getCastle();
         if (castleId == 0) {
             for (Siege siege : SiegeManager.getInstance().getSieges()) {
                 siege.removeSiegeClan(clanId);
@@ -199,31 +199,31 @@ public class ClanTable {
         _clans.remove(clanId);
         IdFactory.getInstance().releaseId(clanId);
 
-        ClanRepository clanRepository = DatabaseAccess.getRepository(ClanRepository.class);
+        ClanRepository clanRepository = getRepository(ClanRepository.class);
         clanRepository.deleteById(clanId);
 
-        ClanPrivsRepository clanPrivsRepository = DatabaseAccess.getRepository(ClanPrivsRepository.class);
+        ClanPrivsRepository clanPrivsRepository = getRepository(ClanPrivsRepository.class);
         clanPrivsRepository.deleteById(clanId);
 
-        ClanSkillRepository skillRepository = DatabaseAccess.getRepository(ClanSkillRepository.class);
+        ClanSkillRepository skillRepository = getRepository(ClanSkillRepository.class);
         skillRepository.deleteById(clanId);
 
-        ClanSubpledgesRepository subpledgesRepository = DatabaseAccess.getRepository(ClanSubpledgesRepository.class);
+        ClanSubpledgesRepository subpledgesRepository = getRepository(ClanSubpledgesRepository.class);
         subpledgesRepository.deleteById(clanId);
 
-        ClanWarsRepository warsRepository = DatabaseAccess.getRepository(ClanWarsRepository.class);
+        ClanWarsRepository warsRepository = getRepository(ClanWarsRepository.class);
         warsRepository.deleteByClan(clanId);
 
 
         if (castleId != 0) {
-            CastleRepository castleRepository = DatabaseAccess.getRepository(CastleRepository.class);
+            CastleRepository castleRepository = getRepository(CastleRepository.class);
             castleRepository.updateTaxById(castleId, 0);
         }
 
         _log.debug(getMessage("debug.clan.removed"), clanId);
     }
 
-    public void scheduleRemoveClan(final int clanId) {
+    public void scheduleRemoveClan(final Integer clanId) {
         ThreadPoolManager.getInstance().scheduleGeneral(() ->
         {
             if (getClan(clanId) == null) {
@@ -252,7 +252,7 @@ public class ClanTable {
         clan1.broadcastClanStatus();
         clan2.broadcastClanStatus();
 
-        ClanWarsRepository repository = DatabaseAccess.getRepository(ClanWarsRepository.class);
+        ClanWarsRepository repository = getRepository(ClanWarsRepository.class);
         repository.saveOrUpdate(clanId1, clanId2, 0, 0);
 
         SystemMessage msg = new SystemMessage(SystemMessageId.CLAN_WAR_DECLARED_AGAINST_S1_IF_KILLED_LOSE_LOW_EXP);
@@ -275,7 +275,7 @@ public class ClanTable {
         clan1.broadcastClanStatus();
         clan2.broadcastClanStatus();
 
-        ClanWarsRepository repository = DatabaseAccess.getRepository(ClanWarsRepository.class);
+        ClanWarsRepository repository = getRepository(ClanWarsRepository.class);
         repository.deleteWar(clanId1, clanId2);
 
         // SystemMessage msg = new SystemMessage(SystemMessageId.WAR_WITH_THE_S1_CLAN_HAS_ENDED);
@@ -305,7 +305,7 @@ public class ClanTable {
     }
 
     private void restoreWars() {
-        ClanWarsRepository repository = DatabaseAccess.getRepository(ClanWarsRepository.class);
+        ClanWarsRepository repository = getRepository(ClanWarsRepository.class);
         repository.findAll().forEach(clanWars -> {
             getClan(clanWars.getClan1()).setEnemyClan(clanWars.getClan2());
             getClan(clanWars.getClan2()).setAttackerClan(clanWars.getClan1());

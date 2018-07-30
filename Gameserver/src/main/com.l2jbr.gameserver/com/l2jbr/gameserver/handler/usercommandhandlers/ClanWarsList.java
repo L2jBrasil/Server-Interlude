@@ -20,17 +20,13 @@
 package com.l2jbr.gameserver.handler.usercommandhandlers;
 
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.handler.IUserCommandHandler;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.entity.database.ClanData;
+import com.l2jbr.gameserver.model.entity.database.Clan;
 import com.l2jbr.gameserver.model.entity.database.repository.ClanRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 
 /**
@@ -66,7 +62,7 @@ public class ClanWarsList implements IUserCommandHandler
 			return false;
 		}
 
-        Iterable<ClanData> clans;
+        Iterable<Clan> clans;
         ClanRepository repository = DatabaseAccess.getRepository(ClanRepository.class);
         if (id == 88) {
             // Attack List
@@ -84,16 +80,16 @@ public class ClanWarsList implements IUserCommandHandler
             clans = repository.findAllInWar(clan.getClanId());
         }
 
-        clans.forEach(clanData -> {
-            String clanName = clanData.getClanName();
-            int ally_id = clanData.getAllyId();
+        clans.forEach(clanModel -> {
+            String clanName = clanModel.getName();
+            int ally_id = clanModel.getAllyId();
 
             SystemMessage sm;
             if (ally_id > 0) {
                 // Target With Ally
                 sm = new SystemMessage(SystemMessageId.S1_S2_ALLIANCE);
                 sm.addString(clanName);
-                sm.addString(clanData.getAllyName());
+                sm.addString(clanModel.getAllyName());
             }
             else  {
                 // Target Without Ally

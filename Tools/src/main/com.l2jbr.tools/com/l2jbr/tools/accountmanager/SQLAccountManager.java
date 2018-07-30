@@ -154,7 +154,7 @@ public class SQLAccountManager {
                 clanRepository.findByLeaderId(character.getObjectId()).ifPresent(clanData -> {
                     int clanId = clanData.getClanId();
                     // Clan Leader
-                    System.out.println("Deleting clan " + clanData.getClanName() +  ".");
+                    System.out.println("Deleting clan " + clanData.getName() +  ".");
 
                     // Remove All From clan
                     warsRepository.deleteByClan(clanId);

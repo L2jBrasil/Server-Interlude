@@ -6,15 +6,15 @@ import com.l2jbr.commons.database.model.Entity;
 import org.springframework.data.annotation.Id;
 
 @Table("clan_data")
-public class ClanData extends Entity<Integer> {
+public class Clan extends Entity<Integer> {
 
     @Id
     @Column("clan_id")
-    private Integer clanId;
+    private int clanId;
     @Column("clan_name")
     private String clanName;
     @Column("clan_level")
-    private Integer clanLevel;
+    private int clanLevel;
     @Column("reputation_score")
     private Integer reputationScore;
     private Integer hasCastle;
@@ -46,27 +46,23 @@ public class ClanData extends Entity<Integer> {
         return clanId;
     }
 
-    public String getClanName() {
+    public String getName() {
         return clanName;
-    }
-
-    public Integer getClanId() {
-        return clanId;
     }
 
     public void setClanId(Integer clanId) {
         this.clanId = clanId;
     }
 
-    public void setClanName(String clanName) {
+    public void setName(String clanName) {
         this.clanName = clanName;
     }
 
-    public Integer getClanLevel() {
+    public int getClanLevel() {
         return clanLevel;
     }
 
-    public void setClanLevel(Integer clanLevel) {
+    public void setLevel(Integer clanLevel) {
         this.clanLevel = clanLevel;
     }
 
@@ -78,11 +74,11 @@ public class ClanData extends Entity<Integer> {
         this.reputationScore = reputationScore;
     }
 
-    public Integer getHasCastle() {
+    public Integer getCastle() {
         return hasCastle != null ? hasCastle : 0;
     }
 
-    public void setHasCastle(Integer hasCastle) {
+    public void setCastle(Integer hasCastle) {
         this.hasCastle = hasCastle;
     }
 

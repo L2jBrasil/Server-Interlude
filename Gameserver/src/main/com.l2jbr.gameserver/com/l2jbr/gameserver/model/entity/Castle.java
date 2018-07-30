@@ -245,7 +245,7 @@ public class Castle {
                         CastleManager.getInstance().removeCirclet(_formerOwner, getCastleId());
                     }
                 }
-                oldOwner.setHasCastle(0); // Unset has castle flag for old owner
+                oldOwner.setCastle(0); // Unset has castle flag for old owner
                 new Announcements().announceToAll(oldOwner.getName() + " has lost " + getName() + " castle!");
             }
         }
@@ -265,7 +265,7 @@ public class Castle {
             if (Config.REMOVE_CASTLE_CIRCLETS) {
                 CastleManager.getInstance().removeCirclet(_formerOwner, getCastleId());
             }
-            clan.setHasCastle(0);
+            clan.setCastle(0);
             new Announcements().announceToAll(clan.getName() + " has lost " + getName() + " castle");
             clan.broadcastToOnlineMembers(new PledgeShowInfoUpdate(clan));
         }
@@ -395,7 +395,7 @@ public class Castle {
 
         // Announce to clan memebers
         if (clan != null) {
-            clan.setHasCastle(getCastleId()); // Set has castle flag for new owner
+            clan.setCastle(getCastleId()); // Set has castle flag for new owner
             new Announcements().announceToAll(clan.getName() + " has taken " + getName() + " castle!");
             clan.broadcastToOnlineMembers(new PledgeShowInfoUpdate(clan));
 

@@ -134,6 +134,7 @@ public class GameServer {
 
         HtmCache.getInstance();
         CrestCache.getInstance();
+
         ClanTable.getInstance();
 
 

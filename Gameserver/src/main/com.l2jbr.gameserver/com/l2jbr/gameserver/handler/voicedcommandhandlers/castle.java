@@ -45,7 +45,7 @@ public class castle implements IVoicedCommandHandler
 		if (command.startsWith("open doors") && target.equals("castle") && (activeChar.isClanLeader()))
 		{
 			L2DoorInstance door = (L2DoorInstance) activeChar.getTarget();
-			Castle castle = CastleManager.getInstance().getCastleById(activeChar.getClan().getHasCastle());
+			Castle castle = CastleManager.getInstance().getCastleById(activeChar.getClan().getCastle());
 			if ((door == null) || (castle == null))
 			{
 				return false;
@@ -59,7 +59,7 @@ public class castle implements IVoicedCommandHandler
 		else if (command.startsWith("close doors") && target.equals("castle") && (activeChar.isClanLeader()))
 		{
 			L2DoorInstance door = (L2DoorInstance) activeChar.getTarget();
-			Castle castle = CastleManager.getInstance().getCastleById(activeChar.getClan().getHasCastle());
+			Castle castle = CastleManager.getInstance().getCastleById(activeChar.getClan().getCastle());
 			if ((door == null) || (castle == null))
 			{
 				return false;
@@ -72,7 +72,7 @@ public class castle implements IVoicedCommandHandler
 		}
 		else if (command.startsWith("ride wyvern") && target.equals("castle"))
 		{
-			if ((activeChar.getClan().getHasCastle() > 0) && activeChar.isClanLeader())
+			if ((activeChar.getClan().getCastle() > 0) && activeChar.isClanLeader())
 			{
 				if (!activeChar.disarmWeapons())
 				{

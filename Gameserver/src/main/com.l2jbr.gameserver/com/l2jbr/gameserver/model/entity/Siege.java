@@ -724,7 +724,7 @@ public class Siege {
      * @param clan
      */
     public void removeSiegeClan(L2Clan clan) {
-        if ((clan == null) || (clan.getHasCastle() == getCastle().getCastleId()) || !SiegeManager.getInstance().checkIsRegistered(clan, getCastle().getCastleId())) {
+        if ((clan == null) || (clan.getCastle() == getCastle().getCastleId()) || !SiegeManager.getInstance().checkIsRegistered(clan, getCastle().getCastleId())) {
             return;
         }
         removeSiegeClan(clan.getClanId());
@@ -852,7 +852,7 @@ public class Siege {
             player.sendMessage("This is not the time for siege registration and so registration and cancellation cannot be done.");
         } else if ((player.getClan() == null) || (player.getClan().getLevel() < SiegeManager.getInstance().getSiegeClanMinLevel())) {
             player.sendMessage("Only clans with Level " + SiegeManager.getInstance().getSiegeClanMinLevel() + " and higher may register for a castle siege.");
-        } else if (player.getClan().getHasCastle() > 0) {
+        } else if (player.getClan().getCastle() > 0) {
             player.sendMessage("You cannot register because your clan already own a castle.");
         } else if (player.getClan().getClanId() == getCastle().getOwnerId()) {
             player.sendPacket(new SystemMessage(SystemMessageId.CLAN_THAT_OWNS_CASTLE_IS_AUTOMATICALLY_REGISTERED_DEFENDING));
@@ -995,7 +995,7 @@ public class Siege {
     }
 
     private void saveSiegeClan(L2Clan clan, int typeId, boolean isUpdateRegistration) {
-        if (clan.getHasCastle() > 0) {
+        if (clan.getCastle() > 0) {
             return;
         }
 

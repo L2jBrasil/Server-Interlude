@@ -515,7 +515,7 @@ public class L2SignsPriestInstance extends L2FolkInstance {
 
                 for (L2Clan clan : clanList) {
                     if (clan.getAllyId() == allyId) {
-                        if (clan.getHasCastle() > 0) {
+                        if (clan.getCastle() > 0) {
                             return true;
                         }
                     }
@@ -523,7 +523,7 @@ public class L2SignsPriestInstance extends L2FolkInstance {
             }
         }
 
-        return (playerClan.getHasCastle() > 0);
+        return (playerClan.getCastle() > 0);
     }
 
     private void showChatWindow(L2PcInstance player, int val, String suffix, boolean isDescription) {
