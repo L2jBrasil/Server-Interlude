@@ -322,7 +322,7 @@ public class EnterWorld extends L2GameClientPacket
 			ClanHall clanHall = ClanHallManager.getInstance().getClanHallByOwner(activeChar.getClan());
 			if (clanHall != null)
 			{
-				if (!clanHall.getPaid())
+				if (!clanHall.isPaid())
 				{
 					activeChar.sendPacket(new SystemMessage(SystemMessageId.PAYMENT_FOR_YOUR_CLAN_HALL_HAS_NOT_BEEN_MADE_PLEASE_MAKE_PAYMENT_TO_YOUR_CLAN_WAREHOUSE_BY_S1_TOMORROW));
 				}

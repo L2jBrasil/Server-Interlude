@@ -19,7 +19,6 @@
 package com.l2jbr.gameserver.model.entity;
 
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.gameserver.GameServer;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.datatables.ClanTable;
 import com.l2jbr.gameserver.idfactory.IdFactory;
@@ -320,7 +319,7 @@ public class Auction {
      * End of auction
      */
     public void endAuction() {
-        if ((GameServer.gameServer.getCHManager() != null) && GameServer.gameServer.getCHManager().loaded()) {
+        if (ClanHallManager.getInstance().loaded()) {
             if ((_highestBidderId == 0) && (_sellerId == 0)) {
                 startAutoTask();
                 return;

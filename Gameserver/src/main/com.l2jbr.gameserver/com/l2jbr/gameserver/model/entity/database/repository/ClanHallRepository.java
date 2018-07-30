@@ -1,12 +1,12 @@
 package com.l2jbr.gameserver.model.entity.database.repository;
 
-import com.l2jbr.gameserver.model.entity.database.ClanHallData;
+import com.l2jbr.gameserver.model.entity.database.ClanHallEntity;
 import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-public interface ClanHallRepository extends CrudRepository<ClanHallData, Integer> {
+public interface ClanHallRepository extends CrudRepository<ClanHallEntity, Integer> {
 
     @Modifying
     @Query("UPDATE clanhall SET ownerId=:owner, paidUntil=:paidUntil, paid=:paid WHERE id=:id")

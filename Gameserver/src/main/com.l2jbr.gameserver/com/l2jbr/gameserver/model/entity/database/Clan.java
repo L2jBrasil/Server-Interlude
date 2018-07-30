@@ -9,15 +9,13 @@ import org.springframework.data.annotation.Id;
 public class Clan extends Entity<Integer> {
 
     @Id
-    @Column("clan_id")
-    private int clanId;
+    private int id;
     @Column("clan_name")
-    private String clanName;
+    private String name;
     @Column("clan_level")
-    private int clanLevel;
-    @Column("reputation_score")
-    private Integer reputationScore;
-    private Integer hasCastle;
+    private int level;
+    private Integer reputation;
+    private Integer castle;
     @Column("ally_id")
     private Integer allyId;
     @Column("ally_name")
@@ -43,43 +41,43 @@ public class Clan extends Entity<Integer> {
 
     @Override
     public Integer getId() {
-        return clanId;
+        return id;
     }
 
     public String getName() {
-        return clanName;
+        return name;
     }
 
-    public void setClanId(Integer clanId) {
-        this.clanId = clanId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public void setName(String clanName) {
-        this.clanName = clanName;
+        this.name = clanName;
     }
 
-    public int getClanLevel() {
-        return clanLevel;
+    public int getLevel() {
+        return level;
     }
 
     public void setLevel(Integer clanLevel) {
-        this.clanLevel = clanLevel;
+        this.level = clanLevel;
     }
 
-    public Integer getReputationScore() {
-        return reputationScore;
+    public Integer getReputation() {
+        return reputation;
     }
 
-    public void setReputationScore(Integer reputationScore) {
-        this.reputationScore = reputationScore;
+    public void setReputation(Integer reputation) {
+        this.reputation = reputation;
     }
 
     public Integer getCastle() {
-        return hasCastle != null ? hasCastle : 0;
+        return castle != null ? castle : 0;
     }
 
     public void setCastle(Integer hasCastle) {
-        this.hasCastle = hasCastle;
+        this.castle = hasCastle;
     }
 
     public Integer getAllyId() {

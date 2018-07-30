@@ -70,7 +70,6 @@ public class GameServer {
     private static Logger _log;
     private final SelectorThread<L2GameClient> _selectorThread;
     public static GameServer gameServer;
-    private static ClanHallManager _cHManager;
     private final ItemHandler _itemHandler;
     private final SkillHandler _skillHandler;
     private final AdminCommandHandler _adminCommandHandler;
@@ -92,10 +91,6 @@ public class GameServer {
 
     public SelectorThread<L2GameClient> getSelectorThread() {
         return _selectorThread;
-    }
-
-    public ClanHallManager getCHManager() {
-        return _cHManager;
     }
 
     public GameServer() throws Exception {
@@ -136,9 +131,7 @@ public class GameServer {
         CrestCache.getInstance();
 
         ClanTable.getInstance();
-
-
-
+        ClanHallManager.getInstance();
 
         GeoData.getInstance();
         if (Config.GEODATA == 2) {
@@ -146,7 +139,7 @@ public class GameServer {
         }
 
         // Load clan hall data before zone data
-        _cHManager = ClanHallManager.getInstance();
+
         CastleManager.getInstance();
         SiegeManager.getInstance();
 

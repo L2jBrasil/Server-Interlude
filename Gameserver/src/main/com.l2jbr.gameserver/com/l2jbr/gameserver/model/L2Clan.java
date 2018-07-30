@@ -173,7 +173,7 @@ public class L2Clan {
      */
     public L2Clan(int clanId, String clanName) {
         entity = new Clan();
-        entity.setClanId(clanId);
+        entity.setId(clanId);
         entity.setName(clanName);
         initializePrivs();
     }
@@ -458,7 +458,7 @@ public class L2Clan {
     }
 
     public int getLevel() {
-        return entity.getClanLevel();
+        return entity.getLevel();
     }
 
     public int getCastle() {
@@ -553,7 +553,7 @@ public class L2Clan {
     }
 
     private void restore(Clan clan) {
-        setLevel(clan.getClanLevel());
+        setLevel(clan.getLevel());
 
         if(clan.getAllyPenaltyExpiryTime() < System.currentTimeMillis()) {
             setAllyPenaltyExpiryTime(0, 0);
@@ -1124,7 +1124,7 @@ public class L2Clan {
     }
 
     public void setReputationScore(int value, boolean save) {
-        if ((entity.getReputationScore() >= 0) && (value < 0)) {
+        if ((entity.getReputation() >= 0) && (value < 0)) {
             broadcastToOnlineMembers(new SystemMessage(SystemMessageId.REPUTATION_POINTS_0_OR_LOWER_CLAN_SKILLS_DEACTIVATED));
             L2Skill[] skills = getAllSkills();
             for (L2ClanMember member : _members.values()) {
@@ -1134,7 +1134,7 @@ public class L2Clan {
                     }
                 }
             }
-        } else if ((entity.getReputationScore() < 0) && (value >= 0)) {
+        } else if ((entity.getReputation() < 0) && (value >= 0)) {
             broadcastToOnlineMembers(new SystemMessage(SystemMessageId.CLAN_SKILLS_WILL_BE_ACTIVATED_SINCE_REPUTATION_IS_0_OR_HIGHER));
             L2Skill[] skills = getAllSkills();
             for (L2ClanMember member : _members.values()) {
@@ -1148,12 +1148,12 @@ public class L2Clan {
             }
         }
 
-        entity.setReputationScore(value);
-        if (entity.getReputationScore() > 100000000) {
-            entity.setReputationScore(100000000);
+        entity.setReputation(value);
+        if (entity.getReputation() > 100000000) {
+            entity.setReputation(100000000);
         }
-        if (entity.getReputationScore() < -100000000) {
-            entity.setReputationScore(-100000000);
+        if (entity.getReputation() < -100000000) {
+            entity.setReputation(-100000000);
         }
         if (save) {
             updateClanInDB();
@@ -1161,7 +1161,7 @@ public class L2Clan {
     }
 
     public int getReputationScore() {
-        return entity.getReputationScore();
+        return entity.getReputation();
     }
 
     public void setRank(int rank) {

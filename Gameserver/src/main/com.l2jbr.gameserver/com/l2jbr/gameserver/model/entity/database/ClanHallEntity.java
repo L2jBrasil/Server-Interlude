@@ -5,7 +5,7 @@ import com.l2jbr.commons.database.model.Entity;
 import org.springframework.data.annotation.Id;
 
 @Table("clanhall")
-public class ClanHallData extends Entity<Integer> {
+public class ClanHallEntity extends Entity<Integer> {
 
     @Id
     private Integer id;
@@ -16,23 +16,39 @@ public class ClanHallData extends Entity<Integer> {
     private String location;
     private Long paidUntil;
     private Integer Grade;
-    private Integer paid;
+    private boolean paid;
 
     @Override
     public Integer getId() {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Integer getOwnerId() {
         return ownerId;
+    }
+
+    public void setOwnerId(int ownerId) {
+        this.ownerId = ownerId;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Integer getLease() {
         return lease;
+    }
+
+    public void setLease(int lease) {
+        this.lease = lease;
     }
 
     public String getDescription() {
@@ -47,11 +63,19 @@ public class ClanHallData extends Entity<Integer> {
         return paidUntil;
     }
 
+    public void setPaidUntil(long paidUntil) {
+        this.paidUntil = paidUntil;
+    }
+
     public Integer getGrade() {
         return Grade;
     }
 
-    public Integer getPaid() {
+    public boolean isPaid() {
         return paid;
+    }
+
+    public void setPaid(boolean paid) {
+        this.paid = paid;
     }
 }
