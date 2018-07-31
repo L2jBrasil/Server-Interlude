@@ -36,7 +36,7 @@ import com.l2jbr.gameserver.model.L2Manor;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.actor.instance.L2DoorInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.entity.database.CastleData;
+import com.l2jbr.gameserver.model.entity.database.castleEntity;
 import com.l2jbr.gameserver.model.entity.database.CastleDoor;
 import com.l2jbr.gameserver.model.entity.database.CastleManorProcure;
 import com.l2jbr.gameserver.model.entity.database.CastleManorProduction;
@@ -54,31 +54,52 @@ import java.util.*;
 public class Castle {
     protected static Logger _log = LoggerFactory.getLogger(Castle.class.getName());
 
-    private List<CropProcure> _procure = new LinkedList<>();
-    private List<SeedProduction> _production = new LinkedList<>();
-    private List<CropProcure> _procureNext = new LinkedList<>();
-    private List<SeedProduction> _productionNext = new LinkedList<>();
+    private List<CropProcure> _procure = new ArrayList<>();
+    private List<SeedProduction> _production = new ArrayList<>();
+    private List<CropProcure> _procureNext = new ArrayList<>();
+    private List<SeedProduction> _productionNext = new ArrayList<>();
     private boolean _isNextPeriodApproved = false;
 
-    private int _castleId = 0;
-    private final List<L2DoorInstance> _doors = new LinkedList<>();
-    private final List<CastleDoor> _doorDefault = new LinkedList<CastleDoor>();
-    private String _name = "";
+    private final List<L2DoorInstance> _doors = new ArrayList<>();
+    private final List<CastleDoor> _doorDefault = new ArrayList<>();
     private int _ownerId = 0;
     private Siege _siege = null;
     private Calendar _siegeDate;
-    private int _siegeDayOfWeek = 7; // Default to saturday
-    private int _siegeHourOfDay = 20; // Default to 8 pm server time
-    private int _taxPercent = 0;
-    private double _taxRate = 0;
-    private int _treasury = 0;
+    private double _taxRate;
     private L2CastleZone _zone;
     private L2Clan _formerOwner = null;
     private int _nbArtifact = 1;
-    private final Map<Integer, Integer> _engrave = new LinkedHashMap<>();
+    private final Map<Integer, Integer> _engrave = new HashMap<>();
+    private castleEntity entity;
 
-    public Castle(CastleData castleData) {
-        load(castleData);
+    public Castle(castleEntity castleEntity) {
+        entity = castleEntity;
+
+        if (entity.getId() == 7 || entity.getId() == 9) {
+            _nbArtifact = 2;
+        }
+
+        _siegeDate = Calendar.getInstance();
+        _siegeDate.setTimeInMillis(castleEntity.getSiegeDate());
+
+        _taxRate = entity.getTaxPercent() / 100.0;
+
+        ClanRepository clanRepository = DatabaseAccess.getRepository(ClanRepository.class);
+        clanRepository.findClanIdByCastle(entity.getId()).ifPresent(clanId -> {
+            _ownerId = clanId;
+            L2Clan clan = ClanTable.getInstance().getClan(getOwnerId()); // Try to find clan instance
+            ThreadPoolManager.getInstance().scheduleGeneral(new CastleUpdater(clan, 1), 3600000); // Schedule owner tasks to start running
+        });
+
+        for (CastleDoor castleDoor : castleEntity.getDoors()) {
+
+            _doorDefault.add(castleDoor);
+
+            L2DoorInstance door = DoorTable.parseDoor(castleDoor);
+            door.spawnMe(door.getX(), door.getY(), door.getZ());
+            _doors.add(door);
+            DoorTable.getInstance().putDoor(door);
+        }
     }
 
     public void Engrave(L2Clan clan, int objId) {
@@ -113,7 +134,7 @@ public class Castle {
             return;
         }
 
-        if (_name.equalsIgnoreCase("Schuttgart") || _name.equalsIgnoreCase("Goddard")) {
+        if (entity.getName().equalsIgnoreCase("Schuttgart") || entity.getName().equalsIgnoreCase("Goddard")) {
             Castle rune = CastleManager.getInstance().getCastle("rune");
             if (rune != null) {
                 int runeTax = (int) (amount * rune.getTaxRate());
@@ -123,7 +144,7 @@ public class Castle {
                 amount -= runeTax;
             }
         }
-        if (!_name.equalsIgnoreCase("aden") && !_name.equalsIgnoreCase("Rune") && !_name.equalsIgnoreCase("Schuttgart") && !_name.equalsIgnoreCase("Goddard")) // If current castle instance is not Aden, Rune, Goddard or Schuttgart.
+        if (!entity.getName().equalsIgnoreCase("aden") && !entity.getName().equalsIgnoreCase("Rune") && !entity.getName().equalsIgnoreCase("Schuttgart") && !entity.getName().equalsIgnoreCase("Goddard")) // If current castle instance is not Aden, Rune, Goddard or Schuttgart.
         {
             Castle aden = CastleManager.getInstance().getCastle("aden");
             if (aden != null) {
@@ -139,12 +160,6 @@ public class Castle {
         addToTreasuryNoTax(amount);
     }
 
-    /**
-     * Add amount to castle instance's treasury (warehouse), no tax paying.
-     *
-     * @param amount
-     * @return
-     */
     public boolean addToTreasuryNoTax(int amount) {
         if (getOwnerId() <= 0) {
             return false;
@@ -152,20 +167,20 @@ public class Castle {
 
         if (amount < 0) {
             amount *= -1;
-            if (_treasury < amount) {
+            if (getTreasury() < amount) {
                 return false;
             }
-            _treasury -= amount;
+            entity.setTreasury(getTreasury() - amount);
         } else {
-            if (((long) _treasury + amount) > Integer.MAX_VALUE) {
-                _treasury = Integer.MAX_VALUE;
+            if (((long) getTreasury() + amount) > Integer.MAX_VALUE) {
+                entity.setTreasury(Integer.MAX_VALUE);
             } else {
-                _treasury += amount;
+                entity.setTreasury(getTreasury() + amount);
             }
         }
 
         CastleRepository repository = DatabaseAccess.getRepository(CastleRepository.class);
-        repository.updateTreasuryById(getCastleId(), getTreasury());
+        repository.save(entity);
         return true;
     }
 
@@ -302,11 +317,11 @@ public class Castle {
     }
 
     public void setTaxPercent(int taxPercent) {
-        _taxPercent = taxPercent;
-        _taxRate = _taxPercent / 100.0;
+        entity.setTaxPercent(taxPercent);
+        _taxRate = taxPercent / 100.0;
 
         CastleRepository repository = DatabaseAccess.getRepository(CastleRepository.class);
-        repository.updateTaxById(getCastleId(), taxPercent);
+        repository.save(entity);
     }
 
     /**
@@ -339,49 +354,6 @@ public class Castle {
         }
     }
 
-    private void load(CastleData castleData) {
-        _castleId = castleData.getId();
-        if ((_castleId == 7) || (_castleId == 9)) {
-            _nbArtifact = 2;
-        }
-        _name = castleData.getName();
-        _siegeDate = Calendar.getInstance();
-        _siegeDate.setTimeInMillis(castleData.getSiegeDate());
-
-        _siegeDayOfWeek = castleData.getSiegeDayOfWeek();
-        if(_siegeDayOfWeek < 1 || _siegeDayOfWeek > 7) {
-            _siegeDayOfWeek = 7;
-        }
-
-        _siegeHourOfDay = castleData.getSiegeHourOfDay();
-        if(_siegeHourOfDay < 0 || _siegeHourOfDay > 23) {
-            _siegeHourOfDay = 20;
-        }
-
-        _taxPercent = castleData.getTaxPercent();
-        _treasury = castleData.getTreasury();
-
-
-        _taxRate = _taxPercent / 100.0;
-
-        ClanRepository clanRepository = DatabaseAccess.getRepository(ClanRepository.class);
-        clanRepository.findClanIdByCastle(castleData.getId()).ifPresent(clanId -> {
-            _ownerId = clanId;
-            L2Clan clan = ClanTable.getInstance().getClan(getOwnerId()); // Try to find clan instance
-            ThreadPoolManager.getInstance().scheduleGeneral(new CastleUpdater(clan, 1), 3600000); // Schedule owner tasks to start running
-        });
-       
-        for (CastleDoor castleDoor : castleData.getDoors()) {
-
-            _doorDefault.add(castleDoor);
-
-            L2DoorInstance door = DoorTable.parseDoor(castleDoor);
-            door.spawnMe(door.getX(), door.getY(), door.getZ());
-            _doors.add(door);
-            DoorTable.getInstance().putDoor(door);
-        }
-    }
-
     private void updateOwnerInDB(L2Clan clan) {
         if (clan != null) {
             _ownerId = clan.getClanId(); // Update owner id property
@@ -403,10 +375,9 @@ public class Castle {
         }
     }
 
-    // =========================================================
-    // Property
+
     public final int getCastleId() {
-        return _castleId;
+        return entity.getId();
     }
 
     public final L2DoorInstance getDoor(int doorId) {
@@ -428,7 +399,7 @@ public class Castle {
     }
 
     public final String getName() {
-        return _name;
+        return entity.getName();
     }
 
     public final int getOwnerId() {
@@ -450,15 +421,15 @@ public class Castle {
     }
 
     public final int getSiegeDayOfWeek() {
-        return _siegeDayOfWeek;
+        return entity.getSiegeDayOfWeek();
     }
 
     public final int getSiegeHourOfDay() {
-        return _siegeHourOfDay;
+        return entity.getSiegeHourOfDay();
     }
 
     public final int getTaxPercent() {
-        return _taxPercent;
+        return entity.getTaxPercent();
     }
 
     public final double getTaxRate() {
@@ -466,7 +437,7 @@ public class Castle {
     }
 
     public final int getTreasury() {
-        return _treasury;
+        return entity.getTreasury();
     }
 
     public List<SeedProduction> getSeedProduction(int period) {

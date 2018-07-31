@@ -1,12 +1,12 @@
 package com.l2jbr.gameserver.model.entity.database.repository;
 
-import com.l2jbr.gameserver.model.entity.database.CastleData;
+import com.l2jbr.gameserver.model.entity.database.castleEntity;
 import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-public interface CastleRepository extends CrudRepository<CastleData, Integer> {
+public interface CastleRepository extends CrudRepository<castleEntity, Integer> {
 
     @Modifying
     @Query("UPDATE castle SET siegeDate=:siegeDate WHERE id=:castle")

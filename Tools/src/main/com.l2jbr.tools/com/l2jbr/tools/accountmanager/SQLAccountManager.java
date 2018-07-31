@@ -29,6 +29,7 @@ import com.l2jbr.gameserver.model.entity.database.repository.*;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -119,7 +120,7 @@ public class SQLAccountManager {
 
     private static void addOrUpdateAccount(String login, String password, String level) throws IOException, NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA");
-        byte[] newpass  = password.getBytes("UTF-8");
+        byte[] newpass  = password.getBytes(StandardCharsets.UTF_8);
         newpass = md.digest(newpass);
 
         AccountRepository repository = DatabaseAccess.getRepository(AccountRepository.class);
@@ -152,7 +153,7 @@ public class SQLAccountManager {
 
             characterRepository.findAllByAccountName(login).forEach(character -> {
                 clanRepository.findByLeaderId(character.getObjectId()).ifPresent(clanData -> {
-                    int clanId = clanData.getClanId();
+                    int clanId = clanData.getId();
                     // Clan Leader
                     System.out.println("Deleting clan " + clanData.getName() +  ".");
 

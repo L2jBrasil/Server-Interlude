@@ -24,35 +24,34 @@ import com.l2jbr.gameserver.model.L2ClanMember;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.entity.Castle;
 import com.l2jbr.gameserver.model.entity.database.repository.CastleRepository;
 import com.l2jbr.gameserver.model.entity.database.repository.ItemRepository;
-import com.l2jbr.gameserver.model.entity.Castle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedList;
 import java.util.List;
 
+import static java.util.Objects.isNull;
 
 public class CastleManager {
-    // =========================================================
+
+    private static final Logger logger = LoggerFactory.getLogger(CastleManager.class);
     private static CastleManager _instance;
 
     public static final CastleManager getInstance() {
-        if (_instance == null) {
-            System.out.println("Initializing CastleManager");
+        if (isNull(_instance)) {
+            logger.info("Initializing CastleManager");
             _instance = new CastleManager();
             _instance.load();
         }
         return _instance;
     }
 
-    // =========================================================
 
-    // =========================================================
-    // Data Field
     private List<Castle> _castles;
 
-    // =========================================================
-    // Constructor
     private static final int _castleCirclets[] =
             {
                     0,
@@ -67,11 +66,7 @@ public class CastleManager {
                     8183
             };
 
-    public CastleManager() {
-    }
-
-    // =========================================================
-    // Method - Public
+    private CastleManager() { }
 
     public final int findNearestCastleIndex(L2Object obj) {
         int index = getCastleIndex(obj);
@@ -96,9 +91,7 @@ public class CastleManager {
 
     private final void load() {
         CastleRepository repository = DatabaseAccess.getRepository(CastleRepository.class);
-        repository.findAll().forEach(castle -> {
-            getCastles().add(new Castle(castle));
-        });
+        repository.findAll().forEach(castle -> getCastles().add(new Castle(castle)));
     }
 
     public final Castle getCastleById(int castleId) {

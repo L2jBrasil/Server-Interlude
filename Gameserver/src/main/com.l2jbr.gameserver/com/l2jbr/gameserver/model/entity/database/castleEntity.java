@@ -2,12 +2,13 @@ package com.l2jbr.gameserver.model.entity.database;
 
 import com.l2jbr.commons.database.annotation.Column;
 import com.l2jbr.commons.database.annotation.Table;
+import com.l2jbr.commons.database.model.Entity;
 import org.springframework.data.annotation.Id;
 
 import java.util.Set;
 
 @Table("castle")
-public class CastleData {
+public class castleEntity extends Entity<Integer> {
 
     @Id
     private int id;
@@ -20,7 +21,21 @@ public class CastleData {
     @Column("castleId")
     private Set<CastleDoor> doors;
 
-    public int getId() {
+    @Override
+    public void onLoad() {
+        super.onLoad();
+
+        if(siegeDayOfWeek < 1 || siegeDayOfWeek > 7) {
+            siegeDayOfWeek = 7;
+        }
+
+        if(siegeHourOfDay < 0 || siegeHourOfDay > 23) {
+            siegeHourOfDay = 20;
+        }
+    }
+
+    @Override
+     public Integer getId() {
         return id;
     }
 
@@ -32,8 +47,16 @@ public class CastleData {
         return taxPercent;
     }
 
+    public void setTaxPercent(int taxPercent) {
+        this.taxPercent = taxPercent;
+    }
+
     public int getTreasury() {
         return treasury;
+    }
+
+    public void setTreasury(int treasury) {
+        this.treasury = treasury;
     }
 
     public long getSiegeDate() {
@@ -44,6 +67,7 @@ public class CastleData {
         return siegeDayOfWeek;
     }
 
+
     public int getSiegeHourOfDay() {
         return siegeHourOfDay;
     }
@@ -51,4 +75,5 @@ public class CastleData {
     public Set<CastleDoor> getDoors() {
         return doors;
     }
+
 }
