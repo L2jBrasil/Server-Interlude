@@ -23,15 +23,12 @@ import com.l2jbr.gameserver.model.zone.L2ZoneType;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
-
 /**
  * A jail zone
  * @author durgus
  */
-public class L2JailZone extends L2ZoneType
-{
-	public L2JailZone()
-	{
+public class L2JailZone extends L2ZoneType {
+	public L2JailZone() {
 		super();
 	}
 	

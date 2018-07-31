@@ -20,15 +20,12 @@ package com.l2jbr.gameserver.model.zone.type;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.zone.L2ZoneType;
 
-
 /**
  * A fishing zone
  * @author durgus
  */
-public class L2FishingZone extends L2ZoneType
-{
-	public L2FishingZone()
-	{
+public class L2FishingZone extends L2ZoneType {
+	public L2FishingZone() {
 		super();
 	}
 	

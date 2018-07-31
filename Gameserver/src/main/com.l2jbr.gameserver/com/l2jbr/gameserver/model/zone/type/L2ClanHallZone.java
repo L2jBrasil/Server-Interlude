@@ -26,20 +26,16 @@ import com.l2jbr.gameserver.model.entity.ClanHall;
 import com.l2jbr.gameserver.model.zone.L2ZoneType;
 import com.l2jbr.gameserver.serverpackets.ClanHallDecoration;
 
-
 /**
  * A clan hall zone
  * @author durgus
  */
-public class L2ClanHallZone extends L2ZoneType
-{
+public class L2ClanHallZone extends L2ZoneType {
 	private int _clanHallId;
 	private final int[] _spawnLoc;
 	
-	public L2ClanHallZone()
-	{
+	public L2ClanHallZone() {
 		super();
-		
 		_spawnLoc = new int[3];
 	}
 	

@@ -20,15 +20,13 @@ package com.l2jbr.gameserver.model.zone.type;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.zone.L2ZoneType;
 
-
 /**
  * A peaceful zone
  * @author durgus
  */
-public class L2PeaceZone extends L2ZoneType
-{
-	public L2PeaceZone()
-	{
+public class L2PeaceZone extends L2ZoneType {
+
+	public L2PeaceZone() {
 		super();
 	}
 	

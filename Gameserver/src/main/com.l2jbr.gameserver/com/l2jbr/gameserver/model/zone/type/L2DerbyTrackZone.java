@@ -20,7 +20,6 @@ package com.l2jbr.gameserver.model.zone.type;
 import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
-
 /**
  * The Monster Derby Track Zone
  * @author durgus

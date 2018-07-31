@@ -24,18 +24,15 @@ import com.l2jbr.gameserver.model.zone.L2ZoneType;
 import java.util.Collection;
 import java.util.concurrent.Future;
 
-
 /**
  * A damage zone
  * @author durgus
  */
-public class L2DamageZone extends L2ZoneType
-{
+public class L2DamageZone extends L2ZoneType {
 	private int _damagePerSec;
 	private Future<?> _task;
 	
-	public L2DamageZone()
-	{
+	public L2DamageZone() {
 		super();
 		
 		// Setup default damage

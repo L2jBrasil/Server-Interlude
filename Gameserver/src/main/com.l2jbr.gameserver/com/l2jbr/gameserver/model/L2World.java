@@ -31,6 +31,8 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static java.util.Objects.isNull;
+
 
 /**
  * This class ...
@@ -98,14 +100,8 @@ public final class L2World {
         initRegions();
     }
 
-    /**
-     * Return the current instance of L2World.<BR>
-     * <BR>
-     *
-     * @return
-     */
     public static L2World getInstance() {
-        return _instance == null ? _instance = new L2World() : _instance;
+        return isNull(_instance) ? _instance = new L2World() : _instance;
     }
 
     /**
@@ -775,9 +771,7 @@ public final class L2World {
                 }
             }
         }
-
-        _log.info("L2World: (" + REGIONS_X + " by " + REGIONS_Y + ") World Region Grid set up.");
-
+        _log.info("L2World: ({} by {}) World Region Grid set up.", REGIONS_X, REGIONS_Y);
     }
 
     /**

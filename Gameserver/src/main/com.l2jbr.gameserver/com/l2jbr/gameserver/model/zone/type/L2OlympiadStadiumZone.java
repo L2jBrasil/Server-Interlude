@@ -23,17 +23,14 @@ import com.l2jbr.gameserver.model.zone.L2ZoneType;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
-
 /**
  * An olympiad stadium
  * @author durgus
  */
-public class L2OlympiadStadiumZone extends L2ZoneType
-{
+public class L2OlympiadStadiumZone extends L2ZoneType {
 	private int _stadiumId;
 	
-	public L2OlympiadStadiumZone()
-	{
+	public L2OlympiadStadiumZone() {
 		super();
 	}
 	
@@ -55,8 +52,7 @@ public class L2OlympiadStadiumZone extends L2ZoneType
 	{
 		character.setInsideZone(L2Character.ZONE_PVP, true);
 		
-		if (character instanceof L2PcInstance)
-		{
+		if (character instanceof L2PcInstance) {
 			((L2PcInstance) character).sendPacket(new SystemMessage(SystemMessageId.ENTERED_COMBAT_ZONE));
 		}
 	}

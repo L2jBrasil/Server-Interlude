@@ -22,7 +22,6 @@ import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.zone.L2ZoneType;
 
-
 /**
  * A Town zone
  * @author durgus
@@ -36,8 +35,7 @@ public class L2TownZone extends L2ZoneType
 	private boolean _noPeace;
 	private final int[] _spawnLoc;
 	
-	public L2TownZone()
-	{
+	public L2TownZone() {
 		super();
 		
 		_taxById = 0;

@@ -23,7 +23,6 @@ import com.l2jbr.gameserver.model.zone.L2ZoneType;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 
-
 /**
  * An arena
  * @author durgus
@@ -32,8 +31,7 @@ public class L2ArenaZone extends L2ZoneType
 {
 	private final int[] _spawnLoc;
 	
-	public L2ArenaZone()
-	{
+	public L2ArenaZone() {
 		super();
 		
 		_spawnLoc = new int[3];

@@ -21,15 +21,13 @@ import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.zone.L2ZoneType;
 
-
 /**
  * Bighead zones give entering players big heads
  * @author durgus
  */
-public class L2BigheadZone extends L2ZoneType
-{
-	public L2BigheadZone()
-	{
+public class L2BigheadZone extends L2ZoneType {
+
+	public L2BigheadZone() {
 		super();
 	}
 	

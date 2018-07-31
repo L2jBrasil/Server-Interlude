@@ -18,7 +18,6 @@
 package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.instancemanager.ArenaManager;
 import com.l2jbr.gameserver.instancemanager.FishingZoneManager;
 import com.l2jbr.gameserver.instancemanager.OlympiadStadiaManager;
@@ -41,8 +40,10 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.util.List;
 
+import static com.l2jbr.commons.database.DatabaseAccess.getRepository;
+import static java.util.Objects.isNull;
+
 /**
- * This class manages the augmentation data and can also create new augmentations.
  *
  * @author durgus
  */
@@ -52,7 +53,7 @@ public class ZoneData {
     private static ZoneData _instance;
 
     public static ZoneData getInstance() {
-        if (_instance == null) {
+        if (isNull(_instance)) {
             _instance = new ZoneData();
         }
         return _instance;
@@ -80,7 +81,7 @@ public class ZoneData {
             }
 
             Document doc = factory.newDocumentBuilder().parse(file);
-            ZoneVerticesRepository repository = DatabaseAccess.getRepository(ZoneVerticesRepository.class);
+            ZoneVerticesRepository repository = getRepository(ZoneVerticesRepository.class);
 
             for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling()) {
                 if ("list".equalsIgnoreCase(n.getNodeName())) {

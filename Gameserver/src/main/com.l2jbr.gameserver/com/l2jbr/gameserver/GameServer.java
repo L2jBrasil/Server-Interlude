@@ -138,15 +138,18 @@ public class GameServer {
         SiegeManager.getInstance();
 
         TeleportLocationTable.getInstance();
+        L2World.getInstance();
+        ZoneData.getInstance();
+        SpawnTable.getInstance();
 
         GeoData.getInstance();
         if (Config.GEODATA == 2) {
             GeoPathFinding.getInstance();
         }
 
-        L2World.getInstance();
-        ZoneData.getInstance();
-        SpawnTable.getInstance();
+
+
+
         RaidBossSpawnManager.getInstance();
         DayNightSpawnManager.getInstance().notifyChangeMode();
         DimensionalRiftManager.getInstance();

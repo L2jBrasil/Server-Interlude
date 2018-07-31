@@ -19,7 +19,6 @@
 package com.l2jbr.gameserver.datatables;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.instancemanager.DayNightSpawnManager;
 import com.l2jbr.gameserver.model.L2Spawn;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
@@ -31,6 +30,9 @@ import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import static com.l2jbr.commons.database.DatabaseAccess.getRepository;
+import static java.util.Objects.isNull;
 
 /**
  * This class ...
@@ -49,7 +51,7 @@ public class SpawnTable {
     private int _highestId;
 
     public static SpawnTable getInstance() {
-        return _instance == null ? _instance = new SpawnTable() : _instance;
+        return isNull(_instance) ? _instance = new SpawnTable() : _instance;
     }
 
     private SpawnTable() {
@@ -63,9 +65,7 @@ public class SpawnTable {
     }
 
     private void fillSpawnTable() {
-        java.sql.Connection con = null;
-        SpawnListRepository repository = DatabaseAccess.getRepository(SpawnListRepository.class);
-        repository.findAll().forEach(spawnlist -> {
+        getRepository(SpawnListRepository.class).findAll().forEach(spawnlist -> {
             NpcTemplate template1 = NpcTable.getInstance().getTemplate(spawnlist.getNpcTemplateId());
             if (template1 != null) {
                 if (template1.getType().equalsIgnoreCase("L2SiegeGuard")) {
@@ -131,7 +131,7 @@ public class SpawnTable {
 
         if (storeInDb) {
             Spawnlist spawnlist = new Spawnlist(spawn);
-            SpawnListRepository repository = DatabaseAccess.getRepository(SpawnListRepository.class);
+            SpawnListRepository repository = getRepository(SpawnListRepository.class);
             repository.save(spawnlist);
         }
     }
@@ -142,7 +142,7 @@ public class SpawnTable {
         }
 
         if (updateDb) {
-            SpawnListRepository repository = DatabaseAccess.getRepository(SpawnListRepository.class);
+            SpawnListRepository repository = getRepository(SpawnListRepository.class);
             repository.deleteById(spawn.getId());
         }
     }

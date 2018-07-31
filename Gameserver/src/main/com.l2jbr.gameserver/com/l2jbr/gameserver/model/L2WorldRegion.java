@@ -30,8 +30,8 @@ import com.l2jbr.gameserver.util.L2ObjectSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ScheduledFuture;
 
@@ -56,7 +56,7 @@ public final class L2WorldRegion {
 
     private final List<L2WorldRegion> _surroundingRegions;
     private final int _tileX, _tileY;
-    private Boolean _active = false;
+    private Boolean _active;
     private ScheduledFuture<?> _neighborsTask = null;
 
     private L2ZoneManager _zoneManager;
@@ -64,8 +64,7 @@ public final class L2WorldRegion {
     public L2WorldRegion(int pTileX, int pTileY) {
         _allPlayable = L2ObjectSet.createL2PlayerSet(); // new L2ObjectHashSet<L2PcInstance>();
         _visibleObjects = L2ObjectSet.createL2ObjectSet(); // new L2ObjectHashSet<L2Object>();
-        _surroundingRegions = new LinkedList<>();
-        // _surroundingRegions.add(this); //done in L2World.initRegions()
+        _surroundingRegions = new ArrayList<>();
 
         _tileX = pTileX;
         _tileY = pTileY;

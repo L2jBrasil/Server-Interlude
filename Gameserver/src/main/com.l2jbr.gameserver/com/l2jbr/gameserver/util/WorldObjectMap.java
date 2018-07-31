@@ -20,13 +20,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-
-/**
- * This class ...
- *
- * @param <T>
- * @version $Revision: 1.2 $ $Date: 2004/06/27 08:12:59 $
- */
 public class WorldObjectMap<T extends L2Object> extends L2ObjectMap<T> {
     private final Map<Integer, T> _objectMap = new ConcurrentHashMap<>();
 
