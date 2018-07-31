@@ -23,8 +23,8 @@ import com.l2jbr.gameserver.datatables.TeleportLocationTable;
 import com.l2jbr.gameserver.instancemanager.CastleManager;
 import com.l2jbr.gameserver.instancemanager.SiegeManager;
 import com.l2jbr.gameserver.instancemanager.TownManager;
-import com.l2jbr.gameserver.model.L2TeleportLocation;
 import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.Teleport;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
@@ -185,7 +185,7 @@ public final class L2TeleporterInstance extends L2FolkInstance
 	
 	private void doTeleport(L2PcInstance player, int val)
 	{
-		L2TeleportLocation list = TeleportLocationTable.getInstance().getTemplate(val);
+		Teleport list = TeleportLocationTable.getInstance().getTemplate(val);
 		if (list != null)
 		{
 			// you cannot teleport to village that is in siege
@@ -206,7 +206,7 @@ public final class L2TeleporterInstance extends L2FolkInstance
 				player.sendPacket(sm);
 				return;
 			}
-			else if (list.getIsForNoble() && !player.isNoble())
+			else if (list.isForNoble() && !player.isNoble())
 			{
 				String filename = "data/html/teleporter/nobleteleporter-no.htm";
 				NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
@@ -220,7 +220,7 @@ public final class L2TeleporterInstance extends L2FolkInstance
 			{
 				return;
 			}
-			else if (!list.getIsForNoble() && (Config.ALT_GAME_FREE_TELEPORT || player.reduceAdena("Teleport", list.getPrice(), this, true)))
+			else if (!list.isForNoble() && (Config.ALT_GAME_FREE_TELEPORT || player.reduceAdena("Teleport", list.getPrice(), this, true)))
 			{
 				if (Config.DEBUG)
 				{
@@ -228,7 +228,7 @@ public final class L2TeleporterInstance extends L2FolkInstance
 				}
 				player.teleToLocation(list.getLocX(), list.getLocY(), list.getLocZ(), true);
 			}
-			else if (list.getIsForNoble() && (Config.ALT_GAME_FREE_TELEPORT || player.destroyItemByItemId("Noble Teleport", 6651, list.getPrice(), this, true)))
+			else if (list.isForNoble() && (Config.ALT_GAME_FREE_TELEPORT || player.destroyItemByItemId("Noble Teleport", 6651, list.getPrice(), this, true)))
 			{
 				if (Config.DEBUG)
 				{

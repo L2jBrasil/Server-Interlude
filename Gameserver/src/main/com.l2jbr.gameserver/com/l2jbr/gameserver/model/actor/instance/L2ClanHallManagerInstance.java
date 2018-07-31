@@ -27,10 +27,10 @@ import com.l2jbr.gameserver.instancemanager.SiegeManager;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.L2Skill.SkillType;
-import com.l2jbr.gameserver.model.L2TeleportLocation;
 import com.l2jbr.gameserver.model.entity.ClanHall;
 import com.l2jbr.gameserver.model.entity.database.MerchantShop;
 import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.Teleport;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.*;
 
@@ -917,7 +917,7 @@ public class L2ClanHallManagerInstance extends L2FolkInstance
 		{
 			player.sendMessage("doTeleport(L2PcInstance player, int val) is called");
 		}
-		L2TeleportLocation list = TeleportLocationTable.getInstance().getTemplate(val);
+		Teleport list = TeleportLocationTable.getInstance().getTemplate(val);
 		if (list != null)
 		{
 			// you cannot teleport to village that is in siege Not sure about this one though

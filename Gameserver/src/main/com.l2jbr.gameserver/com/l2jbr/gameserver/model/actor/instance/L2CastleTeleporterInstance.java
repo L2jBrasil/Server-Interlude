@@ -21,8 +21,8 @@ package com.l2jbr.gameserver.model.actor.instance;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.datatables.TeleportLocationTable;
 import com.l2jbr.gameserver.model.L2Position;
-import com.l2jbr.gameserver.model.L2TeleportLocation;
 import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.Teleport;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 
@@ -146,7 +146,7 @@ public final class L2CastleTeleporterInstance extends L2FolkInstance
 	
 	private void doTeleport(L2PcInstance player, int val)
 	{
-		L2TeleportLocation list = TeleportLocationTable.getInstance().getTemplate(val);
+		Teleport list = TeleportLocationTable.getInstance().getTemplate(val);
 		if (list != null)
 		{
 			if (player.reduceAdena("Teleport", list.getPrice(), player.getLastFolkNPC(), true))

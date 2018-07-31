@@ -17,7 +17,7 @@ public class Teleport  {
     @Column("loc_z")
     private int locZ;
     private int price;
-    private int fornoble;
+    private boolean fornoble;
 
     public int getId() {
         return id;
@@ -43,7 +43,7 @@ public class Teleport  {
         return price;
     }
 
-    public int getFornoble() {
+    public boolean isForNoble() {
         return fornoble;
     }
 }

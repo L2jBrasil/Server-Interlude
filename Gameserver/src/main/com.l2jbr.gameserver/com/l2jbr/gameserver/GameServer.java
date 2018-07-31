@@ -130,22 +130,20 @@ public class GameServer {
         HtmCache.getInstance();
         CrestCache.getInstance();
 
-
         ClanTable.getInstance();
 
         // Load clan hall data before zone data
         ClanHallManager.getInstance();
         CastleManager.getInstance();
+        SiegeManager.getInstance();
+
+        TeleportLocationTable.getInstance();
 
         GeoData.getInstance();
         if (Config.GEODATA == 2) {
             GeoPathFinding.getInstance();
         }
 
-
-        SiegeManager.getInstance();
-
-        TeleportLocationTable.getInstance();
         L2World.getInstance();
         ZoneData.getInstance();
         SpawnTable.getInstance();

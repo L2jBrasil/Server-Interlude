@@ -18,24 +18,26 @@
  */
 package com.l2jbr.gameserver.datatables;
 
-import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.gameserver.model.L2TeleportLocation;
+import com.l2jbr.gameserver.model.entity.database.Teleport;
 import com.l2jbr.gameserver.model.entity.database.repository.TeleportRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 
+import static com.l2jbr.commons.database.DatabaseAccess.getRepository;
+import static java.util.Objects.isNull;
+
 public class TeleportLocationTable {
-    private static Logger _log = LoggerFactory.getLogger(TeleportLocationTable.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(TeleportLocationTable.class);
 
     private static TeleportLocationTable _instance;
 
-    private Map<Integer, L2TeleportLocation> _teleports;
+    private Map<Integer, Teleport> _teleports;
 
     public static TeleportLocationTable getInstance() {
-        if (_instance == null) {
+        if (isNull(_instance )) {
             _instance = new TeleportLocationTable();
         }
         return _instance;
@@ -46,24 +48,12 @@ public class TeleportLocationTable {
     }
 
     public void reloadAll() {
-        _teleports = new LinkedHashMap<>();
-        TeleportRepository repository = DatabaseAccess.getRepository(TeleportRepository.class);
-        repository.findAll().forEach(teleportData -> {
-            L2TeleportLocation teleport = new L2TeleportLocation();
-
-            teleport.setTeleId(teleportData.getId());
-            teleport.setLocX(teleportData.getLocX());
-            teleport.setLocY(teleportData.getLocY());
-            teleport.setLocZ(teleportData.getLocZ());
-            teleport.setPrice(teleportData.getPrice());
-            teleport.setIsForNoble(teleportData.getFornoble() == 1);
-
-            _teleports.put(teleport.getTeleId(), teleport);
-        });
+        _teleports = new HashMap<>();
+        getRepository(TeleportRepository.class).findAll().forEach(teleport -> _teleports.put(teleport.getId(), teleport));
         _log.info("TeleportLocationTable: Loaded {} Teleport Location Templates.", _teleports.size());
     }
 
-    public L2TeleportLocation getTemplate(int id) {
+    public Teleport getTemplate(int id) {
         return _teleports.get(id);
     }
 }
