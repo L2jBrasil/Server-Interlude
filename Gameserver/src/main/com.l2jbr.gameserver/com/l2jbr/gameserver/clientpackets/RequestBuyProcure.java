@@ -165,7 +165,7 @@ public class RequestBuyProcure extends L2GameClientPacket {
             player.sendPacket(sm);
             sm = null;
 
-            // manor.getCastle().setCropAmount(itemId, manor.getCastle().getCrop(itemId, CastleManorManager.PERIOD_CURRENT).getAmount() - count);
+            // manor.getCastle().setCropAmount(itemId, manor.getCastle().getCrop(itemId, CastleManorManager.PERIOD_CURRENT).getCount() - count);
         }
 
         // Send update packets

@@ -27,6 +27,7 @@ import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.model.entity.database.Spawn;
+import com.l2jbr.gameserver.templates.ISpawn;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,7 +50,7 @@ import static java.util.Objects.requireNonNullElse;
 public class L2Spawn {
     protected static final Logger _log = LoggerFactory.getLogger(L2Spawn.class.getName());
 
-    private Spawn entity;
+    private ISpawn entity;
     private NpcTemplate _template;
 
     /**
@@ -61,16 +62,6 @@ public class L2Spawn {
      * The current number of SpawnTask in progress or stand by of this L2Spawn
      */
     private int _scheduledCount;
-
-    /**
-     * Minimum delay RaidBoss
-     */
-    private int _respawnMinDelay;
-
-    /**
-     * Maximum delay RaidBoss
-     */
-    private int _respawnMaxDelay;
 
     /**
      * The generic constructor of L2NpcInstance managed by this L2Spawn
@@ -112,10 +103,11 @@ public class L2Spawn {
         entity = new Spawn();
     }
 
-    public L2Spawn(Spawn entity) throws NoSuchMethodException {
+    public L2Spawn(ISpawn entity) throws NoSuchMethodException {
         this(entity.getNpcTemplate());
         this.entity = entity;
     }
+
 
     /**
      * Decrease the current number of L2NpcInstance of this L2Spawn and if necessary create a SpawnTask to launch after the respawn Delay.<BR>
@@ -365,11 +357,11 @@ public class L2Spawn {
     }
 
     public int getRespawnMinDelay() {
-        return _respawnMinDelay;
+        return entity.getRespawnMinDelay();
     }
 
     public int getRespawnMaxDelay() {
-        return _respawnMaxDelay;
+        return entity.getRespawnMaxDelay();
     }
 
     public void setAmount(int amount) {
@@ -382,14 +374,6 @@ public class L2Spawn {
 
     public void setLocation(int location) {
         entity.setLocId(location);
-    }
-
-    public void setRespawnMinDelay(int date) {
-        _respawnMinDelay = date;
-    }
-
-    public void setRespawnMaxDelay(int date) {
-        _respawnMaxDelay = date;
     }
 
     public void setLocx(int locx) {

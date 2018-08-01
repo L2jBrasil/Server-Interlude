@@ -19,7 +19,6 @@
 package com.l2jbr.gameserver.instancemanager;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.GmListTable;
 import com.l2jbr.gameserver.ThreadPoolManager;
@@ -28,22 +27,22 @@ import com.l2jbr.gameserver.datatables.SpawnTable;
 import com.l2jbr.gameserver.model.L2Spawn;
 import com.l2jbr.gameserver.model.actor.instance.L2RaidBossInstance;
 import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
-import com.l2jbr.gameserver.model.entity.database.RaidbossSpawnList;
+import com.l2jbr.gameserver.model.entity.database.RaidbossSpawn;
 import com.l2jbr.gameserver.model.entity.database.repository.RaidBossSpawnListRepository;
 import com.l2jbr.gameserver.templates.StatsSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
 import java.util.Calendar;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
 
+import static com.l2jbr.commons.database.DatabaseAccess.getRepository;
 import static com.l2jbr.gameserver.templates.NpcType.L2RaidBoss;
 import static java.util.Objects.isNull;
-
 
 /**
  * @author godson
@@ -53,23 +52,23 @@ public class RaidBossSpawnManager {
     private static Logger _log = LoggerFactory.getLogger(RaidBossSpawnManager.class.getName());
 
     private static RaidBossSpawnManager _instance;
-    protected static Map<Integer, L2RaidBossInstance> _bosses;
-    protected static Map<Integer, L2Spawn> _spawns;
+    private static Map<Integer, L2RaidBossInstance> _bosses;
+    private static Map<Integer, L2Spawn> _spawns;
     private Map<Integer, StatsSet> _storedInfo;
-    protected static Map<Integer, ScheduledFuture<?>> _schedules;
+    private static Map<Integer, ScheduledFuture<?>> _schedules;
 
-    public static enum StatusEnum {
+    public enum StatusEnum {
         ALIVE,
         DEAD,
         UNDEFINED
     }
 
-    public RaidBossSpawnManager() {
+    private RaidBossSpawnManager() {
         init();
     }
 
     public static RaidBossSpawnManager getInstance() {
-        if (_instance == null) {
+        if (isNull(_instance)) {
             _instance = new RaidBossSpawnManager();
         }
 
@@ -82,28 +81,19 @@ public class RaidBossSpawnManager {
         _storedInfo = new ConcurrentHashMap<>();
         _spawns = new LinkedHashMap<>();
 
-        Connection con = null;
-        RaidBossSpawnListRepository repository = DatabaseAccess.getRepository(RaidBossSpawnListRepository.class);
-        repository.findAll().forEach(spawnList -> {
-            NpcTemplate template = getValidTemplate(spawnList.getBossId());
-            if (template != null) {
-                try {
-                    L2Spawn spawnDat = new L2Spawn(template);;
-                    spawnDat.setLocx(spawnList.getLocX());
-                    spawnDat.setLocy(spawnList.getLocY());
-                    spawnDat.setLocz(spawnList.getLocZ());
-                    spawnDat.setAmount(spawnList.getAmount());
-                    spawnDat.setHeading(spawnList.getHeading());
-                    spawnDat.setRespawnMinDelay(spawnList.getRespawnMinDelay());
-                    spawnDat.setRespawnMaxDelay(spawnList.getRespawnMaxDelay());
 
-                    addNewSpawn(spawnDat, spawnList.getRespawnTime(), spawnList.getCurrentHp(),spawnList.getCurrentMp(), false);
+        getRepository(RaidBossSpawnListRepository.class).findAll().forEach(spawn -> {
+            NpcTemplate template = getValidTemplate(spawn.getId());
+            if (Objects.nonNull(template)) {
+                try {
+                    L2Spawn spawnDat = new L2Spawn(spawn);
+                    addNewSpawn(spawnDat, spawn.getRespawnTime(), spawn.getCurrentHp(),spawn.getCurrentMp(), false);
                 } catch (NoSuchMethodException e) {
-                    _log.warn("RaidBossSpawnManager: Could not load raidboss #{} from DB", spawnList.getBossId());
+                    _log.warn("RaidBossSpawnManager: Could not load raidboss #{} from DB", spawn.getId());
                     _log.error(e.getLocalizedMessage(), e);
                 }
             } else {
-                _log.warn("RaidBossSpawnManager: Could not load raidboss #{} from DB. Template not found", spawnList.getBossId());
+                _log.warn("RaidBossSpawnManager: Could not load raidboss #{} from DB. Template not found", spawn.getId());
             }
         });
     }
@@ -232,9 +222,9 @@ public class RaidBossSpawnManager {
         _spawns.put(bossId, spawnDat);
 
         if (storeInDb) {
-            RaidbossSpawnList spawnList = new RaidbossSpawnList(spawnDat.getNpcId(), spawnDat.getAmount(),
+            RaidbossSpawn spawnList = new RaidbossSpawn(spawnDat.getNpcId(), spawnDat.getAmount(),
                 spawnDat.getLocx(), spawnDat.getLocy(), spawnDat.getLocz(), spawnDat.getHeading(), respawnTime, currentHP, currentMP);
-            RaidBossSpawnListRepository repository = DatabaseAccess.getRepository(RaidBossSpawnListRepository.class);
+            RaidBossSpawnListRepository repository = getRepository(RaidBossSpawnListRepository.class);
             repository.save(spawnList);
         }
     }
@@ -267,7 +257,7 @@ public class RaidBossSpawnManager {
         }
 
         if (updateDb) {
-            RaidBossSpawnListRepository repository = DatabaseAccess.getRepository(RaidBossSpawnListRepository.class);
+            RaidBossSpawnListRepository repository = getRepository(RaidBossSpawnListRepository.class);
             repository.deleteById(bossId);
         }
     }
@@ -287,7 +277,7 @@ public class RaidBossSpawnManager {
                 continue;
             }
 
-            RaidBossSpawnListRepository repository = DatabaseAccess.getRepository(RaidBossSpawnListRepository.class);
+            RaidBossSpawnListRepository repository = getRepository(RaidBossSpawnListRepository.class);
             repository.updateById(entry.getKey(), info.getLong("respawnTime"), info.getDouble("currentHP"), info.getDouble("currentMP"));
 
         }

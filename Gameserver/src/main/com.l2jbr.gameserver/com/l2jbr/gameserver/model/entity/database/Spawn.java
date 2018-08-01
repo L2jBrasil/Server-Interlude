@@ -5,11 +5,12 @@ import com.l2jbr.commons.database.annotation.Table;
 import com.l2jbr.commons.database.model.Entity;
 import com.l2jbr.gameserver.datatables.NpcTable;
 import com.l2jbr.gameserver.model.L2Spawn;
+import com.l2jbr.gameserver.templates.ISpawn;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 
 @Table("spawnlist")
-public class Spawn extends Entity<Integer> {
+public class Spawn extends Entity<Integer> implements ISpawn {
 
     @Id
     private int id;
