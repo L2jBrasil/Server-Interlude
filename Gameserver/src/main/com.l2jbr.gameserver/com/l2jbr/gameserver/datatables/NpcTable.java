@@ -25,7 +25,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
+import static com.l2jbr.gameserver.templates.NpcType.L2Monster;
+import static com.l2jbr.gameserver.templates.NpcType.L2Npc;
 import static com.l2jbr.gameserver.util.GameserverMessages.getMessage;
 import static java.util.Objects.isNull;
 
@@ -91,27 +94,12 @@ public class NpcTable {
         return list.toArray(new NpcTemplate[0]);
     }
 
-    public NpcTemplate[] getAllMonstersOfLevel(int lvl) {
-        List<NpcTemplate> list = new LinkedList<>();
-
-        for (NpcTemplate t : npcs.values()) {
-            if ((t.getLevel() == lvl) && "L2Monster".equals(t.getType())) {
-                list.add(t);
-            }
-        }
-        return list.toArray(new NpcTemplate[0]);
+    public List<NpcTemplate> getAllMonstersOfLevel(int level) {
+        return npcs.values().stream().filter(t -> t.getLevel() == level && L2Monster.equals(t.getType())).collect(Collectors.toList());
     }
 
-    public NpcTemplate[] getAllNpcStartingWith(String letter) {
-        List<NpcTemplate> list = new LinkedList<>();
-
-        for (NpcTemplate t : npcs.values()) {
-            if (t.getName().startsWith(letter) && "L2Npc".equals(t.getType())) {
-                list.add(t);
-            }
-        }
-
-        return list.toArray(new NpcTemplate[0]);
+    public List<NpcTemplate> getAllNpcStartingWith(String letter) {
+        return npcs.values().stream().filter(n -> n.getName().startsWith(letter) && L2Npc.equals(n.getType())).collect(Collectors.toList());
     }
 
     public Set<Integer> getAllNpcOfClassType(String classType) {

@@ -22,8 +22,7 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.instancemanager.DayNightSpawnManager;
 import com.l2jbr.gameserver.model.L2Spawn;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
-import com.l2jbr.gameserver.model.entity.database.Spawnlist;
+import com.l2jbr.gameserver.model.entity.database.Spawn;
 import com.l2jbr.gameserver.model.entity.database.repository.SpawnListRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,13 +32,8 @@ import java.util.Map;
 
 import static com.l2jbr.commons.database.DatabaseAccess.getRepository;
 import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 
-/**
- * This class ...
- *
- * @author Nightmare
- * @version $Revision: 1.5.2.6.2.7 $ $Date: 2005/03/27 15:29:18 $
- */
 public class SpawnTable {
     private static Logger _log = LoggerFactory.getLogger(SpawnTable.class.getName());
 
@@ -65,59 +59,54 @@ public class SpawnTable {
     }
 
     private void fillSpawnTable() {
-        getRepository(SpawnListRepository.class).findAll().forEach(spawnlist -> {
-            NpcTemplate template1 = NpcTable.getInstance().getTemplate(spawnlist.getNpcTemplateId());
-            if (template1 != null) {
-                if (template1.getType().equalsIgnoreCase("L2SiegeGuard")) {
-                    // Don't spawn
-                } else if (template1.getType().equalsIgnoreCase("L2RaidBoss")) {
-                    // Don't spawn raidboss
-                } else if (!Config.ALLOW_CLASS_MASTERS && template1.getType().equals("L2ClassMaster")) {
-                    // Dont' spawn class masters
-                } else {
-                    L2Spawn spawnDat = null;
-                    try {
-                        spawnDat = new L2Spawn(template1);
-                        spawnDat.setId(spawnlist.getId());
-                        spawnDat.setAmount(spawnlist.getCount());
-                        spawnDat.setLocx(spawnlist.getLocx());
-                        spawnDat.setLocy(spawnlist.getLocy());
-                        spawnDat.setLocz(spawnlist.getLocz());
-                        spawnDat.setHeading(spawnlist.getHeading());
-                        spawnDat.setRespawnDelay(spawnlist.getRespawnDelay());
-                        int loc_id = spawnlist.getLocId();
-                        spawnDat.setLocation(loc_id);
+        getRepository(SpawnListRepository.class).findAll().forEach(spawn -> {
 
-                        switch (spawnlist.getPeriodOfDay()) {
-                            case 0: // default
-                                _npcSpawnCount += spawnDat.init();
-                                break;
-                            case 1: // Day
-                                DayNightSpawnManager.getInstance().addDayCreature(spawnDat);
-                                _npcSpawnCount++;
-                                break;
-                            case 2: // Night
-                                DayNightSpawnManager.getInstance().addNightCreature(spawnDat);
-                                _npcSpawnCount++;
-                                break;
-                        }
-
-                        _spawntable.put(spawnDat.getId(), spawnDat);
-                        if (spawnDat.getId() > _highestId) {
-                            _highestId = spawnDat.getId();
-                        }
-                    } catch (ClassNotFoundException | NoSuchMethodException e) {
-                        _log.error("SpawnTable: Error on spawn id {}", spawnlist.getId());
-                        _log.error(e.getLocalizedMessage(), e);
-                    }
-                }
+            if (nonNull(spawn.getNpcTemplate())) {
+                doSpawn(spawn);
             } else {
-                _log.warn("SpawnTable: Data missing in NPC table for ID: {} .", spawnlist.getNpcTemplateId());
+                _log.warn("SpawnTable: Data missing in NPC table for ID: {} .", spawn.getNpcTemplateId());
             }
         });
 
         _log.info("SpawnTable: Loaded {} NpcTemplate Spawn Locations.", _spawntable.size());
         _log.debug("SpawnTable: Spawning completed, total number of NPCs in the world: {}", _npcSpawnCount);
+    }
+
+    private void doSpawn(Spawn spawn) {
+        switch (spawn.getNpcTemplate().getType()) {
+            case L2ClassMaster:
+                if(Config.ALLOW_CLASS_MASTERS) {
+                   break;
+                }
+            case L2SiegeGuard:
+            case L2RaidBoss:
+                return;
+        }
+
+        try {
+            var spawnDat = new L2Spawn(spawn);
+            switch (spawn.getPeriodOfDay()) {
+                case 0: // default
+                    _npcSpawnCount += spawnDat.init();
+                    break;
+                case 1: // Day
+                    DayNightSpawnManager.getInstance().addDayCreature(spawnDat);
+                    _npcSpawnCount++;
+                    break;
+                case 2: // Night
+                    DayNightSpawnManager.getInstance().addNightCreature(spawnDat);
+                    _npcSpawnCount++;
+                    break;
+            }
+
+            _spawntable.put(spawnDat.getId(), spawnDat);
+            if (spawnDat.getId() > _highestId) {
+                _highestId = spawnDat.getId();
+            }
+        } catch (NoSuchMethodException e) {
+            _log.error("SpawnTable: Error on spawn id {}", spawn.getId());
+            _log.error(e.getLocalizedMessage(), e);
+        }
     }
 
     public L2Spawn getTemplate(int id) {
@@ -130,7 +119,7 @@ public class SpawnTable {
         _spawntable.put(_highestId, spawn);
 
         if (storeInDb) {
-            Spawnlist spawnlist = new Spawnlist(spawn);
+            Spawn spawnlist = new Spawn(spawn);
             SpawnListRepository repository = getRepository(SpawnListRepository.class);
             repository.save(spawnlist);
         }
@@ -162,7 +151,7 @@ public class SpawnTable {
     public void findNPCInstances(L2PcInstance activeChar, int npcId, int teleportIndex) {
         int index = 0;
         for (L2Spawn spawn : _spawntable.values()) {
-            if (npcId == spawn.getNpcid()) {
+            if (npcId == spawn.getNpcId()) {
                 index++;
 
                 if (teleportIndex > -1) {

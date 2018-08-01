@@ -75,7 +75,7 @@ public class MonsterRace
 			try
 			{
 				NpcTemplate template = NpcTable.getInstance().getTemplate(id + random);
-				_constructor = Class.forName("com.l2jbr.gameserver.model.actor.instance." + template.getType() + "Instance").getConstructors()[0];
+				_constructor = template.getType().getInstanceClass().getConstructors()[0];
 				int objectId = IdFactory.getInstance().getNextId();
 				_monsters[i] = (L2NpcInstance) _constructor.newInstance(objectId, template);
 			}

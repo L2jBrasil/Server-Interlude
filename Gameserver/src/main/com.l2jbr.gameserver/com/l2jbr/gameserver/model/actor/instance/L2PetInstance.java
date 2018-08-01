@@ -40,6 +40,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.Future;
 
+import static com.l2jbr.gameserver.templates.NpcType.L2BabyPet;
+
 
 /**
  * This class ...
@@ -776,7 +778,7 @@ public class L2PetInstance extends L2Summon
 	
 	private static L2PetInstance restore(L2ItemInstance control, NpcTemplate template, L2PcInstance owner) {
         L2PetInstance pet;
-        if (template.getType().compareToIgnoreCase("L2BabyPet") == 0) {
+        if (L2BabyPet.equals(template.getType())) {
             pet = new L2BabyPetInstance(IdFactory.getInstance().getNextId(), template, owner, control);
         }
         else {

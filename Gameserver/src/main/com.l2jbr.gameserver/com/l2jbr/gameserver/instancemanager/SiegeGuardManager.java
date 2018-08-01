@@ -178,7 +178,7 @@ public class SiegeGuardManager {
                 spawn.setLocation(0);
 
                 _siegeGuardSpawn.add(spawn);
-            } catch (ClassNotFoundException | NoSuchMethodException e) {
+            } catch (NoSuchMethodException e) {
                 _log.error(e.getLocalizedMessage(), e);
             }
         } else {

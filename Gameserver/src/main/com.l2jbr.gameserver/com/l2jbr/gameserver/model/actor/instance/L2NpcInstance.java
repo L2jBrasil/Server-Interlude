@@ -40,7 +40,10 @@ import com.l2jbr.gameserver.model.actor.stat.NpcStat;
 import com.l2jbr.gameserver.model.actor.status.NpcStatus;
 import com.l2jbr.gameserver.model.entity.Castle;
 import com.l2jbr.gameserver.model.entity.L2Event;
-import com.l2jbr.gameserver.model.entity.database.*;
+import com.l2jbr.gameserver.model.entity.database.CharTemplate;
+import com.l2jbr.gameserver.model.entity.database.ItemTemplate;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.Weapon;
 import com.l2jbr.gameserver.model.quest.Quest;
 import com.l2jbr.gameserver.model.quest.QuestState;
 import com.l2jbr.gameserver.model.zone.type.L2TownZone;
@@ -56,6 +59,8 @@ import java.util.List;
 import java.util.Map;
 
 import static com.l2jbr.gameserver.ai.Intention.AI_INTENTION_ACTIVE;
+import static com.l2jbr.gameserver.templates.NpcType.L2Auctioneer;
+import static java.util.Objects.requireNonNullElse;
 
 
 /**
@@ -1682,11 +1687,11 @@ public class L2NpcInstance extends L2Character {
             }
         }
 
-        if ((getTemplate().getType().equals("L2Auctioneer")) && (val == 0)) {
+        if ((L2Auctioneer.equals(getTemplate().getType())) && (val == 0)) {
             return;
         }
 
-        int npcId = getTemplate().getId();
+        int npcId = requireNonNullElse(getTemplate().getId(), 0);
 
         /* For use with Seven Signs implementation */
         String filename = SevenSigns.SEVEN_SIGNS_HTML_PATH;

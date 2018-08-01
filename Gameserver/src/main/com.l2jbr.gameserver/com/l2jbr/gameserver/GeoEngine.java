@@ -38,7 +38,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-
 /**
  * @author -Nemesiss-
  */
@@ -83,10 +82,10 @@ public class GeoEngine extends GeoData {
     }
 
     /**
-     * @see com.l2jbr.gameserver.GeoData#getSpawnHeight(int, int, int, int, int)
+     * @see com.l2jbr.gameserver.GeoData#getSpawnHeight(int, int, int, int, Integer)
      */
     @Override
-    public short getSpawnHeight(int x, int y, int zmin, int zmax, int spawnid) {
+    public short getSpawnHeight(int x, int y, int zmin, int zmax, Integer spawnid) {
         return nGetSpawnHeight((x - L2World.MAP_MIN_X) >> 4, (y - L2World.MAP_MIN_Y) >> 4, zmin, zmax, spawnid);
     }
 
@@ -827,14 +826,14 @@ public class GeoEngine extends GeoData {
             }
             if ((temph > (zmax + 200)) || (temph < (zmin - 200))) {
                 if (Config.DEBUG) {
-                    _log.warn("SpawnHeight Error - Couldnt find correct layer to spawn NPC - GeoData or Spawnlist Bug!: zmin: " + zmin + " zmax: " + zmax + " value: " + temph + " SpawnId: " + spawnid + " at: " + geox + " : " + geoy);
+                    _log.warn("SpawnHeight Error - Couldnt find correct layer to spawn NPC - GeoData or Spawn Bug!: zmin: " + zmin + " zmax: " + zmax + " value: " + temph + " SpawnId: " + spawnid + " at: " + geox + " : " + geoy);
                 }
                 return (short) zmin;
             }
         }
         if ((temph > (zmax + 1000)) || (temph < (zmin - 1000))) {
             if (Config.DEBUG) {
-                _log.warn("SpawnHeight Error - Spawnlist z value is wrong or GeoData error: zmin: " + zmin + " zmax: " + zmax + " value: " + temph + " SpawnId: " + spawnid + " at: " + geox + " : " + geoy);
+                _log.warn("SpawnHeight Error - Spawn z value is wrong or GeoData error: zmin: " + zmin + " zmax: " + zmax + " value: " + temph + " SpawnId: " + spawnid + " at: " + geox + " : " + geoy);
             }
             return (short) zmin;
         }

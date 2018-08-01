@@ -12,6 +12,7 @@ import com.l2jbr.gameserver.model.base.Race;
 import com.l2jbr.gameserver.model.quest.Quest;
 import com.l2jbr.gameserver.skills.SkillConstants;
 import com.l2jbr.gameserver.skills.Stats;
+import com.l2jbr.gameserver.templates.NpcType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.annotation.Id;
@@ -39,7 +40,7 @@ public class NpcTemplate extends CharTemplate {
     private boolean serverSideTitle;
     private byte level;
     private String sex;
-    private String type;
+    private NpcType type;
     private Integer exp;
     private Integer sp;
     private Integer aggro;
@@ -229,7 +230,7 @@ public class NpcTemplate extends CharTemplate {
         }
     }
 
-
+    @Override
     public Integer getId() {
         return  id;
     }
@@ -262,7 +263,7 @@ public class NpcTemplate extends CharTemplate {
         return sex;
     }
 
-    public String getType() {
+    public NpcType getType() {
         return type;
     }
 

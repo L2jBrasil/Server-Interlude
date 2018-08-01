@@ -35,6 +35,8 @@ import com.l2jbr.gameserver.serverpackets.PetInfo;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import com.l2jbr.gameserver.templates.StatsSet;
 
+import static com.l2jbr.gameserver.templates.NpcType.L2SiegeSummon;
+
 
 public class L2SkillSummon extends L2Skill
 {
@@ -191,7 +193,7 @@ public class L2SkillSummon extends L2Skill
 		
 		L2SummonInstance summon;
 		NpcTemplate summonTemplate = NpcTable.getInstance().getTemplate(_npcId);
-		if (summonTemplate.getType().equalsIgnoreCase("L2SiegeSummon"))
+		if (L2SiegeSummon.equals(summonTemplate.getType()))
 		{
 			summon = new L2SiegeSummonInstance(IdFactory.getInstance().getNextId(), summonTemplate, activeChar, this);
 		}

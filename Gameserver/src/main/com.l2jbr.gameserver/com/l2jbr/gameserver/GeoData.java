@@ -80,7 +80,7 @@ public class GeoData
 	 * @param spawnid
 	 * @return
 	 */
-	public short getSpawnHeight(int x, int y, int zmin, int zmax, int spawnid)
+	public short getSpawnHeight(int x, int y, int zmin, int zmax, Integer spawnid)
 	{
 		return (short) zmin;
 	}

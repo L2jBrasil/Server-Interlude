@@ -4293,7 +4293,7 @@ public class SevenSignsFestival implements SpawnListener {
                 _witchInst = npcSpawn.doSpawn();
 
                 if (Config.DEBUG) {
-                    _log.debug("SevenSignsFestival: Spawned the Festival Witch " + npcSpawn.getNpcid() + " at " + _witchSpawn._x + " " + _witchSpawn._y + " " + _witchSpawn._z);
+                    _log.debug("SevenSignsFestival: Spawned the Festival Witch " + npcSpawn.getNpcId() + " at " + _witchSpawn._x + " " + _witchSpawn._y + " " + _witchSpawn._z);
                 }
             } catch (Exception e) {
                 _log.warn("SevenSignsFestival: Error while spawning Festival Witch ID " + _witchSpawn._npcId + ": " + e);

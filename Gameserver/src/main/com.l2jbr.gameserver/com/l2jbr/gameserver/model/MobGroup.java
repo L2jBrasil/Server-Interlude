@@ -24,15 +24,17 @@ import com.l2jbr.gameserver.datatables.SpawnTable;
 import com.l2jbr.gameserver.model.actor.instance.L2ControllableMobInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedList;
 import java.util.List;
-
 
 /**
  * @author littlecrow
  */
 public final class MobGroup {
+    private static final Logger logger = LoggerFactory.getLogger(MobGroup.class);
     private final NpcTemplate _npcTemplate;
     private final int _groupId;
     private final int _maxMobCount;
@@ -128,8 +130,8 @@ public final class MobGroup {
                 SpawnTable.getInstance().addNewSpawn(spawn, false);
                 getMobs().add((L2ControllableMobInstance) spawn.doGroupSpawn());
             }
-        } catch (ClassNotFoundException e) {
-        } catch (NoSuchMethodException e2) {
+        } catch (NoSuchMethodException e) {
+            logger.error(e.getLocalizedMessage(), e);
         }
     }
 

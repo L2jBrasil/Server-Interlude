@@ -131,15 +131,16 @@ public class GameServer {
         CrestCache.getInstance();
 
         ClanTable.getInstance();
-
-        // Load clan hall data before zone data
-        ClanHallManager.getInstance();
+        ClanHallManager.getInstance(); // Load clan hall data before zone data
         CastleManager.getInstance();
         SiegeManager.getInstance();
 
         TeleportLocationTable.getInstance();
+
         L2World.getInstance();
         ZoneData.getInstance();
+
+        DayNightSpawnManager.getInstance().notifyChangeMode();
         SpawnTable.getInstance();
 
         GeoData.getInstance();
@@ -151,7 +152,7 @@ public class GameServer {
 
 
         RaidBossSpawnManager.getInstance();
-        DayNightSpawnManager.getInstance().notifyChangeMode();
+
         DimensionalRiftManager.getInstance();
         Announcements.getInstance();
         MapRegionTable.getInstance();

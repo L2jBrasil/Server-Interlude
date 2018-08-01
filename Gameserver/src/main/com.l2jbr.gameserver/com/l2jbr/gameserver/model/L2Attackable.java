@@ -46,6 +46,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static com.l2jbr.gameserver.templates.NpcType.L2Monster;
+
 
 /**
  * This class manages all NPC that can be attacked.<BR>
@@ -1363,7 +1365,7 @@ public class L2Attackable extends L2NpcInstance {
 
         // Instant Item Drop :>
         double rateHp = getStat().calcStat(Stats.MAX_HP, 1, this, null);
-        if ((rateHp <= 1) && String.valueOf(npcTemplate.getType()).contentEquals("L2Monster")) // only L2Monster with <= 1x HP can drop herbs
+        if ((rateHp <= 1) && L2Monster.equals(npcTemplate.getType())) // only L2Monster with <= 1x HP can drop herbs
         {
             boolean _hp = false;
             boolean _mp = false;

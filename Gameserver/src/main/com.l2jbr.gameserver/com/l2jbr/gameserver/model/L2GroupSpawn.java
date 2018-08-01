@@ -21,36 +21,38 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.Territory;
 import com.l2jbr.gameserver.idfactory.IdFactory;
+import com.l2jbr.gameserver.model.actor.instance.L2ControllableMobInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 
 import java.lang.reflect.Constructor;
 
+import static com.l2jbr.gameserver.templates.NpcType.L2Minion;
+import static com.l2jbr.gameserver.templates.NpcType.L2Pet;
 
 /**
  * @author littlecrow A special spawn implementation to spawn controllable mob
  */
-public class L2GroupSpawn extends L2Spawn
-{
+class L2GroupSpawn extends L2Spawn {
 	private final Constructor<?> _constructor;
 	private final NpcTemplate _template;
 	
-	public L2GroupSpawn(NpcTemplate mobTemplate) throws SecurityException, ClassNotFoundException, NoSuchMethodException
+	L2GroupSpawn(NpcTemplate mobTemplate) throws SecurityException, NoSuchMethodException
 	{
 		super(mobTemplate);
-		_constructor = Class.forName("com.l2jbr.gameserver.model.actor.instance.L2ControllableMobInstance").getConstructors()[0];
+		_constructor = L2ControllableMobInstance.class.getConstructor(int.class, NpcTemplate.class);
 		_template = mobTemplate;
 		
 		setAmount(1);
 	}
 	
-	public L2NpcInstance doGroupSpawn()
+	L2NpcInstance doGroupSpawn()
 	{
-		L2NpcInstance mob = null;
+		L2NpcInstance mob;
 		
 		try
 		{
-			if (_template.getType().equalsIgnoreCase("L2Pet") || _template.getType().equalsIgnoreCase("L2Minion"))
+			if (L2Pet.equals(_template.getType()) || L2Minion.equals(_template.getType()))
 			{
 				return null;
 			}

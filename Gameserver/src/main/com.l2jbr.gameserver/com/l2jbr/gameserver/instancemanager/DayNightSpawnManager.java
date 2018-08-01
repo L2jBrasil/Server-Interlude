@@ -28,14 +28,6 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-
-/**
- * This class ...
- *
- * @author godson
- * @version $Revision: $ $Date: $
- */
-
 public class DayNightSpawnManager {
 
     private Logger _log = LoggerFactory.getLogger(DayNightSpawnManager.class.getName());
