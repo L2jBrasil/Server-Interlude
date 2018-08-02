@@ -18,7 +18,6 @@
  */
 package com.l2jbr.gameserver.datatables;
 
-import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.instancemanager.ArenaManager;
 import com.l2jbr.gameserver.instancemanager.CastleManager;
 import com.l2jbr.gameserver.instancemanager.ClanHallManager;
@@ -27,23 +26,19 @@ import com.l2jbr.gameserver.model.L2Character;
 import com.l2jbr.gameserver.model.Location;
 import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.entity.database.repository.MapRegionRepository;
 import com.l2jbr.gameserver.model.entity.Castle;
 import com.l2jbr.gameserver.model.entity.ClanHall;
+import com.l2jbr.gameserver.model.entity.database.repository.MapRegionRepository;
 import com.l2jbr.gameserver.model.zone.type.L2ArenaZone;
 import com.l2jbr.gameserver.model.zone.type.L2ClanHallZone;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+import static com.l2jbr.commons.database.DatabaseAccess.getRepository;
+import static java.util.Objects.isNull;
 
-/**
- * This class ...
- */
-public class MapRegionTable
-{
-	private static Logger _log = LoggerFactory.getLogger(MapRegionTable.class.getName());
+
+public class MapRegionTable {
 	
 	private static MapRegionTable _instance;
 	
@@ -59,18 +54,15 @@ public class MapRegionTable
 		Town
 	}
 	
-	public static MapRegionTable getInstance()
-	{
-		if (_instance == null)
-		{
+	public static MapRegionTable getInstance() {
+		if (isNull(_instance)) {
 			_instance = new MapRegionTable();
 		}
 		return _instance;
 	}
 	
 	private MapRegionTable() {
-        MapRegionRepository repository = DatabaseAccess.getRepository(MapRegionRepository.class);
-        repository.findAll().forEach(mapRegion -> {
+		getRepository(MapRegionRepository.class).findAll().forEach(mapRegion -> {
             _regions[0][mapRegion.getRegion()] = mapRegion.getSec0();
             _regions[1][mapRegion.getRegion()] = mapRegion.getSec1();
             _regions[2][mapRegion.getRegion()] = mapRegion.getSec2();
@@ -169,7 +161,7 @@ public class MapRegionTable
 		return (posX >> 15) + 4;// + centerTileX;
 	}
 	
-	public final int getMapRegionY(int posY)
+	private int getMapRegionY(int posY)
 	{
 		return (posY >> 15) + 10;// + centerTileX;
 	}
@@ -180,66 +172,46 @@ public class MapRegionTable
 		int castle;
 		switch (area)
 		{
-			case 0:
+			case 0: // Talking Island Village
+            case 5: // Town of Gludio
+            case 6:// Gludin Village
 				castle = 1;
-				break;// Talking Island Village
-			case 1:
+				break;
+			case 1: // Elven Village
+			case 2: // Dark Elven Village
+            case 9: // Town of Oren
+            case 17: // Ivory Tower
 				castle = 4;
-				break; // Elven Village
-			case 2:
-				castle = 4;
-				break; // Dark Elven Village
-			case 3:
+				break;
+			case 3: // Orc Village
+            case 4: // Dwarven Village
+            case 16: // Town of Shuttgart
 				castle = 9;
-				break; // Orc Village
-			case 4:
-				castle = 9;
-				break; // Dwarven Village
-			case 5:
-				castle = 1;
-				break; // Town of Gludio
-			case 6:
-				castle = 1;
-				break; // Gludin Village
-			case 7:
+				break;
+			case 7: // Town of Dion
 				castle = 2;
-				break; // Town of Dion
-			case 8:
+				break;
+			case 8: // Town of Giran
+            case 12: // Giran Harbor
 				castle = 3;
-				break; // Town of Giran
-			case 9:
-				castle = 4;
-				break; // Town of Oren
-			case 10:
+				break;
+			case 10: // Town of Aden
+            case 11: // Hunters Village
 				castle = 5;
-				break; // Town of Aden
-			case 11:
-				castle = 5;
-				break; // Hunters Village
-			case 12:
-				castle = 3;
-				break; // Giran Harbor
-			case 13:
+				break;
+			case 13: // Heine
 				castle = 6;
-				break; // Heine
-			case 14:
+				break;
+			case 14: // Rune Township
+            case 18: // Primeval Isle Wharf
 				castle = 8;
-				break; // Rune Township
-			case 15:
+				break;
+			case 15: // Town of Goddard
 				castle = 7;
-				break; // Town of Goddard
-			case 16:
-				castle = 9;
-				break; // Town of Shuttgart
-			case 17:
-				castle = 4;
-				break; // Ivory Tower
-			case 18:
-				castle = 8;
-				break; // Primeval Isle Wharf
-			default:
+				break;
+			default:  // Town of Aden
 				castle = 5;
-				break; // Town of Aden
+				break;
 		}
 		return castle;
 	}
@@ -334,7 +306,7 @@ public class MapRegionTable
 			}
 			
 			Castle castle = null;
-			ClanHall clanhall = null;
+			ClanHall clanhall;
 			
 			if (player.getClan() != null)
 			{
@@ -369,7 +341,7 @@ public class MapRegionTable
 				{
 					// If Teleporting to castle or
 					// If is on caslte with siege and player's clan is defender
-					if ((teleportWhere == TeleportWhereType.Castle) || ((teleportWhere == TeleportWhereType.Castle) && castle.getSiege().getIsInProgress() && (castle.getSiege().getDefenderClan(player.getClan()) != null)))
+					if ((teleportWhere == TeleportWhereType.Castle) || (castle.getSiege().getIsInProgress() && (castle.getSiege().getDefenderClan(player.getClan()) != null)))
 					{
 						coord = castle.getZone().getSpawn();
 						return new Location(coord[0], coord[1], coord[2]);

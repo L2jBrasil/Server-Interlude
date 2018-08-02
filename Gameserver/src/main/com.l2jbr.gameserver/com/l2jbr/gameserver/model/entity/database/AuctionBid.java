@@ -75,4 +75,5 @@ public class AuctionBid extends Entity<Integer> {
     public void setTimeBid(Long timeBid) {
         this.timeBid = timeBid;
     }
+
 }

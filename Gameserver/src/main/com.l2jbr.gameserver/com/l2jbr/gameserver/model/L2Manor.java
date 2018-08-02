@@ -24,46 +24,42 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.StringTokenizer;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static java.util.Objects.isNull;
 
 /**
  * Service class for manor
  *
  * @author l3x
  */
-
 public class L2Manor {
-    private static Logger _log = LoggerFactory.getLogger(L2Manor.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(L2Manor.class);
     private static L2Manor _instance;
 
     private static Map<Integer, SeedData> _seeds = new ConcurrentHashMap<>();
 
-    public L2Manor() {
+    private L2Manor() {
         _seeds.clear();
         parseData();
     }
 
     public static L2Manor getInstance() {
-        if (_instance == null) {
+        if (isNull(_instance)) {
             _instance = new L2Manor();
         }
         return _instance;
     }
 
     public List<Integer> getAllCrops() {
-        List<Integer> crops = new LinkedList<>();
+        List<Integer> crops = new ArrayList<>();
 
         for (SeedData seed : _seeds.values()) {
             if (!crops.contains(seed.getCrop()) && (seed.getCrop() != 0) && !crops.contains(seed.getCrop())) {
                 crops.add(seed.getCrop());
             }
         }
-
         return crops;
     }
 
@@ -270,13 +266,13 @@ public class L2Manor {
         private int _limitSeeds;
         private int _limitCrops;
 
-        public SeedData(int level, int crop, int mature) {
+        SeedData(int level, int crop, int mature) {
             _level = level;
             _crop = crop;
             _mature = mature;
         }
 
-        public void setData(int id, int t1, int t2, int manorId, int isAlt, int lim1, int lim2) {
+        void setData(int id, int t1, int t2, int manorId, int isAlt, int lim1, int lim2) {
             _id = id;
             _type1 = t1;
             _type2 = t2;
@@ -286,7 +282,7 @@ public class L2Manor {
             _limitCrops = lim2;
         }
 
-        public int getManorId() {
+        int getManorId() {
             return _manorId;
         }
 
@@ -298,11 +294,11 @@ public class L2Manor {
             return _crop;
         }
 
-        public int getMature() {
+        int getMature() {
             return _mature;
         }
 
-        public int getReward(int type) {
+        int getReward(int type) {
             return (type == 1 ? _type1 : _type2);
         }
 
@@ -310,15 +306,15 @@ public class L2Manor {
             return _level;
         }
 
-        public boolean isAlternative() {
+        boolean isAlternative() {
             return (_isAlternative == 1);
         }
 
-        public int getSeedLimit() {
+        int getSeedLimit() {
             return _limitSeeds * Config.RATE_DROP_MANOR;
         }
 
-        public int getCropLimit() {
+        int getCropLimit() {
             return _limitCrops * Config.RATE_DROP_MANOR;
         }
     }
@@ -329,7 +325,7 @@ public class L2Manor {
             File seedData = new File(Config.DATAPACK_ROOT, "data/seeds.csv");
             lnr = new LineNumberReader(new BufferedReader(new FileReader(seedData)));
 
-            String line = null;
+            String line;
             while ((line = lnr.readLine()) != null) {
                 if ((line.trim().length() == 0) || line.startsWith("#")) {
                     continue;
@@ -338,11 +334,11 @@ public class L2Manor {
                 _seeds.put(seed.getId(), seed);
             }
 
-            _log.info("ManorManager: Loaded " + _seeds.size() + " seeds");
+            _log.info("ManorManager: Loaded {} seeds.", _seeds.size());
         } catch (FileNotFoundException e) {
             _log.info("seeds.csv is missing in data folder");
         } catch (Exception e) {
-            _log.info("error while loading seeds: " + e.getMessage());
+            _log.info("error while loading seeds:", e);
         } finally {
             try {
                 lnr.close();

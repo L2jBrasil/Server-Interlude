@@ -1,12 +1,12 @@
 package com.l2jbr.gameserver.model.entity.database.repository;
 
-import com.l2jbr.gameserver.model.entity.database.AuctionData;
+import com.l2jbr.gameserver.model.entity.database.AuctionEntity;
 import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-public interface AuctionRepository extends CrudRepository<AuctionData, Integer> {
+public interface AuctionRepository extends CrudRepository<AuctionEntity, Integer> {
 
     @Modifying
     @Query("UPDATE auction SET endDate=:endDate WHERE id=:id")

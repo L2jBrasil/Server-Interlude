@@ -120,6 +120,7 @@ public class GameServer {
         SummonItemsData.getInstance();
         HennaTable.getInstance();
         HennaTreeTable.getInstance();
+        L2Manor.getInstance();
 
         NpcTable.getInstance();
         NpcWalkerRoutesTable.getInstance();
@@ -145,22 +146,15 @@ public class GameServer {
         RaidBossSpawnManager.getInstance();
         DimensionalRiftManager.getInstance();
 
+        Announcements.getInstance();
+
+        MapRegionTable.getInstance();
+
         GeoData.getInstance();
         if (Config.GEODATA == 2) {
             GeoPathFinding.getInstance();
         }
 
-
-
-
-        Announcements.getInstance();
-        MapRegionTable.getInstance();
-        EventDroplist.getInstance();
-
-        /** Load Manor data */
-        L2Manor.getInstance();
-
-        /** Load Manager */
         AuctionManager.getInstance();
         BoatManager.getInstance();
         CastleManorManager.getInstance();

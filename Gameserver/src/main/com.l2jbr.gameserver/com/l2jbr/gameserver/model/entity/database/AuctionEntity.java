@@ -1,12 +1,18 @@
 package com.l2jbr.gameserver.model.entity.database;
 
 
+import com.l2jbr.commons.database.annotation.Column;
 import com.l2jbr.commons.database.annotation.Table;
 import com.l2jbr.commons.database.model.Entity;
 import org.springframework.data.annotation.Id;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import static java.util.Objects.isNull;
+
 @Table("auction")
-public class AuctionData extends Entity<Integer> {
+public class AuctionEntity extends Entity<Integer> {
 
     @Id
     private Integer id;
@@ -21,6 +27,8 @@ public class AuctionData extends Entity<Integer> {
     private Integer startingBid;
     private Integer currentBid;
     private Long endDate;
+    @Column("auctionId")
+    private Set<AuctionBid> bids;
 
     @Override
     public Integer getId() {
@@ -117,5 +125,12 @@ public class AuctionData extends Entity<Integer> {
 
     public Long getEndDate() {
         return endDate;
+    }
+
+    public Set<AuctionBid> getBids() {
+        if(isNull(bids)) {
+            bids = new HashSet<>();
+        }
+        return bids;
     }
 }

@@ -37,12 +37,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import static java.util.Objects.isNull;
 
-/**
- * This class ...
- *
- * @version $Revision: 1.5.2.1.2.7 $ $Date: 2005/03/29 23:15:14 $
- */
 public class Announcements {
     private static Logger _log = LoggerFactory.getLogger(Announcements.class.getName());
 
@@ -50,15 +46,14 @@ public class Announcements {
     private final List<String> _announcements = new LinkedList<>();
     private final List<List<Object>> _eventAnnouncements = new LinkedList<>();
 
-    public Announcements() {
+    private Announcements() {
         loadAnnouncements();
     }
 
     public static Announcements getInstance() {
-        if (_instance == null) {
+        if (isNull(_instance)) {
             _instance = new Announcements();
         }
-
         return _instance;
     }
 
