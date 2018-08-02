@@ -143,6 +143,7 @@ public class GameServer {
         DayNightSpawnManager.getInstance().notifyChangeMode();
         SpawnTable.getInstance();
         RaidBossSpawnManager.getInstance();
+        DimensionalRiftManager.getInstance();
 
         GeoData.getInstance();
         if (Config.GEODATA == 2) {
@@ -152,9 +153,6 @@ public class GameServer {
 
 
 
-
-
-        DimensionalRiftManager.getInstance();
         Announcements.getInstance();
         MapRegionTable.getInstance();
         EventDroplist.getInstance();

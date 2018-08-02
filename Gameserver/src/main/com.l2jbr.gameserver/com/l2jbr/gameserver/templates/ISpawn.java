@@ -31,9 +31,13 @@ public interface ISpawn {
 
     void setHeading(int heading);
 
-    int getLocId();
+    default int getLocId() {
+        return 0;
+    }
 
-    void setLocId(int location);
+    default void setLocId(int location) {
+
+    }
 
     NpcTemplate getNpcTemplate();
 
