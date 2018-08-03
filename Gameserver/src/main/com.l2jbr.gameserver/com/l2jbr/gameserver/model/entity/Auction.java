@@ -78,46 +78,6 @@ public class Auction {
         startAutoTask();
     }
 
-    public class Bidder {
-        private final String _name;
-        private final String _clanName;
-        private int _bid;
-
-        private final Calendar _timeBid;
-
-        Bidder(String name, String clanName, int bid, long timeBid) {
-            _name = name;
-            _clanName = clanName;
-            _bid = bid;
-            _timeBid = Calendar.getInstance();
-            _timeBid.setTimeInMillis(timeBid);
-        }
-
-        public String getName() {
-            return _name;
-        }
-
-        public String getClanName() {
-            return _clanName;
-        }
-
-        public int getBid() {
-            return _bid;
-        }
-
-        public Calendar getTimeBid() {
-            return _timeBid;
-        }
-
-        void setTimeBid(long timeBid) {
-            _timeBid.setTimeInMillis(timeBid);
-        }
-        void setBid(int bid) {
-            _bid = bid;
-        }
-
-    }
-
     public class AutoEndTask implements Runnable {
 
         AutoEndTask() {
@@ -219,8 +179,8 @@ public class Auction {
         _highestBidderId = bidder.getClanId();
         _highestBidderMaxBid = bid;
         _highestBidderName = bidder.getClan().getLeaderName();
-        if (_bidders.get(_highestBidderId) == null) {
-            _bidders.put(_highestBidderId, new Bidder(_highestBidderName, bidder.getClan().getName(), bid, Calendar.getInstance().getTimeInMillis()));
+        if (_bidders.containsKey(_highestBidderId)) {
+            _bidders.put(_highestBidderId, auctionBid);
         } else {
             _bidders.get(_highestBidderId).setMaxBid(bid);
             _bidders.get(_highestBidderId).setTimeBid(Calendar.getInstance().getTimeInMillis());
@@ -231,12 +191,12 @@ public class Auction {
     private void removeBids() {
         AuctionBidRepository repository = getRepository(AuctionBidRepository.class);
         repository.deleteByAuction(getId());
-        for (Bidder b : _bidders.values()) {
+        for (AuctionBid b : _bidders.values()) {
             L2Clan clan = ClanTable.getInstance().getClanByName(b.getClanName());
             if (clan.getHasHideout() == 0) {
-                returnItem(b.getClanName(), 57, (9 * b.getBid()) / 10, false); // 10 % tax
+                returnItem(b.getClanName(), 57, (9 * b.getMaxBid()) / 10, false); // 10 % tax
             } else {
-                L2PcInstance player = L2World.getInstance().getPlayer(b.getName());
+                L2PcInstance player = L2World.getInstance().getPlayer(b.getBidderName());
                 if (player != null) {
                     player.sendMessage("Congratulation you have won ClanHall!");
                 }
@@ -259,9 +219,6 @@ public class Auction {
                 return;
             }
             if ((_highestBidderId == 0) && (entity.getSellerId() > 0)) {
-                /**
-                 * If seller haven't sell ClanHall, auction removed, THIS MUST BE CONFIRMED
-                 */
                 int aucId = AuctionManager.getInstance().getAuctionIndex(_id);
                 AuctionManager.getInstance().getAuctions().remove(aucId);
                 return;
@@ -285,7 +242,7 @@ public class Auction {
         AuctionBidRepository repository = getRepository(AuctionBidRepository.class);
         repository.deleteByAuctionAndBidder(getId(), bidder);
 
-        returnItem(_bidders.get(bidder).getClanName(), 57, _bidders.get(bidder).getBid(), true);
+        returnItem(_bidders.get(bidder).getClanName(), 57, _bidders.get(bidder).getMaxBid(), true);
         ClanTable.getInstance().getClanByName(_bidders.get(bidder).getClanName()).setAuctionBiddedAt(0, true);
         _bidders.clear();
         loadBid();

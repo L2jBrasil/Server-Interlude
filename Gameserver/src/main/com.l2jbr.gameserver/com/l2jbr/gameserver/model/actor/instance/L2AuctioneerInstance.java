@@ -24,24 +24,30 @@ import com.l2jbr.gameserver.datatables.MapRegionTable;
 import com.l2jbr.gameserver.instancemanager.AuctionManager;
 import com.l2jbr.gameserver.instancemanager.ClanHallManager;
 import com.l2jbr.gameserver.model.L2Clan;
-import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.model.entity.Auction;
-import com.l2jbr.gameserver.model.entity.Auction.Bidder;
+import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.MyTargetSelected;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.ValidateLocation;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.time.Instant;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.StringTokenizer;
 
+import static com.l2jbr.commons.util.Util.formatDateTime;
 
 public final class L2AuctioneerInstance extends L2FolkInstance {
     private static final int COND_ALL_FALSE = 0;
     private static final int COND_BUSY_BECAUSE_OF_SIEGE = 1;
     private static final int COND_REGULAR = 3;
 
-    private final Map<Integer, Auction> _pendingAuctions = new LinkedHashMap<>();
+
+
+    private final Map<Integer, Auction> _pendingAuctions = new HashMap<>();
 
     public L2AuctioneerInstance(int objectId, NpcTemplate template) {
         super(objectId, template);
@@ -306,9 +312,10 @@ public final class L2AuctioneerInstance extends L2FolkInstance {
                     player.sendMessage("cmd bidlist: auction test started");
                 }
                 String biders = "";
-                Map<Integer, Bidder> bidders = AuctionManager.getInstance().getAuction(auctionId).getBidders();
-                for (Bidder b : bidders.values()) {
-                    biders += "<tr>" + "<td>" + b.getClanName() + "</td><td>" + b.getName() + "</td><td>" + b.getTimeBid().get(Calendar.YEAR) + "/" + (b.getTimeBid().get(Calendar.MONTH) + 1) + "/" + b.getTimeBid().get(Calendar.DATE) + "</td><td>" + b.getBid() + "</td>" + "</tr>";
+                var bidders = AuctionManager.getInstance().getAuction(auctionId).getBidders();
+                for (var b : bidders.values()) {
+                    var instant = Instant.ofEpochMilli(b.getTimeBid());
+                    biders += "<tr>" + "<td>" + b.getClanName() + "</td><td>" + b.getBidderName() + "</td><td>" + formatDateTime(instant) + "</td><td>" + b.getMaxBid() + "</td>" + "</tr>";
                 }
                 String filename = "data/html/auction/AgitBidderList.htm";
 
@@ -337,7 +344,7 @@ public final class L2AuctioneerInstance extends L2FolkInstance {
                         html.replace("%AGIT_AUCTION_END%", String.valueOf(format.format(a.getEndDate())));
                         html.replace("%AGIT_AUCTION_REMAIN%", String.valueOf((a.getEndDate() - System.currentTimeMillis()) / 3600000) + " hours " + String.valueOf((((a.getEndDate() - System.currentTimeMillis()) / 60000) % 60)) + " minutes");
                         html.replace("%AGIT_AUCTION_MINBID%", String.valueOf(a.getStartingBid()));
-                        html.replace("%AGIT_AUCTION_MYBID%", String.valueOf(a.getBidders().get(player.getClanId()).getBid()));
+                        html.replace("%AGIT_AUCTION_MYBID%", String.valueOf(a.getBidders().get(player.getClanId()).getMaxBid()));
                         html.replace("%AGIT_AUCTION_DESC%", ClanHallManager.getInstance().getClanHallById(a.getItemId()).getDesc());
                         html.replace("%objectId%", String.valueOf(getObjectId()));
                         html.replace("%AGIT_LINK_BACK%", "bypass -h npc_" + getObjectId() + "_start");
@@ -393,7 +400,7 @@ public final class L2AuctioneerInstance extends L2FolkInstance {
                     return;
                 }
             } else if (actualCommand.equalsIgnoreCase("cancelBid")) {
-                int bid = AuctionManager.getInstance().getAuction(player.getClan().getAuctionBiddedAt()).getBidders().get(player.getClanId()).getBid();
+                int bid = AuctionManager.getInstance().getAuction(player.getClan().getAuctionBiddedAt()).getBidders().get(player.getClanId()).getMaxBid();
                 String filename = "data/html/auction/AgitBidCancel.htm";
                 NpcHtmlMessage html = new NpcHtmlMessage(1);
                 html.setFile(filename);
@@ -463,7 +470,7 @@ public final class L2AuctioneerInstance extends L2FolkInstance {
                     html.setFile(filename);
                     Auction a = AuctionManager.getInstance().getAuction(player.getClan().getAuctionBiddedAt());
                     if (a != null) {
-                        html.replace("%AGIT_AUCTION_BID%", String.valueOf(a.getBidders().get(player.getClanId()).getBid()));
+                        html.replace("%AGIT_AUCTION_BID%", String.valueOf(a.getBidders().get(player.getClanId()).getMaxBid()));
                         html.replace("%AGIT_AUCTION_MINBID%", String.valueOf(a.getStartingBid()));
                         html.replace("%AGIT_AUCTION_END%", String.valueOf(format.format(a.getEndDate())));
                         html.replace("%AGIT_LINK_BACK%", "bypass -h npc_" + getObjectId() + "_selectedItems");

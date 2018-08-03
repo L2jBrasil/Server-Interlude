@@ -14,22 +14,24 @@
  */
 package com.l2jbr.commons.util;
 
-
-import java.io.File;
 import java.lang.reflect.Field;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.time.temporal.TemporalAccessor;
 import java.util.Collection;
+import java.util.Locale;
 import java.util.Optional;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
-/**
- * This class ...
- *
- * @version $Revision: 1.2 $ $Date: 2004/06/27 08:12:59 $
- */
-
 public class Util {
+
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime( FormatStyle.SHORT )
+            .withLocale( Locale.getDefault() )
+            .withZone( ZoneId.systemDefault() );
+
 
     public static boolean isInternalIP(String ipAddress) {
         return (ipAddress.startsWith("192.168.") || ipAddress.startsWith("10.") ||
@@ -88,10 +90,8 @@ public class Util {
                     result.append('.');
                 }
             }
-
             result.append("\n");
         }
-
         return result.toString();
     }
 
@@ -141,5 +141,8 @@ public class Util {
         return  builder.substring(0, builder.length()-1);
     }
 
+    public static String formatDateTime(TemporalAccessor temporal) {
+        return formatter.format(temporal);
+    }
 
 }

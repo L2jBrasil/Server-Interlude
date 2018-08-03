@@ -261,7 +261,7 @@ public class Castle {
                     }
                 }
                 oldOwner.setCastle(0); // Unset has castle flag for old owner
-                new Announcements().announceToAll(oldOwner.getName() + " has lost " + getName() + " castle!");
+                Announcements.getInstance().announceToAll(oldOwner.getName() + " has lost " + getName() + " castle!");
             }
         }
 
@@ -281,7 +281,7 @@ public class Castle {
                 CastleManager.getInstance().removeCirclet(_formerOwner, getCastleId());
             }
             clan.setCastle(0);
-            new Announcements().announceToAll(clan.getName() + " has lost " + getName() + " castle");
+            Announcements.getInstance().announceToAll(clan.getName() + " has lost " + getName() + " castle");
             clan.broadcastToOnlineMembers(new PledgeShowInfoUpdate(clan));
         }
 
@@ -368,7 +368,7 @@ public class Castle {
         // Announce to clan memebers
         if (clan != null) {
             clan.setCastle(getCastleId()); // Set has castle flag for new owner
-            new Announcements().announceToAll(clan.getName() + " has taken " + getName() + " castle!");
+            Announcements.getInstance().announceToAll(clan.getName() + " has taken " + getName() + " castle!");
             clan.broadcastToOnlineMembers(new PledgeShowInfoUpdate(clan));
 
             ThreadPoolManager.getInstance().scheduleGeneral(new CastleUpdater(clan, 1), 3600000); // Schedule owner tasks to start running
@@ -377,7 +377,7 @@ public class Castle {
 
 
     public final int getCastleId() {
-        return entity.getId();
+        return Objects.requireNonNullElse(entity.getId(), 0);
     }
 
     public final L2DoorInstance getDoor(int doorId) {

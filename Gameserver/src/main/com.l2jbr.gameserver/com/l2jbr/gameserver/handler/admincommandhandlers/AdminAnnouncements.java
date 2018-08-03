@@ -24,7 +24,6 @@ import com.l2jbr.gameserver.handler.IAdminCommandHandler;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 
-
 /**
  * This class handles following admin commands: - announce text = announces text to all players - list_announcements = show menu - reload_announcements = reloads announcements from txt file - announce_announcements = announce all stored announcements to all players - add_announcement text = adds
  * text to startup announcements - del_announcement id = deletes announcement with respective id
@@ -55,29 +54,29 @@ public class AdminAnnouncements implements IAdminCommandHandler
 				return false;
 			}
 		}
-		
+
+		Announcements announcements = Announcements.getInstance();
 		if (command.equals("admin_list_announcements"))
 		{
-			Announcements.getInstance().listAnnouncements(activeChar);
+			announcements.listAnnouncements(activeChar);
 		}
 		else if (command.equals("admin_reload_announcements"))
 		{
-			Announcements.getInstance().loadAnnouncements();
-			Announcements.getInstance().listAnnouncements(activeChar);
+			announcements.loadAnnouncements();
+			announcements.listAnnouncements(activeChar);
 		}
 		else if (command.startsWith("admin_announce_menu"))
 		{
-			Announcements sys = new Announcements();
-			sys.handleAnnounce(command, 20);
-			Announcements.getInstance().listAnnouncements(activeChar);
+			announcements.handleAnnounce(command, 20);
+			announcements.listAnnouncements(activeChar);
 		}
 		else if (command.equals("admin_announce_announcements"))
 		{
 			for (L2PcInstance player : L2World.getInstance().getAllPlayers())
 			{
-				Announcements.getInstance().showAnnouncements(player);
+				announcements.showAnnouncements(player);
 			}
-			Announcements.getInstance().listAnnouncements(activeChar);
+			announcements.listAnnouncements(activeChar);
 		}
 		else if (command.startsWith("admin_add_announcement"))
 		{
@@ -87,8 +86,8 @@ public class AdminAnnouncements implements IAdminCommandHandler
 				try
 				{
 					String val = command.substring(23);
-					Announcements.getInstance().addAnnouncement(val);
-					Announcements.getInstance().listAnnouncements(activeChar);
+					announcements.addAnnouncement(val);
+					announcements.listAnnouncements(activeChar);
 				}
 				catch (StringIndexOutOfBoundsException e)
 				{
@@ -100,8 +99,8 @@ public class AdminAnnouncements implements IAdminCommandHandler
 			try
 			{
 				int val = Integer.parseInt(command.substring(23));
-				Announcements.getInstance().delAnnouncement(val);
-				Announcements.getInstance().listAnnouncements(activeChar);
+				announcements.delAnnouncement(val);
+				announcements.listAnnouncements(activeChar);
 			}
 			catch (StringIndexOutOfBoundsException e)
 			{
@@ -112,8 +111,7 @@ public class AdminAnnouncements implements IAdminCommandHandler
 		else if (command.startsWith("admin_announce"))
 		{
 			// Call method from another class
-			Announcements sys = new Announcements();
-			sys.handleAnnounce(command, 15);
+			announcements.handleAnnounce(command, 15);
 		}
 		
 		return true;
