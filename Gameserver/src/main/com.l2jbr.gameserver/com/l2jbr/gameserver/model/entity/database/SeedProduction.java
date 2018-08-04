@@ -6,7 +6,7 @@ import com.l2jbr.commons.database.model.Entity;
 import org.springframework.data.annotation.Id;
 
 @Table("castle_manor_production")
-public class CastleManorProduction  extends Entity<Integer> {
+public class SeedProduction extends Entity<Integer> {
 
     @Id
     @Column("castle_id")
@@ -21,15 +21,27 @@ public class CastleManorProduction  extends Entity<Integer> {
     private int seedPrice;
     private int period;
 
-    public CastleManorProduction() {}
+    public SeedProduction() {}
 
-    public CastleManorProduction(int castleId, int seedId, int canProduce, int startProduce, int price, int period) {
+    public SeedProduction(int castleId, int seedId, int canProduce, int startProduce, int price, int period) {
         this.castleId = castleId;
         this.seedId = seedId;
         this.canProduce = canProduce;
         this.startProduce = startProduce;
         this.seedPrice = price;
         this.period = period;
+    }
+
+    public SeedProduction(int id, int castleId) {
+        this.seedId = id;
+        this.castleId = castleId;
+    }
+
+    public SeedProduction(int id, int amount, int price, int sales) {
+        this.seedId = id;
+        this.canProduce = amount;
+        this.seedPrice = price;
+        this.startProduce = sales;
     }
 
     @Override
@@ -47,6 +59,10 @@ public class CastleManorProduction  extends Entity<Integer> {
 
     public int getStartProduce() {
         return startProduce;
+    }
+
+    public void setCanProduce(int produce) {
+        this.canProduce = produce;
     }
 
     public int getSeedPrice() {

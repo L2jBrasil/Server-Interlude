@@ -30,13 +30,15 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+import static java.util.Objects.isNull;
+
 public class BoatManager {
     private static final Logger _log = LoggerFactory.getLogger(BoatManager.class.getName());
 
     private static BoatManager _instance;
 
     public static BoatManager getInstance() {
-        if (_instance == null) {
+        if (isNull(_instance)) {
             _log.info("Initializing BoatManager");
             _instance = new BoatManager();
             _instance.load();

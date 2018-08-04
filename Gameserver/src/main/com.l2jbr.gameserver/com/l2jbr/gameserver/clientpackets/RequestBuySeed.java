@@ -22,13 +22,13 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.datatables.ItemTable;
 import com.l2jbr.gameserver.instancemanager.CastleManager;
 import com.l2jbr.gameserver.instancemanager.CastleManorManager;
-import com.l2jbr.gameserver.instancemanager.CastleManorManager.SeedProduction;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.actor.instance.L2ManorManagerInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.entity.database.ItemTemplate;
 import com.l2jbr.gameserver.model.entity.Castle;
+import com.l2jbr.gameserver.model.entity.database.SeedProduction;
+import com.l2jbr.gameserver.model.entity.database.ItemTemplate;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.InventoryUpdate;
@@ -118,7 +118,7 @@ public class RequestBuySeed extends L2GameClientPacket
 			int residual = 0;
 			
 			SeedProduction seed = castle.getSeed(seedId, CastleManorManager.PERIOD_CURRENT);
-			price = seed.getPrice();
+			price = seed.getSeedPrice();
 			residual = seed.getCanProduce();
 			
 			if (price <= 0)

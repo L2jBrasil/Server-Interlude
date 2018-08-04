@@ -17,8 +17,8 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
-import com.l2jbr.gameserver.instancemanager.CastleManorManager.SeedProduction;
 import com.l2jbr.gameserver.model.L2Manor;
+import com.l2jbr.gameserver.model.entity.database.SeedProduction;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -54,7 +54,7 @@ public class ExShowSeedInfo extends L2GameServerPacket {
             writeD(seed.getId()); // Seed id
             writeD(seed.getCanProduce()); // Left to buy
             writeD(seed.getStartProduce()); // Started amount
-            writeD(seed.getPrice()); // Sell Price
+            writeD(seed.getSeedPrice()); // Sell Price
             writeD(L2Manor.getInstance().getSeedLevel(seed.getId())); // Seed Level
             writeC(1); // reward 1 Type
             writeD(L2Manor.getInstance().getRewardItemBySeed(seed.getId(), 1)); // Reward 1 Type Item Id

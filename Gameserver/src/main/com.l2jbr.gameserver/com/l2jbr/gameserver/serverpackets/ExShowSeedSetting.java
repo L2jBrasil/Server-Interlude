@@ -19,9 +19,9 @@ package com.l2jbr.gameserver.serverpackets;
 
 import com.l2jbr.gameserver.instancemanager.CastleManager;
 import com.l2jbr.gameserver.instancemanager.CastleManorManager;
-import com.l2jbr.gameserver.instancemanager.CastleManorManager.SeedProduction;
 import com.l2jbr.gameserver.model.L2Manor;
 import com.l2jbr.gameserver.model.entity.Castle;
+import com.l2jbr.gameserver.model.entity.database.SeedProduction;
 
 import java.util.List;
 
@@ -61,7 +61,7 @@ public class ExShowSeedSetting extends L2GameServerPacket {
             SeedProduction seedPr = c.getSeed(s, CastleManorManager.PERIOD_CURRENT);
             if (seedPr != null) {
                 _seedData[(i * 12) + 8] = seedPr.getStartProduce();
-                _seedData[(i * 12) + 9] = seedPr.getPrice();
+                _seedData[(i * 12) + 9] = seedPr.getSeedPrice();
             } else {
                 _seedData[(i * 12) + 8] = 0;
                 _seedData[(i * 12) + 9] = 0;
@@ -69,7 +69,7 @@ public class ExShowSeedSetting extends L2GameServerPacket {
             seedPr = c.getSeed(s, CastleManorManager.PERIOD_NEXT);
             if (seedPr != null) {
                 _seedData[(i * 12) + 10] = seedPr.getStartProduce();
-                _seedData[(i * 12) + 11] = seedPr.getPrice();
+                _seedData[(i * 12) + 11] = seedPr.getSeedPrice();
             } else {
                 _seedData[(i * 12) + 10] = 0;
                 _seedData[(i * 12) + 11] = 0;

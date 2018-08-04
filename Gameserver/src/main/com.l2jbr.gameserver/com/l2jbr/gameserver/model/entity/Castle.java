@@ -30,16 +30,15 @@ import com.l2jbr.gameserver.datatables.DoorTable;
 import com.l2jbr.gameserver.instancemanager.CastleManager;
 import com.l2jbr.gameserver.instancemanager.CastleManorManager;
 import com.l2jbr.gameserver.instancemanager.CastleManorManager.CropProcure;
-import com.l2jbr.gameserver.instancemanager.CastleManorManager.SeedProduction;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.L2Manor;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.actor.instance.L2DoorInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.entity.database.castleEntity;
 import com.l2jbr.gameserver.model.entity.database.CastleDoor;
 import com.l2jbr.gameserver.model.entity.database.CastleManorProcure;
-import com.l2jbr.gameserver.model.entity.database.CastleManorProduction;
+import com.l2jbr.gameserver.model.entity.database.SeedProduction;
+import com.l2jbr.gameserver.model.entity.database.castleEntity;
 import com.l2jbr.gameserver.model.entity.database.repository.CastleManorProcureRepository;
 import com.l2jbr.gameserver.model.entity.database.repository.CastleManorProductionRepository;
 import com.l2jbr.gameserver.model.entity.database.repository.CastleRepository;
@@ -521,7 +520,7 @@ public class Castle {
 
         if (!Util.isNullOrEmpty(seedProductions)) {
             for (SeedProduction s : seedProductions) {
-                CastleManorProduction production = new CastleManorProduction(getCastleId(), s.getId(), s.getCanProduce(), s.getStartProduce(), s.getPrice(), period);
+                SeedProduction production = new SeedProduction(getCastleId(), s.getId(), s.getCanProduce(), s.getStartProduce(), s.getSeedPrice(), period);
                 repository.save(production);
             }
         }

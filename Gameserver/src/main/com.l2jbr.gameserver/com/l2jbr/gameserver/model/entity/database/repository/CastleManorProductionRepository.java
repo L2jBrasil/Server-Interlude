@@ -1,12 +1,12 @@
 package com.l2jbr.gameserver.model.entity.database.repository;
 
-import com.l2jbr.gameserver.model.entity.database.CastleManorProduction;
+import com.l2jbr.gameserver.model.entity.database.SeedProduction;
 import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-public interface CastleManorProductionRepository extends CrudRepository<CastleManorProduction, Integer> {
+public interface CastleManorProductionRepository extends CrudRepository<SeedProduction, Integer> {
 
     @Modifying
     @Query("DELETE FROM castle_manor_production WHERE castle_id=:castle AND period=:period")
@@ -18,5 +18,5 @@ public interface CastleManorProductionRepository extends CrudRepository<CastleMa
                                  @Param("period") int period);
 
     @Query("SELECT * FROM castle_manor_production WHERE castle_id=:castle")
-    Iterable<CastleManorProduction> findAllByCastle(@Param("castle") int castleId);
+    Iterable<SeedProduction> findAllByCastle(@Param("castle") int castleId);
 }

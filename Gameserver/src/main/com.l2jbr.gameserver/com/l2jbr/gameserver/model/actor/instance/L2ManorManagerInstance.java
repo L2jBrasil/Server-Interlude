@@ -22,7 +22,7 @@ import com.l2jbr.gameserver.TradeController;
 import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.instancemanager.CastleManager;
 import com.l2jbr.gameserver.instancemanager.CastleManorManager;
-import com.l2jbr.gameserver.instancemanager.CastleManorManager.SeedProduction;
+import com.l2jbr.gameserver.model.entity.database.SeedProduction;
 import com.l2jbr.gameserver.model.entity.database.MerchantItem;
 import com.l2jbr.gameserver.model.entity.database.MerchantShop;
 import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
@@ -146,7 +146,7 @@ public class L2ManorManagerInstance extends L2MerchantInstance {
                         List<SeedProduction> seeds = getCastle().getSeedProduction(CastleManorManager.PERIOD_CURRENT);
 
                         for (SeedProduction s : seeds) {
-                            MerchantItem item = new MerchantItem(s.getId(), s.getPrice(), 0, 0);
+                            MerchantItem item = new MerchantItem(s.getId(), s.getSeedPrice(), 0, 0);
                             item.setCount(s.getCanProduce());
                             if ((item.getCount() > 0) && (item.getPrice() > 0)) {
                                 shop.addItem(item);

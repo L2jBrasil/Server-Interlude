@@ -21,11 +21,10 @@ package com.l2jbr.gameserver.clientpackets;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.instancemanager.CastleManager;
 import com.l2jbr.gameserver.instancemanager.CastleManorManager;
-import com.l2jbr.gameserver.instancemanager.CastleManorManager.SeedProduction;
+import com.l2jbr.gameserver.model.entity.database.SeedProduction;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  * Format: (ch) dd [ddd] d - manor id d - size [ d - seed id d - sales d - price ]
@@ -66,7 +65,7 @@ public class RequestSetSeed extends L2GameClientPacket {
             return;
         }
 
-        List<SeedProduction> seeds = new LinkedList<>();
+        List<SeedProduction> seeds = new ArrayList<>();
         for (int i = 0; i < _size; i++) {
             int id = _items[(i * 3) + 0];
             int sales = _items[(i * 3) + 1];
