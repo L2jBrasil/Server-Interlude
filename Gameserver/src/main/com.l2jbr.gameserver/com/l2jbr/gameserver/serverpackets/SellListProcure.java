@@ -19,14 +19,13 @@
 package com.l2jbr.gameserver.serverpackets;
 
 import com.l2jbr.gameserver.instancemanager.CastleManager;
-import com.l2jbr.gameserver.instancemanager.CastleManorManager.CropProcure;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.entity.database.CropProcure;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
 
 public class SellListProcure extends L2GameServerPacket {
     private static final String _S__E9_SELLLISTPROCURE = "[S] E9 SellListProcure";
@@ -45,8 +44,8 @@ public class SellListProcure extends L2GameServerPacket {
         _procureList = CastleManager.getInstance().getCastleById(_castle).getCropProcure(0);
         for (CropProcure c : _procureList) {
             L2ItemInstance item = _activeChar.getInventory().getItemByItemId(c.getId());
-            if ((item != null) && (c.getAmount() > 0)) {
-                _sellList.put(item, c.getAmount());
+            if ((item != null) && (c.getCanBuy() > 0)) {
+                _sellList.put(item, c.getCanBuy());
             }
         }
     }

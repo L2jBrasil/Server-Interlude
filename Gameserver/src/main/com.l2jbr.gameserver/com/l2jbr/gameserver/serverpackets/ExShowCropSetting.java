@@ -19,12 +19,11 @@ package com.l2jbr.gameserver.serverpackets;
 
 import com.l2jbr.gameserver.instancemanager.CastleManager;
 import com.l2jbr.gameserver.instancemanager.CastleManorManager;
-import com.l2jbr.gameserver.instancemanager.CastleManorManager.CropProcure;
 import com.l2jbr.gameserver.model.L2Manor;
 import com.l2jbr.gameserver.model.entity.Castle;
+import com.l2jbr.gameserver.model.entity.database.CropProcure;
 
 import java.util.List;
-
 
 /**
  * format(packet 0xFE) ch dd [ddcdcdddddddcddc] c - id h - sub id d - manor id d - size [ d - crop id d - seed level c d - reward 1 id c d - reward 2 id d - next sale limit d d - min crop price d - max crop price d - today buy d - today price c - today reward d - next buy d - next price c - next
@@ -61,9 +60,9 @@ public class ExShowCropSetting extends L2GameServerPacket {
             _cropData[(i * 14) + 7] = L2Manor.getInstance().getCropBasicPrice(cr) * 10;
             CropProcure cropPr = c.getCrop(cr, CastleManorManager.PERIOD_CURRENT);
             if (cropPr != null) {
-                _cropData[(i * 14) + 8] = cropPr.getStartAmount();
+                _cropData[(i * 14) + 8] = cropPr.getStartBuy();
                 _cropData[(i * 14) + 9] = cropPr.getPrice();
-                _cropData[(i * 14) + 10] = cropPr.getReward();
+                _cropData[(i * 14) + 10] = cropPr.getRewardType();
             } else {
                 _cropData[(i * 14) + 8] = 0;
                 _cropData[(i * 14) + 9] = 0;
@@ -71,9 +70,9 @@ public class ExShowCropSetting extends L2GameServerPacket {
             }
             cropPr = c.getCrop(cr, CastleManorManager.PERIOD_NEXT);
             if (cropPr != null) {
-                _cropData[(i * 14) + 11] = cropPr.getStartAmount();
+                _cropData[(i * 14) + 11] = cropPr.getStartBuy();
                 _cropData[(i * 14) + 12] = cropPr.getPrice();
-                _cropData[(i * 14) + 13] = cropPr.getReward();
+                _cropData[(i * 14) + 13] = cropPr.getRewardType();
             } else {
                 _cropData[(i * 14) + 11] = 0;
                 _cropData[(i * 14) + 12] = 0;

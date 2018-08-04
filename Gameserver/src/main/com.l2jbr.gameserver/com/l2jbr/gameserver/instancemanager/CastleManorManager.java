@@ -24,6 +24,7 @@ import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.datatables.ClanTable;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.entity.database.CropProcure;
 import com.l2jbr.gameserver.model.entity.database.SeedProduction;
 import com.l2jbr.gameserver.model.entity.database.repository.CastleManorProcureRepository;
 import com.l2jbr.gameserver.model.entity.database.repository.CastleManorProductionRepository;
@@ -79,54 +80,6 @@ public class CastleManorManager {
         return _instance;
     }
 
-    public class CropProcure {
-        int _cropId;
-        int _buyResidual;
-        int _rewardType;
-        int _buy;
-        int _price;
-
-        public CropProcure(int id) {
-            _cropId = id;
-            _buyResidual = 0;
-            _rewardType = 0;
-            _buy = 0;
-            _price = 0;
-        }
-
-        public CropProcure(int id, int amount, int type, int buy, int price) {
-            _cropId = id;
-            _buyResidual = amount;
-            _rewardType = type;
-            _buy = buy;
-            _price = price;
-        }
-
-        public int getReward() {
-            return _rewardType;
-        }
-
-        public int getId() {
-            return _cropId;
-        }
-
-        public int getAmount() {
-            return _buyResidual;
-        }
-
-        public int getStartAmount() {
-            return _buy;
-        }
-
-        public int getPrice() {
-            return _price;
-        }
-
-        public void setAmount(int amount) {
-            _buyResidual = amount;
-        }
-    }
-
     private CastleManorManager() {
         load(); // load data from database
         init(); // schedule all manor related events
@@ -151,19 +104,13 @@ public class CastleManorManager {
     }
 
     private void loadSeedProcure(CastleManorProcureRepository procureRepository, Castle castle) {
-        List<CropProcure> procure = new LinkedList<>();
-        List<CropProcure> procureNext = new LinkedList<>();
+        List<CropProcure> procure = new ArrayList<>();
+        List<CropProcure> procureNext = new ArrayList<>();
         procureRepository.findAllByCastleId(castle.getCastleId()).forEach(manorProcure -> {
-            int cropId = manorProcure.getCropId();
-            int canBuy = manorProcure.getCanBuy();
-            int startBuy = manorProcure.getStartBuy();
-            int rewardType = manorProcure.getRewardType();
-            int price = manorProcure.getPrice();
-            int period = manorProcure.getPeriod();
-            if (period == PERIOD_CURRENT) {
-                procure.add(new CropProcure(cropId, canBuy, rewardType, startBuy, price));
+            if (manorProcure.getPeriod() == PERIOD_CURRENT) {
+                procure.add(manorProcure);
             } else {
-                procureNext.add(new CropProcure(cropId, canBuy, rewardType, startBuy, price));
+                procureNext.add(manorProcure);
             }
         });
 
@@ -290,12 +237,12 @@ public class CastleManorManager {
             }
 
             for (CropProcure crop : castle.getCropProcure(PERIOD_CURRENT)) {
-                if (crop.getStartAmount() == 0) {
+                if (crop.getStartBuy() == 0) {
                     continue;
                 }
                 // adding bought crops to clan warehouse
-                if ((crop.getStartAmount() - crop.getAmount()) > 0) {
-                    int count = crop.getStartAmount() - crop.getAmount();
+                if ((crop.getStartBuy() - crop.getCanBuy()) > 0) {
+                    int count = crop.getStartBuy() - crop.getCanBuy();
                     count = (count * 90) / 100;
                     if (count < 1) {
                         if (Rnd.nextInt(99) < 90) {
@@ -307,8 +254,8 @@ public class CastleManorManager {
                     }
                 }
                 // reserved and not used money giving back to treasury
-                if (crop.getAmount() > 0) {
-                    castle.addToTreasuryNoTax(crop.getAmount() * crop.getPrice());
+                if (crop.getCanBuy() > 0) {
+                    castle.addToTreasuryNoTax(crop.getCanBuy() * crop.getPrice());
                 }
             }
 
@@ -326,9 +273,9 @@ public class CastleManorManager {
                 }
                 castle.setSeedProduction(production, PERIOD_NEXT);
 
-                List<CropProcure> procure = new LinkedList<>();
+                List<CropProcure> procure = new ArrayList<>();
                 for (CropProcure cr : castle.getCropProcure(PERIOD_CURRENT)) {
-                    cr.setAmount(cr.getStartAmount());
+                    cr.setCanBuy(cr.getStartBuy());
                     procure.add(cr);
                 }
                 castle.setCropProcure(procure, PERIOD_NEXT);
@@ -367,7 +314,7 @@ public class CastleManorManager {
                 }
                 int slots = 0;
                 for (CropProcure crop : c.getCropProcure(PERIOD_NEXT)) {
-                    if (crop.getStartAmount() > 0) {
+                    if (crop.getStartBuy() > 0) {
                         slots++;
                     }
                 }
@@ -395,17 +342,11 @@ public class CastleManorManager {
     }
 
     private List<SeedProduction> getNewSeedsList(int castleId) {
-        return L2Manor.getInstance().getSeedsForCastle(castleId).stream().map(
-            seedId -> new SeedProduction(seedId, castleId)).collect(Collectors.toList());
+        return L2Manor.getInstance().getSeedsForCastle(castleId).stream().map(seedId -> new SeedProduction(seedId, castleId)).collect(Collectors.toList());
     }
 
     private List<CropProcure> getNewCropsList(int castleId) {
-        List<CropProcure> crops = new LinkedList<>();
-        List<Integer> cropsIds = L2Manor.getInstance().getCropsForCastle(castleId);
-        for (int cr : cropsIds) {
-            crops.add(new CropProcure(cr));
-        }
-        return crops;
+        return L2Manor.getInstance().getCropsForCastle(castleId).stream().map(cropId -> new CropProcure(cropId, castleId)).collect(Collectors.toList());
     }
 
     public boolean isUnderMaintenance() {

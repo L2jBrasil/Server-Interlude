@@ -6,7 +6,7 @@ import com.l2jbr.commons.database.model.Entity;
 import org.springframework.data.annotation.Id;
 
 @Table("castle_manor_procure")
-public class CastleManorProcure extends Entity<Integer> {
+public class CropProcure extends Entity<Integer> {
 
     @Id
     @Column("castle_id")
@@ -22,9 +22,14 @@ public class CastleManorProcure extends Entity<Integer> {
     private int rewardType;
     private int period;
 
-    public CastleManorProcure(){}
+    public CropProcure() {}
 
-    public CastleManorProcure(int castleId, int id, int amount, int startAmount, int price, int reward, int period) {
+    public CropProcure(Integer cropId, int castleId){
+        this.cropId = cropId;
+        this.castleId = castleId;
+    }
+
+    public CropProcure(int castleId, int id, int amount, int startAmount, int price, int reward, int period) {
         this.castleId = castleId;
         this.cropId= id;
         this.canBuy = amount;
@@ -32,6 +37,14 @@ public class CastleManorProcure extends Entity<Integer> {
         this.price = price;
         this.rewardType = reward;
         this.period = period;
+    }
+
+    public CropProcure(int id, int amount, int type, int buy, int price) {
+        this.cropId = id;
+        this.canBuy = amount;
+        this.rewardType = type;
+        this.startBuy = buy;
+        this.price = price;
     }
 
 
@@ -62,5 +75,9 @@ public class CastleManorProcure extends Entity<Integer> {
 
     public int getPeriod() {
         return period;
+    }
+
+    public void setCanBuy(int buy) {
+        this.canBuy = buy;
     }
 }

@@ -21,9 +21,9 @@ package com.l2jbr.gameserver.clientpackets;
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.instancemanager.CastleManager;
 import com.l2jbr.gameserver.instancemanager.CastleManorManager;
-import com.l2jbr.gameserver.instancemanager.CastleManorManager.CropProcure;
+import com.l2jbr.gameserver.model.entity.database.CropProcure;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -68,7 +68,7 @@ public class RequestSetCrop extends L2GameClientPacket {
             return;
         }
 
-        List<CropProcure> crops = new LinkedList<>();
+        List<CropProcure> crops = new ArrayList<>();
         for (int i = 0; i < _size; i++) {
             int id = _items[(i * 4) + 0];
             int sales = _items[(i * 4) + 1];

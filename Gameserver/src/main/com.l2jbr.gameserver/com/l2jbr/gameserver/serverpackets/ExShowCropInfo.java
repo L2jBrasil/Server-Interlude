@@ -17,12 +17,13 @@
  */
 package com.l2jbr.gameserver.serverpackets;
 
-import com.l2jbr.gameserver.instancemanager.CastleManorManager.CropProcure;
 import com.l2jbr.gameserver.model.L2Manor;
+import com.l2jbr.gameserver.model.entity.database.CropProcure;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.Objects.isNull;
 
 /**
  * Format: ch cddd[ddddcdcdcd] c - id (0xFE) h - sub id (0x1D) c d - manor id d d - size [ d - crop id d - residual buy d - start buy d - buy price c - reward type d - seed level c - reward 1 items d - reward 1 item id c - reward 2 items d - reward 2 item id ]
@@ -38,8 +39,8 @@ public class ExShowCropInfo extends L2GameServerPacket {
     public ExShowCropInfo(int manorId, List<CropProcure> crops) {
         _manorId = manorId;
         _crops = crops;
-        if (_crops == null) {
-            _crops = new LinkedList<>();
+        if (isNull(_crops)) {
+            _crops = new ArrayList<>();
         }
     }
 
@@ -53,10 +54,10 @@ public class ExShowCropInfo extends L2GameServerPacket {
         writeD(_crops.size());
         for (CropProcure crop : _crops) {
             writeD(crop.getId()); // Crop id
-            writeD(crop.getAmount()); // Buy residual
-            writeD(crop.getStartAmount()); // Buy
+            writeD(crop.getCanBuy()); // Buy residual
+            writeD(crop.getStartBuy()); // Buy
             writeD(crop.getPrice()); // Buy price
-            writeC(crop.getReward()); // Reward
+            writeC(crop.getRewardType()); // Reward
             writeD(L2Manor.getInstance().getSeedLevelByCrop(crop.getId())); // Seed Level
             writeC(1); // rewrad 1 Type
             writeD(L2Manor.getInstance().getRewardItem(crop.getId(), 1)); // Rewrad 1 Type Item Id

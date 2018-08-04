@@ -29,14 +29,13 @@ import com.l2jbr.gameserver.datatables.ClanTable;
 import com.l2jbr.gameserver.datatables.DoorTable;
 import com.l2jbr.gameserver.instancemanager.CastleManager;
 import com.l2jbr.gameserver.instancemanager.CastleManorManager;
-import com.l2jbr.gameserver.instancemanager.CastleManorManager.CropProcure;
 import com.l2jbr.gameserver.model.L2Clan;
 import com.l2jbr.gameserver.model.L2Manor;
 import com.l2jbr.gameserver.model.L2Object;
 import com.l2jbr.gameserver.model.actor.instance.L2DoorInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.entity.database.CastleDoor;
-import com.l2jbr.gameserver.model.entity.database.CastleManorProcure;
+import com.l2jbr.gameserver.model.entity.database.CropProcure;
 import com.l2jbr.gameserver.model.entity.database.SeedProduction;
 import com.l2jbr.gameserver.model.entity.database.castleEntity;
 import com.l2jbr.gameserver.model.entity.database.repository.CastleManorProcureRepository;
@@ -501,7 +500,7 @@ public class Castle {
         }
         if (procure != null) {
             for (CropProcure crop : procure) {
-                total += crop.getPrice() * crop.getStartAmount();
+                total += crop.getPrice() * crop.getStartBuy();
             }
         }
         return total;
@@ -539,8 +538,8 @@ public class Castle {
 
         if (!Util.isNullOrEmpty(procures)) {
             for (CropProcure cp : procures) {
-                CastleManorProcure procure = new CastleManorProcure(getCastleId(), cp.getId(), cp.getAmount(),
-                        cp.getStartAmount(), cp.getPrice(), cp.getReward(), period);
+                CropProcure procure = new CropProcure(getCastleId(), cp.getId(), cp.getCanBuy(),
+                        cp.getStartBuy(), cp.getPrice(), cp.getRewardType(), period);
                 repository.save(procure);
             }
         }
