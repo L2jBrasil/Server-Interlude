@@ -14,21 +14,21 @@ public class SeedProduction extends Entity<Integer> {
     @Column("seed_id")
     private int seedId;
     @Column("can_produce")
-    private int canProduce;
+    private int amount;
     @Column("start_produce")
-    private int startProduce;
+    private int startAmount;
     @Column("seed_price")
-    private int seedPrice;
+    private int price;
     private int period;
 
     public SeedProduction() {}
 
-    public SeedProduction(int castleId, int seedId, int canProduce, int startProduce, int price, int period) {
+    public SeedProduction(int castleId, int seedId, int amount, int startAmount, int price, int period) {
         this.castleId = castleId;
         this.seedId = seedId;
-        this.canProduce = canProduce;
-        this.startProduce = startProduce;
-        this.seedPrice = price;
+        this.amount = amount;
+        this.startAmount = startAmount;
+        this.price = price;
         this.period = period;
     }
 
@@ -39,9 +39,9 @@ public class SeedProduction extends Entity<Integer> {
 
     public SeedProduction(int id, int amount, int price, int sales) {
         this.seedId = id;
-        this.canProduce = amount;
-        this.seedPrice = price;
-        this.startProduce = sales;
+        this.amount = amount;
+        this.price = price;
+        this.startAmount = sales;
     }
 
     @Override
@@ -53,20 +53,20 @@ public class SeedProduction extends Entity<Integer> {
         return seedId;
     }
 
-    public int getCanProduce() {
-        return canProduce;
+    public int getAmount() {
+        return amount;
     }
 
-    public int getStartProduce() {
-        return startProduce;
+    public int getStartAmount() {
+        return startAmount;
     }
 
-    public void setCanProduce(int produce) {
-        this.canProduce = produce;
+    public void setAmount(int produce) {
+        this.amount = produce;
     }
 
-    public int getSeedPrice() {
-        return seedPrice;
+    public int getPrice() {
+        return price;
     }
 
     public int getPeriod() {

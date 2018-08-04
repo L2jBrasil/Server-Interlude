@@ -464,7 +464,7 @@ public class Castle {
 
     public synchronized SeedProduction getSeed(int seedId, int period) {
         for (SeedProduction seed : getSeedProduction(period)) {
-            if (seed.getId() == seedId) {
+            if (seed.getSeedId() == seedId) {
                 return seed;
             }
         }
@@ -473,7 +473,7 @@ public class Castle {
 
     public synchronized CropProcure getCrop(int cropId, int period) {
         for (CropProcure crop : getCropProcure(period)) {
-            if (crop.getId() == cropId) {
+            if (crop.getCropId() == cropId) {
                 return crop;
             }
         }
@@ -495,12 +495,12 @@ public class Castle {
         int total = 0;
         if (production != null) {
             for (SeedProduction seed : production) {
-                total += L2Manor.getInstance().getSeedBuyPrice(seed.getId()) * seed.getStartProduce();
+                total += L2Manor.getInstance().getSeedBuyPrice(seed.getSeedId()) * seed.getStartAmount();
             }
         }
         if (procure != null) {
             for (CropProcure crop : procure) {
-                total += crop.getPrice() * crop.getStartBuy();
+                total += crop.getPrice() * crop.getStartAmount();
             }
         }
         return total;
@@ -519,7 +519,7 @@ public class Castle {
 
         if (!Util.isNullOrEmpty(seedProductions)) {
             for (SeedProduction s : seedProductions) {
-                SeedProduction production = new SeedProduction(getCastleId(), s.getId(), s.getCanProduce(), s.getStartProduce(), s.getSeedPrice(), period);
+                SeedProduction production = new SeedProduction(getCastleId(), s.getSeedId(), s.getAmount(), s.getStartAmount(), s.getPrice(), period);
                 repository.save(production);
             }
         }
@@ -538,8 +538,8 @@ public class Castle {
 
         if (!Util.isNullOrEmpty(procures)) {
             for (CropProcure cp : procures) {
-                CropProcure procure = new CropProcure(getCastleId(), cp.getId(), cp.getCanBuy(),
-                        cp.getStartBuy(), cp.getPrice(), cp.getRewardType(), period);
+                CropProcure procure = new CropProcure(getCastleId(), cp.getCropId(), cp.getAmount(),
+                        cp.getStartAmount(), cp.getPrice(), cp.getReward(), period);
                 repository.save(procure);
             }
         }

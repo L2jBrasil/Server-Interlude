@@ -1,8 +1,8 @@
 //
-// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.3.0-b170531.0717 
-// Consulte <a href="https://jaxb.java.net/">https://jaxb.java.net/</a> 
+// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.3.1-b171012.0423 
+// Consulte <a href="https://javaee.github.io/jaxb-v2/">https://javaee.github.io/jaxb-v2/</a> 
 // Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
-// Gerado em: 2018.07.24 às 11:36:10 AM BRT 
+// Gerado em: 2018.08.04 às 08:41:51 AM BRT 
 //
 
 
@@ -69,9 +69,9 @@ public class XmlStatConditionOR
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link JAXBElement }{@code <}{@link XmlStatConditionOR }{@code >}
-     * {@link JAXBElement }{@code <}{@link XmlStatConditionNOT }{@code >}
      * {@link JAXBElement }{@code <}{@link XmlStatConditionAND }{@code >}
+     * {@link JAXBElement }{@code <}{@link XmlStatConditionNOT }{@code >}
+     * {@link JAXBElement }{@code <}{@link XmlStatConditionOR }{@code >}
      * {@link JAXBElement }{@code <}{@link XmlStatConditionOperator }{@code >}
      * 
      * 

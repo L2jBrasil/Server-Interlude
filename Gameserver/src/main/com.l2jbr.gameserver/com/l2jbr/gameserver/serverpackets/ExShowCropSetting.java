@@ -60,9 +60,9 @@ public class ExShowCropSetting extends L2GameServerPacket {
             _cropData[(i * 14) + 7] = L2Manor.getInstance().getCropBasicPrice(cr) * 10;
             CropProcure cropPr = c.getCrop(cr, CastleManorManager.PERIOD_CURRENT);
             if (cropPr != null) {
-                _cropData[(i * 14) + 8] = cropPr.getStartBuy();
+                _cropData[(i * 14) + 8] = cropPr.getStartAmount();
                 _cropData[(i * 14) + 9] = cropPr.getPrice();
-                _cropData[(i * 14) + 10] = cropPr.getRewardType();
+                _cropData[(i * 14) + 10] = cropPr.getReward();
             } else {
                 _cropData[(i * 14) + 8] = 0;
                 _cropData[(i * 14) + 9] = 0;
@@ -70,9 +70,9 @@ public class ExShowCropSetting extends L2GameServerPacket {
             }
             cropPr = c.getCrop(cr, CastleManorManager.PERIOD_NEXT);
             if (cropPr != null) {
-                _cropData[(i * 14) + 11] = cropPr.getStartBuy();
+                _cropData[(i * 14) + 11] = cropPr.getStartAmount();
                 _cropData[(i * 14) + 12] = cropPr.getPrice();
-                _cropData[(i * 14) + 13] = cropPr.getRewardType();
+                _cropData[(i * 14) + 13] = cropPr.getReward();
             } else {
                 _cropData[(i * 14) + 11] = 0;
                 _cropData[(i * 14) + 12] = 0;

@@ -60,16 +60,16 @@ public class ExShowSeedSetting extends L2GameServerPacket {
             _seedData[(i * 12) + 7] = L2Manor.getInstance().getSeedBasicPrice(s) * 10;
             SeedProduction seedPr = c.getSeed(s, CastleManorManager.PERIOD_CURRENT);
             if (seedPr != null) {
-                _seedData[(i * 12) + 8] = seedPr.getStartProduce();
-                _seedData[(i * 12) + 9] = seedPr.getSeedPrice();
+                _seedData[(i * 12) + 8] = seedPr.getStartAmount();
+                _seedData[(i * 12) + 9] = seedPr.getPrice();
             } else {
                 _seedData[(i * 12) + 8] = 0;
                 _seedData[(i * 12) + 9] = 0;
             }
             seedPr = c.getSeed(s, CastleManorManager.PERIOD_NEXT);
             if (seedPr != null) {
-                _seedData[(i * 12) + 10] = seedPr.getStartProduce();
-                _seedData[(i * 12) + 11] = seedPr.getSeedPrice();
+                _seedData[(i * 12) + 10] = seedPr.getStartAmount();
+                _seedData[(i * 12) + 11] = seedPr.getPrice();
             } else {
                 _seedData[(i * 12) + 10] = 0;
                 _seedData[(i * 12) + 11] = 0;

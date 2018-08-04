@@ -118,8 +118,8 @@ public class RequestBuySeed extends L2GameClientPacket
 			int residual = 0;
 			
 			SeedProduction seed = castle.getSeed(seedId, CastleManorManager.PERIOD_CURRENT);
-			price = seed.getSeedPrice();
-			residual = seed.getCanProduce();
+			price = seed.getPrice();
+			residual = seed.getAmount();
 			
 			if (price <= 0)
 			{
@@ -186,10 +186,10 @@ public class RequestBuySeed extends L2GameClientPacket
 			
 			// Update Castle Seeds Amount
 			SeedProduction seed = castle.getSeed(seedId, CastleManorManager.PERIOD_CURRENT);
-			seed.setCanProduce(seed.getCanProduce() - count);
+			seed.setAmount(seed.getAmount() - count);
 			if (Config.ALT_MANOR_SAVE_ALL_ACTIONS)
 			{
-				CastleManager.getInstance().getCastleById(_manorId).updateSeed(seed.getId(), seed.getCanProduce(), CastleManorManager.PERIOD_CURRENT);
+				CastleManager.getInstance().getCastleById(_manorId).updateSeed(seed.getSeedId(), seed.getAmount(), CastleManorManager.PERIOD_CURRENT);
 			}
 			
 			// Add item to Inventory and adjust update packet

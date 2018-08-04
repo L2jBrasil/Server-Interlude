@@ -53,16 +53,16 @@ public class ExShowCropInfo extends L2GameServerPacket {
         writeD(0);
         writeD(_crops.size());
         for (CropProcure crop : _crops) {
-            writeD(crop.getId()); // Crop id
-            writeD(crop.getCanBuy()); // Buy residual
-            writeD(crop.getStartBuy()); // Buy
+            writeD(crop.getCropId()); // Crop id
+            writeD(crop.getAmount()); // Buy residual
+            writeD(crop.getStartAmount()); // Buy
             writeD(crop.getPrice()); // Buy price
-            writeC(crop.getRewardType()); // Reward
-            writeD(L2Manor.getInstance().getSeedLevelByCrop(crop.getId())); // Seed Level
+            writeC(crop.getReward()); // Reward
+            writeD(L2Manor.getInstance().getSeedLevelByCrop(crop.getCropId())); // Seed Level
             writeC(1); // rewrad 1 Type
-            writeD(L2Manor.getInstance().getRewardItem(crop.getId(), 1)); // Rewrad 1 Type Item Id
+            writeD(L2Manor.getInstance().getRewardItem(crop.getCropId(), 1)); // Rewrad 1 Type Item Id
             writeC(1); // rewrad 2 Type
-            writeD(L2Manor.getInstance().getRewardItem(crop.getId(), 2)); // Rewrad 2 Type Item Id
+            writeD(L2Manor.getInstance().getRewardItem(crop.getCropId(), 2)); // Rewrad 2 Type Item Id
         }
     }
 

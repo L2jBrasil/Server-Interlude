@@ -56,9 +56,9 @@ public class ExShowSellCropList extends L2GameServerPacket
 		
 		for (CropProcure crop : crops)
 		{
-			if (_cropsItems.containsKey(crop.getId()) && (crop.getCanBuy() > 0))
+			if (_cropsItems.containsKey(crop.getCropId()) && (crop.getAmount() > 0))
 			{
-				_castleCrops.put(crop.getId(), crop);
+				_castleCrops.put(crop.getCropId(), crop);
 			}
 		}
 		
@@ -93,9 +93,9 @@ public class ExShowSellCropList extends L2GameServerPacket
 			{
 				CropProcure crop = _castleCrops.get(item.getItemId());
 				writeD(_manorId); // manor
-				writeD(crop.getCanBuy()); // buy residual
+				writeD(crop.getAmount()); // buy residual
 				writeD(crop.getPrice()); // buy price
-				writeC(crop.getRewardType()); // reward
+				writeC(crop.getReward()); // reward
 			}
 			else
 			{

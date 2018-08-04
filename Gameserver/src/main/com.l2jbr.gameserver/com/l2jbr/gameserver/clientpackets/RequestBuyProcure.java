@@ -106,7 +106,7 @@ public class RequestBuyProcure extends L2GameClientPacket {
                 return;
             }
 
-            ItemTemplate template = ItemTable.getInstance().getTemplate(L2Manor.getInstance().getRewardItem(itemId, manor.getCastle().getCrop(itemId, CastleManorManager.PERIOD_CURRENT).getRewardType()));
+            ItemTemplate template = ItemTable.getInstance().getTemplate(L2Manor.getInstance().getRewardItem(itemId, manor.getCastle().getCrop(itemId, CastleManorManager.PERIOD_CURRENT).getReward()));
             weight += count * template.getWeight();
 
             if (!template.isStackable()) {
@@ -137,7 +137,7 @@ public class RequestBuyProcure extends L2GameClientPacket {
                 count = 0;
             }
 
-            int rewradItemId = L2Manor.getInstance().getRewardItem(itemId, manor.getCastle().getCrop(itemId, CastleManorManager.PERIOD_CURRENT).getRewardType());
+            int rewradItemId = L2Manor.getInstance().getRewardItem(itemId, manor.getCastle().getCrop(itemId, CastleManorManager.PERIOD_CURRENT).getReward());
 
             int rewradItemCount = 1; // L2Manor.getInstance().getRewardAmount(itemId, manor.getCastle().getCropReward(itemId));
 

@@ -72,7 +72,7 @@ public class CastleManorManager {
     private ScheduledFuture<?> _scheduledMaintenanceEnd;
     private ScheduledFuture<?> _scheduledNextPeriodapprove;
 
-    public static final CastleManorManager getInstance() {
+    public static CastleManorManager getInstance() {
         if (isNull(_instance)) {
             _log.info("Initializing CastleManorManager");
             _instance = new CastleManorManager();
@@ -237,12 +237,12 @@ public class CastleManorManager {
             }
 
             for (CropProcure crop : castle.getCropProcure(PERIOD_CURRENT)) {
-                if (crop.getStartBuy() == 0) {
+                if (crop.getStartAmount() == 0) {
                     continue;
                 }
                 // adding bought crops to clan warehouse
-                if ((crop.getStartBuy() - crop.getCanBuy()) > 0) {
-                    int count = crop.getStartBuy() - crop.getCanBuy();
+                if ((crop.getStartAmount() - crop.getAmount()) > 0) {
+                    int count = crop.getStartAmount() - crop.getAmount();
                     count = (count * 90) / 100;
                     if (count < 1) {
                         if (Rnd.nextInt(99) < 90) {
@@ -250,12 +250,12 @@ public class CastleManorManager {
                         }
                     }
                     if (count > 0) {
-                        cwh.addItem("Manor", L2Manor.getInstance().getMatureCrop(crop.getId()), count, null, null);
+                        cwh.addItem("Manor", L2Manor.getInstance().getMatureCrop(crop.getCropId()), count, null, null);
                     }
                 }
                 // reserved and not used money giving back to treasury
-                if (crop.getCanBuy() > 0) {
-                    castle.addToTreasuryNoTax(crop.getCanBuy() * crop.getPrice());
+                if (crop.getAmount() > 0) {
+                    castle.addToTreasuryNoTax(crop.getAmount() * crop.getPrice());
                 }
             }
 
@@ -268,14 +268,14 @@ public class CastleManorManager {
             } else {
                 List<SeedProduction> production = new ArrayList<>();
                 for (SeedProduction seedProduction : castle.getSeedProduction(PERIOD_CURRENT)) {
-                    seedProduction.setCanProduce(seedProduction.getStartProduce());
+                    seedProduction.setAmount(seedProduction.getStartAmount());
                     production.add(seedProduction);
                 }
                 castle.setSeedProduction(production, PERIOD_NEXT);
 
                 List<CropProcure> procure = new ArrayList<>();
                 for (CropProcure cr : castle.getCropProcure(PERIOD_CURRENT)) {
-                    cr.setCanBuy(cr.getStartBuy());
+                    cr.setAmount(cr.getStartAmount());
                     procure.add(cr);
                 }
                 castle.setCropProcure(procure, PERIOD_NEXT);
@@ -314,7 +314,7 @@ public class CastleManorManager {
                 }
                 int slots = 0;
                 for (CropProcure crop : c.getCropProcure(PERIOD_NEXT)) {
-                    if (crop.getStartBuy() > 0) {
+                    if (crop.getStartAmount() > 0) {
                         slots++;
                     }
                 }

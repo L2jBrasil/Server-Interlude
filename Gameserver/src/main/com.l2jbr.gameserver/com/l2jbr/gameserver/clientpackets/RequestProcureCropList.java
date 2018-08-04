@@ -136,7 +136,7 @@ public class RequestProcureCropList extends L2GameClientPacket
 			try
 			{
 				CropProcure crop = CastleManager.getInstance().getCastleById(manorId).getCrop(itemId, CastleManorManager.PERIOD_CURRENT);
-				int rewardItemId = L2Manor.getInstance().getRewardItem(itemId, crop.getRewardType());
+				int rewardItemId = L2Manor.getInstance().getRewardItem(itemId, crop.getReward());
 				ItemTemplate template = ItemTable.getInstance().getTemplate(rewardItemId);
 				weight += count * template.getWeight();
 				
@@ -197,16 +197,16 @@ public class RequestProcureCropList extends L2GameClientPacket
 			{
 				continue;
 			}
-			if ((crop == null) || (crop.getId() == 0) || (crop.getPrice() == 0))
+			if ((crop == null) || (crop.getCropId() == 0) || (crop.getPrice() == 0))
 			{
 				continue;
 			}
 			
 			int fee = 0; // fee for selling to other manors
 			
-			int rewardItem = L2Manor.getInstance().getRewardItem(cropId, crop.getRewardType());
+			int rewardItem = L2Manor.getInstance().getRewardItem(cropId, crop.getReward());
 			
-			if (count > crop.getCanBuy())
+			if (count > crop.getAmount())
 			{
 				continue;
 			}
@@ -266,10 +266,10 @@ public class RequestProcureCropList extends L2GameClientPacket
 				{
 					player.getInventory().reduceAdena("Manor", fee, player, manorManager);
 				}
-				crop.setCanBuy(crop.getCanBuy() - count);
+				crop.setAmount(crop.getAmount() - count);
 				if (Config.ALT_MANOR_SAVE_ALL_ACTIONS)
 				{
-					CastleManager.getInstance().getCastleById(manorId).updateCrop(crop.getId(), crop.getCanBuy(), CastleManorManager.PERIOD_CURRENT);
+					CastleManager.getInstance().getCastleById(manorId).updateCrop(crop.getCropId(), crop.getAmount(), CastleManorManager.PERIOD_CURRENT);
 				}
 				itemAdd = player.getInventory().addItem("Manor", rewardItem, rewardItemCount, player, manorManager);
 			}

@@ -51,15 +51,15 @@ public class ExShowSeedInfo extends L2GameServerPacket {
         writeD(0);
         writeD(_seeds.size());
         for (SeedProduction seed : _seeds) {
-            writeD(seed.getId()); // Seed id
-            writeD(seed.getCanProduce()); // Left to buy
-            writeD(seed.getStartProduce()); // Started amount
-            writeD(seed.getSeedPrice()); // Sell Price
-            writeD(L2Manor.getInstance().getSeedLevel(seed.getId())); // Seed Level
+            writeD(seed.getSeedId()); // Seed id
+            writeD(seed.getAmount()); // Left to buy
+            writeD(seed.getStartAmount()); // Started amount
+            writeD(seed.getPrice()); // Sell Price
+            writeD(L2Manor.getInstance().getSeedLevel(seed.getSeedId())); // Seed Level
             writeC(1); // reward 1 Type
-            writeD(L2Manor.getInstance().getRewardItemBySeed(seed.getId(), 1)); // Reward 1 Type Item Id
+            writeD(L2Manor.getInstance().getRewardItemBySeed(seed.getSeedId(), 1)); // Reward 1 Type Item Id
             writeC(1); // reward 2 Type
-            writeD(L2Manor.getInstance().getRewardItemBySeed(seed.getId(), 2)); // Reward 2 Type Item Id
+            writeD(L2Manor.getInstance().getRewardItemBySeed(seed.getSeedId(), 2)); // Reward 2 Type Item Id
         }
     }
 

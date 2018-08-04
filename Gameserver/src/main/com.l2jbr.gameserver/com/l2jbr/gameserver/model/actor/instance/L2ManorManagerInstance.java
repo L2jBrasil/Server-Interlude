@@ -146,8 +146,8 @@ public class L2ManorManagerInstance extends L2MerchantInstance {
                         List<SeedProduction> seeds = getCastle().getSeedProduction(CastleManorManager.PERIOD_CURRENT);
 
                         for (SeedProduction s : seeds) {
-                            MerchantItem item = new MerchantItem(s.getId(), s.getSeedPrice(), 0, 0);
-                            item.setCount(s.getCanProduce());
+                            MerchantItem item = new MerchantItem(s.getSeedId(), s.getPrice(), 0, 0);
+                            item.setCount(s.getAmount());
                             if ((item.getCount() > 0) && (item.getPrice() > 0)) {
                                 shop.addItem(item);
                             }

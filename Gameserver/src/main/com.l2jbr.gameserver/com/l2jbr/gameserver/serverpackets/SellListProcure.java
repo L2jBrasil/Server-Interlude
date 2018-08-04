@@ -43,9 +43,9 @@ public class SellListProcure extends L2GameServerPacket {
         _castle = castleId;
         _procureList = CastleManager.getInstance().getCastleById(_castle).getCropProcure(0);
         for (CropProcure c : _procureList) {
-            L2ItemInstance item = _activeChar.getInventory().getItemByItemId(c.getId());
-            if ((item != null) && (c.getCanBuy() > 0)) {
-                _sellList.put(item, c.getCanBuy());
+            L2ItemInstance item = _activeChar.getInventory().getItemByItemId(c.getCropId());
+            if ((item != null) && (c.getAmount() > 0)) {
+                _sellList.put(item, c.getAmount());
             }
         }
     }

@@ -14,12 +14,12 @@ public class CropProcure extends Entity<Integer> {
     @Column("crop_id")
     private int cropId;
     @Column("can_buy")
-    private int canBuy;
+    private int amount;
     @Column("start_buy")
-    private int startBuy;
+    private int startAmount;
     private int price;
     @Column("reward_type")
-    private int rewardType;
+    private int reward;
     private int period;
 
     public CropProcure() {}
@@ -32,18 +32,18 @@ public class CropProcure extends Entity<Integer> {
     public CropProcure(int castleId, int id, int amount, int startAmount, int price, int reward, int period) {
         this.castleId = castleId;
         this.cropId= id;
-        this.canBuy = amount;
-        this.startBuy = startAmount;
+        this.amount = amount;
+        this.startAmount = startAmount;
         this.price = price;
-        this.rewardType = reward;
+        this.reward = reward;
         this.period = period;
     }
 
     public CropProcure(int id, int amount, int type, int buy, int price) {
         this.cropId = id;
-        this.canBuy = amount;
-        this.rewardType = type;
-        this.startBuy = buy;
+        this.amount = amount;
+        this.reward = type;
+        this.startAmount = buy;
         this.price = price;
     }
 
@@ -57,27 +57,27 @@ public class CropProcure extends Entity<Integer> {
         return cropId;
     }
 
-    public int getCanBuy() {
-        return canBuy;
+    public int getAmount() {
+        return amount;
     }
 
-    public int getStartBuy() {
-        return startBuy;
+    public int getStartAmount() {
+        return startAmount;
     }
 
     public int getPrice() {
         return price;
     }
 
-    public int getRewardType() {
-        return rewardType;
+    public int getReward() {
+        return reward;
     }
 
     public int getPeriod() {
         return period;
     }
 
-    public void setCanBuy(int buy) {
-        this.canBuy = buy;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }
