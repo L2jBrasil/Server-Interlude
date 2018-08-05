@@ -34,6 +34,8 @@ import org.slf4j.LoggerFactory;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import static java.util.Objects.isNull;
+
 
 /**
  * Petition Manager
@@ -72,7 +74,7 @@ public final class PetitionManager {
     }
 
     public static PetitionManager getInstance() {
-        if (_instance == null) {
+        if (isNull(_instance)) {
             System.out.println("Initializing PetitionManager");
             _instance = new PetitionManager();
         }
@@ -206,8 +208,8 @@ public final class PetitionManager {
     }
 
     private PetitionManager() {
-        _pendingPetitions = new LinkedHashMap<>();
-        _completedPetitions = new LinkedHashMap<>();
+        _pendingPetitions = new HashMap<>();
+        _completedPetitions = new HashMap<>();
     }
 
     public void clearCompletedPetitions() {

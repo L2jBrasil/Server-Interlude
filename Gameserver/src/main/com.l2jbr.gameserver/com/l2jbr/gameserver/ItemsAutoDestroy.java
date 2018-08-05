@@ -29,12 +29,14 @@ import org.slf4j.LoggerFactory;
 import java.util.LinkedList;
 import java.util.List;
 
+import static java.util.Objects.isNull;
+
 
 public class ItemsAutoDestroy {
     protected static final Logger _log = LoggerFactory.getLogger("ItemsAutoDestroy");
     private static ItemsAutoDestroy _instance;
-    protected List<L2ItemInstance> _items = null;
-    protected static long _sleep;
+    protected List<L2ItemInstance> _items;
+    private static long _sleep;
 
     private ItemsAutoDestroy() {
         _items = new LinkedList<>();
@@ -46,8 +48,8 @@ public class ItemsAutoDestroy {
     }
 
     public static ItemsAutoDestroy getInstance() {
-        if (_instance == null) {
-            System.out.println("Initializing ItemsAutoDestroy.");
+        if (isNull(_instance)) {
+            _log.info("Initializing ItemsAutoDestroy.");
             _instance = new ItemsAutoDestroy();
         }
         return _instance;
@@ -58,9 +60,9 @@ public class ItemsAutoDestroy {
         _items.add(item);
     }
 
-    public synchronized void removeItems() {
+    private synchronized void removeItems() {
         if (Config.DEBUG) {
-            _log.info("[ItemsAutoDestroy] : " + _items.size() + " items to check.");
+            _log.info("[ItemsAutoDestroy] : {} items to check.", _items.size());
         }
 
         if (_items.isEmpty()) {

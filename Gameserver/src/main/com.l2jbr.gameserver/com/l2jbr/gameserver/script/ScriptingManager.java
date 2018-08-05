@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.l2jbr.gameserver.util.GameserverMessages.getMessage;
+import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 
 public class ScriptingManager {
     private Logger logger = LoggerFactory.getLogger(ScriptingManager.class);
@@ -37,12 +39,12 @@ public class ScriptingManager {
     }
 
    public ScriptEngine getEngine(String language) {
-        ScriptEngine engine = null;
+        ScriptEngine engine;
         if(scriptEngines.containsKey(language)) {
             engine = scriptEngines.get(language);
         } else {
             engine = engineManager.getEngineByName(language);
-            if(engine != null) {
+            if(nonNull(engine)) {
                 scriptEngines.put(language, engine);
             }
         }
@@ -51,7 +53,7 @@ public class ScriptingManager {
 
 
     public static ScriptingManager getInstance() {
-        return instance == null ? instance = new ScriptingManager() : instance;
+        return isNull(instance) ? instance = new ScriptingManager() : instance;
     }
 
 }

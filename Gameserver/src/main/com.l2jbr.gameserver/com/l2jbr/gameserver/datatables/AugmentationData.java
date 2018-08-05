@@ -31,10 +31,12 @@ import org.w3c.dom.Node;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import static java.util.Objects.isNull;
 
 /**
  * This class manages the augmentation data and can also create new augmentations.
@@ -44,18 +46,14 @@ import java.util.StringTokenizer;
 public class AugmentationData {
     private static final Logger _log = LoggerFactory.getLogger(AugmentationData.class.getName());
 
-    // =========================================================
     private static AugmentationData _instance;
 
-    public static final AugmentationData getInstance() {
-        if (_instance == null) {
+    public static AugmentationData getInstance() {
+        if (isNull(_instance)) {
             _instance = new AugmentationData();
         }
         return _instance;
     }
-
-    // =========================================================
-    // Data Field
 
     // chances
     // private static final int CHANCE_STAT = 88;
@@ -81,38 +79,33 @@ public class AugmentationData {
     private final List<augmentationSkill> _passiveSkills;
     private final List<augmentationSkill> _chanceSkills;
 
-    // =========================================================
-    // Constructor
-    public AugmentationData() {
+
+    private AugmentationData() {
         _log.info("Initializing AugmentationData.");
 
         _augmentationStats = new List<?>[4];
-        _augmentationStats[0] = new LinkedList<>();
-        _augmentationStats[1] = new LinkedList<>();
-        _augmentationStats[2] = new LinkedList<>();
-        _augmentationStats[3] = new LinkedList<>() {
-        };
+        _augmentationStats[0] = new ArrayList<>();
+        _augmentationStats[1] = new ArrayList<>();
+        _augmentationStats[2] = new ArrayList<>();
+        _augmentationStats[3] = new ArrayList<>();
 
-        _activeSkills = new LinkedList<>();
-        _passiveSkills = new LinkedList<>();
-        _chanceSkills = new LinkedList<>();
+        _activeSkills = new ArrayList<>();
+        _passiveSkills = new ArrayList<>();
+        _chanceSkills = new ArrayList<>();
 
         load();
 
         // Use size*4: since theres 4 blocks of stat-data with equivalent size
-        _log.info("AugmentationData: Loaded: " + (_augmentationStats[0].size() * 4) + " augmentation stats.");
-        _log.info("AugmentationData: Loaded: " + _activeSkills.size() + " active, " + _passiveSkills.size() + " passive and " + _chanceSkills.size() + " chance skills");
+        _log.info("AugmentationData: Loaded: {} augmentation stats.", _augmentationStats[0].size() * 4);
+        _log.info("AugmentationData: Loaded: {} active {} passive and {} chance skills.", _activeSkills.size(), _passiveSkills.size(), _chanceSkills.size());
     }
-
-    // =========================================================
-    // Nested Class
 
     public class augmentationSkill {
         private final int _skillId;
         private final int _maxSkillLevel;
         private final int _augmentationSkillId;
 
-        public augmentationSkill(int skillId, int maxSkillLevel, int augmentationSkillId) {
+        augmentationSkill(int skillId, int maxSkillLevel, int augmentationSkillId) {
             _skillId = skillId;
             _maxSkillLevel = maxSkillLevel;
             _augmentationSkillId = augmentationSkillId;
@@ -172,11 +165,9 @@ public class AugmentationData {
         }
     }
 
-    // =========================================================
-    // Method - Private
 
     @SuppressWarnings("unchecked")
-    private final void load() {
+    private void load() {
         // Load the skillmap
         // Note: the skillmap data is only used when generating new augmentations
         // the client expects a different id in order to display the skill in the
@@ -262,7 +253,7 @@ public class AugmentationData {
                                         String tableName = attrs.getNamedItem("name").getNodeValue();
 
                                         StringTokenizer data = new StringTokenizer(cd.getFirstChild().getNodeValue());
-                                        List<Float> array = new LinkedList<>();
+                                        List<Float> array = new ArrayList<>();
                                         while (data.hasMoreTokens()) {
                                             array.add(Float.parseFloat(data.nextToken()));
                                         }

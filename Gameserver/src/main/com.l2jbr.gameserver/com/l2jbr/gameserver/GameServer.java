@@ -75,7 +75,6 @@ public class GameServer {
     private final AdminCommandHandler _adminCommandHandler;
     private final UserCommandHandler _userCommandHandler;
     private final VoicedCommandHandler _voicedCommandHandler;
-    private final DoorTable _doorTable;
     private final SevenSigns _sevenSignsEngine;
     private final AutoChatHandler _autoChatHandler;
     private final AutoSpawnHandler _autoSpawnHandler;
@@ -159,7 +158,6 @@ public class GameServer {
         BoatManager.getInstance();
         CastleManorManager.getInstance();
         MercTicketManager.getInstance();
-        // PartyCommandManager.getInstance();
         PetitionManager.getInstance();
         ScriptingManager.getInstance();
         QuestManager.getInstance();
@@ -174,8 +172,7 @@ public class GameServer {
 
         MonsterRace.getInstance();
 
-        _doorTable = DoorTable.getInstance();
-        _doorTable.parseData();
+        DoorTable.getInstance();
         StaticObjects.getInstance();
 
         _sevenSignsEngine = SevenSigns.getInstance();
@@ -369,25 +366,6 @@ public class GameServer {
 
         Runtime.getRuntime().addShutdownHook(Shutdown.getInstance());
 
-        try {
-            _doorTable.getDoor(24190001).openMe();
-            _doorTable.getDoor(24190002).openMe();
-            _doorTable.getDoor(24190003).openMe();
-            _doorTable.getDoor(24190004).openMe();
-            _doorTable.getDoor(23180001).openMe();
-            _doorTable.getDoor(23180002).openMe();
-            _doorTable.getDoor(23180003).openMe();
-            _doorTable.getDoor(23180004).openMe();
-            _doorTable.getDoor(23180005).openMe();
-            _doorTable.getDoor(23180006).openMe();
-
-            _doorTable.checkAutoOpen();
-        } catch (NullPointerException e) {
-            _log.warn(getMessage("error.door.file"));
-            if (Config.DEBUG) {
-                e.printStackTrace();
-            }
-        }
         ForumsBBSManager.getInstance();
 
         _log.info(getMessage("info.object.id.free", IdFactory.getInstance().size()));

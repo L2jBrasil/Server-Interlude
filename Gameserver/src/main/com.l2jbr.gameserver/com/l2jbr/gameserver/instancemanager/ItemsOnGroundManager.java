@@ -33,18 +33,18 @@ import org.slf4j.LoggerFactory;
 import java.util.LinkedList;
 import java.util.List;
 
+import static java.util.Objects.isNull;
 
 /**
  * This class manage all items on ground
  *
  * @author DiezelMax - original ideea
  * @author Enforcer - actual build
- * @version $Revision: $ $Date: $
  */
 public class ItemsOnGroundManager {
-    static final Logger _log = LoggerFactory.getLogger(ItemsOnGroundManager.class.getName());
+    static final Logger _log = LoggerFactory.getLogger(ItemsOnGroundManager.class);
     private static ItemsOnGroundManager _instance;
-    protected List<L2ItemInstance> _items = null;
+    protected List<L2ItemInstance> _items;
 
     private ItemsOnGroundManager() {
         if (!Config.SAVE_DROPPED_ITEM) {
@@ -56,8 +56,8 @@ public class ItemsOnGroundManager {
         }
     }
 
-    public static final ItemsOnGroundManager getInstance() {
-        if (_instance == null) {
+    public static ItemsOnGroundManager getInstance() {
+        if (isNull(_instance)) {
             _instance = new ItemsOnGroundManager();
             _instance.load();
         }
@@ -166,6 +166,7 @@ public class ItemsOnGroundManager {
                 return;
             }
 
+            ItemsOnGroundRepository repository = DatabaseAccess.getRepository(ItemsOnGroundRepository.class);
             for (L2ItemInstance item : _items) {
 
                 if (CursedWeaponsManager.getInstance().isCursed(item.getItemId())) {
@@ -173,7 +174,6 @@ public class ItemsOnGroundManager {
                 }
 
                 ItemsOnGround itemsOnGround = new ItemsOnGround(item);
-                ItemsOnGroundRepository repository = DatabaseAccess.getRepository(ItemsOnGroundRepository.class);
                 repository.save(itemsOnGround);
             }
             _log.debug("ItemsOnGroundManager: {} items on ground saved.", _items.size());

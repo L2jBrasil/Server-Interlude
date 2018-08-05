@@ -216,13 +216,13 @@ public class L2SignsPriestInstance extends L2FolkInstance {
 
                     switch (stoneType) {
                         case 1:
-                            blueContribCount = (Config.ALT_MAXIMUM_PLAYER_CONTRIB - contribScore) / SevenSigns.BLUE_CONTRIB_POINTS;
+                            blueContribCount =  ((Config.ALT_MAXIMUM_PLAYER_CONTRIB - contribScore) / SevenSigns.BLUE_CONTRIB_POINTS);
                             if (blueContribCount > blueStoneCount) {
                                 blueContribCount = blueStoneCount;
                             }
                             break;
                         case 2:
-                            greenContribCount = (Config.ALT_MAXIMUM_PLAYER_CONTRIB - contribScore) / SevenSigns.GREEN_CONTRIB_POINTS;
+                            greenContribCount =  ((Config.ALT_MAXIMUM_PLAYER_CONTRIB - contribScore) / SevenSigns.GREEN_CONTRIB_POINTS);
                             if (greenContribCount > greenStoneCount) {
                                 greenContribCount = greenStoneCount;
                             }

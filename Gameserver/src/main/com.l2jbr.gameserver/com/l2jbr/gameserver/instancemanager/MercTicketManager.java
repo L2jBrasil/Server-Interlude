@@ -17,7 +17,6 @@
  */
 package com.l2jbr.gameserver.instancemanager;
 
-import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.datatables.NpcTable;
 import com.l2jbr.gameserver.idfactory.IdFactory;
@@ -26,9 +25,9 @@ import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2SiegeGuardInstance;
+import com.l2jbr.gameserver.model.entity.Castle;
 import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.model.entity.database.repository.CastleSiegeGuardRepository;
-import com.l2jbr.gameserver.model.entity.Castle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,6 +35,9 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import static com.l2jbr.commons.database.DatabaseAccess.getRepository;
+import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 
 /**
  * This class is similar to the SiegeGuardManager, except it handles the loading of the mercenary tickets that are dropped on castle floors by the castle lords. These tickets (aka badges) need to be read after each server reboot except when the server crashed in the middle of an ongoing siege. In
@@ -47,12 +49,10 @@ import java.util.List;
 public class MercTicketManager {
     protected static Logger _log = LoggerFactory.getLogger(CastleManager.class.getName());
 
-    // =========================================================
     private static MercTicketManager _instance;
 
-    public static final MercTicketManager getInstance() {
-        // CastleManager.getInstance();
-        if (_instance == null) {
+    public static  MercTicketManager getInstance() {
+        if (isNull(_instance)) {
             System.out.println("Initializing MercTicketManager");
             _instance = new MercTicketManager();
             _instance.load();
@@ -60,10 +60,6 @@ public class MercTicketManager {
         return _instance;
     }
 
-    // =========================================================
-
-    // =========================================================
-    // Data Field
     private List<L2ItemInstance> _droppedTickets; // to keep track of items on the ground
 
     // TODO move all these values into siege.properties
@@ -637,14 +633,8 @@ public class MercTicketManager {
                     // Schuttgart
             };
 
-    // =========================================================
-    // Constructor
-    public MercTicketManager() {
-    }
+    private MercTicketManager() { }
 
-    // =========================================================
-    // Method - Public
-    // returns the castleId for the passed ticket item id
     public int getTicketCastleId(int itemId) {
         if (((itemId >= ITEM_IDS[0]) && (itemId <= ITEM_IDS[9])) || ((itemId >= ITEM_IDS[10]) && (itemId <= ITEM_IDS[19]))) {
             return 1; // Gludio
@@ -682,8 +672,7 @@ public class MercTicketManager {
     }
 
     private void load() {
-        CastleSiegeGuardRepository repository = DatabaseAccess.getRepository(CastleSiegeGuardRepository.class);
-        repository.findAllMercenary().forEach(castleSiegeGuard -> {
+        getRepository(CastleSiegeGuardRepository.class).findAllMercenary().forEach(castleSiegeGuard -> {
             int npcId = castleSiegeGuard.getNpcId();
             int x = castleSiegeGuard.getX();
             int y = castleSiegeGuard.getY();
@@ -697,7 +686,7 @@ public class MercTicketManager {
             int startIndex = 0;
 
             Castle castle = CastleManager.getInstance().getCastle(x, y, z);
-            if (castle != null) {
+            if (nonNull(castle)) {
                 startIndex = 10 * (castle.getCastleId() - 1);
             }
 
@@ -725,9 +714,6 @@ public class MercTicketManager {
 
         _log.info("Loaded: {} Mercenary Tickets", getDroppedTickets().size());
     }
-
-    // =========================================================
-    // Property - Public
 
     /**
      * Checks if the passed item has reached the limit of number of dropped tickets that this SPECIFIC item may have in its castle

@@ -23,19 +23,20 @@ import com.l2jbr.gameserver.model.quest.jython.QuestJython;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static java.util.Objects.isNull;
 
 public class QuestManager {
     protected static final Logger _log = LoggerFactory.getLogger(QuestManager.class.getName());
 
-    // =========================================================
     private static QuestManager _instance;
 
-    public static final QuestManager getInstance() {
-        if (_instance == null) {
-            System.out.println("Initializing QuestManager");
+    public static QuestManager getInstance() {
+        if (isNull(_instance)) {
+            _log.info("Initializing QuestManager");
             _instance = new QuestManager();
             if (!Config.ALT_DEV_NO_QUESTS) {
                 _instance.load();
@@ -44,19 +45,11 @@ public class QuestManager {
         return _instance;
     }
 
-    // =========================================================
+    private Map<String, Quest> _quests = new HashMap<>();
 
-    // =========================================================
-    // Data Field
-    private Map<String, Quest> _quests = new LinkedHashMap<>();
+    private QuestManager() { }
 
-    // =========================================================
-    // Constructor
-    public QuestManager() {
-    }
 
-    // =========================================================
-    // Method - Public
     public final boolean reload(String questFolder) {
         Quest q = getQuest(questFolder);
         String path = "";
@@ -83,11 +76,10 @@ public class QuestManager {
         return QuestJython.reloadQuest(q.getPrefixPath() + q.getName());
     }
 
-    // =========================================================
-    // Method - Private
-    private final void load() {
+
+    private void load() {
         QuestJython.init();
-        System.out.println("Loaded: " + getQuests().size() + " quests");
+        _log.info("Loaded: {} quests", getQuests().size());
     }
 
     public final void save() {

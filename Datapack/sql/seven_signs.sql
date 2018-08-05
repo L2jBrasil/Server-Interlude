@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS `seven_signs` (
   `red_stones` INT NOT NULL default '0',
   `green_stones` INT NOT NULL default '0',
   `blue_stones` INT NOT NULL default '0',
-  `ancient_adena_amount` DECIMAL(20,0) NOT NULL default '0',
-  `contribution_score` DECIMAL(20,0) NOT NULL default '0',
+  `ancient_adena_amount` INT NOT NULL default '0',
+  `contribution_score` INT NOT NULL default '0',
   PRIMARY KEY  (`char_obj_id`)
 );

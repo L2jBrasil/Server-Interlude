@@ -22,21 +22,22 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.instancemanager.ClanHallManager;
 import com.l2jbr.gameserver.model.actor.instance.L2DoorInstance;
+import com.l2jbr.gameserver.model.entity.ClanHall;
 import com.l2jbr.gameserver.model.entity.database.CastleDoor;
 import com.l2jbr.gameserver.model.entity.database.CharTemplate;
-import com.l2jbr.gameserver.model.entity.ClanHall;
 import com.l2jbr.gameserver.pathfinding.AbstractNodeLoc;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+import static com.l2jbr.gameserver.util.GameserverMessages.getMessage;
 
 public class DoorTable {
-    private static Logger _log = LoggerFactory.getLogger(DoorTable.class.getName());
+    private static Logger _log = LoggerFactory.getLogger(DoorTable.class);
 
     private Map<Integer, L2DoorInstance> _staticItems;
 
@@ -45,17 +46,14 @@ public class DoorTable {
     public static DoorTable getInstance() {
         if (_instance == null) {
             _instance = new DoorTable();
+            _instance.parseData();
         }
-
         return _instance;
     }
 
-    public DoorTable() {
-        _staticItems = new LinkedHashMap<>();
-        // parseData();
+    private DoorTable() {
+        _staticItems = new HashMap<>();
     }
-
-
 
     public void reloadAll() {
         respawn();
@@ -69,13 +67,11 @@ public class DoorTable {
     }
 
     public void parseData() {
-        LineNumberReader lnr = null;
-        try {
-            File doorData = new File(Config.DATAPACK_ROOT, "data/door.csv");
-            lnr = new LineNumberReader(new BufferedReader(new FileReader(doorData)));
+        File doorData = new File(Config.DATAPACK_ROOT, "data/door.csv");
+        try (LineNumberReader lnr = new LineNumberReader(new BufferedReader(new FileReader(doorData)))) {
 
             _log.debug("Searching clan halls doors:");
-            String line = null;
+            String line;
             while ((line = lnr.readLine()) != null) {
                 if ((line.trim().length() == 0) || line.startsWith("#")) {
                     continue;
@@ -101,10 +97,24 @@ public class DoorTable {
         } catch (IOException e) {
             _initialized = false;
             _log.warn("error while creating door table " + e);
-        } finally {
-            try {
-                lnr.close();
-            } catch (Exception e1) { /* ignore problems */
+        }
+        try {
+            getDoor(24190001).openMe();
+            getDoor(24190002).openMe();
+            getDoor(24190003).openMe();
+            getDoor(24190004).openMe();
+            getDoor(23180001).openMe();
+            getDoor(23180002).openMe();
+            getDoor(23180003).openMe();
+            getDoor(23180004).openMe();
+            getDoor(23180005).openMe();
+            getDoor(23180006).openMe();
+
+            checkAutoOpen();
+        } catch (NullPointerException e) {
+            _log.warn(getMessage("error.door.file"));
+            if (Config.DEBUG) {
+                _log.error(e.getLocalizedMessage(), e);
             }
         }
     }

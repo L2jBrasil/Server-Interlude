@@ -25,9 +25,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
+
+import static java.util.Objects.isNull;
 
 
 public class StaticObjects {
@@ -37,25 +39,23 @@ public class StaticObjects {
     private final Map<Integer, L2StaticObjectInstance> _staticObjects;
 
     public static StaticObjects getInstance() {
-        if (_instance == null) {
+        if (isNull(_instance)) {
             _instance = new StaticObjects();
         }
         return _instance;
     }
 
-    public StaticObjects() {
-        _staticObjects = new LinkedHashMap<>();
+    private StaticObjects() {
+        _staticObjects = new HashMap<>();
         parseData();
         _log.info("StaticObject: Loaded " + _staticObjects.size() + " StaticObject Templates.");
     }
 
     private void parseData() {
-        LineNumberReader lnr = null;
-        try {
-            File doorData = new File(Config.DATAPACK_ROOT, "data/staticobjects.csv");
-            lnr = new LineNumberReader(new BufferedReader(new FileReader(doorData)));
+        File doorData = new File(Config.DATAPACK_ROOT, "data/staticobjects.csv");
+        try (LineNumberReader lnr = new LineNumberReader(new BufferedReader(new FileReader(doorData)))) {
 
-            String line = null;
+            String line ;
             while ((line = lnr.readLine()) != null) {
                 if ((line.trim().length() == 0) || line.startsWith("#")) {
                     continue;
@@ -67,12 +67,7 @@ public class StaticObjects {
         } catch (FileNotFoundException e) {
             _log.warn("staticobjects.csv is missing in data folder");
         } catch (Exception e) {
-            _log.warn("error while creating StaticObjects table " + e);
-        } finally {
-            try {
-                lnr.close();
-            } catch (Exception e) {
-            }
+            _log.warn("error while creating StaticObjects table ", e);
         }
     }
 

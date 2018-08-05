@@ -6,7 +6,7 @@ import com.l2jbr.commons.database.model.Entity;
 import org.springframework.data.annotation.Id;
 
 @Table("seven_signs")
-public class SevenSigns extends Entity<Integer> {
+public class SevenSignsPlayer extends Entity<Integer> {
 
     @Id
     @Column("char_obj_id")
@@ -20,14 +20,18 @@ public class SevenSigns extends Entity<Integer> {
     @Column("blue_stones")
     private int blueStones;
     @Column("ancient_adena_amount")
-    private long ancientAdenaAmount;
+    private int ancientAdenaAmount;
     @Column("contribution_score")
-    private long contributionScore;
+    private int contributionScore;
 
-    public SevenSigns(int charObjId, String cabal, int seal) {
+    public SevenSignsPlayer(int charObjId, String cabal, int seal) {
         this.charObjId = charObjId;
         this.cabal = cabal;
         this.seal = seal;
+    }
+
+    public int getStoneContrib() {
+        return  redStones + blueStones + greenStones;
     }
 
     @Override
@@ -39,27 +43,55 @@ public class SevenSigns extends Entity<Integer> {
         return cabal;
     }
 
+    public void setCabal(String cabal) {
+        this.cabal = cabal;
+    }
+
     public int getSeal() {
         return seal;
+    }
+
+    public void setSeal(int seal) {
+        this.seal = seal;
     }
 
     public int getRedStones() {
         return redStones;
     }
 
+    public void setRedStones(int stones) {
+        this.redStones = stones;
+    }
+
     public int getGreenStones() {
         return greenStones;
+    }
+
+    public void setGreenStones(int stones) {
+        this.greenStones = stones;
     }
 
     public int getBlueStones() {
         return blueStones;
     }
 
-    public long getAncientAdenaAmount() {
+    public void setBlueStones(int stones) {
+        this.blueStones = stones;
+    }
+
+    public int getAncientAdenaAmount() {
         return ancientAdenaAmount;
     }
 
-    public long getContributionScore() {
+    public void setAncientAdenaAmount(int totalAncientAdena) {
+        this.ancientAdenaAmount = totalAncientAdena;
+    }
+
+    public int getContributionScore() {
         return contributionScore;
+    }
+
+    public void setContribuitionScore(int contribuition) {
+        this.contributionScore = contribuition;
     }
 }

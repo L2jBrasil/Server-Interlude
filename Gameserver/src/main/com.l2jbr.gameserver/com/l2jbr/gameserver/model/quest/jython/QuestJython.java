@@ -24,7 +24,6 @@ import com.l2jbr.gameserver.script.ScriptingManager;
 import javax.script.ScriptEngine;
 import javax.script.ScriptException;
 
-
 public abstract class QuestJython extends Quest {
 
     public static void init() {
