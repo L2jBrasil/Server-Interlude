@@ -22,8 +22,8 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.SevenSigns;
 import com.l2jbr.gameserver.SevenSignsFestival;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.entity.database.SevenSignsFestivalData;
 import com.l2jbr.gameserver.network.SystemMessageId;
-import com.l2jbr.gameserver.templates.StatsSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -183,8 +183,8 @@ public class SSQStatus extends L2GameServerPacket
 					// Dusk Score \\
 					writeD(duskScore);
 					
-					StatsSet highScoreData = SevenSignsFestival.getInstance().getHighestScoreData(SevenSigns.CABAL_DUSK, i);
-					String[] partyMembers = highScoreData.getString("members").split(",");
+					SevenSignsFestivalData highScoreData = SevenSignsFestival.getInstance().getHighestScoreData(SevenSigns.CABAL_DUSK, i);
+					String[] partyMembers = highScoreData.getMembers().split(",");
 					
 					if (partyMembers != null)
 					{
@@ -204,7 +204,7 @@ public class SSQStatus extends L2GameServerPacket
 					writeD(dawnScore);
 					
 					highScoreData = SevenSignsFestival.getInstance().getHighestScoreData(SevenSigns.CABAL_DAWN, i);
-					partyMembers = highScoreData.getString("members").split(",");
+					partyMembers = highScoreData.getMembers().split(",");
 					
 					if (partyMembers != null)
 					{

@@ -24,11 +24,11 @@ import com.l2jbr.gameserver.SevenSignsFestival;
 import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Party;
 import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.SevenSignsFestivalData;
 import com.l2jbr.gameserver.network.SystemMessageId;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.NpcHtmlMessage;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.StatsSet;
 
 import java.util.Calendar;
 import java.util.List;
@@ -292,29 +292,29 @@ public final class L2FestivalGuideInstance extends L2FolkInstance {
                 case 4: // Current High Scores
                     StringBuilder strBuffer = new StringBuilder("<html><body>Festival Guide:<br>These are the top scores of the week, for the ");
 
-                    final StatsSet dawnData = SevenSignsFestival.getInstance().getHighestScoreData(SevenSigns.CABAL_DAWN, _festivalType);
-                    final StatsSet duskData = SevenSignsFestival.getInstance().getHighestScoreData(SevenSigns.CABAL_DUSK, _festivalType);
-                    final StatsSet overallData = SevenSignsFestival.getInstance().getOverallHighestScoreData(_festivalType);
+                    final SevenSignsFestivalData dawnData = SevenSignsFestival.getInstance().getHighestScoreData(SevenSigns.CABAL_DAWN, _festivalType);
+                    final SevenSignsFestivalData duskData = SevenSignsFestival.getInstance().getHighestScoreData(SevenSigns.CABAL_DUSK, _festivalType);
+                    final SevenSignsFestivalData overallData = SevenSignsFestival.getInstance().getOverallHighestScoreData(_festivalType);
 
-                    final int dawnScore = dawnData.getInteger("score");
-                    final int duskScore = duskData.getInteger("score");
+                    final int dawnScore = dawnData.getScore();
+                    final int duskScore = duskData.getScore();
                     int overallScore = 0;
 
                     // If no data is returned, assume there is no record, or all scores are 0.
                     if (overallData != null) {
-                        overallScore = overallData.getInteger("score");
+                        overallScore = overallData.getScore();
                     }
 
                     strBuffer.append(SevenSignsFestival.getFestivalName(_festivalType) + " festival.<br>");
 
                     if (dawnScore > 0) {
-                        strBuffer.append("Dawn: " + calculateDate(dawnData.getString("date")) + ". Score " + dawnScore + "<br>" + dawnData.getString("members") + "<br>");
+                        strBuffer.append("Dawn: " + calculateDate(dawnData.getDate()) + ". Score " + dawnScore + "<br>" + dawnData.getMembers() + "<br>");
                     } else {
                         strBuffer.append("Dawn: No record exists. Score 0<br>");
                     }
 
                     if (duskScore > 0) {
-                        strBuffer.append("Dusk: " + calculateDate(duskData.getString("date")) + ". Score " + duskScore + "<br>" + duskData.getString("members") + "<br>");
+                        strBuffer.append("Dusk: " + calculateDate(duskData.getDate()) + ". Score " + duskScore + "<br>" + duskData.getMembers() + "<br>");
                     } else {
                         strBuffer.append("Dusk: No record exists. Score 0<br>");
                     }
@@ -322,11 +322,11 @@ public final class L2FestivalGuideInstance extends L2FolkInstance {
                     if (overallScore > 0) {
                         String cabalStr = "Children of Dusk";
 
-                        if (overallData.getString("cabal").equals("dawn")) {
+                        if (overallData.getCabal().equals("dawn")) {
                             cabalStr = "Children of Dawn";
                         }
 
-                        strBuffer.append("Consecutive top scores: " + calculateDate(overallData.getString("date")) + ". Score " + overallScore + "<br>Affilated side: " + cabalStr + "<br>" + overallData.getString("members") + "<br>");
+                        strBuffer.append("Consecutive top scores: " + calculateDate(overallData.getDate()) + ". Score " + overallScore + "<br>Affilated side: " + cabalStr + "<br>" + overallData.getMembers() + "<br>");
                     } else {
                         strBuffer.append("Consecutive top scores: No record exists. Score 0<br>");
                     }
@@ -468,11 +468,10 @@ public final class L2FestivalGuideInstance extends L2FolkInstance {
         return tableHtml.toString();
     }
 
-    private final String calculateDate(String milliFromEpoch) {
-        long numMillis = Long.valueOf(milliFromEpoch);
+    private String calculateDate(long milliFromEpoch) {
         Calendar calCalc = Calendar.getInstance();
 
-        calCalc.setTimeInMillis(numMillis);
+        calCalc.setTimeInMillis(milliFromEpoch);
 
         return calCalc.get(Calendar.YEAR) + "/" + calCalc.get(Calendar.MONTH) + "/" + calCalc.get(Calendar.DAY_OF_MONTH);
     }

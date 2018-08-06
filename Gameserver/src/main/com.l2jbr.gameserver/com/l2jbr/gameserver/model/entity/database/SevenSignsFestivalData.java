@@ -5,7 +5,7 @@ import com.l2jbr.commons.database.model.Entity;
 import org.springframework.data.annotation.Id;
 
 @Table("seven_signs_festival")
-public class SevenSignsFestival extends Entity<Integer> {
+public class SevenSignsFestivalData extends Entity<Integer> {
 
     @Id
     private int festivalId;
@@ -15,9 +15,9 @@ public class SevenSignsFestival extends Entity<Integer> {
     private int score;
     private String members;
 
-    public SevenSignsFestival() { }
+    public SevenSignsFestivalData() { }
 
-    public SevenSignsFestival(int festivalId, String cabal, int cycle, long date, int score, String members) {
+    public SevenSignsFestivalData(int festivalId, String cabal, int cycle, long date, int score, String members) {
         this.festivalId = festivalId;
         this.cabal = cabal;
         this.cycle = cycle;
@@ -31,6 +31,10 @@ public class SevenSignsFestival extends Entity<Integer> {
         return festivalId;
     }
 
+    public void setId(int festivalId) {
+        this.festivalId = festivalId;
+    }
+
     public String getCabal() {
         return cabal;
     }
@@ -39,15 +43,35 @@ public class SevenSignsFestival extends Entity<Integer> {
         return cycle;
     }
 
+    public void setCycle(int cycle) {
+        this.cycle = cycle;
+    }
+
     public long getDate() {
         return date;
+    }
+
+    public void setDate(long date) {
+        this.date = date;
     }
 
     public int getScore() {
         return score;
     }
 
+    public void setScore(int score) {
+        this.score = score;
+    }
+
     public String getMembers() {
         return members;
+    }
+
+    public void setMembers(String members) {
+        this.members = members;
+    }
+
+    public void setCabal(String cabal) {
+        this.cabal = cabal;
     }
 }

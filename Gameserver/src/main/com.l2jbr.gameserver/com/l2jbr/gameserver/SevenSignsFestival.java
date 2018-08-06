@@ -18,7 +18,6 @@
 package com.l2jbr.gameserver;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.ai.Intention;
 import com.l2jbr.gameserver.datatables.ClanTable;
@@ -31,6 +30,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.base.Experience;
 import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
+import com.l2jbr.gameserver.model.entity.database.SevenSignsFestivalData;
 import com.l2jbr.gameserver.model.entity.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.model.entity.database.repository.SevenSignsFestivalRepository;
 import com.l2jbr.gameserver.model.entity.database.repository.SevenSignsStatusRepository;
@@ -39,16 +39,16 @@ import com.l2jbr.gameserver.serverpackets.CreatureSay;
 import com.l2jbr.gameserver.serverpackets.MagicSkillUser;
 import com.l2jbr.gameserver.serverpackets.PledgeShowInfoUpdate;
 import com.l2jbr.gameserver.serverpackets.SystemMessage;
-import com.l2jbr.gameserver.templates.StatsSet;
 import com.l2jbr.gameserver.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ScheduledFuture;
+
+import static com.l2jbr.commons.database.DatabaseAccess.getRepository;
+import static java.util.Objects.isNull;
+import static java.util.Objects.requireNonNullElse;
 
 
 /**
@@ -3157,25 +3157,25 @@ public class SevenSignsFestival implements SpawnListener {
      * _festivalData is essentially an instance of the seven_signs_festival table and should be treated as such. Data is initially accessed by the related Seven Signs cycle, with _signsCycle representing data for the current round of Festivals. The actual table data is stored as a series of StatsSet
      * constructs. These are accessed by the use of an offset based on the number of festivals, thus: offset = FESTIVAL_COUNT + festivalId (Data for Dawn is always accessed by offset > FESTIVAL_COUNT)
      */
-    private Map<Integer, Map<Integer, StatsSet>> _festivalData;
+    private Map<Integer, Map<Integer, SevenSignsFestivalData>> _festivalData;
 
     public SevenSignsFestival() {
-        _accumulatedBonuses = new LinkedList<>();
+        _accumulatedBonuses = new ArrayList<>();
 
-        _dawnFestivalParticipants = new LinkedHashMap<>();
-        _dawnPreviousParticipants = new LinkedHashMap<>();
-        _dawnFestivalScores = new LinkedHashMap<>();
+        _dawnFestivalParticipants = new HashMap<>();
+        _dawnPreviousParticipants = new HashMap<>();
+        _dawnFestivalScores = new HashMap<>();
 
-        _duskFestivalParticipants = new LinkedHashMap<>();
-        _duskPreviousParticipants = new LinkedHashMap<>();
-        _duskFestivalScores = new LinkedHashMap<>();
+        _duskFestivalParticipants = new HashMap<>();
+        _duskPreviousParticipants = new HashMap<>();
+        _duskFestivalScores = new HashMap<>();
 
-        _festivalData = new LinkedHashMap<>();
+        _festivalData = new HashMap<>();
 
         restoreFestivalData();
 
         if (SevenSigns.getInstance().isSealValidationPeriod()) {
-            _log.info("SevenSignsFestival: Initialization bypassed due to Seal Validation in effect.");
+            _log.info("SevenSignsFestivalData: Initialization bypassed due to Seal Validation in effect.");
             return;
         }
 
@@ -3184,10 +3184,9 @@ public class SevenSignsFestival implements SpawnListener {
     }
 
     public static SevenSignsFestival getInstance() {
-        if (_instance == null) {
+        if (isNull(_instance)) {
             _instance = new SevenSignsFestival();
         }
-
         return _instance;
     }
 
@@ -3296,43 +3295,32 @@ public class SevenSignsFestival implements SpawnListener {
         setNextFestivalStart(Config.ALT_FESTIVAL_MANAGER_START + FESTIVAL_SIGNUP_TIME);
         _managerScheduledTask = ThreadPoolManager.getInstance().scheduleGeneralAtFixedRate(fm, Config.ALT_FESTIVAL_MANAGER_START, Config.ALT_FESTIVAL_CYCLE_LENGTH);
 
-        _log.info("SevenSignsFestival: The first Festival of Darkness cycle begins in " + (Config.ALT_FESTIVAL_MANAGER_START / 60000) + " minute(s).");
+        _log.info("SevenSignsFestivalData: The first Festival of Darkness cycle begins in " + (Config.ALT_FESTIVAL_MANAGER_START / 60000) + " minute(s).");
     }
 
-    protected void restoreFestivalData() {
-        _log.debug("SevenSignsFestival: Restoring festival data. Current SS Cycle: {}", _signsCycle);
-
-        SevenSignsFestivalRepository repository = DatabaseAccess.getRepository(SevenSignsFestivalRepository.class);
-        repository.findAll().forEach(festival -> {
+    private void restoreFestivalData() {
+        _log.debug("SevenSignsFestivalData: Restoring festival data. Current Seven Signs Cycle: {}", _signsCycle);
+        getRepository(SevenSignsFestivalRepository.class).findAll().forEach(festival -> {
             int festivalCycle = festival.getCycle();
-            int festivalId = festival.getId();
+            int festivalId = Objects.requireNonNullElse(festival.getId(), 0);
             String cabal = festival.getCabal();
 
-            StatsSet festivalDat = new StatsSet();
-            festivalDat.set("festivalId", festivalId);
-            festivalDat.set("cabal", cabal);
-            festivalDat.set("cycle", festivalCycle);
-            festivalDat.set("date", festival.getDate());
-            festivalDat.set("score", festival.getScore());
-            festivalDat.set("members", festival.getMembers());
-
-            _log.debug("SevenSignsFestival: Loaded data from DB for (Cycle = {}, Oracle = {}, Festival = {})", festivalCycle, cabal, getFestivalName(festivalId));
+            _log.debug("SevenSignsFestivalData: Loaded data from DB for (Cycle = {}, Oracle = {}, Festival = {})", festivalCycle, cabal, getFestivalName(festivalId));
 
             if (cabal.equals("dawn")) {
                 festivalId += FESTIVAL_COUNT;
             }
 
-            Map<Integer, StatsSet> tempData = _festivalData.get(festivalCycle);
+            Map<Integer, SevenSignsFestivalData> tempData = _festivalData.get(festivalCycle);
 
-            if (tempData == null) {
-                tempData = new LinkedHashMap<>();
+            if (isNull(tempData)) {
+                tempData = new HashMap<>();
+                _festivalData.put(festivalCycle, tempData);
             }
-
-            tempData.put(festivalId, festivalDat);
-            _festivalData.put(festivalCycle, tempData);
+            tempData.put(festivalId, festival);
         });
 
-        SevenSignsStatusRepository statusRepository = DatabaseAccess.getRepository(SevenSignsStatusRepository.class);
+        SevenSignsStatusRepository statusRepository = getRepository(SevenSignsStatusRepository.class);
         statusRepository.findById(0).ifPresent(status -> {
             _festivalCycle = status.getFestivalCycle();
             _accumulatedBonuses.add(0, status.getAccumulatedBonus0());
@@ -3350,31 +3338,29 @@ public class SevenSignsFestival implements SpawnListener {
      * @param updateSettings
      */
     public void saveFestivalData(boolean updateSettings) {
-        _log.debug("SevenSignsFestival: Saving festival data.");
+        _log.debug("SevenSignsFestivalData: Saving festival data.");
 
-        SevenSignsFestivalRepository repository = DatabaseAccess.getRepository(SevenSignsFestivalRepository.class);
+        SevenSignsFestivalRepository repository = getRepository(SevenSignsFestivalRepository.class);
 
-        for (Map<Integer, StatsSet> currCycleData : _festivalData.values()) {
-            for (StatsSet festivalDat : currCycleData.values()) {
+        for (Map<Integer, SevenSignsFestivalData> currCycleData : _festivalData.values()) {
+            for (SevenSignsFestivalData festivalDat : currCycleData.values()) {
+                int festivalId = requireNonNullElse(festivalDat.getId(),0);
+                int festivalCycle = festivalDat.getCycle();
+                String cabal = festivalDat.getCabal();
 
-                int festivalCycle = festivalDat.getInteger("cycle");
-                int festivalId = festivalDat.getInteger("festivalId");
-                String cabal = festivalDat.getString("cabal");
-
-                int updated = repository.updateByCycleAndCabal(festivalId, festivalCycle, cabal, Long.valueOf(festivalDat.getString("date")),
-                    festivalDat.getInteger("score"), festivalDat.getString("members"));
-
+                int updated = repository.updateByCycleAndCabal(festivalId, festivalDat.getCycle(), festivalDat.getCabal(), festivalDat.getDate(),
+                    festivalDat.getScore(), festivalDat.getMembers());
 
                 if (updated > 0) {
-                    _log.info("SevenSignsFestival: Updated data in DB (Cycle = {}, Cabal = {}, FestivalId = {}", festivalCycle, cabal, festivalId);
+                    _log.info("SevenSignsFestivalData: Updated data in DB (Cycle = {}, Cabal = {}, FestivalId = {}", festivalCycle, cabal, festivalId);
                     continue;
                 }
 
-                com.l2jbr.gameserver.model.entity.database.SevenSignsFestival festival = new com.l2jbr.gameserver.model.entity.database.SevenSignsFestival(
-                    festivalId, cabal, festivalCycle, Long.valueOf(festivalDat.getString("date")), festivalDat.getInteger("score"), festivalDat.getString("members"));
+                SevenSignsFestivalData festival = new SevenSignsFestivalData(
+                    festivalId, cabal, festivalCycle,festivalDat.getDate(), festivalDat.getScore(), festivalDat.getMembers());
                 repository.save(festival);
 
-                _log.debug("SevenSignsFestival: Inserted data in DB (Cycle = {}, Cabal = {}, FestivalId = {})", festivalCycle, cabal, festivalId);
+                _log.debug("SevenSignsFestivalData: Inserted data in DB (Cycle = {}, Cabal = {}, FestivalId = {})", festivalCycle, cabal, festivalId);
             }
         }
 
@@ -3389,9 +3375,9 @@ public class SevenSignsFestival implements SpawnListener {
      */
     protected void rewardHighestRanked() {
         String[] partyMembers;
-        StatsSet overallData = getOverallHighestScoreData(FESTIVAL_LEVEL_MAX_31);
+        SevenSignsFestivalData overallData = getOverallHighestScoreData(FESTIVAL_LEVEL_MAX_31);
         if (overallData != null) {
-            partyMembers = overallData.getString("members").split(",");
+            partyMembers = overallData.getMembers().split(",");
             for (String partyMemberName : partyMembers) {
                 addReputationPointsForPartyMemberClan(partyMemberName);
             }
@@ -3399,7 +3385,7 @@ public class SevenSignsFestival implements SpawnListener {
 
         overallData = getOverallHighestScoreData(FESTIVAL_LEVEL_MAX_42);
         if (overallData != null) {
-            partyMembers = overallData.getString("members").split(",");
+            partyMembers = overallData.getMembers().split(",");
             for (String partyMemberName : partyMembers) {
                 addReputationPointsForPartyMemberClan(partyMemberName);
             }
@@ -3407,7 +3393,7 @@ public class SevenSignsFestival implements SpawnListener {
 
         overallData = getOverallHighestScoreData(FESTIVAL_LEVEL_MAX_53);
         if (overallData != null) {
-            partyMembers = overallData.getString("members").split(",");
+            partyMembers = overallData.getMembers().split(",");
             for (String partyMemberName : partyMembers) {
                 addReputationPointsForPartyMemberClan(partyMemberName);
             }
@@ -3415,7 +3401,7 @@ public class SevenSignsFestival implements SpawnListener {
 
         overallData = getOverallHighestScoreData(FESTIVAL_LEVEL_MAX_64);
         if (overallData != null) {
-            partyMembers = overallData.getString("members").split(",");
+            partyMembers = overallData.getMembers().split(",");
             for (String partyMemberName : partyMembers) {
                 addReputationPointsForPartyMemberClan(partyMemberName);
             }
@@ -3423,7 +3409,7 @@ public class SevenSignsFestival implements SpawnListener {
 
         overallData = getOverallHighestScoreData(FESTIVAL_LEVEL_MAX_NONE);
         if (overallData != null) {
-            partyMembers = overallData.getString("members").split(",");
+            partyMembers = overallData.getMembers().split(",");
             for (String partyMemberName : partyMembers) {
                 addReputationPointsForPartyMemberClan(partyMemberName);
             }
@@ -3442,7 +3428,7 @@ public class SevenSignsFestival implements SpawnListener {
                 player.getClan().broadcastToOnlineMembers(sm);
             }
         } else {
-            CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
+            CharacterRepository repository = getRepository(CharacterRepository.class);
             int clanId = repository.findClanIdByName(partyMemberName);
             if(clanId > 0) {
                 L2Clan clan = ClanTable.getInstance().getClan(clanId);
@@ -3481,7 +3467,7 @@ public class SevenSignsFestival implements SpawnListener {
         _duskFestivalScores.clear();
 
         // Set up a new data set for the current cycle of festivals
-        Map<Integer, StatsSet> newData = new LinkedHashMap<>();
+        Map<Integer, SevenSignsFestivalData> newData = new HashMap<>();
 
         for (int i = 0; i < (FESTIVAL_COUNT * 2); i++) {
             int festivalId = i;
@@ -3490,20 +3476,15 @@ public class SevenSignsFestival implements SpawnListener {
                 festivalId -= FESTIVAL_COUNT;
             }
 
-            // Create a new StatsSet with "default" data for Dusk
-            StatsSet tempStats = new StatsSet();
-            tempStats.set("festivalId", festivalId);
-            tempStats.set("cycle", _signsCycle);
-            tempStats.set("date", "0");
-            tempStats.set("score", 0);
-            tempStats.set("members", "");
-
+            String cabal = "";
             if (i >= FESTIVAL_COUNT) {
-                tempStats.set("cabal", SevenSigns.getCabalShortName(SevenSigns.CABAL_DAWN));
+               cabal = SevenSigns.getCabalShortName(SevenSigns.CABAL_DAWN);
             } else {
-                tempStats.set("cabal", SevenSigns.getCabalShortName(SevenSigns.CABAL_DUSK));
+               cabal = SevenSigns.getCabalShortName(SevenSigns.CABAL_DUSK);
             }
 
+            // Create a new StatsSet with "default" data for Dusk
+            SevenSignsFestivalData tempStats = new SevenSignsFestivalData(festivalId, cabal, _signsCycle, 0, 0, "");
             newData.put(i, tempStats);
         }
 
@@ -3525,7 +3506,7 @@ public class SevenSignsFestival implements SpawnListener {
             }
         }
 
-        _log.info("SevenSignsFestival: Reinitialized engine for next competition period.");
+        _log.info("SevenSignsFestivalData: Reinitialized engine for next competition period.");
     }
 
     public final int getCurrentFestivalCycle() {
@@ -3662,7 +3643,7 @@ public class SevenSignsFestival implements SpawnListener {
             participants = festivalParty.getPartyMembers();
 
             if (Config.DEBUG) {
-                _log.info("SevenSignsFestival: " + festivalParty.getPartyMembers().toString() + " have signed up to the " + SevenSigns.getCabalShortName(oracle) + " " + getFestivalName(festivalId) + " festival.");
+                _log.info("SevenSignsFestivalData: " + festivalParty.getPartyMembers().toString() + " have signed up to the " + SevenSigns.getCabalShortName(oracle) + " " + getFestivalName(festivalId) + " festival.");
             }
         }
 
@@ -3708,7 +3689,7 @@ public class SevenSignsFestival implements SpawnListener {
     }
 
     public final int getHighestScore(int oracle, int festivalId) {
-        return getHighestScoreData(oracle, festivalId).getInteger("score");
+        return getHighestScoreData(oracle, festivalId).getScore();
     }
 
     /**
@@ -3718,7 +3699,7 @@ public class SevenSignsFestival implements SpawnListener {
      * @param festivalId
      * @return StatsSet festivalDat
      */
-    public final StatsSet getHighestScoreData(int oracle, int festivalId) {
+    public final SevenSignsFestivalData getHighestScoreData(int oracle, int festivalId) {
         int offsetId = festivalId;
 
         if (oracle == SevenSigns.CABAL_DAWN) {
@@ -3727,17 +3708,17 @@ public class SevenSignsFestival implements SpawnListener {
 
         // Attempt to retrieve existing score data (if found), otherwise create a
         // new blank data set and display a console warning.
-        StatsSet currData = null;
+        SevenSignsFestivalData currData = null;
 
         try {
             currData = _festivalData.get(_signsCycle).get(offsetId);
         } catch (Exception e) {
-            currData = new StatsSet();
-            currData.set("score", 0);
-            currData.set("members", "");
+            currData = new SevenSignsFestivalData();
+            currData.setScore(0);
+            currData.setMembers("");
 
             if (Config.DEBUG) {
-                _log.info("SevenSignsFestival: Data missing for " + SevenSigns.getCabalName(oracle) + ", FestivalID = " + festivalId + " (Current Cycle " + _signsCycle + ")");
+                _log.info("SevenSignsFestivalData: Data missing for {}, FestivalID = {}, (Current Cycle {})", SevenSigns.getCabalName(oracle), festivalId,  _signsCycle);
             }
         }
 
@@ -3750,14 +3731,14 @@ public class SevenSignsFestival implements SpawnListener {
      * @param festivalId
      * @return StatsSet result
      */
-    public final StatsSet getOverallHighestScoreData(int festivalId) {
-        StatsSet result = null;
+    public final SevenSignsFestivalData getOverallHighestScoreData(int festivalId) {
+        SevenSignsFestivalData result = null;
         int highestScore = 0;
 
-        for (Map<Integer, StatsSet> currCycleData : _festivalData.values()) {
-            for (StatsSet currFestData : currCycleData.values()) {
-                int currFestID = currFestData.getInteger("festivalId");
-                int festivalScore = currFestData.getInteger("score");
+        for (Map<Integer, SevenSignsFestivalData> currCycleData : _festivalData.values()) {
+            for (SevenSignsFestivalData currFestData : currCycleData.values()) {
+                int currFestID = requireNonNullElse(currFestData.getId(), 0);
+                int festivalScore = currFestData.getScore();
 
                 if (currFestID != festivalId) {
                     continue;
@@ -3803,7 +3784,7 @@ public class SevenSignsFestival implements SpawnListener {
             _duskFestivalScores.put(festivalId, offeringScore);
         }
 
-        StatsSet currFestData = getHighestScoreData(oracle, festivalId);
+        SevenSignsFestivalData currFestData = getHighestScoreData(oracle, festivalId);
 
         // Check if this is the highest score for this level range so far for the player's cabal.
         if (offeringScore > thisCabalHighScore) {
@@ -3813,7 +3794,7 @@ public class SevenSignsFestival implements SpawnListener {
                 return false;
             }
 
-            partyMembers = new LinkedList<>();
+            partyMembers = new ArrayList<>();
             List<L2PcInstance> prevParticipants = getPreviousParticipants(oracle, festivalId);
 
             // Record a string list of the party members involved.
@@ -3825,12 +3806,12 @@ public class SevenSignsFestival implements SpawnListener {
             }
 
             // Update the highest scores and party list.
-            currFestData.set("date", String.valueOf(System.currentTimeMillis()));
-            currFestData.set("score", offeringScore);
-            currFestData.set("members", Util.implodeString(partyMembers, ","));
+            currFestData.setDate(System.currentTimeMillis());
+            currFestData.setScore(offeringScore);
+            currFestData.setMembers(Util.implodeString(partyMembers, ","));
 
             if (Config.DEBUG) {
-                _log.info("SevenSignsFestival: " + player.getName() + "'s party has the highest score (" + offeringScore + ") so far for " + SevenSigns.getCabalName(oracle) + " in " + getFestivalName(festivalId));
+                _log.info("SevenSignsFestivalData: {}'s party has the highest score ({}) so far for {} in {}", player.getName(), offeringScore, SevenSigns.getCabalName(oracle), getFestivalName(festivalId));
             }
 
             // Only add the score to the cabal's overall if it's higher than the other cabal's score.
@@ -3841,7 +3822,7 @@ public class SevenSignsFestival implements SpawnListener {
                 SevenSigns.getInstance().addFestivalScore(oracle, contribPoints);
 
                 // if (Config.DEBUG)
-                _log.info("SevenSignsFestival: This is the highest score overall so far for the " + getFestivalName(festivalId) + " festival!");
+                _log.info("SevenSignsFestivalData: This is the highest score overall so far for the {} festival!", getFestivalName(festivalId));
             }
 
             saveFestivalData(true);
@@ -3901,10 +3882,10 @@ public class SevenSignsFestival implements SpawnListener {
         }
 
         if (_festivalData.get(_signsCycle) != null) {
-            for (StatsSet festivalData : _festivalData.get(_signsCycle).values()) {
-                if (festivalData.getString("members").indexOf(playerName) > -1) {
-                    int festivalId = festivalData.getInteger("festivalId");
-                    int numPartyMembers = festivalData.getString("members").split(",").length;
+            for (SevenSignsFestivalData festivalData : _festivalData.get(_signsCycle).values()) {
+                if (festivalData.getMembers().contains(playerName)) {
+                    int festivalId = requireNonNullElse(festivalData.getId(), 0);
+                    int numPartyMembers = festivalData.getMembers().split(",").length;
                     int totalAccumBonus = _accumulatedBonuses.get(festivalId);
 
                     playerBonus = totalAccumBonus / numPartyMembers;
@@ -3964,7 +3945,7 @@ public class SevenSignsFestival implements SpawnListener {
         // If the spawned NPC ID matches the ones we need, assign their instances.
         if (npcId == 31127) {
             if (Config.DEBUG) {
-                _log.info("SevenSignsFestival: Instance found for NPC ID 31127 (" + npc.getObjectId() + ").");
+                _log.info("SevenSignsFestivalData: Instance found for NPC ID 31127 (" + npc.getObjectId() + ").");
             }
 
             _dawnChatGuide = npc;
@@ -3972,7 +3953,7 @@ public class SevenSignsFestival implements SpawnListener {
 
         if (npcId == 31137) {
             if (Config.DEBUG) {
-                _log.info("SevenSignsFestival: Instance found for NPC ID 31137 (" + npc.getObjectId() + ").");
+                _log.info("SevenSignsFestivalData: Instance found for NPC ID 31137 (" + npc.getObjectId() + ").");
             }
 
             _duskChatGuide = npc;
@@ -4013,7 +3994,7 @@ public class SevenSignsFestival implements SpawnListener {
             }
 
             if (Config.DEBUG) {
-                _log.info("SevenSignsFestival: Festival manager initialized. Those wishing to participate have " + getMinsToNextFestival() + " minute(s) to sign up.");
+                _log.info("SevenSignsFestivalData: Festival manager initialized. Those wishing to participate have " + getMinsToNextFestival() + " minute(s) to sign up.");
             }
 
             sendMessageToAll("Festival Guide", "The main event will start in " + getMinsToNextFestival() + " minutes. Please register now.");
@@ -4056,7 +4037,7 @@ public class SevenSignsFestival implements SpawnListener {
             sendMessageToAll("Festival Guide", "The main event is now starting.");
 
             if (Config.DEBUG) {
-                _log.info("SevenSignsFestival: The current set of festivals will begin in " + (Config.ALT_FESTIVAL_FIRST_SPAWN / 60000) + " minute(s).");
+                _log.info("SevenSignsFestivalData: The current set of festivals will begin in " + (Config.ALT_FESTIVAL_FIRST_SPAWN / 60000) + " minute(s).");
             }
 
             // Stand by for a short length of time before starting the festival.
@@ -4078,7 +4059,7 @@ public class SevenSignsFestival implements SpawnListener {
             }
 
             if (Config.DEBUG) {
-                _log.info("SevenSignsFestival: Each of the festivals will end in " + (Config.ALT_FESTIVAL_LENGTH / 60000) + " minutes. New participants can signup then.");
+                _log.info("SevenSignsFestivalData: Each of the festivals will end in " + (Config.ALT_FESTIVAL_LENGTH / 60000) + " minutes. New participants can signup then.");
             }
 
             // After a short time period, move all idle spawns to the center of the arena.
@@ -4160,7 +4141,7 @@ public class SevenSignsFestival implements SpawnListener {
             sendMessageToAll("Festival Witch", "That will do! I'll move you to the outside soon.");
 
             if (Config.DEBUG) {
-                _log.info("SevenSignsFestival: The next set of festivals begin in " + getMinsToNextFestival() + " minute(s).");
+                _log.info("SevenSignsFestivalData: The next set of festivals begin in " + getMinsToNextFestival() + " minute(s).");
             }
         }
 
@@ -4233,7 +4214,7 @@ public class SevenSignsFestival implements SpawnListener {
             boolean isPositive;
 
             if (Config.DEBUG) {
-                _log.info("SevenSignsFestival: Initializing festival for " + SevenSigns.getCabalShortName(_cabal) + " (" + getFestivalName(_levelRange) + ")");
+                _log.info("SevenSignsFestivalData: Initializing festival for " + SevenSigns.getCabalShortName(_cabal) + " (" + getFestivalName(_levelRange) + ")");
             }
 
             // Teleport all players to arena and notify them.
@@ -4293,10 +4274,10 @@ public class SevenSignsFestival implements SpawnListener {
                 _witchInst = npcSpawn.doSpawn();
 
                 if (Config.DEBUG) {
-                    _log.debug("SevenSignsFestival: Spawned the Festival Witch " + npcSpawn.getNpcId() + " at " + _witchSpawn._x + " " + _witchSpawn._y + " " + _witchSpawn._z);
+                    _log.debug("SevenSignsFestivalData: Spawned the Festival Witch " + npcSpawn.getNpcId() + " at " + _witchSpawn._x + " " + _witchSpawn._y + " " + _witchSpawn._z);
                 }
             } catch (Exception e) {
-                _log.warn("SevenSignsFestival: Error while spawning Festival Witch ID " + _witchSpawn._npcId + ": " + e);
+                _log.warn("SevenSignsFestivalData: Error while spawning Festival Witch ID " + _witchSpawn._npcId + ": " + e);
             }
 
             // Make it appear as though the Witch has apparated there.
@@ -4313,7 +4294,7 @@ public class SevenSignsFestival implements SpawnListener {
 
         protected void festivalStart() {
             if (Config.DEBUG) {
-                _log.info("SevenSignsFestival: Starting festival for " + SevenSigns.getCabalShortName(_cabal) + " (" + getFestivalName(_levelRange) + ")");
+                _log.info("SevenSignsFestivalData: Starting festival for " + SevenSigns.getCabalShortName(_cabal) + " (" + getFestivalName(_levelRange) + ")");
             }
 
             spawnFestivalMonsters(FESTIVAL_DEFAULT_RESPAWN, 0);
@@ -4323,7 +4304,7 @@ public class SevenSignsFestival implements SpawnListener {
             boolean isPositive;
 
             if (Config.DEBUG) {
-                _log.info("SevenSignsFestival: Moving spawns to arena center for festival " + SevenSigns.getCabalShortName(_cabal) + " (" + getFestivalName(_levelRange) + ")");
+                _log.info("SevenSignsFestivalData: Moving spawns to arena center for festival " + SevenSigns.getCabalShortName(_cabal) + " (" + getFestivalName(_levelRange) + ")");
             }
 
             for (L2FestivalMonsterInstance festivalMob : _npcInsts) {
@@ -4427,10 +4408,10 @@ public class SevenSignsFestival implements SpawnListener {
                     _npcInsts.add(festivalMob);
 
                     if (Config.DEBUG) {
-                        _log.debug("SevenSignsFestival: Spawned NPC ID " + currSpawn._npcId + " at " + currSpawn._x + " " + currSpawn._y + " " + currSpawn._z);
+                        _log.debug("SevenSignsFestivalData: Spawned NPC ID " + currSpawn._npcId + " at " + currSpawn._x + " " + currSpawn._y + " " + currSpawn._z);
                     }
                 } catch (Exception e) {
-                    _log.warn("SevenSignsFestival: Error while spawning NPC ID " + currSpawn._npcId + ": " + e);
+                    _log.warn("SevenSignsFestivalData: Error while spawning NPC ID " + currSpawn._npcId + ": " + e);
                 }
             }
         }
@@ -4444,7 +4425,7 @@ public class SevenSignsFestival implements SpawnListener {
             _challengeIncreased = true;
 
             if (Config.DEBUG) {
-                _log.info("SevenSignsFestival: " + _participants.get(0).getName() + "'s team have opted to increase the festival challenge!");
+                _log.info("SevenSignsFestivalData: " + _participants.get(0).getName() + "'s team have opted to increase the festival challenge!");
             }
 
             // Spawn more festival monsters, but this time with a twist.
@@ -4467,7 +4448,7 @@ public class SevenSignsFestival implements SpawnListener {
 
         protected void festivalEnd() {
             if (Config.DEBUG) {
-                _log.info("SevenSignsFestival: Ending festival for " + SevenSigns.getCabalShortName(_cabal) + " (" + getFestivalName(_levelRange) + ")");
+                _log.info("SevenSignsFestivalData: Ending festival for " + SevenSigns.getCabalShortName(_cabal) + " (" + getFestivalName(_levelRange) + ")");
             }
 
             if (_participants.size() > 0) {
