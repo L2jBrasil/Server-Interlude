@@ -150,4 +150,64 @@ public class SevenSignsStatus  {
     public int getAccumulatedBonus4() {
         return accumulatedBonus4;
     }
+
+    public void incrementCurrentCycle() {
+        currentCycle++;
+    }
+
+    public void incrementActivePeriod() {
+        activePeriod++;
+    }
+
+    public void setActivePeriod(int period) {
+        this.activePeriod = period;
+    }
+
+    public void setPreviousWinner(int winner) {
+        previousWinner = winner;
+    }
+
+    public void addDawnStoneScore(int score) {
+        dawnStoneScore += score;
+    }
+
+    public void setDawnStoneScore(int score) {
+        dawnStoneScore = score;
+    }
+
+    public void changeDawnFestivalScore(int score) {
+        dawnFestivalScore += score;
+    }
+
+    public void setDawnFestivalScore(int score) {
+        dawnFestivalScore = score;
+    }
+
+    public void addDuskStoneScore(int score) {
+        duskStoneScore += score;
+    }
+
+    public void setDuskStoneScore(int score) {
+        duskStoneScore = score;
+    }
+
+    public void changeDuskFestivalScore(int score) {
+        duskFestivalScore += score;
+    }
+
+    public void setDuskFestivalScore(int score) {
+        duskFestivalScore = score;
+    }
+
+    public void setAvariceOwner(int owner) {
+        avariceOwner = owner;
+    }
+
+    public void setGnosisOwner(int owner) {
+        gnosisOwner = owner;
+    }
+
+    public void setStrifeOwner(int owner) {
+        strifeOwner = owner;
+    }
 }
