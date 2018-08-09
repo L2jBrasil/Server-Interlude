@@ -210,4 +210,54 @@ public class SevenSignsStatus  {
     public void setStrifeOwner(int owner) {
         strifeOwner = owner;
     }
+
+    public void setAvariceDawnScore(int score) {
+        avariceDawnScore = 0;
+    }
+
+    public void setGnosisDawnScore(int score) {
+        this.gnosisDawnScore = score;
+    }
+
+    public void setStrifeDawnScore(int score) {
+        this.strifeDawnScore = score;
+    }
+
+    public void incrementDawnSealScore(int seal) {
+        switch (seal) {
+            case 1:
+                avariceDawnScore++;
+                break;
+            case 2:
+                gnosisDawnScore++;
+                break;
+            case 3:
+                strifeDawnScore++;
+        }
+    }
+
+    public void incrementDuskSealScore(int seal) {
+        switch (seal) {
+            case 1:
+                avariceDuskScore++;
+                break;
+            case 2:
+                gnosisDuskScore++;
+                break;
+            case 3:
+                strifeDuskScore++;
+        }
+    }
+
+    public void setAvariceDuskScore(int score) {
+        avariceDuskScore = score;
+    }
+
+    public void setGnosisDuskScore(int score) {
+        this.gnosisDuskScore = score;
+    }
+
+    public void setStrifeDuskScore(int score) {
+        this.strifeDuskScore = score;
+    }
 }

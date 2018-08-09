@@ -35,10 +35,7 @@ import com.l2jbr.gameserver.serverpackets.SystemMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import static com.l2jbr.commons.database.DatabaseAccess.getRepository;
 import static java.util.Objects.isNull;
@@ -116,8 +113,6 @@ public class SevenSigns {
 
     private final Map<Integer, SevenSignsPlayer> _signsPlayerData;
 
-    private final Map<Integer, Integer> _signsDuskSealTotals;
-
     private static AutoSpawnInstance _merchantSpawn;
     private static AutoSpawnInstance _blacksmithSpawn;
     private static AutoSpawnInstance _spiritInSpawn;
@@ -133,9 +128,6 @@ public class SevenSigns {
 
     public SevenSigns() {
         _signsPlayerData = new HashMap<>();
-
-        _signsDuskSealTotals = new HashMap<>();
-
 
         try {
             restoreSevenSignsData();
@@ -534,10 +526,40 @@ public class SevenSigns {
         if (cabal == CABAL_NULL) {
             return 0;
         } else if (cabal == CABAL_DUSK) {
-            return _signsDuskSealTotals.get(seal);
+            return getDuskSealScore(seal);
         } else {
-            return _signsDawnSealTotals.get(seal);
+            return getDawnSealScore(seal);
         }
+    }
+
+    private int getDuskSealScore(int seal) {
+        var score = 0;
+        switch (seal) {
+            case SEAL_AVARICE:
+                score = status.getAvariceDuskScore();
+                break;
+            case SEAL_GNOSIS:
+                score = status.getGnosisDuskScore();
+                break;
+            case SEAL_STRIFE:
+                score = status.getStrifeDuskScore();
+        }
+        return score;
+    }
+
+    private int getDawnSealScore(int seal) {
+        var score = 0;
+        switch (seal) {
+            case SEAL_AVARICE:
+                score = status.getAvariceDawnScore();
+                break;
+            case SEAL_GNOSIS:
+                score = status.getGnosisDawnScore();
+                break;
+            case SEAL_STRIFE:
+                score = status.getStrifeDawnScore();
+        }
+        return score;
     }
 
     public final int getTotalMembers(int cabal) {
@@ -584,18 +606,7 @@ public class SevenSigns {
         });
 
         SevenSignsStatusRepository statusRepository = getRepository(SevenSignsStatusRepository.class);
-        statusRepository.findById(0).ifPresent(status -> {
-            this.status = status;
-
-            _signsDawnSealTotals.put(SEAL_AVARICE, status.getAvariceDawnScore());
-            _signsDawnSealTotals.put(SEAL_GNOSIS, status.getGnosisDawnScore());
-            _signsDawnSealTotals.put(SEAL_STRIFE, status.getStrifeDawnScore());
-
-            _signsDuskSealTotals.put(SEAL_AVARICE, status.getAvariceDuskScore());
-            _signsDuskSealTotals.put(SEAL_GNOSIS, status.getGnosisDuskScore());
-            _signsDuskSealTotals.put(SEAL_STRIFE, status.getStrifeDuskScore());
-        });
-
+        status = statusRepository.findById(0).orElse(new SevenSignsStatus());
         statusRepository.updateDate(0, Calendar.getInstance().get(Calendar.DAY_OF_WEEK));
     }
 
@@ -618,7 +629,7 @@ public class SevenSigns {
             statusRepository.update(0, status.getCurrentCycle(), status.getActivePeriod(), status.getPreviousWinner(), status.getDawnStoneScore(), status.getDawnFestivalScore(), status.getDuskStoneScore(),
                 status.getDuskFestivalScore(), status.getAvariceOwner(), status.getGnosisOwner(), status.getStrifeOwner(),
                 status.getAvariceDawnScore(), status.getGnosisDawnScore(), status.getStrifeDawnScore(),
-                _signsDuskSealTotals.get(SEAL_AVARICE), _signsDuskSealTotals.get(SEAL_GNOSIS), _signsDuskSealTotals.get(SEAL_STRIFE),
+                status.getAvariceDuskScore(), status.getGnosisDuskScore(), status.getStrifeDuskScore(),
                 SevenSignsFestival.getInstance().getCurrentFestivalCycle(), festival.getAccumulatedBonus(0), festival.getAccumulatedBonus(1),
                 festival.getAccumulatedBonus(2), festival.getAccumulatedBonus(3), festival.getAccumulatedBonus(4),
                 Calendar.getInstance().get(Calendar.DAY_OF_WEEK));
@@ -677,9 +688,9 @@ public class SevenSigns {
         );
 
         if(chosenCabal == CABAL_DAWN) {
-            _signsDawnSealTotals.put(chosenSeal, _signsDawnSealTotals.get(chosenSeal));
+            status.incrementDawnSealScore(chosenSeal);
         } else {
-            _signsDuskSealTotals.put(chosenSeal, _signsDuskSealTotals.get(chosenSeal) + 1);
+            status.incrementDuskSealScore(chosenSeal);
         }
 
         saveSevenSignsData(player, true);
@@ -837,13 +848,13 @@ public class SevenSigns {
     /**
      * Only really used at the beginning of a new cycle, this method resets all seal-related data.
      */
-    protected void resetSeals() {
-        _signsDawnSealTotals.put(SEAL_AVARICE, 0);
-        _signsDawnSealTotals.put(SEAL_GNOSIS, 0);
-        _signsDawnSealTotals.put(SEAL_STRIFE, 0);
-        _signsDuskSealTotals.put(SEAL_AVARICE, 0);
-        _signsDuskSealTotals.put(SEAL_GNOSIS, 0);
-        _signsDuskSealTotals.put(SEAL_STRIFE, 0);
+    private void resetSeals() {
+        status.setAvariceDawnScore(0);
+        status.setGnosisDawnScore(0);
+        status.setStrifeDawnScore(0);
+        status.setAvariceDuskScore(0);
+        status.setGnosisDuskScore(0);
+        status.setStrifeDuskScore(0);
     }
 
     /**
@@ -851,14 +862,14 @@ public class SevenSigns {
      * <BR>
      * Should only ever called at the beginning of a new cycle.
      */
-    protected void calcNewSealOwners() {
+    private void calcNewSealOwners() {
         if (Config.DEBUG) {
-            _log.info("SevenSigns: (Avarice) Dawn = " + _signsDawnSealTotals.get(SEAL_AVARICE) + ", Dusk = " + _signsDuskSealTotals.get(SEAL_AVARICE));
-            _log.info("SevenSigns: (Gnosis) Dawn = " + _signsDawnSealTotals.get(SEAL_GNOSIS) + ", Dusk = " + _signsDuskSealTotals.get(SEAL_GNOSIS));
-            _log.info("SevenSigns: (Strife) Dawn = " + _signsDawnSealTotals.get(SEAL_STRIFE) + ", Dusk = " + _signsDuskSealTotals.get(SEAL_STRIFE));
+            _log.info("SevenSigns: (Avarice) Dawn = {}, Dusk = {}", status.getAvariceDawnScore(), status.getAvariceDuskScore());
+            _log.info("SevenSigns: (Gnosis) Dawn = {}, Dusk = {}", status.getGnosisDawnScore(), status.getGnosisDuskScore());
+            _log.info("SevenSigns: (Strife) Dawn = {}, Dusk = {}", status.getStrifeDawnScore(),  status.getStrifeDuskScore());
         }
 
-        for (Integer currSeal : _signsDawnSealTotals.keySet()) {
+        for (Integer currSeal : Arrays.asList(SEAL_AVARICE, SEAL_GNOSIS, SEAL_STRIFE)) {
             int prevSealOwner = getSealOwner(currSeal);
             int newSealOwner = CABAL_NULL;
             int dawnProportion = getSealProportion(currSeal, CABAL_DAWN);
