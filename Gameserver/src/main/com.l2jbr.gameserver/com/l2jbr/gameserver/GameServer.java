@@ -75,7 +75,6 @@ public class GameServer {
     private final AdminCommandHandler _adminCommandHandler;
     private final UserCommandHandler _userCommandHandler;
     private final VoicedCommandHandler _voicedCommandHandler;
-    private final SevenSigns _sevenSignsEngine;
     private final AutoChatHandler _autoChatHandler;
     private final AutoSpawnHandler _autoSpawnHandler;
     private final LoginServerThread _loginThread;
@@ -175,7 +174,7 @@ public class GameServer {
         DoorTable.getInstance();
         StaticObjects.getInstance();
 
-        _sevenSignsEngine = SevenSigns.getInstance();
+        SevenSigns _sevenSignsEngine = SevenSigns.getInstance();
         SevenSignsFestival.getInstance();
         _autoSpawnHandler = AutoSpawnHandler.getInstance();
         _autoChatHandler = AutoChatHandler.getInstance();

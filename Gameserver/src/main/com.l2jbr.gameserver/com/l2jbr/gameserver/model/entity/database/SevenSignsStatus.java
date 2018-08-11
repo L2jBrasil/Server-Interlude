@@ -131,26 +131,6 @@ public class SevenSignsStatus  {
         return strifeDuskScore;
     }
 
-    public int getAccumulatedBonus0() {
-        return accumulatedBonus0;
-    }
-
-    public int getAccumulatedBonus1() {
-        return accumulatedBonus1;
-    }
-
-    public int getAccumulatedBonus2() {
-        return accumulatedBonus2;
-    }
-
-    public int getAccumulatedBonus3() {
-        return accumulatedBonus3;
-    }
-
-    public int getAccumulatedBonus4() {
-        return accumulatedBonus4;
-    }
-
     public void incrementCurrentCycle() {
         currentCycle++;
     }
@@ -212,7 +192,7 @@ public class SevenSignsStatus  {
     }
 
     public void setAvariceDawnScore(int score) {
-        avariceDawnScore = 0;
+        avariceDawnScore = score;
     }
 
     public void setGnosisDawnScore(int score) {
@@ -259,5 +239,52 @@ public class SevenSignsStatus  {
 
     public void setStrifeDuskScore(int score) {
         this.strifeDuskScore = score;
+    }
+
+    public void setFestivalCycle(int cycle) {
+        this.festivalCycle = cycle;
+    }
+
+    public void incrementFestivalCycle() {
+        festivalCycle++;
+    }
+
+    public int getAccumulatedBonusForFestival(int festivalId) {
+        switch (festivalId) {
+            case 0:
+                return accumulatedBonus0;
+            case 1:
+                return accumulatedBonus1;
+            case 2:
+                return accumulatedBonus2;
+            case 3:
+                return accumulatedBonus3;
+            case 4:
+                return accumulatedBonus4;
+        }
+        return 0;
+    }
+
+    public int getAccumulatedBonusSum() {
+        return accumulatedBonus0 + accumulatedBonus1 + accumulatedBonus2 + accumulatedBonus3 + accumulatedBonus4;
+    }
+
+    public void setAccumulatedBonusForFestival(int festivalId, int bonus) {
+        switch (festivalId) {
+            case 0:
+                accumulatedBonus0 = bonus;
+                break;
+            case 1:
+                accumulatedBonus1 = bonus;
+                break;
+            case 2:
+                accumulatedBonus2 = bonus;
+                break;
+            case 3:
+                accumulatedBonus3 = bonus;
+                break;
+            case 4:
+                accumulatedBonus4 = bonus;
+        }
     }
 }

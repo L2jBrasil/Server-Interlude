@@ -31,6 +31,7 @@ import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.base.Experience;
 import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.model.entity.database.SevenSignsFestivalData;
+import com.l2jbr.gameserver.model.entity.database.SevenSignsStatus;
 import com.l2jbr.gameserver.model.entity.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.model.entity.database.repository.SevenSignsFestivalRepository;
 import com.l2jbr.gameserver.model.entity.database.repository.SevenSignsStatusRepository;
@@ -3128,18 +3129,14 @@ public class SevenSignsFestival implements SpawnListener {
                     }
             };
 
-    // ////////////////////// \\\\\\\\\\\\\\\\\\\\\\\\\\
-
     protected FestivalManager _managerInstance;
     protected ScheduledFuture<?> _managerScheduledTask;
 
     protected int _signsCycle = SevenSigns.getInstance().getCurrentCycle();
-    protected int _festivalCycle;
     protected long _nextFestivalCycleStart;
     protected long _nextFestivalStart;
     protected boolean _festivalInitialized;
     protected boolean _festivalInProgress;
-    protected List<Integer> _accumulatedBonuses; // The total bonus available (in Ancient Adena)
 
     private L2NpcInstance _dawnChatGuide;
     private L2NpcInstance _duskChatGuide;
@@ -3158,9 +3155,9 @@ public class SevenSignsFestival implements SpawnListener {
      * constructs. These are accessed by the use of an offset based on the number of festivals, thus: offset = FESTIVAL_COUNT + festivalId (Data for Dawn is always accessed by offset > FESTIVAL_COUNT)
      */
     private Map<Integer, Map<Integer, SevenSignsFestivalData>> _festivalData;
+    private SevenSignsStatus status;
 
     public SevenSignsFestival() {
-        _accumulatedBonuses = new ArrayList<>();
 
         _dawnFestivalParticipants = new HashMap<>();
         _dawnPreviousParticipants = new HashMap<>();
@@ -3320,15 +3317,7 @@ public class SevenSignsFestival implements SpawnListener {
             tempData.put(festivalId, festival);
         });
 
-        SevenSignsStatusRepository statusRepository = getRepository(SevenSignsStatusRepository.class);
-        statusRepository.findById(0).ifPresent(status -> {
-            _festivalCycle = status.getFestivalCycle();
-            _accumulatedBonuses.add(0, status.getAccumulatedBonus0());
-            _accumulatedBonuses.add(1, status.getAccumulatedBonus1());
-            _accumulatedBonuses.add(2, status.getAccumulatedBonus2());
-            _accumulatedBonuses.add(3, status.getAccumulatedBonus3());
-            _accumulatedBonuses.add(4, status.getAccumulatedBonus4());
-        });
+        status = getRepository(SevenSignsStatusRepository.class).findById(0).orElse(new SevenSignsStatus());
     }
 
     /**
@@ -3449,13 +3438,11 @@ public class SevenSignsFestival implements SpawnListener {
      *
      * @param updateSettings
      */
-    protected void resetFestivalData(boolean updateSettings) {
-        _festivalCycle = 0;
+    void resetFestivalData(boolean updateSettings) {
+        status.setFestivalCycle(0);
         _signsCycle = SevenSigns.getInstance().getCurrentCycle();
-
-        // Set all accumulated bonuses back to 0.
-        for (int i = 0; i < FESTIVAL_COUNT; i++) {
-            _accumulatedBonuses.set(i, 0);
+        for (int festivalId = 0; festivalId < 5; festivalId++) {
+            status.setAccumulatedBonusForFestival(festivalId, 0);
         }
 
         _dawnFestivalParticipants.clear();
@@ -3510,7 +3497,7 @@ public class SevenSignsFestival implements SpawnListener {
     }
 
     public final int getCurrentFestivalCycle() {
-        return _festivalCycle;
+        return status.getFestivalCycle();
     }
 
     public final boolean isFestivalInitialized() {
@@ -3834,17 +3821,11 @@ public class SevenSignsFestival implements SpawnListener {
     }
 
     public final int getAccumulatedBonus(int festivalId) {
-        return _accumulatedBonuses.get(festivalId);
+        return status.getAccumulatedBonusForFestival(festivalId);
     }
 
     public final int getTotalAccumulatedBonus() {
-        int totalAccumBonus = 0;
-
-        for (int accumBonus : _accumulatedBonuses) {
-            totalAccumBonus += accumBonus;
-        }
-
-        return totalAccumBonus;
+        return status.getAccumulatedBonusSum();
     }
 
     public void addAccumulatedBonus(int festivalId, int stoneType, int stoneAmount) {
@@ -3862,8 +3843,8 @@ public class SevenSignsFestival implements SpawnListener {
                 break;
         }
 
-        int newTotalBonus = _accumulatedBonuses.get(festivalId) + (stoneAmount * eachStoneBonus);
-        _accumulatedBonuses.set(festivalId, newTotalBonus);
+        int newTotalBonus = status.getAccumulatedBonusForFestival(festivalId) + (stoneAmount * eachStoneBonus);
+        status.setAccumulatedBonusForFestival(festivalId, newTotalBonus);
     }
 
     /**
@@ -3886,10 +3867,10 @@ public class SevenSignsFestival implements SpawnListener {
                 if (festivalData.getMembers().contains(playerName)) {
                     int festivalId = requireNonNullElse(festivalData.getId(), 0);
                     int numPartyMembers = festivalData.getMembers().split(",").length;
-                    int totalAccumBonus = _accumulatedBonuses.get(festivalId);
+                    int totalAccumBonus = status.getAccumulatedBonusForFestival(festivalId);
 
                     playerBonus = totalAccumBonus / numPartyMembers;
-                    _accumulatedBonuses.set(festivalId, totalAccumBonus - playerBonus);
+                    status.setAccumulatedBonusForFestival(festivalId, totalAccumBonus - playerBonus);
                     break;
                 }
             }
@@ -3973,7 +3954,7 @@ public class SevenSignsFestival implements SpawnListener {
             _managerInstance = this;
 
             // Increment the cycle counter.
-            _festivalCycle++;
+            status.incrementFestivalCycle();
 
             // Set the next start timers.
             setNextCycleStart();
