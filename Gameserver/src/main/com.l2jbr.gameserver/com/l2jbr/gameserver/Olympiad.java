@@ -31,7 +31,7 @@ import com.l2jbr.gameserver.instancemanager.OlympiadStadiaManager;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PetInstance;
-import com.l2jbr.gameserver.model.entity.Hero;
+import com.l2jbr.gameserver.model.entity.Heroes;
 import com.l2jbr.gameserver.model.entity.database.Nobles;
 import com.l2jbr.gameserver.model.entity.database.repository.OlympiadNoblesRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
@@ -381,7 +381,7 @@ public class Olympiad {
 
             giveHeroBonus();
 
-            Hero.getInstance().computeNewHeroes(_heroesToBe);
+            Heroes.getInstance().computeNewHeroes(_heroesToBe);
 
             try {
                 save();
@@ -641,7 +641,7 @@ public class Olympiad {
 
         giveHeroBonus();
 
-        Hero.getInstance().computeNewHeroes(_heroesToBe);
+        Heroes.getInstance().computeNewHeroes(_heroesToBe);
 
         try {
             save();
@@ -1290,7 +1290,7 @@ public class Olympiad {
                         player.abortCast();
                     }
 
-                    // Remove Hero Skills
+                    // Remove Heroes Skills
                     if (player.isHero()) {
                         for (L2Skill skill : HeroSkillTable.GetHeroSkills()) {
                             player.removeSkill(skill, false);
@@ -1320,7 +1320,7 @@ public class Olympiad {
                         party.removePartyMember(player);
                     }
 
-                    // Remove Hero Weapons
+                    // Remove Heroes Weapons
                     // check to prevent the using of weapon/shield on strider/wyvern
                     L2ItemInstance wpn = player.getInventory().getPaperdollItem(Inventory.PAPERDOLL_RHAND);
                     if (wpn == null) {
@@ -1513,7 +1513,7 @@ public class Olympiad {
                         }
                     }
 
-                    // Add Hero Skills
+                    // Add Heroes Skills
                     if (player.isHero()) {
                         for (L2Skill skill : HeroSkillTable.GetHeroSkills()) {
                             player.addSkill(skill, false);

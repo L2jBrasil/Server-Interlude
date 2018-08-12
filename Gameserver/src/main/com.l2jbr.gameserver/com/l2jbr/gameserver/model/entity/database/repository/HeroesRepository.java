@@ -1,12 +1,12 @@
 package com.l2jbr.gameserver.model.entity.database.repository;
 
-import com.l2jbr.gameserver.model.entity.database.Heroes;
+import com.l2jbr.gameserver.model.entity.database.Hero;
 import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-public interface HeroesRepository extends CrudRepository<Heroes, Integer> {
+public interface HeroesRepository extends CrudRepository<Hero, Integer> {
 
     @Modifying
     @Query("UPDATE heroes SET played=0")

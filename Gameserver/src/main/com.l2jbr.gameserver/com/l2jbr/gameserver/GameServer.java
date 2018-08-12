@@ -36,7 +36,7 @@ import com.l2jbr.gameserver.handler.voicedcommandhandlers.stats;
 import com.l2jbr.gameserver.idfactory.IdFactory;
 import com.l2jbr.gameserver.instancemanager.*;
 import com.l2jbr.gameserver.model.*;
-import com.l2jbr.gameserver.model.entity.Hero;
+import com.l2jbr.gameserver.model.entity.Heroes;
 import com.l2jbr.gameserver.model.entity.TvTManager;
 import com.l2jbr.gameserver.network.L2GameClient;
 import com.l2jbr.gameserver.network.L2GamePacketHandler;
@@ -181,7 +181,7 @@ public class GameServer {
         _sevenSignsEngine.spawnSevenSignsNPC();
 
         Olympiad.getInstance();
-        Hero.getInstance();
+        Heroes.getInstance();
         ScriptEventManager.getInstance();
         // Init of a cursed weapon manager
         CursedWeaponsManager.getInstance();
