@@ -19,7 +19,6 @@
 package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.SevenSigns;
 import com.l2jbr.gameserver.ThreadPoolManager;
@@ -27,19 +26,19 @@ import com.l2jbr.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.actor.instance.L2SiegeGuardInstance;
 import com.l2jbr.gameserver.model.entity.database.AutoChat;
+import com.l2jbr.gameserver.model.entity.database.AutoChatText;
 import com.l2jbr.gameserver.model.entity.database.repository.AutoChatRepository;
 import com.l2jbr.gameserver.serverpackets.CreatureSay;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ScheduledFuture;
 import java.util.stream.Collectors;
 
+import static com.l2jbr.commons.database.DatabaseAccess.getRepository;
 import static com.l2jbr.gameserver.util.GameserverMessages.getMessage;
+import static java.util.Objects.isNull;
 
 
 /**
@@ -56,19 +55,18 @@ public class AutoChatHandler implements SpawnListener {
     protected Map<Integer, AutoChatInstance> _registeredChats;
 
     protected AutoChatHandler() {
-        _registeredChats = new LinkedHashMap<>();
+        _registeredChats = new HashMap<>();
         restoreChatData();
         L2Spawn.addSpawnListener(this);
     }
 
     private void restoreChatData() {
         int numLoaded = 0;
-        AutoChatRepository repository = DatabaseAccess.getRepository(AutoChatRepository.class);
+        AutoChatRepository repository = getRepository(AutoChatRepository.class);
 
         for (AutoChat autoChat: repository.findAll()) {
             numLoaded++;
-            List<String> chatTexts = autoChat.getTexts().stream().map(autoChatText ->
-                    autoChatText.getChatText()).collect(Collectors.toList());
+            List<String> chatTexts = autoChat.getTexts().stream().map(AutoChatText::getChatText).collect(Collectors.toList());
 
             registerGlobalChat(autoChat.getNpcId(), chatTexts , autoChat.getChatDelay());
         }
@@ -77,10 +75,9 @@ public class AutoChatHandler implements SpawnListener {
     }
 
     public static AutoChatHandler getInstance() {
-        if (_instance == null) {
+        if (isNull(_instance)) {
             _instance = new AutoChatHandler();
         }
-
         return _instance;
     }
 

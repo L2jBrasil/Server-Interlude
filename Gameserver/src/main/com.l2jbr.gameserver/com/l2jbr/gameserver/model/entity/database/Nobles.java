@@ -6,7 +6,7 @@ import com.l2jbr.commons.database.model.Entity;
 import org.springframework.data.annotation.Id;
 
 @Table("olympiad_nobles")
-public class OlympiadNobles extends Entity<Integer> {
+public class Nobles extends Entity<Integer> {
 
     @Id
     @Column("char_id")
@@ -20,9 +20,9 @@ public class OlympiadNobles extends Entity<Integer> {
     @Column("competitions_done")
     private int competitionsDone;
 
-    public OlympiadNobles() {}
+    public Nobles() {}
 
-    public OlympiadNobles(int charId, int classId, String charName, int points, int competitionsDone) {
+    public Nobles(int charId, int classId, String charName, int points, int competitionsDone) {
         this.charId = charId;
         this.classId = classId;
         this.charName = charName;
@@ -47,7 +47,19 @@ public class OlympiadNobles extends Entity<Integer> {
         return olympiadPoints;
     }
 
+    public void addPoints(int points) {
+        olympiadPoints += points;
+    }
+
+    public void setOlympiadPoints(int points) {
+        olympiadPoints = points;
+    }
+
     public int getCompetitionsDone() {
         return competitionsDone;
+    }
+
+    public void addCompentitionDone(int competitions) {
+        competitionsDone += competitions;
     }
 }

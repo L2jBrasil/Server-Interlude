@@ -159,8 +159,8 @@ public class SevenSigns {
             ThreadPoolManager.getInstance().scheduleGeneral(sspc, milliToChange);
 
             // Thanks to http://rainbow.arch.scriptmania.com/scripts/timezone_countdown.html for help with this.
-            double numSecs = (milliToChange / 1000) % 60;
-            double countDown = ((milliToChange / 1000) - numSecs) / 60;
+            double numSecs = (milliToChange / 1000.0) % 60;
+            double countDown = ((milliToChange / 1000.0) - numSecs) / 60;
             int numMins = (int) Math.floor(countDown % 60);
             countDown = (countDown - numMins) / 60;
             int numHours = (int) Math.floor(countDown % 24);
@@ -174,21 +174,22 @@ public class SevenSigns {
      * Registers all random spawns and auto-chats for Seven Signs NPCs, along with spawns for the Preachers of Doom and Orators of Revelations at the beginning of the Seal Validation period.
      */
     public void spawnSevenSignsNPC() {
-        _merchantSpawn = AutoSpawnHandler.getInstance().getAutoSpawnInstance(MAMMON_MERCHANT_ID, false);
-        _blacksmithSpawn = AutoSpawnHandler.getInstance().getAutoSpawnInstance(MAMMON_BLACKSMITH_ID, false);
-        _marketeerSpawns = AutoSpawnHandler.getInstance().getAutoSpawnInstances(MAMMON_MARKETEER_ID);
-        _spiritInSpawn = AutoSpawnHandler.getInstance().getAutoSpawnInstance(SPIRIT_IN_ID, false);
-        _spiritOutSpawn = AutoSpawnHandler.getInstance().getAutoSpawnInstance(SPIRIT_OUT_ID, false);
-        _lilithSpawn = AutoSpawnHandler.getInstance().getAutoSpawnInstance(LILITH_NPC_ID, false);
-        _anakimSpawn = AutoSpawnHandler.getInstance().getAutoSpawnInstance(ANAKIM_NPC_ID, false);
-        _crestofdawnspawn = AutoSpawnHandler.getInstance().getAutoSpawnInstance(CREST_OF_DAWN_ID, false);
-        _crestofduskspawn = AutoSpawnHandler.getInstance().getAutoSpawnInstance(CREST_OF_DUSK_ID, false);
-        _oratorSpawns = AutoSpawnHandler.getInstance().getAutoSpawnInstances(ORATOR_NPC_ID);
-        _preacherSpawns = AutoSpawnHandler.getInstance().getAutoSpawnInstances(PREACHER_NPC_ID);
+        var autoSpawnHandler = AutoSpawnHandler.getInstance();
+        _merchantSpawn = autoSpawnHandler.getAutoSpawnInstance(MAMMON_MERCHANT_ID, false);
+        _blacksmithSpawn = autoSpawnHandler.getAutoSpawnInstance(MAMMON_BLACKSMITH_ID, false);
+        _marketeerSpawns = autoSpawnHandler.getAutoSpawnInstances(MAMMON_MARKETEER_ID);
+        _spiritInSpawn = autoSpawnHandler.getAutoSpawnInstance(SPIRIT_IN_ID, false);
+        _spiritOutSpawn = autoSpawnHandler.getAutoSpawnInstance(SPIRIT_OUT_ID, false);
+        _lilithSpawn = autoSpawnHandler.getAutoSpawnInstance(LILITH_NPC_ID, false);
+        _anakimSpawn = autoSpawnHandler.getAutoSpawnInstance(ANAKIM_NPC_ID, false);
+        _crestofdawnspawn = autoSpawnHandler.getAutoSpawnInstance(CREST_OF_DAWN_ID, false);
+        _crestofduskspawn = autoSpawnHandler.getAutoSpawnInstance(CREST_OF_DUSK_ID, false);
+        _oratorSpawns = autoSpawnHandler.getAutoSpawnInstances(ORATOR_NPC_ID);
+        _preacherSpawns = autoSpawnHandler.getAutoSpawnInstances(PREACHER_NPC_ID);
 
         if (isSealValidationPeriod() || isCompResultsPeriod()) {
             for (AutoSpawnInstance spawnInst : _marketeerSpawns.values()) {
-                AutoSpawnHandler.getInstance().setSpawnActive(spawnInst, true);
+                autoSpawnHandler.setSpawnActive(spawnInst, true);
             }
 
             if ((getSealOwner(SEAL_GNOSIS) == getCabalHighestScore()) && (getSealOwner(SEAL_GNOSIS) != CABAL_NULL)) {
@@ -196,19 +197,19 @@ public class SevenSigns {
                     _blacksmithSpawn.setBroadcast(false);
                 }
 
-                if (!AutoSpawnHandler.getInstance().getAutoSpawnInstance(_blacksmithSpawn.getObjectId(), true).isSpawnActive()) {
-                    AutoSpawnHandler.getInstance().setSpawnActive(_blacksmithSpawn, true);
+                if (!autoSpawnHandler.getAutoSpawnInstance(_blacksmithSpawn.getObjectId(), true).isSpawnActive()) {
+                    autoSpawnHandler.setSpawnActive(_blacksmithSpawn, true);
                 }
 
                 for (AutoSpawnInstance spawnInst : _oratorSpawns.values()) {
-                    if (!AutoSpawnHandler.getInstance().getAutoSpawnInstance(spawnInst.getObjectId(), true).isSpawnActive()) {
-                        AutoSpawnHandler.getInstance().setSpawnActive(spawnInst, true);
+                    if (!autoSpawnHandler.getAutoSpawnInstance(spawnInst.getObjectId(), true).isSpawnActive()) {
+                        autoSpawnHandler.setSpawnActive(spawnInst, true);
                     }
                 }
 
                 for (AutoSpawnInstance spawnInst : _preacherSpawns.values()) {
-                    if (!AutoSpawnHandler.getInstance().getAutoSpawnInstance(spawnInst.getObjectId(), true).isSpawnActive()) {
-                        AutoSpawnHandler.getInstance().setSpawnActive(spawnInst, true);
+                    if (!autoSpawnHandler.getAutoSpawnInstance(spawnInst.getObjectId(), true).isSpawnActive()) {
+                        autoSpawnHandler.setSpawnActive(spawnInst, true);
                     }
                 }
 
@@ -216,14 +217,14 @@ public class SevenSigns {
                     AutoChatHandler.getInstance().setAutoChatActive(true);
                 }
             } else {
-                AutoSpawnHandler.getInstance().setSpawnActive(_blacksmithSpawn, false);
+                autoSpawnHandler.setSpawnActive(_blacksmithSpawn, false);
 
                 for (AutoSpawnInstance spawnInst : _oratorSpawns.values()) {
-                    AutoSpawnHandler.getInstance().setSpawnActive(spawnInst, false);
+                    autoSpawnHandler.setSpawnActive(spawnInst, false);
                 }
 
                 for (AutoSpawnInstance spawnInst : _preacherSpawns.values()) {
-                    AutoSpawnHandler.getInstance().setSpawnActive(spawnInst, false);
+                    autoSpawnHandler.setSpawnActive(spawnInst, false);
                 }
 
                 AutoChatHandler.getInstance().setAutoChatActive(false);
@@ -234,74 +235,74 @@ public class SevenSigns {
                     _merchantSpawn.setBroadcast(false);
                 }
 
-                if (!AutoSpawnHandler.getInstance().getAutoSpawnInstance(_merchantSpawn.getObjectId(), true).isSpawnActive()) {
-                    AutoSpawnHandler.getInstance().setSpawnActive(_merchantSpawn, true);
+                if (!autoSpawnHandler.getAutoSpawnInstance(_merchantSpawn.getObjectId(), true).isSpawnActive()) {
+                    autoSpawnHandler.setSpawnActive(_merchantSpawn, true);
                 }
 
-                if (!AutoSpawnHandler.getInstance().getAutoSpawnInstance(_spiritInSpawn.getObjectId(), true).isSpawnActive()) {
-                    AutoSpawnHandler.getInstance().setSpawnActive(_spiritInSpawn, true);
+                if (!autoSpawnHandler.getAutoSpawnInstance(_spiritInSpawn.getObjectId(), true).isSpawnActive()) {
+                    autoSpawnHandler.setSpawnActive(_spiritInSpawn, true);
                 }
 
-                if (!AutoSpawnHandler.getInstance().getAutoSpawnInstance(_spiritOutSpawn.getObjectId(), true).isSpawnActive()) {
-                    AutoSpawnHandler.getInstance().setSpawnActive(_spiritOutSpawn, true);
+                if (!autoSpawnHandler.getAutoSpawnInstance(_spiritOutSpawn.getObjectId(), true).isSpawnActive()) {
+                    autoSpawnHandler.setSpawnActive(_spiritOutSpawn, true);
                 }
 
                 switch (getCabalHighestScore()) {
                     case CABAL_DAWN:
-                        if (!AutoSpawnHandler.getInstance().getAutoSpawnInstance(_lilithSpawn.getObjectId(), true).isSpawnActive()) {
-                            AutoSpawnHandler.getInstance().setSpawnActive(_lilithSpawn, true);
+                        if (!autoSpawnHandler.getAutoSpawnInstance(_lilithSpawn.getObjectId(), true).isSpawnActive()) {
+                            autoSpawnHandler.setSpawnActive(_lilithSpawn, true);
                         }
 
-                        AutoSpawnHandler.getInstance().setSpawnActive(_anakimSpawn, false);
-                        if (!AutoSpawnHandler.getInstance().getAutoSpawnInstance(_crestofdawnspawn.getObjectId(), true).isSpawnActive()) {
-                            AutoSpawnHandler.getInstance().setSpawnActive(_crestofdawnspawn, true);
+                        autoSpawnHandler.setSpawnActive(_anakimSpawn, false);
+                        if (!autoSpawnHandler.getAutoSpawnInstance(_crestofdawnspawn.getObjectId(), true).isSpawnActive()) {
+                            autoSpawnHandler.setSpawnActive(_crestofdawnspawn, true);
                         }
 
-                        AutoSpawnHandler.getInstance().setSpawnActive(_crestofduskspawn, false);
+                        autoSpawnHandler.setSpawnActive(_crestofduskspawn, false);
                         break;
 
                     case CABAL_DUSK:
-                        if (!AutoSpawnHandler.getInstance().getAutoSpawnInstance(_anakimSpawn.getObjectId(), true).isSpawnActive()) {
-                            AutoSpawnHandler.getInstance().setSpawnActive(_anakimSpawn, true);
+                        if (!autoSpawnHandler.getAutoSpawnInstance(_anakimSpawn.getObjectId(), true).isSpawnActive()) {
+                            autoSpawnHandler.setSpawnActive(_anakimSpawn, true);
                         }
 
-                        AutoSpawnHandler.getInstance().setSpawnActive(_lilithSpawn, false);
-                        if (!AutoSpawnHandler.getInstance().getAutoSpawnInstance(_crestofduskspawn.getObjectId(), true).isSpawnActive()) {
-                            AutoSpawnHandler.getInstance().setSpawnActive(_crestofduskspawn, true);
+                        autoSpawnHandler.setSpawnActive(_lilithSpawn, false);
+                        if (!autoSpawnHandler.getAutoSpawnInstance(_crestofduskspawn.getObjectId(), true).isSpawnActive()) {
+                            autoSpawnHandler.setSpawnActive(_crestofduskspawn, true);
                         }
 
-                        AutoSpawnHandler.getInstance().setSpawnActive(_crestofdawnspawn, false);
+                        autoSpawnHandler.setSpawnActive(_crestofdawnspawn, false);
                         break;
                 }
             } else {
-                AutoSpawnHandler.getInstance().setSpawnActive(_merchantSpawn, false);
-                AutoSpawnHandler.getInstance().setSpawnActive(_lilithSpawn, false);
-                AutoSpawnHandler.getInstance().setSpawnActive(_anakimSpawn, false);
-                AutoSpawnHandler.getInstance().setSpawnActive(_crestofdawnspawn, false);
-                AutoSpawnHandler.getInstance().setSpawnActive(_crestofduskspawn, false);
-                AutoSpawnHandler.getInstance().setSpawnActive(_spiritInSpawn, false);
-                AutoSpawnHandler.getInstance().setSpawnActive(_spiritOutSpawn, false);
+                autoSpawnHandler.setSpawnActive(_merchantSpawn, false);
+                autoSpawnHandler.setSpawnActive(_lilithSpawn, false);
+                autoSpawnHandler.setSpawnActive(_anakimSpawn, false);
+                autoSpawnHandler.setSpawnActive(_crestofdawnspawn, false);
+                autoSpawnHandler.setSpawnActive(_crestofduskspawn, false);
+                autoSpawnHandler.setSpawnActive(_spiritInSpawn, false);
+                autoSpawnHandler.setSpawnActive(_spiritOutSpawn, false);
             }
         } else {
-            AutoSpawnHandler.getInstance().setSpawnActive(_merchantSpawn, false);
-            AutoSpawnHandler.getInstance().setSpawnActive(_blacksmithSpawn, false);
-            AutoSpawnHandler.getInstance().setSpawnActive(_lilithSpawn, false);
-            AutoSpawnHandler.getInstance().setSpawnActive(_anakimSpawn, false);
-            AutoSpawnHandler.getInstance().setSpawnActive(_crestofdawnspawn, false);
-            AutoSpawnHandler.getInstance().setSpawnActive(_crestofduskspawn, false);
-            AutoSpawnHandler.getInstance().setSpawnActive(_spiritInSpawn, false);
-            AutoSpawnHandler.getInstance().setSpawnActive(_spiritOutSpawn, false);
+            autoSpawnHandler.setSpawnActive(_merchantSpawn, false);
+            autoSpawnHandler.setSpawnActive(_blacksmithSpawn, false);
+            autoSpawnHandler.setSpawnActive(_lilithSpawn, false);
+            autoSpawnHandler.setSpawnActive(_anakimSpawn, false);
+            autoSpawnHandler.setSpawnActive(_crestofdawnspawn, false);
+            autoSpawnHandler.setSpawnActive(_crestofduskspawn, false);
+            autoSpawnHandler.setSpawnActive(_spiritInSpawn, false);
+            autoSpawnHandler.setSpawnActive(_spiritOutSpawn, false);
 
             for (AutoSpawnInstance spawnInst : _oratorSpawns.values()) {
-                AutoSpawnHandler.getInstance().setSpawnActive(spawnInst, false);
+                autoSpawnHandler.setSpawnActive(spawnInst, false);
             }
 
             for (AutoSpawnInstance spawnInst : _preacherSpawns.values()) {
-                AutoSpawnHandler.getInstance().setSpawnActive(spawnInst, false);
+                autoSpawnHandler.setSpawnActive(spawnInst, false);
             }
 
             for (AutoSpawnInstance spawnInst : _marketeerSpawns.values()) {
-                AutoSpawnHandler.getInstance().setSpawnActive(spawnInst, false);
+                autoSpawnHandler.setSpawnActive(spawnInst, false);
             }
 
             AutoChatHandler.getInstance().setAutoChatActive(false);

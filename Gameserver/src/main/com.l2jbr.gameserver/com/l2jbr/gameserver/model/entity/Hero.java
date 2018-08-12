@@ -32,6 +32,7 @@ import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.entity.database.Heroes;
+import com.l2jbr.gameserver.model.entity.database.Nobles;
 import com.l2jbr.gameserver.model.entity.database.repository.CharacterRepository;
 import com.l2jbr.gameserver.model.entity.database.repository.HeroesRepository;
 import com.l2jbr.gameserver.model.entity.database.repository.ItemRepository;
@@ -45,10 +46,7 @@ import com.l2jbr.gameserver.templates.StatsSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class Hero {
@@ -155,7 +153,7 @@ public class Hero {
 		return _heroes;
 	}
 	
-	public synchronized void computeNewHeroes(List<StatsSet> newHeroes)
+	public synchronized void computeNewHeroes(List<Nobles> newHeroes)
 	{
 		updateHeroes(true);
 		L2ItemInstance[] items;
@@ -252,9 +250,9 @@ public class Hero {
 		Map<Integer, StatsSet> heroes = new LinkedHashMap<>();
 
 		CharacterRepository repository = DatabaseAccess.getRepository(CharacterRepository.class);
-		for (StatsSet hero : newHeroes)
+		for (Nobles hero : newHeroes)
 		{
-			int charId = hero.getInteger(Olympiad.CHAR_ID);
+			int charId = Objects.requireNonNullElse(hero.getId(), 0);
 			
 			if ((_completeHeroes != null) && _completeHeroes.containsKey(charId))
 			{
@@ -268,8 +266,8 @@ public class Hero {
 			else
 			{
 				StatsSet newHero = new StatsSet();
-				newHero.set(Olympiad.CHAR_NAME, hero.getString(Olympiad.CHAR_NAME));
-				newHero.set(Olympiad.CLASS_ID, hero.getInteger(Olympiad.CLASS_ID));
+				newHero.set(Olympiad.CHAR_NAME, hero.getCharName());
+				newHero.set(Olympiad.CLASS_ID, hero.getClassId());
 				newHero.set(COUNT, 1);
 				newHero.set(PLAYED, 1);
 				

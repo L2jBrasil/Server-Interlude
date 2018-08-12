@@ -75,19 +75,17 @@ public class GameServer {
     private final AdminCommandHandler _adminCommandHandler;
     private final UserCommandHandler _userCommandHandler;
     private final VoicedCommandHandler _voicedCommandHandler;
-    private final AutoChatHandler _autoChatHandler;
-    private final AutoSpawnHandler _autoSpawnHandler;
     private final LoginServerThread _loginThread;
 
     private static Status _statusServer;
 
     public static final Calendar dateTimeServerStarted = Calendar.getInstance();
 
-    public long getUsedMemoryMB() {
+    private long getUsedMemoryMB() {
         return (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1048576; // 1024 * 1024 = 1048576;
     }
 
-    public SelectorThread<L2GameClient> getSelectorThread() {
+    SelectorThread<L2GameClient> getSelectorThread() {
         return _selectorThread;
     }
 
@@ -176,8 +174,8 @@ public class GameServer {
 
         SevenSigns _sevenSignsEngine = SevenSigns.getInstance();
         SevenSignsFestival.getInstance();
-        _autoSpawnHandler = AutoSpawnHandler.getInstance();
-        _autoChatHandler = AutoChatHandler.getInstance();
+        AutoSpawnHandler.getInstance();
+        AutoChatHandler.getInstance();
 
         // Spawn the Orators/Preachers if in the Seal Validation period.
         _sevenSignsEngine.spawnSevenSignsNPC();
@@ -187,10 +185,6 @@ public class GameServer {
         ScriptEventManager.getInstance();
         // Init of a cursed weapon manager
         CursedWeaponsManager.getInstance();
-
-
-        _log.info(getMessage(INFO_LOADED_HANDLERS, _autoChatHandler.size(), "AutoChatHandler"));
-        _log.info(getMessage(INFO_LOADED_HANDLERS, _autoSpawnHandler.size(), "AutoSpawnHandler"));
 
         _itemHandler = ItemHandler.getInstance();
         _itemHandler.registerItemHandler(new ScrollOfEscape());

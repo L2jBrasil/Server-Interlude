@@ -16,8 +16,8 @@ public class RandomSpawn  {
     private int initialDelay;
     private int respawnDelay;
     private int despawnDelay;
-    private String broadcastSpawn;
-    private String randomSpawn;
+    private boolean broadcastSpawn;
+    private boolean randomSpawn;
     @Column("groupId")
     private Set<RandomSpawnLoc> locs;
 
@@ -45,11 +45,11 @@ public class RandomSpawn  {
         return despawnDelay;
     }
 
-    public String getBroadcastSpawn() {
+    public boolean getBroadcastSpawn() {
         return broadcastSpawn;
     }
 
-    public String getRandomSpawn() {
+    public boolean getRandomSpawn() {
         return randomSpawn;
     }
 

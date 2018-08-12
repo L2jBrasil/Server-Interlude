@@ -18,7 +18,6 @@
 package com.l2jbr.gameserver.model;
 
 import com.l2jbr.commons.Config;
-import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.gameserver.Announcements;
 import com.l2jbr.gameserver.ThreadPoolManager;
@@ -33,12 +32,12 @@ import com.l2jbr.gameserver.model.entity.database.repository.RandomSpawnReposito
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
+
+import static com.l2jbr.commons.database.DatabaseAccess.getRepository;
+import static java.util.Objects.isNull;
 
 
 /**
@@ -64,17 +63,16 @@ public class AutoSpawnHandler {
     protected boolean _activeState = true;
 
     private AutoSpawnHandler() {
-        _registeredSpawns = new LinkedHashMap<>();
-        _runningSpawns = new LinkedHashMap<>();
+        _registeredSpawns = new HashMap<>();
+        _runningSpawns = new HashMap<>();
 
         restoreSpawnData();
     }
 
     public static AutoSpawnHandler getInstance() {
-        if (_instance == null) {
+        if (isNull(_instance)) {
             _instance = new AutoSpawnHandler();
         }
-
         return _instance;
     }
 
@@ -83,21 +81,17 @@ public class AutoSpawnHandler {
     }
 
     private void restoreSpawnData() {
-       RandomSpawnRepository repository = DatabaseAccess.getRepository(RandomSpawnRepository.class);
-       repository.findAll().forEach(spawn -> {
+        getRepository(RandomSpawnRepository.class).findAll().forEach(spawn -> {
            AutoSpawnInstance spawnInst = registerSpawn(spawn);
 
            spawnInst.setSpawnCount(spawn.getCount());
-           spawnInst.setBroadcast(Boolean.valueOf(spawn.getBroadcastSpawn()));
-           spawnInst.setRandomSpawn(Boolean.valueOf(spawn.getRandomSpawn()));
+           spawnInst.setBroadcast(spawn.getBroadcastSpawn());
+           spawnInst.setRandomSpawn(spawn.getRandomSpawn());
 
-           spawn.getLocs().forEach(loc -> {
-               spawnInst.addSpawnLocation(loc.getX(), loc.getY(), loc.getZ(), loc.getHeading());
-           });
+           spawn.getLocs().forEach(loc -> spawnInst.addSpawnLocation(loc.getX(), loc.getY(), loc.getZ(), loc.getHeading()));
        });
         _log.info("AutoSpawnHandler: Loaded {} spawn group(s) from the database.", size());
     }
-
 
     /**
      * Registers a spawn with the given parameters with the spawner, and marks it as active. Returns a AutoSpawnInstance containing info about the spawn.
