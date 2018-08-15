@@ -18,30 +18,21 @@
  */
 package com.l2jbr.gameserver.handler;
 
+import com.l2jbr.gameserver.handler.itemhandlers.*;
+
 import java.util.Map;
 import java.util.TreeMap;
 
+import static java.util.Objects.isNull;
 
-/**
- * This class manages handlers of items
- * @version $Revision: 1.1.4.3 $ $Date: 2005/03/27 15:30:09 $
- */
-public class ItemHandler
-{
-	// private static Logger _log = LoggerFactory.getLogger(ItemHandler.class.getName());
-	
+public class ItemHandler {
+
 	private static ItemHandler _instance;
 	
 	private final Map<Integer, IItemHandler> _datatable;
-	
-	/**
-	 * Create ItemHandler if doesn't exist and returns ItemHandler
-	 * @return ItemHandler
-	 */
-	public static ItemHandler getInstance()
-	{
-		if (_instance == null)
-		{
+
+	public static ItemHandler getInstance() {
+		if (isNull(_instance)) {
 			_instance = new ItemHandler();
 		}
 		return _instance;
@@ -55,15 +46,47 @@ public class ItemHandler
 	{
 		return _datatable.size();
 	}
-	
-	/**
-	 * Constructor of ItemHandler
-	 */
-	private ItemHandler()
-	{
+
+	private ItemHandler() {
 		_datatable = new TreeMap<>();
+		load();
 	}
-	
+
+	private void load() {
+        registerItemHandler(new ScrollOfEscape());
+        registerItemHandler(new ScrollOfResurrection());
+        registerItemHandler(new SoulShots());
+        registerItemHandler(new SpiritShot());
+        registerItemHandler(new BlessedSpiritShot());
+        registerItemHandler(new BeastSoulShot());
+        registerItemHandler(new BeastSpiritShot());
+        registerItemHandler(new ChestKey());
+        registerItemHandler(new PaganKeys());
+        registerItemHandler(new Maps());
+        registerItemHandler(new Potions());
+        registerItemHandler(new Recipes());
+        registerItemHandler(new RollingDice());
+        registerItemHandler(new MysteryPotion());
+        registerItemHandler(new EnchantScrolls());
+        registerItemHandler(new EnergyStone());
+        registerItemHandler(new Book());
+        registerItemHandler(new Remedy());
+        registerItemHandler(new Scrolls());
+        registerItemHandler(new CrystalCarol());
+        registerItemHandler(new SoulCrystals());
+        registerItemHandler(new SevenSignsRecord());
+        registerItemHandler(new CharChangePotions());
+        registerItemHandler(new Firework());
+        registerItemHandler(new Seed());
+        registerItemHandler(new Harvester());
+        registerItemHandler(new MercTicket());
+        registerItemHandler(new FishShots());
+        registerItemHandler(new ExtractableItems());
+        registerItemHandler(new SpecialXMas());
+        registerItemHandler(new SummonItems());
+        registerItemHandler(new BeastSpice());
+    }
+
 	/**
 	 * Adds handler of item type in <I>datatable</I>.<BR>
 	 * <BR>
@@ -71,13 +94,11 @@ public class ItemHandler
 	 * This handler is put in <I>datatable</I> Map &lt;Integer ; IItemHandler &gt; for each ID corresponding to an item type (existing in classes of package itemhandlers) sets as key of the Map.
 	 * @param handler (IItemHandler)
 	 */
-	public void registerItemHandler(IItemHandler handler)
-	{
+    private void registerItemHandler(IItemHandler handler) {
 		// Get all ID corresponding to the item type of the handler
 		int[] ids = handler.getItemIds();
 		// Add handler for each ID found
-		for (int id : ids)
-		{
+		for (int id : ids) {
 			_datatable.put(id, handler);
 		}
 	}

@@ -18,20 +18,18 @@
  */
 package com.l2jbr.gameserver.instancemanager;
 
-import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.entity.database.repository.ModsWeddingRepository;
 import com.l2jbr.gameserver.model.entity.Couple;
+import com.l2jbr.gameserver.model.entity.database.repository.ModsWeddingRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
+import static com.l2jbr.commons.database.DatabaseAccess.getRepository;
+import static java.util.Objects.isNull;
 
 /**
  * @author evill33t
@@ -39,11 +37,10 @@ import java.util.List;
 public class CoupleManager {
     private static final Logger _log = LoggerFactory.getLogger(CoupleManager.class.getName());
 
-    // =========================================================
     private static CoupleManager _instance;
 
-    public static final CoupleManager getInstance() {
-        if (_instance == null) {
+    public static CoupleManager getInstance() {
+        if (isNull(_instance)) {
             _log.info("L2JMOD: Initializing CoupleManager");
             _instance = new CoupleManager();
             _instance.load();
@@ -51,26 +48,21 @@ public class CoupleManager {
         return _instance;
     }
 
-    // =========================================================
+    private CoupleManager() {}
 
-    // =========================================================
-    // Data Field
     private List<Couple> _couples;
 
-    // =========================================================
-    // Method - Public
+
     public void reload() {
         getCouples().clear();
         load();
     }
 
-
     private void load() {
-        ModsWeddingRepository repository = DatabaseAccess.getRepository(ModsWeddingRepository.class);
-        repository.findAll().forEach(wedding -> {
+        getRepository(ModsWeddingRepository.class).findAll().forEach(wedding -> {
             getCouples().add(new Couple(wedding));
         });
-        _log.info("Loaded: " + getCouples().size() + " couples(s)");
+        _log.info("Loaded: {} couples(s)", getCouples().size());
     }
 
 

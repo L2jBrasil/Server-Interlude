@@ -30,17 +30,19 @@ import org.xml.sax.SAXException;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.LinkedList;
+import java.util.List;
 
 import static com.l2jbr.gameserver.util.GameserverMessages.getMessage;
+import static java.util.Objects.isNull;
 
 public class ScriptEventManager {
 
     private final Logger logger = LoggerFactory.getLogger(ScriptEventManager.class);
     private final String scriptDirectory = "data/script/";
     private static ScriptEventManager _instance;
-    private LinkedList<Document> scripts;
+    private List<Document> scripts;
 
     public static final Hashtable<String, ParserFactory> parserFactories = new Hashtable<>();
 
@@ -49,14 +51,14 @@ public class ScriptEventManager {
     }
 
     public static ScriptEventManager getInstance() {
-        if (_instance == null) {
+        if (isNull(_instance)) {
             _instance = new ScriptEventManager();
         }
         return _instance;
     }
 
     public void reloadScripts() {
-        scripts = new LinkedList<>();
+        scripts = new ArrayList<>();
         loadScripts();
     }
 
@@ -66,7 +68,7 @@ public class ScriptEventManager {
 
         File[] files = directory.listFiles(file -> file.getName().endsWith(".xml"));
 
-        if (files == null) {
+        if (isNull(files)) {
             logger.debug(getMessage("debug.script.not.found", directory.getAbsolutePath()));
             return;
         }
@@ -95,7 +97,9 @@ public class ScriptEventManager {
         String parserClass = String.format("event.Xml%sParser", node.getNodeName());
 
         Parser parser = createParser(scriptName, parserClass);
-        if (parser == null) { return; }
+        if (isNull(parser)) {
+            return;
+        }
 
         try {
             parser.parseScript(node);

@@ -19,15 +19,19 @@
 package com.l2jbr.gameserver.handler;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.gameserver.handler.admincommandhandlers.*;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
+
+import static java.util.Objects.isNull;
 
 
 /**
@@ -47,14 +51,73 @@ public class AdminCommandHandler {
     private static LinkedHashMap<String, Integer> _privileges;
 
     public static AdminCommandHandler getInstance() {
-        if (_instance == null) {
+        if (isNull(_instance)) {
             _instance = new AdminCommandHandler();
         }
         return _instance;
     }
 
     private AdminCommandHandler() {
-        _datatable = new LinkedHashMap<>();
+        _datatable = new HashMap<>();
+        load();
+    }
+
+    private void load() {
+        registerAdminCommandHandler(new AdminAdmin());
+        registerAdminCommandHandler(new AdminInvul());
+        registerAdminCommandHandler(new AdminDelete());
+        registerAdminCommandHandler(new AdminKill());
+        registerAdminCommandHandler(new AdminTarget());
+        registerAdminCommandHandler(new AdminShop());
+        registerAdminCommandHandler(new AdminAnnouncements());
+        registerAdminCommandHandler(new AdminCreateItem());
+        registerAdminCommandHandler(new AdminHeal());
+        registerAdminCommandHandler(new AdminHelpPage());
+        registerAdminCommandHandler(new AdminShutdown());
+        registerAdminCommandHandler(new AdminSpawn());
+        registerAdminCommandHandler(new AdminSkill());
+        registerAdminCommandHandler(new AdminExpSp());
+        registerAdminCommandHandler(new AdminEventEngine());
+        registerAdminCommandHandler(new AdminGmChat());
+        registerAdminCommandHandler(new AdminEditChar());
+        registerAdminCommandHandler(new AdminGm());
+        registerAdminCommandHandler(new AdminTeleport());
+        registerAdminCommandHandler(new AdminRepairChar());
+        registerAdminCommandHandler(new AdminChangeAccessLevel());
+        registerAdminCommandHandler(new AdminBan());
+        registerAdminCommandHandler(new AdminPolymorph());
+        registerAdminCommandHandler(new AdminBanChat());
+        registerAdminCommandHandler(new AdminKick());
+        registerAdminCommandHandler(new AdminMonsterRace());
+        registerAdminCommandHandler(new AdminEditNpc());
+        registerAdminCommandHandler(new AdminFightCalculator());
+        registerAdminCommandHandler(new AdminMenu());
+        registerAdminCommandHandler(new AdminSiege());
+        registerAdminCommandHandler(new AdminPathNode());
+        registerAdminCommandHandler(new AdminPetition());
+        registerAdminCommandHandler(new AdminPForge());
+        registerAdminCommandHandler(new AdminBBS());
+        registerAdminCommandHandler(new AdminEffects());
+        registerAdminCommandHandler(new AdminDoorControl());
+        registerAdminCommandHandler(new AdminTest());
+        registerAdminCommandHandler(new AdminEnchant());
+        registerAdminCommandHandler(new AdminMobGroup());
+        registerAdminCommandHandler(new AdminRes());
+        registerAdminCommandHandler(new AdminMammon());
+        registerAdminCommandHandler(new AdminUnblockIp());
+        registerAdminCommandHandler(new AdminPledge());
+        registerAdminCommandHandler(new AdminRideWyvern());
+        registerAdminCommandHandler(new AdminLogin());
+        registerAdminCommandHandler(new AdminCache());
+        registerAdminCommandHandler(new AdminLevel());
+        registerAdminCommandHandler(new AdminQuest());
+        registerAdminCommandHandler(new AdminZone());
+        registerAdminCommandHandler(new AdminCursedWeapons());
+        registerAdminCommandHandler(new AdminGeodata());
+        registerAdminCommandHandler(new AdminGeoEditor());
+        registerAdminCommandHandler(new AdminManor());
+        registerAdminCommandHandler(new AdminTvTEvent());
+        // registerAdminCommandHandler(new AdminRadar());
     }
 
     public void registerAdminCommandHandler(IAdminCommandHandler handler) {

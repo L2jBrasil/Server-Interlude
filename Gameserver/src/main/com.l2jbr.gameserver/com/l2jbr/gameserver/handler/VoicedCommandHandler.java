@@ -19,11 +19,15 @@
 package com.l2jbr.gameserver.handler;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.gameserver.handler.voicedcommandhandlers.Wedding;
+import com.l2jbr.gameserver.handler.voicedcommandhandlers.stats;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
+
+import static java.util.Objects.isNull;
 
 
 /**
@@ -39,14 +43,22 @@ public class VoicedCommandHandler {
     private final Map<String, IVoicedCommandHandler> _datatable;
 
     public static VoicedCommandHandler getInstance() {
-        if (_instance == null) {
+        if (isNull(_instance)) {
             _instance = new VoicedCommandHandler();
         }
         return _instance;
     }
 
     private VoicedCommandHandler() {
-        _datatable = new LinkedHashMap<>();
+        _datatable = new HashMap<>();
+        load();
+    }
+
+    private void load() {
+        registerVoicedCommandHandler(new stats());
+        if (Config.L2JMOD_ALLOW_WEDDING) {
+            registerVoicedCommandHandler(new Wedding());
+        }
     }
 
     public void registerVoicedCommandHandler(IVoicedCommandHandler handler) {

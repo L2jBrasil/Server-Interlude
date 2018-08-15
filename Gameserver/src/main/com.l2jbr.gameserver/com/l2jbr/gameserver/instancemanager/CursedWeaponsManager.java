@@ -37,11 +37,9 @@ import org.w3c.dom.Node;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
+import static java.util.Objects.isNull;
 
 /**
  * @author Micht
@@ -49,25 +47,21 @@ import java.util.Set;
 public class CursedWeaponsManager {
     private static final Logger _log = LoggerFactory.getLogger(CursedWeaponsManager.class.getName());
 
-    // =========================================================
     private static CursedWeaponsManager _instance;
 
-    public static final CursedWeaponsManager getInstance() {
-        if (_instance == null) {
+    public static CursedWeaponsManager getInstance() {
+        if (isNull(_instance)) {
             _instance = new CursedWeaponsManager();
         }
         return _instance;
     }
 
-    // =========================================================
-    // Data Field
+
     private Map<Integer, CursedWeapon> _cursedWeapons;
 
-    // =========================================================
-    // Constructor
     public CursedWeaponsManager() {
         _log.info("Initializing CursedWeaponsManager");
-        _cursedWeapons = new LinkedHashMap<>();
+        _cursedWeapons = new HashMap<>();
 
         if (!Config.ALLOW_CURSED_WEAPONS) {
             return;
@@ -79,16 +73,12 @@ public class CursedWeaponsManager {
         _log.info("Loaded : " + _cursedWeapons.size() + " cursed weapon(s).");
     }
 
-    // =========================================================
-    // Method - Private
     public final void reload() {
         _instance = new CursedWeaponsManager();
     }
 
-    private final void load() {
-        if (Config.DEBUG) {
-            System.out.print("  Parsing ... ");
-        }
+    private void load() {
+        _log.debug(" Parsing ... ");
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             factory.setValidating(false);
@@ -96,9 +86,7 @@ public class CursedWeaponsManager {
 
             File file = new File(Config.DATAPACK_ROOT + "/data/cursedWeapons.xml");
             if (!file.exists()) {
-                if (Config.DEBUG) {
-                    System.out.println("NO FILE");
-                }
+                _log.debug("NO FILE");
                 return;
             }
 
@@ -146,17 +134,9 @@ public class CursedWeaponsManager {
                     }
                 }
             }
-
-            if (Config.DEBUG) {
-                System.out.println("OK");
-            }
+            _log.debug("OK");
         } catch (Exception e) {
             _log.error( "Error parsing cursed weapons file.", e);
-
-            if (Config.DEBUG) {
-                System.out.println("ERROR");
-            }
-            return;
         }
     }
 

@@ -19,11 +19,14 @@
 package com.l2jbr.gameserver.handler;
 
 import com.l2jbr.commons.Config;
+import com.l2jbr.gameserver.handler.usercommandhandlers.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
+
+import static java.util.Objects.isNull;
 
 
 /**
@@ -39,14 +42,30 @@ public class UserCommandHandler {
     private final Map<Integer, IUserCommandHandler> _datatable;
 
     public static UserCommandHandler getInstance() {
-        if (_instance == null) {
+        if (isNull(_instance)) {
             _instance = new UserCommandHandler();
         }
         return _instance;
     }
 
     private UserCommandHandler() {
-        _datatable = new LinkedHashMap<>();
+        _datatable = new HashMap<>();
+        load();
+    }
+
+    private void load() {
+        registerUserCommandHandler(new ClanPenalty());
+        registerUserCommandHandler(new ClanWarsList());
+        registerUserCommandHandler(new DisMount());
+        registerUserCommandHandler(new Escape());
+        registerUserCommandHandler(new Loc());
+        registerUserCommandHandler(new Mount());
+        registerUserCommandHandler(new PartyInfo());
+        registerUserCommandHandler(new Time());
+        registerUserCommandHandler(new OlympiadStat());
+        registerUserCommandHandler(new ChannelLeave());
+        registerUserCommandHandler(new ChannelDelete());
+        registerUserCommandHandler(new ChannelListUpdate());
     }
 
     public void registerUserCommandHandler(IUserCommandHandler handler) {
