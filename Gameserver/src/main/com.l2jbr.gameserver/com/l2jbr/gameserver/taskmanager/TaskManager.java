@@ -18,7 +18,6 @@
 package com.l2jbr.gameserver.taskmanager;
 
 import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.model.entity.database.GlobalTasks;
 import com.l2jbr.gameserver.model.entity.database.repository.GlobalTaskRepository;
@@ -26,14 +25,12 @@ import com.l2jbr.gameserver.taskmanager.tasks.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.*;
 import java.util.concurrent.ScheduledFuture;
 
 import static com.l2jbr.gameserver.taskmanager.TaskTypes.*;
+import static java.util.Objects.isNull;
 
 
 /**
@@ -123,7 +120,7 @@ public final class TaskManager {
     }
 
     public static TaskManager getInstance() {
-        if (_instance == null) {
+        if (isNull(_instance)) {
             _instance = new TaskManager();
         }
         return _instance;
@@ -135,7 +132,6 @@ public final class TaskManager {
     }
 
     private void initializate() {
-        registerTask(new TaskCleanUp());
         registerTask(new TaskJython());
         registerTask(new TaskOlympiadSave());
         registerTask(new TaskRecom());
