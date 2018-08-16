@@ -28,7 +28,7 @@ import com.l2jbr.gameserver.model.L2ItemInstance;
 import com.l2jbr.gameserver.model.L2Skill;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
-import com.l2jbr.gameserver.model.entity.Couple;
+import com.l2jbr.gameserver.model.entity.database.Wedding;
 import com.l2jbr.gameserver.serverpackets.*;
 
 
@@ -134,7 +134,7 @@ public class L2WeddingManagerInstance extends L2NpcInstance
 		{
 			// accept the wedding request
 			player.setMarryAccepted(true);
-			Couple couple = CoupleManager.getInstance().getCouple(player.getCoupleId());
+			Wedding couple = CoupleManager.getInstance().getCouple(player.getCoupleId());
 			couple.marry();
 			
 			// messages to the couple

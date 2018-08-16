@@ -29,6 +29,7 @@ import com.l2jbr.gameserver.handler.AdminCommandHandler;
 import com.l2jbr.gameserver.instancemanager.*;
 import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jbr.gameserver.model.entity.database.Wedding;
 import com.l2jbr.gameserver.model.entity.database.repository.CharacterFriendRepository;
 import com.l2jbr.gameserver.model.entity.*;
 import com.l2jbr.gameserver.model.quest.Quest;
@@ -39,6 +40,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Objects;
 
 
 /**
@@ -353,16 +355,16 @@ public class EnterWorld extends L2GameClientPacket
 	{
 		int _chaid = cha.getObjectId();
 		
-		for (Couple cl : CoupleManager.getInstance().getCouples())
+		for (Wedding cl : CoupleManager.getInstance().getCouples())
 		{
 			if ((cl.getPlayer1Id() == _chaid) || (cl.getPlayer2Id() == _chaid))
 			{
-				if (cl.getMaried())
+				if (cl.isMarried())
 				{
 					cha.setMarried(true);
 				}
 				
-				cha.setCoupleId(cl.getId());
+				cha.setCoupleId(Objects.requireNonNullElse(cl.getId(), 0));
 				
 				if (cl.getPlayer1Id() == _chaid)
 				{
