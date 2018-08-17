@@ -17,7 +17,6 @@
  */
 package com.l2jbr.gameserver.taskmanager;
 
-import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.model.entity.database.GlobalTasks;
 import com.l2jbr.gameserver.model.entity.database.repository.GlobalTaskRepository;
@@ -29,6 +28,7 @@ import java.text.DateFormat;
 import java.util.*;
 import java.util.concurrent.ScheduledFuture;
 
+import static com.l2jbr.commons.database.DatabaseAccess.getRepository;
 import static com.l2jbr.gameserver.taskmanager.TaskTypes.*;
 import static java.util.Objects.isNull;
 
@@ -69,7 +69,7 @@ public final class TaskManager {
 
             lastActivation = System.currentTimeMillis();
 
-            GlobalTaskRepository repository = DatabaseAccess.getRepository(GlobalTaskRepository.class);
+            GlobalTaskRepository repository = getRepository(GlobalTaskRepository.class);
             repository.updateLastActivationById(id, lastActivation);
 
             if ((type == TYPE_SHEDULED) || (type == TYPE_TIME)) {
@@ -140,8 +140,8 @@ public final class TaskManager {
         registerTask(new TaskShutdown());
     }
 
-    public void registerTask(Task task) {
-        int key = task.getName().hashCode();
+    private void registerTask(Task task) {
+        int key = task.getName().trim().toLowerCase().hashCode();
         if (!_tasks.containsKey(key)) {
             _tasks.put(key, task);
             task.initializate();
@@ -149,8 +149,7 @@ public final class TaskManager {
     }
 
     private void startAllTasks() {
-        GlobalTaskRepository repository = DatabaseAccess.getRepository(GlobalTaskRepository.class);
-        repository.findAll().forEach(globalTasks -> {
+        getRepository(GlobalTaskRepository.class).findAll().forEach(globalTasks -> {
             Task task = _tasks.get(globalTasks.getTask().trim().toLowerCase().hashCode());
 
             if (task == null) {
@@ -244,7 +243,7 @@ public final class TaskManager {
     }
 
     public static boolean addUniqueTask(String task, TaskTypes type, String param1, String param2, String param3, long lastActivation) {
-        GlobalTaskRepository repository = DatabaseAccess.getRepository(GlobalTaskRepository.class);
+        GlobalTaskRepository repository = getRepository(GlobalTaskRepository.class);
         if(!repository.existsByTask(task)) {
             GlobalTasks globalTask = new GlobalTasks(task, type.toString(), lastActivation, param1, param2, param3);
             repository.save(globalTask);
@@ -259,7 +258,7 @@ public final class TaskManager {
 
     public static boolean addTask(String task, TaskTypes type, String param1, String param2, String param3, long lastActivation) {
         GlobalTasks globalTask = new GlobalTasks(task, type.toString(), lastActivation, param1, param2, param3);
-        GlobalTaskRepository repository = DatabaseAccess.getRepository(GlobalTaskRepository.class);
+        GlobalTaskRepository repository = getRepository(GlobalTaskRepository.class);
         repository.save(globalTask);
         return true;
     }

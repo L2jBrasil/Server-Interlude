@@ -18,28 +18,24 @@
  */
 package com.l2jbr.gameserver.model;
 
-import com.l2jbr.commons.database.DatabaseAccess;
-import com.l2jbr.commons.database.L2DatabaseFactory;
-import com.l2jbr.gameserver.model.actor.instance.L2PetInstance;
+import com.l2jbr.gameserver.model.entity.database.PetsStats;
 import com.l2jbr.gameserver.model.entity.database.repository.PetStatsRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 
+import static com.l2jbr.commons.database.DatabaseAccess.getRepository;
+import static java.util.Objects.isNull;
 
 public class L2PetDataTable {
-    private static Logger _log = LoggerFactory.getLogger(L2PetInstance.class.getName());
+
     private static L2PetDataTable _instance;
 
     // private static final int[] PET_LIST = { 12077, 12312, 12313, 12311, 12527, 12528, 12526 };
-    private static Map<Integer, Map<Integer, L2PetData>> _petTable;
+    private static Map<Integer, Map<Integer, PetsStats>> _petTable;
 
     public static L2PetDataTable getInstance() {
-        if (_instance == null) {
+        if (isNull(_instance)) {
             _instance = new L2PetDataTable();
         }
 
@@ -47,71 +43,26 @@ public class L2PetDataTable {
     }
 
     private L2PetDataTable() {
-        _petTable = new LinkedHashMap<>();
+        _petTable = new HashMap<>();
     }
 
     public void loadPetsData() {
 
-        PetStatsRepository repository = DatabaseAccess.getRepository(PetStatsRepository.class);
-        repository.findAll().forEach(petsStats -> {
-            int petId = petsStats.getTypeID();
-            int petLevel = petsStats.getLevel();
-
-            L2PetData petData = new L2PetData();
-            petData.setPetID(petId);
-            petData.setPetLevel(petLevel);
-            petData.setPetMaxExp(petsStats.getExpMax());
-            petData.setPetMaxHP(petsStats.getHpMax());
-            petData.setPetMaxMP(petsStats.getMpMax());
-            petData.setPetPAtk(petsStats.getPatk());
-            petData.setPetPDef(petsStats.getPdef());
-            petData.setPetMAtk(petsStats.getMatk());
-            petData.setPetMDef(petsStats.getMdef());
-            petData.setPetAccuracy(petsStats.getAcc());
-            petData.setPetEvasion(petsStats.getEvasion());
-            petData.setPetCritical(petsStats.getCrit());
-            petData.setPetSpeed(petsStats.getSpeed());
-            petData.setPetAtkSpeed(petsStats.getAtkSpeed());
-            petData.setPetCastSpeed(petsStats.getCastSpeed());
-            petData.setPetMaxFeed(petsStats.getFeedMax());
-            petData.setPetFeedNormal(petsStats.getFeednormal());
-            petData.setPetFeedBattle(petsStats.getFeedbattle());
-            petData.setPetMaxLoad(petsStats.getLoadMax());
-            petData.setPetRegenHP(petsStats.getHpregen());
-            petData.setPetRegenMP(petsStats.getMpregen());
-            petData.setPetRegenMP(petsStats.getMpregen());
-            petData.setOwnerExpTaken(petsStats.getOwnerExpTaken());
+        getRepository(PetStatsRepository.class).findAll().forEach(petStats -> {
+            int petId = petStats.getTypeID();
+            int petLevel = petStats.getLevel();
 
             if (!_petTable.containsKey(petId)) {
-                _petTable.put(petId, new LinkedHashMap<>());
+                _petTable.put(petId, new HashMap<>());
             }
 
-            _petTable.get(petId).put(petLevel, petData);
+            _petTable.get(petId).put(petLevel, petStats);
 
         });
     }
 
-    public void addPetData(L2PetData petData) {
-        Map<Integer, L2PetData> h = _petTable.get(petData.getPetID());
 
-        if (h == null) {
-            Map<Integer, L2PetData> statTable = new LinkedHashMap<>();
-            statTable.put(petData.getPetLevel(), petData);
-            _petTable.put(petData.getPetID(), statTable);
-            return;
-        }
-
-        h.put(petData.getPetLevel(), petData);
-    }
-
-    public void addPetData(L2PetData[] petLevelsList) {
-        for (L2PetData element : petLevelsList) {
-            addPetData(element);
-        }
-    }
-
-    public L2PetData getPetData(int petID, int petLevel) {
-        // System.out.println("Getting id "+petID+" level "+ petLevel);
+    public PetsStats getPetData(int petID, int petLevel) {
         return _petTable.get(petID).get(petLevel);
     }
 

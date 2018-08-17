@@ -29,6 +29,7 @@ import com.l2jbr.gameserver.model.*;
 import com.l2jbr.gameserver.model.actor.stat.PetStat;
 import com.l2jbr.gameserver.model.entity.database.NpcTemplate;
 import com.l2jbr.gameserver.model.entity.database.Pets;
+import com.l2jbr.gameserver.model.entity.database.PetsStats;
 import com.l2jbr.gameserver.model.entity.database.Weapon;
 import com.l2jbr.gameserver.model.entity.database.repository.PetsRepository;
 import com.l2jbr.gameserver.network.SystemMessageId;
@@ -62,13 +63,13 @@ public class L2PetInstance extends L2Summon
 	private int _feedTime;
 	protected boolean _feedMode;
 	
-	private L2PetData _data;
+	private PetsStats _data;
 	
 	/** The Experience before the last Death Penalty */
 	private long _expBeforeDeath = 0;
 	private static final int FOOD_ITEM_CONSUME_COUNT = 5;
 	
-	public final L2PetData getPetData()
+	public final PetsStats getPetData()
 	{
 		if (_data == null)
 		{
@@ -78,9 +79,9 @@ public class L2PetInstance extends L2Summon
 		return _data;
 	}
 	
-	public final void setPetData(L2PetData value)
+	public final void setPetData(PetsStats petsStats)
 	{
-		_data = value;
+		_data = petsStats;
 	}
 	
 	/**
@@ -857,12 +858,12 @@ public class L2PetInstance extends L2Summon
 			if (battleFeed)
 			{
 				_feedMode = true;
-				_feedTime = _data.getPetFeedBattle();
+				_feedTime = _data.getFeedbattle();
 			}
 			else
 			{
 				_feedMode = false;
-				_feedTime = _data.getPetFeedNormal();
+				_feedTime = _data.getFeednormal();
 			}
 			// pet feed time must be different than 0. Changing time to bypass divide by 0
 			if (_feedTime <= 0)

@@ -119,7 +119,7 @@ public class PetStat extends SummonStat
 	@Override
 	public final long getExpForLevel(int level)
 	{
-		return L2PetDataTable.getInstance().getPetData(getActiveChar().getNpcId(), level).getPetMaxExp();
+		return L2PetDataTable.getInstance().getPetData(getActiveChar().getNpcId(), level).getExpMax();
 	}
 	
 	// =========================================================
@@ -135,12 +135,12 @@ public class PetStat extends SummonStat
 	
 	public final int getFeedBattle()
 	{
-		return getActiveChar().getPetData().getPetFeedBattle();
+		return getActiveChar().getPetData().getFeedbattle();
 	}
 	
 	public final int getFeedNormal()
 	{
-		return getActiveChar().getPetData().getPetFeedNormal();
+		return getActiveChar().getPetData().getFeednormal();
 	}
 	
 	@Override
@@ -160,25 +160,25 @@ public class PetStat extends SummonStat
 	
 	public final int getMaxFeed()
 	{
-		return getActiveChar().getPetData().getPetMaxFeed();
+		return getActiveChar().getPetData().getFeedMax();
 	}
 	
 	@Override
 	public int getMaxHp()
 	{
-		return (int) calcStat(Stats.MAX_HP, getActiveChar().getPetData().getPetMaxHP(), null, null);
+		return (int) calcStat(Stats.MAX_HP, getActiveChar().getPetData().getHpMax(), null, null);
 	}
 	
 	@Override
 	public int getMaxMp()
 	{
-		return (int) calcStat(Stats.MAX_MP, getActiveChar().getPetData().getPetMaxMP(), null, null);
+		return (int) calcStat(Stats.MAX_MP, getActiveChar().getPetData().getMpMax(), null, null);
 	}
 	
 	@Override
 	public int getMAtk(L2Character target, L2Skill skill)
 	{
-		double attack = getActiveChar().getPetData().getPetMAtk();
+		double attack = getActiveChar().getPetData().getMatk();
 		Stats stat = skill == null ? null : skill.getStat();
 		if (stat != null)
 		{
@@ -238,55 +238,55 @@ public class PetStat extends SummonStat
 	@Override
 	public int getMDef(L2Character target, L2Skill skill)
 	{
-		double defence = getActiveChar().getPetData().getPetMDef();
+		double defence = getActiveChar().getPetData().getMdef();
 		return (int) calcStat(Stats.MAGIC_DEFENCE, defence, target, skill);
 	}
 	
 	@Override
 	public int getPAtk(L2Character target)
 	{
-		return (int) calcStat(Stats.PHYSIC_ATTACK, getActiveChar().getPetData().getPetPAtk(), target, null);
+		return (int) calcStat(Stats.PHYSIC_ATTACK, getActiveChar().getPetData().getPatk(), target, null);
 	}
 	
 	@Override
 	public int getPDef(L2Character target)
 	{
-		return (int) calcStat(Stats.PHYSIC_DEFENCE, getActiveChar().getPetData().getPetPDef(), target, null);
+		return (int) calcStat(Stats.PHYSIC_DEFENCE, getActiveChar().getPetData().getPdef(), target, null);
 	}
 	
 	@Override
 	public int getAccuracy()
 	{
-		return (int) calcStat(Stats.ACCURACY, getActiveChar().getPetData().getPetAccuracy(), null, null);
+		return (int) calcStat(Stats.ACCURACY, getActiveChar().getPetData().getAcc(), null, null);
 	}
 	
 	@Override
 	public int getCriticalHit(L2Character target, L2Skill skill)
 	{
-		return (int) calcStat(Stats.CRITICAL_RATE, getActiveChar().getPetData().getPetCritical(), target, null);
+		return (int) calcStat(Stats.CRITICAL_RATE, getActiveChar().getPetData().getCrit(), target, null);
 	}
 	
 	@Override
 	public int getEvasionRate(L2Character target)
 	{
-		return (int) calcStat(Stats.EVASION_RATE, getActiveChar().getPetData().getPetEvasion(), target, null);
+		return (int) calcStat(Stats.EVASION_RATE, getActiveChar().getPetData().getEvasion(), target, null);
 	}
 	
 	@Override
 	public int getRunSpeed()
 	{
-		return (int) calcStat(Stats.RUN_SPEED, getActiveChar().getPetData().getPetSpeed(), null, null);
+		return (int) calcStat(Stats.RUN_SPEED, getActiveChar().getPetData().getSpeed(), null, null);
 	}
 	
 	@Override
 	public int getPAtkSpd()
 	{
-		return (int) calcStat(Stats.PHYSIC_ATTACK_SPEED, getActiveChar().getPetData().getPetAtkSpeed(), null, null);
+		return (int) calcStat(Stats.PHYSIC_ATTACK_SPEED, getActiveChar().getPetData().getAtkSpeed(), null, null);
 	}
 	
 	@Override
 	public int getMAtkSpd()
 	{
-		return (int) calcStat(Stats.MAGIC_ATTACK_SPEED, getActiveChar().getPetData().getPetCastSpeed(), null, null);
+		return (int) calcStat(Stats.MAGIC_ATTACK_SPEED, getActiveChar().getPetData().getCastSpeed(), null, null);
 	}
 }
