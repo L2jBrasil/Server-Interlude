@@ -208,7 +208,6 @@ public class GameServer {
             GeoEditorListener.getInstance();
         }
 
-
         Runtime.getRuntime().addShutdownHook(Shutdown.getInstance());
 
         ForumsBBSManager.getInstance();

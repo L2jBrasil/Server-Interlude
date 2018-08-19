@@ -50,6 +50,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static java.util.Objects.isNull;
+
 
 public class LoginServerThread extends Thread {
     protected static final Logger _log = LoggerFactory.getLogger(LoginServerThread.class.getName());
@@ -89,13 +91,13 @@ public class LoginServerThread extends Thread {
     private final String _gameExternalHost;
     private final String _gameInternalHost;
 
-    public LoginServerThread() {
+    private LoginServerThread() {
         super("LoginServerThread");
         _port = Config.GAME_SERVER_LOGIN_PORT;
         _gamePort = Config.PORT_GAME;
         _hostname = Config.GAME_SERVER_LOGIN_HOST;
         _hexID = Config.HEX_ID;
-        if (_hexID == null) {
+        if (isNull(_hexID)) {
             _requestID = Config.REQUEST_ID;
             _hexID = generateHex(16);
         } else {
@@ -111,7 +113,7 @@ public class LoginServerThread extends Thread {
     }
 
     public static LoginServerThread getInstance() {
-        if (_instance == null) {
+        if (isNull(_instance)) {
             _instance = new LoginServerThread();
         }
         return _instance;

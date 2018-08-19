@@ -22,43 +22,36 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.Announcements;
 import com.l2jbr.gameserver.ThreadPoolManager;
 
+import static java.util.Objects.isNull;
 
 /**
  * @author FBIagent
  */
-public class TvTManager implements Runnable
-{
+public class TvTManager implements Runnable {
 	/** The one and only instance of this class<br> */
 	private static TvTManager _instance = null;
-	
-	/**
-	 * New instance only by getInstance()<br>
-	 */
-	private TvTManager()
-	{
-		if (Config.TVT_EVENT_ENABLED)
-		{
+
+	private TvTManager() {
+		if (Config.TVT_EVENT_ENABLED) {
 			ThreadPoolManager.getInstance().scheduleGeneral(this, 0);
 			System.out.println("TvTEventEngine[TvTManager.TvTManager()]: Started.");
 		}
-		else
-		{
+		else {
 			System.out.println("TvTEventEngine[TvTManager.TvTManager()]: Engine is disabled.");
 		}
-	}
+	}	/**
+	 * New instance only by getInstance()<br>
+	 */
 	
 	/**
 	 * Initialize new/Returns the one and only instance<br>
 	 * <br>
 	 * @return TvTManager<br>
 	 */
-	public static TvTManager getInstance()
-	{
-		if (_instance == null)
-		{
+	public static TvTManager getInstance() {
+		if (isNull(_instance)) {
 			_instance = new TvTManager();
 		}
-		
 		return _instance;
 	}
 	
@@ -67,12 +60,10 @@ public class TvTManager implements Runnable
 	 * @see Runnable#run()
 	 */
 	@Override
-	public void run()
-	{
+	public void run() {
 		TvTEvent.init();
 		
-		for (;;)
-		{
+		for (;;) {
 			waiter(Config.TVT_EVENT_INTERVAL * 60); // in config given as minutes
 			
 			if (!TvTEvent.startParticipation())
@@ -104,8 +95,7 @@ public class TvTManager implements Runnable
 	 * This method waits for a period time delay
 	 * @param seconds
 	 */
-	void waiter(int seconds)
-	{
+	void waiter(int seconds) {
 		while (seconds > 1)
 		{
 			seconds--; // here because we don't want to see two time announce at the same time

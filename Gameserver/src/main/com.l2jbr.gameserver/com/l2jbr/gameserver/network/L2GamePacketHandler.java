@@ -29,7 +29,6 @@ import org.slf4j.LoggerFactory;
 import java.nio.ByteBuffer;
 import java.util.concurrent.RejectedExecutionException;
 
-
 /**
  * Stateful Packet Handler<BR>
  * The Stateful approach prevents the server from handling inconsistent packets, examples:<BR>
@@ -198,9 +197,9 @@ public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, 
 					case 0x2c:
 						msg = new RequestOustPartyMember();
 						break;
-					case 0x2d:
+					//case 0x2d:
 						// RequestDismissParty
-						break;
+						//break;
 					case 0x2e:
 						msg = new DummyPacket();
 						break;
@@ -274,12 +273,12 @@ public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, 
 					// // RequestSEKCustom
 					// break;
 					// THESE ARE NOW TEMPORARY DISABLED
-					case 0x4a:
+					//case 0x4a:
 						// new StartRotating();
-						break;
-					case 0x4b:
+					//	break;
+					//case 0x4b:
 						// new FinishRotating();
-						break;
+					//	break;
 					case 0x4d:
 						msg = new RequestStartPledgeWar();
 						break;
@@ -504,12 +503,12 @@ public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, 
 					// case 0x9c:
 					// // RequestSurrenderAllianceWar
 					// break;
-					case 0x9d:
+					//case 0x9d:
 						// RequestSkillCoolTime
 						/*
 						 * if (Config.DEBUG) _log.info("Request Skill Cool Time .. ignored"); msg = null;
 						 */
-						break;
+					//	break;
 					case 0x9e:
 						msg = new RequestPackageSendableItemList();
 						break;
@@ -633,8 +632,8 @@ public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, 
 					case 0xcd:
 						msg = new RequestShowMiniMap();
 						break;
-					case 0xce: // MSN dialogs so that you dont see them in the console.
-						break;
+					/*case 0xce: // MSN dialogs so that you dont see them in the console.
+						break;*/
 					case 0xcf: // record video
 						msg = new RequestRecordInfo();
 						break;

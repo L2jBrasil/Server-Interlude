@@ -29,6 +29,8 @@ import com.l2jbr.gameserver.serverpackets.ServerClose;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static java.util.Objects.isNull;
+
 
 /**
  * This class provides the functions for shutting down and restarting the server It closes all open clientconnections and saves all data.
@@ -115,8 +117,7 @@ public class Shutdown extends Thread
 	/**
 	 * Default constucter is only used internal to create the shutdown-hook instance
 	 */
-	public Shutdown()
-	{
+	public Shutdown() {
 		_secondsShut = -1;
 		_shutdownMode = SIGTERM;
 	}
@@ -147,10 +148,8 @@ public class Shutdown extends Thread
 	 * get the shutdown-hook instance the shutdown-hook instance is created by the first call of this function, but it has to be registrered externaly.
 	 * @return instance of Shutdown, to be used as shutdown hook
 	 */
-	public static Shutdown getInstance()
-	{
-		if (_instance == null)
-		{
+	public static Shutdown getInstance() {
+		if (isNull(_instance)) {
 			_instance = new Shutdown();
 		}
 		return _instance;

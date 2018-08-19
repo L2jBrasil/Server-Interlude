@@ -23,7 +23,9 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Objects;
 
+import static java.util.Objects.isNull;
 
 /**
  * @author Dezmond
@@ -36,27 +38,21 @@ public class GeoEditorListener extends Thread
 	private final ServerSocket _serverSocket;
 	private static GeoEditorThread _geoEditor;
 	
-	public static GeoEditorListener getInstance()
-	{
-		if (_instance == null)
-		{
-			try
-			{
+	public static GeoEditorListener getInstance() {
+		if (isNull(_instance)) {
+			try {
 				_instance = new GeoEditorListener();
 				_instance.start();
 				_log.info("GeoEditorListener Initialized.");
-			}
-			catch (IOException e)
-			{
-				_log.error("Error creating geoeditor listener! " + e.getMessage());
+			} catch (IOException e) {
+				_log.error("Error creating geoeditor listener! ", e);
 				System.exit(1);
 			}
 		}
 		return _instance;
 	}
 	
-	private GeoEditorListener() throws IOException
-	{
+	private GeoEditorListener() throws IOException {
 		_serverSocket = new ServerSocket(PORT);
 	}
 	
@@ -75,21 +71,17 @@ public class GeoEditorListener extends Thread
 	}
 	
 	@Override
-	public void run()
-	{
+	public void run() {
 		Socket connection = null;
-		try
-		{
-			while (true)
-			{
+		try {
+			while (true) {
 				connection = _serverSocket.accept();
-				if ((_geoEditor != null) && _geoEditor.isWorking())
-				{
+				if ((Objects.nonNull(_geoEditor)) && _geoEditor.isWorking()) {
 					_log.warn("Geoeditor already connected!");
 					connection.close();
 					continue;
 				}
-				_log.info("Received geoeditor connection from: " + connection.getInetAddress().getHostAddress());
+				_log.info("Received geoeditor connection from: {}", connection.getInetAddress().getHostAddress());
 				_geoEditor = new GeoEditorThread(connection);
 				_geoEditor.start();
 			}

@@ -25,6 +25,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static java.util.Objects.isNull;
 
 /**
  * Flood protector
@@ -36,7 +37,7 @@ public class FloodProtector {
     private static FloodProtector _instance;
 
     public static final FloodProtector getInstance() {
-        if (_instance == null) {
+        if (isNull(_instance)) {
             _instance = new FloodProtector();
         }
         return _instance;
@@ -55,15 +56,13 @@ public class FloodProtector {
                                                     100
                                                 };
 
-    // protected actions
+
     public static final int PROTECTED_USEITEM = 0;
     public static final int PROTECTED_ROLLDICE = 1;
     public static final int PROTECTED_FIREWORK = 2;
     public static final int PROTECTED_ITEMPETSUMMON = 3;
     public static final int PROTECTED_HEROVOICE = 4;
 
-    // =========================================================
-    // Constructor
     private FloodProtector() {
         _log.info("Initializing FloodProtector");
         _floodClient = new ConcurrentHashMap<>(Config.FLOODPROTECTOR_INITIALSIZE);

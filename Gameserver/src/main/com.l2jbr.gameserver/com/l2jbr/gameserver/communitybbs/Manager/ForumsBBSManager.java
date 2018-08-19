@@ -18,18 +18,19 @@
  */
 package com.l2jbr.gameserver.communitybbs.Manager;
 
-import com.l2jbr.commons.database.DatabaseAccess;
 import com.l2jbr.gameserver.communitybbs.BB.Forum;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.model.entity.database.repository.ForumRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import static com.l2jbr.commons.database.DatabaseAccess.getRepository;
+import static java.util.Objects.isNull;
 
 public class ForumsBBSManager extends BaseBBSManager {
     private static Logger _log = LoggerFactory.getLogger(ForumsBBSManager.class.getName());
@@ -42,15 +43,15 @@ public class ForumsBBSManager extends BaseBBSManager {
      * @return
      */
     public static ForumsBBSManager getInstance() {
-        if (_instance == null) {
+        if (isNull(_instance)) {
             _instance = new ForumsBBSManager();
             _instance.load();
         }
         return _instance;
     }
 
-    public ForumsBBSManager() {
-        _root = new LinkedHashMap<>();
+    private ForumsBBSManager() {
+        _root = new HashMap<>();
         _table = new LinkedList<>();
     }
 
@@ -62,10 +63,8 @@ public class ForumsBBSManager extends BaseBBSManager {
         }
     }
 
-
     private void load() {
-        ForumRepository repository = DatabaseAccess.getRepository(ForumRepository.class);
-        repository.findAllIdsByType(0).forEach(forumId -> {
+        getRepository(ForumRepository.class).findAllIdsByType(0).forEach(forumId -> {
             Forum f = new Forum(forumId, null);
             _root.put(forumId, f);
         });

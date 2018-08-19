@@ -29,6 +29,8 @@ import java.util.*;
 import java.util.List;
 import java.util.zip.GZIPInputStream;
 
+import static java.util.Objects.isNull;
+
 
 public class Universe implements java.io.Serializable
 {
@@ -143,7 +145,7 @@ public class Universe implements java.io.Serializable
 	
 	public static Universe getInstance()
 	{
-		if ((_instance == null) && Config.ACTIVATE_POSITION_RECORDER)
+		if ((isNull(_instance)) && Config.ACTIVATE_POSITION_RECORDER)
 		{
 			_instance = new Universe();
 		}

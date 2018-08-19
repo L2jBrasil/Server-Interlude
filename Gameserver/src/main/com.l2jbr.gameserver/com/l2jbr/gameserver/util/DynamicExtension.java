@@ -27,6 +27,8 @@ import java.io.FileNotFoundException;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static java.util.Objects.isNull;
+
 
 /**
  * extension loader for l2j
@@ -47,12 +49,7 @@ public class DynamicExtension
 	/**
 	 * create an instance of DynamicExtension this will be done by GameServer according to the altsettings.properties
 	 */
-	private DynamicExtension()
-	{
-		if (_instance == null)
-		{
-			_instance = this;
-		}
+	private DynamicExtension() {
 		_getters = new ConcurrentHashMap<>();
 		_setters = new ConcurrentHashMap<>();
 		initExtensions();
@@ -62,10 +59,8 @@ public class DynamicExtension
 	 * get the singleton of DynamicInstance
 	 * @return the singleton instance
 	 */
-	public static DynamicExtension getInstance()
-	{
-		if (_instance == null)
-		{
+	public static DynamicExtension getInstance() {
+		if (isNull(_instance)) {
 			_instance = new DynamicExtension();
 		}
 		return _instance;

@@ -47,7 +47,6 @@ public class L2PetDataTable {
     }
 
     public void loadPetsData() {
-
         getRepository(PetStatsRepository.class).findAll().forEach(petStats -> {
             int petId = petStats.getTypeID();
             int petLevel = petStats.getLevel();
@@ -57,7 +56,6 @@ public class L2PetDataTable {
             }
 
             _petTable.get(petId).put(petLevel, petStats);
-
         });
     }
 

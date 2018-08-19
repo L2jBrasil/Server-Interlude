@@ -22,7 +22,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
-
 /**
  * Formatted Forsaiken's IPv4 filter [DrHouse]
  * @author Forsaiken
