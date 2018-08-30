@@ -137,7 +137,7 @@ public class RaidbossSpawn extends Entity<Integer> implements ISpawn {
 
     @Override
     public NpcTemplate getNpcTemplate() {
-        return null;
+        return template;
     }
 
     public int getRespawnMinDelay() {

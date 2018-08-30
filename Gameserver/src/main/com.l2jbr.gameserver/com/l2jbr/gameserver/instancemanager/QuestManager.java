@@ -24,7 +24,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static java.util.Objects.isNull;
@@ -113,10 +112,10 @@ public class QuestManager {
         getQuests().put(newQuest.getName(), newQuest);
     }
 
-    public final LinkedHashMap<String, Quest> getQuests() {
-        if (_quests == null) {
-            _quests = new LinkedHashMap<>();
+    public final Map<String, Quest> getQuests() {
+        if (isNull(_quests)) {
+            _quests = new HashMap<>();
         }
-        return (LinkedHashMap<String, Quest>) _quests;
+        return _quests;
     }
 }

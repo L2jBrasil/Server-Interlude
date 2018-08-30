@@ -128,7 +128,6 @@ public class GameServer {
 
         L2World.getInstance();
 
-
         DayNightSpawnManager.getInstance().notifyChangeMode();
         SpawnTable.getInstance();
         RaidBossSpawnManager.getInstance();
