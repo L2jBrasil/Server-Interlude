@@ -57,7 +57,7 @@ public class NpcWalkerRoutesTable {
         _log.info("Initializing Walkers Routes Table.");
         routes = new HashMap<>();
         DatabaseAccess.getRepository(WalkerRoutesRepository.class).findAll().forEach(node ->{
-            if(routes.containsKey(node.getNpcId())) {
+            if(!routes.containsKey(node.getNpcId())) {
                 routes.put(node.getNpcId(), new ArrayList<>());
             }
             routes.get(node.getNpcId()).add(node);

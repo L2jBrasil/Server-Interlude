@@ -117,14 +117,17 @@ public class GameServer {
         CrestCache.getInstance();
 
         ClanTable.getInstance();
+
         ClanHallManager.getInstance(); // Load clan hall data before zone data
+        ZoneData.getInstance();
+
         CastleManager.getInstance();
         SiegeManager.getInstance();
 
         TeleportLocationTable.getInstance();
 
         L2World.getInstance();
-        ZoneData.getInstance();
+
 
         DayNightSpawnManager.getInstance().notifyChangeMode();
         SpawnTable.getInstance();

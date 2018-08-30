@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS `pledge_skill_trees`;
 CREATE TABLE IF NOT EXISTS `pledge_skill_trees` (
-  `skill_id` INT default NULL,
-  `level` INT default NULL,
+  `skill_id` INT NOT NULL ,
+  `level` INT NOT NULL,
   `name` varchar(25) default NULL,
   `clan_lvl` INT default NULL,
   `Description` varchar(255) default NULL,

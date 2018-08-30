@@ -18,11 +18,11 @@ public class Spawn extends Entity<Integer> implements ISpawn {
     private int count;
     @Column("npc_templateid")
     private int npcTemplateId;
-    @Column("x")
+    @Column("locx")
     private int x;
-    @Column("y")
+    @Column("locy")
     private int y;
-    @Column("z")
+    @Column("locz")
     private int z;
     private int randomx;
     private int randomy;

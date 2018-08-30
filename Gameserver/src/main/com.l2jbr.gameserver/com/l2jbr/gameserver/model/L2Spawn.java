@@ -37,6 +37,7 @@ import java.util.List;
 
 import static com.l2jbr.gameserver.templates.NpcType.L2Minion;
 import static com.l2jbr.gameserver.templates.NpcType.L2Pet;
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNullElse;
 
 /**
@@ -51,7 +52,7 @@ public class L2Spawn {
     protected static final Logger _log = LoggerFactory.getLogger(L2Spawn.class.getName());
 
     private ISpawn entity;
-    private NpcTemplate _template;
+    private final NpcTemplate _template;
 
     /**
      * The current number of L2NpcInstance managed by this L2Spawn
@@ -346,6 +347,9 @@ public class L2Spawn {
     }
 
     public int getNpcId() {
+        if(isNull(_template)) {
+            return 0;
+        }
         return requireNonNullElse(_template.getId(), 0);
     }
     public int getHeading() {

@@ -15,7 +15,7 @@ public interface IdFactoryRepository extends Repository<IdFactoryStub, Integer> 
             "UNION " +
               "SELECT object_id  FROM items " +
             "UNION " +
-              "SELECT clan_id AS object_id FROM clan_data " +
+              "SELECT id AS object_id FROM clan_data " +
             "UNION " +
               "SELECT object_id FROM itemsonground")
     Iterable<Integer> findAllIds();
@@ -89,7 +89,7 @@ public interface IdFactoryRepository extends Repository<IdFactoryStub, Integer> 
     int deleteClanDataInconsistency();
 
     @Modifying
-    @Query("DELETE FROM auction_bid WHERE auction_bid.bidderId NOT IN (SELECT clan_id FROM clan_data)")
+    @Query("DELETE FROM auction_bid WHERE auction_bid.bidderId NOT IN (SELECT id FROM clan_data)")
     int deleteAuctionBidderInconsistency();
 
     @Modifying
@@ -97,35 +97,35 @@ public interface IdFactoryRepository extends Repository<IdFactoryStub, Integer> 
     int deleteClanHallFunctionsInconsistency();
 
     @Modifying
-    @Query("DELETE FROM clan_privs WHERE clan_privs.clan_id NOT IN (SELECT clan_id FROM clan_data)")
+    @Query("DELETE FROM clan_privs WHERE clan_privs.clan_id NOT IN (SELECT id FROM clan_data)")
     int deleteClanPrivsInconsistency();
 
     @Modifying
-    @Query("DELETE FROM clan_skills WHERE clan_skills.clan_id NOT IN (SELECT clan_id FROM clan_data)")
+    @Query("DELETE FROM clan_skills WHERE clan_skills.clan_id NOT IN (SELECT id FROM clan_data)")
     int deleteClanSkillsInconsistency();
 
     @Modifying
-    @Query("DELETE FROM clan_subpledges WHERE clan_subpledges.clan_id NOT IN (SELECT clan_id FROM clan_data)")
+    @Query("DELETE FROM clan_subpledges WHERE clan_subpledges.clan_id NOT IN (SELECT id FROM clan_data)")
     int deleteClanSubpledgeInconsistency();
 
     @Modifying
-    @Query("DELETE FROM clan_wars WHERE clan_wars.clan1 NOT IN (SELECT clan_id FROM clan_data)")
+    @Query("DELETE FROM clan_wars WHERE clan_wars.clan1 NOT IN (SELECT id FROM clan_data)")
     int deleteClanWarsInconsistency();
 
     @Modifying
-    @Query("DELETE FROM clan_wars WHERE clan_wars.clan2 NOT IN (SELECT clan_id FROM clan_data)")
+    @Query("DELETE FROM clan_wars WHERE clan_wars.clan2 NOT IN (SELECT id FROM clan_data)")
     int deleteClanWarsUnderAttackInconsistency();
 
     @Modifying
-    @Query("DELETE FROM siege_clans WHERE siege_clans.clan_id NOT IN (SELECT clan_id FROM clan_data)")
+    @Query("DELETE FROM siege_clans WHERE siege_clans.clan_id NOT IN (SELECT id FROM clan_data)")
     int deleteSiegeClansrInconsistency();
 
     @Modifying
-    @Query("DELETE FROM items WHERE items.owner_id NOT IN (SELECT obj_Id FROM characters) AND items.owner_id NOT IN (SELECT clan_id FROM clan_data);")
+    @Query("DELETE FROM items WHERE items.owner_id NOT IN (SELECT obj_Id FROM characters) AND items.owner_id NOT IN (SELECT id FROM clan_data);")
     int deleteItemsInconsistency();
 
     @Modifying
-    @Query("DELETE FROM forums WHERE forums.forum_parent=2 AND forums.forum_owner_id  NOT IN (SELECT clan_id FROM clan_data)")
+    @Query("DELETE FROM forums WHERE forums.forum_parent=2 AND forums.forum_owner_id  NOT IN (SELECT id FROM clan_data)")
     int deleteForumInconsistency();
 
     @Modifying
@@ -141,10 +141,10 @@ public interface IdFactoryRepository extends Repository<IdFactoryStub, Integer> 
     void updateClanData();
 
     @Modifying
-    @Query("UPDATE castle SET taxpercent=0 WHERE castle.id NOT IN (SELECT hasCastle FROM clan_data)")
+    @Query("UPDATE castle SET taxpercent=0 WHERE castle.id NOT IN (SELECT castle FROM clan_data)")
     void updateCastle();
 
     @Modifying
-    @Query("UPDATE characters SET clanid=0 WHERE characters.clanid NOT IN (SELECT clan_id FROM clan_data)")
+    @Query("UPDATE characters SET clanid=0 WHERE characters.clanid NOT IN (SELECT id FROM clan_data)")
     void updateCharacters();
 }

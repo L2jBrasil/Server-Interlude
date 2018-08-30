@@ -3,7 +3,7 @@
 --
 DROP TABLE IF EXISTS `weapon`;
 CREATE TABLE `weapon` (
-  `item_id` int NOT NULL default '0',
+  `item_id` int NOT NULL,
   `name` varchar(70) default NULL,
   `bodypart` ENUM('RIGHT_HAND','TWO_HAND','LEFT_HAND','WOLF','HATCHLING','STRIDER') NOT NULL,
   `crystallizable` BOOL NOT NULL DEFAULT TRUE,
@@ -1007,7 +1007,7 @@ INSERT INTO `weapon` VALUES
  ('7702','Stick of Faith - Magic Hold','RIGHT_HAND',TRUE,'1160','2','2','C','20','BLUNT','0','-1','2290000','916',TRUE,TRUE,TRUE,TRUE,'0','0'),
  ('7703','Stick of Faith - Magic Shield','RIGHT_HAND',TRUE,'1160','2','2','C','20','BLUNT','0','-1','2290000','916',TRUE,TRUE,TRUE,TRUE,'0','0'),
  ('7704','Stick of Eternity - Empower','RIGHT_HAND',TRUE,'1130','3','3','C','20','BLUNT','0','-1','4300000','1720',TRUE,TRUE,TRUE,TRUE,'0','0'),
- ('7705','Stick of Eternity - Rsk., Evasion','RIGHT_HAND',TRUE,'1130','3','3','111','20','379','101','-1','4300000','1720',TRUE,TRUE,TRUE,TRUE,'0','0'),
+ ('7705','Stick of Eternity - Rsk., Evasion','RIGHT_HAND',TRUE,'1130','3','3','C','20','BLUNT','0','-1','4300000','1720',TRUE,TRUE,TRUE,TRUE,'0','0'),
  ('7706','Stick of Eternity - Blessed Body','RIGHT_HAND',TRUE,'1130','3','3','C','20','BLUNT','0','-1','4300000','1720',TRUE,TRUE,TRUE,TRUE,'0','0'),
  ('7707','Nirvana Axe - Magic Power','RIGHT_HAND',TRUE,'1150','3','3','C','20','BLUNT','0','-1','4300000','1720',TRUE,TRUE,TRUE,TRUE,'0','0'),
  ('7708','Nirvana Axe - Magic Poison','RIGHT_HAND',TRUE,'1150','3','3','C','20','BLUNT','0','-1','4300000','1720',TRUE,TRUE,TRUE,TRUE,'0','0'),

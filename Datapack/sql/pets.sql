@@ -13,6 +13,5 @@ CREATE TABLE IF NOT EXISTS pets (
   pkkills decimal(11) ,
   fed decimal(11) ,
   PRIMARY KEY  (item_obj_id),
-  INDEX (name),
-
+  INDEX (name)
 );
