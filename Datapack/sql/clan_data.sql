@@ -19,6 +19,8 @@ CREATE TABLE IF NOT EXISTS clan_data (
   char_penalty_expiry_time DECIMAL( 20,0 ) NOT NULL DEFAULT 0,
   dissolving_expiry_time DECIMAL( 20,0 ) NOT NULL DEFAULT 0,
   PRIMARY KEY  (id),
-  KEY `leader_id` (`leader_id`),
-  KEY `ally_id` (`ally_id`)
+  UNIQUE KEY `leader_id` (`leader_id`),
+  INDEX (`ally_id`),
+  INDEX (castle),
+  INDEX (auction_bid_at)
 );

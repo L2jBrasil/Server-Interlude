@@ -9,8 +9,8 @@ CREATE TABLE IF NOT EXISTS castle (
   siegeDate DECIMAL(20,0) NOT NULL default 0,
   siegeDayOfWeek INT NOT NULL default 7,
   siegeHourOfDay INT NOT NULL default 20,
-  PRIMARY KEY  (name),
-  KEY id (id)
+  PRIMARY KEY  (id),
+  KEY id (name)
 );
 
 INSERT IGNORE INTO `castle` VALUES 

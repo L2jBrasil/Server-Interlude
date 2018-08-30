@@ -12,9 +12,12 @@ CREATE TABLE IF NOT EXISTS `merchant_buylists` (
   `currentCount` INT(11) NOT NULL DEFAULT '-1',
   `time` INT(11) NOT NULL DEFAULT '0',
   `savetimer` DECIMAL(20,0) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`shop_id`, ordering))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+  PRIMARY KEY (`shop_id`, ordering),
+  INDEX (`time`),
+  INDEX (item_id, shop_id, ordering),
+  INDEX (item_id, shop_id, price)
+
+);
 
 --
 -- Dumping data for table `merchant_buylists`

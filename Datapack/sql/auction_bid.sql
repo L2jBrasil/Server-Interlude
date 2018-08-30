@@ -10,5 +10,6 @@ CREATE TABLE IF NOT EXISTS auction_bid (
   maxBid int(11) NOT NULL default 0,
   time_bid decimal(20,0) NOT NULL default '0',
   PRIMARY KEY  (auctionId, bidderId),
-  KEY id (id)
+  KEY id (id),
+  INDEX (bidderId)
 );

@@ -125,7 +125,7 @@ public interface IdFactoryRepository extends Repository<IdFactoryStub, Integer> 
     int deleteItemsInconsistency();
 
     @Modifying
-    @Query("DELETE FROM forums WHERE forums.forum_owner_id NOT IN (SELECT clan_id FROM clan_data) AND forums.forum_parent=2")
+    @Query("DELETE FROM forums WHERE forums.forum_parent=2 AND forums.forum_owner_id  NOT IN (SELECT clan_id FROM clan_data)")
     int deleteForumInconsistency();
 
     @Modifying

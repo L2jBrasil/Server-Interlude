@@ -13,9 +13,8 @@ CREATE TABLE IF NOT EXISTS `clanhall` (
   `paidUntil` DECIMAL(20,0) NOT NULL DEFAULT '0',
   `Grade` DECIMAL(1,0) NOT NULL DEFAULT '0',
   `paid` BOOL NOT NULL DEFAULT false,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+  PRIMARY KEY (`id`)
+);
 
 -- ----------------------------
 -- Records 

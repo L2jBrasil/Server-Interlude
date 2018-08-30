@@ -9,6 +9,5 @@ CREATE TABLE IF NOT EXISTS character_shortcuts (
   shortcut_id decimal(16) ,
   level varchar(4) ,
   `class_index` int(1) NOT NULL default '0',
-  PRIMARY KEY  (char_obj_id,slot,page,`class_index`),
-  KEY `shortcut_id` (`shortcut_id`)
+  PRIMARY KEY  (char_obj_id, `class_index`, slot, page)
 ) ;

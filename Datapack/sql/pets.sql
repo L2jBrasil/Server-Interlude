@@ -12,5 +12,7 @@ CREATE TABLE IF NOT EXISTS pets (
   karma decimal(11) ,
   pkkills decimal(11) ,
   fed decimal(11) ,
-  PRIMARY KEY  (item_obj_id)
+  PRIMARY KEY  (item_obj_id),
+  INDEX (name),
+
 );

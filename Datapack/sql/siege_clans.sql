@@ -3,5 +3,6 @@ CREATE TABLE IF NOT EXISTS siege_clans (
    clan_id int(11) NOT NULL default 0,
    type int(1) default NULL,
    castle_owner int(1) default NULL,
-   PRIMARY KEY  (clan_id,castle_id)
+   PRIMARY KEY  (clan_id,castle_id),
+   INDEX (castle_id, type)
 );

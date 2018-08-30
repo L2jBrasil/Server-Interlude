@@ -19,11 +19,11 @@ public interface MerchantBuyListRepository extends CrudRepository<MerchantItem, 
     int updateCurrentCountByItem(@Param("shop") Integer shopId, @Param("item") int itemId, @Param("count") int count);
 
     @Modifying
-    @Query("UPDATE merchant_buylists SET price=:price WHERE shop_id=:shop AND item_id=:item AND order=:order")
+    @Query("UPDATE merchant_buylists SET price=:price WHERE item_id=:item AND shop_id=:shop AND ordering=:order")
     int updatePriceByItem(@Param("shop") int shopId, @Param("item") int itemId, @Param("order") int order, @Param("price") int price);
 
     @Modifying
-    @Query("DELETE FROM merchant_buylists WHERE shop_id=:shop AND order=:order")
+    @Query("DELETE FROM merchant_buylists WHERE shop_id=:shop AND ordering=:order")
     int deleteByOrder(@Param("shop") int shopId, @Param("order") int order);
 
     @Query("SELECT order FROM merchant_buylists WHERE shop_id=:shop AND item_id=:item AND price=:price")

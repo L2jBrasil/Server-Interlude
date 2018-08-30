@@ -16,8 +16,7 @@ CREATE TABLE IF NOT EXISTS items (
   `custom_type2` INT DEFAULT 0,
   `mana_left` decimal(3,0) NOT NULL default -1,
   PRIMARY KEY (`object_id`),
-  KEY `key_owner_id` (`owner_id`),
-  KEY `key_loc` (`loc`),
-  KEY `key_item_id` (`item_id`),
-  KEY `key_time_of_use` (`time_of_use`)
+  INDEX (`owner_id`, loc),
+  INDEX (owner_id, item_id),
+  INDEX (`item_id`, custom_type1)
 );

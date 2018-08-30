@@ -31,7 +31,7 @@ CREATE TABLE `droplist` (
   `category` INT NOT NULL DEFAULT '0',
   `chance` INT NOT NULL DEFAULT '0',
   PRIMARY KEY  (`mobId`,`itemId`,`category`),
-  KEY `key_mobId` (`mobId`)
+  INDEX (`mobId`)
 );
 
 -- 

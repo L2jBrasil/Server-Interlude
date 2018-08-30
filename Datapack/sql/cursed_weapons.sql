@@ -8,5 +8,6 @@ CREATE TABLE IF NOT EXISTS `cursed_weapons` (
   `playerPkKills` INT DEFAULT 0,
   `nbKills` INT DEFAULT 0,
   `endTime` DECIMAL(20,0) DEFAULT 0,
-  PRIMARY KEY (`itemId`)
+  PRIMARY KEY (`itemId`),
+  INDEX (playerId)
 );

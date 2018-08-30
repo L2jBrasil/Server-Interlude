@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS games (
   prize3  INT NOT NULL default 0,
   enddate decimal(20,0) NOT NULL default 0,
   finished INT NOT NULL default 0,
-  PRIMARY KEY (`id`,`idnr`)
+  PRIMARY KEY (`id`,`idnr`),
+  INDEX (idnr)
 );
 

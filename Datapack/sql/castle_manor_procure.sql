@@ -9,5 +9,6 @@ CREATE TABLE IF NOT EXISTS `castle_manor_procure` (
   `price` int(11) NOT NULL DEFAULT '0',
   `reward_type` int(11) NOT NULL DEFAULT '0',
   `period` INT NOT NULL DEFAULT '1',
-  PRIMARY KEY  (`castle_id`,`crop_id`,`period`)
+  PRIMARY KEY  (`castle_id`,`crop_id`,`period`),
+  INDEX (castle_id, period)
 );

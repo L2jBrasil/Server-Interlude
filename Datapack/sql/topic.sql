@@ -9,5 +9,7 @@ CREATE TABLE IF NOT EXISTS `topic` (
   `topic_ownername` varchar(255) NOT NULL default '0',
   `topic_ownerid` int(8) NOT NULL default '0',
   `topic_type` int(8) NOT NULL default '0',
-  `topic_reply` int(8) NOT NULL default '0'
+  `topic_reply` int(8) NOT NULL default '0',
+  PRIMARY KEY (topic_id),
+  INDEX (topic_forum_id, topic_id)
 );

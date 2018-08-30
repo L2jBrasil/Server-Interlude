@@ -7,5 +7,5 @@ CREATE TABLE IF NOT EXISTS merchant_lease (
   bid int(11),
   `type` int(11) NOT NULL default 0,
   player_name varchar(35),
-  PRIMARY KEY  (merchant_id,player_id,`type`)
+  PRIMARY KEY  (player_id, merchant_id, `type`)
 );

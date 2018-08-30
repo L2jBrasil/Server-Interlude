@@ -3,6 +3,8 @@ CREATE TABLE IF NOT EXISTS `character_hennas` (
   `symbol_id` INT,
   `slot` INT NOT NULL DEFAULT 0,
   `class_index` INT(1) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`char_obj_id`,`slot`,`class_index`)
+  PRIMARY KEY (`char_obj_id`,`slot`,`class_index`),
+  INDEX (char_obj_id, class_index)
+
 );
 

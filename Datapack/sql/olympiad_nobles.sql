@@ -4,5 +4,7 @@ CREATE TABLE IF NOT EXISTS `olympiad_nobles` (
   `char_name` varchar(45) NOT NULL default '',
   `olympiad_points` decimal(10,0) NOT NULL default '0',
   `competitions_done` decimal(3,0) NOT NULL default '0',
-  PRIMARY KEY  (`char_id`)
+  PRIMARY KEY  (`char_id`),
+  INDEX (class_id, competitions_done),
+  index (olympiad_points, competitions_done)
 );

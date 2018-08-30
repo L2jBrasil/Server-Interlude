@@ -7,7 +7,8 @@ CREATE TABLE `zone_vertices` (
   `order` int(11) NOT NULL,
   `x` int(11) NOT NULL,
   `y` int(11) NOT NULL,
-  PRIMARY KEY  (`id`,`order`)
+  PRIMARY KEY  (`id`,`order`),
+  INDEX (`order`)
 );
 
 -- 

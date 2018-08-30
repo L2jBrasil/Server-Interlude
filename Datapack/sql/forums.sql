@@ -9,7 +9,11 @@ CREATE TABLE IF NOT EXISTS `forums` (
   `forum_type` int(8) NOT NULL default '0',
   `forum_perm` int(8) NOT NULL default '0',
   `forum_owner_id` int(8) NOT NULL default '0',
-  UNIQUE KEY `forum_id` (`forum_id`)
+  primary key (`forum_id`),
+  INDEX (forum_type),
+  INDEX (forum_parent, forum_owner_id)
+
+
 );
 
 
