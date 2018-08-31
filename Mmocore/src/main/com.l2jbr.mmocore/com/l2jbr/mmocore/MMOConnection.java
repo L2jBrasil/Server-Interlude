@@ -22,10 +22,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.SocketException;
 import java.nio.ByteBuffer;
-import java.nio.channels.CancelledKeyException;
-import java.nio.channels.ReadableByteChannel;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.WritableByteChannel;
+import java.nio.channels.*;
 
 
 /**
@@ -83,7 +80,9 @@ public class MMOConnection<T extends MMOClient<?>>
 			e.printStackTrace();
 		}
 	}
-	
+
+
+
 	final void setClient(final T client)
 	{
 		_client = client;
