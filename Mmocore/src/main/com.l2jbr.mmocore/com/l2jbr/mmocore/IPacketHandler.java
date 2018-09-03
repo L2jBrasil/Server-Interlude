@@ -19,7 +19,6 @@ package com.l2jbr.mmocore;
 
 import java.nio.ByteBuffer;
 
-
 /**
  * @author KenM
  * @param <T>

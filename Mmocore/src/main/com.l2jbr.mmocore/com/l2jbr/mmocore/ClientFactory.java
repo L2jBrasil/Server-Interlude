@@ -1,6 +1,9 @@
 package com.l2jbr.mmocore;
 
-public interface ClientFactory<T extends  AsynchronousMMOClient> {
+import com.l2jbr.mmocore.async.AsyncMMOConnection;
+import com.l2jbr.mmocore.async.AsyncMMOClient;
 
-    T create(AsyncronousMMOConnection con);
+public interface ClientFactory<T extends AsyncMMOClient> {
+
+    T create(AsyncMMOConnection<T> con);
 }

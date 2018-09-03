@@ -24,7 +24,6 @@ import java.net.SocketException;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
 
-
 /**
  * @author KenM
  * @param <T>
