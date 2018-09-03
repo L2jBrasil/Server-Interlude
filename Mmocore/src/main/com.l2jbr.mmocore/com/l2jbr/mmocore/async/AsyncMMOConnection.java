@@ -3,23 +3,44 @@ package com.l2jbr.mmocore.async;
 import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousSocketChannel;
 
-public class AsyncMMOConnection<T extends AsyncMMOClient<?>> {
+import static java.util.Objects.isNull;
+
+public class AsyncMMOConnection<T extends AsyncMMOClient<AsyncMMOConnection<T>>> {
 
     private final AsynchronousSocketChannel channel;
-    private ConnectionHandler<T>.ReadHandler readHandler;
-    private ConnectionHandler<T>.WriteHandler writeHandler;
+    private final ReadHandler<T> readHandler;
+    private final WriteHandler<T> writeHandler;
+    private T client;
 
-    public AsyncMMOConnection(AsynchronousSocketChannel channel, ConnectionHandler<T>.ReadHandler readHandler, ConnectionHandler<T>.WriteHandler writeHandler) {
+    private ByteBuffer readingBuffer;
+    private ByteBuffer writingBuffer;
+
+    AsyncMMOConnection(AsynchronousSocketChannel channel, ReadHandler<T> readHandler, WriteHandler<T> writeHandler) {
         this.channel = channel;
         this.readHandler = readHandler;
         this.writeHandler = writeHandler;
     }
 
-    void read(T client, ByteBuffer buffer) {
-        channel.read(buffer, client, readHandler);
+    public void setClient(T client) {
+        this.client = client;
     }
 
-    void write(T client, ByteBuffer buffer) {
-        channel.write(buffer, client, writeHandler);
+    ByteBuffer getReadingBuffer() {
+        if(isNull(readingBuffer)) {
+            readingBuffer = ByteBufferPool.getPooledBuffer();
+        }
+        return readingBuffer;
+    }
+
+    void dropReadingBuffer() {
+        readingBuffer =null;
+    }
+
+    public void read() {
+        channel.read(getReadingBuffer(), client, readHandler);
+    }
+
+    public void write() {
+        channel.write(writingBuffer, client, writeHandler);
     }
 }

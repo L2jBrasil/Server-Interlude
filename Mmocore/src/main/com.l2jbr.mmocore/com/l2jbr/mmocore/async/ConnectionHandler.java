@@ -1,7 +1,5 @@
 package com.l2jbr.mmocore.async;
 
-import com.l2jbr.mmocore.ClientFactory;
-
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.StandardSocketOptions;
@@ -9,20 +7,19 @@ import java.nio.channels.AsynchronousChannelGroup;
 import java.nio.channels.AsynchronousServerSocketChannel;
 import java.nio.channels.AsynchronousSocketChannel;
 import java.nio.channels.CompletionHandler;
-import java.util.concurrent.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
-import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
-public class ConnectionHandler<T extends AsyncMMOClient> extends Thread {
+public class ConnectionHandler<T extends AsyncMMOClient<AsyncMMOConnection<T>>> extends Thread {
 
-    private static final int HEADER_SIZE = 2;
     private final AsynchronousChannelGroup group;
     private final AsynchronousServerSocketChannel listener;
+    private final WriteHandler<T> writeHandler;
     private boolean shutdown;
     private ClientFactory<T> clientFactory;
-    private ReadHandler readHandler;
-    private WriteHandler writeHandler;
+    private ReadHandler<T> readHandler;
     private PacketHandler<T>  packetHandler;
 
 
@@ -31,6 +28,8 @@ public class ConnectionHandler<T extends AsyncMMOClient> extends Thread {
         this.clientFactory = clientFactory;
         this.packetHandler = packetHandler;
 
+        this.readHandler = new ReadHandler<>(packetHandler);
+        this.writeHandler = new WriteHandler<>();
         group = createChannelGroup(threadPoolSize);
         listener = group.provider().openAsynchronousServerSocketChannel(group);
         listener.bind(address);
@@ -49,7 +48,7 @@ public class ConnectionHandler<T extends AsyncMMOClient> extends Thread {
 
         while (!shutdown) {
             try  {
-                Thread.sleep(50000);
+                Thread.sleep(10000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -74,26 +73,13 @@ public class ConnectionHandler<T extends AsyncMMOClient> extends Thread {
 
             }
 
-            var con = new AsyncMMOConnection<T>(channel, getReadHandler(), getWriteHandler());
-            T client = clientFactory.create(con);
-            client.read();
+            AsyncMMOConnection<T> connection = new AsyncMMOConnection<>(channel, readHandler, writeHandler);
+            clientFactory.create(connection);
+            connection.read();
+
         } else {
             System.out.println("Channel Closed");
         }
-    }
-
-    private WriteHandler getWriteHandler() {
-        if(isNull(writeHandler)) {
-            writeHandler = new WriteHandler();
-        }
-        return writeHandler;
-    }
-
-    private ReadHandler getReadHandler() {
-        if(isNull(readHandler)) {
-            readHandler = new ReadHandler();
-        }
-        return  readHandler;
     }
 
     private void handleDisconnection(T client) {
@@ -101,7 +87,7 @@ public class ConnectionHandler<T extends AsyncMMOClient> extends Thread {
     }
 
     private void onFinishedIO(T client) {
-        ByteBufferPool.recycleBuffer(client.getReadingBuffer());
+        /*ByteBufferPool.recycleBuffer(client.getReadingBuffer());*/
     }
 
     private class AcceptConnectionHandler implements CompletionHandler<AsynchronousSocketChannel, Void> {
@@ -119,73 +105,6 @@ public class ConnectionHandler<T extends AsyncMMOClient> extends Thread {
         }
     }
 
-    class WriteHandler implements  CompletionHandler<Integer, T> {
-
-        @Override
-        public void completed(Integer bytesWrited, T client) {
-
-            onFinishedIO(client);
-        }
-
-        @Override
-        public void failed(Throwable exc, T client) {
-            onFinishedIO(client);
-        }
-    }
-
-    class ReadHandler implements CompletionHandler<Integer, T> {
-
-        @Override
-        public void completed(Integer bytesRead, T client) {
-            if(bytesRead < 0 ) {
-                //Client disconnected.
-                onFinishedIO(client);
-                handleDisconnection(client);
-                return;
-            }
-
-            if (bytesRead < HEADER_SIZE){
-                // no enough data to read Header
-                client.read();
-                return;
-            }
-
-            var buffer = client.getReadingBuffer();
-
-            buffer.flip();
-
-            var dataSize = (buffer.getShort() & 0xFFFF) - HEADER_SIZE;
-
-            if(dataSize > buffer.remaining()) {
-                // No enough data yet, read more. Prepare buffer to writing without data loss.
-                buffer.position(buffer.position() - HEADER_SIZE);
-                buffer.compact();
-                client.read();
-                return;
-            }
-
-            if(dataSize > 0) {
-                final int pos = buffer.position();
-                parseAndExecutePacket(client, dataSize);
-            }
-
-            packetHandler.handler(client.getReadingBuffer(), client);
-
-
-            onFinishedIO(client);
-        }
-
-        private void parseAndExecutePacket(T client, int dataSize) {
-            var buffer = client.getReadingBuffer();
-            client.decrypt(buffer, dataSize);
-        }
-
-        @Override
-        public void failed(Throwable exc, T client) {
-            onFinishedIO(client);
-            handleDisconnection(client);
-        }
-    }
 
 
 }
