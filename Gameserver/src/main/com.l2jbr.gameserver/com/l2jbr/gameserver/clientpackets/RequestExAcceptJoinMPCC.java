@@ -33,7 +33,7 @@ public final class RequestExAcceptJoinMPCC extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_response = readD();
+		_response = readInt();
 	}
 	
 	@Override

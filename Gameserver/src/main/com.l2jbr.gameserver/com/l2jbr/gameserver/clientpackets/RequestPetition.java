@@ -47,8 +47,8 @@ public final class RequestPetition extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_content = readS();
-		_type = readD();
+		_content = readString();
+		_type = readInt();
 	}
 	
 	@Override

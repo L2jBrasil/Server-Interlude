@@ -41,10 +41,10 @@ public final class RequestPledgeReorganizeMember extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_unk1 = readD();
-		_memberName = readS();
-		_newPledgeType = readD();
-		_unk2 = readS();
+		_unk1 = readInt();
+		_memberName = readString();
+		_newPledgeType = readInt();
+		_unk2 = readString();
 	}
 	
 	@Override

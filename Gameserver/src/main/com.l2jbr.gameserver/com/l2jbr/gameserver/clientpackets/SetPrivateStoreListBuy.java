@@ -43,7 +43,7 @@ public final class SetPrivateStoreListBuy extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_count = readD();
+		_count = readInt();
 		if ((_count <= 0) || ((_count * 12) > _buf.remaining()) || (_count > Config.MAX_ITEM_IN_PACKET))
 		{
 			_count = 0;
@@ -53,11 +53,11 @@ public final class SetPrivateStoreListBuy extends L2GameClientPacket
 		_items = new int[_count * 3];
 		for (int x = 0; x < _count; x++)
 		{
-			int itemId = readD();
+			int itemId = readInt();
 			_items[(x * 3) + 0] = itemId;
-			readH();// TODO analyse this
-			readH();// TODO analyse this
-			long cnt = readD();
+			readShort();// TODO analyse this
+			readShort();// TODO analyse this
+			long cnt = readInt();
 			if ((cnt > Integer.MAX_VALUE) || (cnt < 0))
 			{
 				_count = 0;
@@ -65,7 +65,7 @@ public final class SetPrivateStoreListBuy extends L2GameClientPacket
 				return;
 			}
 			_items[(x * 3) + 1] = (int) cnt;
-			int price = readD();
+			int price = readInt();
 			_items[(x * 3) + 2] = price;
 		}
 	}

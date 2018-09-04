@@ -39,7 +39,7 @@ public final class RequestConfirmTargetItem extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_itemObjId = readD();
+		_itemObjId = readInt();
 	}
 	
 	@Override

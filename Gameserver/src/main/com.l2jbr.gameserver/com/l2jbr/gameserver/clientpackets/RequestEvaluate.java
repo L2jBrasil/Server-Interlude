@@ -36,7 +36,7 @@ public final class RequestEvaluate extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_targetId = readD();
+		_targetId = readInt();
 	}
 	
 	@Override

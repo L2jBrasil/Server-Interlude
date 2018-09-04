@@ -42,8 +42,8 @@ public final class RequestSendFriendMsg extends L2GameClientPacket {
 
     @Override
     protected void readImpl() {
-        _message = readS();
-        _reciever = readS();
+        _message = readString();
+        _reciever = readString();
     }
 
     @Override

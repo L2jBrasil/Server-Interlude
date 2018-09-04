@@ -38,8 +38,8 @@ public final class RequestPledgeMemberInfo extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_unk1 = readD();
-		_player = readS();
+		_unk1 = readInt();
+		_player = readString();
 	}
 	
 	@Override

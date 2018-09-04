@@ -67,11 +67,11 @@ public class AuthGameGuard extends L2LoginClientPacket
 	{
 		if (_buf.remaining() >= 20)
 		{
-			_sessionId = readD();
-			_data1 = readD();
-			_data2 = readD();
-			_data3 = readD();
-			_data4 = readD();
+			_sessionId = readInt();
+			_data1 = readInt();
+			_data2 = readInt();
+			_data3 = readInt();
+			_data4 = readInt();
 			return true;
 		}
 		return false;

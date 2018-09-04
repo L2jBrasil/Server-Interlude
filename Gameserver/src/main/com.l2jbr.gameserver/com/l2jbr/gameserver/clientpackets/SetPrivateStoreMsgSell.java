@@ -36,7 +36,7 @@ public class SetPrivateStoreMsgSell extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_storeMsg = readS();
+		_storeMsg = readString();
 	}
 	
 	@Override

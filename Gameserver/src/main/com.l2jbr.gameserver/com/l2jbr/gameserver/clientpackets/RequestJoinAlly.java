@@ -41,7 +41,7 @@ public final class RequestJoinAlly extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_id = readD();
+		_id = readInt();
 	}
 	
 	@Override

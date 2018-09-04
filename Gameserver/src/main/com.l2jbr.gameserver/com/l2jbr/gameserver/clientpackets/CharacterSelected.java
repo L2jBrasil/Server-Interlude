@@ -51,11 +51,11 @@ public class CharacterSelected extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_charSlot = readD();
-		_unk1 = readH();
-		_unk2 = readD();
-		_unk3 = readD();
-		_unk4 = readD();
+		_charSlot = readInt();
+		_unk1 = readShort();
+		_unk2 = readInt();
+		_unk3 = readInt();
+		_unk4 = readInt();
 	}
 	
 	@Override

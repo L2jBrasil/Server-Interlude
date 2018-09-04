@@ -48,8 +48,8 @@ public final class RequestPrivateStoreSell extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_storePlayerId = readD();
-		_count = readD();
+		_storePlayerId = readInt();
+		_count = readInt();
 		// count*20 is the size of a for iteration of each item
 		if ((_count < 0) || ((_count * 20) > _buf.remaining()) || (_count > Config.MAX_ITEM_IN_PACKET))
 		{
@@ -60,12 +60,12 @@ public final class RequestPrivateStoreSell extends L2GameClientPacket
 		long priceTotal = 0;
 		for (int i = 0; i < _count; i++)
 		{
-			int objectId = readD();
-			int itemId = readD();
-			readH(); // TODO analyse this
-			readH(); // TODO analyse this
-			long count = readD();
-			int price = readD();
+			int objectId = readInt();
+			int itemId = readInt();
+			readShort(); // TODO analyse this
+			readShort(); // TODO analyse this
+			long count = readInt();
+			int price = readInt();
 			
 			if ((count > Integer.MAX_VALUE) || (count < 0))
 			{

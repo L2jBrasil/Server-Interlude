@@ -44,14 +44,14 @@ public final class RequestSetAllyCrest extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_length = readD();
+		_length = readInt();
 		if ((_length < 0) || (_length > 192))
 		{
 			return;
 		}
 		
 		_data = new byte[_length];
-		readB(_data);
+		readBytes(_data);
 	}
 	
 	@Override

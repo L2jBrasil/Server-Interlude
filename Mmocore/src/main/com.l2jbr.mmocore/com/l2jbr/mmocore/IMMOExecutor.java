@@ -22,7 +22,7 @@ package com.l2jbr.mmocore;
  * @author KenM
  * @param <T>
  */
-public interface IMMOExecutor<T extends MMOClient<?>>
+public interface IMMOExecutor<T>
 {
-	public void execute(ReceivablePacket<T> packet);
+	void execute(ReceivablePacket<T> packet);
 }

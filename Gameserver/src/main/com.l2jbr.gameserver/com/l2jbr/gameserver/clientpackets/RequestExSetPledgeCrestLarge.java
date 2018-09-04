@@ -44,7 +44,7 @@ public final class RequestExSetPledgeCrestLarge extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_size = readD();
+		_size = readInt();
 		if (_size > 2176)
 		{
 			return;
@@ -52,7 +52,7 @@ public final class RequestExSetPledgeCrestLarge extends L2GameClientPacket
 		if (_size > 0) // client CAN send a RequestExSetPledgeCrestLarge with the size set to 0 then format is just chd
 		{
 			_data = new byte[_size];
-			readB(_data);
+			readBytes(_data);
 		}
 	}
 	

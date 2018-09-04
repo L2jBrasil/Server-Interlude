@@ -70,19 +70,19 @@ public final class CharacterCreate extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_name = readS();
-		_race = readD();
-		_sex = (byte) readD();
-		_classId = readD();
-		_int = readD();
-		_str = readD();
-		_con = readD();
-		_men = readD();
-		_dex = readD();
-		_wit = readD();
-		_hairStyle = (byte) readD();
-		_hairColor = (byte) readD();
-		_face = (byte) readD();
+		_name = readString();
+		_race = readInt();
+		_sex = (byte) readInt();
+		_classId = readInt();
+		_int = readInt();
+		_str = readInt();
+		_con = readInt();
+		_men = readInt();
+		_dex = readInt();
+		_wit = readInt();
+		_hairStyle = (byte) readInt();
+		_hairColor = (byte) readInt();
+		_face = (byte) readInt();
 	}
 	
 	@Override

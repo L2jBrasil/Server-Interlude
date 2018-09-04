@@ -35,7 +35,7 @@ public final class AllyDismiss extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_clanName = readS();
+		_clanName = readString();
 	}
 	
 	@Override

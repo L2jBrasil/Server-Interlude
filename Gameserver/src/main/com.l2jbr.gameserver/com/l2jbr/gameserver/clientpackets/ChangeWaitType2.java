@@ -39,7 +39,7 @@ public final class ChangeWaitType2 extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_typeStand = (readD() == 1);
+		_typeStand = (readInt() == 1);
 	}
 	
 	@Override

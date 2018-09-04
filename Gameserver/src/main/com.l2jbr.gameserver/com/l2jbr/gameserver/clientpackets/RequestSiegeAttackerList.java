@@ -38,7 +38,7 @@ public final class RequestSiegeAttackerList extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_castleId = readD();
+		_castleId = readInt();
 	}
 	
 	@Override

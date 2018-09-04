@@ -50,11 +50,11 @@ public final class Action extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_objectId = readD(); // Target object Identifier
-		_originX = readD();
-		_originY = readD();
-		_originZ = readD();
-		_actionId = readC(); // Action identifier : 0-Simple click, 1-Shift click
+		_objectId = readInt(); // Target object Identifier
+		_originX = readInt();
+		_originY = readInt();
+		_originZ = readInt();
+		_actionId = readChar(); // Action identifier : 0-Simple click, 1-Shift click
 	}
 	
 	@Override

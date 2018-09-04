@@ -32,7 +32,7 @@ public final class AnswerJoinPartyRoom extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_requesterID = readD();
+		_requesterID = readInt();
 	}
 	
 	@Override

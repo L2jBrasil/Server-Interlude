@@ -1,4 +1,4 @@
-package com.l2jbr.mmocore.async;
+package com.l2jbr.mmocore;
 
 import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousSocketChannel;
@@ -27,7 +27,7 @@ public class AsyncMMOConnection<T extends AsyncMMOClient<AsyncMMOConnection<T>>>
 
     ByteBuffer getReadingBuffer() {
         if(isNull(readingBuffer)) {
-            readingBuffer = ByteBufferPool.getPooledBuffer();
+            readingBuffer = ResourcePool.getPooledBuffer();
         }
         return readingBuffer;
     }
@@ -42,5 +42,9 @@ public class AsyncMMOConnection<T extends AsyncMMOClient<AsyncMMOConnection<T>>>
 
     public void write() {
         channel.write(writingBuffer, client, writeHandler);
+    }
+
+    public void close() {
+
     }
 }

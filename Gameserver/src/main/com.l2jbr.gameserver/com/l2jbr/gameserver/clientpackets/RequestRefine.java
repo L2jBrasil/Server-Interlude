@@ -46,10 +46,10 @@ public final class RequestRefine extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_targetItemObjId = readD();
-		_refinerItemObjId = readD();
-		_gemstoneItemObjId = readD();
-		_gemstoneCount = readD();
+		_targetItemObjId = readInt();
+		_refinerItemObjId = readInt();
+		_gemstoneItemObjId = readInt();
+		_gemstoneCount = readInt();
 	}
 	
 	@Override

@@ -46,8 +46,8 @@ public final class RequestSellItem extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_listId = readD();
-		_count = readD();
+		_listId = readInt();
+		_count = readInt();
 		if ((_count <= 0) || ((_count * 12) > _buf.remaining()) || (_count > Config.MAX_ITEM_IN_PACKET))
 		{
 			_count = 0;
@@ -57,11 +57,11 @@ public final class RequestSellItem extends L2GameClientPacket
 		_items = new int[_count * 3];
 		for (int i = 0; i < _count; i++)
 		{
-			int objectId = readD();
+			int objectId = readInt();
 			_items[(i * 3) + 0] = objectId;
-			int itemId = readD();
+			int itemId = readInt();
 			_items[(i * 3) + 1] = itemId;
-			long cnt = readD();
+			long cnt = readInt();
 			if ((cnt > Integer.MAX_VALUE) || (cnt <= 0))
 			{
 				_count = 0;

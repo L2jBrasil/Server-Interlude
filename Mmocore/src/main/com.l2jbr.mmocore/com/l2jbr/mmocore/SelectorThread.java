@@ -450,7 +450,6 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 			if (cp != null)
 			{
 				cp._buf = buf;
-				cp._sbuf = STRING_BUFFER;
 				cp._client = client;
 				
 				if (cp.read())
@@ -459,7 +458,6 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 				}
 				
 				cp._buf = null;
-				cp._sbuf = null;
 			}
 			buf.limit(limit);
 		}

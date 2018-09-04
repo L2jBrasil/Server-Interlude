@@ -71,7 +71,7 @@ public class RequestAuthLogin extends L2LoginClientPacket
 	{
 		if (_buf.remaining() >= 128)
 		{
-			readB(_raw);
+			readBytes(_raw);
 			return true;
 		}
 		return false;

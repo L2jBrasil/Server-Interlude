@@ -40,12 +40,12 @@ public final class RequestMakeMacro extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		int _id = readD();
-		String _name = readS();
-		String _desc = readS();
-		String _acronym = readS();
-		int _icon = readC();
-		int _count = readC();
+		int _id = readInt();
+		String _name = readString();
+		String _desc = readString();
+		String _acronym = readString();
+		int _icon = readChar();
+		int _count = readChar();
 		if (_count > MAX_MACRO_LENGTH)
 		{
 			_count = MAX_MACRO_LENGTH;
@@ -58,11 +58,11 @@ public final class RequestMakeMacro extends L2GameClientPacket
 		}
 		for (int i = 0; i < _count; i++)
 		{
-			int entry = readC();
-			int type = readC(); // 1 = skill, 3 = action, 4 = shortcut
-			int d1 = readD(); // skill or page number for shortcuts
-			int d2 = readC();
-			String command = readS();
+			int entry = readChar();
+			int type = readChar(); // 1 = skill, 3 = action, 4 = shortcut
+			int d1 = readInt(); // skill or page number for shortcuts
+			int d2 = readChar();
+			String command = readString();
 			_commandsLenght += command.length();
 			commands[i] = new L2MacroCmd(entry, type, d1, d2, command);
 			if (Config.DEBUG)

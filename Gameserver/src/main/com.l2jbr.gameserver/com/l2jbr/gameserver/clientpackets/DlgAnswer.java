@@ -38,9 +38,9 @@ public final class DlgAnswer extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_messageId = readD();
-		_answer = readD();
-		_unk = readD();
+		_messageId = readInt();
+		_answer = readInt();
+		_unk = readInt();
 	}
 	
 	@Override

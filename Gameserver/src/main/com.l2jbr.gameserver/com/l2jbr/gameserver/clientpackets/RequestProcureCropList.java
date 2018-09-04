@@ -53,7 +53,7 @@ public class RequestProcureCropList extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_size = readD();
+		_size = readInt();
 		if (((_size * 16) > _buf.remaining()) || (_size > 500))
 		{
 			_size = 0;
@@ -62,13 +62,13 @@ public class RequestProcureCropList extends L2GameClientPacket
 		_items = new int[_size * 4];
 		for (int i = 0; i < _size; i++)
 		{
-			int objId = readD();
+			int objId = readInt();
 			_items[(i * 4) + 0] = objId;
-			int itemId = readD();
+			int itemId = readInt();
 			_items[(i * 4) + 1] = itemId;
-			int manorId = readD();
+			int manorId = readInt();
 			_items[(i * 4) + 2] = manorId;
-			long count = readD();
+			long count = readInt();
 			if (count > Integer.MAX_VALUE)
 			{
 				count = Integer.MAX_VALUE;

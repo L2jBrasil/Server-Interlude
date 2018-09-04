@@ -35,7 +35,7 @@ public final class RequestOustPartyMember extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_name = readS();
+		_name = readString();
 	}
 	
 	@Override

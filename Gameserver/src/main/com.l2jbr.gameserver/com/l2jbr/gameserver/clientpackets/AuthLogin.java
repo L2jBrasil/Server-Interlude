@@ -48,11 +48,11 @@ public final class AuthLogin extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_loginName = readS().toLowerCase();
-		_playKey2 = readD();
-		_playKey1 = readD();
-		_loginKey1 = readD();
-		_loginKey2 = readD();
+		_loginName = readString().toLowerCase();
+		_playKey2 = readInt();
+		_playKey1 = readInt();
+		_loginKey1 = readInt();
+		_loginKey2 = readInt();
 	}
 	
 	@Override

@@ -31,7 +31,7 @@ public class RequestGetBossRecord extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_bossId = readD();
+		_bossId = readInt();
 	}
 	
 	@Override

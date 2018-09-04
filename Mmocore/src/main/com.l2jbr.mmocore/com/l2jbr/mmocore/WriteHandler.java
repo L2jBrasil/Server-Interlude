@@ -1,4 +1,4 @@
-package com.l2jbr.mmocore.async;
+package com.l2jbr.mmocore;
 
 import java.nio.channels.CompletionHandler;
 

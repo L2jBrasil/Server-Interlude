@@ -37,8 +37,8 @@ public final class RequestRecipeShopMakeInfo extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_playerObjectId = readD();
-		_recipeId = readD();
+		_playerObjectId = readInt();
+		_recipeId = readInt();
 	}
 	
 	@Override

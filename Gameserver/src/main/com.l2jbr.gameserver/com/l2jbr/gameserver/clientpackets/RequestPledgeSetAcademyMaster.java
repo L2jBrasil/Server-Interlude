@@ -39,9 +39,9 @@ public final class RequestPledgeSetAcademyMaster extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_set = readD();
-		_currPlayerName = readS();
-		_targetPlayerName = readS();
+		_set = readInt();
+		_currPlayerName = readString();
+		_targetPlayerName = readString();
 	}
 	
 	@Override

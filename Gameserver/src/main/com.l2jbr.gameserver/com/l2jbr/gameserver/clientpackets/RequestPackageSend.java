@@ -49,15 +49,15 @@ public final class RequestPackageSend extends L2GameClientPacket {
 
     @Override
     protected void readImpl() {
-        _objectID = readD();
-        _count = readD();
+        _objectID = readInt();
+        _count = readInt();
         if ((_count < 0) || (_count > 500)) {
             _count = -1;
             return;
         }
         for (int i = 0; i < _count; i++) {
-            int id = readD(); // this is some id sent in PackageSendableList
-            int count = readD();
+            int id = readInt(); // this is some id sent in PackageSendableList
+            int count = readInt();
             _items.add(new Item(id, count));
         }
     }

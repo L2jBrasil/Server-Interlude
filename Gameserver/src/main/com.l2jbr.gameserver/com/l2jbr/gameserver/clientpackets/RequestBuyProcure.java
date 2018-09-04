@@ -49,8 +49,8 @@ public class RequestBuyProcure extends L2GameClientPacket {
 
     @Override
     protected void readImpl() {
-        _listId = readD();
-        _count = readD();
+        _listId = readInt();
+        _count = readInt();
         if (_count > 500) // protect server
         {
             _count = 0;
@@ -59,10 +59,10 @@ public class RequestBuyProcure extends L2GameClientPacket {
 
         _items = new int[_count * 2];
         for (int i = 0; i < _count; i++) {
-            readD();
-            int itemId = readD();
+            readInt();
+            int itemId = readInt();
             _items[(i * 2) + 0] = itemId;
-            long cnt = readD();
+            long cnt = readInt();
             if ((cnt > Integer.MAX_VALUE) || (cnt < 1)) {
                 _count = 0;
                 _items = null;

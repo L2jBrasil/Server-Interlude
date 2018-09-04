@@ -36,11 +36,11 @@ public final class RequestPledgePower extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_rank = readD();
-		_action = readD();
+		_rank = readInt();
+		_action = readInt();
 		if (_action == 2)
 		{
-			_privs = readD();
+			_privs = readInt();
 		}
 		else
 		{

@@ -54,10 +54,10 @@ public class MultiSellChoose extends L2GameClientPacket {
 
     @Override
     protected void readImpl() {
-        _listId = readD();
-        _entryId = readD();
-        _amount = readD();
-        // _enchantment = readH(); // <---commented this line because it did NOT work!
+        _listId = readInt();
+        _entryId = readInt();
+        _amount = readInt();
+        // _enchantment = readShort(); // <---commented this line because it did NOT work!
         _enchantment = _entryId % 100000;
         _entryId = _entryId / 100000;
         _transactionTax = 0; // initialize tax amount to 0...

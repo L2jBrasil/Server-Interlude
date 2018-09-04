@@ -36,7 +36,7 @@ public final class RequestStopPledgeWar extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_pledgeName = readS();
+		_pledgeName = readString();
 	}
 	
 	@Override

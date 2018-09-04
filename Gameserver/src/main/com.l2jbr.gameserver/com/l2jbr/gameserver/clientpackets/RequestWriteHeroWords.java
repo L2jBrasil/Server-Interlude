@@ -32,7 +32,7 @@ public final class RequestWriteHeroWords extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_heroWords = readS();
+		_heroWords = readString();
 	}
 	
 	@Override

@@ -36,7 +36,7 @@ public final class RequestRecipeBookDestroy extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_recipeID = readD();
+		_recipeID = readInt();
 	}
 	
 	@Override

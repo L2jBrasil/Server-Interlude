@@ -38,7 +38,7 @@ public final class ProtocolVersion extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_version = readD();
+		_version = readInt();
 	}
 	
 	@Override

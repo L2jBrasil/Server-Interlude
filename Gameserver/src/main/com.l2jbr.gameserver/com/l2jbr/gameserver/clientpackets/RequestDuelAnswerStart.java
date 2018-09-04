@@ -38,9 +38,9 @@ public final class RequestDuelAnswerStart extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_partyDuel = readD();
-		_unk1 = readD();
-		_response = readD();
+		_partyDuel = readInt();
+		_unk1 = readInt();
+		_response = readInt();
 	}
 	
 	@Override

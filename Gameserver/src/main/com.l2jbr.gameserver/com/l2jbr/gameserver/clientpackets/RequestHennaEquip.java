@@ -44,7 +44,7 @@ public final class RequestHennaEquip extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_symbolId = readD();
+		_symbolId = readInt();
 	}
 	
 	@Override

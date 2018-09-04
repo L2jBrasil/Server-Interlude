@@ -51,7 +51,7 @@ public final class RequestRestartPoint extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_requestedPointType = readD();
+		_requestedPointType = readInt();
 	}
 	
 	class DeathTask implements Runnable

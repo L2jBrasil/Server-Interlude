@@ -50,7 +50,7 @@ public final class RequestBypassToServer extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_command = readS();
+		_command = readString();
 	}
 	
 	@Override

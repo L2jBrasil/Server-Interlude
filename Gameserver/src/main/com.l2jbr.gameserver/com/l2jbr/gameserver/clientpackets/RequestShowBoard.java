@@ -39,7 +39,7 @@ public final class RequestShowBoard extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_unknown = readD();
+		_unknown = readInt();
 	}
 	
 	@Override

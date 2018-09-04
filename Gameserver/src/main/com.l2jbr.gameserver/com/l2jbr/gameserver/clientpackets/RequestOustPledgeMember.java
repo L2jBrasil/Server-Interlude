@@ -43,7 +43,7 @@ public final class RequestOustPledgeMember extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_target = readS();
+		_target = readString();
 	}
 	
 	@Override

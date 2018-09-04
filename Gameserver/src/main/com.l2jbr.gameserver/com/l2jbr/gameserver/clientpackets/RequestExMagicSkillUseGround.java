@@ -36,12 +36,12 @@ public final class RequestExMagicSkillUseGround extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_x = readD();
-		_y = readD();
-		_z = readD();
-		_skillId = readD();
-		_ctrlPressed = readD();
-		_shiftPressed = readC();
+		_x = readInt();
+		_y = readInt();
+		_z = readInt();
+		_skillId = readInt();
+		_ctrlPressed = readInt();
+		_shiftPressed = readChar();
 	}
 	
 	@Override

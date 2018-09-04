@@ -44,8 +44,8 @@ public final class RequestJoinParty extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_name = readS();
-		_itemDistribution = readD();
+		_name = readString();
+		_itemDistribution = readInt();
 	}
 	
 	@Override

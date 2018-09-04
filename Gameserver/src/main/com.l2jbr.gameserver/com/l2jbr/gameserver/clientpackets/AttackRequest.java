@@ -46,11 +46,11 @@ public final class AttackRequest extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_objectId = readD();
-		_originX = readD();
-		_originY = readD();
-		_originZ = readD();
-		_attackId = readC(); // 0 for simple click 1 for shift-click
+		_objectId = readInt();
+		_originX = readInt();
+		_originY = readInt();
+		_originZ = readInt();
+		_attackId = readChar(); // 0 for simple click 1 for shift-click
 	}
 	
 	@Override

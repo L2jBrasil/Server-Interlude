@@ -91,13 +91,13 @@ public final class Say2 extends L2GameClientPacket {
 
     @Override
     protected void readImpl() {
-        _text = readS();
+        _text = readString();
         try {
-            _type = readD();
+            _type = readInt();
         } catch (BufferUnderflowException e) {
             _type = CHAT_NAMES.length;
         }
-        _target = (_type == TELL) ? readS() : null;
+        _target = (_type == TELL) ? readString() : null;
     }
 
     @Override

@@ -42,19 +42,19 @@ public class RequestSetSeed extends L2GameClientPacket {
 
     @Override
     protected void readImpl() {
-        _manorId = readD();
-        _size = readD();
+        _manorId = readInt();
+        _size = readInt();
         if (((_size * 12) > _buf.remaining()) || (_size > 500)) {
             _size = 0;
             return;
         }
         _items = new int[_size * 3];
         for (int i = 0; i < _size; i++) {
-            int itemId = readD();
+            int itemId = readInt();
             _items[(i * 3) + 0] = itemId;
-            int sales = readD();
+            int sales = readInt();
             _items[(i * 3) + 1] = sales;
-            int price = readD();
+            int price = readInt();
             _items[(i * 3) + 2] = price;
         }
     }

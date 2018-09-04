@@ -65,15 +65,15 @@ public class MoveBackwardToLocation extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_targetX = readD();
-		_targetY = readD();
-		_targetZ = readD();
-		_originX = readD();
-		_originY = readD();
-		_originZ = readD();
+		_targetX = readInt();
+		_targetY = readInt();
+		_targetZ = readInt();
+		_originX = readInt();
+		_originY = readInt();
+		_originZ = readInt();
 		try
 		{
-			_moveMovement = readD(); // is 0 if cursor keys are used 1 if mouse is used
+			_moveMovement = readInt(); // is 0 if cursor keys are used 1 if mouse is used
 		}
 		catch (BufferUnderflowException e)
 		{

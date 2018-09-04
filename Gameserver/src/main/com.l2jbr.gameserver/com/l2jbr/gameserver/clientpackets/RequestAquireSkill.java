@@ -55,9 +55,9 @@ public class RequestAquireSkill extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_id = readD();
-		_level = readD();
-		_skillType = readD();
+		_id = readInt();
+		_level = readInt();
+		_skillType = readInt();
 	}
 	
 	@Override

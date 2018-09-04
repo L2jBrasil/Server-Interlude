@@ -52,8 +52,8 @@ public class RequestBuySeed extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_manorId = readD();
-		_count = readD();
+		_manorId = readInt();
+		_count = readInt();
 		
 		if ((_count > 500) || ((_count * 8) < _buf.remaining())) // check values
 		{
@@ -65,9 +65,9 @@ public class RequestBuySeed extends L2GameClientPacket
 		
 		for (int i = 0; i < _count; i++)
 		{
-			int itemId = readD();
+			int itemId = readInt();
 			_items[(i * 2) + 0] = itemId;
-			long cnt = readD();
+			long cnt = readInt();
 			if ((cnt > Integer.MAX_VALUE) || (cnt < 1))
 			{
 				_count = 0;

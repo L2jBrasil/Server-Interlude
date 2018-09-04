@@ -40,10 +40,10 @@ public final class RequestShortCutReg extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_type = readD();
-		int slot = readD();
-		_id = readD();
-		_unk = readD();
+		_type = readInt();
+		int slot = readInt();
+		_id = readInt();
+		_unk = readInt();
 		
 		_slot = slot % 12;
 		_page = slot / 12;

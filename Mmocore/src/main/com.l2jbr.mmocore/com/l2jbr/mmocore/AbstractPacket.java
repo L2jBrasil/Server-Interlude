@@ -24,7 +24,7 @@ import java.nio.ByteBuffer;
  * @author KenM
  * @param <T>
  */
-public abstract class AbstractPacket<T extends MMOClient<?>>
+public abstract class AbstractPacket<T>
 {
 	protected ByteBuffer _buf;
 	

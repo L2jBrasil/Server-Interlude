@@ -40,9 +40,9 @@ public final class RequestPartyMatchDetail extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_objectId = readD();
+		_objectId = readInt();
 		// TODO analyse value unk1
-		_unk1 = readD();
+		_unk1 = readInt();
 	}
 	
 	@Override

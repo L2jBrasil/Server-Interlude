@@ -50,9 +50,9 @@ public final class AddTradeItem extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_tradeId = readD();
-		_objectId = readD();
-		_count = readD();
+		_tradeId = readInt();
+		_objectId = readInt();
+		_count = readInt();
 	}
 	
 	@Override

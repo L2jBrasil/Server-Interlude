@@ -36,8 +36,8 @@ public final class RequestPledgeSetMemberPowerGrade extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_member = readS();
-		_powerGrade = readD();
+		_member = readString();
+		_powerGrade = readInt();
 	}
 	
 	@Override

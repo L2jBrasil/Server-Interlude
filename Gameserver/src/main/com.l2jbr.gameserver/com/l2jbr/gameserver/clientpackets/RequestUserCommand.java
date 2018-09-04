@@ -41,7 +41,7 @@ public class RequestUserCommand extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_command = readD();
+		_command = readInt();
 	}
 	
 	@Override

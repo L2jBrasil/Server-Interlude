@@ -34,7 +34,7 @@ public final class ChangeMoveType2 extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_typeRun = readD() == 1;
+		_typeRun = readInt() == 1;
 	}
 	
 	@Override

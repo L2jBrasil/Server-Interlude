@@ -1,4 +1,4 @@
-package com.l2jbr.mmocore.async;
+package com.l2jbr.mmocore;
 
 public interface ClientFactory<T extends AsyncMMOClient<AsyncMMOConnection<T>>> {
 

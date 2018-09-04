@@ -31,8 +31,8 @@ public final class RequestReplySurrenderPledgeWar extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		readS();
-		_answer = readD();
+		readString();
+		_answer = readInt();
 	}
 	
 	@Override

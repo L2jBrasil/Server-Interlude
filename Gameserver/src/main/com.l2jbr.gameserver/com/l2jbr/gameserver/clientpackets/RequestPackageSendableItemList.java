@@ -34,7 +34,7 @@ public final class RequestPackageSendableItemList extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_objectID = readD();
+		_objectID = readInt();
 	}
 	
 	@Override

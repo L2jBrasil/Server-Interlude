@@ -30,7 +30,7 @@ public final class RequestDeleteMacro extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_id = readD();
+		_id = readInt();
 	}
 	
 	@Override

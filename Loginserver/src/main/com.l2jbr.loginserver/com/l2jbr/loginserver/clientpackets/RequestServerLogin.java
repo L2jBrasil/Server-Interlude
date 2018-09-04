@@ -64,9 +64,9 @@ public class RequestServerLogin extends L2LoginClientPacket
 	{
 		if (_buf.remaining() >= 9)
 		{
-			_skey1 = readD();
-			_skey2 = readD();
-			_serverId = readC();
+			_skey1 = readInt();
+			_skey2 = readInt();
+			_serverId = readChar();
 			return true;
 		}
 		return false;

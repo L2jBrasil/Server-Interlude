@@ -38,10 +38,10 @@ public final class RequestGetOnVehicle extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_id = readD();
-		_x = readD();
-		_y = readD();
-		_z = readD();
+		_id = readInt();
+		_x = readInt();
+		_y = readInt();
+		_z = readInt();
 	}
 	
 	@Override

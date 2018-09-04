@@ -45,14 +45,14 @@ public final class RequestMoveToLocationInVehicle extends L2GameClientPacket
 	protected void readImpl()
 	{
 		int _x, _y, _z;
-		_boatId = readD(); // objectId of boat
-		_x = readD();
-		_y = readD();
-		_z = readD();
+		_boatId = readInt(); // objectId of boat
+		_x = readInt();
+		_y = readInt();
+		_z = readInt();
 		_pos.setXYZ(_x, _y, _z);
-		_x = readD();
-		_y = readD();
-		_z = readD();
+		_x = readInt();
+		_y = readInt();
+		_z = readInt();
 		_origin_pos.setXYZ(_x, _y, _z);
 	}
 	

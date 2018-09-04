@@ -38,7 +38,7 @@ public final class RequestRefineCancel extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_targetItemObjId = readD();
+		_targetItemObjId = readInt();
 	}
 	
 	@Override

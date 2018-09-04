@@ -38,7 +38,7 @@ public final class RequestAnswerJoinPledge extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_answer = readD();
+		_answer = readInt();
 	}
 	
 	@Override

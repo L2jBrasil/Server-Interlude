@@ -37,7 +37,7 @@ public final class RequestConfirmCancelItem extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_itemId = readD();
+		_itemId = readInt();
 	}
 	
 	@Override

@@ -50,7 +50,7 @@ public final class SendWareHouseWithDrawList extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_count = readD();
+		_count = readInt();
 		if ((_count < 0) || ((_count * 8) > _buf.remaining()) || (_count > Config.MAX_ITEM_IN_PACKET))
 		{
 			_count = 0;
@@ -60,9 +60,9 @@ public final class SendWareHouseWithDrawList extends L2GameClientPacket
 		_items = new int[_count * 2];
 		for (int i = 0; i < _count; i++)
 		{
-			int objectId = readD();
+			int objectId = readInt();
 			_items[(i * 2) + 0] = objectId;
-			long cnt = readD();
+			long cnt = readInt();
 			if ((cnt > Integer.MAX_VALUE) || (cnt < 0))
 			{
 				_count = 0;

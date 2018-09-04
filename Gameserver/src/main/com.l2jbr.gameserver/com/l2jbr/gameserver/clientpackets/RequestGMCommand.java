@@ -41,9 +41,9 @@ public final class RequestGMCommand extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_targetName = readS();
-		_command = readD();
-		// _unknown = readD();
+		_targetName = readString();
+		_command = readInt();
+		// _unknown = readInt();
 	}
 	
 	@Override

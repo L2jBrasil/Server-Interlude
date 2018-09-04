@@ -37,12 +37,12 @@ public final class RequestPartyMatchConfig extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_automaticRegistration = readD();
-		_showLevel = readD();
-		_showClass = readD();
+		_automaticRegistration = readInt();
+		_showLevel = readInt();
+		_showClass = readInt();
 		
 		/*
-		 * TODO: Check if this this part of the packet has been removed by latest versions. try { _memo = readS(); } catch (BufferUnderflowException e) { _memo = ""; _log.warn("Memo field non existant in packet. Notify devs."); e.printStackTrace(); }
+		 * TODO: Check if this this part of the packet has been removed by latest versions. try { _memo = readString(); } catch (BufferUnderflowException e) { _memo = ""; _log.warn("Memo field non existant in packet. Notify devs."); e.printStackTrace(); }
 		 */
 	}
 	

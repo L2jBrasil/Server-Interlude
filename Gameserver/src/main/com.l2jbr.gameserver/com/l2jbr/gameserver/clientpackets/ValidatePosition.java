@@ -58,11 +58,11 @@ public class ValidatePosition extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_x = readD();
-		_y = readD();
-		_z = readD();
-		_heading = readD();
-		_data = readD();
+		_x = readInt();
+		_y = readInt();
+		_z = readInt();
+		_heading = readInt();
+		_data = readInt();
 	}
 	
 	@Override

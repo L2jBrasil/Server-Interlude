@@ -40,7 +40,7 @@ public final class RequestExAskJoinMPCC extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_name = readS();
+		_name = readString();
 	}
 	
 	@Override

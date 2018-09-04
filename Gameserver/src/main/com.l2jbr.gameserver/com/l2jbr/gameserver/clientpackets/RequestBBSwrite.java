@@ -38,12 +38,12 @@ public class RequestBBSwrite extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_url = readS();
-		_arg1 = readS();
-		_arg2 = readS();
-		_arg3 = readS();
-		_arg4 = readS();
-		_arg5 = readS();
+		_url = readString();
+		_arg1 = readString();
+		_arg2 = readString();
+		_arg3 = readString();
+		_arg4 = readString();
+		_arg5 = readString();
 	}
 	
 	/*

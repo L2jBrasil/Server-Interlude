@@ -40,9 +40,9 @@ public final class RequestJoinSiege extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_castleId = readD();
-		_isAttacker = readD();
-		_isJoining = readD();
+		_castleId = readInt();
+		_isAttacker = readInt();
+		_isJoining = readInt();
 	}
 	
 	@Override

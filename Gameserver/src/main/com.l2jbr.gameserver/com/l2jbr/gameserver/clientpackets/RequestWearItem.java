@@ -95,9 +95,9 @@ public final class RequestWearItem extends L2GameClientPacket
 	{
 		// Read and Decrypt the RequestWearItem Client->Server Packet
 		_activeChar = getClient().getActiveChar();
-		_unknow = readD();
-		_listId = readD(); // List of ItemID to Wear
-		_count = readD(); // Number of Item to Wear
+		_unknow = readInt();
+		_listId = readInt(); // List of ItemID to Wear
+		_count = readInt(); // Number of Item to Wear
 		
 		if (_count < 0)
 		{
@@ -114,7 +114,7 @@ public final class RequestWearItem extends L2GameClientPacket
 		// Fill _items table with all ItemID to Wear
 		for (int i = 0; i < _count; i++)
 		{
-			int itemId = readD();
+			int itemId = readInt();
 			_items[i] = itemId;
 		}
 	}
