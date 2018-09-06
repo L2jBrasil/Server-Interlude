@@ -50,12 +50,12 @@ public class ChangeWaitType extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x2f);
-		writeD(_charObjId);
-		writeD(_moveType);
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
+		writeByte(0x2f);
+		writeInt(_charObjId);
+		writeInt(_moveType);
+		writeInt(_x);
+		writeInt(_y);
+		writeInt(_z);
 	}
 	
 	/*

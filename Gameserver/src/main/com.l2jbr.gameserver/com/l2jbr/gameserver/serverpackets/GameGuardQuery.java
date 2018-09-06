@@ -43,7 +43,7 @@ public class GameGuardQuery extends L2GameServerPacket
 	@Override
 	public void writeImpl()
 	{
-		writeC(0xf9);
+		writeByte(0xf9);
 	}
 	
 	@Override

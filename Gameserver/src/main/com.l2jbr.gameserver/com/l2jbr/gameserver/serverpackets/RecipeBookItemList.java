@@ -46,24 +46,24 @@ public class RecipeBookItemList extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xD6);
+		writeByte(0xD6);
 		
-		writeD(_isDwarvenCraft ? 0x00 : 0x01); // 0 = Dwarven - 1 = Common
-		writeD(_maxMp);
+		writeInt(_isDwarvenCraft ? 0x00 : 0x01); // 0 = Dwarven - 1 = Common
+		writeInt(_maxMp);
 		
 		if (_recipes == null)
 		{
-			writeD(0);
+			writeInt(0);
 		}
 		else
 		{
-			writeD(_recipes.length);// number of items in recipe book
+			writeInt(_recipes.length);// number of items in recipe book
 			
 			for (int i = 0; i < _recipes.length; i++)
 			{
 				L2RecipeList temp = _recipes[i];
-				writeD(temp.getId());
-				writeD(i + 1);
+				writeInt(temp.getId());
+				writeInt(i + 1);
 			}
 		}
 	}

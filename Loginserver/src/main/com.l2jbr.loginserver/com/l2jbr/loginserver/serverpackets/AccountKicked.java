@@ -53,7 +53,7 @@ public final class AccountKicked extends L2LoginServerPacket
 	@Override
 	protected void write()
 	{
-		writeC(0x02);
-		writeD(_reason.getCode());
+		writeByte(0x02);
+		writeInt(_reason.getCode());
 	}
 }

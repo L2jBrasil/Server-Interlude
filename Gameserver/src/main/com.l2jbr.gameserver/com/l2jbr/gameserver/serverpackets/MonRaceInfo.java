@@ -49,42 +49,42 @@ public class MonRaceInfo extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xdd);
+		writeByte(0xdd);
 		
-		writeD(_unknown1);
-		writeD(_unknown2);
-		writeD(8);
+		writeInt(_unknown1);
+		writeInt(_unknown2);
+		writeInt(8);
 		
 		for (int i = 0; i < 8; i++)
 		{
 			// System.out.println("MOnster "+(i+1)+" npcid "+_monsters[i].getNpcTemplate().getNpcId());
-			writeD(_monsters[i].getObjectId()); // npcObjectID
-			writeD(_monsters[i].getTemplate().getId() + 1000000); // npcID
-			writeD(14107); // origin X
-			writeD(181875 + (58 * (7 - i))); // origin Y
-			writeD(-3566); // origin Z
-			writeD(12080); // end X
-			writeD(181875 + (58 * (7 - i))); // end Y
-			writeD(-3566); // end Z
-			writeF(_monsters[i].getTemplate().getCollisionHeight()); // coll. height
-			writeF(_monsters[i].getTemplate().getCollisionRadius()); // coll. radius
-			writeD(120); // ?? unknown
+			writeInt(_monsters[i].getObjectId()); // npcObjectID
+			writeInt(_monsters[i].getTemplate().getId() + 1000000); // npcID
+			writeInt(14107); // origin X
+			writeInt(181875 + (58 * (7 - i))); // origin Y
+			writeInt(-3566); // origin Z
+			writeInt(12080); // end X
+			writeInt(181875 + (58 * (7 - i))); // end Y
+			writeInt(-3566); // end Z
+			writeDouble(_monsters[i].getTemplate().getCollisionHeight()); // coll. height
+			writeDouble(_monsters[i].getTemplate().getCollisionRadius()); // coll. radius
+			writeInt(120); // ?? unknown
 			// *
 			for (int j = 0; j < 20; j++)
 			{
 				if (_unknown1 == 0)
 				{
-					writeC(_speeds[i][j]);
+					writeByte(_speeds[i][j]);
 				}
 				else
 				{
-					writeC(0);
+					writeByte(0);
 				}
 			}// */
 			/*
-			 * writeD(0x77776666); writeD(0x99998888); writeD(0xBBBBAAAA); writeD(0xDDDDCCCC); writeD(0xFFFFEEEE); //
+			 * writeInt(0x77776666); writeInt(0x99998888); writeInt(0xBBBBAAAA); writeInt(0xDDDDCCCC); writeInt(0xFFFFEEEE); //
 			 */
-			writeD(0);
+			writeInt(0);
 		}
 	}
 	

@@ -39,12 +39,12 @@ public class PackageToList extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xC2);
-		writeD(_players.size());
+		writeByte(0xC2);
+		writeInt(_players.size());
 		for (int objId : _players.keySet())
 		{
-			writeD(objId); // you told me char id, i guess this was object id?
-			writeS(_players.get(objId));
+			writeInt(objId); // you told me char id, i guess this was object id?
+			writeString(_players.get(objId));
 		}
 	}
 	

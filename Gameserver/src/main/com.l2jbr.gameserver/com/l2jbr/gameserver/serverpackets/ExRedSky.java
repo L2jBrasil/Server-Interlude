@@ -35,9 +35,9 @@ public class ExRedSky extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xFE);
-		writeH(0x40);
-		writeD(_duration);
+		writeByte(0xFE);
+		writeShort(0x40);
+		writeInt(_duration);
 	}
 	
 	@Override

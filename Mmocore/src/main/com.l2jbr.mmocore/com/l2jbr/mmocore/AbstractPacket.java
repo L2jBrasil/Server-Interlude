@@ -22,7 +22,7 @@ import java.nio.ByteOrder;
 
 public abstract class AbstractPacket<T> {
 
-    static boolean isBigEndian = ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN;
+    static final boolean isBigEndian = ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN;
     byte[] data;
     int dataIndex;
 
@@ -35,13 +35,8 @@ public abstract class AbstractPacket<T> {
 		return _client;
 	}
 
-    static int pickShift(int top, int pos) { return isBigEndian ? top - pos : pos; }
-
     static short convertEndian(short n) { return !isBigEndian ? n : Short.reverseBytes(n); }
-
-    static char convertEndian(char n) { return !isBigEndian ? n : Character.reverseBytes(n); }
-
     static int convertEndian(int n) { return !isBigEndian ? n : Integer.reverseBytes(n); }
-
     static long convertEndian(long n) { return !isBigEndian ? n : Long.reverseBytes(n); }
+    static char convertEndian(char n)   { return !isBigEndian ? n : Character.reverseBytes(n); }
 }

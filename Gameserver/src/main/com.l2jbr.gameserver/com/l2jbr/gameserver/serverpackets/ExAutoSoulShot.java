@@ -43,10 +43,10 @@ public class ExAutoSoulShot extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xFE);
-		writeH(0x12); // sub id
-		writeD(_itemId);
-		writeD(_type);
+		writeByte(0xFE);
+		writeShort(0x12); // sub id
+		writeInt(_itemId);
+		writeInt(_type);
 	}
 	
 	@Override

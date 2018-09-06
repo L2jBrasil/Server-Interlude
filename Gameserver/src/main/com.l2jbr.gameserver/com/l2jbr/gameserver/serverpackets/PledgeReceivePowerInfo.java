@@ -40,12 +40,12 @@ public class PledgeReceivePowerInfo extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xfe);
-		writeH(0x3c);
+		writeByte(0xfe);
+		writeShort(0x3c);
 		
-		writeD(_member.getPowerGrade()); // power grade
-		writeS(_member.getName());
-		writeD(_member.getClan().getRankPrivs(_member.getPowerGrade())); // privileges
+		writeInt(_member.getPowerGrade()); // power grade
+		writeString(_member.getName());
+		writeInt(_member.getClan().getRankPrivs(_member.getPowerGrade())); // privileges
 	}
 	
 	@Override

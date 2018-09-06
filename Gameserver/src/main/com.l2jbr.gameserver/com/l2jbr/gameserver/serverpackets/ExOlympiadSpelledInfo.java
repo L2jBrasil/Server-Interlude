@@ -62,14 +62,14 @@ public class ExOlympiadSpelledInfo extends L2GameServerPacket {
         if (_player == null) {
             return;
         }
-        writeC(0xfe);
-        writeH(0x2a);
-        writeD(_player.getObjectId());
-        writeD(_effects.size());
+        writeByte(0xfe);
+        writeShort(0x2a);
+        writeInt(_player.getObjectId());
+        writeInt(_effects.size());
         for (Effect temp : _effects) {
-            writeD(temp._skillId);
-            writeH(temp._dat);
-            writeD(temp._duration / 1000);
+            writeInt(temp._skillId);
+            writeShort(temp._dat);
+            writeInt(temp._duration / 1000);
         }
     }
 

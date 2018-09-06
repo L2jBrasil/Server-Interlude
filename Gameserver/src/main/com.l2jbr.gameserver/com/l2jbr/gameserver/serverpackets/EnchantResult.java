@@ -32,8 +32,8 @@ public class EnchantResult extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x81);
-		writeD(_unknown);
+		writeByte(0x81);
+		writeInt(_unknown);
 	}
 	
 	/*

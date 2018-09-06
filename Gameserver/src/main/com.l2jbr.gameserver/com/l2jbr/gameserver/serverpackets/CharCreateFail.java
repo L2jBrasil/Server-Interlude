@@ -42,8 +42,8 @@ public class CharCreateFail extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x1a);
-		writeD(_error);
+		writeByte(0x1a);
+		writeInt(_error);
 	}
 	
 	/*

@@ -36,11 +36,11 @@ public class ExGetBossRecord extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xFE);
-		writeH(0x33);
-		writeD(_unk1);
-		writeD(_unk2);
-		writeD(0x00); // list size
+		writeByte(0xFE);
+		writeShort(0x33);
+		writeInt(_unk1);
+		writeInt(_unk2);
+		writeInt(0x00); // list size
 	}
 	
 	@Override

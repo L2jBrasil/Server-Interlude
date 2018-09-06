@@ -42,16 +42,16 @@ public class GMViewSkillInfo extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x91);
-		writeS(_activeChar.getName());
-		writeD(_skills.length);
+		writeByte(0x91);
+		writeString(_activeChar.getName());
+		writeInt(_skills.length);
 		
 		for (L2Skill skill : _skills)
 		{
-			writeD(skill.isPassive() ? 1 : 0);
-			writeD(skill.getLevel());
-			writeD(skill.getId());
-			writeC(0x00); // c5
+			writeInt(skill.isPassive() ? 1 : 0);
+			writeInt(skill.getLevel());
+			writeInt(skill.getId());
+			writeByte(0x00); // c5
 		}
 	}
 	

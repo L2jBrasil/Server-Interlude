@@ -44,14 +44,14 @@ public class Snoop extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xd5);
+		writeByte(0xd5);
 		
-		writeD(_convoId);
-		writeS(_name);
-		writeD(0x00); // ??
-		writeD(_type);
-		writeS(_speaker);
-		writeS(_msg);
+		writeInt(_convoId);
+		writeString(_name);
+		writeInt(0x00); // ??
+		writeInt(_type);
+		writeString(_speaker);
+		writeString(_msg);
 		
 	}
 	

@@ -59,14 +59,14 @@ public class PlaySound extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x98);
-		writeD(_unknown1); // unknown 0 for quest and ship;
-		writeS(_soundFile);
-		writeD(_unknown3); // unknown 0 for quest; 1 for ship;
-		writeD(_unknown4); // 0 for quest; objectId of ship
-		writeD(_unknown5); // x
-		writeD(_unknown6); // y
-		writeD(_unknown7); // z
+		writeByte(0x98);
+		writeInt(_unknown1); // unknown 0 for quest and ship;
+		writeString(_soundFile);
+		writeInt(_unknown3); // unknown 0 for quest; 1 for ship;
+		writeInt(_unknown4); // 0 for quest; objectId of ship
+		writeInt(_unknown5); // x
+		writeInt(_unknown6); // y
+		writeInt(_unknown7); // z
 	}
 	
 	/*

@@ -35,26 +35,26 @@ public class HennaItemInfo extends L2GameServerPacket
 	protected final void writeImpl()
 	{
 		
-		writeC(0xe3);
-		writeD(_henna.getSymbolId()); // symbol Id
-		writeD(_henna.getDyeId()); // item id of dye
-		writeD(_henna.getDyeAmount()); // total amount of dye require
-		writeD(_henna.getPrice()); // total amount of aden require to draw symbol
-		writeD(1); // able to draw or not 0 is false and 1 is true
-		writeD(_activeChar.getAdena());
+		writeByte(0xe3);
+		writeInt(_henna.getSymbolId()); // symbol Id
+		writeInt(_henna.getDyeId()); // item id of dye
+		writeInt(_henna.getDyeAmount()); // total amount of dye require
+		writeInt(_henna.getPrice()); // total amount of aden require to draw symbol
+		writeInt(1); // able to draw or not 0 is false and 1 is true
+		writeInt(_activeChar.getAdena());
 		
-		writeD(_activeChar.getINT()); // current INT
-		writeC(_activeChar.getINT() + _henna.getStatINT()); // equip INT
-		writeD(_activeChar.getSTR()); // current STR
-		writeC(_activeChar.getSTR() + _henna.getStatSTR()); // equip STR
-		writeD(_activeChar.getCON()); // current CON
-		writeC(_activeChar.getCON() + _henna.getStatCON()); // equip CON
-		writeD(_activeChar.getMEN()); // current MEM
-		writeC(_activeChar.getMEN() + _henna.getStatMEM()); // equip MEM
-		writeD(_activeChar.getDEX()); // current DEX
-		writeC(_activeChar.getDEX() + _henna.getStatDEX()); // equip DEX
-		writeD(_activeChar.getWIT()); // current WIT
-		writeC(_activeChar.getWIT() + _henna.getStatWIT()); // equip WIT
+		writeInt(_activeChar.getINT()); // current INT
+		writeByte(_activeChar.getINT() + _henna.getStatINT()); // equip INT
+		writeInt(_activeChar.getSTR()); // current STR
+		writeByte(_activeChar.getSTR() + _henna.getStatSTR()); // equip STR
+		writeInt(_activeChar.getCON()); // current CON
+		writeByte(_activeChar.getCON() + _henna.getStatCON()); // equip CON
+		writeInt(_activeChar.getMEN()); // current MEM
+		writeByte(_activeChar.getMEN() + _henna.getStatMEM()); // equip MEM
+		writeInt(_activeChar.getDEX()); // current DEX
+		writeByte(_activeChar.getDEX() + _henna.getStatDEX()); // equip DEX
+		writeInt(_activeChar.getWIT()); // current WIT
+		writeByte(_activeChar.getWIT() + _henna.getStatWIT()); // equip WIT
 	}
 
 	@Override

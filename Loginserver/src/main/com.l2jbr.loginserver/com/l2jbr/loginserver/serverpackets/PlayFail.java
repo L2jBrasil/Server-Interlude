@@ -56,7 +56,7 @@ public final class PlayFail extends L2LoginServerPacket
 	@Override
 	protected void write()
 	{
-		writeC(0x06);
-		writeC(_reason.getCode());
+		writeByte(0x06);
+		writeByte(_reason.getCode());
 	}
 }

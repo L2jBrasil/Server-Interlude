@@ -72,88 +72,88 @@ public class PetInfo extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xb1);
-		writeD(_summon.getSummonType());
-		writeD(_summon.getObjectId());
-		writeD(_summon.getTemplate().getTemplateId() + 1000000);
-		writeD(0); // 1=attackable
+		writeByte(0xb1);
+		writeInt(_summon.getSummonType());
+		writeInt(_summon.getObjectId());
+		writeInt(_summon.getTemplate().getTemplateId() + 1000000);
+		writeInt(0); // 1=attackable
 		
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
-		writeD(_heading);
-		writeD(0);
-		writeD(_mAtkSpd);
-		writeD(_pAtkSpd);
-		writeD(_runSpd);
-		writeD(_walkSpd);
-		writeD(_swimRunSpd);
-		writeD(_swimWalkSpd);
-		writeD(_flRunSpd);
-		writeD(_flWalkSpd);
-		writeD(_flyRunSpd);
-		writeD(_flyWalkSpd);
+		writeInt(_x);
+		writeInt(_y);
+		writeInt(_z);
+		writeInt(_heading);
+		writeInt(0);
+		writeInt(_mAtkSpd);
+		writeInt(_pAtkSpd);
+		writeInt(_runSpd);
+		writeInt(_walkSpd);
+		writeInt(_swimRunSpd);
+		writeInt(_swimWalkSpd);
+		writeInt(_flRunSpd);
+		writeInt(_flWalkSpd);
+		writeInt(_flyRunSpd);
+		writeInt(_flyWalkSpd);
 		
-		writeF(1/* _cha.getProperMultiplier() */);
-		writeF(1/* _cha.getAttackSpeedMultiplier() */);
-		writeF(_summon.getTemplate().getCollisionRadius());
-		writeF(_summon.getTemplate().getCollisionHeight());
-		writeD(0); // right hand weapon
-		writeD(0);
-		writeD(0); // left hand weapon
-		writeC(1); // name above char 1=true ... ??
-		writeC(_summon.isRunning() ? 1 : 0); // running=1
-		writeC(_summon.isInCombat() ? 1 : 0); // attacking 1=true
-		writeC(_summon.isAlikeDead() ? 1 : 0); // dead 1=true
-		writeC(_isSummoned ? 2 : 0); // invisible ?? 0=false 1=true 2=summoned (only works if model has a summon animation)
-		writeS(_summon.getName());
-		writeS(_summon.getTitle());
-		writeD(1);
-		writeD(_summon.getPvpFlag()); // 0 = white,2= purpleblink, if its greater then karma = purple
-		writeD(_summon.getKarma()); // hmm karma ??
-		writeD(_curFed); // how fed it is
-		writeD(_maxFed); // max fed it can be
-		writeD((int) _summon.getCurrentHp());// current hp
-		writeD(_maxHp);// max hp
-		writeD((int) _summon.getCurrentMp());// current mp
-		writeD(_maxMp);// max mp
-		writeD(_summon.getStat().getSp()); // sp
-		writeD(_summon.getLevel());// lvl
-		writeQ(_summon.getStat().getExp());
-		writeQ(_summon.getExpForThisLevel());// 0% absolute value
-		writeQ(_summon.getExpForNextLevel());// 100% absoulte value
-		writeD(_summon instanceof L2PetInstance ? _summon.getInventory().getTotalWeight() : 0);// weight
-		writeD(_summon.getMaxLoad());// max weight it can carry
-		writeD(_summon.getPAtk(null));// patk
-		writeD(_summon.getPDef(null));// pdef
-		writeD(_summon.getMAtk(null, null));// matk
-		writeD(_summon.getMDef(null, null));// mdef
-		writeD(_summon.getAccuracy());// accuracy
-		writeD(_summon.getEvasionRate(null));// evasion
-		writeD(_summon.getCriticalHit(null, null));// critical
-		writeD(_runSpd);// speed
-		writeD(_summon.getPAtkSpd());// atkspeed
-		writeD(_summon.getMAtkSpd());// casting speed
+		writeDouble(1/* _cha.getProperMultiplier() */);
+		writeDouble(1/* _cha.getAttackSpeedMultiplier() */);
+		writeDouble(_summon.getTemplate().getCollisionRadius());
+		writeDouble(_summon.getTemplate().getCollisionHeight());
+		writeInt(0); // right hand weapon
+		writeInt(0);
+		writeInt(0); // left hand weapon
+		writeByte(1); // name above char 1=true ... ??
+		writeByte(_summon.isRunning() ? 1 : 0); // running=1
+		writeByte(_summon.isInCombat() ? 1 : 0); // attacking 1=true
+		writeByte(_summon.isAlikeDead() ? 1 : 0); // dead 1=true
+		writeByte(_isSummoned ? 2 : 0); // invisible ?? 0=false 1=true 2=summoned (only works if model has a summon animation)
+		writeString(_summon.getName());
+		writeString(_summon.getTitle());
+		writeInt(1);
+		writeInt(_summon.getPvpFlag()); // 0 = white,2= purpleblink, if its greater then karma = purple
+		writeInt(_summon.getKarma()); // hmm karma ??
+		writeInt(_curFed); // how fed it is
+		writeInt(_maxFed); // max fed it can be
+		writeInt((int) _summon.getCurrentHp());// current hp
+		writeInt(_maxHp);// max hp
+		writeInt((int) _summon.getCurrentMp());// current mp
+		writeInt(_maxMp);// max mp
+		writeInt(_summon.getStat().getSp()); // sp
+		writeInt(_summon.getLevel());// lvl
+		writeLong(_summon.getStat().getExp());
+		writeLong(_summon.getExpForThisLevel());// 0% absolute value
+		writeLong(_summon.getExpForNextLevel());// 100% absoulte value
+		writeInt(_summon instanceof L2PetInstance ? _summon.getInventory().getTotalWeight() : 0);// weight
+		writeInt(_summon.getMaxLoad());// max weight it can carry
+		writeInt(_summon.getPAtk(null));// patk
+		writeInt(_summon.getPDef(null));// pdef
+		writeInt(_summon.getMAtk(null, null));// matk
+		writeInt(_summon.getMDef(null, null));// mdef
+		writeInt(_summon.getAccuracy());// accuracy
+		writeInt(_summon.getEvasionRate(null));// evasion
+		writeInt(_summon.getCriticalHit(null, null));// critical
+		writeInt(_runSpd);// speed
+		writeInt(_summon.getPAtkSpd());// atkspeed
+		writeInt(_summon.getMAtkSpd());// casting speed
 		
-		writeD(0);// c2 abnormal visual effect... bleed=1; poison=2; poison & bleed=3; flame=4;
+		writeInt(0);// c2 abnormal visual effect... bleed=1; poison=2; poison & bleed=3; flame=4;
 		int npcId = _summon.getTemplate().getId();
 		
 		if ((npcId >= 12526) && (npcId <= 12528))
 		{
-			writeH(1);// c2 ride button
+			writeShort(1);// c2 ride button
 		}
 		else
 		{
-			writeH(0);
+			writeShort(0);
 		}
 		
-		writeC(0); // c2
+		writeByte(0); // c2
 		
 		// Following all added in C4.
-		writeH(0); // ??
-		writeC(0); // team aura (1 = blue, 2 = red)
-		writeD(_summon.getSoulShotsPerHit()); // How many soulshots this servitor uses per hit
-		writeD(_summon.getSpiritShotsPerHit()); // How many spiritshots this servitor uses per hit
+		writeShort(0); // ??
+		writeByte(0); // team aura (1 = blue, 2 = red)
+		writeInt(_summon.getSoulShotsPerHit()); // How many soulshots this servitor uses per hit
+		writeInt(_summon.getSpiritShotsPerHit()); // How many spiritshots this servitor uses per hit
 	}
 	
 	@Override

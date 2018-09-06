@@ -39,11 +39,11 @@ public class ExConfirmVariationItem extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xfe);
-		writeH(0x52);
-		writeD(_itemObjId);
-		writeD(_unk1);
-		writeD(_unk2);
+		writeByte(0xfe);
+		writeShort(0x52);
+		writeInt(_itemObjId);
+		writeInt(_unk1);
+		writeInt(_unk2);
 	}
 	
 	@Override

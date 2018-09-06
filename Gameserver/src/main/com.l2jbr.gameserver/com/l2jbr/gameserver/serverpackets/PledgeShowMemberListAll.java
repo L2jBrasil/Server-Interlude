@@ -77,28 +77,28 @@ public class PledgeShowMemberListAll extends L2GameServerPacket
 	
 	void writePledge(int mainOrSubpledge)
 	{
-		writeC(0x53);
+		writeByte(0x53);
 		
-		writeD(mainOrSubpledge); // c5 main clan 0 or any subpledge 1?
-		writeD(_clan.getClanId());
-		writeD(_pledgeType); // c5 - possibly pledge type?
-		writeS(_clan.getName());
-		writeS(_clan.getLeaderName());
+		writeInt(mainOrSubpledge); // c5 main clan 0 or any subpledge 1?
+		writeInt(_clan.getClanId());
+		writeInt(_pledgeType); // c5 - possibly pledge type?
+		writeString(_clan.getName());
+		writeString(_clan.getLeaderName());
 		
-		writeD(_clan.getCrestId()); // crest id .. is used again
-		writeD(_clan.getLevel());
-		writeD(_clan.getCastle());
-		writeD(_clan.getHasHideout());
-		writeD(_clan.getRank()); // not confirmed
-		writeD(_clan.getReputationScore()); // was activechar lvl
-		writeD(0); // 0
-		writeD(0); // 0
+		writeInt(_clan.getCrestId()); // crest id .. is used again
+		writeInt(_clan.getLevel());
+		writeInt(_clan.getCastle());
+		writeInt(_clan.getHasHideout());
+		writeInt(_clan.getRank()); // not confirmed
+		writeInt(_clan.getReputationScore()); // was activechar lvl
+		writeInt(0); // 0
+		writeInt(0); // 0
 		
-		writeD(_clan.getAllyId());
-		writeS(_clan.getAllyName());
-		writeD(_clan.getAllyCrestId());
-		writeD(_clan.isAtWar());// new c3
-		writeD(_clan.getSubPledgeMembersCount(_pledgeType));
+		writeInt(_clan.getAllyId());
+		writeString(_clan.getAllyName());
+		writeInt(_clan.getAllyCrestId());
+		writeInt(_clan.isAtWar());// new c3
+		writeInt(_clan.getSubPledgeMembersCount(_pledgeType));
 		
 		for (L2ClanMember m : _members)
 		{
@@ -106,13 +106,13 @@ public class PledgeShowMemberListAll extends L2GameServerPacket
 			{
 				continue;
 			}
-			writeS(m.getName());
-			writeD(m.getLevel());
-			writeD(m.getClassId());
-			writeD(0); // no visible effect
-			writeD(m.getObjectId());// writeD(1);
-			writeD(m.isOnline() ? 1 : 0); // 1=online 0=offline
-			writeD(0); // c5 makes the name yellow. member is in academy and has a sponsor
+			writeString(m.getName());
+			writeInt(m.getLevel());
+			writeInt(m.getClassId());
+			writeInt(0); // no visible effect
+			writeInt(m.getObjectId());// writeInt(1);
+			writeInt(m.isOnline() ? 1 : 0); // 1=online 0=offline
+			writeInt(0); // c5 makes the name yellow. member is in academy and has a sponsor
 		}
 	}
 	

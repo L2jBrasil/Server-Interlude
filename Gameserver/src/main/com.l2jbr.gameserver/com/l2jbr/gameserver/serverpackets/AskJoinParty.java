@@ -47,9 +47,9 @@ public class AskJoinParty extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x39);
-		writeS(_requestorName);
-		writeD(_itemDistribution);
+		writeByte(0x39);
+		writeString(_requestorName);
+		writeInt(_itemDistribution);
 	}
 	
 	@Override

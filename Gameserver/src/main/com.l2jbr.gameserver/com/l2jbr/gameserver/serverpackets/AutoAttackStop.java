@@ -40,8 +40,8 @@ public class AutoAttackStop extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x2c);
-		writeD(_targetObjId);
+		writeByte(0x2c);
+		writeInt(_targetObjId);
 	}
 	
 	@Override

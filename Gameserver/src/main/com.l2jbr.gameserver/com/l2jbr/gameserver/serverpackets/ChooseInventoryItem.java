@@ -33,8 +33,8 @@ public class ChooseInventoryItem extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x6f);
-		writeD(_itemId);
+		writeByte(0x6f);
+		writeInt(_itemId);
 	}
 	
 	/*

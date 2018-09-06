@@ -50,23 +50,23 @@ public class PetStatusUpdate extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xb5);
-		writeD(_summon.getSummonType());
-		writeD(_summon.getObjectId());
-		writeD(_summon.getX());
-		writeD(_summon.getY());
-		writeD(_summon.getZ());
-		writeS(_summon.getTitle());
-		writeD(_curFed);
-		writeD(_maxFed);
-		writeD((int) _summon.getCurrentHp());
-		writeD(_maxHp);
-		writeD((int) _summon.getCurrentMp());
-		writeD(_maxMp);
-		writeD(_summon.getLevel());
-		writeQ(_summon.getStat().getExp());
-		writeQ(_summon.getExpForThisLevel());// 0% absolute value
-		writeQ(_summon.getExpForNextLevel());// 100% absolute value
+		writeByte(0xb5);
+		writeInt(_summon.getSummonType());
+		writeInt(_summon.getObjectId());
+		writeInt(_summon.getX());
+		writeInt(_summon.getY());
+		writeInt(_summon.getZ());
+		writeString(_summon.getTitle());
+		writeInt(_curFed);
+		writeInt(_maxFed);
+		writeInt((int) _summon.getCurrentHp());
+		writeInt(_maxHp);
+		writeInt((int) _summon.getCurrentMp());
+		writeInt(_maxMp);
+		writeInt(_summon.getLevel());
+		writeLong(_summon.getStat().getExp());
+		writeLong(_summon.getExpForThisLevel());// 0% absolute value
+		writeLong(_summon.getExpForNextLevel());// 100% absolute value
 	}
 	
 	@Override

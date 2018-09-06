@@ -42,57 +42,57 @@ public class SendMacroList extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xE7);
+		writeByte(0xE7);
 		
-		writeD(_rev); // macro change revision (changes after each macro edition)
-		writeC(0); // unknown
-		writeC(_count); // count of Macros
-		writeC(_macro != null ? 1 : 0); // unknown
+		writeInt(_rev); // macro change revision (changes after each macro edition)
+		writeByte(0); // unknown
+		writeByte(_count); // count of Macros
+		writeByte(_macro != null ? 1 : 0); // unknown
 		
 		if (_macro != null)
 		{
-			writeD(_macro.id); // Macro ID
-			writeS(_macro.name); // Macro Name
-			writeS(_macro.descr); // Desc
-			writeS(_macro.acronym); // acronym
-			writeC(_macro.icon); // icon
+			writeInt(_macro.id); // Macro ID
+			writeString(_macro.name); // Macro Name
+			writeString(_macro.descr); // Desc
+			writeString(_macro.acronym); // acronym
+			writeByte(_macro.icon); // icon
 			
-			writeC(_macro.commands.length); // count
+			writeByte(_macro.commands.length); // count
 			
 			for (int i = 0; i < _macro.commands.length; i++)
 			{
 				L2Macro.L2MacroCmd cmd = _macro.commands[i];
-				writeC(i + 1); // i of count
-				writeC(cmd.type); // type 1 = skill, 3 = action, 4 = shortcut
-				writeD(cmd.d1); // skill id
-				writeC(cmd.d2); // shortcut id
-				writeS(cmd.cmd); // command name
+				writeByte(i + 1); // i of count
+				writeByte(cmd.type); // type 1 = skill, 3 = action, 4 = shortcut
+				writeInt(cmd.d1); // skill id
+				writeByte(cmd.d2); // shortcut id
+				writeString(cmd.cmd); // command name
 			}
 		}
 		
-		// writeD(1); //unknown change of Macro edit,add,delete
-		// writeC(0); //unknown
-		// writeC(1); //count of Macros
-		// writeC(1); //unknown
+		// writeInt(1); //unknown change of Macro edit,add,delete
+		// writeByte(0); //unknown
+		// writeByte(1); //count of Macros
+		// writeByte(1); //unknown
 		//
-		// writeD(1430); //Macro ID
-		// writeS("Admin"); //Macro Name
-		// writeS("Admin Command"); //Desc
-		// writeS("ADM"); //acronym
-		// writeC(0); //icon
-		// writeC(2); //count
+		// writeInt(1430); //Macro ID
+		// writeString("Admin"); //Macro Name
+		// writeString("Admin Command"); //Desc
+		// writeString("ADM"); //acronym
+		// writeByte(0); //icon
+		// writeByte(2); //count
 		//
-		// writeC(1); //i of count
-		// writeC(3); //type 1 = skill, 3 = action, 4 = shortcut
-		// writeD(0); // skill id
-		// writeC(0); // shortcut id
-		// writeS("/loc"); // command name
+		// writeByte(1); //i of count
+		// writeByte(3); //type 1 = skill, 3 = action, 4 = shortcut
+		// writeInt(0); // skill id
+		// writeByte(0); // shortcut id
+		// writeString("/loc"); // command name
 		//
-		// writeC(2); //i of count
-		// writeC(3); //type 1 = skill, 3 = action, 4 = shortcut
-		// writeD(0); // skill id
-		// writeC(0); // shortcut id
-		// writeS("//admin"); // command name
+		// writeByte(2); //i of count
+		// writeByte(3); //type 1 = skill, 3 = action, 4 = shortcut
+		// writeInt(0); // skill id
+		// writeByte(0); // shortcut id
+		// writeString("//admin"); // command name
 		
 	}
 	

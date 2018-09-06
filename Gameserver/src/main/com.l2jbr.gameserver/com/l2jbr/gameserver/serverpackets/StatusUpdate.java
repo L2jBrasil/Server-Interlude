@@ -100,16 +100,16 @@ public class StatusUpdate extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x0e);
-		writeD(_objectId);
-		writeD(_attributes.size());
+		writeByte(0x0e);
+		writeInt(_objectId);
+		writeInt(_attributes.size());
 		
 		for (int i = 0; i < _attributes.size(); i++)
 		{
 			Attribute temp = _attributes.get(i);
 			
-			writeD(temp.id);
-			writeD(temp.value);
+			writeInt(temp.id);
+			writeInt(temp.value);
 		}
 	}
 	

@@ -37,15 +37,15 @@ public final class LoginOk extends L2LoginServerPacket
 	@Override
 	protected void write()
 	{
-		writeC(0x03);
-		writeD(_loginOk1);
-		writeD(_loginOk2);
-		writeD(0x00);
-		writeD(0x00);
-		writeD(0x000003ea);
-		writeD(0x00);
-		writeD(0x00);
-		writeD(0x00);
-		writeB(new byte[16]);
+		writeByte(0x03);
+		writeInt(_loginOk1);
+		writeInt(_loginOk2);
+		writeInt(0x00);
+		writeInt(0x00);
+		writeInt(0x000003ea);
+		writeInt(0x00);
+		writeInt(0x00);
+		writeInt(0x00);
+		writeBytes(new byte[16]);
 	}
 }

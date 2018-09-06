@@ -52,11 +52,11 @@ public class CreatureSay extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x4a);
-		writeD(_objectId);
-		writeD(_textType);
-		writeS(_charName);
-		writeS(_text);
+		writeByte(0x4a);
+		writeInt(_objectId);
+		writeInt(_textType);
+		writeString(_charName);
+		writeString(_text);
 		
 		L2PcInstance _pci = getClient().getActiveChar();
 		if (_pci != null)

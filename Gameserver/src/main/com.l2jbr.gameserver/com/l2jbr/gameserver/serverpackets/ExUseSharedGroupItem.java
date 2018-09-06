@@ -38,13 +38,13 @@ public class ExUseSharedGroupItem extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xfe);
-		writeH(0x49);
+		writeByte(0xfe);
+		writeShort(0x49);
 		
-		writeD(_unk1);
-		writeD(_unk2);
-		writeD(_unk3);
-		writeD(_unk4);
+		writeInt(_unk1);
+		writeInt(_unk2);
+		writeInt(_unk3);
+		writeInt(_unk4);
 	}
 	
 	@Override

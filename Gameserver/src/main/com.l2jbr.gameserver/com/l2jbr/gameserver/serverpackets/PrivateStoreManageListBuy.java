@@ -46,37 +46,37 @@ public class PrivateStoreManageListBuy extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xb7);
+		writeByte(0xb7);
 		// section 1
-		writeD(_activeChar.getObjectId());
-		writeD(_playerAdena);
+		writeInt(_activeChar.getObjectId());
+		writeInt(_playerAdena);
 		
 		// section2
-		writeD(_itemList.length); // inventory items for potential buy
+		writeInt(_itemList.length); // inventory items for potential buy
 		for (L2ItemInstance item : _itemList)
 		{
-			writeD(item.getItemId());
-			writeH(0); // show enchant lvl as 0, as you can't buy enchanted weapons
-			writeD(item.getCount());
-			writeD(item.getReferencePrice());
-			writeH(0x00);
-			writeD(item.getItem().getBodyPart().getId());
-			writeH(item.getItem().getType2().getId());
+			writeInt(item.getItemId());
+			writeShort(0); // show enchant lvl as 0, as you can't buy enchanted weapons
+			writeInt(item.getCount());
+			writeInt(item.getReferencePrice());
+			writeShort(0x00);
+			writeInt(item.getItem().getBodyPart().getId());
+			writeShort(item.getItem().getType2().getId());
 		}
 		
 		// section 3
-		writeD(_buyList.length); // count for all items already added for buy
+		writeInt(_buyList.length); // count for all items already added for buy
 		for (TradeList.TradeItem item : _buyList)
 		{
-			writeD(item.getItem().getId());
-			writeH(0);
-			writeD(item.getCount());
-			writeD(item.getItem().getPrice());
-			writeH(0x00);
-			writeD(item.getItem().getBodyPart().getId());
-			writeH(item.getItem().getType2().getId());
-			writeD(item.getPrice());// your price
-			writeD(item.getItem().getPrice());// fixed store price
+			writeInt(item.getItem().getId());
+			writeShort(0);
+			writeInt(item.getCount());
+			writeInt(item.getItem().getPrice());
+			writeShort(0x00);
+			writeInt(item.getItem().getBodyPart().getId());
+			writeShort(item.getItem().getType2().getId());
+			writeInt(item.getPrice());// your price
+			writeInt(item.getItem().getPrice());// fixed store price
 		}
 	}
 	

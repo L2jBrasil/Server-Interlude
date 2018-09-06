@@ -42,10 +42,10 @@ public class ObservationReturn extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xe0);
-		writeD(_activeChar.getObsX());
-		writeD(_activeChar.getObsY());
-		writeD(_activeChar.getObsZ());
+		writeByte(0xe0);
+		writeInt(_activeChar.getObsX());
+		writeInt(_activeChar.getObsY());
+		writeInt(_activeChar.getObsZ());
 	}
 	
 	@Override

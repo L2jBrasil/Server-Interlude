@@ -37,8 +37,8 @@ public class PartyMemberPosition extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xa7);
-		writeD(_party.getMemberCount());
+		writeByte(0xa7);
+		writeInt(_party.getMemberCount());
 		
 		for (L2PcInstance pm : _party.getPartyMembers())
 		{
@@ -47,10 +47,10 @@ public class PartyMemberPosition extends L2GameServerPacket
 				continue;
 			}
 			
-			writeD(pm.getObjectId());
-			writeD(pm.getX());
-			writeD(pm.getY());
-			writeD(pm.getZ());
+			writeInt(pm.getObjectId());
+			writeInt(pm.getX());
+			writeInt(pm.getY());
+			writeInt(pm.getZ());
 		}
 	}
 	

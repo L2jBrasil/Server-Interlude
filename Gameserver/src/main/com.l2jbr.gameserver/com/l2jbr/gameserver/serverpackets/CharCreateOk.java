@@ -30,8 +30,8 @@ public class CharCreateOk extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x19);
-		writeD(0x01);
+		writeByte(0x19);
+		writeInt(0x01);
 	}
 	
 	/*

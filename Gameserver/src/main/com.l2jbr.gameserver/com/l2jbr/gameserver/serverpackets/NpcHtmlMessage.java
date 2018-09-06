@@ -133,11 +133,11 @@ public class NpcHtmlMessage extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x0f);
+		writeByte(0x0f);
 		
-		writeD(_npcObjId);
-		writeS(_html);
-		writeD(0x00);
+		writeInt(_npcObjId);
+		writeString(_html);
+		writeInt(0x00);
 	}
 	
 	@Override

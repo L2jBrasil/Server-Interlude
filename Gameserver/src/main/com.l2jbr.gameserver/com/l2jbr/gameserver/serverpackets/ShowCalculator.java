@@ -39,8 +39,8 @@ public class ShowCalculator extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xdc);
-		writeD(_calculatorId);
+		writeByte(0xdc);
+		writeInt(_calculatorId);
 	}
 	
 	@Override

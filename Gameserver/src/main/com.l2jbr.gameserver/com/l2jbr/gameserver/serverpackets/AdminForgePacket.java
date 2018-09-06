@@ -73,32 +73,32 @@ public class AdminForgePacket extends L2GameServerPacket
 	{
 		if ((b == 'C') || (b == 'c'))
 		{
-			writeC(Integer.decode(string));
+			writeByte(Integer.decode(string));
 			return true;
 		}
 		else if ((b == 'D') || (b == 'd'))
 		{
-			writeD(Integer.decode(string));
+			writeInt(Integer.decode(string));
 			return true;
 		}
 		else if ((b == 'H') || (b == 'h'))
 		{
-			writeH(Integer.decode(string));
+			writeShort(Integer.decode(string));
 			return true;
 		}
 		else if ((b == 'F') || (b == 'f'))
 		{
-			writeF(Double.parseDouble(string));
+			writeDouble(Double.parseDouble(string));
 			return true;
 		}
 		else if ((b == 'S') || (b == 's'))
 		{
-			writeS(string);
+			writeString(string);
 			return true;
 		}
 		else if ((b == 'B') || (b == 'b') || (b == 'X') || (b == 'x'))
 		{
-			writeB(new BigInteger(string).toByteArray());
+			writeBytes(new BigInteger(string).toByteArray());
 			return true;
 		}
 		return false;

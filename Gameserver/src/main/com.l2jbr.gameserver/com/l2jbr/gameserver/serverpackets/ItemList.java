@@ -69,11 +69,11 @@ public class ItemList extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x1b);
-		writeH(_showWindow ? 0x01 : 0x00);
+		writeByte(0x1b);
+		writeShort(_showWindow ? 0x01 : 0x00);
 		
 		int count = _items.length;
-		writeH(count);
+		writeShort(count);
 		
 		for (L2ItemInstance temp : _items)
 		{
@@ -82,30 +82,30 @@ public class ItemList extends L2GameServerPacket
 				continue;
 			}
 			
-			writeH(temp.getItem().getType1().getId()); // item type1
+			writeShort(temp.getItem().getType1().getId()); // item type1
 			
-			writeD(temp.getObjectId());
-			writeD(temp.getItemId());
-			writeD(temp.getCount());
-			writeH(temp.getItem().getType2().getId()); // item type2
-			writeH(temp.getCustomType1()); // item type3
-			writeH(temp.isEquipped() ? 0x01 : 0x00);
-			writeD(temp.getItem().getBodyPart().getId());
+			writeInt(temp.getObjectId());
+			writeInt(temp.getItemId());
+			writeInt(temp.getCount());
+			writeShort(temp.getItem().getType2().getId()); // item type2
+			writeShort(temp.getCustomType1()); // item type3
+			writeShort(temp.isEquipped() ? 0x01 : 0x00);
+			writeInt(temp.getItem().getBodyPart().getId());
 			
-			writeH(temp.getEnchantLevel()); // enchant level
+			writeShort(temp.getEnchantLevel()); // enchant level
 			// race tickets
-			writeH(temp.getCustomType2()); // item type3
+			writeShort(temp.getCustomType2()); // item type3
 			
 			if (temp.isAugmented())
 			{
-				writeD(temp.getAugmentation().getAugmentationId());
+				writeInt(temp.getAugmentation().getAugmentationId());
 			}
 			else
 			{
-				writeD(0x00);
+				writeInt(0x00);
 			}
 			
-			writeD(temp.getMana());
+			writeInt(temp.getMana());
 		}
 	}
 	

@@ -36,8 +36,8 @@ public class SendTradeDone extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x22);
-		writeD(_num);
+		writeByte(0x22);
+		writeInt(_num);
 	}
 	
 	/*

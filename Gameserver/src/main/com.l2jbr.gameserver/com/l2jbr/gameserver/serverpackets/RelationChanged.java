@@ -51,12 +51,12 @@ public class RelationChanged extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xce);
-		writeD(_objId);
-		writeD(_relation);
-		writeD(_autoAttackable);
-		writeD(_karma);
-		writeD(_pvpFlag);
+		writeByte(0xce);
+		writeInt(_objId);
+		writeInt(_relation);
+		writeInt(_autoAttackable);
+		writeInt(_karma);
+		writeInt(_pvpFlag);
 	}
 	
 	@Override

@@ -39,22 +39,22 @@ public class PledgeShowInfoUpdate extends L2GameServerPacket
 	protected final void writeImpl()
 	{
 		// ddddddddddSdd
-		writeC(0x88);
+		writeByte(0x88);
 		// sending empty data so client will ask all the info in response ;)
-		writeD(_clan.getClanId());
-		writeD(0);
-		writeD(_clan.getLevel()); // clan level
-		writeD(_clan.getCastle());
-		writeD(_clan.getHasHideout());
-		writeD(0); // displayed in the "tree" view (with the clan skills)
-		writeD(_clan.getReputationScore()); // clan reputation score
-		writeD(0);
-		writeD(0);
+		writeInt(_clan.getClanId());
+		writeInt(0);
+		writeInt(_clan.getLevel()); // clan level
+		writeInt(_clan.getCastle());
+		writeInt(_clan.getHasHideout());
+		writeInt(0); // displayed in the "tree" view (with the clan skills)
+		writeInt(_clan.getReputationScore()); // clan reputation score
+		writeInt(0);
+		writeInt(0);
 		
-		writeD(0); // c5
-		writeS("bili"); // c5
-		writeD(0); // c5
-		writeD(0); // c5
+		writeInt(0); // c5
+		writeString("bili"); // c5
+		writeInt(0); // c5
+		writeInt(0); // c5
 	}
 	
 	/*

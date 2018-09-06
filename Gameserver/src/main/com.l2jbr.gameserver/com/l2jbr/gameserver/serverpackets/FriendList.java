@@ -52,16 +52,16 @@ public class FriendList extends L2GameServerPacket {
         List<CharacterFriends> friendList = repository.findAllByCharacterId(_activeChar.getObjectId());
 
         if(!Util.isNullOrEmpty(friendList)) {
-            writeC(0xfa);
-            writeH(friendList.size());
+            writeByte(0xfa);
+            writeShort(friendList.size());
             friendList.forEach(characterFriends -> {
                 L2PcInstance friend = L2World.getInstance().getPlayer(characterFriends.getFriendName());
 
-                writeH(0); // ??
-                writeD(characterFriends.getFriendId());
-                writeS(characterFriends.getFriendName());
-                writeD(friend == null ? 0 : 1);  // offline : online
-                writeH(0); // ??
+                writeShort(0); // ??
+                writeInt(characterFriends.getFriendId());
+                writeString(characterFriends.getFriendName());
+                writeInt(friend == null ? 0 : 1);  // offline : online
+                writeShort(0); // ??
 
             });
         }

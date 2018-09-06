@@ -57,16 +57,16 @@ public class ExStorageMaxCount extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xfe);
-		writeH(0x2e);
+		writeByte(0xfe);
+		writeShort(0x2e);
 		
-		writeD(_inventory);
-		writeD(_warehouse);
-		writeD(_freight);
-		writeD(_privateSell);
-		writeD(_privateBuy);
-		writeD(_receipeD);
-		writeD(_recipe);
+		writeInt(_inventory);
+		writeInt(_warehouse);
+		writeInt(_freight);
+		writeInt(_privateSell);
+		writeInt(_privateBuy);
+		writeInt(_receipeD);
+		writeInt(_recipe);
 		
 	}
 	

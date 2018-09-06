@@ -39,12 +39,12 @@ public class VehicleInfo extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0x59);
-		writeD(_boat.getObjectId());
-		writeD(_boat.getX());
-		writeD(_boat.getY());
-		writeD(_boat.getZ());
-		writeD(_boat.getPosition().getHeading());
+		writeByte(0x59);
+		writeInt(_boat.getObjectId());
+		writeInt(_boat.getX());
+		writeInt(_boat.getY());
+		writeInt(_boat.getZ());
+		writeInt(_boat.getPosition().getHeading());
 		
 	}
 	

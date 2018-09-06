@@ -40,9 +40,9 @@ public class FinishRotation extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x63);
-		writeD(_charObjId);
-		writeD(_heading);
+		writeByte(0x63);
+		writeInt(_charObjId);
+		writeInt(_heading);
 	}
 	
 	/*

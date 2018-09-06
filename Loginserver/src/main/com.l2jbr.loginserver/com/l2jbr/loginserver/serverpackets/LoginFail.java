@@ -59,7 +59,7 @@ public final class LoginFail extends L2LoginServerPacket
 	@Override
 	protected void write()
 	{
-		writeC(0x01);
-		writeD(_reason.getCode());
+		writeByte(0x01);
+		writeInt(_reason.getCode());
 	}
 }

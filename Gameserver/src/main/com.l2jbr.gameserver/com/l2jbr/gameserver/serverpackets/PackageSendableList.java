@@ -39,24 +39,24 @@ public class PackageSendableList extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xC3);
+		writeByte(0xC3);
 		
-		writeD(_playerObjId);
-		writeD(getClient().getActiveChar().getAdena());
-		writeD(_items.length);
+		writeInt(_playerObjId);
+		writeInt(getClient().getActiveChar().getAdena());
+		writeInt(_items.length);
 		for (L2ItemInstance item : _items) // format inside the for taken from SellList part use should be about the same
 		{
-			writeH(item.getItem().getType1().getId());
-			writeD(item.getObjectId());
-			writeD(item.getItemId());
-			writeD(item.getCount());
-			writeH(item.getItem().getType2().getId());
-			writeH(0x00);
-			writeD(item.getItem().getBodyPart().getId());
-			writeH(item.getEnchantLevel());
-			writeH(0x00);
-			writeH(0x00);
-			writeD(item.getObjectId()); // some item identifier later used by client to answer (see RequestPackageSend) not item id nor object id maybe some freight system id??
+			writeShort(item.getItem().getType1().getId());
+			writeInt(item.getObjectId());
+			writeInt(item.getItemId());
+			writeInt(item.getCount());
+			writeShort(item.getItem().getType2().getId());
+			writeShort(0x00);
+			writeInt(item.getItem().getBodyPart().getId());
+			writeShort(item.getEnchantLevel());
+			writeShort(0x00);
+			writeShort(0x00);
+			writeInt(item.getObjectId()); // some item identifier later used by client to answer (see RequestPackageSend) not item id nor object id maybe some freight system id??
 		}
 		
 	}

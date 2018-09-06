@@ -17,21 +17,23 @@
  */
 package com.l2jbr.mmocore;
 
+import static java.lang.Double.doubleToRawLongBits;
+import static java.util.Objects.nonNull;
 
-/**
- * @author KenM
- * @param <T>
- */
 public abstract class SendablePacket<T> extends AbstractPacket<T> {
+
+    protected SendablePacket() {
+        data = new byte[packetSize()];
+        writeShort(packetSize());
+    }
 
 	/**
 	 * Write <B>byte</B> to the buffer. <BR>
 	 * 8bit integer (00)
-	 * @param data
+	 * @param value
 	 */
-	protected final void writeC(final int data)
-	{
-		writingBuffer.put((byte) data);
+	protected final void writeByte(final byte value) {
+	    data[dataIndex++] = value;
 	}
 	
 	
@@ -40,9 +42,9 @@ public abstract class SendablePacket<T> extends AbstractPacket<T> {
 	 * 64bit double precision float (00 00 00 00 00 00 00 00)
 	 * @param value
 	 */
-	protected final void writeF(final double value)
-	{
-		writingBuffer.putDouble(value);
+	protected final void writeDouble(final double value) {
+	    var x = doubleToRawLongBits(value);
+	    writeLong(x);
 	}
 	
 	/**
@@ -50,58 +52,98 @@ public abstract class SendablePacket<T> extends AbstractPacket<T> {
 	 * 16bit integer (00 00)
 	 * @param value
 	 */
-	protected final void writeH(final int value)
-	{
-		writingBuffer.putShort((short) value);
+	protected final void writeShort(final int value) {
+		var x = convertEndian((short) value);
+		writeShortParts((byte) x,
+                        (byte) (x >>> 8));
 	}
-	
-	/**
+
+    private void writeShortParts(byte b0, byte b1) {
+	    writeByte(pickByte(b0, b1));
+	    writeByte(pickByte(b1, b0));
+    }
+
+    /**
 	 * Write <B>int</B> to the buffer. <BR>
 	 * 32bit integer (00 00 00 00)
 	 * @param value
 	 */
-	protected final void writeD(final int value)
-	{
-		writingBuffer.putInt(value);
+	protected final void writeInt(final int value) {
+	    var x  = convertEndian(value);
+	    writeIntParts((byte) x,
+                      (byte) (x >>> 8),
+                      (byte) (x >>> 16),
+                      (byte) (x >>> 24));
 	}
-	
-	/**
+
+    private void writeIntParts(byte b0, byte b1, byte b2, byte b3) {
+	    writeByte(pickByte(b0, b3));
+        writeByte(pickByte(b1, b2));
+        writeByte(pickByte(b2, b1));
+        writeByte(pickByte(b3, b0));
+    }
+
+    /**
 	 * Write <B>long</B> to the buffer. <BR>
 	 * 64bit integer (00 00 00 00 00 00 00 00)
 	 * @param value
 	 */
-	protected final void writeQ(final long value)
-	{
-		writingBuffer.putLong(value);
+	protected final void writeLong(final long value) {
+        var x = convertEndian(value);
+        writeLongParts((byte) x,
+                       (byte) (x >>> 8),
+                       (byte) (x >>> 16),
+                       (byte) (x >>> 24),
+                       (byte) (x >>> 32),
+                       (byte) (x >>> 40),
+                       (byte) (x >>> 48),
+                       (byte) (x >>> 56));
 	}
-	
-	/**
+
+    private void writeLongParts(byte b0, byte b1, byte b2, byte b3, byte b4, byte b5, byte b6, byte b7) {
+	    writeByte(pickByte(b0, b7));
+        writeByte(pickByte(b1, b6));
+        writeByte(pickByte(b2, b5));
+        writeByte(pickByte(b3, b4));
+        writeByte(pickByte(b4, b3));
+        writeByte(pickByte(b5, b2));
+        writeByte(pickByte(b1, b6));
+        writeByte(pickByte(b7, b0));
+    }
+
+    /**
 	 * Write <B>byte[]</B> to the buffer. <BR>
 	 * 8bit integer array (00 ...)
-	 * @param data
+	 * @param bytes
 	 */
-	protected final void writeB(final byte[] data)
-	{
-		writingBuffer.put(data);
+	protected final void writeBytes(final byte[] bytes) {
+	    System.arraycopy(bytes, 0, data, dataIndex, data.length);
+		dataIndex += bytes.length;
 	}
+
+	protected  final void writeChar(final char value) {
+        var x = convertEndian(value);
+        writeShortParts((byte) x,
+                        (byte) (x >>> 8));
+
+    }
 	
 	/**
 	 * Write <B>String</B> to the buffer.
 	 * @param text
 	 */
-	protected final void writeS(final String text)
-	{
-		if (text != null)
-		{
+	protected final void writeString(final String text) {
+		if (nonNull(text)) {
 			final int len = text.length();
-			for (int i = 0; i < len; i++)
-			{
-				writingBuffer.putChar(text.charAt(i));
+			for (int i = 0; i < len; i++) {
+			    writeChar(text.charAt(i));
 			}
 		}
-		
-		writingBuffer.putChar('\000');
+		writeChar('\000');
 	}
+
+    private static byte pickByte(byte  le, byte  be) { return isBigEndian ? be : le; }
 	
 	protected abstract void write();
+	protected abstract short packetSize();
 }

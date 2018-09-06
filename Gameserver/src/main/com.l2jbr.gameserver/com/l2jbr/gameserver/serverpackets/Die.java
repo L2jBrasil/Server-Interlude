@@ -72,9 +72,9 @@ public class Die extends L2GameServerPacket
 			return;
 		}
 		
-		writeC(0x06);
+		writeByte(0x06);
 		
-		writeD(_charObjId);
+		writeInt(_charObjId);
 		// NOTE:
 		// 6d 00 00 00 00 - to nearest village
 		// 6d 01 00 00 00 - to hide away
@@ -83,7 +83,7 @@ public class Die extends L2GameServerPacket
 		// sweepable
 		// 6d 04 00 00 00 - FIXED
 		
-		writeD(0x01); // 6d 00 00 00 00 - to nearest village
+		writeInt(0x01); // 6d 00 00 00 00 - to nearest village
 		if (_clan != null)
 		{
 			L2SiegeClan siegeClan = null;
@@ -99,19 +99,19 @@ public class Die extends L2GameServerPacket
 				}
 			}
 			
-			writeD(_clan.getHasHideout() > 0 ? 0x01 : 0x00); // 6d 01 00 00 00 - to hide away
-			writeD((_clan.getCastle() > 0) || isInDefense ? 0x01 : 0x00); // 6d 02 00 00 00 - to castle
-			writeD((siegeClan != null) && !isInDefense && (siegeClan.getFlag().size() > 0) ? 0x01 : 0x00); // 6d 03 00 00 00 - to siege HQ
+			writeInt(_clan.getHasHideout() > 0 ? 0x01 : 0x00); // 6d 01 00 00 00 - to hide away
+			writeInt((_clan.getCastle() > 0) || isInDefense ? 0x01 : 0x00); // 6d 02 00 00 00 - to castle
+			writeInt((siegeClan != null) && !isInDefense && (siegeClan.getFlag().size() > 0) ? 0x01 : 0x00); // 6d 03 00 00 00 - to siege HQ
 		}
 		else
 		{
-			writeD(0x00); // 6d 01 00 00 00 - to hide away
-			writeD(0x00); // 6d 02 00 00 00 - to castle
-			writeD(0x00); // 6d 03 00 00 00 - to siege HQ
+			writeInt(0x00); // 6d 01 00 00 00 - to hide away
+			writeInt(0x00); // 6d 02 00 00 00 - to castle
+			writeInt(0x00); // 6d 03 00 00 00 - to siege HQ
 		}
 		
-		writeD(_sweepable ? 0x01 : 0x00); // sweepable (blue glow)
-		writeD(_access >= REQUIRED_LEVEL ? 0x01 : 0x00); // 6d 04 00 00 00 - to FIXED
+		writeInt(_sweepable ? 0x01 : 0x00); // sweepable (blue glow)
+		writeInt(_access >= REQUIRED_LEVEL ? 0x01 : 0x00); // 6d 04 00 00 00 - to FIXED
 	}
 	
 	@Override

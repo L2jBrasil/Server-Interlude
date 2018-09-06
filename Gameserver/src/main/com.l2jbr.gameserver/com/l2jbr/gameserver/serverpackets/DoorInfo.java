@@ -38,9 +38,9 @@ public class DoorInfo extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x4c);
-		writeD(_door.getObjectId());
-		writeD(_door.getDoorId());
+		writeByte(0x4c);
+		writeInt(_door.getObjectId());
+		writeInt(_door.getDoorId());
 	}
 	
 	/*

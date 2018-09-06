@@ -116,50 +116,50 @@ public class NpcInfoPoly extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x16);
-		writeD(_obj.getObjectId());
-		writeD(_npcId + 1000000); // npctype id
-		writeD(_isAttackable ? 1 : 0);
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
-		writeD(_heading);
-		writeD(0x00);
-		writeD(_mAtkSpd);
-		writeD(_pAtkSpd);
-		writeD(_runSpd);
-		writeD(_walkSpd);
-		writeD(_swimRunSpd/* 0x32 */); // swimspeed
-		writeD(_swimWalkSpd/* 0x32 */); // swimspeed
-		writeD(_flRunSpd);
-		writeD(_flWalkSpd);
-		writeD(_flyRunSpd);
-		writeD(_flyWalkSpd);
-		writeF(1/* _activeChar.getProperMultiplier() */);
-		writeF(1/* _activeChar.getAttackSpeedMultiplier() */);
-		writeF(_collisionRadius);
-		writeF(_collisionHeight);
-		writeD(_rhand); // right hand weapon
-		writeD(0);
-		writeD(_lhand); // left hand weapon
-		writeC(1); // name above char 1=true ... ??
-		writeC(_isRunning ? 1 : 0);
-		writeC(_isInCombat ? 1 : 0);
-		writeC(_isAlikeDead ? 1 : 0);
-		writeC(_isSummoned ? 2 : 0); // invisible ?? 0=false 1=true 2=summoned (only works if model has a summon animation)
-		writeS(_name);
-		writeS(_title);
-		writeD(0);
-		writeD(0);
-		writeD(0000); // hmm karma ??
+		writeByte(0x16);
+		writeInt(_obj.getObjectId());
+		writeInt(_npcId + 1000000); // npctype id
+		writeInt(_isAttackable ? 1 : 0);
+		writeInt(_x);
+		writeInt(_y);
+		writeInt(_z);
+		writeInt(_heading);
+		writeInt(0x00);
+		writeInt(_mAtkSpd);
+		writeInt(_pAtkSpd);
+		writeInt(_runSpd);
+		writeInt(_walkSpd);
+		writeInt(_swimRunSpd/* 0x32 */); // swimspeed
+		writeInt(_swimWalkSpd/* 0x32 */); // swimspeed
+		writeInt(_flRunSpd);
+		writeInt(_flWalkSpd);
+		writeInt(_flyRunSpd);
+		writeInt(_flyWalkSpd);
+		writeDouble(1/* _activeChar.getProperMultiplier() */);
+		writeDouble(1/* _activeChar.getAttackSpeedMultiplier() */);
+		writeDouble(_collisionRadius);
+		writeDouble(_collisionHeight);
+		writeInt(_rhand); // right hand weapon
+		writeInt(0);
+		writeInt(_lhand); // left hand weapon
+		writeByte(1); // name above char 1=true ... ??
+		writeByte(_isRunning ? 1 : 0);
+		writeByte(_isInCombat ? 1 : 0);
+		writeByte(_isAlikeDead ? 1 : 0);
+		writeByte(_isSummoned ? 2 : 0); // invisible ?? 0=false 1=true 2=summoned (only works if model has a summon animation)
+		writeString(_name);
+		writeString(_title);
+		writeInt(0);
+		writeInt(0);
+		writeInt(0000); // hmm karma ??
 		
-		writeH(_abnormalEffect); // C2
-		writeH(0x00); // C2
-		writeD(0000); // C2
-		writeD(0000); // C2
-		writeD(0000); // C2
-		writeD(0000); // C2
-		writeC(0000); // C2
+		writeShort(_abnormalEffect); // C2
+		writeShort(0x00); // C2
+		writeInt(0000); // C2
+		writeInt(0000); // C2
+		writeInt(0000); // C2
+		writeInt(0000); // C2
+		writeByte(0000); // C2
 	}
 	
 	@Override

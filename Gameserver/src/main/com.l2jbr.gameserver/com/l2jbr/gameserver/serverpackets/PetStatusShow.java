@@ -39,8 +39,8 @@ public class PetStatusShow extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xB0);
-		writeD(_summonType);
+		writeByte(0xB0);
+		writeInt(_summonType);
 	}
 	
 	@Override

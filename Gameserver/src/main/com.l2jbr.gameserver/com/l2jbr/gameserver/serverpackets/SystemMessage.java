@@ -124,22 +124,22 @@ public class SystemMessage extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x64);
+		writeByte(0x64);
 		
-		writeD(_messageId);
-		writeD(_types.size());
+		writeInt(_messageId);
+		writeInt(_types.size());
 		
 		for (int i = 0; i < _types.size(); i++)
 		{
 			int t = _types.get(i);
 			
-			writeD(t);
+			writeInt(t);
 			
 			switch (t)
 			{
 				case TYPE_TEXT:
 				{
-					writeS((String) _values.get(i));
+					writeString((String) _values.get(i));
 					break;
 				}
 				case TYPE_NUMBER:
@@ -147,14 +147,14 @@ public class SystemMessage extends L2GameServerPacket
 				case TYPE_ITEM_NAME:
 				{
 					int t1 = (Integer) _values.get(i);
-					writeD(t1);
+					writeInt(t1);
 					break;
 				}
 				case TYPE_SKILL_NAME:
 				{
 					int t1 = (Integer) _values.get(i);
-					writeD(t1); // Skill Id
-					writeD(_skillLvL); // Skill lvl
+					writeInt(t1); // Skill Id
+					writeInt(_skillLvL); // Skill lvl
 					break;
 				}
 				case TYPE_ZONE_NAME:
@@ -162,9 +162,9 @@ public class SystemMessage extends L2GameServerPacket
 					int t1 = ((int[]) _values.get(i))[0];
 					int t2 = ((int[]) _values.get(i))[1];
 					int t3 = ((int[]) _values.get(i))[2];
-					writeD(t1);
-					writeD(t2);
-					writeD(t3);
+					writeInt(t1);
+					writeInt(t2);
+					writeInt(t3);
 					break;
 				}
 			}

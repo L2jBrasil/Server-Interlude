@@ -49,15 +49,15 @@ public class ExFishingStartCombat extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xfe);
-		writeH(0x15);
+		writeByte(0xfe);
+		writeShort(0x15);
 		
-		writeD(_activeChar.getObjectId());
-		writeD(_time);
-		writeD(_hp);
-		writeC(_mode); // mode: 0 = resting, 1 = fighting
-		writeC(_lureType); // 0 = newbie lure, 1 = normal lure, 2 = night lure
-		writeC(_deceptiveMode); // Fish Deceptive Mode: 0 = no, 1 = yes
+		writeInt(_activeChar.getObjectId());
+		writeInt(_time);
+		writeInt(_hp);
+		writeByte(_mode); // mode: 0 = resting, 1 = fighting
+		writeByte(_lureType); // 0 = newbie lure, 1 = normal lure, 2 = night lure
+		writeByte(_deceptiveMode); // Fish Deceptive Mode: 0 = no, 1 = yes
 	}
 	
 	/*

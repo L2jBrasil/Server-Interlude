@@ -29,8 +29,8 @@ public class ExShowVariationCancelWindow extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xfe);
-		writeH(0x51);
+		writeByte(0xfe);
+		writeShort(0x51);
 	}
 	
 	@Override

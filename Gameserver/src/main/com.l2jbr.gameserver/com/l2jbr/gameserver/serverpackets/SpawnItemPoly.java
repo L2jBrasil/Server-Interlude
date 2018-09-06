@@ -62,17 +62,17 @@ public class SpawnItemPoly extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x0b);
-		writeD(_objectId);
-		writeD(_itemId);
+		writeByte(0x0b);
+		writeInt(_objectId);
+		writeInt(_itemId);
 		
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
+		writeInt(_x);
+		writeInt(_y);
+		writeInt(_z);
 		// only show item count if it is a stackable item
-		writeD(_stackable);
-		writeD(_count);
-		writeD(0x00); // c2
+		writeInt(_stackable);
+		writeInt(_count);
+		writeInt(0x00); // c2
 	}
 	
 	/*

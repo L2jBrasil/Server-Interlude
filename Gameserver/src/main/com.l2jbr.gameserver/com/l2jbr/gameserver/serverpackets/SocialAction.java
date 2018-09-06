@@ -43,9 +43,9 @@ public class SocialAction extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x2d);
-		writeD(_charObjId);
-		writeD(_actionId);
+		writeByte(0x2d);
+		writeInt(_charObjId);
+		writeInt(_actionId);
 	}
 	
 	/*

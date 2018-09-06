@@ -38,9 +38,9 @@ public class RecipeShopMsg extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xdb);
-		writeD(_activeChar.getObjectId());
-		writeS(_activeChar.getCreateList().getStoreName());// _activeChar.getTradeList().getSellStoreName());
+		writeByte(0xdb);
+		writeInt(_activeChar.getObjectId());
+		writeString(_activeChar.getCreateList().getStoreName());// _activeChar.getTradeList().getSellStoreName());
 	}
 	
 	/*

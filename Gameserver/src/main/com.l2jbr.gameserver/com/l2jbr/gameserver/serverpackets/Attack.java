@@ -123,21 +123,21 @@ public class Attack extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x05);
+		writeByte(0x05);
 		
-		writeD(_attackerObjId);
-		writeD(_hits[0]._targetId);
-		writeD(_hits[0]._damage);
-		writeC(_hits[0]._flags);
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
-		writeH(_hits.length - 1);
+		writeInt(_attackerObjId);
+		writeInt(_hits[0]._targetId);
+		writeInt(_hits[0]._damage);
+		writeByte(_hits[0]._flags);
+		writeInt(_x);
+		writeInt(_y);
+		writeInt(_z);
+		writeShort(_hits.length - 1);
 		for (int i = 1; i < _hits.length; i++)
 		{
-			writeD(_hits[i]._targetId);
-			writeD(_hits[i]._damage);
-			writeC(_hits[i]._flags);
+			writeInt(_hits[i]._targetId);
+			writeInt(_hits[i]._damage);
+			writeByte(_hits[i]._flags);
 		}
 	}
 	

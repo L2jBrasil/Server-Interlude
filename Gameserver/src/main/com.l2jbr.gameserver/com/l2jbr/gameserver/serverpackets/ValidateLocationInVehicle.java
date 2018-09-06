@@ -42,13 +42,13 @@ public class ValidateLocationInVehicle extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x73);
-		writeD(_activeChar.getObjectId());
-		writeD(1343225858); // TODO verify vehicle object id ??
-		writeD(_activeChar.getX());
-		writeD(_activeChar.getY());
-		writeD(_activeChar.getZ());
-		writeD(_activeChar.getHeading());
+		writeByte(0x73);
+		writeInt(_activeChar.getObjectId());
+		writeInt(1343225858); // TODO verify vehicle object id ??
+		writeInt(_activeChar.getX());
+		writeInt(_activeChar.getY());
+		writeInt(_activeChar.getZ());
+		writeInt(_activeChar.getHeading());
 	}
 	
 	@Override

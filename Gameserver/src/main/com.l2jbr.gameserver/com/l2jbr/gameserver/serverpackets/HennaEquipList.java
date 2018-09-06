@@ -36,11 +36,11 @@ public class HennaEquipList extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xe2);
-		writeD(_player.getAdena()); // activeChar current amount of aden
-		writeD(3); // available equip slot
-		// writeD(10); // total amount of symbol available which depends on difference classes
-		writeD(_hennaEquipList.size());
+		writeByte(0xe2);
+		writeInt(_player.getAdena()); // activeChar current amount of aden
+		writeInt(3); // available equip slot
+		// writeInt(10); // total amount of symbol available which depends on difference classes
+		writeInt(_hennaEquipList.size());
 		
 		for (Henna element : _hennaEquipList) {
 			/*
@@ -48,19 +48,19 @@ public class HennaEquipList extends L2GameServerPacket
 			 */
 			if ((_player.getInventory().getItemByItemId(element.getDyeId())) != null)
 			{
-				writeD(element.getSymbolId()); // symbolid
-				writeD(element.getDyeId()); // itemid of dye
-				writeD(element.getDyeAmount()); // amount of dye require
-				writeD(element.getPrice()); // amount of aden require
-				writeD(1); // meet the requirement or not
+				writeInt(element.getSymbolId()); // symbolid
+				writeInt(element.getDyeId()); // itemid of dye
+				writeInt(element.getDyeAmount()); // amount of dye require
+				writeInt(element.getPrice()); // amount of aden require
+				writeInt(1); // meet the requirement or not
 			}
 			else
 			{
-				writeD(0x00);
-				writeD(0x00);
-				writeD(0x00);
-				writeD(0x00);
-				writeD(0x00);
+				writeInt(0x00);
+				writeInt(0x00);
+				writeInt(0x00);
+				writeInt(0x00);
+				writeInt(0x00);
 			}
 		}
 	}

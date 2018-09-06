@@ -38,9 +38,9 @@ public class ExAskJoinMPCC extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xFE);
-		writeH(0x27);
-		writeS(_requestorName); // name of CCLeader
+		writeByte(0xFE);
+		writeShort(0x27);
+		writeString(_requestorName); // name of CCLeader
 		
 	}
 	

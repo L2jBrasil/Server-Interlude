@@ -47,12 +47,12 @@ public class TargetUnselected extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x2a);
-		writeD(_targetObjId);
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
-		// writeD(_target.getTargetId()); //?? probably not used in client
+		writeByte(0x2a);
+		writeInt(_targetObjId);
+		writeInt(_x);
+		writeInt(_y);
+		writeInt(_z);
+		// writeInt(_target.getTargetId()); //?? probably not used in client
 	}
 	
 	@Override

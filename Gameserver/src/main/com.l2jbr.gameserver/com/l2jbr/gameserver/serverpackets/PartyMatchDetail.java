@@ -41,30 +41,30 @@ public class PartyMatchDetail extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x97);
+		writeByte(0x97);
 		
-		writeD(_activeChar.getObjectId());
+		writeInt(_activeChar.getObjectId());
 		if (_activeChar.isPartyMatchingShowLevel())
 		{
-			writeD(1); // show level
+			writeInt(1); // show level
 		}
 		else
 		{
-			writeD(0); // hide level
+			writeInt(0); // hide level
 		}
 		
 		if (_activeChar.isPartyMatchingShowClass())
 		{
-			writeD(1); // show class
+			writeInt(1); // show class
 		}
 		else
 		{
-			writeD(0); // hide class
+			writeInt(0); // hide class
 		}
 		
-		writeD(0); // c2
+		writeInt(0); // c2
 		
-		writeS("  " + _activeChar.getPartyMatchingMemo()); // seems to be bugged.. first 2 chars get stripped away
+		writeString("  " + _activeChar.getPartyMatchingMemo()); // seems to be bugged.. first 2 chars get stripped away
 	}
 	
 	@Override

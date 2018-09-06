@@ -45,18 +45,18 @@ public class ExHeroList extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xfe);
-		writeH(0x23);
-		writeD(_heroList.size());
+		writeByte(0xfe);
+		writeShort(0x23);
+		writeInt(_heroList.size());
 
         for (Hero hero: _heroList.values()) {
-            writeS(hero.getCharName());
-            writeD(hero.getClassId());
-            writeS(hero.getClanName());
-            writeD(hero.getclanCrest());
-            writeS(hero.getAllyName());
-            writeD(hero.getAllyCrest());
-            writeD(hero.getCount());
+            writeString(hero.getCharName());
+            writeInt(hero.getClassId());
+            writeString(hero.getClanName());
+            writeInt(hero.getclanCrest());
+            writeString(hero.getAllyName());
+            writeInt(hero.getAllyCrest());
+            writeInt(hero.getCount());
         }
 	}
 	

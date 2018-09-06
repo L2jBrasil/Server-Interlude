@@ -43,34 +43,34 @@ public class ShortCutRegister extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x44);
+		writeByte(0x44);
 		
-		writeD(_shortcut.getType());
-		writeD(_shortcut.getSlot() + (_shortcut.getPage() * 12)); // C4 Client
+		writeInt(_shortcut.getType());
+		writeInt(_shortcut.getSlot() + (_shortcut.getPage() * 12)); // C4 Client
 		switch (_shortcut.getType())
 		{
 			case L2ShortCut.TYPE_ITEM: // 1
-				writeD(_shortcut.getId());
+				writeInt(_shortcut.getId());
 				break;
 			case L2ShortCut.TYPE_SKILL: // 2
-				writeD(_shortcut.getId());
-				writeD(_shortcut.getLevel());
-				writeC(0x00); // C5
+				writeInt(_shortcut.getId());
+				writeInt(_shortcut.getLevel());
+				writeByte(0x00); // C5
 				break;
 			case L2ShortCut.TYPE_ACTION: // 3
-				writeD(_shortcut.getId());
+				writeInt(_shortcut.getId());
 				break;
 			case L2ShortCut.TYPE_MACRO: // 4
-				writeD(_shortcut.getId());
+				writeInt(_shortcut.getId());
 				break;
 			case L2ShortCut.TYPE_RECIPE: // 5
-				writeD(_shortcut.getId());
+				writeInt(_shortcut.getId());
 				break;
 			default:
-				writeD(_shortcut.getId());
+				writeInt(_shortcut.getId());
 		}
 		
-		writeD(1);// ??
+		writeInt(1);// ??
 	}
 	
 	@Override

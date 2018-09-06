@@ -35,9 +35,9 @@ public class ExAskJoinPartyRoom extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xFE);
-		writeH(0x34);
-		writeS(_charName);
+		writeByte(0xFE);
+		writeShort(0x34);
+		writeString(_charName);
 	}
 	
 	@Override

@@ -60,24 +60,24 @@ public class PrivateStoreListSell extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x9b);
-		writeD(_storePlayer.getObjectId());
-		writeD(_packageSale ? 1 : 0);
-		writeD(_playerAdena);
+		writeByte(0x9b);
+		writeInt(_storePlayer.getObjectId());
+		writeInt(_packageSale ? 1 : 0);
+		writeInt(_playerAdena);
 		
-		writeD(_items.length);
+		writeInt(_items.length);
 		for (TradeList.TradeItem item : _items)
 		{
-			writeD(item.getItem().getType2().getId());
-			writeD(item.getObjectId());
-			writeD(item.getItem().getId());
-			writeD(item.getCount());
-			writeH(0x00);
-			writeH(item.getEnchant());
-			writeH(0x00);
-			writeD(item.getItem().getBodyPart().getId());
-			writeD(item.getPrice()); // your price
-			writeD(item.getItem().getPrice()); // store price
+			writeInt(item.getItem().getType2().getId());
+			writeInt(item.getObjectId());
+			writeInt(item.getItem().getId());
+			writeInt(item.getCount());
+			writeShort(0x00);
+			writeShort(item.getEnchant());
+			writeShort(0x00);
+			writeInt(item.getItem().getBodyPart().getId());
+			writeInt(item.getPrice()); // your price
+			writeInt(item.getItem().getPrice()); // store price
 		}
 	}
 	

@@ -54,15 +54,15 @@ public class ExEnchantSkillList extends L2GameServerPacket {
      */
     @Override
     protected void writeImpl() {
-        writeC(0xfe);
-        writeH(0x17);
+        writeByte(0xfe);
+        writeShort(0x17);
 
-        writeD(_skills.size());
+        writeInt(_skills.size());
         for (Skill sk : _skills) {
-            writeD(sk.id);
-            writeD(sk.nextLevel);
-            writeD(sk.sp);
-            writeQ(sk.exp);
+            writeInt(sk.id);
+            writeInt(sk.nextLevel);
+            writeInt(sk.sp);
+            writeLong(sk.exp);
         }
 
     }

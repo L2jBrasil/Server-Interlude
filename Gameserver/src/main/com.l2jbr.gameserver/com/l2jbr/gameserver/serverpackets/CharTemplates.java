@@ -40,30 +40,30 @@ public class CharTemplates extends L2GameServerPacket {
 
     @Override
     protected final void writeImpl() {
-        writeC(0x17);
-        writeD(_chars.size());
+        writeByte(0x17);
+        writeInt(_chars.size());
 
         for (PlayerTemplate temp : _chars) {
-            writeD(temp.getRace().ordinal());
-            writeD(temp.getPlayerClass().getId());
-            writeD(0x46);
-            writeD(temp.getStrength());
-            writeD(0x0a);
-            writeD(0x46);
-            writeD(temp.getDexterity());
-            writeD(0x0a);
-            writeD(0x46);
-            writeD(temp.getConstitution());
-            writeD(0x0a);
-            writeD(0x46);
-            writeD(temp.getIntellienge());
-            writeD(0x0a);
-            writeD(0x46);
-            writeD(temp.getWitness());
-            writeD(0x0a);
-            writeD(0x46);
-            writeD(temp.getMentality());
-            writeD(0x0a);
+            writeInt(temp.getRace().ordinal());
+            writeInt(temp.getPlayerClass().getId());
+            writeInt(0x46);
+            writeInt(temp.getStrength());
+            writeInt(0x0a);
+            writeInt(0x46);
+            writeInt(temp.getDexterity());
+            writeInt(0x0a);
+            writeInt(0x46);
+            writeInt(temp.getConstitution());
+            writeInt(0x0a);
+            writeInt(0x46);
+            writeInt(temp.getIntellienge());
+            writeInt(0x0a);
+            writeInt(0x46);
+            writeInt(temp.getWitness());
+            writeInt(0x0a);
+            writeInt(0x46);
+            writeInt(temp.getMentality());
+            writeInt(0x0a);
         }
     }
 

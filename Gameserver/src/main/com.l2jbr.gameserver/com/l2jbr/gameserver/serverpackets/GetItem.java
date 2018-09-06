@@ -40,13 +40,13 @@ public class GetItem extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x0d);
-		writeD(_playerId);
-		writeD(_item.getObjectId());
+		writeByte(0x0d);
+		writeInt(_playerId);
+		writeInt(_item.getObjectId());
 		
-		writeD(_item.getX());
-		writeD(_item.getY());
-		writeD(_item.getZ());
+		writeInt(_item.getX());
+		writeInt(_item.getY());
+		writeInt(_item.getZ());
 	}
 	
 	/*

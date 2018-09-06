@@ -51,32 +51,32 @@ public class PetItemList extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xB2);
+		writeByte(0xB2);
 		
 		L2ItemInstance[] items = _activeChar.getInventory().getItems();
 		int count = items.length;
-		writeH(count);
+		writeShort(count);
 		
 		for (L2ItemInstance temp : items)
 		{
-			writeH(temp.getItem().getType1().getId()); // item type1
-			writeD(temp.getObjectId());
-			writeD(temp.getItemId());
-			writeD(temp.getCount());
-			writeH(temp.getItem().getType2().getId()); // item type2
-			writeH(0xff); // ?
+			writeShort(temp.getItem().getType1().getId()); // item type1
+			writeInt(temp.getObjectId());
+			writeInt(temp.getItemId());
+			writeInt(temp.getCount());
+			writeShort(temp.getItem().getType2().getId()); // item type2
+			writeShort(0xff); // ?
 			if (temp.isEquipped())
 			{
-				writeH(0x01);
+				writeShort(0x01);
 			}
 			else
 			{
-				writeH(0x00);
+				writeShort(0x00);
 			}
-			writeD(temp.getItem().getBodyPart().getId()); // rev 415 slot 0006-lr.ear 0008-neck 0030-lr.finger 0040-head 0080-?? 0100-l.hand 0200-gloves 0400-chest 0800-pants 1000-feet 2000-?? 4000-r.hand 8000-r.hand
-			// writeH(temp.getItem().getBodyPart()); // rev 377 slot 0006-lr.ear 0008-neck 0030-lr.finger 0040-head 0080-?? 0100-l.hand 0200-gloves 0400-chest 0800-pants 1000-feet 2000-?? 4000-r.hand 8000-r.hand
-			writeH(temp.getEnchantLevel()); // enchant level
-			writeH(0x00); // ?
+			writeInt(temp.getItem().getBodyPart().getId()); // rev 415 slot 0006-lr.ear 0008-neck 0030-lr.finger 0040-head 0080-?? 0100-l.hand 0200-gloves 0400-chest 0800-pants 1000-feet 2000-?? 4000-r.hand 8000-r.hand
+			// writeShort(temp.getItem().getBodyPart()); // rev 377 slot 0006-lr.ear 0008-neck 0030-lr.finger 0040-head 0080-?? 0100-l.hand 0200-gloves 0400-chest 0800-pants 1000-feet 2000-?? 4000-r.hand 8000-r.hand
+			writeShort(temp.getEnchantLevel()); // enchant level
+			writeShort(0x00); // ?
 		}
 	}
 	

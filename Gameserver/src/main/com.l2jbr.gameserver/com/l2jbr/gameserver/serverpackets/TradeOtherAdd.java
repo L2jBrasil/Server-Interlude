@@ -39,21 +39,21 @@ public class TradeOtherAdd extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x21);
+		writeByte(0x21);
 		
-		writeH(1); // item count
+		writeShort(1); // item count
 		
-		writeH(_item.getItem().getType1().getId()); // item type1
-		writeD(_item.getObjectId());
-		writeD(_item.getItem().getId());
-		writeD(_item.getCount());
-		writeH(_item.getItem().getType2().getId()); // item type2
-		writeH(0x00); // ?
+		writeShort(_item.getItem().getType1().getId()); // item type1
+		writeInt(_item.getObjectId());
+		writeInt(_item.getItem().getId());
+		writeInt(_item.getCount());
+		writeShort(_item.getItem().getType2().getId()); // item type2
+		writeShort(0x00); // ?
 		
-		writeD(_item.getItem().getBodyPart().getId()); // rev 415 slot 0006-lr.ear 0008-neck 0030-lr.finger 0040-head 0080-?? 0100-l.hand 0200-gloves 0400-chest 0800-pants 1000-feet 2000-?? 4000-r.hand 8000-r.hand
-		writeH(_item.getEnchant()); // enchant level
-		writeH(0x00); // ?
-		writeH(0x00);
+		writeInt(_item.getItem().getBodyPart().getId()); // rev 415 slot 0006-lr.ear 0008-neck 0030-lr.finger 0040-head 0080-?? 0100-l.hand 0200-gloves 0400-chest 0800-pants 1000-feet 2000-?? 4000-r.hand 8000-r.hand
+		writeShort(_item.getEnchant()); // enchant level
+		writeShort(0x00); // ?
+		writeShort(0x00);
 	}
 	
 	/*

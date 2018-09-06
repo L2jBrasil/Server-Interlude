@@ -39,24 +39,24 @@ public class PartySmallWindowAdd extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x4f);
+		writeByte(0x4f);
 		L2PcInstance player = getClient().getActiveChar();
-		writeD(player.getObjectId()); // c3
-		writeD(0);// writeD(0x04); ?? //c3
-		writeD(_member.getObjectId());
-		writeS(_member.getName());
+		writeInt(player.getObjectId()); // c3
+		writeInt(0);// writeInt(0x04); ?? //c3
+		writeInt(_member.getObjectId());
+		writeString(_member.getName());
 		
-		writeD((int) _member.getCurrentCp()); // c4
-		writeD(_member.getMaxCp()); // c4
+		writeInt((int) _member.getCurrentCp()); // c4
+		writeInt(_member.getMaxCp()); // c4
 		
-		writeD((int) _member.getCurrentHp());
-		writeD(_member.getMaxHp());
-		writeD((int) _member.getCurrentMp());
-		writeD(_member.getMaxMp());
-		writeD(_member.getLevel());
-		writeD(_member.getPlayerClass().getId());
-		writeD(0);// writeD(0x01); ??
-		writeD(0);
+		writeInt((int) _member.getCurrentHp());
+		writeInt(_member.getMaxHp());
+		writeInt((int) _member.getCurrentMp());
+		writeInt(_member.getMaxMp());
+		writeInt(_member.getLevel());
+		writeInt(_member.getPlayerClass().getId());
+		writeInt(0);// writeInt(0x01); ??
+		writeInt(0);
 	}
 	
 	/*

@@ -46,16 +46,16 @@ public class ExOlympiadUserInfoSpectator extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xfe);
-		writeH(0x29);
-		writeC(_side);
-		writeD(_player.getObjectId());
-		writeS(_player.getName());
-		writeD(_player.getPlayerClass().getId());
-		writeD((int) _player.getCurrentHp());
-		writeD(_player.getMaxHp());
-		writeD((int) _player.getCurrentCp());
-		writeD(_player.getMaxCp());
+		writeByte(0xfe);
+		writeShort(0x29);
+		writeByte(_side);
+		writeInt(_player.getObjectId());
+		writeString(_player.getName());
+		writeInt(_player.getPlayerClass().getId());
+		writeInt((int) _player.getCurrentHp());
+		writeInt(_player.getMaxHp());
+		writeInt((int) _player.getCurrentCp());
+		writeInt(_player.getMaxCp());
 	}
 	
 	@Override

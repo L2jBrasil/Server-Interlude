@@ -41,8 +41,8 @@ public class CharDeleteFail extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x24);
-		writeD(_error);
+		writeByte(0x24);
+		writeInt(_error);
 	}
 	
 	/*

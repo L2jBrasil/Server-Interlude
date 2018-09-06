@@ -44,33 +44,33 @@ public class MultiSellList extends L2GameServerPacket
 	{
 		// [ddddd] [dchh] [hdhdh] [hhdh]
 		
-		writeC(0xd0);
-		writeD(_listId); // list id
-		writeD(_page); // page
-		writeD(_finished); // finished
-		writeD(0x28); // size of pages
-		writeD(_list == null ? 0 : _list.getEntries().size()); // list lenght
+		writeByte(0xd0);
+		writeInt(_listId); // list id
+		writeInt(_page); // page
+		writeInt(_finished); // finished
+		writeInt(0x28); // size of pages
+		writeInt(_list == null ? 0 : _list.getEntries().size()); // list lenght
 		
 		if (_list != null)
 		{
 			for (MultiSellEntry ent : _list.getEntries())
 			{
-				writeD(ent.getEntryId());
-				writeD(0x00); // C6
-				writeD(0x00); // C6
-				writeC(1);
-				writeH(ent.getProducts().size());
-				writeH(ent.getIngredients().size());
+				writeInt(ent.getEntryId());
+				writeInt(0x00); // C6
+				writeInt(0x00); // C6
+				writeByte(1);
+				writeShort(ent.getProducts().size());
+				writeShort(ent.getIngredients().size());
 				
 				for (MultiSellIngredient i : ent.getProducts())
 				{
-					writeH(i.getItemId());
-					writeD(0);
-					writeH(ItemTable.getInstance().getTemplate(i.getItemId()).getType2().getId());
-					writeD(i.getItemCount());
-					writeH(i.getEnchantmentLevel()); // enchtant lvl
-					writeD(0x00); // C6
-					writeD(0x00); // C6
+					writeShort(i.getItemId());
+					writeInt(0);
+					writeShort(ItemTable.getInstance().getTemplate(i.getItemId()).getType2().getId());
+					writeInt(i.getItemCount());
+					writeShort(i.getEnchantmentLevel()); // enchtant lvl
+					writeInt(0x00); // C6
+					writeInt(0x00); // C6
 				}
 				
 				for (MultiSellIngredient i : ent.getIngredients())
@@ -81,12 +81,12 @@ public class MultiSellList extends L2GameServerPacket
 					{
 						typeE = ItemTable.getInstance().getTemplate(i.getItemId()).getType2().getId();
 					}
-					writeH(items); // ID
-					writeH(typeE);
-					writeD(i.getItemCount()); // Count
-					writeH(i.getEnchantmentLevel()); // Enchant Level
-					writeD(0x00); // C6
-					writeD(0x00); // C6
+					writeShort(items); // ID
+					writeShort(typeE);
+					writeInt(i.getItemCount()); // Count
+					writeShort(i.getEnchantmentLevel()); // Enchant Level
+					writeInt(0x00); // C6
+					writeInt(0x00); // C6
 				}
 			}
 		}

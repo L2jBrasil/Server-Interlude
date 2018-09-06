@@ -37,11 +37,11 @@ public final class KeyPacket extends L2GameServerPacket
 	@Override
 	public void writeImpl()
 	{
-		writeC(0x00);
-		writeC(0x01);
-		writeB(_key);
-		writeD(0x01);
-		writeD(0x01);
+		writeByte(0x00);
+		writeByte(0x01);
+		writeBytes(_key);
+		writeInt(0x01);
+		writeInt(0x01);
 	}
 	
 	/*

@@ -40,26 +40,26 @@ public class ExCursedWeaponLocation extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xfe);
-		writeH(0x46);
+		writeByte(0xfe);
+		writeShort(0x46);
 		
 		if (!_cursedWeaponInfo.isEmpty())
 		{
-			writeD(_cursedWeaponInfo.size());
+			writeInt(_cursedWeaponInfo.size());
 			for (CursedWeaponInfo w : _cursedWeaponInfo)
 			{
-				writeD(w.id);
-				writeD(w.activated);
+				writeInt(w.id);
+				writeInt(w.activated);
 				
-				writeD(w.pos.getX());
-				writeD(w.pos.getY());
-				writeD(w.pos.getZ());
+				writeInt(w.pos.getX());
+				writeInt(w.pos.getY());
+				writeInt(w.pos.getZ());
 			}
 		}
 		else
 		{
-			writeD(0);
-			writeD(0);
+			writeInt(0);
+			writeInt(0);
 		}
 	}
 	

@@ -51,12 +51,12 @@ public class TargetSelected extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x29);
-		writeD(_objectId);
-		writeD(_targetObjId);
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
+		writeByte(0x29);
+		writeInt(_objectId);
+		writeInt(_targetObjId);
+		writeInt(_x);
+		writeInt(_y);
+		writeInt(_z);
 	}
 	
 	@Override

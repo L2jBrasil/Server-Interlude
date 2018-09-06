@@ -58,14 +58,14 @@ public class PartySpelled extends L2GameServerPacket {
         if (_activeChar == null) {
             return;
         }
-        writeC(0xee);
-        writeD(_activeChar instanceof L2SummonInstance ? 2 : _activeChar instanceof L2PetInstance ? 1 : 0);
-        writeD(_activeChar.getObjectId());
-        writeD(_effects.size());
+        writeByte(0xee);
+        writeInt(_activeChar instanceof L2SummonInstance ? 2 : _activeChar instanceof L2PetInstance ? 1 : 0);
+        writeInt(_activeChar.getObjectId());
+        writeInt(_effects.size());
         for (Effect temp : _effects) {
-            writeD(temp._skillId);
-            writeH(temp._dat);
-            writeD(temp._duration / 1000);
+            writeInt(temp._skillId);
+            writeShort(temp._dat);
+            writeInt(temp._duration / 1000);
         }
 
     }

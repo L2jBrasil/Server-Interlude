@@ -34,8 +34,8 @@ public class ExMailArrived extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xfe);
-		writeH(0x2d);
+		writeByte(0xfe);
+		writeShort(0x2d);
 		
 	}
 	

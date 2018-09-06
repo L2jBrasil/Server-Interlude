@@ -44,9 +44,9 @@ public class JoinParty extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x3a);
+		writeByte(0x3a);
 		
-		writeD(_response);
+		writeInt(_response);
 	}
 	
 	@Override

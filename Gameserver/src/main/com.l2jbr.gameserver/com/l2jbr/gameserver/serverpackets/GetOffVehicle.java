@@ -67,12 +67,12 @@ public class GetOffVehicle extends L2GameServerPacket
 			return;
 		}
 		
-		writeC(0x5d);
-		writeD(_activeChar.getObjectId());
-		writeD(_boat.getObjectId());
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
+		writeByte(0x5d);
+		writeInt(_activeChar.getObjectId());
+		writeInt(_boat.getObjectId());
+		writeInt(_x);
+		writeInt(_y);
+		writeInt(_z);
 		
 	}
 	

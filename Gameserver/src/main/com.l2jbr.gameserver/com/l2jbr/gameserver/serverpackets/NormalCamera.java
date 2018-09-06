@@ -30,7 +30,7 @@ public class NormalCamera extends L2GameServerPacket
 	@Override
 	public void writeImpl()
 	{
-		writeC(0xc8);
+		writeByte(0xc8);
 	}
 	
 	@Override

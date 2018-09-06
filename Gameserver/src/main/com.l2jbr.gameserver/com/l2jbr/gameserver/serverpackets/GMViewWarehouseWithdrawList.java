@@ -46,29 +46,29 @@ public class GMViewWarehouseWithdrawList extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x95);
-		writeS(_playerName);
-		writeD(_money);
-		writeH(_items.length);
+		writeByte(0x95);
+		writeString(_playerName);
+		writeInt(_money);
+		writeShort(_items.length);
 		
 		for (L2ItemInstance item : _items)
 		{
-			writeH(item.getItem().getType1().getId());
+			writeShort(item.getItem().getType1().getId());
 			
-			writeD(item.getObjectId());
-			writeD(item.getItemId());
-			writeD(item.getCount());
-			writeH(item.getItem().getType2().getId());
-			writeH(item.getCustomType1());
+			writeInt(item.getObjectId());
+			writeInt(item.getItemId());
+			writeInt(item.getCount());
+			writeShort(item.getItem().getType2().getId());
+			writeShort(item.getCustomType1());
 			
 			switch (item.getItem().getType2())
 			{
 				case TYPE2_WEAPON:
 				{
-					writeD(item.getItem().getBodyPart().getId());
-					writeH(item.getEnchantLevel());
-					writeH(((Weapon) item.getItem()).getSoulshots());
-					writeH(((Weapon) item.getItem()).getSpiritshots());
+					writeInt(item.getItem().getBodyPart().getId());
+					writeShort(item.getEnchantLevel());
+					writeShort(((Weapon) item.getItem()).getSoulshots());
+					writeShort(((Weapon) item.getItem()).getSpiritshots());
 					break;
 				}
 				
@@ -79,15 +79,15 @@ public class GMViewWarehouseWithdrawList extends L2GameServerPacket
 				case TYPE2_PET_STRIDER:
 				case TYPE2_PET_BABY:
 				{
-					writeD(item.getItem().getBodyPart().getId());
-					writeH(item.getEnchantLevel());
-					writeH(0x00);
-					writeH(0x00);
+					writeInt(item.getItem().getBodyPart().getId());
+					writeShort(item.getEnchantLevel());
+					writeShort(0x00);
+					writeShort(0x00);
 					break;
 				}
 			}
 			
-			writeD(item.getObjectId());
+			writeInt(item.getObjectId());
 			
 			switch (item.getItem().getType2())
 			{
@@ -95,13 +95,13 @@ public class GMViewWarehouseWithdrawList extends L2GameServerPacket
 				{
 					if (item.isAugmented())
 					{
-						writeD(0x0000FFFF & item.getAugmentation().getAugmentationId());
-						writeD(item.getAugmentation().getAugmentationId() >> 16);
+						writeInt(0x0000FFFF & item.getAugmentation().getAugmentationId());
+						writeInt(item.getAugmentation().getAugmentationId() >> 16);
 					}
 					else
 					{
-						writeD(0);
-						writeD(0);
+						writeInt(0);
+						writeInt(0);
 					}
 					
 					break;
@@ -114,8 +114,8 @@ public class GMViewWarehouseWithdrawList extends L2GameServerPacket
 				case TYPE2_PET_STRIDER:
 				case TYPE2_PET_BABY:
 				{
-					writeD(0);
-					writeD(0);
+					writeInt(0);
+					writeInt(0);
 				}
 			}
 		}

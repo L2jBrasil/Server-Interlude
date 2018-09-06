@@ -67,35 +67,35 @@ public class WareHouseDepositList extends L2GameServerPacket {
 
     @Override
     protected final void writeImpl() {
-        writeC(0x41);
+        writeByte(0x41);
         /*
          * 0x01-Private Warehouse 0x02-Clan Warehouse 0x03-Castle Warehouse 0x04-Warehouse
          */
-        writeH(_whType);
-        writeD(_playerAdena);
+        writeShort(_whType);
+        writeInt(_playerAdena);
         int count = _items.size();
         if (Config.DEBUG) {
             _log.debug("count:" + count);
         }
-        writeH(count);
+        writeShort(count);
 
         for (L2ItemInstance item : _items) {
-            writeH(item.getItem().getType1().getId()); // item type1 //unconfirmed, works
-            writeD(item.getObjectId()); // unconfirmed, works
-            writeD(item.getItemId()); // unconfirmed, works
-            writeD(item.getCount()); // unconfirmed, works
-            writeH(item.getItem().getType2().getId()); // item type2 //unconfirmed, works
-            writeH(0x00); // ? 100
-            writeD(item.getItem().getBodyPart().getId()); // ?
-            writeH(item.getEnchantLevel()); // enchant level -confirmed
-            writeH(0x00); // ? 300
-            writeH(0x00); // ? 200
-            writeD(item.getObjectId()); // item id - confimed
+            writeShort(item.getItem().getType1().getId()); // item type1 //unconfirmed, works
+            writeInt(item.getObjectId()); // unconfirmed, works
+            writeInt(item.getItemId()); // unconfirmed, works
+            writeInt(item.getCount()); // unconfirmed, works
+            writeShort(item.getItem().getType2().getId()); // item type2 //unconfirmed, works
+            writeShort(0x00); // ? 100
+            writeInt(item.getItem().getBodyPart().getId()); // ?
+            writeShort(item.getEnchantLevel()); // enchant level -confirmed
+            writeShort(0x00); // ? 300
+            writeShort(0x00); // ? 200
+            writeInt(item.getObjectId()); // item id - confimed
             if (item.isAugmented()) {
-                writeD(0x0000FFFF & item.getAugmentation().getAugmentationId());
-                writeD(item.getAugmentation().getAugmentationId() >> 16);
+                writeInt(0x0000FFFF & item.getAugmentation().getAugmentationId());
+                writeInt(item.getAugmentation().getAugmentationId() >> 16);
             } else {
-                writeQ(0x00);
+                writeLong(0x00);
             }
         }
     }

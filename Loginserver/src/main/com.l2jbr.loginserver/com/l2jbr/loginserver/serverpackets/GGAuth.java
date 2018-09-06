@@ -45,11 +45,11 @@ public final class GGAuth extends L2LoginServerPacket
 	@Override
 	protected void write()
 	{
-		writeC(0x0b);
-		writeD(_response);
-		writeD(0x00);
-		writeD(0x00);
-		writeD(0x00);
-		writeD(0x00);
+		writeByte(0x0b);
+		writeInt(_response);
+		writeInt(0x00);
+		writeInt(0x00);
+		writeInt(0x00);
+		writeInt(0x00);
 	}
 }

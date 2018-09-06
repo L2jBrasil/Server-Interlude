@@ -117,25 +117,25 @@ public class InventoryUpdate extends L2GameServerPacket {
 
     @Override
     protected final void writeImpl() {
-        writeC(0x27);
+        writeByte(0x27);
         int count = _items.size();
-        writeH(count);
+        writeShort(count);
         for (ItemInfo item : _items) {
-            writeH(item.getChange()); // Update type : 01-add, 02-modify, 03-remove
-            writeH(item.getItem().getType1().getId()); // Item Type 1 : 00-weapon/ring/earring/necklace, 01-armor/shield, 04-item/questitem/adena
+            writeShort(item.getChange()); // Update type : 01-add, 02-modify, 03-remove
+            writeShort(item.getItem().getType1().getId()); // Item Type 1 : 00-weapon/ring/earring/necklace, 01-armor/shield, 04-item/questitem/adena
 
-            writeD(item.getObjectId()); // ObjectId
-            writeD(item.getItem().getId()); // ItemId
-            writeD(item.getCount()); // Quantity
-            writeH(item.getItem().getType2().getId()); // Item Type 2 : 00-weapon, 01-shield/armor, 02-ring/earring/necklace, 03-questitem, 04-adena, 05-item
-            writeH(item.getCustomType1()); // Filler (always 0)
-            writeH(item.getEquipped()); // Equipped : 00-No, 01-yes
-            writeD(item.getItem().getBodyPart().getId()); // BodyPart : 0006-lr.ear, 0008-neck, 0030-lr.finger, 0040-head, 0100-l.hand, 0200-gloves, 0400-chest, 0800-pants, 1000-feet, 4000-r.hand, 8000-r.hand
-            writeH(item.getEnchant()); // Enchant level (pet level shown in control item)
-            writeH(item.getCustomType2()); // Pet name exists or not shown in control item
+            writeInt(item.getObjectId()); // ObjectId
+            writeInt(item.getItem().getId()); // ItemId
+            writeInt(item.getCount()); // Quantity
+            writeShort(item.getItem().getType2().getId()); // Item Type 2 : 00-weapon, 01-shield/armor, 02-ring/earring/necklace, 03-questitem, 04-adena, 05-item
+            writeShort(item.getCustomType1()); // Filler (always 0)
+            writeShort(item.getEquipped()); // Equipped : 00-No, 01-yes
+            writeInt(item.getItem().getBodyPart().getId()); // BodyPart : 0006-lr.ear, 0008-neck, 0030-lr.finger, 0040-head, 0100-l.hand, 0200-gloves, 0400-chest, 0800-pants, 1000-feet, 4000-r.hand, 8000-r.hand
+            writeShort(item.getEnchant()); // Enchant level (pet level shown in control item)
+            writeShort(item.getCustomType2()); // Pet name exists or not shown in control item
 
-            writeD(item.getAugemtationBoni());
-            writeD(item.getMana());
+            writeInt(item.getAugemtationBoni());
+            writeInt(item.getMana());
         }
     }
 

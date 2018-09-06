@@ -51,8 +51,8 @@ public class AuthLoginFail extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x14);
-		writeD(_reason);
+		writeByte(0x14);
+		writeInt(_reason);
 	}
 	
 	@Override

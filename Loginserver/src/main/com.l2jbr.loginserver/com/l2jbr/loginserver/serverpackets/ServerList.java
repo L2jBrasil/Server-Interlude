@@ -100,37 +100,37 @@ public final class ServerList extends L2LoginServerPacket
 	@Override
 	public void write()
 	{
-		writeC(0x04);
-		writeC(_servers.size());
-		writeC(_lastServer);
+		writeByte(0x04);
+		writeByte(_servers.size());
+		writeByte(_lastServer);
 		for (ServerData server : _servers)
 		{
-			writeC(server._serverId); // server id
+			writeByte(server._serverId); // server id
 			
 			try
 			{
 				InetAddress i4 = InetAddress.getByName(server._ip);
 				byte[] raw = i4.getAddress();
-				writeC(raw[0] & 0xff);
-				writeC(raw[1] & 0xff);
-				writeC(raw[2] & 0xff);
-				writeC(raw[3] & 0xff);
+				writeByte(raw[0] & 0xff);
+				writeByte(raw[1] & 0xff);
+				writeByte(raw[2] & 0xff);
+				writeByte(raw[3] & 0xff);
 			}
 			catch (UnknownHostException e)
 			{
 				e.printStackTrace();
-				writeC(127);
-				writeC(0);
-				writeC(0);
-				writeC(1);
+				writeByte(127);
+				writeByte(0);
+				writeByte(0);
+				writeByte(1);
 			}
 			
-			writeD(server._port);
-			writeC(0x00); // age limit
-			writeC(server._pvp ? 0x01 : 0x00);
-			writeH(server._currentPlayers);
-			writeH(server._maxPlayers);
-			writeC(server._status == ServerStatus.STATUS_DOWN ? 0x00 : 0x01);
+			writeInt(server._port);
+			writeByte(0x00); // age limit
+			writeByte(server._pvp ? 0x01 : 0x00);
+			writeShort(server._currentPlayers);
+			writeShort(server._maxPlayers);
+			writeByte(server._status == ServerStatus.STATUS_DOWN ? 0x00 : 0x01);
 			int bits = 0;
 			if (server._testServer)
 			{
@@ -140,8 +140,8 @@ public final class ServerList extends L2LoginServerPacket
 			{
 				bits |= 0x02;
 			}
-			writeD(bits);
-			writeC(server._brackets ? 0x01 : 0x00);
+			writeInt(bits);
+			writeByte(server._brackets ? 0x01 : 0x00);
 		}
 	}
 }

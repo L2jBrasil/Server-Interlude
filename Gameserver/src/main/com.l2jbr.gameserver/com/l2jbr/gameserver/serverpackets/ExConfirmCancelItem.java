@@ -37,14 +37,14 @@ public class ExConfirmCancelItem extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xfe);
-		writeH(0x56);
-		writeD(0x40A97712);
-		writeD(_itemObjId);
-		writeD(0x27);
-		writeD(0x2006);
-		writeQ(_price);
-		writeD(0x01);
+		writeByte(0xfe);
+		writeShort(0x56);
+		writeInt(0x40A97712);
+		writeInt(_itemObjId);
+		writeInt(0x27);
+		writeInt(0x2006);
+		writeLong(_price);
+		writeInt(0x01);
 	}
 	
 	@Override

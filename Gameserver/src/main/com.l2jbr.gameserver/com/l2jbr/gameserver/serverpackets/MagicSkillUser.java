@@ -64,22 +64,22 @@ public class MagicSkillUser extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x48);
-		writeD(_charObjId);
-		writeD(_targetId);
-		writeD(_skillId);
-		writeD(_skillLevel);
-		writeD(_hitTime);
-		writeD(_reuseDelay);
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
-		writeH(0x00); // unknown loop but not AoE
+		writeByte(0x48);
+		writeInt(_charObjId);
+		writeInt(_targetId);
+		writeInt(_skillId);
+		writeInt(_skillLevel);
+		writeInt(_hitTime);
+		writeInt(_reuseDelay);
+		writeInt(_x);
+		writeInt(_y);
+		writeInt(_z);
+		writeShort(0x00); // unknown loop but not AoE
 		// for()
 		// {
-		writeH(0x00);
-		writeH(0x00);
-		writeH(0x00);
+		writeShort(0x00);
+		writeShort(0x00);
+		writeShort(0x00);
 		// }
 	}
 	

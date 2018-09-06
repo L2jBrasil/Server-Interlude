@@ -36,10 +36,10 @@ public class ShortBuffStatusUpdate extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xF4);
-		writeD(_skillId);
-		writeD(_skillLvl);
-		writeD(_duration);
+		writeByte(0xF4);
+		writeInt(_skillId);
+		writeInt(_skillLvl);
+		writeInt(_duration);
 	}
 	
 	/*

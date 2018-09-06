@@ -50,17 +50,17 @@ public class ExFishingHpRegen extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xfe);
-		writeH(0x16);
+		writeByte(0xfe);
+		writeShort(0x16);
 		
-		writeD(_activeChar.getObjectId());
-		writeD(_time);
-		writeD(_fishHP);
-		writeC(_hpMode); // 0 = HP stop, 1 = HP raise
-		writeC(_goodUse); // 0 = none, 1 = success, 2 = failed
-		writeC(_anim); // Anim: 0 = none, 1 = reeling, 2 = pumping
-		writeD(_penalty); // Penalty
-		writeC(_hpBarColor); // 0 = normal hp bar, 1 = purple hp bar
+		writeInt(_activeChar.getObjectId());
+		writeInt(_time);
+		writeInt(_fishHP);
+		writeByte(_hpMode); // 0 = HP stop, 1 = HP raise
+		writeByte(_goodUse); // 0 = none, 1 = success, 2 = failed
+		writeByte(_anim); // Anim: 0 = none, 1 = reeling, 2 = pumping
+		writeInt(_penalty); // Penalty
+		writeByte(_hpBarColor); // 0 = normal hp bar, 1 = purple hp bar
 		
 	}
 	

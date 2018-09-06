@@ -130,4 +130,6 @@ public abstract class ReceivablePacket<T> extends AbstractPacket<T> implements R
         }
 	    return new String(data, start, dataIndex-1, Charset.forName("ISO-8859-1"));
 	}
+
+    private static int pickShift(int top, int pos) { return isBigEndian ? top - pos : pos; }
 }

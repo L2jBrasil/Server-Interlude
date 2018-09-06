@@ -56,17 +56,17 @@ public class SignsSky extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xf8);
+		writeByte(0xf8);
 		
 		if (_state == 2)
 		{
-			writeH(258);
+			writeShort(258);
 		}
 		else if (_state == 1)
 		{
-			writeH(257);
+			writeShort(257);
 			// else
-			// writeH(256);
+			// writeShort(256);
 		}
 	}
 	

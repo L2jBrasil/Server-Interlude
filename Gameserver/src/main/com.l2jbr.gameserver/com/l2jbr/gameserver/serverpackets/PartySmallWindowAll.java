@@ -39,29 +39,29 @@ public class PartySmallWindowAll extends L2GameServerPacket {
 
     @Override
     protected final void writeImpl() {
-        writeC(0x4e);
+        writeByte(0x4e);
         L2PcInstance player = getClient().getActiveChar();
-        writeD(_partyMembers.get(0).getObjectId()); // c3 party leader id
-        writeD(_partyMembers.get(0).getParty().getLootDistribution());// c3 party loot type (0,1,2,....)
-        writeD(_partyMembers.size() - 1);
+        writeInt(_partyMembers.get(0).getObjectId()); // c3 party leader id
+        writeInt(_partyMembers.get(0).getParty().getLootDistribution());// c3 party loot type (0,1,2,....)
+        writeInt(_partyMembers.size() - 1);
 
         for (int i = 0; i < _partyMembers.size(); i++) {
             L2PcInstance member = _partyMembers.get(i);
             if (!member.equals(player)) {
-                writeD(member.getObjectId());
-                writeS(member.getName());
+                writeInt(member.getObjectId());
+                writeString(member.getName());
 
-                writeD((int) member.getCurrentCp()); // c4
-                writeD(member.getMaxCp()); // c4
+                writeInt((int) member.getCurrentCp()); // c4
+                writeInt(member.getMaxCp()); // c4
 
-                writeD((int) member.getCurrentHp());
-                writeD(member.getMaxHp());
-                writeD((int) member.getCurrentMp());
-                writeD(member.getMaxMp());
-                writeD(member.getLevel());
-                writeD(member.getPlayerClass().getId());
-                writeD(0);// writeD(0x01); ??
-                writeD(0);
+                writeInt((int) member.getCurrentHp());
+                writeInt(member.getMaxHp());
+                writeInt((int) member.getCurrentMp());
+                writeInt(member.getMaxMp());
+                writeInt(member.getLevel());
+                writeInt(member.getPlayerClass().getId());
+                writeInt(0);// writeInt(0x01); ??
+                writeInt(0);
             }
         }
     }

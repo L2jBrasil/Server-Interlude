@@ -62,32 +62,32 @@ public class QuestList extends L2GameServerPacket
 		 */
 		if ((_quests == null) || (_quests.length == 0))
 		{
-			writeC(0x80);
-			writeH(0);
-			writeH(0);
+			writeByte(0x80);
+			writeShort(0);
+			writeShort(0);
 			return;
 		}
 		
-		writeC(0x80);
-		writeH(_quests.length);
+		writeByte(0x80);
+		writeShort(_quests.length);
 		for (Quest q : _quests)
 		{
-			writeD(q.getQuestIntId());
+			writeInt(q.getQuestIntId());
 			QuestState qs = _activeChar.getQuestState(q.getName());
 			if (qs == null)
 			{
-				writeD(0);
+				writeInt(0);
 				continue;
 			}
 			
 			int states = qs.getInt("__compltdStateFlags");
 			if (states != 0)
 			{
-				writeD(states);
+				writeInt(states);
 			}
 			else
 			{
-				writeD(qs.getInt("cond"));
+				writeInt(qs.getInt("cond"));
 			}
 		}
 	}

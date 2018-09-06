@@ -37,13 +37,13 @@ public class ConfirmDlg extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xed);
-		writeD(_requestId);
-		writeD(0x02); // ??
-		writeD(0x00); // ??
-		writeS(_name);
-		writeD(0x01); // ??
-		writeD(0x00); // ??
+		writeByte(0xed);
+		writeInt(_requestId);
+		writeInt(0x02); // ??
+		writeInt(0x00); // ??
+		writeString(_name);
+		writeInt(0x01); // ??
+		writeInt(0x00); // ??
 	}
 	
 	/*

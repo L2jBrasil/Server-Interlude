@@ -67,41 +67,41 @@ public class RecipeShopManageList extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xd8);
-		writeD(_seller.getObjectId());
-		writeD(_seller.getAdena());
-		writeD(_isDwarven ? 0x00 : 0x01);
+		writeByte(0xd8);
+		writeInt(_seller.getObjectId());
+		writeInt(_seller.getAdena());
+		writeInt(_isDwarven ? 0x00 : 0x01);
 		
 		if (_recipes == null)
 		{
-			writeD(0);
+			writeInt(0);
 		}
 		else
 		{
-			writeD(_recipes.length);// number of items in recipe book
+			writeInt(_recipes.length);// number of items in recipe book
 			
 			for (int i = 0; i < _recipes.length; i++)
 			{
 				L2RecipeList temp = _recipes[i];
-				writeD(temp.getId());
-				writeD(i + 1);
+				writeInt(temp.getId());
+				writeInt(i + 1);
 			}
 		}
 		
 		if (_seller.getCreateList() == null)
 		{
-			writeD(0);
+			writeInt(0);
 		}
 		else
 		{
 			L2ManufactureList list = _seller.getCreateList();
-			writeD(list.size());
+			writeInt(list.size());
 			
 			for (L2ManufactureItem item : list.getList())
 			{
-				writeD(item.getRecipeId());
-				writeD(0x00);
-				writeD(item.getCost());
+				writeInt(item.getRecipeId());
+				writeInt(0x00);
+				writeInt(item.getCost());
 			}
 		}
 	}

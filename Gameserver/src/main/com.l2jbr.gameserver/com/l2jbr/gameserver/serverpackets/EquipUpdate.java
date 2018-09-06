@@ -47,9 +47,9 @@ public class EquipUpdate extends L2GameServerPacket
 	protected final void writeImpl()
 	{
 		int bodypart = 0;
-		writeC(0x4b);
-		writeD(_change);
-		writeD(_item.getObjectId());
+		writeByte(0x4b);
+		writeInt(_change);
+		writeInt(_item.getObjectId());
 		switch (_item.getItem().getBodyPart())
 		{
 			case LEFT_EAR:
@@ -103,7 +103,7 @@ public class EquipUpdate extends L2GameServerPacket
 		{
 			_log.debug("body:" + bodypart);
 		}
-		writeD(bodypart);
+		writeInt(bodypart);
 	}
 	
 	/*

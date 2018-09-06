@@ -43,7 +43,7 @@ public class ExOlympiadUserInfo extends L2GameServerPacket
 	{
 		// TODO: Implement.
 		/*
-		 * writeC(0xfe); writeH(0x2c); writeD(_activeChar.getObjectId()); writeS(_activeChar.getName()); writeD(_activeChar.getPlayerClass().getId()); writeD((int)_activeChar.getCurrentHp()); writeD(_activeChar.getMaxHp()); writeD((int)_activeChar.getCurrentCp()); writeD(_activeChar.getMaxCp());
+		 * writeByte(0xfe); writeShort(0x2c); writeInt(_activeChar.getObjectId()); writeString(_activeChar.getName()); writeInt(_activeChar.getPlayerClass().getId()); writeInt((int)_activeChar.getCurrentHp()); writeInt(_activeChar.getMaxHp()); writeInt((int)_activeChar.getCurrentCp()); writeInt(_activeChar.getMaxCp());
 		 */
 	}
 	

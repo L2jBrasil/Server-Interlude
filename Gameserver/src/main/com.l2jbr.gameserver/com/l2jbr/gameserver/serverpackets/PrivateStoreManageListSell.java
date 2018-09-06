@@ -48,40 +48,40 @@ public class PrivateStoreManageListSell extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x9a);
+		writeByte(0x9a);
 		// section 1
-		writeD(_activeChar.getObjectId());
-		writeD(_packageSale ? 1 : 0); // Package sell
-		writeD(_playerAdena);
+		writeInt(_activeChar.getObjectId());
+		writeInt(_packageSale ? 1 : 0); // Package sell
+		writeInt(_playerAdena);
 		
 		// section2
-		writeD(_itemList.length); // for potential sells
+		writeInt(_itemList.length); // for potential sells
 		for (TradeList.TradeItem item : _itemList)
 		{
-			writeD(item.getItem().getType2().getId());
-			writeD(item.getObjectId());
-			writeD(item.getItem().getId());
-			writeD(item.getCount());
-			writeH(0);
-			writeH(item.getEnchant());// enchant lvl
-			writeH(0);
-			writeD(item.getItem().getBodyPart().getId());
-			writeD(item.getPrice()); // store price
+			writeInt(item.getItem().getType2().getId());
+			writeInt(item.getObjectId());
+			writeInt(item.getItem().getId());
+			writeInt(item.getCount());
+			writeShort(0);
+			writeShort(item.getEnchant());// enchant lvl
+			writeShort(0);
+			writeInt(item.getItem().getBodyPart().getId());
+			writeInt(item.getPrice()); // store price
 		}
 		// section 3
-		writeD(_sellList.length); // count for any items already added for sell
+		writeInt(_sellList.length); // count for any items already added for sell
 		for (TradeList.TradeItem item : _sellList)
 		{
-			writeD(item.getItem().getType2().getId());
-			writeD(item.getObjectId());
-			writeD(item.getItem().getId());
-			writeD(item.getCount());
-			writeH(0);
-			writeH(item.getEnchant());// enchant lvl
-			writeH(0x00);
-			writeD(item.getItem().getBodyPart().getId());
-			writeD(item.getPrice());// your price
-			writeD(item.getItem().getPrice()); // store price
+			writeInt(item.getItem().getType2().getId());
+			writeInt(item.getObjectId());
+			writeInt(item.getItem().getId());
+			writeInt(item.getCount());
+			writeShort(0);
+			writeShort(item.getEnchant());// enchant lvl
+			writeShort(0x00);
+			writeInt(item.getItem().getBodyPart().getId());
+			writeInt(item.getPrice());// your price
+			writeInt(item.getItem().getPrice()); // store price
 		}
 	}
 	

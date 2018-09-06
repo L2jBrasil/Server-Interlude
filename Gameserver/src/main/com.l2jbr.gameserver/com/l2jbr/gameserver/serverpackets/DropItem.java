@@ -45,26 +45,26 @@ public class DropItem extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x0c);
-		writeD(_charObjId);
-		writeD(_item.getObjectId());
-		writeD(_item.getItemId());
+		writeByte(0x0c);
+		writeInt(_charObjId);
+		writeInt(_item.getObjectId());
+		writeInt(_item.getItemId());
 		
-		writeD(_item.getX());
-		writeD(_item.getY());
-		writeD(_item.getZ());
+		writeInt(_item.getX());
+		writeInt(_item.getY());
+		writeInt(_item.getZ());
 		// only show item count if it is a stackable item
 		if (_item.isStackable())
 		{
-			writeD(0x01);
+			writeInt(0x01);
 		}
 		else
 		{
-			writeD(0x00);
+			writeInt(0x00);
 		}
-		writeD(_item.getCount());
+		writeInt(_item.getCount());
 		
-		writeD(1); // unknown
+		writeInt(1); // unknown
 	}
 	
 	/*

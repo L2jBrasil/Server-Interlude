@@ -47,13 +47,13 @@ public class StopMoveInVehicle extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0x72);
-		writeD(_activeChar.getObjectId());
-		writeD(_boatId);
-		writeD(_activeChar.getInBoatPosition().getX());
-		writeD(_activeChar.getInBoatPosition().getY());
-		writeD(_activeChar.getInBoatPosition().getZ());
-		writeD(_activeChar.getPosition().getHeading());
+		writeByte(0x72);
+		writeInt(_activeChar.getObjectId());
+		writeInt(_boatId);
+		writeInt(_activeChar.getInBoatPosition().getX());
+		writeInt(_activeChar.getInBoatPosition().getY());
+		writeInt(_activeChar.getInBoatPosition().getZ());
+		writeInt(_activeChar.getPosition().getHeading());
 	}
 	
 	/*

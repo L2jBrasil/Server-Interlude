@@ -42,7 +42,7 @@ public class PartyMatchList extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x96);
+		writeByte(0x96);
 		
 		int size = _matchingPlayers.length;
 		if (size > 40)
@@ -50,19 +50,19 @@ public class PartyMatchList extends L2GameServerPacket
 			size = 40; // the client only displays 40 players, so we also limit the list to 40
 		}
 		
-		writeD(size);
+		writeInt(size);
 		for (int i = 0; i < size; i++)
 		{
-			writeD(_matchingPlayers[i].getObjectId());
-			writeS(_matchingPlayers[i].getName());
-			writeD(_matchingPlayers[i].getLevel());
-			writeD(_matchingPlayers[i].getPlayerClass().getId());
-			writeD(00); // 00 -white name 01-red name
-			writeD(_matchingPlayers[i].getClanId());
-			writeD(00); // 00 - no affil 01-party 02-party pending 03-
-			writeD(_matchingPlayers[i].getX());
-			writeD(_matchingPlayers[i].getY());
-			writeD(_matchingPlayers[i].getZ());
+			writeInt(_matchingPlayers[i].getObjectId());
+			writeString(_matchingPlayers[i].getName());
+			writeInt(_matchingPlayers[i].getLevel());
+			writeInt(_matchingPlayers[i].getPlayerClass().getId());
+			writeInt(00); // 00 -white name 01-red name
+			writeInt(_matchingPlayers[i].getClanId());
+			writeInt(00); // 00 - no affil 01-party 02-party pending 03-
+			writeInt(_matchingPlayers[i].getX());
+			writeInt(_matchingPlayers[i].getY());
+			writeInt(_matchingPlayers[i].getZ());
 		}
 	}
 	
