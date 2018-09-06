@@ -22,23 +22,8 @@ package com.l2jbr.mmocore;
  * @author KenM
  * @param <T>
  */
-public abstract class SendablePacket<T extends MMOClient<?>> extends AbstractPacket<T>
-{
-	protected final void putInt(final int value)
-	{
-		_buf.putInt(value);
-	}
-	
-	protected final void putDouble(final double value)
-	{
-		_buf.putDouble(value);
-	}
-	
-	protected final void putFloat(final float value)
-	{
-		_buf.putFloat(value);
-	}
-	
+public abstract class SendablePacket<T> extends AbstractPacket<T> {
+
 	/**
 	 * Write <B>byte</B> to the buffer. <BR>
 	 * 8bit integer (00)
@@ -46,7 +31,7 @@ public abstract class SendablePacket<T extends MMOClient<?>> extends AbstractPac
 	 */
 	protected final void writeC(final int data)
 	{
-		_buf.put((byte) data);
+		writingBuffer.put((byte) data);
 	}
 	
 	
@@ -57,7 +42,7 @@ public abstract class SendablePacket<T extends MMOClient<?>> extends AbstractPac
 	 */
 	protected final void writeF(final double value)
 	{
-		_buf.putDouble(value);
+		writingBuffer.putDouble(value);
 	}
 	
 	/**
@@ -67,7 +52,7 @@ public abstract class SendablePacket<T extends MMOClient<?>> extends AbstractPac
 	 */
 	protected final void writeH(final int value)
 	{
-		_buf.putShort((short) value);
+		writingBuffer.putShort((short) value);
 	}
 	
 	/**
@@ -77,7 +62,7 @@ public abstract class SendablePacket<T extends MMOClient<?>> extends AbstractPac
 	 */
 	protected final void writeD(final int value)
 	{
-		_buf.putInt(value);
+		writingBuffer.putInt(value);
 	}
 	
 	/**
@@ -87,7 +72,7 @@ public abstract class SendablePacket<T extends MMOClient<?>> extends AbstractPac
 	 */
 	protected final void writeQ(final long value)
 	{
-		_buf.putLong(value);
+		writingBuffer.putLong(value);
 	}
 	
 	/**
@@ -97,7 +82,7 @@ public abstract class SendablePacket<T extends MMOClient<?>> extends AbstractPac
 	 */
 	protected final void writeB(final byte[] data)
 	{
-		_buf.put(data);
+		writingBuffer.put(data);
 	}
 	
 	/**
@@ -111,11 +96,11 @@ public abstract class SendablePacket<T extends MMOClient<?>> extends AbstractPac
 			final int len = text.length();
 			for (int i = 0; i < len; i++)
 			{
-				_buf.putChar(text.charAt(i));
+				writingBuffer.putChar(text.charAt(i));
 			}
 		}
 		
-		_buf.putChar('\000');
+		writingBuffer.putChar('\000');
 	}
 	
 	protected abstract void write();

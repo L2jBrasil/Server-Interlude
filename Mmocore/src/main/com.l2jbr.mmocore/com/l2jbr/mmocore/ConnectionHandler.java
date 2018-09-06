@@ -21,14 +21,16 @@ public final class ConnectionHandler<T extends AsyncMMOClient<AsyncMMOConnection
     private final IPacketHandler<T>  packetHandler;
     private final ClientFactory<T> clientFactory;
     private final ReadHandler<T> readHandler;
+    private final boolean useNagle;
     private boolean shutdown;
 
 
-    public ConnectionHandler(InetSocketAddress address, int threadPoolSize, ClientFactory<T> clientFactory, IPacketHandler<T> packetHandler, IMMOExecutor<T> executor)
+    public ConnectionHandler(InetSocketAddress address, boolean useNagle, int threadPoolSize, ClientFactory<T> clientFactory, IPacketHandler<T> packetHandler, IMMOExecutor<T> executor)
             throws IOException {
         this.clientFactory = clientFactory;
         this.packetHandler = packetHandler;
         this.executor = executor;
+        this.useNagle = useNagle;
 
         this.readHandler = new ReadHandler<>(packetHandler, executor);
         this.writeHandler = new WriteHandler<>();
@@ -70,7 +72,7 @@ public final class ConnectionHandler<T extends AsyncMMOClient<AsyncMMOConnection
     private void acceptConnection(AsynchronousSocketChannel channel) {
         if(nonNull(channel) && channel.isOpen()) {
             try {
-                channel.setOption(StandardSocketOptions.TCP_NODELAY, false);
+                channel.setOption(StandardSocketOptions.TCP_NODELAY, !useNagle);
             } catch (Exception e) {
 
             }

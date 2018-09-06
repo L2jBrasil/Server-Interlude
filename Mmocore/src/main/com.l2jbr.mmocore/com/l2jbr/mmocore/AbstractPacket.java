@@ -18,15 +18,15 @@
 package com.l2jbr.mmocore;
 
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 
+public abstract class AbstractPacket<T> {
 
-/**
- * @author KenM
- * @param <T>
- */
-public abstract class AbstractPacket<T>
-{
-	protected ByteBuffer _buf;
+    static boolean isBigEndian = ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN;
+    byte[] data;
+    int dataIndex;
+
+    ByteBuffer writingBuffer;
 	
 	protected T _client;
 	
@@ -34,4 +34,14 @@ public abstract class AbstractPacket<T>
 	{
 		return _client;
 	}
+
+    static int pickShift(int top, int pos) { return isBigEndian ? top - pos : pos; }
+
+    static short convertEndian(short n) { return !isBigEndian ? n : Short.reverseBytes(n); }
+
+    static char convertEndian(char n) { return !isBigEndian ? n : Character.reverseBytes(n); }
+
+    static int convertEndian(int n) { return !isBigEndian ? n : Integer.reverseBytes(n); }
+
+    static long convertEndian(long n) { return !isBigEndian ? n : Long.reverseBytes(n); }
 }

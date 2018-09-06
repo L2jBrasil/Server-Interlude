@@ -1,7 +1,5 @@
 package com.l2jbr.mmocore;
 
-import java.nio.ByteBuffer;
-
 public abstract class AsyncMMOClient<T extends  AsyncMMOConnection<?>> {
 
     private final T connection;
@@ -14,8 +12,11 @@ public abstract class AsyncMMOClient<T extends  AsyncMMOConnection<?>> {
         return connection;
     }
 
-    public abstract boolean decrypt(final ByteBuffer buf, final int size);
-    public abstract boolean encrypt(final ByteBuffer buf, final int size);
-    protected abstract void onDisconnection();
+    public void sendPacket(SendablePacket<T> packet) {
+        connection.write(packet.data);
+    }
 
+    public abstract boolean decrypt(byte[] data);
+    public abstract boolean encrypt(byte[] data);
+    protected abstract void onDisconnection();
 }

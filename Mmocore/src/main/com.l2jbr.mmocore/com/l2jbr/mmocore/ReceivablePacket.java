@@ -17,16 +17,15 @@
  */
 package com.l2jbr.mmocore;
 
-/**
- * @author KenM
- * @param <T>
- */
+import java.nio.charset.Charset;
+
+import static java.lang.Byte.toUnsignedInt;
+import static java.lang.Byte.toUnsignedLong;
+import static java.lang.Double.longBitsToDouble;
+
 public abstract class ReceivablePacket<T> extends AbstractPacket<T> implements Runnable {
 
-	protected ReceivablePacket()
-	{
-		
-	}
+	protected ReceivablePacket() { }
 	
 	protected abstract boolean read();
 	
@@ -34,36 +33,42 @@ public abstract class ReceivablePacket<T> extends AbstractPacket<T> implements R
 	public abstract void run();
 	
 	/**
-	 * Reads <B>byte[]</B> from the buffer. <BR>
+	 *
 	 * Reads as many bytes as the length of the array.
 	 * @param dst : the byte array which will be filled with the data.
 	 */
-	protected final void readBytes(final byte[] dst)
-	{
-		_buf.get(dst);
+	protected final void readBytes(final byte[] dst) {
+	    readBytes(dst,0, dst.length);
 	}
 	
 	/**
-	 * Reads <B>byte[]</B> from the buffer. <BR>
+	 *
 	 * Reads as many bytes as the given length (len). Starts to fill the
 	 * byte array from the given offset to <B>offset</B> + <B>len</B>.
 	 * @param dst : the byte array which will be filled with the data.
 	 * @param offset : starts to fill the byte array from the given offset.
-	 * @param len : the given length of bytes to be read.
+	 * @param length : the given length of bytes to be read.
 	 */
-	protected final void readBytes(final byte[] dst, final int offset, final int len)
-	{
-		_buf.get(dst, offset, len);
+	protected final void readBytes(final byte[] dst, final int offset, final int length) {
+		System.arraycopy(data, dataIndex, dst, offset, length);
+	    dataIndex += length;
 	}
+
+    /**
+     * Reads raw <B>byte</B> from the buffer
+     * @return
+     */
+	protected final byte readByte() {
+	    return data[dataIndex++];
+    }
 	
 	/**
 	 * Reads <B>byte</B> from the buffer. <BR>
 	 * 8bit integer (00)
 	 * @return
 	 */
-	protected final int readChar()
-	{
-		return _buf.get() & 0xFF;
+	protected final int readChar() {
+		return toUnsignedInt(data[dataIndex++]);
 	}
 	
 	/**
@@ -71,9 +76,9 @@ public abstract class ReceivablePacket<T> extends AbstractPacket<T> implements R
 	 * 16bit integer (00 00)
 	 * @return
 	 */
-	protected final int readShort()
-	{
-		return _buf.getShort() & 0xFFFF;
+	protected final int readShort()  {
+		return convertEndian((short) (readChar() << pickShift(8, 0) |
+                                      readChar() << pickShift(8, 8)));
 	}
 	
 	/**
@@ -81,9 +86,12 @@ public abstract class ReceivablePacket<T> extends AbstractPacket<T> implements R
 	 * 32bit integer (00 00 00 00)
 	 * @return
 	 */
-	protected final int readInt()
-	{
-		return _buf.getInt();
+	protected final int readInt() {
+        return convertEndian(readChar() << pickShift(24, 0)  |
+                                readChar() << pickShift(24, 8)  |
+                                readChar() << pickShift(24, 16) |
+                                readChar() << pickShift(24, 24) );
+
 	}
 	
 	/**
@@ -91,9 +99,15 @@ public abstract class ReceivablePacket<T> extends AbstractPacket<T> implements R
 	 * 64bit integer (00 00 00 00 00 00 00 00)
 	 * @return
 	 */
-	protected final long readLong()
-	{
-		return _buf.getLong();
+	protected final long readLong() {
+		return convertEndian(toUnsignedLong(readByte()) << pickShift(56, 0)  |
+                                toUnsignedLong(readByte()) << pickShift(56, 8)  |
+                                toUnsignedLong(readByte()) << pickShift(56, 16) |
+                                toUnsignedLong(readByte()) << pickShift(56, 24) |
+                                toUnsignedLong(readByte()) << pickShift(56, 32) |
+                                toUnsignedLong(readByte()) << pickShift(56,40)  |
+                                toUnsignedLong(readByte()) << pickShift(56, 48) |
+                                toUnsignedLong(readByte()) << pickShift(56, 56) );
 	}
 	
 	/**
@@ -101,9 +115,8 @@ public abstract class ReceivablePacket<T> extends AbstractPacket<T> implements R
 	 * 64bit double precision float (00 00 00 00 00 00 00 00)
 	 * @return
 	 */
-	protected final double readDouble()
-	{
-		return _buf.getDouble();
+	protected final double readDouble() {
+	    return longBitsToDouble(readLong());
 	}
 	
 	/**
@@ -111,17 +124,10 @@ public abstract class ReceivablePacket<T> extends AbstractPacket<T> implements R
 	 * @return
 	 */
 	protected final String readString()  {
-        var _sbuf = ResourcePool.getPooledStringBuffer();
-
-	    try {
-            char ch;
-            while ((ch = _buf.getChar()) != 0) {
-                _sbuf.append(ch);
-            }
-
-            return _sbuf.toString();
-        } finally {
-	        ResourcePool.recycleStringBuffer(_sbuf);
+	    int start = dataIndex;
+	    while (dataIndex < data.length && data[dataIndex] != '\000') {
+            dataIndex++;
         }
+	    return new String(data, start, dataIndex-1, Charset.forName("ISO-8859-1"));
 	}
 }

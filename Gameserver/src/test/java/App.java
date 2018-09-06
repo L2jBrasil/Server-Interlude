@@ -19,7 +19,7 @@ public class App {
     }
 
     private void start() throws IOException {
-        connectionHandler = new ConnectionHandler<>(new InetSocketAddress(8585), 10, new L2AsyncGameClientClientFactory(), new L2AsyncGameClientPacketHandler(), new L2AsyncGameClientIMMOExecutor());
+        connectionHandler = new ConnectionHandler<>(new InetSocketAddress(8585), false,10, new L2AsyncGameClientClientFactory(), new L2AsyncGameClientPacketHandler(), new L2AsyncGameClientIMMOExecutor());
         connectionHandler.start();
     }
 
@@ -30,12 +30,12 @@ public class App {
         }
 
         @Override
-        public boolean decrypt(ByteBuffer buf, int size) {
+        public boolean decrypt(byte[] data) {
             return false;
         }
 
         @Override
-        public boolean encrypt(ByteBuffer buf, int size) {
+        public boolean encrypt(byte[] data) {
             return false;
         }
 

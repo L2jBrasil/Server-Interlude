@@ -23,7 +23,7 @@ class ReadHandler<T extends AsyncMMOClient<AsyncMMOConnection<T>>> implements Co
         if(bytesRead < 0 ) {
             //Client disconnected.
             ResourcePool.recycleBuffer(connection.getReadingBuffer());
-            connection.dropReadingBuffer();
+            connection.releaseReadingBuffer();
             client.onDisconnection();
             return;
         }
@@ -57,31 +57,30 @@ class ReadHandler<T extends AsyncMMOClient<AsyncMMOConnection<T>>> implements Co
         if(!buffer.hasRemaining()) {
             // No other packet had already come. so recycle it.
             ResourcePool.recycleBuffer(buffer);
-            connection.dropReadingBuffer();
+            connection.releaseReadingBuffer();
         }
     }
 
     private void parseAndExecutePacket(T client, ByteBuffer buffer, int dataSize) {
-        var decripted = client.decrypt(buffer, dataSize);
+        byte[] data = new byte[dataSize];
 
-        if(decripted && buffer.hasRemaining()) {
-            // Set buffer limit to handle only the current packet.
-            var  limit = buffer.limit();
-            buffer.limit(buffer.position() + dataSize);
-            var packet = packetHandler.handlePacket(buffer, client);
-            execute(client, packet, buffer);
-            buffer.limit(limit);
+        buffer.get(data, 0, dataSize);
+        var decripted = client.decrypt(data);
+
+        if(decripted) {
+            var packet = packetHandler.handlePacket(data, client);
+            execute(client, packet, data);
         }
     }
 
-    private void execute(T client, ReceivablePacket<T> packet, ByteBuffer buffer) {
+    private void execute(T client, ReceivablePacket<T> packet, byte[] data) {
         if(nonNull(packet)) {
-            packet._buf = buffer;
             packet._client = client;
+            packet.data = data;
             if(packet.read()) {
                 executor.execute(packet);
             }
-            packet._buf = null;
+            packet.writingBuffer = null;
         }
      }
 
@@ -89,7 +88,7 @@ class ReadHandler<T extends AsyncMMOClient<AsyncMMOConnection<T>>> implements Co
     public void failed(Throwable exc, T client) {
         var connection = client.getConnection();
         ResourcePool.recycleBuffer(connection.getReadingBuffer());
-        connection.dropReadingBuffer();
+        connection.releaseReadingBuffer();
         client.onDisconnection();
     }
 }
