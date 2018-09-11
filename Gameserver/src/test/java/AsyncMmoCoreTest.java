@@ -5,15 +5,16 @@ import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.util.concurrent.ExecutionException;
 
-public class App {
+public class AsyncMmoCoreTest {
 
     ConnectionHandler<L2AsyncGameClient> connectionHandler;
 
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
-        App app = new App();
+        AsyncMmoCoreTest app = new AsyncMmoCoreTest();
         app.start();
 
         AsyncClient client = AsyncClient.from(8585);
+        client.ping();
         client.ping();
     }
 
@@ -58,8 +59,8 @@ public class App {
         }
 
         @Override
-        public ReceivablePacket<L2AsyncGameClient> handlePacket(byte[] data, L2AsyncGameClient client) {
-            var opcode =  Byte.toUnsignedInt(data[0]);
+        public ReceivablePacket<L2AsyncGameClient> handlePacket(DataWrapper wrapper, L2AsyncGameClient client) {
+            var opcode = Byte.toUnsignedInt(wrapper.get());
             ReceivablePacket<L2AsyncGameClient> packet = null;
             switch (opcode) {
                 case 0x01:
@@ -85,7 +86,6 @@ public class App {
 
         @Override
         protected boolean read() {
-            readByte(); // readopcode
             esperadob = readByte();
             esperadoc = readChar();
             esperados = readShort();

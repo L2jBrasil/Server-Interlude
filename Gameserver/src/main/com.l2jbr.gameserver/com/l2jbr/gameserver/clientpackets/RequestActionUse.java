@@ -50,7 +50,7 @@ public final class RequestActionUse extends L2GameClientPacket
 	{
 		_actionId = readInt();
 		_ctrlPressed = (readInt() == 1);
-		_shiftPressed = (readUnsigned() == 1);
+		_shiftPressed = (readUnsignedByte() == 1);
 	}
 	
 	@Override

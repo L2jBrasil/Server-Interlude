@@ -76,7 +76,7 @@ public abstract class ReceivablePacket<T> extends AbstractPacket<T> implements R
      * 8bit integer (00)
      * @return
      */
-	protected final int readUnsigned() {
+	protected final int readUnsignedByte() {
 		return toUnsignedInt(data[dataIndex++]);
 	}
 	
@@ -86,8 +86,8 @@ public abstract class ReceivablePacket<T> extends AbstractPacket<T> implements R
 	 * @return
 	 */
 	protected final short readShort()  {
-		return convertEndian((short) (readUnsigned() << pickShift(8, 0) |
-                                      readUnsigned() << pickShift(8, 8)));
+		return convertEndian((short) (readUnsignedByte() << pickShift(8, 0) |
+                                      readUnsignedByte() << pickShift(8, 8)));
 	}
 	
 	/**
@@ -96,10 +96,10 @@ public abstract class ReceivablePacket<T> extends AbstractPacket<T> implements R
 	 * @return
 	 */
 	protected final int readInt() {
-        return convertEndian(readUnsigned() << pickShift(24, 0)  |
-                                readUnsigned() << pickShift(24, 8)  |
-                                readUnsigned() << pickShift(24, 16) |
-                                readUnsigned() << pickShift(24, 24) );
+        return convertEndian(readUnsignedByte() << pickShift(24, 0)  |
+                                readUnsignedByte() << pickShift(24, 8)  |
+                                readUnsignedByte() << pickShift(24, 16) |
+                                readUnsignedByte() << pickShift(24, 24) );
 
 	}
 	

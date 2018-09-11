@@ -24,7 +24,7 @@ public class ReadHandler<T extends AsyncMMOClient<AsyncMMOConnection<T>>> implem
             //Client disconnected.
             ResourcePool.recycleBuffer(connection.getReadingBuffer());
             connection.releaseReadingBuffer();
-            client.onDisconnection();
+            client.disconnected();
             return;
         }
 
@@ -49,16 +49,22 @@ public class ReadHandler<T extends AsyncMMOClient<AsyncMMOConnection<T>>> implem
         }
 
         if(dataSize > 0) {
-            final int pos = buffer.position();
             parseAndExecutePacket(client, buffer, dataSize);
-            buffer.position(pos + dataSize);
         }
 
         if(!buffer.hasRemaining()) {
             // No other packet had already come. so recycle it.
             ResourcePool.recycleBuffer(buffer);
             connection.releaseReadingBuffer();
+        } else {
+            buffer.compact();
+            if(buffer.remaining() >= HEADER_SIZE) {
+                completed(buffer.remaining(), client);
+                return;
+            }
         }
+        // We need to keep reading ?
+        connection.read();
     }
 
     private void parseAndExecutePacket(T client, ByteBuffer buffer, int dataSize) {
@@ -68,27 +74,25 @@ public class ReadHandler<T extends AsyncMMOClient<AsyncMMOConnection<T>>> implem
         var decripted = client.decrypt(data);
 
         if(decripted) {
-            var packet = packetHandler.handlePacket(data, client);
-            execute(client, packet, data);
+            DataWrapper wrapper = DataWrapper.wrap(data);
+            var packet = packetHandler.handlePacket(wrapper, client);
+            execute(client, packet, wrapper);
         }
     }
 
-    private void execute(T client, ReceivablePacket<T> packet, byte[] data) {
+    private void execute(T client, ReceivablePacket<T> packet, DataWrapper wrapper) {
         if(nonNull(packet)) {
             packet._client = client;
-            packet.data = data;
+            packet.data = wrapper.data;
+            packet.dataIndex = wrapper.dataIndex;
             if(packet.read()) {
                 executor.execute(packet);
             }
-            packet.writingBuffer = null;
         }
      }
 
     @Override
     public void failed(Throwable exc, T client) {
-        var connection = client.getConnection();
-        ResourcePool.recycleBuffer(connection.getReadingBuffer());
-        connection.releaseReadingBuffer();
-        client.onDisconnection();
+        client.disconnected();
     }
 }

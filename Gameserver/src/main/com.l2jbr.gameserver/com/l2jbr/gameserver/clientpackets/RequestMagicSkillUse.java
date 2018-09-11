@@ -45,7 +45,7 @@ public final class RequestMagicSkillUse extends L2GameClientPacket
 	{
 		_magicId = readInt(); // Identifier of the used skill
 		_ctrlPressed = readInt() != 0; // True if it's a ForceAttack : Ctrl pressed
-		_shiftPressed = readUnsigned() != 0; // True if Shift pressed
+		_shiftPressed = readUnsignedByte() != 0; // True if Shift pressed
 	}
 	
 	@Override

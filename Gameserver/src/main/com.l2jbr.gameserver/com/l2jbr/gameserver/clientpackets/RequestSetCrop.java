@@ -57,7 +57,7 @@ public class RequestSetCrop extends L2GameClientPacket {
             _items[(i * 4) + 1] = sales;
             int price = readInt();
             _items[(i * 4) + 2] = price;
-            int type = readUnsigned();
+            int type = readUnsignedByte();
             _items[(i * 4) + 3] = type;
         }
     }

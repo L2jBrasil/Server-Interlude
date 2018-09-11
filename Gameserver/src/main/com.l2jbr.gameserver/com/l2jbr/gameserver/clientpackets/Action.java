@@ -54,7 +54,7 @@ public final class Action extends L2GameClientPacket
 		_originX = readInt();
 		_originY = readInt();
 		_originZ = readInt();
-		_actionId = readUnsigned(); // Action identifier : 0-Simple click, 1-Shift click
+		_actionId = readUnsignedByte(); // Action identifier : 0-Simple click, 1-Shift click
 	}
 	
 	@Override

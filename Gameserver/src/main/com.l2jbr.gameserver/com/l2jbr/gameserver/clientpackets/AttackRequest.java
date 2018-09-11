@@ -50,7 +50,7 @@ public final class AttackRequest extends L2GameClientPacket
 		_originX = readInt();
 		_originY = readInt();
 		_originZ = readInt();
-		_attackId = readUnsigned(); // 0 for simple click 1 for shift-click
+		_attackId = readUnsignedByte(); // 0 for simple click 1 for shift-click
 	}
 	
 	@Override

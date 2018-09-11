@@ -52,7 +52,10 @@ public abstract class AsyncMMOClient<T extends  AsyncMMOConnection<?>> {
 
     public abstract boolean decrypt(byte[] data);
     public abstract boolean encrypt(byte[] data);
+    protected abstract void  onDisconnection();
 
-    protected abstract void onDisconnection();
-
+    void disconnected() {
+         onDisconnection();
+         connection.close();
+    }
 }
