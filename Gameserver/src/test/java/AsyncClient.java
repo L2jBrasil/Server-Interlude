@@ -1,12 +1,12 @@
-import com.l2jbr.mmocore.AsyncMMOClient;
-import com.l2jbr.mmocore.AsyncMMOConnection;
-import com.l2jbr.mmocore.SendablePacket;
+import com.l2jbr.mmocore.*;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.nio.channels.AsynchronousSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.util.concurrent.ExecutionException;
 
 public class AsyncClient extends AsyncMMOClient<AsyncMMOConnection<AsyncClient>> {
 
@@ -15,6 +15,27 @@ public class AsyncClient extends AsyncMMOClient<AsyncMMOConnection<AsyncClient>>
 
     public AsyncClient(AsyncMMOConnection<AsyncClient> connection) {
         super(connection);
+    }
+
+    public static AsyncClient from(int port) throws IOException, ExecutionException, InterruptedException {
+        var socket = AsynchronousSocketChannel.open();
+        socket.connect(new InetSocketAddress(port)).get();
+
+        var connection = new AsyncMMOConnection<>(socket, new ReadHandler<>(new IPacketHandler<AsyncClient>() {
+            @Override
+            public ReceivablePacket<AsyncClient> handlePacket(ByteBuffer buf, AsyncClient client) {
+                return null;
+            }
+        }, new IMMOExecutor<AsyncClient>() {
+            @Override
+            public void execute(ReceivablePacket<AsyncClient> packet) {
+
+            }
+        }), new WriteHandler<>());
+
+        var client =  new AsyncClient(connection);
+        connection.setClient(client);
+        return  client;
     }
 
     public void connect(int porta) throws IOException {
@@ -28,30 +49,14 @@ public class AsyncClient extends AsyncMMOClient<AsyncMMOConnection<AsyncClient>>
         buffer.clear();
     }
 
-    public void sendMessage(byte data) throws IOException {
-        buffer.put(data);
-        buffer.flip();
-        socket.write(buffer);
-        buffer.clear();
-    }
-
-
-    public void sendShort(short value) throws IOException {
-        buffer.putShort(value);
-        buffer.flip();
-        socket.write(buffer);
-        buffer.clear();
-        sendPacket(new AsyncClientSendablePacket());
-    }
-
     @Override
     public boolean decrypt(byte[] data) {
-        return false;
+        return true;
     }
 
     @Override
     public boolean encrypt(byte[] data) {
-        return false;
+        return true;
     }
 
     @Override
@@ -59,16 +64,23 @@ public class AsyncClient extends AsyncMMOClient<AsyncMMOConnection<AsyncClient>>
 
     }
 
+    public void ping() {
+        sendPacket(new PingPacket());
+    }
 
-    private static class AsyncClientSendablePacket extends SendablePacket<AsyncClient> {
+
+    private static class PingPacket extends SendablePacket<AsyncClient> {
+
         @Override
         protected void write() {
-
-        }
-
-        @Override
-        protected int packetSize() {
-            return 0;
+            writeByte(0x01);
+            writeByte(Byte.MAX_VALUE);
+            writeChar(Character.MAX_VALUE);
+            writeShort(Short.MAX_VALUE);
+            writeInt(Integer.MAX_VALUE);
+            writeDouble(Double.MAX_VALUE);
+            writeLong(Long.MAX_VALUE);
+            writeString("String");
         }
     }
 }

@@ -41,7 +41,7 @@ public final class RequestExMagicSkillUseGround extends L2GameClientPacket
 		_z = readInt();
 		_skillId = readInt();
 		_ctrlPressed = readInt();
-		_shiftPressed = readChar();
+		_shiftPressed = readUnsigned();
 	}
 	
 	@Override

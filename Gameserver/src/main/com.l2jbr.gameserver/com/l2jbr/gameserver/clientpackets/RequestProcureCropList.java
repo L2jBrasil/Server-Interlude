@@ -54,7 +54,7 @@ public class RequestProcureCropList extends L2GameClientPacket
 	protected void readImpl()
 	{
 		_size = readInt();
-		if (((_size * 16) > _buf.remaining()) || (_size > 500))
+		if (((_size * 16) > availableData()) || (_size > 500))
 		{
 			_size = 0;
 			return;

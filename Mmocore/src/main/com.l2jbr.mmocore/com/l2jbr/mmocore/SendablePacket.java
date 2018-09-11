@@ -18,13 +18,14 @@
 package com.l2jbr.mmocore;
 
 import static java.lang.Double.doubleToRawLongBits;
+import static java.lang.System.arraycopy;
 import static java.util.Objects.nonNull;
 
 public abstract class SendablePacket<T> extends AbstractPacket<T> {
 
     protected SendablePacket() {
         data = new byte[packetSize()];
-        writeShort(packetSize());
+        dataIndex +=  ReadHandler.HEADER_SIZE;
     }
 
 	/**
@@ -33,9 +34,19 @@ public abstract class SendablePacket<T> extends AbstractPacket<T> {
 	 * @param value
 	 */
 	protected final void writeByte(final byte value) {
-	    data[dataIndex++] = value;
+	    try {
+            data[dataIndex++] = value;
+        } catch (IndexOutOfBoundsException e) {
+	        byte[] tmp =  new byte[(int) (data.length * 1.2)];
+	        arraycopy(data, 0, tmp, 0, dataIndex -1);
+	        data = tmp;
+	        data[dataIndex] = value;
+        }
 	}
-	
+
+	protected final void writeByte(final int value) {
+	    writeByte((byte) value);
+    }
 	
 	/**
 	 * Write <B>double</B> to the buffer. <BR>
@@ -107,7 +118,7 @@ public abstract class SendablePacket<T> extends AbstractPacket<T> {
         writeByte(pickByte(b3, b4));
         writeByte(pickByte(b4, b3));
         writeByte(pickByte(b5, b2));
-        writeByte(pickByte(b1, b6));
+        writeByte(pickByte(b6, b1));
         writeByte(pickByte(b7, b0));
     }
 
@@ -117,12 +128,12 @@ public abstract class SendablePacket<T> extends AbstractPacket<T> {
 	 * @param bytes
 	 */
 	protected final void writeBytes(final byte[] bytes) {
-	    System.arraycopy(bytes, 0, data, dataIndex, data.length);
+	    arraycopy(bytes, 0, data, dataIndex, data.length);
 		dataIndex += bytes.length;
 	}
 
 	protected  final void writeChar(final char value) {
-        var x = convertEndian(value);
+        short x =  (short) convertEndian(value);
         writeShortParts((byte) x,
                         (byte) (x >>> 8));
 
@@ -142,8 +153,20 @@ public abstract class SendablePacket<T> extends AbstractPacket<T> {
 		writeChar('\000');
 	}
 
+    int writeData() {
+        write();
+        var header = convertEndian((short) dataIndex);
+        var tmp = (byte) (header >>> 8);
+        data[0] = pickByte((byte) header, tmp);
+        data[1] = pickByte(tmp, (byte) header);
+        return dataIndex;
+    }
+
     private static byte pickByte(byte  le, byte  be) { return isBigEndian ? be : le; }
-	
+
 	protected abstract void write();
-	protected abstract short packetSize();
+
+	protected int packetSize() {
+        return   64 * 1024;
+    }
 }

@@ -6,11 +6,24 @@ public class WriteHandler<T extends  AsyncMMOClient<AsyncMMOConnection<T>>> impl
 
     @Override
     public void completed(Integer result, T client) {
+        if(result == -1) {
+            client.onDisconnection();
+            return;
+        }
+
+        var connection = client.getConnection();
+
+        if(result < client.getDataSentSize()) {
+            client.resumeSend(result);
+        } else {
+            connection.releaseWritingBuffer();
+            client.trySendNextPacket();
+        }
         
     }
 
     @Override
     public void failed(Throwable exc, T client) {
-
+        client.onDisconnection();
     }
 }

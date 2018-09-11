@@ -17,8 +17,6 @@ public final class ConnectionHandler<T extends AsyncMMOClient<AsyncMMOConnection
     private final AsynchronousChannelGroup group;
     private final AsynchronousServerSocketChannel listener;
     private final WriteHandler<T> writeHandler;
-    private final IMMOExecutor<T> executor;
-    private final IPacketHandler<T>  packetHandler;
     private final ClientFactory<T> clientFactory;
     private final ReadHandler<T> readHandler;
     private final boolean useNagle;
@@ -28,8 +26,6 @@ public final class ConnectionHandler<T extends AsyncMMOClient<AsyncMMOConnection
     public ConnectionHandler(InetSocketAddress address, boolean useNagle, int threadPoolSize, ClientFactory<T> clientFactory, IPacketHandler<T> packetHandler, IMMOExecutor<T> executor)
             throws IOException {
         this.clientFactory = clientFactory;
-        this.packetHandler = packetHandler;
-        this.executor = executor;
         this.useNagle = useNagle;
 
         this.readHandler = new ReadHandler<>(packetHandler, executor);
@@ -92,6 +88,7 @@ public final class ConnectionHandler<T extends AsyncMMOClient<AsyncMMOConnection
 
     public void shutdown() {
         System.out.println("Shuting Server Down");
+        shutdown = true;
         closeConnection();
     }
 

@@ -51,7 +51,7 @@ public final class RequestPrivateStoreSell extends L2GameClientPacket
 		_storePlayerId = readInt();
 		_count = readInt();
 		// count*20 is the size of a for iteration of each item
-		if ((_count < 0) || ((_count * 20) > _buf.remaining()) || (_count > Config.MAX_ITEM_IN_PACKET))
+		if ((_count < 0) || ((_count * 20) > availableData()) || (_count > Config.MAX_ITEM_IN_PACKET))
 		{
 			_count = 0;
 		}

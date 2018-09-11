@@ -55,7 +55,7 @@ public class RequestBuySeed extends L2GameClientPacket
 		_manorId = readInt();
 		_count = readInt();
 		
-		if ((_count > 500) || ((_count * 8) < _buf.remaining())) // check values
+		if ((_count > 500) || ((_count * 8) < availableData())) // check values
 		{
 			_count = 0;
 			return;

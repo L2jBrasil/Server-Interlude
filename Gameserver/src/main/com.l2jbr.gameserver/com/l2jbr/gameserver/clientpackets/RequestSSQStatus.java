@@ -36,7 +36,7 @@ public final class RequestSSQStatus extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_page = readChar();
+		_page = readUnsigned();
 	}
 	
 	@Override

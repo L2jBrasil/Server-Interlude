@@ -44,8 +44,8 @@ public final class RequestMakeMacro extends L2GameClientPacket
 		String _name = readString();
 		String _desc = readString();
 		String _acronym = readString();
-		int _icon = readChar();
-		int _count = readChar();
+		int _icon = readUnsigned();
+		int _count = readUnsigned();
 		if (_count > MAX_MACRO_LENGTH)
 		{
 			_count = MAX_MACRO_LENGTH;
@@ -58,10 +58,10 @@ public final class RequestMakeMacro extends L2GameClientPacket
 		}
 		for (int i = 0; i < _count; i++)
 		{
-			int entry = readChar();
-			int type = readChar(); // 1 = skill, 3 = action, 4 = shortcut
+			int entry = readUnsigned();
+			int type = readUnsigned(); // 1 = skill, 3 = action, 4 = shortcut
 			int d1 = readInt(); // skill or page number for shortcuts
-			int d2 = readChar();
+			int d2 = readUnsigned();
 			String command = readString();
 			_commandsLenght += command.length();
 			commands[i] = new L2MacroCmd(entry, type, d1, d2, command);

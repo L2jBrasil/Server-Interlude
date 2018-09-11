@@ -45,7 +45,7 @@ public class RequestSetCrop extends L2GameClientPacket {
     protected void readImpl() {
         _manorId = readInt();
         _size = readInt();
-        if (((_size * 13) > _buf.remaining()) || (_size > 500)) {
+        if (((_size * 13) > availableData()) || (_size > 500)) {
             _size = 0;
             return;
         }
@@ -57,7 +57,7 @@ public class RequestSetCrop extends L2GameClientPacket {
             _items[(i * 4) + 1] = sales;
             int price = readInt();
             _items[(i * 4) + 2] = price;
-            int type = readChar();
+            int type = readUnsigned();
             _items[(i * 4) + 3] = type;
         }
     }

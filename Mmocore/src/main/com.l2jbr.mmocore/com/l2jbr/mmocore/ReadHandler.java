@@ -5,14 +5,14 @@ import java.nio.channels.CompletionHandler;
 
 import static java.util.Objects.nonNull;
 
-class ReadHandler<T extends AsyncMMOClient<AsyncMMOConnection<T>>> implements CompletionHandler<Integer, T> {
+public class ReadHandler<T extends AsyncMMOClient<AsyncMMOConnection<T>>> implements CompletionHandler<Integer, T> {
 
-    private static final int HEADER_SIZE = 2;
+    static final int HEADER_SIZE = 2;
 
     private final IPacketHandler<T> packetHandler;
     private final IMMOExecutor<T> executor;
 
-    ReadHandler(IPacketHandler<T> packetHandler, IMMOExecutor<T> executor) {
+    public ReadHandler(IPacketHandler<T> packetHandler, IMMOExecutor<T> executor) {
         this.packetHandler = packetHandler;
         this.executor =  executor;
     }

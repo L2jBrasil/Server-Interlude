@@ -66,7 +66,7 @@ public class RequestServerLogin extends L2LoginClientPacket
 		{
 			_skey1 = readInt();
 			_skey2 = readInt();
-			_serverId = readChar();
+			_serverId = readUnsigned();
 			return true;
 		}
 		return false;

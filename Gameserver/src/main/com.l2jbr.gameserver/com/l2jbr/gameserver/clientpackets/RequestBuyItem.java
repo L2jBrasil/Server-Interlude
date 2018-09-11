@@ -54,7 +54,7 @@ public final class RequestBuyItem extends L2GameClientPacket
 		_listId = readInt();
 		_count = readInt();
 		// count*8 is the size of a for iteration of each item
-		if (((_count * 2) < 0) || ((_count * 8) > _buf.remaining()) || (_count > Config.MAX_ITEM_IN_PACKET))
+		if (((_count * 2) < 0) || ((_count * 8) > availableData()) || (_count > Config.MAX_ITEM_IN_PACKET))
 		{
 			_count = 0;
 		}

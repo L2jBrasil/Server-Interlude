@@ -26,12 +26,12 @@ import static java.lang.Double.longBitsToDouble;
 public abstract class ReceivablePacket<T> extends AbstractPacket<T> implements Runnable {
 
 	protected ReceivablePacket() { }
-	
-	protected abstract boolean read();
-	
-	@Override
-	public abstract void run();
-	
+
+	protected final int availableData() {
+	    return data.length - dataIndex;
+    }
+
+
 	/**
 	 *
 	 * Reads as many bytes as the length of the array.
@@ -61,13 +61,22 @@ public abstract class ReceivablePacket<T> extends AbstractPacket<T> implements R
 	protected final byte readByte() {
 	    return data[dataIndex++];
     }
-	
-	/**
-	 * Reads <B>byte</B> from the buffer. <BR>
-	 * 8bit integer (00)
-	 * @return
-	 */
-	protected final int readChar() {
+
+
+    /**
+     *  Reads <B>char</B> from the buffer
+     * @return
+     */
+	protected final char readChar() {
+	    return convertEndian((char) readShort());
+    }
+
+    /**
+     * Reads <B>byte</B> from the buffer. <BR>
+     * 8bit integer (00)
+     * @return
+     */
+	protected final int readUnsigned() {
 		return toUnsignedInt(data[dataIndex++]);
 	}
 	
@@ -76,9 +85,9 @@ public abstract class ReceivablePacket<T> extends AbstractPacket<T> implements R
 	 * 16bit integer (00 00)
 	 * @return
 	 */
-	protected final int readShort()  {
-		return convertEndian((short) (readChar() << pickShift(8, 0) |
-                                      readChar() << pickShift(8, 8)));
+	protected final short readShort()  {
+		return convertEndian((short) (readUnsigned() << pickShift(8, 0) |
+                                      readUnsigned() << pickShift(8, 8)));
 	}
 	
 	/**
@@ -87,10 +96,10 @@ public abstract class ReceivablePacket<T> extends AbstractPacket<T> implements R
 	 * @return
 	 */
 	protected final int readInt() {
-        return convertEndian(readChar() << pickShift(24, 0)  |
-                                readChar() << pickShift(24, 8)  |
-                                readChar() << pickShift(24, 16) |
-                                readChar() << pickShift(24, 24) );
+        return convertEndian(readUnsigned() << pickShift(24, 0)  |
+                                readUnsigned() << pickShift(24, 8)  |
+                                readUnsigned() << pickShift(24, 16) |
+                                readUnsigned() << pickShift(24, 24) );
 
 	}
 	
@@ -125,11 +134,17 @@ public abstract class ReceivablePacket<T> extends AbstractPacket<T> implements R
 	 */
 	protected final String readString()  {
 	    int start = dataIndex;
-	    while (dataIndex < data.length && data[dataIndex] != '\000') {
-            dataIndex++;
+
+	    while (dataIndex < data.length &&  readChar() != '\000'){
+
         }
-	    return new String(data, start, dataIndex-1, Charset.forName("ISO-8859-1"));
+	    return new String(data, start, dataIndex-start-2, Charset.forName("UTF-16LE"));
 	}
 
     private static int pickShift(int top, int pos) { return isBigEndian ? top - pos : pos; }
+
+    protected abstract boolean read();
+
+    @Override
+    public abstract void run();
 }
