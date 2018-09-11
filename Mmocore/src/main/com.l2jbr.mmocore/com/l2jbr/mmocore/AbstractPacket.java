@@ -35,6 +35,10 @@ public abstract class AbstractPacket<T> {
 		return _client;
 	}
 
+    public byte[] getData() {
+        return data;
+    }
+
     static short convertEndian(short n) { return !isBigEndian ? n : Short.reverseBytes(n); }
     static int convertEndian(int n) { return !isBigEndian ? n : Integer.reverseBytes(n); }
     static long convertEndian(long n) { return !isBigEndian ? n : Long.reverseBytes(n); }
