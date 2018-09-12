@@ -2,6 +2,7 @@ package org.l2j.mmocore.async;
 
 import com.l2jbr.mmocore.AsyncMMOClient;
 import com.l2jbr.mmocore.AsyncMMOConnection;
+import com.l2jbr.mmocore.SendablePacket;
 
 public class AsyncClient extends AsyncMMOClient<AsyncMMOConnection<AsyncClient>> {
 
@@ -22,5 +23,10 @@ public class AsyncClient extends AsyncMMOClient<AsyncMMOConnection<AsyncClient>>
     @Override
     protected void onDisconnection() {
 
+    }
+
+
+    public void sendPacket(SendablePacket<AsyncClient> packet) {
+        writePacket(packet);
     }
 }

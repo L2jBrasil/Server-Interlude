@@ -45,23 +45,13 @@ public final class ConnectionHandler<T extends AsyncMMOClient<AsyncMMOConnection
     @Override
     public void run() {
         listener.accept(null, new AcceptConnectionHandler());
-
-        while (!shutdown) {
-            try  {
-                Thread.sleep(10000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-        closeConnection();
     }
 
     private void closeConnection() {
         try {
             listener.close();
+            group.awaitTermination(10, TimeUnit.SECONDS);
             group.shutdownNow();
-            group.awaitTermination(3600, TimeUnit.SECONDS);
         } catch (Exception e) {  }
     }
 

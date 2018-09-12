@@ -387,7 +387,7 @@ public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, 
 						msg = new SetPrivateStoreListSell();
 						break;
 					// case 0x75:
-					// msg = new RequestPrivateStoreManageCancel(data, _client);
+					// msg = new RequestPrivateStoreManageCancel(data, client);
 					// break;
 					case 0x76:
 						msg = new RequestPrivateStoreQuitSell();
@@ -798,7 +798,7 @@ public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, 
 						}
 						break;
 					/*
-					 * case 0xee: msg = new RequestChangePartyLeader(data, _client); break;
+					 * case 0xee: msg = new RequestChangePartyLeader(data, client); break;
 					 */
 					default:
 						printDebug(opcode, buf, state, client);

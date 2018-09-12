@@ -82,7 +82,7 @@ public class ReadHandler<T extends AsyncMMOClient<AsyncMMOConnection<T>>> implem
 
     private void execute(T client, ReceivablePacket<T> packet, DataWrapper wrapper) {
         if(nonNull(packet)) {
-            packet._client = client;
+            packet.client = client;
             packet.data = wrapper.data;
             packet.dataIndex = wrapper.dataIndex;
             if(packet.read()) {

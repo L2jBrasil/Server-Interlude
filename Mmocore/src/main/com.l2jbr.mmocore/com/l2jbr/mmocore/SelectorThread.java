@@ -449,15 +449,15 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 			
 			if (cp != null)
 			{
-				cp.writingBuffer = buf;
-				cp._client = client;
+				cp._buf = buf;
+				cp.client = client;
 				
 				if (cp.read())
 				{
 					_executor.execute(cp);
 				}
 				
-				cp.writingBuffer = null;
+				cp._buf = null;
 			}
 			buf.limit(limit);
 		}
@@ -612,13 +612,13 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 		WRITE_BUFFER.position(dataPos);
 		
 		// set the write buffer
-		sp.writingBuffer = WRITE_BUFFER;
+		sp._buf = WRITE_BUFFER;
 		// set the client.
-		sp._client = client;
+		sp.client = client;
 		// write content to buffer
 		sp.write();
 		// delete the write buffer
-		sp.writingBuffer = null;
+		sp._buf = null;
 		
 		// size (inclusive header)
 		int dataSize = WRITE_BUFFER.position() - dataPos;

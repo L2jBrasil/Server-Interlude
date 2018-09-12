@@ -1,13 +1,14 @@
 package org.l2j.mmocore.packet;
 
 import com.l2jbr.mmocore.ReceivablePacket;
-import org.l2j.mmocore.async.AsyncClient;
+import org.l2j.mmocore.selector.SelectorClient;
 
-public class PongPacket extends ReceivablePacket<AsyncClient> {
+public class SelectorPingPacket extends ReceivablePacket<SelectorClient> {
+
     private final long receivedTime;
     private long sendTime;
 
-    public PongPacket(long currentTimeMillis) {
+    public SelectorPingPacket(long currentTimeMillis) {
         receivedTime = currentTimeMillis;
     }
 
@@ -19,6 +20,6 @@ public class PongPacket extends ReceivablePacket<AsyncClient> {
 
     @Override
     public void run() {
-
+        client.sendPacket(new SelectorPongPacket(sendTime, receivedTime));
     }
 }

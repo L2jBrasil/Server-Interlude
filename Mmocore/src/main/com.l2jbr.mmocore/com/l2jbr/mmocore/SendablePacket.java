@@ -136,7 +136,6 @@ public abstract class SendablePacket<T> extends AbstractPacket<T> {
         short x =  (short) convertEndian(value);
         writeShortParts((byte) x,
                         (byte) (x >>> 8));
-
     }
 	
 	/**
@@ -164,9 +163,9 @@ public abstract class SendablePacket<T> extends AbstractPacket<T> {
 
     private static byte pickByte(byte  le, byte  be) { return isBigEndian ? be : le; }
 
-	protected abstract void write();
-
-	protected int packetSize() {
+    protected int packetSize() {
         return   64 * 1024;
     }
+
+	protected abstract void write();
 }

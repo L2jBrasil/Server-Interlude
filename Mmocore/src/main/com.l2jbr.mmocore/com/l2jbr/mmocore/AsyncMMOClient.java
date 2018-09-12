@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class AsyncMMOClient<T extends  AsyncMMOConnection<?>> {
 
     private final T connection;
-    private Queue<SendablePacket<? extends  AsyncMMOClient<T>>> packetsToSend = new ConcurrentLinkedQueue<>();
+    private Queue<SendablePacket<? extends  AsyncMMOClient<T>>> packetsToWrite = new ConcurrentLinkedQueue<>();
     private int dataSentSize;
     private AtomicBoolean writing = new AtomicBoolean(false);
 
@@ -19,19 +19,19 @@ public abstract class AsyncMMOClient<T extends  AsyncMMOConnection<?>> {
         return connection;
     }
 
-    protected void sendPacket(SendablePacket<? extends AsyncMMOClient<T>> packet) {
-        if(packetsToSend.isEmpty() && writing.compareAndSet(false, true) ) {
+    protected void writePacket(SendablePacket<? extends AsyncMMOClient<T>> packet) {
+        if(packetsToWrite.isEmpty() && writing.compareAndSet(false, true) ) {
             write(packet);
         } else {
-            packetsToSend.add(packet);
+            packetsToWrite.add(packet);
         }
     }
 
-    void trySendNextPacket() {
-        if(packetsToSend.isEmpty()) {
+    void tryWriteNextPacket() {
+        if(packetsToWrite.isEmpty()) {
             writing.getAndSet(false);
         } else {
-            var packet = packetsToSend.poll();
+            var packet = packetsToWrite.poll();
             write(packet);
         }
     }

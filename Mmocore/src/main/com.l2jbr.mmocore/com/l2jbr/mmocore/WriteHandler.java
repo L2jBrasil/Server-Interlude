@@ -17,7 +17,7 @@ public class WriteHandler<T extends  AsyncMMOClient<AsyncMMOConnection<T>>> impl
             client.resumeSend(result);
         } else {
             connection.releaseWritingBuffer();
-            client.trySendNextPacket();
+            client.tryWriteNextPacket();
         }
         
     }

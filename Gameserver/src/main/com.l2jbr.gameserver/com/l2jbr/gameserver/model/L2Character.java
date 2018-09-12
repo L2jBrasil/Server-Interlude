@@ -3958,17 +3958,17 @@ public abstract class L2Character extends L2Object {
     private int _clientX;
 
     /**
-     * The _client y.
+     * The client y.
      */
     private int _clientY;
 
     /**
-     * The _client z.
+     * The client z.
      */
     private int _clientZ;
 
     /**
-     * The _client heading.
+     * The client heading.
      */
     private int _clientHeading;
 

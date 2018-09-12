@@ -25,14 +25,13 @@ public abstract class AbstractPacket<T> {
     static final boolean isBigEndian = ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN;
     byte[] data;
     int dataIndex;
-
-    ByteBuffer writingBuffer;
+    protected ByteBuffer _buf;
 	
-	protected T _client;
+	protected T client;
 	
 	public final T getClient()
 	{
-		return _client;
+		return client;
 	}
 
     public byte[] getData() {

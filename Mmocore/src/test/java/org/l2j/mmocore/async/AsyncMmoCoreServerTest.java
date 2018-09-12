@@ -16,7 +16,7 @@ public class AsyncMmoCoreServerTest {
 
     private void start() throws IOException {
         GenericClientHandler handler = new GenericClientHandler();
-        connectionHandler = new ConnectionHandler<>(new InetSocketAddress(8585), false,10, handler, handler, handler);
+        connectionHandler = new ConnectionHandler<>(new InetSocketAddress(8585), false,2, handler, handler, handler);
         connectionHandler.start();
     }
 

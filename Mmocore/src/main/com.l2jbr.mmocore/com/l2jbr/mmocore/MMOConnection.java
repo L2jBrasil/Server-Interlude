@@ -94,7 +94,7 @@ public class MMOConnection<T extends MMOClient<?>>
 	
 	public final void sendPacket(final SendablePacket<T> sp)
 	{
-		sp._client = _client;
+		sp.client = _client;
 		
 		if (_pendingClose)
 		{
