@@ -19,6 +19,7 @@ public class SelectorClient  extends MMOClient<MMOConnection<SelectorClient>> {
 
     @Override
     public boolean encrypt(ByteBuffer buf, int size) {
+        buf.position(buf.position() + size);
         return true;
     }
 

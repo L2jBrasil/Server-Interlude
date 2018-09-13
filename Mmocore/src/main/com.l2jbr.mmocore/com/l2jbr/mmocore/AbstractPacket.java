@@ -25,7 +25,6 @@ public abstract class AbstractPacket<T> {
     static final boolean isBigEndian = ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN;
     byte[] data;
     int dataIndex;
-    protected ByteBuffer _buf;
 	
 	protected T client;
 	

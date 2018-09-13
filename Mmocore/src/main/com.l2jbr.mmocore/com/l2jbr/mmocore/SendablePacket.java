@@ -25,7 +25,6 @@ public abstract class SendablePacket<T> extends AbstractPacket<T> {
 
     protected SendablePacket() {
         data = new byte[packetSize()];
-        dataIndex +=  ReadHandler.HEADER_SIZE;
     }
 
 	/**
@@ -153,6 +152,7 @@ public abstract class SendablePacket<T> extends AbstractPacket<T> {
 	}
 
     int writeData() {
+		dataIndex += ReadHandler.HEADER_SIZE;
         write();
         var header = convertEndian((short) dataIndex);
         var tmp = (byte) (header >>> 8);

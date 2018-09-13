@@ -12,7 +12,7 @@ public class Client {
 
     public static void main(String[] args) throws IOException {
         Client client = new Client();
-        client.connect(8585);
+        client.connect(8586);
         client.sendPing();
     }
 
