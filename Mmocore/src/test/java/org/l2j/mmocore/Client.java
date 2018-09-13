@@ -7,6 +7,8 @@ import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.channels.SocketChannel;
+import java.time.Instant;
+import java.time.ZoneId;
 
 public class Client {
 
@@ -16,8 +18,8 @@ public class Client {
         client.sendPing();
     }
 
-    ByteBuffer buffer = ByteBuffer.allocateDirect(20).order(ByteOrder.LITTLE_ENDIAN);
-    ByteBuffer rBuffer = ByteBuffer.allocateDirect(20).order(ByteOrder.LITTLE_ENDIAN);
+    ByteBuffer buffer = ByteBuffer.allocate(20).order(ByteOrder.LITTLE_ENDIAN);
+    ByteBuffer rBuffer = ByteBuffer.allocate(20).order(ByteOrder.LITTLE_ENDIAN);
     private SocketChannel socket;
 
     public void connect(int port) throws IOException {
@@ -36,7 +38,21 @@ public class Client {
         }
 
         i = socket.read(rBuffer);
-        System.out.println("Bytes read " + i);
+        while(i < 19) {
+            i += socket.read(rBuffer);
+        }
+        long current = System.currentTimeMillis();
+        rBuffer.flip();
+        rBuffer.getShort();
+        rBuffer.get();
+
+        long send = rBuffer.getLong();
+        long received = rBuffer.getLong();
+        System.out.println("Initial Time: " + Instant.ofEpochMilli(send).atZone(ZoneId.systemDefault()));
+        System.out.println("Server Received Time: " + Instant.ofEpochMilli(received).atZone(ZoneId.systemDefault()));
+        System.out.println("Round Trip Time: " + (current - send) );
+        System.out.println("Send Time: " + (received - send));
+
     }
 
 }

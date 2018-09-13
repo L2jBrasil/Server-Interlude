@@ -16,11 +16,11 @@ public class SelectorMmoCoreServerTest {
 
     private void start() throws IOException {
         final SelectorConfig sc = new SelectorConfig();
-        sc.MAX_READ_PER_PASS = 12; // Config.MMO_MAX_READ_PER_PASS;
-        sc.MAX_SEND_PER_PASS = 12; // Config.MMO_MAX_SEND_PER_PASS;
-        sc.SLEEP_TIME = 20; // Config.MMO_SELECTOR_SLEEP_TIME;
-        sc.HELPER_BUFFER_COUNT = 20; // Config.MMO_HELPER_BUFFER_COUNT;
-        sc.TCP_NODELAY = false; // Config.MMO_TCP_NODELAY;
+        sc.MAX_READ_PER_PASS = 12;
+        sc.MAX_SEND_PER_PASS = 12;
+        sc.SLEEP_TIME = 20;
+        sc.HELPER_BUFFER_COUNT = 20;
+        sc.TCP_NODELAY = false;
         var handler = new GenericClientHandler();
         selectorThread = new SelectorThread<>(sc, handler, handler, handler, null);
         selectorThread.openServerSocket(null, 8586);
