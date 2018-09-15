@@ -7,6 +7,5 @@ public class PingPacket  {
     public void write(ByteBuffer buffer) {
         buffer.putShort((short)11);
         buffer.put((byte)0x01);
-        buffer.putLong(System.currentTimeMillis());
     }
 }

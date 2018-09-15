@@ -257,7 +257,6 @@ public class GameServer {
         try {
             _selectorThread.openServerSocket(bindAddress, Config.PORT_GAME);
         } catch (IOException e) {
-            ;
             _log.error( getMessage("error.open.socket", e.getMessage()), e);
             System.exit(1);
         }

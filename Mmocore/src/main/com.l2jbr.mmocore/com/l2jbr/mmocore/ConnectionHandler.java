@@ -22,7 +22,6 @@ public final class ConnectionHandler<T extends AsyncMMOClient<AsyncMMOConnection
     private final boolean useNagle;
     private boolean shutdown;
 
-
     public ConnectionHandler(InetSocketAddress address, boolean useNagle, int threadPoolSize, ClientFactory<T> clientFactory, IPacketHandler<T> packetHandler, IMMOExecutor<T> executor)
             throws IOException {
         this.clientFactory = clientFactory;
@@ -36,7 +35,7 @@ public final class ConnectionHandler<T extends AsyncMMOClient<AsyncMMOConnection
     }
 
     private AsynchronousChannelGroup createChannelGroup(int threadPoolSize) throws IOException {
-        if(threadPoolSize <= 0 || threadPoolSize >= Integer.MAX_VALUE) {
+        if(threadPoolSize <= 0 || threadPoolSize >= Short.MAX_VALUE) {
             return AsynchronousChannelGroup.withCachedThreadPool(Executors.newCachedThreadPool(), 5);
         }
         return AsynchronousChannelGroup.withFixedThreadPool(threadPoolSize, Executors.defaultThreadFactory());
@@ -52,19 +51,21 @@ public final class ConnectionHandler<T extends AsyncMMOClient<AsyncMMOConnection
             listener.close();
             group.awaitTermination(10, TimeUnit.SECONDS);
             group.shutdownNow();
-        } catch (Exception e) {  }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void acceptConnection(AsynchronousSocketChannel channel) {
         if(nonNull(channel) && channel.isOpen()) {
             try {
                 channel.setOption(StandardSocketOptions.TCP_NODELAY, !useNagle);
-            } catch (Exception e) {
-
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
-            var connection = new AsyncMMOConnection<>(channel, readHandler, writeHandler);
-            var client = clientFactory.create(connection);
+            AsyncMMOConnection<T> connection = new AsyncMMOConnection<>(channel, readHandler, writeHandler);
+            T client = clientFactory.create(connection);
             if(nonNull(client)) {
                 connection.setClient(client);
                 connection.read();
@@ -92,11 +93,8 @@ public final class ConnectionHandler<T extends AsyncMMOClient<AsyncMMOConnection
         }
 
         @Override
-        public void failed(Throwable exc, Void attachment) {
-            System.out.println(exc.getLocalizedMessage());
+        public void failed(Throwable t, Void attachment) {
+            t.printStackTrace();
         }
     }
-
-
-
 }

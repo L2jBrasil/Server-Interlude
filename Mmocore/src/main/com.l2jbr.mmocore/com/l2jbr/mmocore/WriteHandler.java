@@ -2,7 +2,7 @@ package com.l2jbr.mmocore;
 
 import java.nio.channels.CompletionHandler;
 
-public class WriteHandler<T extends  AsyncMMOClient<AsyncMMOConnection<T>>> implements CompletionHandler<Integer, T> {
+class WriteHandler<T extends  AsyncMMOClient<AsyncMMOConnection<T>>> implements CompletionHandler<Integer, T> {
 
     @Override
     public void completed(Integer result, T client) {
@@ -11,7 +11,7 @@ public class WriteHandler<T extends  AsyncMMOClient<AsyncMMOConnection<T>>> impl
             return;
         }
 
-        var connection = client.getConnection();
+        AsyncMMOConnection connection = client.getConnection();
 
         if(result < client.getDataSentSize()) {
             client.resumeSend(result);

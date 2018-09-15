@@ -18,7 +18,7 @@ public class AsyncMMOConnection<T extends AsyncMMOClient<AsyncMMOConnection<T>>>
     private ByteBuffer readingBuffer;
     private ByteBuffer writingBuffer;
 
-    public AsyncMMOConnection(AsynchronousSocketChannel channel, ReadHandler<T> readHandler, WriteHandler<T> writeHandler) {
+    AsyncMMOConnection(AsynchronousSocketChannel channel, ReadHandler<T> readHandler, WriteHandler<T> writeHandler) {
         this.channel = channel;
         this.readHandler = readHandler;
         this.writeHandler = writeHandler;
@@ -28,18 +28,18 @@ public class AsyncMMOConnection<T extends AsyncMMOClient<AsyncMMOConnection<T>>>
         this.client = client;
     }
 
-    void read() {
+    final void read() {
         channel.read(getReadingBuffer(), client, readHandler);
     }
 
-    void write(byte[] data, int offset, int limit) {
+    final void write(byte[] data, int offset, int limit) {
         ByteBuffer buffer = getWritingBuffer();
         buffer.put(data, offset, limit);
         buffer.flip();
         write();
     }
 
-    void write() {
+    final void write() {
         channel.write(writingBuffer, client, writeHandler);
     }
 

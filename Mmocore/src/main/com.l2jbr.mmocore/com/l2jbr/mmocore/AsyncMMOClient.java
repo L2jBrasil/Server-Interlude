@@ -31,7 +31,7 @@ public abstract class AsyncMMOClient<T extends  AsyncMMOConnection<?>> {
         if(packetsToWrite.isEmpty()) {
             writing.getAndSet(false);
         } else {
-            var packet = packetsToWrite.poll();
+            SendablePacket<? extends AsyncMMOClient<T>> packet = packetsToWrite.poll();
             write(packet);
         }
     }
@@ -46,6 +46,11 @@ public abstract class AsyncMMOClient<T extends  AsyncMMOConnection<?>> {
         connection.write(packet.data, 0, dataSentSize);
     }
 
+    void disconnected() {
+        connection.close();
+        onDisconnection();
+    }
+
     int getDataSentSize() {
         return dataSentSize;
     }
@@ -53,9 +58,4 @@ public abstract class AsyncMMOClient<T extends  AsyncMMOConnection<?>> {
     public abstract boolean decrypt(byte[] data);
     public abstract boolean encrypt(byte[] data);
     protected abstract void  onDisconnection();
-
-    void disconnected() {
-         onDisconnection();
-         connection.close();
-    }
 }

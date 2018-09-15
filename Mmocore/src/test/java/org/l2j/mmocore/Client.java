@@ -14,7 +14,7 @@ public class Client {
 
     public static void main(String[] args) throws IOException {
         Client client = new Client();
-        client.connect(8586);
+        client.connect(8585);
         client.sendPing();
     }
 
@@ -31,11 +31,25 @@ public class Client {
         PingPacket packet = new PingPacket();
         packet.write(buffer);
         buffer.flip();
+
         int i = socket.write(buffer);
-        while (i < 11) {
-            System.out.println(i);
+        while (i < 3) {
             i += socket.write(buffer);
         }
+
+        buffer.clear();
+        buffer.putLong(System.currentTimeMillis());
+        buffer.putShort((short)11);
+        buffer.put((byte)0x01);
+        buffer.putLong(System.currentTimeMillis());
+
+        buffer.flip();
+
+        i = socket.write(buffer);
+        while (i < 19) {
+            i += socket.write(buffer);
+        }
+
 
         i = socket.read(rBuffer);
         while(i < 19) {

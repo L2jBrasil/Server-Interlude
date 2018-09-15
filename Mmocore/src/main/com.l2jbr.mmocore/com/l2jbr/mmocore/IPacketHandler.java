@@ -24,6 +24,7 @@ import java.nio.ByteBuffer;
  * @param <T>
  */
 public interface IPacketHandler<T> {
+
 	ReceivablePacket<T> handlePacket(ByteBuffer buf, T client);
 
 	default ReceivablePacket<T> handlePacket(DataWrapper data, T client) {

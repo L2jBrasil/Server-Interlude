@@ -5,25 +5,22 @@ import java.nio.channels.CompletionHandler;
 
 import static java.util.Objects.nonNull;
 
-public class ReadHandler<T extends AsyncMMOClient<AsyncMMOConnection<T>>> implements CompletionHandler<Integer, T> {
+class ReadHandler<T extends AsyncMMOClient<AsyncMMOConnection<T>>> implements CompletionHandler<Integer, T> {
 
     static final int HEADER_SIZE = 2;
 
     private final IPacketHandler<T> packetHandler;
     private final IMMOExecutor<T> executor;
 
-    public ReadHandler(IPacketHandler<T> packetHandler, IMMOExecutor<T> executor) {
+    ReadHandler(IPacketHandler<T> packetHandler, IMMOExecutor<T> executor) {
         this.packetHandler = packetHandler;
         this.executor =  executor;
     }
 
     @Override
     public void completed(Integer bytesRead, T client) {
-        var connection = client.getConnection();
+        AsyncMMOConnection<T> connection = client.getConnection();
         if(bytesRead < 0 ) {
-            //Client disconnected.
-            ResourcePool.recycleBuffer(connection.getReadingBuffer());
-            connection.releaseReadingBuffer();
             client.disconnected();
             return;
         }
@@ -32,16 +29,14 @@ public class ReadHandler<T extends AsyncMMOClient<AsyncMMOConnection<T>>> implem
         buffer.flip();
 
         if (buffer.remaining() < HEADER_SIZE){
-            // no enough data to read Header. Prepare buffer to writing without data loss.
             buffer.compact();
             connection.read();
             return;
         }
 
-        var dataSize = (buffer.getShort() & 0xFFFF) - HEADER_SIZE;
+        int dataSize = Short.toUnsignedInt(buffer.getShort()) - HEADER_SIZE;
 
         if(dataSize > buffer.remaining()) {
-            // No enough data yet, read more. Prepare buffer to writing without data loss.
             buffer.position(buffer.position() - HEADER_SIZE);
             buffer.compact();
             connection.read();
@@ -53,17 +48,15 @@ public class ReadHandler<T extends AsyncMMOClient<AsyncMMOConnection<T>>> implem
         }
 
         if(!buffer.hasRemaining()) {
-            // No other packet had already come. so recycle it.
-            ResourcePool.recycleBuffer(buffer);
-            connection.releaseReadingBuffer();
+            buffer.clear();
         } else {
+            int remaining = buffer.remaining();
             buffer.compact();
-            if(buffer.remaining() >= HEADER_SIZE) {
-                completed(buffer.remaining(), client);
+            if(remaining >= HEADER_SIZE) {
+                completed(remaining, client);
                 return;
             }
         }
-        // We need to keep reading ?
         connection.read();
     }
 
@@ -71,11 +64,11 @@ public class ReadHandler<T extends AsyncMMOClient<AsyncMMOConnection<T>>> implem
         byte[] data = new byte[dataSize];
 
         buffer.get(data, 0, dataSize);
-        var decripted = client.decrypt(data);
+        boolean decrypted = client.decrypt(data);
 
-        if(decripted) {
+        if(decrypted) {
             DataWrapper wrapper = DataWrapper.wrap(data);
-            var packet = packetHandler.handlePacket(wrapper, client);
+            ReceivablePacket<T> packet = packetHandler.handlePacket(wrapper, client);
             execute(client, packet, wrapper);
         }
     }
