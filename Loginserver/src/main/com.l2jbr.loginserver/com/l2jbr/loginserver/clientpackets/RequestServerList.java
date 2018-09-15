@@ -58,7 +58,7 @@ public class RequestServerList extends L2LoginClientPacket
 	@Override
 	public boolean readImpl()
 	{
-		if (_buf.remaining() >= 8)
+		if (availableData() >= 8)
 		{
 			_skey1 = readInt(); // loginOk 1
 			_skey2 = readInt(); // loginOk 2

@@ -10,6 +10,10 @@ public abstract class AbstractPacket<T> {
 
     protected T client;
 
+    public T getClient() {
+        return client;
+    }
+
     static short convertEndian(short n) {
         return !isBigEndian ? n : Short.reverseBytes(n);
     }
