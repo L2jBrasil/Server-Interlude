@@ -43,10 +43,11 @@ public abstract class AsyncMMOClient<T extends  AsyncMMOConnection<?>> {
 
     private void write(SendablePacket<? extends  AsyncMMOClient<T>> packet) {
         dataSentSize = packet.writeData();
+        encrypt(packet.data, ReadHandler.HEADER_SIZE, dataSentSize);
         connection.write(packet.data, 0, dataSentSize);
     }
 
-    void disconnected() {
+    public void disconnected() {
         connection.close();
         onDisconnection();
     }
@@ -55,7 +56,7 @@ public abstract class AsyncMMOClient<T extends  AsyncMMOConnection<?>> {
         return dataSentSize;
     }
 
-    public abstract boolean decrypt(byte[] data);
-    public abstract boolean encrypt(byte[] data);
+    public abstract boolean decrypt(byte[] data, int offset, int size);
+    public abstract boolean encrypt(byte[] data, int offset, int size);
     protected abstract void  onDisconnection();
 }

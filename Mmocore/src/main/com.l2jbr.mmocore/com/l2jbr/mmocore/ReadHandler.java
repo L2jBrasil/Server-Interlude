@@ -64,7 +64,7 @@ class ReadHandler<T extends AsyncMMOClient<AsyncMMOConnection<T>>> implements Co
         byte[] data = new byte[dataSize];
 
         buffer.get(data, 0, dataSize);
-        boolean decrypted = client.decrypt(data);
+        boolean decrypted = client.decrypt(data, 0, dataSize);
 
         if(decrypted) {
             DataWrapper wrapper = DataWrapper.wrap(data);

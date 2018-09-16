@@ -110,7 +110,7 @@ public abstract class SendablePacket<T> extends AbstractPacket<T> {
 	 * @param bytes
 	 */
 	protected final void writeBytes(final byte[] bytes) {
-	    arraycopy(bytes, 0, data, dataIndex, data.length);
+	    arraycopy(bytes, 0, data, dataIndex, bytes.length);
 		dataIndex += bytes.length;
 	}
 
@@ -147,7 +147,7 @@ public abstract class SendablePacket<T> extends AbstractPacket<T> {
     private static byte pickByte(byte  le, byte  be) { return isBigEndian ? be : le; }
 
     protected int packetSize() {
-        return   64 * 1024;
+        return  64 * 1024;
     }
 
 	protected abstract void write();
