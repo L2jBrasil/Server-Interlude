@@ -15,7 +15,6 @@ public class SelectorPongPacket extends SendablePacket<SelectorClient> {
 
     @Override
     protected void write() {
-        writeByte(0x01);
         writeLong(sendTime);
         writeLong(receivedTime);
     }

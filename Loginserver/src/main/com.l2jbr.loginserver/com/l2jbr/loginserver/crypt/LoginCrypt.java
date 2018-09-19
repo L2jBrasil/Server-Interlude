@@ -65,11 +65,11 @@ public class LoginCrypt
 	
 	public int encrypt(byte[] raw, final int offset, int size) throws IOException
 	{
-		// reserve checksum
-		size += 4;
-		
+        // reserve checksum
+        size += 4;
 		if (_static)
 		{
+
 			// reserve for XOR "key"
 			size += 4;
 			

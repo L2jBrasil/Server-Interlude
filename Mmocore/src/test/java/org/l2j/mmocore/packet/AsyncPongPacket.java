@@ -15,7 +15,6 @@ public class AsyncPongPacket extends SendablePacket<AsyncClient> {
 
     @Override
     protected void write() {
-        writeByte(0x01);
         writeLong(sendTime);
         writeLong(receivedTime);
 

@@ -26,9 +26,7 @@ import com.l2jbr.loginserver.serverpackets.LoginFail;
 import com.l2jbr.loginserver.serverpackets.LoginFail.LoginFailReason;
 import com.l2jbr.loginserver.serverpackets.PlayFail;
 import com.l2jbr.loginserver.serverpackets.PlayFail.PlayFailReason;
-import com.l2jbr.mmocore.MMOClient;
-import com.l2jbr.mmocore.MMOConnection;
-import com.l2jbr.mmocore.SendablePacket;
+import com.l2jbr.mmocore.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,16 +35,14 @@ import java.net.InetAddress;
 import java.nio.ByteBuffer;
 import java.security.interfaces.RSAPrivateKey;
 
-
 /**
  * Represents a client connected into the LoginServer
- * @author KenM
  */
-public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
+public final class L2LoginClient extends AsyncMMOClient<AsyncMMOConnection<L2LoginClient>>
 {
-	private static Logger _log = LoggerFactory.getLogger(L2LoginClient.class.getName());
+	private static Logger _log = LoggerFactory.getLogger(L2LoginClient.class);
 	
-	public static enum LoginClientState
+	public enum LoginClientState
 	{
 		CONNECTED,
 		AUTHED_GG,
@@ -69,15 +65,12 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 	private boolean _joinedGS;
 	
 	private final long _connectionStartTime;
-	
-	/**
-	 * @param con
-	 */
-	public L2LoginClient(MMOConnection<L2LoginClient> con)
+
+	public L2LoginClient(AsyncMMOConnection<L2LoginClient> con)
 	{
 		super(con);
 		_state = LoginClientState.CONNECTED;
-		String ip = getConnection().getInetAddress().getHostAddress();
+		String ip = con.getClientAddress();
 		
 		// TODO unhardcode this
 		if (ip.startsWith("192.168") || ip.startsWith("10.0") || ip.equals("127.0.0.1"))
@@ -97,56 +90,45 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 	{
 		return _usesInternalIP;
 	}
-	
-	/**
-	 * @see #decrypt(ByteBuffer, int)
-	 */
-	@Override
-	public boolean decrypt(ByteBuffer buf, int size)
-	{
-		boolean ret = false;
-		try
-		{
-			ret = _loginCrypt.decrypt(buf.array(), buf.position(), size);
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-			super.getConnection().close((SendablePacket<L2LoginClient>) null);
-			return false;
-		}
-		
-		if (!ret)
-		{
-			byte[] dump = new byte[size];
-			System.arraycopy(buf.array(), buf.position(), dump, 0, size);
-			_log.warn("Wrong checksum from client: " + toString());
-			super.getConnection().close((SendablePacket<L2LoginClient>) null);
-		}
-		
-		return ret;
-	}
-	
-	/**
-	 * @see #encrypt(ByteBuffer, int)
-	 */
-	@Override
-	public boolean encrypt(ByteBuffer buf, int size)
-	{
-		final int offset = buf.position();
-		try
-		{
-			size = _loginCrypt.encrypt(buf.array(), offset, size);
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-			return false;
-		}
-		
-		buf.position(offset + size);
-		return true;
-	}
+
+
+    @Override
+    public boolean decrypt(byte[] data, int offset, int size) {
+        boolean ret;
+        try  {
+            ret = _loginCrypt.decrypt(data, offset, size);
+        }
+        catch (IOException e) {
+            _log.error(e.getLocalizedMessage(), e);
+            close((SendablePacket<L2LoginClient>) null);
+            return false;
+        }
+
+        if (!ret)
+        {
+            byte[] dump = new byte[size];
+            System.arraycopy(buf.array(), buf.position(), dump, 0, size);
+            _log.warn("Wrong checksum from client: " + toString());
+            close((SendablePacket<L2LoginClient>) null);
+        }
+
+        return ret;
+    }
+
+    private void close(SendablePacket<L2LoginClient> l2LoginClientSendablePacket) {
+    }
+
+    @Override
+    public int encrypt(byte[] data, int offset, int size) {
+        int encryptedSize = -1;
+	    try {
+	       encryptedSize = _loginCrypt.encrypt(data, offset, size);
+        } catch (IOException e) {
+	        _log.error(e.getLocalizedMessage(), e);
+	        return encryptedSize;
+        }
+        return encryptedSize;
+    }
 	
 	public LoginClientState getState()
 	{
@@ -252,8 +234,9 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 	{
 		getConnection().close(lsp);
 	}
-	
-	/**
+
+
+    /**
 	 * @see com.l2jbr.mmocore.MMOClient#onDisconnection()
 	 */
 	@Override

@@ -11,12 +11,12 @@ public class AsyncClient extends AsyncMMOClient<AsyncMMOConnection<AsyncClient>>
     }
 
     @Override
-    public boolean decrypt(byte[] data) {
+    public boolean decrypt(byte[] data, int offset, int size) {
         return true;
     }
 
     @Override
-    public boolean encrypt(byte[] data) {
+    public boolean encrypt(byte[] data, int offset, int size) {
         return true;
     }
 

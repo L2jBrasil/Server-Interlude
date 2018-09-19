@@ -57,7 +57,7 @@ public class AsyncMMOConnection<T extends AsyncMMOClient<AsyncMMOConnection<T>>>
         return writingBuffer;
     }
 
-    void releaseReadingBuffer() {
+    private void releaseReadingBuffer() {
         recycleBuffer(readingBuffer);
         readingBuffer=null;
     }
@@ -76,5 +76,13 @@ public class AsyncMMOConnection<T extends AsyncMMOClient<AsyncMMOConnection<T>>>
             e.printStackTrace();
         }
 
+    }
+
+    public String getClientAddress() {
+        try {
+            return channel.getRemoteAddress().toString();
+        } catch (IOException e) {
+            return "";
+        }
     }
 }
