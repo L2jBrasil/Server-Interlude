@@ -21,13 +21,12 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.commons.Server;
 import com.l2jbr.commons.status.Status;
 import com.l2jbr.loginserver.status.LoginStatus;
-import com.l2jbr.mmocore.SelectorConfig;
-import com.l2jbr.mmocore.SelectorThread;
+import com.l2jbr.mmocore.ConnectionHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
 import java.security.GeneralSecurityException;
 import java.sql.SQLException;
@@ -36,12 +35,12 @@ import java.sql.SQLException;
  * @author KenM
  */
 public class L2LoginServer {
+
     public static final int PROTOCOL_REV = 0x0102;
 
     private static L2LoginServer _instance;
     private static Logger _log;
     private GameServerListener _gameServerListener;
-    private SelectorThread<L2LoginClient> _selectorThread;
     private Status _statusServer;
 
     public static void main(String[] args) {
@@ -69,13 +68,7 @@ public class L2LoginServer {
 
         try {
             GameServerTable.load();
-        } catch (GeneralSecurityException e) {
-            _log.error("FATAL: Failed to load GameServerTable. Reason: " + e.getMessage());
-            if (Config.DEVELOPER) {
-                e.printStackTrace();
-            }
-            System.exit(1);
-        } catch (SQLException e) {
+        } catch (GeneralSecurityException | SQLException e) {
             _log.error("FATAL: Failed to load GameServerTable. Reason: " + e.getMessage());
             if (Config.DEVELOPER) {
                 e.printStackTrace();
@@ -84,35 +77,6 @@ public class L2LoginServer {
         }
 
         loadBanFile();
-
-        InetAddress bindAddress = null;
-        if (!Config.LOGIN_BIND_ADDRESS.equals("*")) {
-            try {
-                bindAddress = InetAddress.getByName(Config.LOGIN_BIND_ADDRESS);
-            } catch (UnknownHostException e1) {
-                _log.error("WARNING: The LoginServer bind address is invalid, using all avaliable IPs. Reason: " + e1.getMessage());
-                if (Config.DEVELOPER) {
-                    e1.printStackTrace();
-                }
-            }
-        }
-
-        // TODO: Unhardcode this configuration options
-        final SelectorConfig sc = new SelectorConfig();
-        sc.MAX_READ_PER_PASS = 12; // Config.MMO_MAX_READ_PER_PASS;
-        sc.MAX_SEND_PER_PASS = 12; // Config.MMO_MAX_SEND_PER_PASS;
-        sc.SLEEP_TIME = 20; // Config.MMO_SELECTOR_SLEEP_TIME;
-        sc.HELPER_BUFFER_COUNT = 20; // Config.MMO_HELPER_BUFFER_COUNT;
-        sc.TCP_NODELAY = false; // Config.MMO_TCP_NODELAY;
-
-        final L2LoginPacketHandler lph = new L2LoginPacketHandler();
-        final SelectorHelper sh = new SelectorHelper();
-        try {
-            _selectorThread = new SelectorThread<>(sc, sh, lph, sh, sh);
-        } catch (IOException e) {
-            _log.error("FATAL: Failed to open Selector. Reason: " + e.getMessage(), e);
-            System.exit(1);
-        }
 
         try {
             _gameServerListener = new GameServerListener();
@@ -140,28 +104,37 @@ public class L2LoginServer {
             System.out.println("Telnet server is currently disabled.");
         }
 
+        InetSocketAddress bindAddress;
+        if (!Config.LOGIN_BIND_ADDRESS.equals("*")) {
+            bindAddress =  new InetSocketAddress(Config.LOGIN_BIND_ADDRESS, Config.PORT_LOGIN);
+        } else {
+            bindAddress = new InetSocketAddress(Config.PORT_LOGIN);
+        }
+
         try {
-            _selectorThread.openServerSocket(bindAddress, Config.PORT_LOGIN);
+            final L2LoginPacketHandler lph = new L2LoginPacketHandler();
+            final SelectorHelper sh = new SelectorHelper();
+            var connectionHandler = new ConnectionHandler<>(bindAddress, false, 4,sh, lph,sh);
+            connectionHandler.start();
         } catch (IOException e) {
-            _log.error("FATAL: Failed to open server socket. Reason: " + e.getMessage(), e);
+            _log.error("FATAL: Failed to open ConnectionHandler. Reason: " + e.getMessage(), e);
             System.exit(1);
         }
-        _selectorThread.start();
-        _log.info("Login Server ready on " + (bindAddress == null ? "*" : bindAddress.getHostAddress()) + ":" + Config.PORT_LOGIN);
+        _log.info("Login Server ready on {}:{}", bindAddress.getHostString(),  Config.PORT_LOGIN);
     }
 
-    public Status getStatusServer() {
+    Status getStatusServer() {
         return _statusServer;
     }
 
-    public GameServerListener getGameServerListener() {
+    GameServerListener getGameServerListener() {
         return _gameServerListener;
     }
 
     private void loadBanFile() {
         File bannedFile = new File("./banned_ip.cfg");
         if (bannedFile.exists() && bannedFile.isFile()) {
-            FileInputStream fis = null;
+            FileInputStream fis;
             try {
                 fis = new FileInputStream(bannedFile);
             } catch (FileNotFoundException e) {
@@ -180,7 +153,7 @@ public class L2LoginServer {
 
                 while ((line = reader.readLine()) != null) {
                     line = line.trim();
-                    // check if this line isnt a comment line
+                    // check if this line isn't a comment line
                     if ((line.length() > 0) && (line.charAt(0) != '#')) {
                         // split comments if any
                         parts = line.split("#");

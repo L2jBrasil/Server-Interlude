@@ -3,6 +3,7 @@ package com.l2jbr.mmocore;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousSocketChannel;
+import java.util.concurrent.ExecutionException;
 
 import static com.l2jbr.mmocore.ResourcePool.getPooledBuffer;
 import static com.l2jbr.mmocore.ResourcePool.recycleBuffer;
@@ -29,18 +30,43 @@ public class AsyncMMOConnection<T extends AsyncMMOClient<AsyncMMOConnection<T>>>
     }
 
     final void read() {
-        channel.read(getReadingBuffer(), client, readHandler);
+        if(channel.isOpen()) {
+            channel.read(getReadingBuffer(), client, readHandler);
+        }
     }
 
-    final void write(byte[] data, int offset, int limit) {
+    final void write(byte[] data, int offset, int limit, boolean sync) {
+        if(!channel.isOpen()) {
+            return;
+        }
+
         ByteBuffer buffer = getWritingBuffer();
         buffer.put(data, offset, limit);
         buffer.flip();
-        write();
+        if(sync) {
+            writeSync();
+        } else {
+            write();
+        }
     }
 
+
     final void write() {
-        channel.write(writingBuffer, client, writeHandler);
+        if(channel.isOpen()) {
+            channel.write(writingBuffer, client, writeHandler);
+        }
+    }
+
+    private void writeSync() {
+        try {
+            int dataSize = client.getDataSentSize();
+            int dataSent = 0;
+            do {
+                dataSent += channel.write(writingBuffer).get();
+            } while (dataSent < dataSize);
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 
     ByteBuffer getReadingBuffer() {
@@ -78,7 +104,7 @@ public class AsyncMMOConnection<T extends AsyncMMOClient<AsyncMMOConnection<T>>>
 
     }
 
-    public String getClientAddress() {
+    String getRemoteAddress() {
         try {
             return channel.getRemoteAddress().toString();
         } catch (IOException e) {

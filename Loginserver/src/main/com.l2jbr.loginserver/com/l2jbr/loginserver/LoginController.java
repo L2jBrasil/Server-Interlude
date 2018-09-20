@@ -71,7 +71,7 @@ public class LoginController {
 
     private final Map<InetAddress, BanInfo> _bannedIps = new ConcurrentHashMap<>();
 
-    private final Map<InetAddress, FailedLoginAttempt> _hackProtection;
+    private final Map<String, FailedLoginAttempt> _hackProtection;
 
     protected ScrambledKeyPair[] _keyPairs;
 
@@ -384,15 +384,14 @@ public class LoginController {
      */
     public boolean loginValid(String user, String password, L2LoginClient client) {
         boolean ok = false;
-        InetAddress address = client.getConnection().getInetAddress();
+        String address = client.getHostAddress();
         // log it anyway
-        Log.add("'" + (user == null ? "null" : user) + "' " + (address == null ? "null" : address.getHostAddress()), "logins_ip");
+        Log.add("'" + (user == null ? "null" : user) + "' " + (address == null ? "null" : address), "logins_ip");
 
-        // player disconnected meanwhile
+        // player disconnect meanwhile
         if (address == null) {
             return false;
         }
-
         try {
             MessageDigest md = MessageDigest.getInstance("SHA");
             byte[] raw = password.getBytes("UTF-8");
@@ -425,14 +424,14 @@ public class LoginController {
                     client.setAccessLevel(account.getAccessLevel());
                     client.setLastServer(account.getLastServer());
                     account.setLastActive(System.currentTimeMillis());
-                    account.setLastIP(address.getHostAddress());
+                    account.setLastIP(address);
                     repository.save(account);
                 }
             } else if (Config.AUTO_CREATE_ACCOUNTS) {
                 if ((user.length() >= 2) && (user.length() <= 14)) {
                     String pwd = Base64.encodeBytes(hash);
                     long lastActive = System.currentTimeMillis();
-                    Account account = new Account(user, pwd, lastActive, address.getHostAddress());
+                    Account account = new Account(user, pwd, lastActive, address);
 
                     if (repository.save(account).isPersisted()) {
                         _log.debug("created new account for {}", user);
@@ -451,12 +450,12 @@ public class LoginController {
         }
 
         if (!ok) {
-            Log.add("'" + user + "' " + address.getHostAddress(), "logins_ip_fails");
+            Log.add("'" + user + "' " + address, "logins_ip_fails");
 
             FailedLoginAttempt failedAttempt = _hackProtection.get(address);
             int failedCount;
             if (failedAttempt == null) {
-                _hackProtection.put(address, new FailedLoginAttempt(address, password));
+                _hackProtection.put(address, new FailedLoginAttempt(password));
                 failedCount = 1;
             } else {
                 failedAttempt.increaseCounter(password);
@@ -464,25 +463,27 @@ public class LoginController {
             }
 
             if (failedCount >= Config.LOGIN_TRY_BEFORE_BAN) {
-                _log.info("Banning '" + address.getHostAddress() + "' for " + Config.LOGIN_BLOCK_AFTER_BAN + " seconds due to " + failedCount + " invalid user/pass attempts");
-                this.addBanForAddress(address, Config.LOGIN_BLOCK_AFTER_BAN * 1000);
+                _log.info("Banning '" + address + "' for " + Config.LOGIN_BLOCK_AFTER_BAN + " seconds due to " + failedCount + " invalid user/pass attempts");
+                try {
+                    this.addBanForAddress(address, Config.LOGIN_BLOCK_AFTER_BAN * 1000);
+                } catch (UnknownHostException e) {
+                    _log.warn("Skipped: Invalid address ({})", address);
+                }
             }
         } else {
             _hackProtection.remove(address);
-            Log.add("'" + user + "' " + address.getHostAddress(), "logins_ip");
+            Log.add("'" + user + "' " + address, "logins_ip");
         }
 
         return ok;
     }
 
     class FailedLoginAttempt {
-        // private InetAddress _ipAddress;
         private int _count;
         private long _lastAttempTime;
         private String _lastPassword;
 
-        public FailedLoginAttempt(InetAddress address, String lastPassword) {
-            // _ipAddress = address;
+        public FailedLoginAttempt(String lastPassword) {
             _count = 1;
             _lastAttempTime = System.currentTimeMillis();
             _lastPassword = lastPassword;

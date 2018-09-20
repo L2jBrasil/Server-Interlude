@@ -21,7 +21,7 @@ class ReadHandler<T extends AsyncMMOClient<AsyncMMOConnection<T>>> implements Co
     public void completed(Integer bytesRead, T client) {
         AsyncMMOConnection<T> connection = client.getConnection();
         if(bytesRead < 0 ) {
-            client.disconnected();
+            client.disconnect();
             return;
         }
 
@@ -86,6 +86,6 @@ class ReadHandler<T extends AsyncMMOClient<AsyncMMOConnection<T>>> implements Co
 
     @Override
     public void failed(Throwable exc, T client) {
-        client.disconnected();
+        client.disconnect();
     }
 }

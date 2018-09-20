@@ -7,7 +7,7 @@ class WriteHandler<T extends  AsyncMMOClient<AsyncMMOConnection<T>>> implements 
     @Override
     public void completed(Integer result, T client) {
         if(result == -1) {
-            client.disconnected();
+            client.disconnect();
             return;
         }
 
@@ -24,6 +24,6 @@ class WriteHandler<T extends  AsyncMMOClient<AsyncMMOConnection<T>>> implements 
 
     @Override
     public void failed(Throwable exc, T client) {
-        client.disconnected();
+        client.disconnect();
     }
 }

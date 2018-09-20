@@ -4,6 +4,8 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static java.util.Objects.isNull;
+
 public abstract class AsyncMMOClient<T extends  AsyncMMOConnection<?>> {
 
     private final T connection;
@@ -41,15 +43,29 @@ public abstract class AsyncMMOClient<T extends  AsyncMMOConnection<?>> {
         connection.write();
     }
 
-    private void write(SendablePacket<? extends  AsyncMMOClient<T>> packet) {
+    private void write(SendablePacket<? extends  AsyncMMOClient<T>> packet, boolean sync) {
+        if(isNull(packet)) {
+            return;
+        }
+
         int dataSize = packet.writeData();
-        dataSentSize  = encrypt(packet.data, ReadHandler.HEADER_SIZE, dataSize);
+        dataSentSize  = encrypt(packet.data, ReadHandler.HEADER_SIZE, dataSize - ReadHandler.HEADER_SIZE) + ReadHandler.HEADER_SIZE;
+        packet.writeHeader(dataSentSize);
         if(dataSentSize > 0) {
-            connection.write(packet.data, 0, dataSentSize);
+            connection.write(packet.data, 0, dataSentSize, sync);
         }
     }
 
-    public void disconnected() {
+    private void write(SendablePacket<? extends  AsyncMMOClient<T>> packet) {
+        write(packet, false);
+    }
+
+    public void close(SendablePacket<? extends AsyncMMOClient<T>> packet) {
+        packetsToWrite.clear();
+        write(packet, true);
+    }
+
+    protected final void disconnect() {
         connection.close();
         onDisconnection();
     }
@@ -57,6 +73,12 @@ public abstract class AsyncMMOClient<T extends  AsyncMMOConnection<?>> {
     int getDataSentSize() {
         return dataSentSize;
     }
+
+    public String getHostAddress() {
+        return connection.getRemoteAddress();
+    }
+
+
 
     public abstract boolean decrypt(byte[] data, int offset, int size);
 
@@ -69,4 +91,6 @@ public abstract class AsyncMMOClient<T extends  AsyncMMOConnection<?>> {
      */
     public abstract int encrypt(byte[] data, int offset, int size);
     protected abstract void  onDisconnection();
+
+    public abstract void onConnected();
 }

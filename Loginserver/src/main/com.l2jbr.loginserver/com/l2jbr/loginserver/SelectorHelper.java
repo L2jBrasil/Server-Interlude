@@ -25,36 +25,28 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-
 /**
  * @author KenM
  */
-public class SelectorHelper implements IMMOExecutor<L2LoginClient>, IClientFactory<L2LoginClient>, IAcceptFilter
-{
+public class SelectorHelper implements IMMOExecutor<L2LoginClient>, ClientFactory<L2LoginClient>, IAcceptFilter {
 	private final ThreadPoolExecutor _generalPacketsThreadPool;
 	
-	public SelectorHelper()
-	{
-		_generalPacketsThreadPool = new ThreadPoolExecutor(4, 6, 15L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());
+	public SelectorHelper() {
+		_generalPacketsThreadPool = new ThreadPoolExecutor(4, 6, 15L, TimeUnit.SECONDS, new LinkedBlockingQueue<>());
 	}
 	
 	@Override
-	public void execute(ReceivablePacket<L2LoginClient> packet)
-	{
+	public void execute(ReceivablePacket<L2LoginClient> packet) {
 		_generalPacketsThreadPool.execute(packet);
 	}
-	
+
 	@Override
-	public L2LoginClient create(MMOConnection<L2LoginClient> con)
-	{
-		L2LoginClient client = new L2LoginClient(con);
-		client.sendPacket(new Init(client));
-		return client;
+	public L2LoginClient create(AsyncMMOConnection<L2LoginClient> connection) {
+		return new L2LoginClient(connection);
 	}
-	
+
 	@Override
-	public boolean accept(SocketChannel sc)
-	{
+	public boolean accept(SocketChannel sc) {
 		return !LoginController.getInstance().isBannedAddress(sc.socket().getInetAddress());
 	}
 }

@@ -386,7 +386,7 @@ public class RecipeController {
             }
 
             if ((_player == null) || (_target == null)) {
-                _log.warn("player or target == null (disconnected?), aborting" + _target + _player);
+                _log.warn("player or target == null (disconnect?), aborting" + _target + _player);
                 abort();
                 return;
             }

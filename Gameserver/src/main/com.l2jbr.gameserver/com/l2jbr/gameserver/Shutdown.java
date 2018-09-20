@@ -468,7 +468,7 @@ public class Shutdown extends Thread
 			ItemsOnGroundManager.getInstance().cleanUp();
 			System.out.println("ItemsOnGroundManager: All items on ground saved!!");
 		}
-		System.out.println("Data saved. All players disconnected, shutting down.");
+		System.out.println("Data saved. All players disconnect, shutting down.");
 		
 		try
 		{

@@ -16,8 +16,8 @@ public class AsyncClient extends AsyncMMOClient<AsyncMMOConnection<AsyncClient>>
     }
 
     @Override
-    public boolean encrypt(byte[] data, int offset, int size) {
-        return true;
+    public int encrypt(byte[] data, int offset, int size) {
+        return 1;
     }
 
     @Override

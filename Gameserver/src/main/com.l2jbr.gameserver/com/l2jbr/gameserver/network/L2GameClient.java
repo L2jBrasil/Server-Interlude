@@ -348,7 +348,7 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> {
 
     @Override
     protected void onForcedDisconnection() {
-        _log.info("Client " + toString() + " disconnected abnormally.");
+        _log.info("Client " + toString() + " disconnect abnormally.");
     }
 
     /**
@@ -423,11 +423,11 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> {
             InetAddress address = getConnection().getInetAddress();
             switch (getState()) {
                 case CONNECTED:
-                    return "[IP: " + (address == null ? "disconnected" : address.getHostAddress()) + "]";
+                    return "[IP: " + (address == null ? "disconnect" : address.getHostAddress()) + "]";
                 case AUTHED:
-                    return "[Account: " + getAccountName() + " - IP: " + (address == null ? "disconnected" : address.getHostAddress()) + "]";
+                    return "[Account: " + getAccountName() + " - IP: " + (address == null ? "disconnect" : address.getHostAddress()) + "]";
                 case IN_GAME:
-                    return "[Character: " + (getActiveChar() == null ? "disconnected" : getActiveChar().getName()) + " - Account: " + getAccountName() + " - IP: " + (address == null ? "disconnected" : address.getHostAddress()) + "]";
+                    return "[Character: " + (getActiveChar() == null ? "disconnect" : getActiveChar().getName()) + " - Account: " + getAccountName() + " - IP: " + (address == null ? "disconnect" : address.getHostAddress()) + "]";
                 default:
                     throw new IllegalStateException("Missing state on switch");
             }
@@ -458,7 +458,7 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> {
                 if (player != null) // this should only happen on connection loss
                 {
 
-                    // we store all data from players who are disconnected while in an event in order to restore it in the next login
+                    // we store all data from players who are disconnect while in an event in order to restore it in the next login
                     if (player.atEvent) {
                         EventData data = new EventData(player.eventX, player.eventY, player.eventZ, player.eventkarma, player.eventpvpkills, player.eventpkkills, player.eventTitle, player.kills, player.eventSitForced);
                         L2Event.connectionLossData.put(player.getName(), data);

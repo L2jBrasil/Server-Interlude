@@ -69,6 +69,7 @@ public final class ConnectionHandler<T extends AsyncMMOClient<AsyncMMOConnection
             if(nonNull(client)) {
                 connection.setClient(client);
                 connection.read();
+                client.onConnected();
             } else {
                 connection.close();
             }

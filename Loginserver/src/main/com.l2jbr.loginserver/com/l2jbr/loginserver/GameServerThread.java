@@ -160,7 +160,7 @@ public class GameServerThread extends Thread {
         } finally {
             if (isAuthed()) {
                 _gsi.setDown();
-                _log.info("Server [" + getServerId() + "] " + GameServerTable.getInstance().getServerNameById(getServerId()) + " is now set as disconnected");
+                _log.info("Server [" + getServerId() + "] " + GameServerTable.getInstance().getServerNameById(getServerId()) + " is now set as disconnect");
             }
             L2LoginServer.getInstance().getGameServerListener().removeGameServer(this);
             L2LoginServer.getInstance().getGameServerListener().removeFloodProtection(_connectionIp);
@@ -224,7 +224,7 @@ public class GameServerThread extends Thread {
                 _log.info("Player " + plo.getAccount() + " logged out from gameserver [" + getServerId() + "] " + GameServerTable.getInstance().getServerNameById(getServerId()));
             }
 
-            broadcastToTelnet("Player " + plo.getAccount() + " disconnected from GameServer " + getServerId());
+            broadcastToTelnet("Player " + plo.getAccount() + " disconnect from GameServer " + getServerId());
         } else {
             forceClose(LoginServerFail.NOT_AUTHED);
         }
@@ -365,7 +365,7 @@ public class GameServerThread extends Thread {
         try {
             _connection.close();
         } catch (IOException e) {
-            _log.debug("GameServerThread: Failed disconnecting banned server, server already disconnected.");
+            _log.debug("GameServerThread: Failed disconnecting banned server, server already disconnect.");
         }
     }
 

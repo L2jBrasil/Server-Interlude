@@ -137,10 +137,6 @@ public abstract class SendablePacket<T> extends AbstractPacket<T> {
     int writeData() {
 		dataIndex += ReadHandler.HEADER_SIZE;
         write();
-        var header = convertEndian((short) dataIndex);
-        var tmp = (byte) (header >>> 8);
-        data[0] = pickByte((byte) header, tmp);
-        data[1] = pickByte(tmp, (byte) header);
         return dataIndex;
     }
 
@@ -151,4 +147,11 @@ public abstract class SendablePacket<T> extends AbstractPacket<T> {
     }
 
 	protected abstract void write();
+
+    public void writeHeader(int dataSize) {
+        var header = convertEndian((short) dataSize);
+        var tmp = (byte) (header >>> 8);
+        data[0] = pickByte((byte) header, tmp);
+        data[1] = pickByte(tmp, (byte) header);
+    }
 }

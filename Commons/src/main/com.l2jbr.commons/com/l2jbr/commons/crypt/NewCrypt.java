@@ -77,7 +77,7 @@ public class NewCrypt
 			
 			chksum ^= check;
 		}
-		
+
 		check = raw[i] & 0xff;
 		check |= (raw[i + 1] << 8) & 0xff00;
 		check |= (raw[i + 2] << 0x10) & 0xff0000;
@@ -130,7 +130,10 @@ public class NewCrypt
 	}
 	
 	/**
-	 * Packet is first XOR encoded with <code>key</code> Then, the last 4 bytes are overwritten with the the XOR "key". Thus this assume that there is enough room for the key to fit without overwriting data.
+	 * Packet is first XOR encoded with <code>key</code>
+	 * Then, the last 4 bytes are overwritten with the the XOR "key".
+     * Thus this assume that there is enough room for the key to fit without overwriting data.
+     *
 	 * @param raw The raw bytes to be encrypted
 	 * @param offset The begining of the data to be encrypted
 	 * @param size Length of the data to be encrypted

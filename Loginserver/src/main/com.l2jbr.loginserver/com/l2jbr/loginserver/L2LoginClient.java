@@ -21,6 +21,7 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.commons.util.Rnd;
 import com.l2jbr.loginserver.crypt.LoginCrypt;
 import com.l2jbr.loginserver.crypt.ScrambledKeyPair;
+import com.l2jbr.loginserver.serverpackets.Init;
 import com.l2jbr.loginserver.serverpackets.L2LoginServerPacket;
 import com.l2jbr.loginserver.serverpackets.LoginFail;
 import com.l2jbr.loginserver.serverpackets.LoginFail.LoginFailReason;
@@ -31,8 +32,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.net.InetAddress;
-import java.nio.ByteBuffer;
 import java.security.interfaces.RSAPrivateKey;
 
 /**
@@ -70,7 +69,7 @@ public final class L2LoginClient extends AsyncMMOClient<AsyncMMOConnection<L2Log
 	{
 		super(con);
 		_state = LoginClientState.CONNECTED;
-		String ip = con.getClientAddress();
+		String ip = getHostAddress();
 		
 		// TODO unhardcode this
 		if (ip.startsWith("192.168") || ip.startsWith("10.0") || ip.equals("127.0.0.1"))
@@ -94,28 +93,22 @@ public final class L2LoginClient extends AsyncMMOClient<AsyncMMOConnection<L2Log
 
     @Override
     public boolean decrypt(byte[] data, int offset, int size) {
-        boolean ret;
+        boolean decrypted;
         try  {
-            ret = _loginCrypt.decrypt(data, offset, size);
+            decrypted = _loginCrypt.decrypt(data, offset, size);
         }
         catch (IOException e) {
             _log.error(e.getLocalizedMessage(), e);
-            close((SendablePacket<L2LoginClient>) null);
+            disconnect();
             return false;
         }
 
-        if (!ret)
-        {
-            byte[] dump = new byte[size];
-            System.arraycopy(buf.array(), buf.position(), dump, 0, size);
-            _log.warn("Wrong checksum from client: " + toString());
-            close((SendablePacket<L2LoginClient>) null);
+        if (!decrypted) {
+            _log.warn("Wrong checksum from client: {}", toString());
+            disconnect();
         }
 
-        return ret;
-    }
-
-    private void close(SendablePacket<L2LoginClient> l2LoginClientSendablePacket) {
+        return decrypted;
     }
 
     @Override
@@ -215,26 +208,22 @@ public final class L2LoginClient extends AsyncMMOClient<AsyncMMOConnection<L2Log
 		return _connectionStartTime;
 	}
 	
-	public void sendPacket(L2LoginServerPacket lsp)
-	{
-		getConnection().sendPacket(lsp);
+	public void sendPacket(L2LoginServerPacket lsp) {
+	    writePacket(lsp);
 	}
 	
-	public void close(LoginFailReason reason)
-	{
-		getConnection().close(new LoginFail(reason));
+	public void close(LoginFailReason reason) {
+        close(new LoginFail(reason));
 	}
 	
-	public void close(PlayFailReason reason)
-	{
-		getConnection().close(new PlayFail(reason));
-	}
-	
-	public void close(L2LoginServerPacket lsp)
-	{
-		getConnection().close(lsp);
+	public void close(PlayFailReason reason) {
+		close(new PlayFail(reason));
 	}
 
+    @Override
+    public void onConnected() {
+        sendPacket(new Init(this));
+    }
 
     /**
 	 * @see com.l2jbr.mmocore.MMOClient#onDisconnection()
@@ -256,25 +245,13 @@ public final class L2LoginClient extends AsyncMMOClient<AsyncMMOConnection<L2Log
 			LoginController.getInstance().removeAuthedLoginClient(getAccount());
 		}
 	}
-	
-	/**
-	 * @see com.l2jbr.mmocore.MMOClient#onForcedDisconnection()
-	 */
-	@Override
-	protected void onForcedDisconnection()
-	{
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public String toString()
-	{
-		InetAddress address = getConnection().getInetAddress();
-		if (getState() == LoginClientState.AUTHED_LOGIN)
-		{
-			return "[" + getAccount() + " (" + (address == null ? "disconnected" : address.getHostAddress()) + ")]";
+
+    @Override
+	public String toString() {
+		String address =  getHostAddress();
+		if (getState() == LoginClientState.AUTHED_LOGIN) {
+			return "[" + getAccount() + " (" + (address.equals("") ? "disconnect" : address) + ")]";
 		}
-		return "[" + (address == null ? "disconnected" : address.getHostAddress()) + "]";
+		return "[" + (address.equals("") ? "disconnect" : address) + "]";
 	}
 }

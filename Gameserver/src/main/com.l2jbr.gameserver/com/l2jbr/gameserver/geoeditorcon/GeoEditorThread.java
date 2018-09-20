@@ -95,7 +95,7 @@ public class GeoEditorThread extends Thread {
                 }
             }
         } catch (SocketException e) {
-            _log.warn("GeoEditor disconnected. " + e.getMessage());
+            _log.warn("GeoEditor disconnect. " + e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -121,7 +121,7 @@ public class GeoEditorThread extends Thread {
                 _out.flush();
             }
         } catch (SocketException e) {
-            _log.warn("GeoEditor disconnected. " + e.getMessage());
+            _log.warn("GeoEditor disconnect. " + e.getMessage());
             _working = false;
         } catch (Exception e) {
             e.printStackTrace();
@@ -149,7 +149,7 @@ public class GeoEditorThread extends Thread {
                 _out.flush();
             }
         } catch (SocketException e) {
-            _log.warn("GeoEditor disconnected. " + e.getMessage());
+            _log.warn("GeoEditor disconnect. " + e.getMessage());
             _working = false;
         } catch (Exception e) {
             e.printStackTrace();

@@ -33,7 +33,6 @@ import com.l2jbr.loginserver.serverpackets.ServerList;
 import javax.crypto.Cipher;
 import java.security.GeneralSecurityException;
 
-
 /**
  * Format: x 0 (a leading null) x: the rsa encrypted block with the login an password
  */
