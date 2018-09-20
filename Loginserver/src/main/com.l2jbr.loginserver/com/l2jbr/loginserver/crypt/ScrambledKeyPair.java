@@ -24,10 +24,6 @@ import java.math.BigInteger;
 import java.security.KeyPair;
 import java.security.interfaces.RSAPublicKey;
 
-
-/**
- *
- */
 public class ScrambledKeyPair
 {
 	private static Logger _log = LoggerFactory.getLogger(ScrambledKeyPair.class.getName());

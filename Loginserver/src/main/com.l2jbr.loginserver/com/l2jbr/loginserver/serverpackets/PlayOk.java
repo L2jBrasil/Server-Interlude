@@ -20,25 +20,23 @@ package com.l2jbr.loginserver.serverpackets;
 
 import com.l2jbr.loginserver.SessionKey;
 
-
-/**
- *
- */
-public final class PlayOk extends L2LoginServerPacket
-{
+public final class PlayOk extends L2LoginServerPacket  {
 	private final int _playOk1, _playOk2;
 	
-	public PlayOk(SessionKey sessionKey)
-	{
+	public PlayOk(SessionKey sessionKey) {
 		_playOk1 = sessionKey.playOkID1;
 		_playOk2 = sessionKey.playOkID2;
 	}
 	
 	@Override
-	protected void write()
-	{
+	protected void write() {
 		writeByte(0x07);
 		writeInt(_playOk1);
 		writeInt(_playOk2);
+	}
+
+	@Override
+	protected int packetSize() {
+		return super.packetSize() + 9;
 	}
 }

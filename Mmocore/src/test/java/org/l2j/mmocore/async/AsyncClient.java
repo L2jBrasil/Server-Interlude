@@ -25,6 +25,11 @@ public class AsyncClient extends AsyncMMOClient<AsyncMMOConnection<AsyncClient>>
 
     }
 
+    @Override
+    public void onConnected() {
+
+    }
+
 
     public void sendPacket(SendablePacket<AsyncClient> packet) {
         writePacket(packet);

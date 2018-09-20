@@ -59,7 +59,8 @@ public class L2LoginServer {
         try {
             LoginController.load();
         } catch (GeneralSecurityException e) {
-            _log.error("FATAL: Failed initializing LoginController. Reason: " + e.getMessage());
+            _log.error("FATAL: Failed initializing LoginController. Reason: {}", e.getMessage());
+
             if (Config.DEVELOPER) {
                 e.printStackTrace();
             }
@@ -69,7 +70,7 @@ public class L2LoginServer {
         try {
             GameServerTable.load();
         } catch (GeneralSecurityException | SQLException e) {
-            _log.error("FATAL: Failed to load GameServerTable. Reason: " + e.getMessage());
+            _log.error("FATAL: Failed to load GameServerTable. Reason: {}", e.getMessage());
             if (Config.DEVELOPER) {
                 e.printStackTrace();
             }

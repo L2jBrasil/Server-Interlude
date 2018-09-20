@@ -22,7 +22,6 @@ import com.l2jbr.commons.Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 /**
  * Fromat: d d: response
  */
@@ -51,5 +50,10 @@ public final class GGAuth extends L2LoginServerPacket
 		writeInt(0x00);
 		writeInt(0x00);
 		writeInt(0x00);
+	}
+
+	@Override
+	protected int packetSize() {
+		return super.packetSize() + 21;
 	}
 }

@@ -20,7 +20,6 @@ package com.l2jbr.loginserver.serverpackets;
 
 import com.l2jbr.loginserver.SessionKey;
 
-
 /**
  * Format: dddddddd f: the session key d: ? d: ? d: ? d: ? d: ? d: ? b: 16 bytes - unknown
  */
@@ -47,5 +46,10 @@ public final class LoginOk extends L2LoginServerPacket
 		writeInt(0x00);
 		writeInt(0x00);
 		writeBytes(new byte[16]);
+	}
+
+	@Override
+	protected int packetSize() {
+		return super.packetSize() + 49;
 	}
 }

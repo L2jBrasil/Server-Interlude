@@ -116,7 +116,7 @@ public class RequestAuthLogin extends L2LoginClientPacket
 				}
 				else
 				{
-					getClient().sendPacket(new ServerList(getClient()));
+					getClient().sendPacket(new ServerList());
 				}
 				break;
 			case INVALID_PASSWORD:
