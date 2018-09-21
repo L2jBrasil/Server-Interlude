@@ -18,6 +18,7 @@
  */
 package com.l2jbr.loginserver.serverpackets;
 
+import com.l2jbr.commons.Config;
 import com.l2jbr.loginserver.GameServerTable;
 import com.l2jbr.loginserver.gameserverpackets.ServerStatus;
 
@@ -63,7 +64,13 @@ public final class ServerList extends L2LoginServerPacket {
             writeByte(server.isPvp() ? 1 : 0);
             writeShort(server.getCurrentPlayerCount());
             writeShort(server.getMaxPlayers());
-            writeByte(ServerStatus.STATUS_DOWN == server.getStatus() ? 0x00 : 0x01);
+
+            var status = server.getStatus();
+            if(ServerStatus.STATUS_GM_ONLY == server.getStatus() && client.getAccessLevel() < Config.GM_MIN) {
+                status = ServerStatus.STATUS_DOWN;
+            }
+
+            writeByte(ServerStatus.STATUS_DOWN == status ? 0x00 : 0x01);
 
             var bits = 0;
 

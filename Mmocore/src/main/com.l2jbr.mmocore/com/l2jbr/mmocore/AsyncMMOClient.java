@@ -43,11 +43,13 @@ public abstract class AsyncMMOClient<T extends  AsyncMMOConnection<?>> {
         connection.write();
     }
 
-    private void write(SendablePacket<? extends  AsyncMMOClient<T>> packet, boolean sync) {
+    @SuppressWarnings("unchecked")
+    private void write(SendablePacket packet, boolean sync) {
         if(isNull(packet)) {
             return;
         }
 
+        packet.client = this;
         int dataSize = packet.writeData();
         dataSentSize  = encrypt(packet.data, ReadHandler.HEADER_SIZE, dataSize - ReadHandler.HEADER_SIZE) + ReadHandler.HEADER_SIZE;
         packet.writeHeader(dataSentSize);
@@ -78,19 +80,14 @@ public abstract class AsyncMMOClient<T extends  AsyncMMOConnection<?>> {
         return connection.getRemoteAddress();
     }
 
-
-
-    public abstract boolean decrypt(byte[] data, int offset, int size);
-
     /**
-     *
      * @param data - the data to be encrypted
      * @param offset - the initial index to be encrypted
      * @param size - the length of data to be encrypted
      * @return The size of the data encrypted
      */
     public abstract int encrypt(byte[] data, int offset, int size);
+    public abstract boolean decrypt(byte[] data, int offset, int size);
     protected abstract void  onDisconnection();
-
     public abstract void onConnected();
 }
