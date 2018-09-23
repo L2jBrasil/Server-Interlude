@@ -29,7 +29,7 @@ public class GenericClientHandler implements ClientFactory<AsyncClient>, IPacket
         ReceivablePacket<AsyncClient> packet = null;
         switch (opcode) {
             case 0x01:
-                packet = new AsyncPingPacket(System.currentTimeMillis());
+                packet = new AsyncPingPacket();
         }
         return packet;
     }

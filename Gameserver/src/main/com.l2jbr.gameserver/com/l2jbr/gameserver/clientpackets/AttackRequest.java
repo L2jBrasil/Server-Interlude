@@ -23,7 +23,6 @@ import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 
-
 /**
  * This class ...
  * @version $Revision: 1.7.2.1.2.2 $ $Date: 2005/03/27 15:29:30 $

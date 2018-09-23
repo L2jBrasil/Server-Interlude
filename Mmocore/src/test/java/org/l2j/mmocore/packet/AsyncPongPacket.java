@@ -5,18 +5,33 @@ import org.l2j.mmocore.async.AsyncClient;
 
 public class AsyncPongPacket extends SendablePacket<AsyncClient> {
 
-    private final long sendTime;
-    private final long receivedTime;
+    private long packetSize;
 
-    public AsyncPongPacket(long sendTime, long receivedTime) {
-        this.sendTime = sendTime;
-        this.receivedTime = receivedTime;
+    public AsyncPongPacket(long packetSize) {
+        this.packetSize = packetSize;
     }
 
     @Override
     protected void write() {
-        writeLong(sendTime);
-        writeLong(receivedTime);
+        while(packetSize >= 8) {
+            writeLong(Long.MAX_VALUE);
+            packetSize -=  8;
+        }
+
+        while (packetSize >= 4) {
+            writeInt(Integer.MAX_VALUE);
+            packetSize -= 4;
+        }
+
+        while (packetSize >= 2) {
+            writeShort(Integer.MAX_VALUE);
+            packetSize -= 2;
+        }
+
+        while (packetSize >= 1) {
+            writeByte(Byte.MAX_VALUE);
+            packetSize--;
+        }
 
     }
 }

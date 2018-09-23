@@ -4,21 +4,33 @@ import com.l2jbr.mmocore.ReceivablePacket;
 import org.l2j.mmocore.async.AsyncClient;
 
 public class AsyncPingPacket extends ReceivablePacket<AsyncClient> {
-    private final long receivedTime;
-    private long sendTime;
+    private long packetSize;
 
-    public AsyncPingPacket(long currentTimeMillis) {
-        receivedTime = currentTimeMillis;
-    }
 
     @Override
     protected boolean read() {
-        sendTime = readLong();
+        packetSize = readShort();
+
+        while (availableData() > 8) {
+            readLong();
+        }
+
+        while (availableData() > 4) {
+            readInt();
+        }
+
+        while (availableData() > 2) {
+            readShort();
+        }
+
+        while (availableData() > 1) {
+            read();
+        }
         return true;
     }
 
     @Override
     public void run() {
-        client.sendPacket(new AsyncPongPacket(sendTime, receivedTime));
+        client.sendPacket(new AsyncPongPacket(packetSize));
     }
 }

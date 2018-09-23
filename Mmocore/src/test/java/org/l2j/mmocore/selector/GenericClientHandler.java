@@ -24,7 +24,7 @@ public class GenericClientHandler implements IPacketHandler<SelectorClient>, IMM
         ReceivablePacket<SelectorClient> packet = null;
         switch (opcode) {
             case 0x01:
-                packet = new SelectorPingPacket(System.currentTimeMillis());
+                packet = new SelectorPingPacket();
         }
         return packet;
     }

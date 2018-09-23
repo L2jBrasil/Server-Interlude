@@ -6,7 +6,7 @@ import com.l2jbr.mmocore.SendablePacket;
 
 public class AsyncClient extends AsyncMMOClient<AsyncMMOConnection<AsyncClient>> {
 
-    public AsyncClient(AsyncMMOConnection<AsyncClient> connection) {
+    AsyncClient(AsyncMMOConnection<AsyncClient> connection) {
         super(connection);
     }
 
@@ -17,7 +17,7 @@ public class AsyncClient extends AsyncMMOClient<AsyncMMOConnection<AsyncClient>>
 
     @Override
     public int encrypt(byte[] data, int offset, int size) {
-        return 1;
+        return size;
     }
 
     @Override
