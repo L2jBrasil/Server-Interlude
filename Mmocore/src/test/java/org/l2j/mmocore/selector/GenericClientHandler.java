@@ -30,11 +30,6 @@ public class GenericClientHandler implements IPacketHandler<SelectorClient>, IMM
     }
 
     @Override
-    public ReceivablePacket<SelectorClient> handlePacket(DataWrapper wrapper, SelectorClient client) {
-        return null;
-    }
-
-    @Override
     public void execute(ReceivablePacket<SelectorClient> packet) {
         threadPool.execute(packet);
     }

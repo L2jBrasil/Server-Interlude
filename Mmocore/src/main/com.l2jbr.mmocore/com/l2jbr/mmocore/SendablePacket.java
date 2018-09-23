@@ -143,12 +143,12 @@ public abstract class SendablePacket<T> extends AbstractPacket<T> {
     private static byte pickByte(byte  le, byte  be) { return isBigEndian ? be : le; }
 
     protected int packetSize() {
-        return  64 * 1024;
+        return  9 * 1024;
     }
 
 	protected abstract void write();
 
-    public void writeHeader(int dataSize) {
+    void writeHeader(int dataSize) {
         var header = convertEndian((short) dataSize);
         var tmp = (byte) (header >>> 8);
         data[0] = pickByte((byte) header, tmp);

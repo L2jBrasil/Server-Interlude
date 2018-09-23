@@ -21,6 +21,7 @@ public final class ConnectionHandler<T extends AsyncMMOClient<AsyncMMOConnection
     private final ReadHandler<T> readHandler;
     private final boolean useNagle;
     private boolean shutdown;
+    private boolean cached = false;
 
     public ConnectionHandler(InetSocketAddress address, boolean useNagle, int threadPoolSize, ClientFactory<T> clientFactory, IPacketHandler<T> packetHandler, IMMOExecutor<T> executor)
             throws IOException {
@@ -36,6 +37,7 @@ public final class ConnectionHandler<T extends AsyncMMOClient<AsyncMMOConnection
 
     private AsynchronousChannelGroup createChannelGroup(int threadPoolSize) throws IOException {
         if(threadPoolSize <= 0 || threadPoolSize >= Short.MAX_VALUE) {
+            cached = true;
             return AsynchronousChannelGroup.withCachedThreadPool(Executors.newCachedThreadPool(), 5);
         }
         return AsynchronousChannelGroup.withFixedThreadPool(threadPoolSize, Executors.defaultThreadFactory());
@@ -44,6 +46,15 @@ public final class ConnectionHandler<T extends AsyncMMOClient<AsyncMMOConnection
     @Override
     public void run() {
         listener.accept(null, new AcceptConnectionHandler());
+        if(cached) {
+            while(!shutdown) {
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     private void closeConnection() {
@@ -66,13 +77,9 @@ public final class ConnectionHandler<T extends AsyncMMOClient<AsyncMMOConnection
 
             AsyncMMOConnection<T> connection = new AsyncMMOConnection<>(channel, readHandler, writeHandler);
             T client = clientFactory.create(connection);
-            if(nonNull(client)) {
-                connection.setClient(client);
-                connection.read();
-                client.onConnected();
-            } else {
-                connection.close();
-            }
+            connection.setClient(client);
+            connection.read();
+            client.onConnected();
         } else {
             System.out.println("Channel Closed");
         }
