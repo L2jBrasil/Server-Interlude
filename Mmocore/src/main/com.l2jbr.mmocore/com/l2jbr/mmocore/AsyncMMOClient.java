@@ -80,6 +80,10 @@ public abstract class AsyncMMOClient<T extends  AsyncMMOConnection<?>> {
         return connection.getRemoteAddress();
     }
 
+    public boolean isConnected() {
+        return connection.isOpen();
+    }
+
     /**
      * @param data - the data to be encrypted
      * @param offset - the initial index to be encrypted

@@ -1,20 +1,3 @@
-/* This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2, or (at your option)
- * any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
- * 02111-1307, USA.
- *
- * http://www.gnu.org/copyleft/gpl.html
- */
 package com.l2jbr.gameserver.network;
 
 import com.l2jbr.commons.Config;
@@ -27,19 +10,17 @@ import com.l2jbr.gameserver.datatables.SkillTable;
 import com.l2jbr.gameserver.model.CharSelectInfoPackage;
 import com.l2jbr.gameserver.model.L2World;
 import com.l2jbr.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jbr.gameserver.model.entity.database.repository.*;
 import com.l2jbr.gameserver.model.entity.L2Event;
+import com.l2jbr.gameserver.model.entity.database.repository.*;
 import com.l2jbr.gameserver.serverpackets.L2GameServerPacket;
 import com.l2jbr.gameserver.serverpackets.ServerClose;
 import com.l2jbr.gameserver.serverpackets.UserInfo;
 import com.l2jbr.gameserver.util.EventData;
-import com.l2jbr.mmocore.MMOClient;
-import com.l2jbr.mmocore.MMOConnection;
+import com.l2jbr.mmocore.AsyncMMOClient;
+import com.l2jbr.mmocore.AsyncMMOConnection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.InetAddress;
-import java.nio.ByteBuffer;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Future;
@@ -47,22 +28,24 @@ import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.locks.ReentrantLock;
 
-
+import static com.l2jbr.commons.util.Util.isNullOrEmpty;
 
 /**
  * Represents a client connected on Game Server
  *
  * @author KenM
  */
-public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> {
+public final class L2GameClient extends AsyncMMOClient<AsyncMMOConnection<L2GameClient>> {
     protected static final Logger _log = LoggerFactory.getLogger(L2GameClient.class.getName());
 
     /**
-     * CONNECTED - client has just connected AUTHED - client has authed but doesnt has character attached to it yet IN_GAME - client has selected a char and is in game
+     * CONNECTED - client has just connected
+     * AUTHED - client has authed but doesnt has character attached to it yet
+     * IN_GAME - client has selected a char and is in game
      *
      * @author KenM
      */
-    public static enum GameClientState {
+    public enum GameClientState {
         CONNECTED,
         AUTHED,
         IN_GAME
@@ -90,7 +73,7 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> {
     public byte packetsSentInSec = 0;
     public int packetsSentStartTick = 0;
 
-    public L2GameClient(MMOConnection<L2GameClient> con) {
+    public L2GameClient(AsyncMMOConnection<L2GameClient> con) {
         super(con);
         state = GameClientState.CONNECTED;
         _connectionStartTime = System.currentTimeMillis();
@@ -116,16 +99,16 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> {
         return _connectionStartTime;
     }
 
+
     @Override
-    public boolean decrypt(ByteBuffer buf, int size) {
-        crypt.decrypt(buf.array(), buf.position(), size);
-        return true;
+    public int encrypt(byte[] data, int offset, int size) {
+        crypt.encrypt(data, offset, size);
+        return size;
     }
 
     @Override
-    public boolean encrypt(final ByteBuffer buf, final int size) {
-        crypt.encrypt(buf.array(), buf.position(), size);
-        buf.position(buf.position() + size);
+    public boolean decrypt(byte[] data, int offset, int size) {
+        crypt.decrypt(data, offset, size);
         return true;
     }
 
@@ -164,8 +147,8 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> {
     }
 
     public void sendPacket(L2GameServerPacket gsp) {
-        getConnection().sendPacket(gsp);
         gsp.runImpl();
+        writePacket(gsp);
     }
 
     public L2PcInstance markToDeleteChar(int charslot) {
@@ -329,10 +312,6 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> {
         }
     }
 
-    public void close(L2GameServerPacket gsp) {
-        getConnection().close(gsp);
-    }
-
     /**
      * @param charslot
      * @return
@@ -346,10 +325,6 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> {
         return objectId.intValue();
     }
 
-    @Override
-    protected void onForcedDisconnection() {
-        _log.info("Client " + toString() + " disconnect abnormally.");
-    }
 
     /**
      * @see com.l2jbr.mmocore.MMOClient#onDisconnection()
@@ -362,6 +337,11 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> {
         } catch (RejectedExecutionException e) {
             // server is closing
         }
+    }
+
+    @Override
+    public void onConnected() {
+
     }
 
     /**
@@ -420,14 +400,14 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> {
     @Override
     public String toString() {
         try {
-            InetAddress address = getConnection().getInetAddress();
+            String address = getHostAddress();
             switch (getState()) {
                 case CONNECTED:
-                    return "[IP: " + (address == null ? "disconnect" : address.getHostAddress()) + "]";
+                    return "[IP: " + (isNullOrEmpty(address) ? "disconnect" : address) + "]";
                 case AUTHED:
-                    return "[Account: " + getAccountName() + " - IP: " + (address == null ? "disconnect" : address.getHostAddress()) + "]";
+                    return "[Account: " + getAccountName() + " - IP: " + (isNullOrEmpty(address) ? "disconnect" : address) + "]";
                 case IN_GAME:
-                    return "[Character: " + (getActiveChar() == null ? "disconnect" : getActiveChar().getName()) + " - Account: " + getAccountName() + " - IP: " + (address == null ? "disconnect" : address.getHostAddress()) + "]";
+                    return "[Character: " + (getActiveChar() == null ? "disconnect" : getActiveChar().getName()) + " - Account: " + getAccountName() + " - IP: " + (isNullOrEmpty(address) ? "disconnect" : address) + "]";
                 default:
                     throw new IllegalStateException("Missing state on switch");
             }

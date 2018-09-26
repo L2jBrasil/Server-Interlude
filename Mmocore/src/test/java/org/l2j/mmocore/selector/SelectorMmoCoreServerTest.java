@@ -23,7 +23,7 @@ public class SelectorMmoCoreServerTest {
         sc.TCP_NODELAY = false;
         var handler = new GenericClientHandler();
         selectorThread = new SelectorThread<>(sc, handler, handler, handler, null);
-        selectorThread.openServerSocket(null, 8586);
+        selectorThread.openServerSocket(null, 8080);
         selectorThread.start();
     }
 }

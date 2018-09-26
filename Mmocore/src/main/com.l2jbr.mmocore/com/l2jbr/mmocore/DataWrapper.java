@@ -32,11 +32,12 @@ public final class DataWrapper extends ReceivablePacket<Object> {
         return readInt();
     }
 
-    public int avaiable() {
+    public int available() {
         return availableData();
     }
 
-
-
+    public byte[] expose() {
+        return data;
+    }
 
 }

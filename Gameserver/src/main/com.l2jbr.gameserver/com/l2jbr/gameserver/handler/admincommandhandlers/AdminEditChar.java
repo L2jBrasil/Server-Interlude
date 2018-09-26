@@ -588,7 +588,7 @@ public class AdminEditChar implements IAdminCommandHandler {
         NpcHtmlMessage adminReply = new NpcHtmlMessage(5);
         adminReply.setFile("data/html/admin/ipfind.htm");
         for (L2PcInstance player : players) {
-            ip = player.getClient().getConnection().getInetAddress().getHostAddress();
+            ip = player.getClient().getHostAddress();
             if (ip.equals(IpAdress)) {
                 name = player.getName();
                 CharactersFound = CharactersFound + 1;

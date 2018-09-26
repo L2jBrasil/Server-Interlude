@@ -6,7 +6,8 @@ class WriteHandler<T extends  AsyncMMOClient<AsyncMMOConnection<T>>> implements 
 
     @Override
     public void completed(Integer result, T client) {
-        if(result == -1) {
+        if(result < 0) {
+            System.out.println("Writed < 0  bytes");
             client.disconnect();
             return;
         }
@@ -24,6 +25,7 @@ class WriteHandler<T extends  AsyncMMOClient<AsyncMMOConnection<T>>> implements 
 
     @Override
     public void failed(Throwable exc, T client) {
+        exc.printStackTrace();
         client.disconnect();
     }
 }

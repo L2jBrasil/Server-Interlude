@@ -211,8 +211,9 @@ public final class L2LoginClient extends AsyncMMOClient<AsyncMMOConnection<L2Log
 	public void sendPacket(L2LoginServerPacket lsp) {
 	    writePacket(lsp);
 	}
-	
-	public void close(LoginFailReason reason) {
+
+
+    public void close(LoginFailReason reason) {
         close(new LoginFail(reason));
 	}
 	
@@ -225,9 +226,7 @@ public final class L2LoginClient extends AsyncMMOClient<AsyncMMOConnection<L2Log
         sendPacket(new Init(this));
     }
 
-    /**
-	 * @see com.l2jbr.mmocore.MMOClient#onDisconnection()
-	 */
+
 	@Override
 	protected void onDisconnection()
 	{

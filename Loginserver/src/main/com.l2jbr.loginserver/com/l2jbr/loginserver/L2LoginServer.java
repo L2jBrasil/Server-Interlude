@@ -115,7 +115,7 @@ public class L2LoginServer {
         try {
             final L2LoginPacketHandler lph = new L2LoginPacketHandler();
             final SelectorHelper sh = new SelectorHelper();
-            var connectionHandler = new ConnectionHandler<>(bindAddress, false, 4,sh, lph,sh);
+            var connectionHandler = new ConnectionHandler<>(bindAddress, false, 2,sh, lph,sh);
             connectionHandler.start();
         } catch (IOException e) {
             _log.error("FATAL: Failed to open ConnectionHandler. Reason: " + e.getMessage(), e);

@@ -41,20 +41,17 @@ import com.l2jbr.gameserver.status.GameStatus;
 import com.l2jbr.gameserver.taskmanager.TaskManager;
 import com.l2jbr.gameserver.util.DynamicExtension;
 import com.l2jbr.gameserver.util.FloodProtector;
-import com.l2jbr.gameserver.util.IPv4Filter;
-import com.l2jbr.mmocore.SelectorConfig;
-import com.l2jbr.mmocore.SelectorThread;
+import com.l2jbr.mmocore.ConnectionHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
+import java.net.InetSocketAddress;
 import java.util.Calendar;
 import java.util.Locale;
 
 import static com.l2jbr.gameserver.util.GameserverMessages.getMessage;
+import static java.util.Objects.nonNull;
 
 public class GameServer {
 
@@ -62,20 +59,20 @@ public class GameServer {
     private static final String LOG4J_CONFIGURATION_FILE = "log4j.configurationFile";
 
     private static Logger _log;
-    private final SelectorThread<L2GameClient> _selectorThread;
-    public static GameServer gameServer;
-    private final LoginServerThread _loginThread;
-
-    private static Status _statusServer;
+    private static GameServer gameServer;
 
     public static final Calendar dateTimeServerStarted = Calendar.getInstance();
+    private final ConnectionHandler<L2GameClient> connectionHandler;
+
+    public static void shutdown() {
+        if(nonNull(gameServer)) {
+            gameServer.connectionHandler.shutdown();
+            gameServer.connectionHandler.setDaemon(true);
+        }
+    }
 
     private long getUsedMemoryMB() {
         return (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1048576; // 1024 * 1024 = 1048576;
-    }
-
-    SelectorThread<L2GameClient> getSelectorThread() {
-        return _selectorThread;
     }
 
     public GameServer() throws Exception {
@@ -232,36 +229,21 @@ public class GameServer {
 
         _log.info(getMessage("info.free.memory", freeMem, totalMem));
 
-        _loginThread = LoginServerThread.getInstance();
+        LoginServerThread _loginThread = LoginServerThread.getInstance();
         _loginThread.start();
 
-        // TODO: Unhardcode this configuration options
-        final SelectorConfig sc = new SelectorConfig();
-        sc.MAX_READ_PER_PASS = 12; // Config.MMO_MAX_READ_PER_PASS;
-        sc.MAX_SEND_PER_PASS = 12; // Config.MMO_MAX_SEND_PER_PASS;
-        sc.SLEEP_TIME = 20; // Config.MMO_SELECTOR_SLEEP_TIME;
-        sc.HELPER_BUFFER_COUNT = 20; // Config.MMO_HELPER_BUFFER_COUNT;
-        sc.TCP_NODELAY = false; // Config.MMO_TCP_NODELAY;
-
         L2GamePacketHandler gph = new L2GamePacketHandler();
-        _selectorThread = new SelectorThread<>(sc, gph, gph, gph, new IPv4Filter());
-        InetAddress bindAddress = null;
+
+
+        InetSocketAddress bindAddress;
         if (!Config.GAMESERVER_HOSTNAME.equals("*")) {
-            try {
-                bindAddress = InetAddress.getByName(Config.GAMESERVER_HOSTNAME);
-            } catch (UnknownHostException e1) {
-                _log.error( getMessage("error.invalid.bind.address",  e1.getMessage()), e1);
-            }
+            bindAddress =  new InetSocketAddress(Config.GAMESERVER_HOSTNAME, Config.PORT_GAME);
+        } else {
+            bindAddress = new InetSocketAddress(Config.PORT_GAME);
         }
 
-        try {
-            _selectorThread.openServerSocket(bindAddress, Config.PORT_GAME);
-        } catch (IOException e) {
-            _log.error( getMessage("error.open.socket", e.getMessage()), e);
-            System.exit(1);
-        }
-
-        _selectorThread.start();
+        connectionHandler = new ConnectionHandler<>(bindAddress, false, 4, gph, gph, gph);
+        connectionHandler.start();
 
         _log.info(getMessage("info.max.connected.players", Config.MAXIMUM_ONLINE_USERS));
     }
@@ -281,7 +263,7 @@ public class GameServer {
         gameServer = new GameServer();
 
         if (Config.IS_TELNET_ENABLED) {
-            _statusServer = new GameStatus();
+            Status _statusServer = new GameStatus();
             _statusServer.start();
         } else {
             System.out.println(getMessage("info.telnet.disabled"));

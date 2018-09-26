@@ -281,11 +281,11 @@ public class LoginServerThread extends Thread {
                                     wcToRemove.gameClient.setState(GameClientState.AUTHED);
                                     wcToRemove.gameClient.setSessionId(wcToRemove.session);
                                     CharSelectInfo cl = new CharSelectInfo(wcToRemove.account, wcToRemove.gameClient.getSessionId().playOkID1);
-                                    wcToRemove.gameClient.getConnection().sendPacket(cl);
+                                    wcToRemove.gameClient.sendPacket(cl);
                                     wcToRemove.gameClient.setCharSelection(cl.getCharInfo());
                                 } else {
                                     _log.warn("session key is not correct. closing connection");
-                                    wcToRemove.gameClient.getConnection().sendPacket(new AuthLoginFail(1));
+                                    wcToRemove.gameClient.sendPacket(new AuthLoginFail(1));
                                     wcToRemove.gameClient.closeNow();
                                 }
                                 _waitingClients.remove(wcToRemove);

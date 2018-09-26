@@ -13,8 +13,9 @@ public class AsyncMmoCoreServerTest {
     }
 
     private void start() throws IOException {
+        System.out.println("Iniciando Servidor porta 8080");
         GenericClientHandler handler = new GenericClientHandler();
-        ConnectionHandler<AsyncClient> connectionHandler = new ConnectionHandler<>(new InetSocketAddress(8585), false, 4, handler, handler, handler);
+        ConnectionHandler<AsyncClient> connectionHandler = new ConnectionHandler<>(new InetSocketAddress("10.89.5.106", 8080), false, 4, handler, handler, handler);
         connectionHandler.start();
     }
 

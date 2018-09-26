@@ -14,7 +14,7 @@ public class AsyncMMOConnection<T extends AsyncMMOClient<AsyncMMOConnection<T>>>
     private final AsynchronousSocketChannel channel;
     private final ReadHandler<T> readHandler;
     private final WriteHandler<T> writeHandler;
-    private T client;
+    T client;
 
     private ByteBuffer readingBuffer;
     private ByteBuffer writingBuffer;
@@ -110,5 +110,9 @@ public class AsyncMMOConnection<T extends AsyncMMOClient<AsyncMMOConnection<T>>>
         } catch (IOException e) {
             return "";
         }
+    }
+
+    boolean isOpen() {
+        return channel.isOpen();
     }
 }

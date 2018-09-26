@@ -77,7 +77,7 @@ public class GeoEditorThread extends Thread {
 
                 if ((_mode == 2) && (timer > _sendDelay)) {
                     for (L2PcInstance gm : _gms) {
-                        if (!gm.getClient().getConnection().isClosed()) {
+                        if (gm.getClient().isConnected()) {
                             sendGmPosition(gm);
                         } else {
                             _gms.remove(gm);
