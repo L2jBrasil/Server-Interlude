@@ -331,6 +331,7 @@ public final class L2GameClient extends AsyncMMOClient<AsyncMMOConnection<L2Game
      */
     @Override
     protected void onDisconnection() {
+        _log.info("Cliente Disconnected {}", this);
         // no long running tasks here, do it async
         try {
             ThreadPoolManager.getInstance().executeTask(new DisconnectTask());

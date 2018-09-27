@@ -18,10 +18,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static java.util.Objects.isNull;
 
@@ -148,7 +146,7 @@ public class NpcTemplate extends CharTemplate {
         if(Util.isNullOrEmpty(npcSkills)) {
            return;
         }
-        skills = new LinkedHashMap<>();
+        skills = new ConcurrentHashMap<>();
         for (NpcSkills npcSkill : npcSkills) {
             int skillId = npcSkill.getSkillid();
             int skillLevel = npcSkill.getLevel();
@@ -341,6 +339,9 @@ public class NpcTemplate extends CharTemplate {
     }
 
     public Race getRace() {
+        if(isNull(race)) {
+            return  Race.UNKNOWN;
+        }
         return race;
     }
 

@@ -22,11 +22,17 @@ public abstract class AsyncMMOClient<T extends  AsyncMMOConnection<?>> {
     }
 
     protected void writePacket(SendablePacket<? extends AsyncMMOClient<T>> packet) {
+        putClientOnPacket(packet);
         if(packetsToWrite.isEmpty() && writing.compareAndSet(false, true) ) {
             write(packet);
         } else {
             packetsToWrite.add(packet);
         }
+    }
+
+    @SuppressWarnings("unchecked")
+    private void putClientOnPacket(SendablePacket packet) {
+        packet.client = this;
     }
 
     void tryWriteNextPacket() {
@@ -43,13 +49,12 @@ public abstract class AsyncMMOClient<T extends  AsyncMMOConnection<?>> {
         connection.write();
     }
 
-    @SuppressWarnings("unchecked")
+
     private void write(SendablePacket packet, boolean sync) {
         if(isNull(packet)) {
             return;
         }
 
-        packet.client = this;
         int dataSize = packet.writeData();
         dataSentSize  = encrypt(packet.data, ReadHandler.HEADER_SIZE, dataSize - ReadHandler.HEADER_SIZE) + ReadHandler.HEADER_SIZE;
         packet.writeHeader(dataSentSize);
@@ -64,6 +69,7 @@ public abstract class AsyncMMOClient<T extends  AsyncMMOConnection<?>> {
 
     public void close(SendablePacket<? extends AsyncMMOClient<T>> packet) {
         packetsToWrite.clear();
+        putClientOnPacket(packet);
         write(packet, true);
     }
 
