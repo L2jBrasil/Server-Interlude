@@ -1,6 +1,7 @@
 package com.l2jbr.mmocore;
 
 import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousSocketChannel;
 import java.util.concurrent.ExecutionException;
@@ -106,7 +107,8 @@ public class AsyncMMOConnection<T extends AsyncMMOClient<AsyncMMOConnection<T>>>
 
     String getRemoteAddress() {
         try {
-            return channel.getRemoteAddress().toString();
+            InetSocketAddress address = (InetSocketAddress) channel.getRemoteAddress();
+            return address.getAddress().getHostAddress();
         } catch (IOException e) {
             return "";
         }

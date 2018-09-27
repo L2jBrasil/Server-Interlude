@@ -72,7 +72,7 @@ public final class L2LoginClient extends AsyncMMOClient<AsyncMMOConnection<L2Log
 		String ip = getHostAddress();
 		
 		// TODO unhardcode this
-		if (ip.startsWith("192.168") || ip.startsWith("10.0") || ip.equals("127.0.0.1"))
+		if (ip.startsWith("192.168") || ip.startsWith("10.0") || ip.startsWith("127.0.0.1"))
 		{
 			_usesInternalIP = true;
 		}
@@ -230,6 +230,7 @@ public final class L2LoginClient extends AsyncMMOClient<AsyncMMOConnection<L2Log
 	@Override
 	protected void onDisconnection()
 	{
+        System.out.println("Disconnected");
 		if (Config.DEBUG)
 		{
 			_log.info("DISCONNECTED: " + toString());
