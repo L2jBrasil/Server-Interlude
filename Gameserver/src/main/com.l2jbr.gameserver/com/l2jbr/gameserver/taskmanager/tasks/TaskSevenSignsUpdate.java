@@ -26,14 +26,13 @@ import com.l2jbr.gameserver.taskmanager.TaskTypes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 /**
  * Updates all data for the Seven Signs and Festival of Darkness engines, when time is elapsed.
  * @author Tempy
  */
 public class TaskSevenSignsUpdate extends Task
 {
-	private static final Logger _log = LoggerFactory.getLogger(TaskOlympiadSave.class.getName());
+	private static final Logger _log = LoggerFactory.getLogger(TaskSevenSignsUpdate.class);
 	public static final String NAME = "SevenSignsUpdate";
 	
 	@Override

@@ -20,7 +20,7 @@ package com.l2jbr.gameserver;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.network.L2GameClient;
-import com.l2jbr.mmocore.ReceivablePacket;
+import org.l2j.mmocore.ReceivablePacket;
 
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;

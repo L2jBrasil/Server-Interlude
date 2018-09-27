@@ -1,4 +1,4 @@
-package com.l2jbr.mmocore;
+package org.l2j.mmocore;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -6,8 +6,6 @@ import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousSocketChannel;
 import java.util.concurrent.ExecutionException;
 
-import static com.l2jbr.mmocore.ResourcePool.getPooledBuffer;
-import static com.l2jbr.mmocore.ResourcePool.recycleBuffer;
 import static java.util.Objects.isNull;
 
 public class AsyncMMOConnection<T extends AsyncMMOClient<AsyncMMOConnection<T>>> {
@@ -15,7 +13,7 @@ public class AsyncMMOConnection<T extends AsyncMMOClient<AsyncMMOConnection<T>>>
     private final AsynchronousSocketChannel channel;
     private final ReadHandler<T> readHandler;
     private final WriteHandler<T> writeHandler;
-    T client;
+    private T client;
 
     private ByteBuffer readingBuffer;
     private ByteBuffer writingBuffer;
@@ -72,25 +70,25 @@ public class AsyncMMOConnection<T extends AsyncMMOClient<AsyncMMOConnection<T>>>
 
     ByteBuffer getReadingBuffer() {
         if(isNull(readingBuffer)) {
-            readingBuffer = getPooledBuffer();
+            readingBuffer = ResourcePool.getPooledBuffer();
         }
         return readingBuffer;
     }
 
     private ByteBuffer getWritingBuffer() {
         if(isNull(writingBuffer)) {
-            writingBuffer =  getPooledBuffer();
+            writingBuffer =  ResourcePool.getPooledBuffer();
         }
         return writingBuffer;
     }
 
     private void releaseReadingBuffer() {
-        recycleBuffer(readingBuffer);
+        ResourcePool.recycleBuffer(readingBuffer);
         readingBuffer=null;
     }
 
     void releaseWritingBuffer() {
-        recycleBuffer(writingBuffer);
+        ResourcePool.recycleBuffer(writingBuffer);
         writingBuffer = null;
     }
 

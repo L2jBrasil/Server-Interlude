@@ -1,4 +1,4 @@
-package com.l2jbr.mmocore;
+package org.l2j.mmocore;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

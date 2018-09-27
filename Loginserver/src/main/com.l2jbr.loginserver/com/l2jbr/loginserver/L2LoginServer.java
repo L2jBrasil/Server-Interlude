@@ -21,7 +21,7 @@ import com.l2jbr.commons.Config;
 import com.l2jbr.commons.Server;
 import com.l2jbr.commons.status.Status;
 import com.l2jbr.loginserver.status.LoginStatus;
-import com.l2jbr.mmocore.ConnectionHandler;
+import org.l2j.mmocore.ConnectionHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -115,7 +115,7 @@ public class L2LoginServer {
         try {
             final L2LoginPacketHandler lph = new L2LoginPacketHandler();
             final SelectorHelper sh = new SelectorHelper();
-            var connectionHandler = new ConnectionHandler<>(bindAddress, false, 2,sh, lph,sh);
+            var connectionHandler = new ConnectionHandler<>(bindAddress, false, 2,sh, lph,sh, null);
             connectionHandler.start();
         } catch (IOException e) {
             _log.error("FATAL: Failed to open ConnectionHandler. Reason: " + e.getMessage(), e);

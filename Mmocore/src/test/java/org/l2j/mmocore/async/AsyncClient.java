@@ -1,8 +1,8 @@
 package org.l2j.mmocore.async;
 
-import com.l2jbr.mmocore.AsyncMMOClient;
-import com.l2jbr.mmocore.AsyncMMOConnection;
-import com.l2jbr.mmocore.SendablePacket;
+import org.l2j.mmocore.AsyncMMOClient;
+import org.l2j.mmocore.AsyncMMOConnection;
+import org.l2j.mmocore.SendablePacket;
 
 public class AsyncClient extends AsyncMMOClient<AsyncMMOConnection<AsyncClient>> {
 

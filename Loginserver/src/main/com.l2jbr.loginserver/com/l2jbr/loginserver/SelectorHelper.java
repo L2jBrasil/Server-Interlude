@@ -17,10 +17,11 @@
  */
 package com.l2jbr.loginserver;
 
-import com.l2jbr.loginserver.serverpackets.Init;
-import com.l2jbr.mmocore.*;
+import org.l2j.mmocore.*;
 
-import java.nio.channels.SocketChannel;
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.nio.channels.AsynchronousSocketChannel;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -28,7 +29,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author KenM
  */
-public class SelectorHelper implements IMMOExecutor<L2LoginClient>, ClientFactory<L2LoginClient>, IAcceptFilter {
+public class SelectorHelper implements PacketExecutor<L2LoginClient>, ClientFactory<L2LoginClient>, ConnectionFilter {
 	private final ThreadPoolExecutor _generalPacketsThreadPool;
 	
 	public SelectorHelper() {
@@ -46,7 +47,12 @@ public class SelectorHelper implements IMMOExecutor<L2LoginClient>, ClientFactor
 	}
 
 	@Override
-	public boolean accept(SocketChannel sc) {
-		return !LoginController.getInstance().isBannedAddress(sc.socket().getInetAddress());
+	public boolean accept(AsynchronousSocketChannel channel) {
+		try {
+			InetSocketAddress socketAddress = (InetSocketAddress) channel.getRemoteAddress();
+			return !LoginController.getInstance().isBannedAddress(socketAddress.getAddress());
+		} catch (IOException e) {
+            return false;
+		}
 	}
 }

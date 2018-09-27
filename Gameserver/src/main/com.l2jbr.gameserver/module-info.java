@@ -1,6 +1,6 @@
 module com.l2jbr.gameserver {
     requires com.l2jbr.commons;
-    requires com.l2jbr.mmocore;
+    requires org.l2j.mmocore;
 
     requires java.sql;
     requires java.desktop;

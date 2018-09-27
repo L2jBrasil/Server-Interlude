@@ -22,11 +22,9 @@ import com.l2jbr.loginserver.clientpackets.AuthGameGuard;
 import com.l2jbr.loginserver.clientpackets.RequestAuthLogin;
 import com.l2jbr.loginserver.clientpackets.RequestServerList;
 import com.l2jbr.loginserver.clientpackets.RequestServerLogin;
-import com.l2jbr.mmocore.DataWrapper;
-import com.l2jbr.mmocore.IPacketHandler;
-import com.l2jbr.mmocore.ReceivablePacket;
-
-import java.nio.ByteBuffer;
+import org.l2j.mmocore.DataWrapper;
+import org.l2j.mmocore.IPacketHandler;
+import org.l2j.mmocore.ReceivablePacket;
 
 /**
  * Handler for packets received by Login Server
@@ -34,10 +32,6 @@ import java.nio.ByteBuffer;
  */
 public final class L2LoginPacketHandler implements IPacketHandler<L2LoginClient>
 {
-	@Override
-	public ReceivablePacket<L2LoginClient> handlePacket(ByteBuffer buf, L2LoginClient client) {
-		return null;
-	}
 
 	@Override
 	public ReceivablePacket<L2LoginClient> handlePacket(DataWrapper data, L2LoginClient client) {

@@ -5,11 +5,10 @@ import com.l2jbr.commons.util.Util;
 import com.l2jbr.gameserver.ThreadPoolManager;
 import com.l2jbr.gameserver.clientpackets.*;
 import com.l2jbr.gameserver.network.L2GameClient.GameClientState;
-import com.l2jbr.mmocore.*;
+import org.l2j.mmocore.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.nio.ByteBuffer;
 import java.util.concurrent.RejectedExecutionException;
 
 import static java.lang.Byte.toUnsignedInt;
@@ -23,7 +22,7 @@ import static java.lang.Short.toUnsignedInt;
  * Note: If for a given exception a packet needs to be handled on more then one state, then it should be added to all these states.
  * @author KenM
  */
-public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, ClientFactory<L2GameClient>, IMMOExecutor<L2GameClient>
+public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, ClientFactory<L2GameClient>, PacketExecutor<L2GameClient>
 {
 	private static final Logger _log = LoggerFactory.getLogger(L2GamePacketHandler.class);
 
@@ -786,13 +785,6 @@ public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, 
         }
         return msg;
     }
-
-    // implementation
-	@Override
-	public ReceivablePacket<L2GameClient> handlePacket(ByteBuffer buf, L2GameClient client)
-	{
-	    return null;
-	}
 	
 	private void printDebug(int opcode, DataWrapper data, GameClientState state, L2GameClient client) {
 		_log.warn("Unknown Packet: {} on State: {} Cliente {}", Integer.toHexString(opcode), state.name(), client.toString());

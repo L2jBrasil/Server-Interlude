@@ -1,6 +1,6 @@
 package org.l2j.mmocore.packet;
 
-import com.l2jbr.mmocore.ReceivablePacket;
+import org.l2j.mmocore.ReceivablePacket;
 import org.l2j.mmocore.async.AsyncClient;
 
 public class AsyncPingPacket extends ReceivablePacket<AsyncClient> {

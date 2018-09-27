@@ -1,4 +1,4 @@
-package com.l2jbr.mmocore;
+package org.l2j.mmocore;
 
 import java.nio.ByteBuffer;
 import java.nio.channels.CompletionHandler;
@@ -10,9 +10,9 @@ class ReadHandler<T extends AsyncMMOClient<AsyncMMOConnection<T>>> implements Co
     static final int HEADER_SIZE = 2;
 
     private final IPacketHandler<T> packetHandler;
-    private final IMMOExecutor<T> executor;
+    private final PacketExecutor<T> executor;
 
-    ReadHandler(IPacketHandler<T> packetHandler, IMMOExecutor<T> executor) {
+    ReadHandler(IPacketHandler<T> packetHandler, PacketExecutor<T> executor) {
         this.packetHandler = packetHandler;
         this.executor =  executor;
     }

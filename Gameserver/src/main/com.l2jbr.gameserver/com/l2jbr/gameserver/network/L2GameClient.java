@@ -16,8 +16,8 @@ import com.l2jbr.gameserver.serverpackets.L2GameServerPacket;
 import com.l2jbr.gameserver.serverpackets.ServerClose;
 import com.l2jbr.gameserver.serverpackets.UserInfo;
 import com.l2jbr.gameserver.util.EventData;
-import com.l2jbr.mmocore.AsyncMMOClient;
-import com.l2jbr.mmocore.AsyncMMOConnection;
+import org.l2j.mmocore.AsyncMMOClient;
+import org.l2j.mmocore.AsyncMMOConnection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

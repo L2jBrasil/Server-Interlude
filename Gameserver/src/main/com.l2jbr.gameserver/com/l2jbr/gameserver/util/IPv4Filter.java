@@ -14,10 +14,11 @@
  */
 package com.l2jbr.gameserver.util;
 
-import com.l2jbr.mmocore.IAcceptFilter;
+import org.l2j.mmocore.ConnectionFilter;
 
-import java.net.InetAddress;
-import java.nio.channels.SocketChannel;
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.nio.channels.AsynchronousSocketChannel;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
@@ -26,7 +27,7 @@ import java.util.Map.Entry;
  * Formatted Forsaiken's IPv4 filter [DrHouse]
  * @author Forsaiken
  */
-public class IPv4Filter implements IAcceptFilter, Runnable
+public class IPv4Filter implements ConnectionFilter, Runnable
 {
 	private final HashMap<Integer, Flood> _ipFloodMap;
 	private static final long SLEEP_TIME = 5000;
@@ -60,53 +61,54 @@ public class IPv4Filter implements IAcceptFilter, Runnable
 			trys = 0;
 		}
 	}
-	
+
 	@Override
-	public boolean accept(SocketChannel sc)
-	{
-		InetAddress addr = sc.socket().getInetAddress();
-		int h = hash(addr.getAddress());
-		
-		long current = System.currentTimeMillis();
-		Flood f;
-		synchronized (_ipFloodMap)
-		{
-			f = _ipFloodMap.get(h);
-		}
-		if (f != null)
-		{
-			if (f.trys == -1)
-			{
-				f.lastAccess = current;
-				return false;
-			}
-			
-			if ((f.lastAccess + 1000) > current)
-			{
-				f.lastAccess = current;
-				
-				if (f.trys >= 3)
-				{
-					f.trys = -1;
-					return false;
-				}
-				
-				f.trys++;
-			}
-			else
-			{
-				f.lastAccess = current;
-			}
-		}
-		else
-		{
-			synchronized (_ipFloodMap)
-			{
-				_ipFloodMap.put(h, new Flood());
-			}
-		}
-		
-		return true;
+	public boolean accept(AsynchronousSocketChannel channel) {
+        try {
+            InetSocketAddress socketAddress = (InetSocketAddress) channel.getRemoteAddress();
+            int h = hash(socketAddress.getAddress().getAddress());
+            long current = System.currentTimeMillis();
+            Flood f;
+            synchronized (_ipFloodMap)
+            {
+                f = _ipFloodMap.get(h);
+            }
+            if (f != null)
+            {
+                if (f.trys == -1)
+                {
+                    f.lastAccess = current;
+                    return false;
+                }
+
+                if ((f.lastAccess + 1000) > current)
+                {
+                    f.lastAccess = current;
+
+                    if (f.trys >= 3)
+                    {
+                        f.trys = -1;
+                        return false;
+                    }
+
+                    f.trys++;
+                }
+                else
+                {
+                    f.lastAccess = current;
+                }
+            }
+            else
+            {
+                synchronized (_ipFloodMap)
+                {
+                    _ipFloodMap.put(h, new Flood());
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return true;
 	}
 	
 	@Override

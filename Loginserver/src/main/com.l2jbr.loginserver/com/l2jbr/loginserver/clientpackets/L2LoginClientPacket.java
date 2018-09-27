@@ -18,7 +18,7 @@
 package com.l2jbr.loginserver.clientpackets;
 
 import com.l2jbr.loginserver.L2LoginClient;
-import com.l2jbr.mmocore.ReceivablePacket;
+import org.l2j.mmocore.ReceivablePacket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

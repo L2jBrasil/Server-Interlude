@@ -15,17 +15,10 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jbr.mmocore;
+package org.l2j.mmocore;
 
-import java.nio.ByteBuffer;
 
-/**
- * @author KenM
- * @param <T>
- */
 public interface IPacketHandler<T> {
-
-	ReceivablePacket<T> handlePacket(ByteBuffer buf, T client);
 
 	default ReceivablePacket<T> handlePacket(DataWrapper data, T client) {
         return null;

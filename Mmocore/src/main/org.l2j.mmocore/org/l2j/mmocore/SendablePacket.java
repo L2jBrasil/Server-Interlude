@@ -1,10 +1,10 @@
-package com.l2jbr.mmocore;
+package org.l2j.mmocore;
 
 import static java.lang.Double.doubleToRawLongBits;
 import static java.lang.System.arraycopy;
 import static java.util.Objects.nonNull;
 
-public abstract class SendablePacket<T> extends AbstractPacket<T> {
+public abstract class SendablePacket<T extends AsyncMMOClient<AsyncMMOConnection<T>>> extends AbstractPacket<T> {
 
     protected SendablePacket() {
         data = new byte[packetSize()];
@@ -33,7 +33,7 @@ public abstract class SendablePacket<T> extends AbstractPacket<T> {
 	/**
 	 * Write <B>double</B> to the buffer. <BR>
 	 * 64bit double precision float (00 00 00 00 00 00 00 00)
-	 * @param value
+	 * @param value to be put on data
 	 */
 	protected final void writeDouble(final double value) {
 	    var x = doubleToRawLongBits(value);
@@ -43,7 +43,7 @@ public abstract class SendablePacket<T> extends AbstractPacket<T> {
 	/**
 	 * Write <B>short</B> to the buffer. <BR>
 	 * 16bit integer (00 00)
-	 * @param value
+	 * @param value to be put on data
 	 */
 	protected final void writeShort(final int value) {
 		var x = convertEndian((short) value);
@@ -59,7 +59,7 @@ public abstract class SendablePacket<T> extends AbstractPacket<T> {
     /**
 	 * Write <B>int</B> to the buffer. <BR>
 	 * 32bit integer (00 00 00 00)
-	 * @param value
+	 * @param value to be put on data
 	 */
 	protected final void writeInt(final int value) {
 	    var x  = convertEndian(value);
@@ -79,7 +79,7 @@ public abstract class SendablePacket<T> extends AbstractPacket<T> {
     /**
 	 * Write <B>long</B> to the buffer. <BR>
 	 * 64bit integer (00 00 00 00 00 00 00 00)
-	 * @param value
+	 * @param value to be put on data
 	 */
 	protected final void writeLong(final long value) {
         var x = convertEndian(value);
@@ -107,7 +107,7 @@ public abstract class SendablePacket<T> extends AbstractPacket<T> {
     /**
 	 * Write <B>byte[]</B> to the buffer. <BR>
 	 * 8bit integer array (00 ...)
-	 * @param bytes
+	 * @param bytes to be put on data
 	 */
 	protected final void writeBytes(final byte[] bytes) {
 	    arraycopy(bytes, 0, data, dataIndex, bytes.length);
@@ -122,7 +122,7 @@ public abstract class SendablePacket<T> extends AbstractPacket<T> {
 	
 	/**
 	 * Write <B>String</B> to the buffer.
-	 * @param text
+	 * @param text to be put on data
 	 */
 	protected final void writeString(final String text) {
 		if (nonNull(text)) {

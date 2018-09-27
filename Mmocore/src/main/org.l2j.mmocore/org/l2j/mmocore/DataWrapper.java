@@ -1,4 +1,4 @@
-package com.l2jbr.mmocore;
+package org.l2j.mmocore;
 
 public final class DataWrapper extends ReceivablePacket<Object> {
 
@@ -12,9 +12,7 @@ public final class DataWrapper extends ReceivablePacket<Object> {
     }
 
     @Override
-    public void run() {
-
-    }
+    public void run() { }
 
     static DataWrapper wrap(byte[] data) {
         return new DataWrapper(data);
@@ -39,5 +37,7 @@ public final class DataWrapper extends ReceivablePacket<Object> {
     public byte[] expose() {
         return data;
     }
+
+
 
 }

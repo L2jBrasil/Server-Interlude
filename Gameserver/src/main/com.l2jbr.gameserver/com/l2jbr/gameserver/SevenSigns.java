@@ -620,8 +620,10 @@ public class SevenSigns {
     public void saveSevenSignsData(L2PcInstance player, boolean updateSettings) {
         _log.debug("SevenSigns: Saving data to disk.");
 
-        SevenSignsRepository repository = getRepository(SevenSignsRepository.class);
-        getPlayerData(player).ifPresent(repository::save);
+        if(Objects.nonNull(player)) {
+            SevenSignsRepository repository = getRepository(SevenSignsRepository.class);
+            getPlayerData(player).ifPresent(repository::save);
+        }
 
         if (updateSettings) {
             SevenSignsStatusRepository statusRepository = getRepository(SevenSignsStatusRepository.class);

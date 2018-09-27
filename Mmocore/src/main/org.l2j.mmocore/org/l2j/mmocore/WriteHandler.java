@@ -1,4 +1,4 @@
-package com.l2jbr.mmocore;
+package org.l2j.mmocore;
 
 import java.nio.channels.CompletionHandler;
 
@@ -7,7 +7,6 @@ class WriteHandler<T extends  AsyncMMOClient<AsyncMMOConnection<T>>> implements 
     @Override
     public void completed(Integer result, T client) {
         if(result < 0) {
-            System.out.println("Writed < 0  bytes");
             client.disconnect();
             return;
         }

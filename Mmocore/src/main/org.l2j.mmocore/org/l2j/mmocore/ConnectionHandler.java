@@ -1,4 +1,4 @@
-package com.l2jbr.mmocore;
+package org.l2j.mmocore;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -20,14 +20,15 @@ public final class ConnectionHandler<T extends AsyncMMOClient<AsyncMMOConnection
     private final ClientFactory<T> clientFactory;
     private final ReadHandler<T> readHandler;
     private final boolean useNagle;
+    private final ConnectionFilter acceptFilter;
     private boolean shutdown;
     private boolean cached = false;
 
-    public ConnectionHandler(InetSocketAddress address, boolean useNagle, int threadPoolSize, ClientFactory<T> clientFactory, IPacketHandler<T> packetHandler, IMMOExecutor<T> executor)
+    public ConnectionHandler(InetSocketAddress address, boolean useNagle, int threadPoolSize, ClientFactory<T> clientFactory, IPacketHandler<T> packetHandler, PacketExecutor<T> executor, ConnectionFilter filter)
             throws IOException {
         this.clientFactory = clientFactory;
         this.useNagle = useNagle;
-
+        this.acceptFilter = filter;
         this.readHandler = new ReadHandler<>(packetHandler, executor);
         this.writeHandler = new WriteHandler<>();
         group = createChannelGroup(threadPoolSize);
@@ -70,18 +71,20 @@ public final class ConnectionHandler<T extends AsyncMMOClient<AsyncMMOConnection
     private void acceptConnection(AsynchronousSocketChannel channel) {
         if(nonNull(channel) && channel.isOpen()) {
             try {
+                if(nonNull(acceptFilter) && !acceptFilter.accept(channel)) {
+                    channel.close();
+                    return;
+                }
+
                 channel.setOption(StandardSocketOptions.TCP_NODELAY, !useNagle);
+                AsyncMMOConnection<T> connection = new AsyncMMOConnection<>(channel, readHandler, writeHandler);
+                T client = clientFactory.create(connection);
+                connection.setClient(client);
+                connection.read();
+                client.onConnected();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            AsyncMMOConnection<T> connection = new AsyncMMOConnection<>(channel, readHandler, writeHandler);
-            T client = clientFactory.create(connection);
-            connection.setClient(client);
-            connection.read();
-            client.onConnected();
-        } else {
-            System.out.println("Channel Closed");
         }
     }
 

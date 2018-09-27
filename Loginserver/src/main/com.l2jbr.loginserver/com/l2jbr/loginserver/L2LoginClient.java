@@ -27,7 +27,8 @@ import com.l2jbr.loginserver.serverpackets.LoginFail;
 import com.l2jbr.loginserver.serverpackets.LoginFail.LoginFailReason;
 import com.l2jbr.loginserver.serverpackets.PlayFail;
 import com.l2jbr.loginserver.serverpackets.PlayFail.PlayFailReason;
-import com.l2jbr.mmocore.*;
+import org.l2j.mmocore.AsyncMMOClient;
+import org.l2j.mmocore.AsyncMMOConnection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

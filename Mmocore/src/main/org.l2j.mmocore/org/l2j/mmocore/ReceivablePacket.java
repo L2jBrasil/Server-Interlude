@@ -15,7 +15,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jbr.mmocore;
+package org.l2j.mmocore;
 
 import java.nio.charset.Charset;
 
@@ -30,7 +30,6 @@ public abstract class ReceivablePacket<T> extends AbstractPacket<T> implements R
 	protected final int availableData() {
 	    return data.length - dataIndex;
     }
-
 
 	/**
 	 *

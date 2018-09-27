@@ -21,7 +21,7 @@ import com.l2jbr.gameserver.GameTimeController;
 import com.l2jbr.gameserver.network.L2GameClient;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.L2GameServerPacket;
-import com.l2jbr.mmocore.ReceivablePacket;
+import org.l2j.mmocore.ReceivablePacket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

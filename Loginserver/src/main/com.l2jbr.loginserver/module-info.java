@@ -1,6 +1,6 @@
 module com.l2jbr.loginserver {
     requires com.l2jbr.commons;
-    requires com.l2jbr.mmocore;
+    requires org.l2j.mmocore;
 
     requires java.xml;
     requires java.sql;

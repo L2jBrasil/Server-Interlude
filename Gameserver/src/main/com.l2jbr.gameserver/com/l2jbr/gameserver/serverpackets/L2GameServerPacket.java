@@ -18,7 +18,7 @@
 package com.l2jbr.gameserver.serverpackets;
 
 import com.l2jbr.gameserver.network.L2GameClient;
-import com.l2jbr.mmocore.SendablePacket;
+import org.l2j.mmocore.SendablePacket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
