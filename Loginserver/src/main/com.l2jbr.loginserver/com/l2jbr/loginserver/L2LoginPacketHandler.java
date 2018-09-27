@@ -23,21 +23,21 @@ import com.l2jbr.loginserver.clientpackets.RequestAuthLogin;
 import com.l2jbr.loginserver.clientpackets.RequestServerList;
 import com.l2jbr.loginserver.clientpackets.RequestServerLogin;
 import org.l2j.mmocore.DataWrapper;
-import org.l2j.mmocore.IPacketHandler;
-import org.l2j.mmocore.ReceivablePacket;
+import org.l2j.mmocore.PacketHandler;
+import org.l2j.mmocore.ReadablePacket;
 
 /**
  * Handler for packets received by Login Server
  * @author KenM
  */
-public final class L2LoginPacketHandler implements IPacketHandler<L2LoginClient>
+public final class L2LoginPacketHandler implements PacketHandler<L2LoginClient>
 {
 
 	@Override
-	public ReceivablePacket<L2LoginClient> handlePacket(DataWrapper data, L2LoginClient client) {
+	public ReadablePacket<L2LoginClient> handlePacket(DataWrapper data, L2LoginClient client) {
         int opcode = Byte.toUnsignedInt(data.get());
 
-        ReceivablePacket<L2LoginClient> packet = null;
+        ReadablePacket<L2LoginClient> packet = null;
         LoginClientState state = client.getState();
 
         switch (state)

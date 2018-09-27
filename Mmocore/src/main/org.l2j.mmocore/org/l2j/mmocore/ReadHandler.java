@@ -5,21 +5,21 @@ import java.nio.channels.CompletionHandler;
 
 import static java.util.Objects.nonNull;
 
-class ReadHandler<T extends AsyncMMOClient<AsyncMMOConnection<T>>> implements CompletionHandler<Integer, T> {
+class ReadHandler<T extends Client<Connection<T>>> implements CompletionHandler<Integer, T> {
 
     static final int HEADER_SIZE = 2;
 
-    private final IPacketHandler<T> packetHandler;
+    private final PacketHandler<T> packetHandler;
     private final PacketExecutor<T> executor;
 
-    ReadHandler(IPacketHandler<T> packetHandler, PacketExecutor<T> executor) {
+    ReadHandler(PacketHandler<T> packetHandler, PacketExecutor<T> executor) {
         this.packetHandler = packetHandler;
         this.executor =  executor;
     }
 
     @Override
     public void completed(Integer bytesRead, T client) {
-        AsyncMMOConnection<T> connection = client.getConnection();
+        Connection<T> connection = client.getConnection();
         if(bytesRead < 0 ) {
             client.disconnect();
             return;
@@ -68,12 +68,12 @@ class ReadHandler<T extends AsyncMMOClient<AsyncMMOConnection<T>>> implements Co
 
         if(decrypted) {
             DataWrapper wrapper = DataWrapper.wrap(data);
-            ReceivablePacket<T> packet = packetHandler.handlePacket(wrapper, client);
+            ReadablePacket<T> packet = packetHandler.handlePacket(wrapper, client);
             execute(client, packet, wrapper);
         }
     }
 
-    private void execute(T client, ReceivablePacket<T> packet, DataWrapper wrapper) {
+    private void execute(T client, ReadablePacket<T> packet, DataWrapper wrapper) {
         if(nonNull(packet)) {
             packet.client = client;
             packet.data = wrapper.data;

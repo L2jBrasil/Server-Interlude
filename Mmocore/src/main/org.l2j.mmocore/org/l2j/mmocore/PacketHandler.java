@@ -17,10 +17,7 @@
  */
 package org.l2j.mmocore;
 
+public interface PacketHandler<T extends Client<Connection<T>>> {
 
-public interface IPacketHandler<T> {
-
-	default ReceivablePacket<T> handlePacket(DataWrapper data, T client) {
-        return null;
-    }
+	ReadablePacket<T> handlePacket(DataWrapper data, T client);
 }

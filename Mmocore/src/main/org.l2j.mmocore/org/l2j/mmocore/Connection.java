@@ -8,7 +8,7 @@ import java.util.concurrent.ExecutionException;
 
 import static java.util.Objects.isNull;
 
-public class AsyncMMOConnection<T extends AsyncMMOClient<AsyncMMOConnection<T>>> {
+public class Connection<T extends Client<Connection<T>>> {
 
     private final AsynchronousSocketChannel channel;
     private final ReadHandler<T> readHandler;
@@ -18,7 +18,7 @@ public class AsyncMMOConnection<T extends AsyncMMOClient<AsyncMMOConnection<T>>>
     private ByteBuffer readingBuffer;
     private ByteBuffer writingBuffer;
 
-    AsyncMMOConnection(AsynchronousSocketChannel channel, ReadHandler<T> readHandler, WriteHandler<T> writeHandler) {
+    Connection(AsynchronousSocketChannel channel, ReadHandler<T> readHandler, WriteHandler<T> writeHandler) {
         this.channel = channel;
         this.readHandler = readHandler;
         this.writeHandler = writeHandler;

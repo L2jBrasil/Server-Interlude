@@ -1,9 +1,9 @@
 package org.l2j.mmocore.packet;
 
-import org.l2j.mmocore.ReceivablePacket;
+import org.l2j.mmocore.ReadablePacket;
 import org.l2j.mmocore.async.AsyncClient;
 
-public class AsyncPingPacket extends ReceivablePacket<AsyncClient> {
+public class AsyncPingPacket extends ReadablePacket<AsyncClient> {
     private long packetSize;
 
 

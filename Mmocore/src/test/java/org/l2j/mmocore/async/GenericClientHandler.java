@@ -8,19 +8,19 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class GenericClientHandler implements ClientFactory<AsyncClient>, IPacketHandler<AsyncClient>, PacketExecutor<AsyncClient> {
+public class GenericClientHandler implements ClientFactory<AsyncClient>, PacketHandler<AsyncClient>, PacketExecutor<AsyncClient> {
 
     ThreadPoolExecutor threadPool = new ThreadPoolExecutor(2, 2, 15L,TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(), Executors.defaultThreadFactory());
 
     @Override
-    public AsyncClient create(AsyncMMOConnection<AsyncClient> connection) {
+    public AsyncClient create(Connection<AsyncClient> connection) {
         return new AsyncClient(connection);
     }
 
     @Override
-    public ReceivablePacket<AsyncClient> handlePacket(DataWrapper wrapper, AsyncClient client) {
+    public ReadablePacket<AsyncClient> handlePacket(DataWrapper wrapper, AsyncClient client) {
         var opcode = Byte.toUnsignedInt(wrapper.get());
-        ReceivablePacket<AsyncClient> packet = null;
+        ReadablePacket<AsyncClient> packet = null;
         switch (opcode) {
             case 0x01:
                 packet = new AsyncPingPacket();
@@ -29,7 +29,7 @@ public class GenericClientHandler implements ClientFactory<AsyncClient>, IPacket
     }
 
     @Override
-    public void execute(ReceivablePacket<AsyncClient> packet) {
+    public void execute(ReadablePacket<AsyncClient> packet) {
         threadPool.execute(packet);
     }
 }

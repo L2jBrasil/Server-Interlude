@@ -16,8 +16,8 @@ import com.l2jbr.gameserver.serverpackets.L2GameServerPacket;
 import com.l2jbr.gameserver.serverpackets.ServerClose;
 import com.l2jbr.gameserver.serverpackets.UserInfo;
 import com.l2jbr.gameserver.util.EventData;
-import org.l2j.mmocore.AsyncMMOClient;
-import org.l2j.mmocore.AsyncMMOConnection;
+import org.l2j.mmocore.Client;
+import org.l2j.mmocore.Connection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,7 +35,7 @@ import static com.l2jbr.commons.util.Util.isNullOrEmpty;
  *
  * @author KenM
  */
-public final class L2GameClient extends AsyncMMOClient<AsyncMMOConnection<L2GameClient>> {
+public final class L2GameClient extends Client<Connection<L2GameClient>> {
     protected static final Logger _log = LoggerFactory.getLogger(L2GameClient.class.getName());
 
     /**
@@ -73,7 +73,7 @@ public final class L2GameClient extends AsyncMMOClient<AsyncMMOConnection<L2Game
     public byte packetsSentInSec = 0;
     public int packetsSentStartTick = 0;
 
-    public L2GameClient(AsyncMMOConnection<L2GameClient> con) {
+    public L2GameClient(Connection<L2GameClient> con) {
         super(con);
         state = GameClientState.CONNECTED;
         _connectionStartTime = System.currentTimeMillis();

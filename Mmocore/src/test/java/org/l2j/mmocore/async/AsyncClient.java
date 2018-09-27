@@ -1,12 +1,12 @@
 package org.l2j.mmocore.async;
 
-import org.l2j.mmocore.AsyncMMOClient;
-import org.l2j.mmocore.AsyncMMOConnection;
-import org.l2j.mmocore.SendablePacket;
+import org.l2j.mmocore.Client;
+import org.l2j.mmocore.Connection;
+import org.l2j.mmocore.WritablePacket;
 
-public class AsyncClient extends AsyncMMOClient<AsyncMMOConnection<AsyncClient>> {
+public class AsyncClient extends Client<Connection<AsyncClient>> {
 
-    AsyncClient(AsyncMMOConnection<AsyncClient> connection) {
+    AsyncClient(Connection<AsyncClient> connection) {
         super(connection);
     }
 
@@ -31,7 +31,7 @@ public class AsyncClient extends AsyncMMOClient<AsyncMMOConnection<AsyncClient>>
     }
 
 
-    public void sendPacket(SendablePacket<AsyncClient> packet) {
+    public void sendPacket(WritablePacket<AsyncClient> packet) {
         writePacket(packet);
     }
 }

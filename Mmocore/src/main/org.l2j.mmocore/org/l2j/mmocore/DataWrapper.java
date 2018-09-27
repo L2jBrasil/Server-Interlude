@@ -1,6 +1,6 @@
 package org.l2j.mmocore;
 
-public final class DataWrapper extends ReceivablePacket<Object> {
+public final class DataWrapper extends ReadablePacket<Object> {
 
     private DataWrapper(byte[] data) {
         this.data = data;

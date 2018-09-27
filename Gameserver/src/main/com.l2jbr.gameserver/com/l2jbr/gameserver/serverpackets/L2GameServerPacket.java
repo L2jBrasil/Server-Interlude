@@ -18,7 +18,7 @@
 package com.l2jbr.gameserver.serverpackets;
 
 import com.l2jbr.gameserver.network.L2GameClient;
-import org.l2j.mmocore.SendablePacket;
+import org.l2j.mmocore.WritablePacket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author KenM
  */
-public abstract class L2GameServerPacket extends SendablePacket<L2GameClient>
+public abstract class L2GameServerPacket extends WritablePacket<L2GameClient>
 {
 	private static final Logger _log = LoggerFactory.getLogger(L2GameServerPacket.class.getName());
 	

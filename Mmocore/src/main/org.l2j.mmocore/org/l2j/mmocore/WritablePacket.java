@@ -4,9 +4,9 @@ import static java.lang.Double.doubleToRawLongBits;
 import static java.lang.System.arraycopy;
 import static java.util.Objects.nonNull;
 
-public abstract class SendablePacket<T extends AsyncMMOClient<AsyncMMOConnection<T>>> extends AbstractPacket<T> {
+public abstract class WritablePacket<T extends Client<Connection<T>>> extends AbstractPacket<T> {
 
-    protected SendablePacket() {
+    protected WritablePacket() {
         data = new byte[packetSize()];
     }
 

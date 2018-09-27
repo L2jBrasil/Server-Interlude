@@ -23,9 +23,9 @@ import static java.lang.Byte.toUnsignedInt;
 import static java.lang.Byte.toUnsignedLong;
 import static java.lang.Double.longBitsToDouble;
 
-public abstract class ReceivablePacket<T> extends AbstractPacket<T> implements Runnable {
+public abstract class ReadablePacket<T> extends AbstractPacket<T> implements Runnable {
 
-	protected ReceivablePacket() { }
+	protected ReadablePacket() { }
 
 	protected final int availableData() {
 	    return data.length - dataIndex;

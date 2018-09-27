@@ -1,9 +1,9 @@
 package org.l2j.mmocore.packet;
 
-import org.l2j.mmocore.SendablePacket;
+import org.l2j.mmocore.WritablePacket;
 import org.l2j.mmocore.async.AsyncClient;
 
-public class AsyncPongPacket extends SendablePacket<AsyncClient> {
+public class AsyncPongPacket extends WritablePacket<AsyncClient> {
 
     private long packetSize;
 

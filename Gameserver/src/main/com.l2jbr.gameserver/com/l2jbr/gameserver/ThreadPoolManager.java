@@ -20,7 +20,7 @@ package com.l2jbr.gameserver;
 
 import com.l2jbr.commons.Config;
 import com.l2jbr.gameserver.network.L2GameClient;
-import org.l2j.mmocore.ReceivablePacket;
+import org.l2j.mmocore.ReadablePacket;
 
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -176,11 +176,11 @@ public class ThreadPoolManager {
         }
     }
 
-    public void executePacket(ReceivablePacket<L2GameClient> pkt) {
+    public void executePacket(ReadablePacket<L2GameClient> pkt) {
         _generalPacketsThreadPool.execute(pkt);
     }
 
-    public void executeIOPacket(ReceivablePacket<L2GameClient> pkt) {
+    public void executeIOPacket(ReadablePacket<L2GameClient> pkt) {
         _ioPacketsThreadPool.execute(pkt);
     }
 

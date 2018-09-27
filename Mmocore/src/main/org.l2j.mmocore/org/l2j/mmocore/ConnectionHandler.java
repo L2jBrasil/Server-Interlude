@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 import static java.util.Objects.nonNull;
 
-public final class ConnectionHandler<T extends AsyncMMOClient<AsyncMMOConnection<T>>> extends Thread {
+public final class ConnectionHandler<T extends Client<Connection<T>>> extends Thread {
 
     private final AsynchronousChannelGroup group;
     private final AsynchronousServerSocketChannel listener;
@@ -24,7 +24,7 @@ public final class ConnectionHandler<T extends AsyncMMOClient<AsyncMMOConnection
     private boolean shutdown;
     private boolean cached = false;
 
-    public ConnectionHandler(InetSocketAddress address, boolean useNagle, int threadPoolSize, ClientFactory<T> clientFactory, IPacketHandler<T> packetHandler, PacketExecutor<T> executor, ConnectionFilter filter)
+    public ConnectionHandler(InetSocketAddress address, boolean useNagle, int threadPoolSize, ClientFactory<T> clientFactory, PacketHandler<T> packetHandler, PacketExecutor<T> executor, ConnectionFilter filter)
             throws IOException {
         this.clientFactory = clientFactory;
         this.useNagle = useNagle;
@@ -77,7 +77,7 @@ public final class ConnectionHandler<T extends AsyncMMOClient<AsyncMMOConnection
                 }
 
                 channel.setOption(StandardSocketOptions.TCP_NODELAY, !useNagle);
-                AsyncMMOConnection<T> connection = new AsyncMMOConnection<>(channel, readHandler, writeHandler);
+                Connection<T> connection = new Connection<>(channel, readHandler, writeHandler);
                 T client = clientFactory.create(connection);
                 connection.setClient(client);
                 connection.read();

@@ -37,12 +37,12 @@ public class SelectorHelper implements PacketExecutor<L2LoginClient>, ClientFact
 	}
 	
 	@Override
-	public void execute(ReceivablePacket<L2LoginClient> packet) {
+	public void execute(ReadablePacket<L2LoginClient> packet) {
 		_generalPacketsThreadPool.execute(packet);
 	}
 
 	@Override
-	public L2LoginClient create(AsyncMMOConnection<L2LoginClient> connection) {
+	public L2LoginClient create(Connection<L2LoginClient> connection) {
 		return new L2LoginClient(connection);
 	}
 

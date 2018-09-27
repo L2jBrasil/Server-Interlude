@@ -6,14 +6,14 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import static java.util.Objects.isNull;
 
-public abstract class AsyncMMOClient<T extends  AsyncMMOConnection<?>> {
+public abstract class Client<T extends Connection<?>> {
 
     private final T connection;
-    private Queue<SendablePacket<? extends  AsyncMMOClient<T>>> packetsToWrite = new ConcurrentLinkedQueue<>();
+    private Queue<WritablePacket<? extends Client<T>>> packetsToWrite = new ConcurrentLinkedQueue<>();
     private int dataSentSize;
     private AtomicBoolean writing = new AtomicBoolean(false);
 
-    public AsyncMMOClient(T connection) {
+    public Client(T connection) {
         this.connection = connection;
     }
 
@@ -21,7 +21,7 @@ public abstract class AsyncMMOClient<T extends  AsyncMMOConnection<?>> {
         return connection;
     }
 
-    protected void writePacket(SendablePacket<? extends AsyncMMOClient<T>> packet) {
+    protected void writePacket(WritablePacket<? extends Client<T>> packet) {
         putClientOnPacket(packet);
         if(packetsToWrite.isEmpty() && writing.compareAndSet(false, true) ) {
             write(packet);
@@ -31,7 +31,7 @@ public abstract class AsyncMMOClient<T extends  AsyncMMOConnection<?>> {
     }
 
     @SuppressWarnings("unchecked")
-    private void putClientOnPacket(SendablePacket packet) {
+    private void putClientOnPacket(WritablePacket packet) {
         packet.client = this;
     }
 
@@ -39,7 +39,7 @@ public abstract class AsyncMMOClient<T extends  AsyncMMOConnection<?>> {
         if(packetsToWrite.isEmpty()) {
             writing.getAndSet(false);
         } else {
-            SendablePacket<? extends AsyncMMOClient<T>> packet = packetsToWrite.poll();
+            WritablePacket<? extends Client<T>> packet = packetsToWrite.poll();
             write(packet);
         }
     }
@@ -50,7 +50,7 @@ public abstract class AsyncMMOClient<T extends  AsyncMMOConnection<?>> {
     }
 
 
-    private void write(SendablePacket packet, boolean sync) {
+    private void write(WritablePacket packet, boolean sync) {
         if(isNull(packet)) {
             return;
         }
@@ -63,11 +63,11 @@ public abstract class AsyncMMOClient<T extends  AsyncMMOConnection<?>> {
         }
     }
 
-    private void write(SendablePacket<? extends  AsyncMMOClient<T>> packet) {
+    private void write(WritablePacket<? extends Client<T>> packet) {
         write(packet, false);
     }
 
-    public void close(SendablePacket<? extends AsyncMMOClient<T>> packet) {
+    public void close(WritablePacket<? extends Client<T>> packet) {
         packetsToWrite.clear();
         putClientOnPacket(packet);
         write(packet, true);

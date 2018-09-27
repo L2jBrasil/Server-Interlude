@@ -22,15 +22,15 @@ import static java.lang.Short.toUnsignedInt;
  * Note: If for a given exception a packet needs to be handled on more then one state, then it should be added to all these states.
  * @author KenM
  */
-public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, ClientFactory<L2GameClient>, PacketExecutor<L2GameClient>
+public final class L2GamePacketHandler implements PacketHandler<L2GameClient>, ClientFactory<L2GameClient>, PacketExecutor<L2GameClient>
 {
 	private static final Logger _log = LoggerFactory.getLogger(L2GamePacketHandler.class);
 
     @Override
-    public ReceivablePacket<L2GameClient> handlePacket(DataWrapper data, L2GameClient client) {
+    public ReadablePacket<L2GameClient> handlePacket(DataWrapper data, L2GameClient client) {
         int opcode = toUnsignedInt(data.get());
 
-        ReceivablePacket<L2GameClient> msg = null;
+        ReadablePacket<L2GameClient> msg = null;
         GameClientState state = client.getState();
 
         switch (state)  {
@@ -797,12 +797,12 @@ public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, 
 	}
 
 	@Override
-	public L2GameClient create(AsyncMMOConnection<L2GameClient> connection) {
+	public L2GameClient create(Connection<L2GameClient> connection) {
 		return new L2GameClient(connection);
 	}
 
 	@Override
-	public void execute(ReceivablePacket<L2GameClient> rp)
+	public void execute(ReadablePacket<L2GameClient> rp)
 	{
 		try
 		{

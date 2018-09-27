@@ -21,7 +21,7 @@ import com.l2jbr.gameserver.GameTimeController;
 import com.l2jbr.gameserver.network.L2GameClient;
 import com.l2jbr.gameserver.serverpackets.ActionFailed;
 import com.l2jbr.gameserver.serverpackets.L2GameServerPacket;
-import org.l2j.mmocore.ReceivablePacket;
+import org.l2j.mmocore.ReadablePacket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
  * Packets received by the game server from clients
  * @author KenM
  */
-public abstract class L2GameClientPacket extends ReceivablePacket<L2GameClient>
+public abstract class L2GameClientPacket extends ReadablePacket<L2GameClient>
 {
 	private static final Logger _log = LoggerFactory.getLogger(L2GameClientPacket.class.getName());
 	

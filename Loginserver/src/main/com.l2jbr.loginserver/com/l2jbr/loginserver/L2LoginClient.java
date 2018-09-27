@@ -27,8 +27,8 @@ import com.l2jbr.loginserver.serverpackets.LoginFail;
 import com.l2jbr.loginserver.serverpackets.LoginFail.LoginFailReason;
 import com.l2jbr.loginserver.serverpackets.PlayFail;
 import com.l2jbr.loginserver.serverpackets.PlayFail.PlayFailReason;
-import org.l2j.mmocore.AsyncMMOClient;
-import org.l2j.mmocore.AsyncMMOConnection;
+import org.l2j.mmocore.Client;
+import org.l2j.mmocore.Connection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,7 +38,7 @@ import java.security.interfaces.RSAPrivateKey;
 /**
  * Represents a client connected into the LoginServer
  */
-public final class L2LoginClient extends AsyncMMOClient<AsyncMMOConnection<L2LoginClient>>
+public final class L2LoginClient extends Client<Connection<L2LoginClient>>
 {
 	private static Logger _log = LoggerFactory.getLogger(L2LoginClient.class);
 	
@@ -66,7 +66,7 @@ public final class L2LoginClient extends AsyncMMOClient<AsyncMMOConnection<L2Log
 	
 	private final long _connectionStartTime;
 
-	public L2LoginClient(AsyncMMOConnection<L2LoginClient> con)
+	public L2LoginClient(Connection<L2LoginClient> con)
 	{
 		super(con);
 		_state = LoginClientState.CONNECTED;

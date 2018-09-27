@@ -10,10 +10,10 @@ import java.nio.channels.SocketChannel;
 import java.time.Instant;
 import java.time.ZoneId;
 
-public class Client {
+public class TestClient {
 
     public static void main(String[] args) throws IOException {
-        Client client = new Client();
+        TestClient client = new TestClient();
         client.connect(8585);
         client.sendPing();
     }
