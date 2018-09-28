@@ -24,6 +24,18 @@ public final class ConnectionHandler<T extends Client<Connection<T>>> extends Th
     private boolean shutdown;
     private boolean cached = false;
 
+
+    ConnectionHandler(ConnectionConfig<T> config) throws IOException {
+        this.clientFactory = config.clientFactory;
+        this.useNagle = config.useNagle;
+        this.acceptFilter = config.acceptFilter;
+        this.readHandler = config.readHandler;
+        this.writeHandler = config.writeHandler;
+        group = createChannelGroup(config.threadPoolSize);
+        listener = group.provider().openAsynchronousServerSocketChannel(group);
+        listener.bind(config.address);
+    }
+
     public ConnectionHandler(InetSocketAddress address, boolean useNagle, int threadPoolSize, ClientFactory<T> clientFactory, PacketHandler<T> packetHandler, PacketExecutor<T> executor, ConnectionFilter filter)
             throws IOException {
         this.clientFactory = clientFactory;
