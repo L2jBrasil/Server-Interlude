@@ -1,7 +1,6 @@
 package org.l2j.mmocore;
 
 import java.io.IOException;
-import java.net.InetSocketAddress;
 import java.net.StandardSocketOptions;
 import java.nio.channels.AsynchronousChannelGroup;
 import java.nio.channels.AsynchronousServerSocketChannel;
@@ -10,48 +9,35 @@ import java.nio.channels.CompletionHandler;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import static java.lang.Runtime.getRuntime;
 import static java.util.Objects.nonNull;
 
 public final class ConnectionHandler<T extends Client<Connection<T>>> extends Thread {
 
     private final AsynchronousChannelGroup group;
     private final AsynchronousServerSocketChannel listener;
-    private final WriteHandler<T> writeHandler;
-    private final ClientFactory<T> clientFactory;
-    private final ReadHandler<T> readHandler;
-    private final boolean useNagle;
-    private final ConnectionFilter acceptFilter;
+    private final ConnectionConfig<T> config;
     private boolean shutdown;
-    private boolean cached = false;
-
+    private boolean cached;
 
     ConnectionHandler(ConnectionConfig<T> config) throws IOException {
-        this.clientFactory = config.clientFactory;
-        this.useNagle = config.useNagle;
-        this.acceptFilter = config.acceptFilter;
-        this.readHandler = config.readHandler;
-        this.writeHandler = config.writeHandler;
+        this.config = config;
+        initalizeResourcePool();
         group = createChannelGroup(config.threadPoolSize);
         listener = group.provider().openAsynchronousServerSocketChannel(group);
         listener.bind(config.address);
     }
 
-    public ConnectionHandler(InetSocketAddress address, boolean useNagle, int threadPoolSize, ClientFactory<T> clientFactory, PacketHandler<T> packetHandler, PacketExecutor<T> executor, ConnectionFilter filter)
-            throws IOException {
-        this.clientFactory = clientFactory;
-        this.useNagle = useNagle;
-        this.acceptFilter = filter;
-        this.readHandler = new ReadHandler<>(packetHandler, executor);
-        this.writeHandler = new WriteHandler<>();
-        group = createChannelGroup(threadPoolSize);
-        listener = group.provider().openAsynchronousServerSocketChannel(group);
-        listener.bind(address);
+    private void initalizeResourcePool() {
+        ResourcePool.setBufferPoolSize(config.bufferPoolSize);
+        ResourcePool.setBufferSize(config.bufferSize);
+        ResourcePool.setByteOrder(config.byteOrder);
     }
 
     private AsynchronousChannelGroup createChannelGroup(int threadPoolSize) throws IOException {
-        if(threadPoolSize <= 0 || threadPoolSize >= Short.MAX_VALUE) {
+        if (threadPoolSize <= 0 || threadPoolSize >= Short.MAX_VALUE) {
             cached = true;
-            return AsynchronousChannelGroup.withCachedThreadPool(Executors.newCachedThreadPool(), 5);
+            return AsynchronousChannelGroup.withCachedThreadPool(Executors.newCachedThreadPool(), getRuntime().availableProcessors());
         }
         return AsynchronousChannelGroup.withFixedThreadPool(threadPoolSize, Executors.defaultThreadFactory());
     }
@@ -59,10 +45,10 @@ public final class ConnectionHandler<T extends Client<Connection<T>>> extends Th
     @Override
     public void run() {
         listener.accept(null, new AcceptConnectionHandler());
-        if(cached) {
-            while(!shutdown) {
+        if (cached) {
+            while (!shutdown) {
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(config.shutdownWaitTime);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -73,7 +59,7 @@ public final class ConnectionHandler<T extends Client<Connection<T>>> extends Th
     private void closeConnection() {
         try {
             listener.close();
-            group.awaitTermination(10, TimeUnit.SECONDS);
+            group.awaitTermination(config.shutdownWaitTime, TimeUnit.SECONDS);
             group.shutdownNow();
         } catch (Exception e) {
             e.printStackTrace();
@@ -81,16 +67,16 @@ public final class ConnectionHandler<T extends Client<Connection<T>>> extends Th
     }
 
     private void acceptConnection(AsynchronousSocketChannel channel) {
-        if(nonNull(channel) && channel.isOpen()) {
+        if (nonNull(channel) && channel.isOpen()) {
             try {
-                if(nonNull(acceptFilter) && !acceptFilter.accept(channel)) {
+                if (nonNull(config.acceptFilter) && !config.acceptFilter.accept(channel)) {
                     channel.close();
                     return;
                 }
 
-                channel.setOption(StandardSocketOptions.TCP_NODELAY, !useNagle);
-                Connection<T> connection = new Connection<>(channel, readHandler, writeHandler);
-                T client = clientFactory.create(connection);
+                channel.setOption(StandardSocketOptions.TCP_NODELAY, !config.useNagle);
+                Connection<T> connection = new Connection<>(channel, config.readHandler, config.writeHandler);
+                T client = config.clientFactory.create(connection);
                 connection.setClient(client);
                 connection.read();
                 client.onConnected();
@@ -101,7 +87,6 @@ public final class ConnectionHandler<T extends Client<Connection<T>>> extends Th
     }
 
     public void shutdown() {
-        System.out.println("Shuting Server Down");
         shutdown = true;
         closeConnection();
     }
@@ -109,7 +94,7 @@ public final class ConnectionHandler<T extends Client<Connection<T>>> extends Th
     private class AcceptConnectionHandler implements CompletionHandler<AsynchronousSocketChannel, Void> {
         @Override
         public void completed(AsynchronousSocketChannel clientChannel, Void attachment) {
-            if(!shutdown && listener.isOpen()) {
+            if (!shutdown && listener.isOpen()) {
                 listener.accept(null, this);
             }
             acceptConnection(clientChannel);

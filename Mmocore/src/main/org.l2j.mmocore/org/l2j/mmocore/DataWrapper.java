@@ -38,6 +38,4 @@ public final class DataWrapper extends ReadablePacket<Object> {
         return data;
     }
 
-
-
 }

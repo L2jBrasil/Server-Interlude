@@ -42,6 +42,7 @@ import com.l2jbr.gameserver.taskmanager.TaskManager;
 import com.l2jbr.gameserver.util.DynamicExtension;
 import com.l2jbr.gameserver.util.FloodProtector;
 import com.l2jbr.gameserver.util.IPv4Filter;
+import org.l2j.mmocore.ConnectionBuilder;
 import org.l2j.mmocore.ConnectionHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -235,7 +236,6 @@ public class GameServer {
 
         L2GamePacketHandler gph = new L2GamePacketHandler();
 
-
         InetSocketAddress bindAddress;
         if (!Config.GAMESERVER_HOSTNAME.equals("*")) {
             bindAddress =  new InetSocketAddress(Config.GAMESERVER_HOSTNAME, Config.PORT_GAME);
@@ -243,7 +243,7 @@ public class GameServer {
             bindAddress = new InetSocketAddress(Config.PORT_GAME);
         }
 
-        connectionHandler = new ConnectionHandler<>(bindAddress, false, 4, gph, gph, gph, new IPv4Filter());
+        connectionHandler = ConnectionBuilder.create(bindAddress, gph,gph,gph).filter(new IPv4Filter()).build();
         connectionHandler.start();
 
         _log.info(getMessage("info.max.connected.players", Config.MAXIMUM_ONLINE_USERS));
