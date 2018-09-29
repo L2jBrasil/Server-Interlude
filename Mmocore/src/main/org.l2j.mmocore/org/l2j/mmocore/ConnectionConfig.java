@@ -21,9 +21,6 @@ class ConnectionConfig<T extends Client<Connection<T>>> {
     int threadPoolSize;
     SocketAddress address;
 
-
-
-
     ConnectionConfig(SocketAddress address, ClientFactory<T> factory, ReadHandler<T> readHandler) {
         this.address = address;
         this.clientFactory = factory;

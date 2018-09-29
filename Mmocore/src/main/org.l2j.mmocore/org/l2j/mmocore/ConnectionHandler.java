@@ -1,5 +1,8 @@
 package org.l2j.mmocore;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.net.StandardSocketOptions;
 import java.nio.channels.AsynchronousChannelGroup;
@@ -13,6 +16,8 @@ import static java.lang.Runtime.getRuntime;
 import static java.util.Objects.nonNull;
 
 public final class ConnectionHandler<T extends Client<Connection<T>>> extends Thread {
+
+    private static final Logger logger = LoggerFactory.getLogger(ConnectionHandler.class);
 
     private final AsynchronousChannelGroup group;
     private final AsynchronousServerSocketChannel listener;
@@ -32,13 +37,16 @@ public final class ConnectionHandler<T extends Client<Connection<T>>> extends Th
         ResourcePool.setBufferPoolSize(config.bufferPoolSize);
         ResourcePool.setBufferSize(config.bufferSize);
         ResourcePool.setByteOrder(config.byteOrder);
+        logger.debug("Initialize ResourcePool with byteOrder {}, bufferSize {}, bufferPoolSize{}",config.byteOrder, config.bufferSize, config.bufferPoolSize);
     }
 
     private AsynchronousChannelGroup createChannelGroup(int threadPoolSize) throws IOException {
         if (threadPoolSize <= 0 || threadPoolSize >= Short.MAX_VALUE) {
             cached = true;
+            logger.debug("Channel group is using CachedThreadPool");
             return AsynchronousChannelGroup.withCachedThreadPool(Executors.newCachedThreadPool(), getRuntime().availableProcessors());
         }
+        logger.debug("Channel group is using FixedThreadPool");
         return AsynchronousChannelGroup.withFixedThreadPool(threadPoolSize, Executors.defaultThreadFactory());
     }
 
@@ -50,7 +58,7 @@ public final class ConnectionHandler<T extends Client<Connection<T>>> extends Th
                 try {
                     Thread.sleep(config.shutdownWaitTime);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.warn(e.getLocalizedMessage(), e);
                 }
             }
         }
@@ -62,14 +70,16 @@ public final class ConnectionHandler<T extends Client<Connection<T>>> extends Th
             group.awaitTermination(config.shutdownWaitTime, TimeUnit.SECONDS);
             group.shutdownNow();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.warn(e.getLocalizedMessage(),e);
         }
     }
 
     private void acceptConnection(AsynchronousSocketChannel channel) {
         if (nonNull(channel) && channel.isOpen()) {
             try {
+                logger.debug("Accepting connection from {}", channel);
                 if (nonNull(config.acceptFilter) && !config.acceptFilter.accept(channel)) {
+                    logger.debug("Rejected connection");
                     channel.close();
                     return;
                 }
@@ -80,13 +90,15 @@ public final class ConnectionHandler<T extends Client<Connection<T>>> extends Th
                 connection.setClient(client);
                 connection.read();
                 client.onConnected();
+                logger.debug("Connection accepted. Attached to client {}", client);
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error(e.getLocalizedMessage(), e);
             }
         }
     }
 
     public void shutdown() {
+        logger.debug("Shutting ConnectionHandler down");
         shutdown = true;
         closeConnection();
     }
@@ -102,7 +114,7 @@ public final class ConnectionHandler<T extends Client<Connection<T>>> extends Th
 
         @Override
         public void failed(Throwable t, Void attachment) {
-            t.printStackTrace();
+            logger.error(t.getLocalizedMessage(), t);
         }
     }
 }

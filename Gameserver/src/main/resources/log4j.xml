@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="error" monitorInterval="30">
+<Configuration status="error" monitorInterval="300">
     <properties>
-        <Property name="pattern">[%-5p][%d{yyyy-MM-dd HH:mm:ss,SSS}][%c{1}:%M:%L]: %msg%n</Property>
+        <Property name="pattern">[%-5p][%d{yyyy-MM-dd HH:mm:ss}][%c{1}:%M:%L]: %msg%n</Property>
     </properties>
     <Appenders>
         <Console name="console" target="SYSTEM_OUT">
